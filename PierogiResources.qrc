@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/arrow_bottom_icon&amp;48.png</file>
+        <file>icons/arrow_left_icon&amp;48.png</file>
+        <file>icons/arrow_right_icon&amp;48.png</file>
+        <file>icons/arrow_top_icon&amp;48.png</file>
+        <file>icons/clock_icon&amp;48.png</file>
+        <file>icons/eject_icon&amp;48.png</file>
+        <file>icons/fastforward_next_icon&amp;48.png</file>
+        <file>icons/on-off_icon&amp;48.png</file>
+        <file>icons/playback_ff_icon&amp;48.png</file>
+        <file>icons/playback_next_icon&amp;48.png</file>
+        <file>icons/playback_pause_icon&amp;48.png</file>
+        <file>icons/playback_play_icon&amp;48.png</file>
+        <file>icons/playback_prev_icon&amp;48.png</file>
+        <file>icons/playback_rec_icon&amp;48.png</file>
+        <file>icons/playback_rew_icon&amp;48.png</file>
+        <file>icons/playback_stop_icon&amp;48.png</file>
+        <file>icons/redo_icon&amp;48.png</file>
+        <file>icons/rewind_previous_icon&amp;48.png</file>
+        <file>icons/sound_high_icon&amp;48.png</file>
+        <file>icons/sound_low_icon&amp;48.png</file>
+        <file>icons/sound_mute_icon&amp;48.png</file>
+        <file>icons/undo_icon&amp;48.png</file>
+        <file>icons/br_down_icon&amp;48.png</file>
+        <file>icons/br_up_icon&amp;48.png</file>
+        <file>icons/blue_square.png</file>
+        <file>icons/green_square.png</file>
+        <file>icons/red_square.png</file>
+        <file>icons/yellow_square.png</file>
+        <file>icons/red_record_icon.png</file>
+        <file>icons/dash.png</file>
+        <file>icons/PierogiIcon.png</file>
+        <file>doc/about.html</file>
+        <file>doc/documentation.html</file>
+    </qresource>
+</RCC>
