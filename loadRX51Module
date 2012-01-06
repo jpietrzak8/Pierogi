@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Just load the module, nothing else:
+
+/sbin/modprobe lirc_rx51

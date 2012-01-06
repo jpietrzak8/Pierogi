@@ -1,0 +1,10 @@
+The Debian Package pierogi
+----------------------------
+
+This package contains Pierogi, a universal infrared remote control app
+for the Nokia N900.
+
+This is my first Qt application, and my first N900 application!  I hope
+you enjoy it.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Mon, 02 Jan 2012 08:14:13 -0500

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Just unload the module, nothing else:
+
+/sbin/modprobe --remove lirc_rx51
