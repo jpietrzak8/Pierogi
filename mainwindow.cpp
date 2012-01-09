@@ -13,6 +13,8 @@
 
 //#include <iostream>
 
+//#define DEBUGGING
+
 extern PIRMakeMgr makeManager;
 
 
@@ -54,6 +56,36 @@ MainWindow::MainWindow(QWidget *parent)
     this,
     SLOT(keysetSelectionChanged(QListWidgetItem *)),
     Qt::QueuedConnection);
+
+  // Make sure the two selection lists don't show different selections:
+  connect(
+    ui->favoriteKeysetsWidget,
+    SIGNAL(itemActivated(QListWidgetItem *)),
+    mySelectionWindow->nameListWidget,
+    SLOT(clearSelection()),
+    Qt::QueuedConnection);
+
+  connect(
+    mySelectionWindow->nameListWidget,
+    SIGNAL(itemActivated(QListWidgetItem *)),
+    ui->favoriteKeysetsWidget,
+    SLOT(clearSelection()),
+    Qt::QueuedConnection);
+
+#ifndef DEBUGGING
+  // The PIRModprobe object should take care of setting up and shutting down
+  // the lirc_rx51 kernel module, if necessary:
+ 
+  if (modprobeObj.loadRX51Module() != 0)
+  {
+    // Couldn't load module, quit:
+    QMessageBox errBox;
+    errBox.setText("Couldn't load lirc_rx51 kernel module!");
+    errBox.setIcon(QMessageBox::Warning);
+    errBox.exec();
+//    throw; // Need a clean way to exit here!!!
+  }
+#endif
 }
 
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.0, 2012-01-01T18:09:45. -->
+<!-- Written by Qt Creator 2.4.0, 2012-01-09T01:28:37. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -185,7 +185,7 @@
        <value type="QString"></value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
-       <value type="QDateTime">2012-01-01T15:41:24</value>
+       <value type="QDateTime">2012-01-06T10:31:10</value>
        <value type="QDateTime">2012-01-01T15:35:35</value>
       </valuelist>
      </valuemap>
@@ -211,10 +211,46 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Deploy files via UTFS mount</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">MaemoMountAndCopyDeployStep</value>
-      <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedFiles"/>
-      <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedHosts"/>
-      <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedRemotePaths"/>
-      <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes"/>
+      <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedFiles">
+       <value type="QString">/Users/john/Develop/n900/pierogi/pierogi.sudoers</value>
+       <value type="QString">/Users/john/Develop/n900/pierogi/pierogi.sudoers</value>
+       <value type="QString">/Users/john/Develop/n900/pierogi/pierogi.desktop</value>
+       <value type="QString">/Users/john/Develop/n900/pierogi/pierogi.sudoers</value>
+       <value type="QString">/Users/john/Develop/n900/pierogi/unloadRX51Module</value>
+       <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi</value>
+       <value type="QString">/Users/john/Develop/n900/pierogi/loadRX51Module</value>
+       <value type="QString">/Users/john/Develop/n900/pierogi/pierogi64.png</value>
+      </valuelist>
+      <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedHosts">
+       <value type="QString">192.168.0.15</value>
+       <value type="QString">192.168.0.15</value>
+       <value type="QString">192.168.0.15</value>
+       <value type="QString">192.168.0.15</value>
+       <value type="QString">192.168.0.15</value>
+       <value type="QString">192.168.0.15</value>
+       <value type="QString">192.168.0.15</value>
+       <value type="QString">192.168.0.15</value>
+      </valuelist>
+      <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedRemotePaths">
+       <value type="QString">/opt/pierogi/../../etc/sudoers.d/pierogi.sudoers</value>
+       <value type="QString">/opt/pierogi//etc/sudoers.d/pierogi.sudoers</value>
+       <value type="QString">/usr/share/applications/hildon</value>
+       <value type="QString">/opt/pierogi/../../etc/sudoers.d</value>
+       <value type="QString">/opt/pierogi/bin</value>
+       <value type="QString">/opt/pierogi/bin</value>
+       <value type="QString">/opt/pierogi/bin</value>
+       <value type="QString">/usr/share/icons/hicolor/64x64/apps</value>
+      </valuelist>
+      <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
+       <value type="QDateTime">2012-01-05T11:06:10</value>
+       <value type="QDateTime">2012-01-05T11:04:41</value>
+       <value type="QDateTime">2012-01-05T12:18:12</value>
+       <value type="QDateTime">2012-01-05T14:48:09</value>
+       <value type="QDateTime">2012-01-05T14:54:41</value>
+       <value type="QDateTime">2012-01-05T14:54:41</value>
+       <value type="QDateTime">2012-01-05T14:54:41</value>
+       <value type="QDateTime">2012-01-05T12:05:38</value>
+      </valuelist>
      </valuemap>
      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Deploy</value>
@@ -225,7 +261,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Copy Files to Maemo5 Device</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">DeployToFremantleWithoutPackaging</value>
-    <value type="qulonglong" key="Qt4ProjectManager.MaemoRunConfiguration.DeviceId">1</value>
+    <value type="qulonglong" key="Qt4ProjectManager.MaemoRunConfiguration.DeviceId">2</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.DeployConfigurationCount">2</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.0">

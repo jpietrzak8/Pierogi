@@ -82,7 +82,7 @@ RCATV1a::RCATV1a(
 {
   setKeysetName("TV Keyset 1a");
 
-  addKey("repeat", Unmapped_Key, 0x050FA, 20):
+  addKey("repeat", Unmapped_Key, 0x050FA, 20);
   addKey("pip", PIP_Key, 0x1B0E4, 20);
   addKey("swap", PIPSwap_Key, 0xC303C, 20);
   addKey("aspect", AspectRatio_Key, 0x9006F, 20);
@@ -177,7 +177,7 @@ RCAAux1::RCAAux1(
   addKey("aux-clear", Exit_Key, 0x06BF9, 20);
   addKey("aux-1", One_Key, 0x31BCE, 20);
   addKey("aux-2", Two_Key, 0x32BCD, 20);
-  addKey("aux-3", Three_key, 0x33BCC, 20);
+  addKey("aux-3", Three_Key, 0x33BCC, 20);
   addKey("aux-4", Four_Key, 0x34BCB, 20);
   addKey("aux-5", Five_Key, 0x35BCA, 20);
   addKey("aux-6", Six_Key, 0x36BC9, 20);
@@ -242,7 +242,7 @@ RCAAux2::RCAAux2(
   addKey("aux-ok", Select_Key, 0xF430B, 20);
   addKey("aux-1", One_Key, 0x313CE, 20);
   addKey("aux-2", Two_Key, 0x323CD, 20);
-  addKey("aux-3", Three_key, 0x333CC, 20);
+  addKey("aux-3", Three_Key, 0x333CC, 20);
   addKey("aux-4", Four_Key, 0x343CB, 20);
   addKey("aux-5", Five_Key, 0x353CA, 20);
   addKey("aux-6", Six_Key, 0x363C9, 20);
@@ -549,7 +549,7 @@ RCASat2::RCASat2(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "Satellite(Dish Network) Keyset 2",
+      "Satellite (Dish Network) Keyset 2",
       RCA_Make,
       index)
 {
@@ -567,7 +567,8 @@ RCASat2::RCASat2(
 
   np->setPostData(0x000, 10);
 
-  np->setMinimumRepetitions(6);
+//  np->setMinimumRepetitions(6);
+  np->setFullHeadlessRepeat(true);
 
   np->setCarrierFrequency(56000);
   np->setDutyCycle(32);

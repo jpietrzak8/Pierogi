@@ -7,14 +7,19 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Ei_Make] = "Ei";
   makes[GoldStar_Make] = "GoldStar";
   makes[Hauppauge_Make] = "Hauppauge";
+  makes[JVC_Make] = "JVC";
   makes[LG_Make] = "LG";
+  makes[Mitsubishi_Make] = "Mitsubishi";
   makes[Nokia_Make] = "Nokia";
+  makes[Philips_Make] = "Philips";
   makes[Panasonic_Make] = "Panasonic";
+  makes[RCA_Make] = "RCA";
   makes[Samsung_Make] = "Samsung";
   makes[Sanyo_Make] = "Sanyo";
   makes[Sharp_Make] = "Sharp";
   makes[Sony_Make] = "Sony";
   makes[Toshiba_Make] = "Toshiba";
+  makes[Westinghouse_Make] = "Westinghouse";
   makes[Zenith_Make] = "Zenith";
 }
 

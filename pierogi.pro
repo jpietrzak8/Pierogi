@@ -2,9 +2,14 @@
 # by adapting the examples below.
 # file1.source = myfile
 # dir1.source = mydir
-DEPLOYMENTFOLDERS = # file1 dir1
+#DEPLOYMENTFOLDERS = # file1 dir1
+sudoers_stuff.source = pierogi.sudoers
+sudoers_stuff.target = ../../etc/sudoers.d
+loadModule.source = loadRX51Module unloadRX51Module
+loadModule.target = bin
+DEPLOYMENTFOLDERS = loadModule
 
-symbian:TARGET.UID3 = 0xE0C0A793
+#symbian:TARGET.UID3 = 0xE0C0A793
 
 # Smart Installer package's UID
 # This UID is from the protected range 
@@ -14,7 +19,7 @@ symbian:TARGET.UID3 = 0xE0C0A793
 #symbian:DEPLOYMENT.installer_header = 0x2002CCCF
 
 # Allow network access on Symbian
-symbian:TARGET.CAPABILITY += NetworkServices
+#symbian:TARGET.CAPABILITY += NetworkServices
 
 # If your application uses the Qt Mobility libraries, uncomment
 # the following lines and add the respective components to the 
@@ -47,7 +52,12 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/toshiba.cpp \
     keysets/zenith.cpp \
     pirkeysetmetadata.cpp \
-    pirkeysetmanager.cpp
+    pirkeysetmanager.cpp \
+    keysets/rca.cpp \
+    keysets/westinghouse.cpp \
+    keysets/mitsubishi.cpp \
+    pirmodprobe.cpp \
+    keysets/jvc.cpp
 HEADERS += mainwindow.h \
     pirdevice.h \
     pirkeynames.h \
@@ -74,7 +84,12 @@ HEADERS += mainwindow.h \
     keysets/toshiba.h \
     keysets/zenith.h \
     pirkeysetmetadata.h \
-    pirkeysetmanager.h
+    pirkeysetmanager.h \
+    keysets/rca.h \
+    keysets/westinghouse.h \
+    keysets/mitsubishi.h \
+    pirmodprobe.h \
+    keysets/jvc.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui
@@ -121,7 +136,25 @@ OTHER_FILES += \
     icons/undo_icon&48.png \
     icons/yellow_square.png \
     doc/about.html \
-    doc/documentation.html
+    doc/documentation.html \
+    qtc_packaging/debian_fremantle/rules \
+    qtc_packaging/debian_fremantle/README \
+    qtc_packaging/debian_fremantle/copyright \
+    qtc_packaging/debian_fremantle/control \
+    qtc_packaging/debian_fremantle/compat \
+    qtc_packaging/debian_fremantle/changelog \
+    pierogi.sudoers \
+    qtc_packaging/debian_fremantle/postinst \
+    www/index.html \
+    www/FavoritesTab.png \
+    www/KeypadTab.png \
+    www/MainTab.png \
+    www/MediaTab.png \
+    www/MenuTab.png \
+    www/MiscTab.png \
+    www/PierogiIcon.png \
+    www/SelectKeysetWindow.png \
+    www/UtilityTab.png
 
 RESOURCES += \
     PierogiResources.qrc

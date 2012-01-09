@@ -11,14 +11,19 @@ enum PIRMakeName{
   Ei_Make,
   GoldStar_Make,
   Hauppauge_Make,
+  JVC_Make,
   LG_Make,
+  Mitsubishi_Make,
   Nokia_Make,
   Panasonic_Make,
+  Philips_Make,
+  RCA_Make,
   Samsung_Make,
   Sanyo_Make,
   Sharp_Make,
   Sony_Make,
   Toshiba_Make,
+  Westinghouse_Make,
   Zenith_Make
 };
 

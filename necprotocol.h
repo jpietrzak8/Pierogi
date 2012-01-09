@@ -55,6 +55,9 @@ public:
   void setRepeatNeedsHeader(
     bool flag);
 
+  void setFullHeadlessRepeat(
+    bool flag);
+
 public slots:
   void startSendingCommand(
     unsigned int threadableID,
@@ -88,8 +91,13 @@ private:
   unsigned int repeatSpace;
   bool hasRepeatPair;
   bool repeatNeedsHeader; // Put the header ahead of the repeat pulse
+  bool fullHeadlessRepeat; // Repeat full command but without header
 
   int generateStandardCommand(
+    const CommandSequence &bits,
+    PIRDevice &device);
+
+  int generateHeadlessCommand(
     const CommandSequence &bits,
     PIRDevice &device);
 

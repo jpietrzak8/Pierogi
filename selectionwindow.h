@@ -26,12 +26,16 @@ public:
     unsigned int index,
     PIRMakeName make);
 
+  // Public just for now, to get a quick hack working.  (Actually, this whole
+  // class should be replaced with a UI form eventually, to match the rest of
+  // the code...)
+  QListWidget *nameListWidget;
+
 private slots:
   void filterListByMake(
     int make);
 
 private:
-  QListWidget *nameListWidget;
   QLabel *makeLabel;
   QComboBox *makeComboBox;
   QGridLayout *layout;

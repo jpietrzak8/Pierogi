@@ -41,7 +41,7 @@ WestinghouseTV1::WestinghouseTV1(
   addKey("KEY_LEFT", Left_Key, 0x827D, 16);
   addKey("KEY_RIGHT", Right_Key, 0xC23D, 16);
   addKey("KEY_MUTE", Mute_Key, 0x08F7, 16);
-  addKey("KEY_INFO", Info_Key, 0xD827, 16):
+  addKey("KEY_INFO", Info_Key, 0xD827, 16);
   addKey("KEY_VOLUMEUP", VolumeUp_Key, 0x20DF, 16);
   addKey("KEY_VOLUMEDOWN", VolumeDown_Key, 0xA05F, 16);
   addKey("INPUT", Input_Key, 0x00FF, 16);

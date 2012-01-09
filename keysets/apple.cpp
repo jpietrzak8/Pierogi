@@ -7,9 +7,9 @@ AppleWhiteRemote::AppleWhiteRemote(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-    "White Remote",
-    Apple_Make,
-    index)
+      "White Remote",
+      Apple_Make,
+      index)
 {
   addControlledDevice(Apple_Make, "Mac Mini", Computer_Device);
 

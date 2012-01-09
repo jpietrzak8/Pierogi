@@ -8,6 +8,7 @@
 #include "pirdocumentationform.h"
 #include "piraboutform.h"
 #include "pirkeysetmanager.h"
+#include "pirmodprobe.h"
 
 namespace Ui {
     class MainWindow;
@@ -306,6 +307,8 @@ private:
   PIRKeysetManager *myKeysets;
 
   unsigned int currentKeyset;
+
+  PIRModprobe modprobeObj;
 };
 
 

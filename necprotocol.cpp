@@ -21,7 +21,8 @@ NECProtocol::NECProtocol(
     hasTrailerPulse(false),
     hasHeaderPair(false),
     hasRepeatPair(false),
-    repeatNeedsHeader(false)
+    repeatNeedsHeader(false),
+    fullHeadlessRepeat(false)
 {
 }
 
@@ -54,6 +55,12 @@ void NECProtocol::setRepeatNeedsHeader(
   bool flag)
 {
   repeatNeedsHeader = flag;
+}
+
+void NECProtocol::setFullHeadlessRepeat(
+  bool flag)
+{
+  fullHeadlessRepeat = flag;
 }
 
 void NECProtocol::setPreData(
@@ -102,9 +109,13 @@ void NECProtocol::startSendingCommand(
 
       // If we are currently repeating, and have a special "repeat signal",
       // use that signal.  Otherwise, generate a normal command string.
-      if ((hasRepeatPair) && repeatCount)
+      if (hasRepeatPair && repeatCount)
       {
         commandDuration = generateRepeatCommand(device);
+      }
+      else if (fullHeadlessRepeat && repeatCount)
+      {
+        commandDuration = generateHeadlessCommand((*i).second, device);
       }
       else
       {
@@ -152,6 +163,32 @@ int NECProtocol::generateStandardCommand(
   }
 
   // Next, the "pre" data:
+  duration += pushBits(preData, device);
+
+  // Next, add the actual command:
+  duration += pushBits(bits, device);
+
+  // Next, add the "post" data:
+  duration += pushBits(postData, device);
+
+  // Finally add the "trail":
+  if (hasTrailerPulse)
+  {
+    device.addSingle(trailerPulse);
+    duration += trailerPulse;
+  }
+
+  return duration;
+}
+
+
+int NECProtocol::generateHeadlessCommand(
+  const CommandSequence &bits,
+  PIRDevice &device)
+{
+  int duration = 0;
+
+  // First, the "pre" data:
   duration += pushBits(preData, device);
 
   // Next, add the actual command:

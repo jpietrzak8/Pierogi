@@ -13,7 +13,6 @@
         <file>icons/playback_pause_icon&amp;48.png</file>
         <file>icons/playback_play_icon&amp;48.png</file>
         <file>icons/playback_prev_icon&amp;48.png</file>
-        <file>icons/playback_rec_icon&amp;48.png</file>
         <file>icons/playback_rew_icon&amp;48.png</file>
         <file>icons/playback_stop_icon&amp;48.png</file>
         <file>icons/redo_icon&amp;48.png</file>
@@ -30,8 +29,8 @@
         <file>icons/yellow_square.png</file>
         <file>icons/red_record_icon.png</file>
         <file>icons/dash.png</file>
-        <file>icons/PierogiIcon.png</file>
         <file>doc/about.html</file>
         <file>doc/documentation.html</file>
+        <file>icons/PierogiIcon.png</file>
     </qresource>
 </RCC>

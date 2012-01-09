@@ -7,16 +7,33 @@
 
 <p>
 The Pierogi universal infrared remote controller is a single self-contained
-app capable of sending IR commands to pretty much any IR-controlled device.
+app capable of sending IR commands to a wide variety of devices.
 At the moment, it is oriented towards television, VCR, DVD, and Blu-ray
 devices, but a few other types of device have had their command sets entered.
 </p>
 
 <p>
-Commands are collected into "keysets".  As each manufacturer tends to reuse
-a given set of command encodings rather than re-invent the wheel each
-time they come out with a new product, a large number of devices can be
-controlled by a single keyset.
+In this app, each family of related infrared commands is collected into a
+"keyset".  As manufacturers commonly reuse a given set of commands rather
+than re-invent the wheel each time they come out with a new product, many
+devices can share the same keyset.
+</p>
+
+<p>
+Pierogi also follows the classic concept of a universal remote, by having
+a common set of buttons that are reused for each device.  So, for example,
+the "power" button has the same name and is located in the same position,
+no matter what keyset is currently in use -- even if that keyset has a
+different name for "power", or has no "power" command at all.  (Check out
+the <a href="http://en.wikipedia.org/wiki/Universal_remote">Universal
+Remote wiki</a> for a description of universal remote controls, which
+includes a special mention of the N900!)
+</p>
+
+<p>
+So in short, to use Pierogi, you first select an appropriate keyset, then
+press the appropriate buttons to control the target device.  More detail on
+the features of Pierogi is provided below.
 </p>
 
 <h2>Using Pierogi</h2>
@@ -109,8 +126,9 @@ return arrow at the top right of the screen).</p>
 
 <h3>Hasn't this been done before?</h3>
 
-<p>Yes, remote control software has already been written.  In particular,
-the <a href="http://irreco.garage.maemo.org/">Irreco / QtIrreco</a> project
+<p>Yes, remote control software has already been written for the N900.  In
+particular, the
+<a href="http://irreco.garage.maemo.org/">Irreco / QtIrreco</a> project
 creates beautiful virtual remote controls.  I've also used the
 <a href="http://thp.io/2010/raemote/">Raemote</a> widget to control my Apple
 computers.  But these programs have their shortcomings; in particular, they
@@ -120,18 +138,18 @@ use on all sorts of different hardware.</p>
 
 <h3>What's up with LIRC?</h3>
 
-<p>Just as Irreco and Raemote do, I want to leverage the work of the 
+<p>Just as QtIrreco and Raemote do, I want to leverage the work of the 
 <a href="http://www.lirc.org/">Linux Infrared Remote Control</a> project.
-The LIRC project is, at the moment, by far the most influential open-source
-effort working with consumer IR.  And the N900 comes with a device driver
-built specifically for use with LIRC!  But, you see, I have a problem.  I
+The LIRC project is by far the most influential open-source effort working
+with consumer IR.  And the N900 comes with a device driver made
+specifically for their server!  But, you see, I have a problem.  I
 don't want to do things the way LIRC wants to do things.</p>
 
 <p>The N900 is different from other Linux systems using IR -- rather than
 being the machine at which you point a remote control, this machine <i>is</i>
-the remote control.  Which is not what LIRC was made for; the heart of the
+the remote control.  This is not what LIRC was designed for; the heart of the
 LIRC project is a server that will sit and wait for messages to arrive from
-the IR hardware.  Although it can also broadcast IR data back out (when using
+the IR system.  Although it can also broadcast IR data back out (when using
 hardware that supports 2-way IR communication), that is not its primary
 purpose.</p>
 
@@ -151,9 +169,9 @@ multitudes.</p>
 <p>The third problem is more subtle, but really tough to crack.  You see, the
 whole point of LIRC is to take the commands it receives from the IR port and
 translate them into something recognizable.  As such, each config file provides
-a mapping from numeric commands to human-readable strings.  (These strings
-are normally based on the labels used on the remote control itself.)  This is a
-serious problem for a universal controller!  Take, for example, the "power"
+a mapping from numeric commands to human-readable strings.  This is a
+serious problem, if your interest is in finding similar commands in
+different config files!  Take, for example, the "power"
 button found on most remote controls.  In some config files, the string for
 this is "power".  Others have "Power", or "POWER".  You can also find "pwr",
 "PWR", "ON/OFF", "ON-OFF", "ONOFF", "POWER_ON_OFF", "KEY_POWER", "Operate",
@@ -165,14 +183,18 @@ know which key to map all these strings to?</p>
 
 <p>
 Pierogi attempts to answer these problems.  First, it talks directly to the
-/dev/lirc0 device, no server middleman needed.  Yes, you can halt (or even
-uninstall!) the lircd daemon, and still use Pierogi.  Second, the entire
-set of LIRC config files are being processed and combined into a small(er)
-set of related families of commands.  The third problem mentioned above is a
-bit harder to solve; I'm currently mapping each LIRC config file string by
-hand to a corresponding Pierogi key.  Naturally, this process will be fraught
-with errors; I intend to keep updating Pierogi as these errors are found and
-fixed.
+/dev/lirc0 device, no server middleman needed.  Yes, you can use Pierogi
+without the LIRC daemon running; in fact, there's no need to ever install it.
+Second, Pierogi is built
+around the concept of the "keyset"; all IR codes that can share the same
+protocol without interfering with one another are combined into a single
+family of related commands.  In short, this reduces the quantity of data
+available from LIRC config files to something much more manageable.</p>
+ 
+<p>The third problem mentioned above is a bit harder to solve; I'm currently
+mapping each LIRC string to a corresponding Pierogi key by hand.  Naturally,
+this process will be fraught with errors; I intend to keep updating Pierogi
+as these errors are found and fixed.
 </p>
 
 <h2>Internal Design Notes</h2>
@@ -249,7 +271,14 @@ sorting through a massive pile of flags, conditional statements, and some
 really funky delayed-action buffering to make everything work.  The simple act
 of splitting the code into one routine for the RC5 (biphase) protocol and
 another for the NEC (space-encoded) protocol makes it much easier to read, at
-least to my eyes.  (I haven't yet implemented the RC6 protocol.)
+least to my eyes.  (I haven't yet implemented the RC6 or other protocols.)
+</p>
+
+<p>
+In any case, I owe the LIRC authors a deep debt of gratitude for their
+efforts.  If you are one such author, thank you.  As Pierogi is more-or-less
+derived directly from their work, it is also licensed under the same terms,
+the GNU General Public License (GPL) version 2 or later.
 </p>
 
 <h2>Attribution</h2>
@@ -263,7 +292,10 @@ Find their work at <a href="http://www.gentleface.com">www.gentleface.com</a>.
 <p>A set of links to some resources I've used while writing the code.</p>
 
 <ul>
-<li><a href="http://en.wikipedia.org/wiki/Consumer_IR">Wiki page</a> with
+<li>The center of the Linux infrared world, the
+<a href="http://www.lirc.org/">Linux Infrared Remote Control</a> project.
+
+<li>A <a href="http://en.wikipedia.org/wiki/Consumer_IR">Wiki page</a> with
 general info on consumer IR
 
 <li>A <a href="http://www.sbprojects.com/knowledge/ir/index.php">good introduction</a>
@@ -271,14 +303,11 @@ to the theory and practice behind consumer IR devices
 
 <li>A <a href="http://en.wikipedia.org/wiki/RC-5">Wiki for the RC-5 protocol</a>
 
-<li><a href="http://www.sbprojects.com/knowledge/ir/nec.php">Info on the NEC protocol</a>
+<li>Some <a href="http://www.sbprojects.com/knowledge/ir/nec.php">Info on the NEC protocol</a>
 
-<li><a href="http://www2.renesas.com/faq/en/mi_com/f_com_remo.html">More info on the NEC protocol</a>
+<li>Some <a href="http://www2.renesas.com/faq/en/mi_com/f_com_remo.html">More info on the NEC protocol</a>
 
-<li>The heart of it all, the
-<a href="http://www.lirc.org/">Linux Infrared Remote Control</a> project.
-
-<li>Link to (what appears to be) the source code for the N900's
+<li>Link to (what appears to be) source code for the N900's
 <a href="http://svn.jacekowski.org/host_mode/trunk/drivers/input/lirc/lirc_rx51.c">/dev/lirc0 device driver</a>.
 <ul>
 
