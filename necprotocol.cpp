@@ -100,7 +100,7 @@ void NECProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRDevice device(carrierFrequency, dutyCycle);
+    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
@@ -111,19 +111,19 @@ void NECProtocol::startSendingCommand(
       // use that signal.  Otherwise, generate a normal command string.
       if (hasRepeatPair && repeatCount)
       {
-        commandDuration = generateRepeatCommand(device);
+        commandDuration = generateRepeatCommand(rx51device);
       }
       else if (fullHeadlessRepeat && repeatCount)
       {
-        commandDuration = generateHeadlessCommand((*i).second, device);
+        commandDuration = generateHeadlessCommand((*i).second, rx51device);
       }
       else
       {
-        commandDuration = generateStandardCommand((*i).second, device);
+        commandDuration = generateStandardCommand((*i).second, rx51device);
       }
 
       // Now, tell the device to send the whole command:
-      device.sendCommandToDevice();
+      rx51device.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -151,30 +151,30 @@ void NECProtocol::startSendingCommand(
 
 int NECProtocol::generateStandardCommand(
   const CommandSequence &bits,
-  PIRDevice &device)
+  PIRRX51Hardware &rx51device)
 {
   int duration = 0;
 
   // First, the "header" pulse (if any):
   if (hasHeaderPair)
   {
-    device.addPair(headerPulse, headerSpace);
+    rx51device.addPair(headerPulse, headerSpace);
     duration += (headerPulse + headerSpace);
   }
 
   // Next, the "pre" data:
-  duration += pushBits(preData, device);
+  duration += pushBits(preData, rx51device);
 
   // Next, add the actual command:
-  duration += pushBits(bits, device);
+  duration += pushBits(bits, rx51device);
 
   // Next, add the "post" data:
-  duration += pushBits(postData, device);
+  duration += pushBits(postData, rx51device);
 
   // Finally add the "trail":
   if (hasTrailerPulse)
   {
-    device.addSingle(trailerPulse);
+    rx51device.addSingle(trailerPulse);
     duration += trailerPulse;
   }
 
@@ -184,23 +184,23 @@ int NECProtocol::generateStandardCommand(
 
 int NECProtocol::generateHeadlessCommand(
   const CommandSequence &bits,
-  PIRDevice &device)
+  PIRRX51Hardware &rx51device)
 {
   int duration = 0;
 
   // First, the "pre" data:
-  duration += pushBits(preData, device);
+  duration += pushBits(preData, rx51device);
 
   // Next, add the actual command:
-  duration += pushBits(bits, device);
+  duration += pushBits(bits, rx51device);
 
   // Next, add the "post" data:
-  duration += pushBits(postData, device);
+  duration += pushBits(postData, rx51device);
 
   // Finally add the "trail":
   if (hasTrailerPulse)
   {
-    device.addSingle(trailerPulse);
+    rx51device.addSingle(trailerPulse);
     duration += trailerPulse;
   }
 
@@ -209,7 +209,7 @@ int NECProtocol::generateHeadlessCommand(
 
 
 int NECProtocol::generateRepeatCommand(
-  PIRDevice &device)
+  PIRRX51Hardware &rx51device)
 {
   int duration = 0;
 
@@ -220,19 +220,19 @@ int NECProtocol::generateRepeatCommand(
     if (hasHeaderPair)
     {
       // Ok, then add the header to the repeat:
-      device.addPair(headerPulse, headerSpace);
+      rx51device.addPair(headerPulse, headerSpace);
       duration += (headerPulse + headerSpace);
     }
   }
 
   // Add the repeat pulse:
-  device.addPair(repeatPulse, repeatSpace);
+  rx51device.addPair(repeatPulse, repeatSpace);
   duration += (repeatPulse + repeatSpace);
 
   // Finally add the trailer:
   if (hasTrailerPulse)
   {
-    device.addSingle(trailerPulse);
+    rx51device.addSingle(trailerPulse);
     duration += trailerPulse;
   }
 
@@ -242,7 +242,7 @@ int NECProtocol::generateRepeatCommand(
 
 int NECProtocol::pushBits(
   const CommandSequence &bits,
-  PIRDevice &device)
+  PIRRX51Hardware &rx51device)
 {
   int duration = 0;
   CommandSequence::const_iterator i = bits.begin();
@@ -251,13 +251,13 @@ int NECProtocol::pushBits(
     if (*i)
     {
       // Send the pulse for "One":
-      device.addPair(onePulse, oneSpace);
+      rx51device.addPair(onePulse, oneSpace);
       duration += (onePulse + oneSpace);
     }
     else
     {
       // Send the pulse for "Zero":
-      device.addPair(zeroPulse, zeroSpace);
+      rx51device.addPair(zeroPulse, zeroSpace);
       duration += (zeroPulse + zeroSpace);
     }
     ++i;

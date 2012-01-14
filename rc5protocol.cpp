@@ -67,7 +67,7 @@ void RC5Protocol::startSendingCommand(
     }
 
     // Construct the object that communicates with the device driver:
-    PIRDevice device(carrierFrequency, dutyCycle);
+    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
@@ -87,12 +87,12 @@ void RC5Protocol::startSendingCommand(
       }
 
       // Encode the bits:
-      commandDuration += pushBits((*i).second, device);
+      commandDuration += pushBits((*i).second, rx51device);
 
       // Clear out the buffer, if necessary:
       if (buffer)
       {
-        device.addSingle(buffer);
+        rx51device.addSingle(buffer);
         commandDuration += buffer;
         buffer = 0;
         bufferContainsSpace = false;
@@ -100,7 +100,7 @@ void RC5Protocol::startSendingCommand(
       }
 
       // Now, tell the device to send the whole command:
-      device.sendCommandToDevice();
+      rx51device.sendCommandToDevice();
 
       // Sleep for an amount of time.  (Need to make this interruptable!)
       sleepUntilRepeat(commandDuration);
@@ -131,7 +131,7 @@ void RC5Protocol::startSendingCommand(
 
 int RC5Protocol::pushBits(
   const CommandSequence &bits,
-  PIRDevice &device)
+  PIRRX51Hardware &rx51device)
 {
   int bitsDuration = 0;
 
@@ -162,7 +162,7 @@ int RC5Protocol::pushBits(
       {
         // Merge our space with the previous space, and send them to
         // the device.
-        device.addSingle(buffer + biphaseSpace);
+        rx51device.addSingle(buffer + biphaseSpace);
         bitsDuration += (buffer + biphaseSpace);
         buffer = 0;
         bufferContainsSpace = false;
@@ -172,13 +172,13 @@ int RC5Protocol::pushBits(
         if (bufferContainsPulse)
         {
           // Flush the buffer:
-          device.addSingle(buffer);
+          rx51device.addSingle(buffer);
           bitsDuration += buffer;
           buffer = 0;
           bufferContainsPulse = false;
         }
         // Add a space:
-        device.addSingle(biphaseSpace);
+        rx51device.addSingle(biphaseSpace);
         bitsDuration += biphaseSpace;
       }
 
@@ -192,7 +192,7 @@ int RC5Protocol::pushBits(
       if (bufferContainsPulse)
       {
         // Merge our pulse with the previous one, and send them to the device:
-        device.addSingle(buffer + biphasePulse);
+        rx51device.addSingle(buffer + biphasePulse);
         bitsDuration += (buffer + biphasePulse);
         buffer = 0;
         bufferContainsPulse = false;
@@ -202,14 +202,14 @@ int RC5Protocol::pushBits(
         if (bufferContainsSpace)
         {
           // Flush out the buffer:
-          device.addSingle(buffer);
+          rx51device.addSingle(buffer);
           bitsDuration += buffer;
           buffer = 0;
           bufferContainsSpace = false;
         }
 
         // Add a pulse:
-        device.addSingle(biphasePulse);
+        rx51device.addSingle(biphasePulse);
         bitsDuration += biphasePulse;
       }
 

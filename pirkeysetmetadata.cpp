@@ -24,6 +24,18 @@ void PIRKeysetMetaData::moveProtocolToThread(
 }
 
 
+void PIRKeysetMetaData::populateDeviceTypes(
+  PIRKeysetWidgetItem *kwi)
+{
+  PIRDeviceTypeCollection::const_iterator i = deviceTypes.begin();
+  while (i != deviceTypes.end())
+  {
+    kwi->addDeviceType(*i);
+    ++i;
+  }
+}
+
+
 unsigned int PIRKeysetMetaData::getID()
 {
   return id;
@@ -33,9 +45,11 @@ unsigned int PIRKeysetMetaData::getID()
 void PIRKeysetMetaData::addControlledDevice(
   PIRMakeName make,
   const char *model,
-  DeviceType type)
+  PIRDeviceTypeName type)
 {
   controlledDevices.push_back(DeviceInfo(make, model, type));
+
+  deviceTypes.insert(type);
 }
 
 

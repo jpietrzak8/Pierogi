@@ -28,8 +28,6 @@ DEPLOYMENTFOLDERS = loadModule
 # MOBILITY +=
 
 SOURCES += main.cpp mainwindow.cpp \
-    pirdevice.cpp \
-    selectionwindow.cpp \
     necprotocol.cpp \
     rc5protocol.cpp \
     pirmakenames.cpp \
@@ -57,11 +55,12 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/westinghouse.cpp \
     keysets/mitsubishi.cpp \
     pirmodprobe.cpp \
-    keysets/jvc.cpp
+    keysets/jvc.cpp \
+    pirselectkeysetform.cpp \
+    pirrx51hardware.cpp \
+    pirdevicetypenames.cpp
 HEADERS += mainwindow.h \
-    pirdevice.h \
     pirkeynames.h \
-    selectionwindow.h \
     necprotocol.h \
     rc5protocol.h \
     pirmakenames.h \
@@ -89,10 +88,14 @@ HEADERS += mainwindow.h \
     keysets/westinghouse.h \
     keysets/mitsubishi.h \
     pirmodprobe.h \
-    keysets/jvc.h
+    keysets/jvc.h \
+    pirselectkeysetform.h \
+    pirrx51hardware.h \
+    pirdevicetypenames.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
-    piraboutform.ui
+    piraboutform.ui \
+    pirselectkeysetform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

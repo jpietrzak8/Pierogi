@@ -35,9 +35,9 @@
 bool stopRepeatingFlag;
 QMutex stopRepeatingMutex;
 
-// Next, a global for helping out with Make names:
-
+// Global helper objects:
 PIRMakeMgr makeManager;
+PIRDeviceTypeMgr deviceManager;
 
 // Now, on to the actual method definitions:
 
@@ -288,7 +288,7 @@ void PIRKeysetManager::populateKeyset(
 
 
 void PIRKeysetManager::populateGuiWidget(
-  SelectionWindow *widget)
+  PIRSelectKeysetForm *skf)
 {
   PIRKeysetCollection::const_iterator i = keysetsInfo.begin();
 
@@ -300,7 +300,16 @@ void PIRKeysetManager::populateGuiWidget(
     QString tempString = makeManager.getMakeString(make);
     tempString.append(" ");
     tempString.append(i->second->getKeysetName());
-    widget->addNameToList(tempString, i->first, make);
+    skf->addNameToList(tempString, i->first, make);
     ++i;
   }
+}
+
+
+void PIRKeysetManager::populateDeviceTypes(
+  PIRKeysetWidgetItem *kwi,
+  int keysetID)
+{
+  // Pass the buck:  (Need to check for bad keysetID here?)
+  keysetsInfo[keysetID]->populateDeviceTypes(kwi);
 }

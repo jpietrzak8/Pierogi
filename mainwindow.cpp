@@ -21,7 +21,7 @@ extern PIRMakeMgr makeManager;
 MainWindow::MainWindow(QWidget *parent)
   : QMainWindow(parent),
     ui(new Ui::MainWindow),
-    mySelectionWindow(0),
+    selectKeysetForm(0),
     documentationForm(0),
     aboutForm(0),
     currentKeyset(0)
@@ -35,9 +35,9 @@ MainWindow::MainWindow(QWidget *parent)
   myKeysets = new PIRKeysetManager(this);
 
   // Set up the keyset selection window:
-  mySelectionWindow = new SelectionWindow(this);
+  selectKeysetForm = new PIRSelectKeysetForm(this);
 
-  myKeysets->populateGuiWidget(mySelectionWindow);
+  myKeysets->populateGuiWidget(selectKeysetForm);
 
   // Remember any favorites the user has already set:
   populateFavorites();
@@ -58,15 +58,16 @@ MainWindow::MainWindow(QWidget *parent)
     Qt::QueuedConnection);
 
   // Make sure the two selection lists don't show different selections:
+  QListWidget *klw = selectKeysetForm->getKeysetListWidget();
   connect(
     ui->favoriteKeysetsWidget,
     SIGNAL(itemActivated(QListWidgetItem *)),
-    mySelectionWindow->nameListWidget,
+    klw,
     SLOT(clearSelection()),
     Qt::QueuedConnection);
 
   connect(
-    mySelectionWindow->nameListWidget,
+    klw,
     SIGNAL(itemActivated(QListWidgetItem *)),
     ui->favoriteKeysetsWidget,
     SLOT(clearSelection()),
@@ -92,7 +93,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
   delete myKeysets;
-  delete mySelectionWindow;
+  if (selectKeysetForm) delete selectKeysetForm;
   if (documentationForm) delete documentationForm;
   if (aboutForm) delete aboutForm;
   delete ui;
@@ -959,7 +960,7 @@ void MainWindow::on_recordButton_released()
 
 void MainWindow::on_actionSelectKeyset_triggered()
 {
-  mySelectionWindow->show();
+  selectKeysetForm->show();
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -1090,6 +1091,7 @@ void MainWindow::populateFavorites()
   PIRMakeName make;
   QString name;
   unsigned int id;
+  PIRKeysetWidgetItem *kwi;
 
   while (index < size)
   {
@@ -1099,8 +1101,9 @@ void MainWindow::populateFavorites()
     name = makeManager.getMakeString(make);
     name.append(" ");
     name.append(myKeysets->getDisplayName(id));
-    ui->favoriteKeysetsWidget->addItem(
-      new PIRKeysetWidgetItem(name, id, make));
+    kwi = new PIRKeysetWidgetItem(name, id, make);
+    myKeysets->populateDeviceTypes(kwi, id);
+    ui->favoriteKeysetsWidget->addItem(kwi);
     ++index;
   }
 

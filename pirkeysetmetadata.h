@@ -1,26 +1,17 @@
 #ifndef PIRKEYSETMETADATA_H
 #define PIRKEYSETMETADATA_H
 
-//#include <set>
 #include <map>
 #include <list>
 //#include <string>
 
 #include "pirkeynames.h"
 #include "pirmakenames.h"
-
+#include "pirdevicetypenames.h"
+#include "pirkeysetwidgetitem.h"
 #include "pirprotocol.h"
 
 typedef std::map<PIRKeyName, const char *> KeyCollection;
-
-enum DeviceType
-{
-  TV_Device,
-  VCR_Device,
-  DVD_Device,
-  Audio_Device,
-  Computer_Device
-};
 
 class DeviceInfo
 {
@@ -28,7 +19,7 @@ public:
   DeviceInfo(
     PIRMakeName ma,
     const char *mo,
-    DeviceType t)
+    PIRDeviceTypeName t)
   : make(ma),
     model(mo),
     type(t)
@@ -36,7 +27,7 @@ public:
 
   PIRMakeName make;
   const char *model;
-  DeviceType type;
+  PIRDeviceTypeName type;
 };
 
 typedef std::list<DeviceInfo> DeviceCollection;
@@ -60,11 +51,17 @@ public:
   void moveProtocolToThread(
     QThread &thread);
 
+  void populateDeviceTypes(
+    PIRKeysetWidgetItem *kwi);
+
 protected:
   void addControlledDevice(
     PIRMakeName make,
     const char *model,
-    DeviceType type);
+    PIRDeviceTypeName type);
+
+  void addDeviceType(
+    PIRDeviceTypeName n);
 
   void addKey(
     const char *name,
@@ -84,6 +81,7 @@ protected:
 private:
   const char *keysetName;
   PIRMakeName make;
+  PIRDeviceTypeCollection deviceTypes;
 
   unsigned int id;
 };

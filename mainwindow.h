@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QtGui/QMainWindow>
+#include <QListWidgetItem>
 //#include <QThread>
 
-#include "selectionwindow.h"
+//#include "selectionwindow.h"
+#include "pirselectkeysetform.h"
 #include "pirdocumentationform.h"
 #include "piraboutform.h"
 #include "pirkeysetmanager.h"
@@ -300,7 +302,7 @@ private:
 
   Ui::MainWindow *ui;
 
-  SelectionWindow *mySelectionWindow;
+  PIRSelectKeysetForm *selectKeysetForm;
   PIRDocumentationForm *documentationForm;
   PIRAboutForm *aboutForm;
 

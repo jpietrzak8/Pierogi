@@ -1,4 +1,4 @@
-#include "pirdevice.h"
+#include "pirrx51hardware.h"
 
 //#define DEBUGGING
 
@@ -33,7 +33,7 @@ timeval previousTime;
 //#define DEFAULT_DUTY_CYCLE 50
 
 
-PIRDevice::PIRDevice()
+PIRRX51Hardware::PIRRX51Hardware()
   : fileDescriptor(-1),
     index(0)
 {
@@ -41,7 +41,7 @@ PIRDevice::PIRDevice()
 }
 
 
-PIRDevice::PIRDevice(
+PIRRX51Hardware::PIRRX51Hardware(
   unsigned int frequency,
   unsigned int dutyCycle)
   : fileDescriptor(-1),
@@ -53,13 +53,13 @@ PIRDevice::PIRDevice(
 }
 
 
-PIRDevice::~PIRDevice()
+PIRRX51Hardware::~PIRRX51Hardware()
 {
   if (fileDescriptor >= 0) close(fileDescriptor);
 }
 
 
-void PIRDevice::openLircDevice()
+void PIRRX51Hardware::openLircDevice()
 {
 #ifdef DEBUGGING
   // check the current time:
@@ -79,7 +79,7 @@ void PIRDevice::openLircDevice()
 }
 
 
-void PIRDevice::addPair(
+void PIRRX51Hardware::addPair(
   int pulse,
   int space)
 {
@@ -96,7 +96,7 @@ void PIRDevice::addPair(
 }
 
 
-void PIRDevice::addSingle(
+void PIRRX51Hardware::addSingle(
   int single)
 {
   if (index >= BUFFER_SIZE)
@@ -109,7 +109,7 @@ void PIRDevice::addSingle(
 }
 
 
-void PIRDevice::sendCommandToDevice()
+void PIRRX51Hardware::sendCommandToDevice()
 {
   // Sanity check first:
   if (!index)
@@ -159,7 +159,7 @@ void PIRDevice::sendCommandToDevice()
 }
 
 
-void PIRDevice::setCarrierFrequency(
+void PIRRX51Hardware::setCarrierFrequency(
   unsigned int frequency)
 {
 //  if (!frequency) frequency = DEFAULT_FREQUENCY;
@@ -178,7 +178,7 @@ void PIRDevice::setCarrierFrequency(
 }
 
 
-void PIRDevice::setDutyCycle(
+void PIRRX51Hardware::setDutyCycle(
   unsigned int dutyCycle)
 {
 //  if (dutyCycle > 100) dutyCycle = DEFAULT_DUTY_CYCLE;

@@ -2,7 +2,7 @@
 #define NECPROTOCOL_H
 
 #include "pirprotocol.h"
-#include "pirdevice.h"
+#include "pirrx51hardware.h"
 
 //
 // The "NEC" Protocol is, more or less, followed by the majority of
@@ -95,18 +95,18 @@ private:
 
   int generateStandardCommand(
     const CommandSequence &bits,
-    PIRDevice &device);
+    PIRRX51Hardware &device);
 
   int generateHeadlessCommand(
     const CommandSequence &bits,
-    PIRDevice &device);
+    PIRRX51Hardware &device);
 
   int generateRepeatCommand(
-    PIRDevice &device);
+    PIRRX51Hardware &device);
 
   int pushBits(
     const CommandSequence &bits,
-    PIRDevice &device);
+    PIRRX51Hardware &device);
 };
 
 #endif // NECPROTOCOL_H

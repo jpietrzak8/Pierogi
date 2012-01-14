@@ -2,7 +2,7 @@
 #define RC5PROTOCOL_H
 
 #include "pirprotocol.h"
-#include "pirdevice.h"
+#include "pirrx51hardware.h"
 
 //
 // The RC5 protocol is apparently quite a bit older than the NEC protocol, but
@@ -62,7 +62,7 @@ protected:
 private:
   int pushBits(
     const CommandSequence &bits,
-    PIRDevice &device);
+    PIRRX51Hardware &device);
 
   unsigned int buffer;
   int keypressCount;

@@ -4,7 +4,9 @@
 #include "pirkeysetmetadata.h"
 //#include "protocol.h"
 #include "pirkeynames.h"
-#include "selectionwindow.h"
+//#include "selectionwindow.h"
+#include "pirselectkeysetform.h"
+#include "pirkeysetwidgetitem.h"
 
 //#include <QtCore/QCoreApplication>
 #include <QThread>
@@ -23,7 +25,7 @@ public:
   ~PIRKeysetManager();
 
   void populateGuiWidget(
-    SelectionWindow *widget);
+    PIRSelectKeysetForm *widget);
 
   void stopRepeating();
 
@@ -35,6 +37,10 @@ public:
     int keysetID);
 
   QString getDisplayName(
+    int keysetID);
+
+  void populateDeviceTypes(
+    PIRKeysetWidgetItem *kwi,
     int keysetID);
 
 private:
