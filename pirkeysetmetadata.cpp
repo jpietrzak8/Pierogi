@@ -1,5 +1,7 @@
 #include "pirkeysetmetadata.h"
 
+#include <iostream>
+
 PIRKeysetMetaData::PIRKeysetMetaData(
   const char *r,
   PIRMakeName m,

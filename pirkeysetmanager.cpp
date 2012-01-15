@@ -290,9 +290,10 @@ void PIRKeysetManager::populateKeyset(
 void PIRKeysetManager::populateGuiWidget(
   PIRSelectKeysetForm *skf)
 {
-  PIRKeysetCollection::const_iterator i = keysetsInfo.begin();
-
   PIRMakeName make;
+  PIRKeysetWidgetItem *kwi;
+
+  PIRKeysetCollection::const_iterator i = keysetsInfo.begin();
 
   while (i != keysetsInfo.end())
   {
@@ -300,7 +301,9 @@ void PIRKeysetManager::populateGuiWidget(
     QString tempString = makeManager.getMakeString(make);
     tempString.append(" ");
     tempString.append(i->second->getKeysetName());
-    skf->addNameToList(tempString, i->first, make);
+    kwi = new PIRKeysetWidgetItem(tempString, i->first, make);
+    i->second->populateDeviceTypes(kwi);
+    skf->addWidgetItem(kwi);
     ++i;
   }
 }

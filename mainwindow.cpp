@@ -1091,7 +1091,7 @@ void MainWindow::populateFavorites()
   PIRMakeName make;
   QString name;
   unsigned int id;
-  PIRKeysetWidgetItem *kwi;
+//  PIRKeysetWidgetItem *kwi;
 
   while (index < size)
   {
@@ -1101,9 +1101,9 @@ void MainWindow::populateFavorites()
     name = makeManager.getMakeString(make);
     name.append(" ");
     name.append(myKeysets->getDisplayName(id));
-    kwi = new PIRKeysetWidgetItem(name, id, make);
-    myKeysets->populateDeviceTypes(kwi, id);
-    ui->favoriteKeysetsWidget->addItem(kwi);
+//    kwi = new PIRKeysetWidgetItem(name, id, make);
+//    myKeysets->populateDeviceTypes(kwi, id);
+    ui->favoriteKeysetsWidget->addItem(new PIRKeysetWidgetItem(name, id, make));
     ++index;
   }
 

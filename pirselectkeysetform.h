@@ -7,6 +7,7 @@
 
 #include "pirmakenames.h"
 #include "pirdevicetypenames.h"
+#include "pirkeysetwidgetitem.h"
 
 namespace Ui {
 class PIRSelectKeysetForm;
@@ -24,6 +25,9 @@ public:
     QString name,
     unsigned int index,
     PIRMakeName make);
+
+  void addWidgetItem(
+    PIRKeysetWidgetItem *kwi);
 
   // This is a bit of a hack, but not sure how to create a connection otherwise.
   QListWidget *getKeysetListWidget();

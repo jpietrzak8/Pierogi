@@ -58,6 +58,12 @@ void PIRSelectKeysetForm::addNameToList(
   ui->keysetListWidget->addItem(new PIRKeysetWidgetItem(name, index, make));
 }
 
+void PIRSelectKeysetForm::addWidgetItem(
+  PIRKeysetWidgetItem *kwi)
+{
+  ui->keysetListWidget->addItem(kwi);
+}
+
 QListWidget *PIRSelectKeysetForm::getKeysetListWidget()
 {
   return ui->keysetListWidget;
