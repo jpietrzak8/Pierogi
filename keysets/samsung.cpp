@@ -680,7 +680,7 @@ SamsungAC1::SamsungAC1(
 
   np->setPreData(0x804, 12);
 
-  np->setMinimumRepetitions(1);
+//  np->setMinimumRepetitions(1);
 
   addKey("TIMER", Unmapped_Key, 0xA4, 8);
   addKey("SLEEP", Sleep_Key, 0xE4, 8);

@@ -9,13 +9,16 @@
 #include "keysets/mitsubishi.h"
 #include "keysets/nokia.h"
 #include "keysets/panasonic.h"
+#include "keysets/raite.h"
 #include "keysets/rca.h"
+#include "keysets/sagem.h"
 #include "keysets/samsung.h"
 #include "keysets/sanyo.h"
 #include "keysets/sharp.h"
 #include "keysets/sony.h"
 #include "keysets/toshiba.h"
 #include "keysets/westinghouse.h"
+#include "keysets/yamaha.h"
 #include "keysets/zenith.h"
 //#include "protocol.h"
 #include "pirmakenames.h"
@@ -126,6 +129,8 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new PanasonicDVD1a(guiObject, counter++));
   populateKeyset(new PanasonicAudio(guiObject, counter++));
 
+  populateKeyset(new RaiteDVD1(guiObject, counter++));
+
   populateKeyset(new RCATV1(guiObject, counter++));
   populateKeyset(new RCATV1a(guiObject, counter++));
   populateKeyset(new RCATV2(guiObject, counter++));
@@ -138,6 +143,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new RCADVD1a(guiObject, counter++));
   populateKeyset(new RCASat1(guiObject, counter++));
   populateKeyset(new RCASat2(guiObject, counter++));
+
+  populateKeyset(new SagemTVBox1(guiObject, counter++));
+  populateKeyset(new SagemTVBox1a(guiObject, counter++));
 
   populateKeyset(new SamsungTV1(guiObject, counter++));
   populateKeyset(new SamsungTV1a(guiObject, counter++));
@@ -208,6 +216,23 @@ PIRKeysetManager::PIRKeysetManager(
 
   populateKeyset(new WestinghouseTV1(guiObject, counter++));
   populateKeyset(new WestinghouseTV2(guiObject, counter++));
+
+  populateKeyset(new YamahaDVD1(guiObject, counter++));
+  populateKeyset(new YamahaDVD1a(guiObject, counter++));
+  populateKeyset(new YamahaAudio1(guiObject, counter++));
+  populateKeyset(new YamahaAudio1a(guiObject, counter++));
+  populateKeyset(new YamahaAudio2(guiObject, counter++));
+  populateKeyset(new YamahaAudio2a(guiObject, counter++));
+  populateKeyset(new YamahaAudio2b(guiObject, counter++));
+  populateKeyset(new YamahaAudio2c(guiObject, counter++));
+  populateKeyset(new YamahaAudio2d(guiObject, counter++));
+  populateKeyset(new YamahaAudio3(guiObject, counter++));
+  populateKeyset(new YamahaAudio4(guiObject, counter++));
+  populateKeyset(new YamahaAudio5(guiObject, counter++));
+  populateKeyset(new YamahaAudio6(guiObject, counter++));
+  populateKeyset(new YamahaAudio7(guiObject, counter++));
+  populateKeyset(new YamahaTV1(guiObject, counter++));
+  populateKeyset(new YamahaKaraoke1(guiObject, counter++));
 
   populateKeyset(new ZenithC32V37(guiObject, counter++));
 

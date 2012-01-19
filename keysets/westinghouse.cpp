@@ -75,7 +75,7 @@ WestinghouseTV2::WestinghouseTV2(
 
   np->setHeaderPair(2400, 500);
 
-  np->setMinimumRepetitions(3);
+//  np->setMinimumRepetitions(3);
 
   addKey("Power", Power_Key, 0xA90, 12);
   addKey("PIP", PIP_Key, 0xDB0, 12);

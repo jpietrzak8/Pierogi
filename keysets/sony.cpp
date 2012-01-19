@@ -23,7 +23,7 @@ SonyTV1::SonyTV1(
 
   np->setHeaderPair(2400, 600);
 
-  np->setMinimumRepetitions(2);
+//  np->setMinimumRepetitions(2);
 
   //np->setCarrierFrequency(40000);
   //np->setDutyCycle(33);
@@ -310,7 +310,7 @@ SonyAmp1::SonyAmp1(
 
   np->setPostData(0xC, 6);
 
-  np->setMinimumRepetitions(2);
+//  np->setMinimumRepetitions(2);
 
   addKey("VIDEO1", Unmapped_Key, 0x22, 7);
   addKey("VIDEO2", Unmapped_Key, 0x3C, 7);
@@ -366,7 +366,7 @@ SonyAmp2::SonyAmp2(
 
   np->setHeaderPair(2400, 600);
 
-  np->setMinimumRepetitions(2);
+//  np->setMinimumRepetitions(2);
 
   addKey("power_on", Unmapped_Key, 0x741, 12);
   addKey("power", Power_Key, 0xA81, 12);
@@ -606,7 +606,7 @@ SonyCD3::SonyCD3(
 
   np->setPostData(0x08, 5);
 
-  np->setMinimumRepetitions(2);
+//  np->setMinimumRepetitions(2);
 
   addKey("|<<", Previous_Key, 0x03, 6);
   addKey(">>|", Next_Key, 0x23, 6);
@@ -659,7 +659,7 @@ SonyDAT1::SonyDAT1(
 
   np->setPostData(0x07, 5);
 
-  np->setMinimumRepetitions(2);
+//  np->setMinimumRepetitions(2);
 
   np->setCarrierFrequency(40000);
 
@@ -710,7 +710,7 @@ SonyDVD1::SonyDVD1(
 
   np->setHeaderPair(2400, 600);
 
-  np->setMinimumRepetitions(2);
+//  np->setMinimumRepetitions(2);
 
 //  np->setCarrierFrequency(40000);
 
@@ -860,7 +860,7 @@ SonyVCR1::SonyVCR1(
   np->setHeaderPair(2499, 517);
   np->setTrailerPulse(703);
 
-  np->setMinimumRepetitions(2);
+//  np->setMinimumRepetitions(2);
 
   addKey("pwon", Power_Key, 0x54D, 11);
   addKey("1", One_Key, 0x00D, 11);
@@ -937,7 +937,7 @@ SonyReceiver1::SonyReceiver1(
 
   np->setHeaderPair(2486, 498);
 
-  np->setMinimumRepetitions(1);
+//  np->setMinimumRepetitions(1);
 
   addKey("SLEEP", Sleep_Key, 0x030C, 15);
   addKey("POWER", Power_Key, 0x540C, 15);

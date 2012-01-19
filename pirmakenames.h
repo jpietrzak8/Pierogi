@@ -17,13 +17,16 @@ enum PIRMakeName{
   Nokia_Make,
   Panasonic_Make,
   Philips_Make,
+  Raite_Make,
   RCA_Make,
+  Sagem_Make,
   Samsung_Make,
   Sanyo_Make,
   Sharp_Make,
   Sony_Make,
   Toshiba_Make,
   Westinghouse_Make,
+  Yamaha_Make,
   Zenith_Make
 };
 

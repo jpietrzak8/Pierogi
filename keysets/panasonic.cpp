@@ -23,7 +23,7 @@ PanasonicAmp::PanasonicAmp(
 
   np->setPreData(0x80080A86, 32);
 
-  np->setMinimumRepetitions(4);
+//  np->setMinimumRepetitions(4);
 
   np->setCarrierFrequency(36000);
 
@@ -568,7 +568,7 @@ PanasonicAudio::PanasonicAudio(
 
   np->setPreData(0x40040543, 32);
 
-  np->setMinimumRepetitions(1);
+//  np->setMinimumRepetitions(1);
 
   addKey("power", Power_Key, 0xFDBB, 16);
   addKey("tape", Unmapped_Key, 0x3573, 16);
@@ -581,10 +581,10 @@ PanasonicAudio::PanasonicAudio(
   addKey("7", Seven_Key, 0x692F, 16);
   addKey("8", Eight_Key, 0xE9AF, 16);
   addKey("9", Nine_Key, 0x195F, 16);
-  addKey("+10", Unmapped_Key, 0xF9BF, 16);
+  addKey("+10", DoubleDigit_Key, 0xF9BF, 16);
   addKey("10/0", Zero_Key, 0x99DF, 16);
   addKey("cancel", Clear_Key, 0xB1F7, 16);
-  addKey("program", Unmapped_Key, 0xD197, 16);
+  addKey("program", Program_Key, 0xD197, 16);
   addKey("tuner-band", Unmapped_Key, 0x1D5B, 16);
   addKey("tuning-", ChannelDown_Key, 0x5711, 16);
   addKey("tuning+", ChannelUp_Key, 0x97D1, 16);

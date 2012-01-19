@@ -14,8 +14,8 @@ LGTV1::LGTV1(
   NECProtocol *np = new NECProtocol(
     guiObject,
     index,
-    600, 533,
-    600, 1652,
+    600, 500,
+    600, 1600,
     107753, true);
 
   threadableProtocol = np;
@@ -273,7 +273,7 @@ LGDisc1::LGDisc1(
 
   np->setPreData(0x3434, 16);
 
-  np->setMinimumRepetitions(1);
+//  np->setMinimumRepetitions(1);
 
   addKey("power", Power_Key, 0x7887, 16);
   addKey("open-close", Eject_Key, 0x59A6, 16);

@@ -1004,6 +1004,15 @@ void MainWindow::keysetSelectionChanged(
 }
 
 
+void MainWindow::finalCleanup()
+{
+  // Perform any necessary cleanup work here.
+
+  // Make certain that the thread stops repeating:
+  stopRepeating();
+}
+
+
 void MainWindow::on_addKeysetButton_clicked()
 {
   // Is the current keylist already a favorite?

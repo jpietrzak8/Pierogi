@@ -13,13 +13,16 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Nokia_Make] = "Nokia";
   makes[Philips_Make] = "Philips";
   makes[Panasonic_Make] = "Panasonic";
+  makes[Raite_Make] = "Raite";
   makes[RCA_Make] = "RCA";
+  makes[Sagem_Make] = "Sagem";
   makes[Samsung_Make] = "Samsung";
   makes[Sanyo_Make] = "Sanyo";
   makes[Sharp_Make] = "Sharp";
   makes[Sony_Make] = "Sony";
   makes[Toshiba_Make] = "Toshiba";
   makes[Westinghouse_Make] = "Westinghouse";
+  makes[Yamaha_Make] = "Yamaha";
   makes[Zenith_Make] = "Zenith";
 }
 

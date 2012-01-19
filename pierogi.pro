@@ -7,7 +7,7 @@ sudoers_stuff.source = pierogi.sudoers
 sudoers_stuff.target = ../../etc/sudoers.d
 loadModule.source = loadRX51Module unloadRX51Module
 loadModule.target = bin
-DEPLOYMENTFOLDERS = loadModule
+DEPLOYMENTFOLDERS = sudoers_stuff loadModule
 
 #symbian:TARGET.UID3 = 0xE0C0A793
 
@@ -58,7 +58,10 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/jvc.cpp \
     pirselectkeysetform.cpp \
     pirrx51hardware.cpp \
-    pirdevicetypenames.cpp
+    pirdevicetypenames.cpp \
+    keysets/raite.cpp \
+    keysets/sagem.cpp \
+    keysets/yamaha.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     necprotocol.h \
@@ -91,7 +94,10 @@ HEADERS += mainwindow.h \
     keysets/jvc.h \
     pirselectkeysetform.h \
     pirrx51hardware.h \
-    pirdevicetypenames.h
+    pirdevicetypenames.h \
+    keysets/raite.h \
+    keysets/sagem.h \
+    keysets/yamaha.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -157,7 +163,8 @@ OTHER_FILES += \
     www/MiscTab.png \
     www/PierogiIcon.png \
     www/SelectKeysetWindow.png \
-    www/UtilityTab.png
+    www/UtilityTab.png \
+    qtc_packaging/debian_fremantle/postrm
 
 RESOURCES += \
     PierogiResources.qrc

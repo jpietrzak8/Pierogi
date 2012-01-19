@@ -293,6 +293,8 @@ private slots:
   void keysetSelectionChanged(
     QListWidgetItem *item);
 
+  void finalCleanup();
+
 private:
   void enableButtons();
 

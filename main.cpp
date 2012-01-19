@@ -9,5 +9,13 @@ int main(int argc, char *argv[])
   mainWindow.setOrientation(MainWindow::ScreenOrientationLockLandscape);
   mainWindow.showExpanded();
 
+  // A connection to perform any final cleanup work:
+  app.connect(
+    &app,
+    SIGNAL(aboutToQuit()),
+    &mainWindow,
+    SLOT(finalCleanup()),
+    Qt::DirectConnection);
+
   return app.exec();
 }

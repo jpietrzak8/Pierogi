@@ -1,3 +1,23 @@
+pierogi (0.1.4) unstable; urgency=low
+  * I think uninstall is working now.  So, Initial Release time!
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Wed, 18 Jan 2012 14:40:54 -0500
+
+pierogi (0.1.3) unstable; urgency=low
+  * Found bug in uninstall, hope third patch is the charm!
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Tue, 17 Jan 2012 13:04:10 -0500
+
+pierogi (0.1.2) unstable; urgency=low
+  * Install is working fine, still can't get uninstall to work.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Tue, 17 Jan 2012 12:11:47 -0500
+
+pierogi (0.1.1) unstable; urgency=low
+  * Still trying to create initial release
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Tue, 17 Jan 2012 00:11:46 -0500
+
 pierogi (0.1.0) unstable; urgency=low
 
   * Initial Release.

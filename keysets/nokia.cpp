@@ -20,7 +20,7 @@ NokiaGenericVCR::NokiaGenericVCR(
 
   np->setTrailerPulse(272);
 
-  np->setMinimumRepetitions(3);
+//  np->setMinimumRepetitions(3);
 
   np->setPreData(0x6, 3);
 

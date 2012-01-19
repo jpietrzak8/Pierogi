@@ -27,7 +27,8 @@ build-stamp: configure-stamp
 	dh_testdir
 
 	# Add here commands to compile the package.
-	# $(MAKE) # Uncomment this line for use without Qt Creator
+	#qmake
+	#$(MAKE) # Uncomment this line for use without Qt Creator
 	#docbook-to-man debian/pierogi.sgml > pierogi.1
 
 	touch $@
