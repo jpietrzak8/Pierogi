@@ -31,12 +31,9 @@
 // I'll be handling the threading of the keyset commands in this object:
 #include <QMutex>
 
-// This file defines some global stuff!  First, threading globals:
-
-// The stopRepeatingFlag boolean is the method used to tell running commands
-// in the worker thread to stop:
-bool stopRepeatingFlag;
-QMutex stopRepeatingMutex;
+// Global communications mechanism:
+extern bool stopRepeatingFlag;
+extern QMutex stopRepeatingMutex;
 
 // Global helper objects:
 PIRMakeMgr makeManager;
@@ -127,7 +124,8 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new PanasonicVCR1c(guiObject, counter++));
   populateKeyset(new PanasonicDVD1(guiObject, counter++));
   populateKeyset(new PanasonicDVD1a(guiObject, counter++));
-  populateKeyset(new PanasonicAudio(guiObject, counter++));
+  populateKeyset(new PanasonicAudio1(guiObject, counter++));
+  populateKeyset(new PanasonicAudio1a(guiObject, counter++));
 
   populateKeyset(new RaiteDVD1(guiObject, counter++));
 
@@ -244,7 +242,10 @@ PIRKeysetManager::PIRKeysetManager(
 PIRKeysetManager::~PIRKeysetManager()
 {
   // Tell the keysets to stop doing any work:
-  stopRepeating();
+  {
+    QMutexLocker locker(&stopRepeatingMutex);
+    stopRepeatingFlag = true;
+  }
 
   // Tell the thread that we want it to stop:
   commandThread.exit();
@@ -259,13 +260,6 @@ PIRKeysetManager::~PIRKeysetManager()
     if ((*i).second) delete (*i).second;
     ++i;
   }
-}
-
-
-void PIRKeysetManager::stopRepeating()
-{
-  QMutexLocker locker(&stopRepeatingMutex);
-  stopRepeatingFlag = true;
 }
 
 

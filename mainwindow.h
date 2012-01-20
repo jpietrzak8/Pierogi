@@ -298,6 +298,10 @@ private slots:
 private:
   void enableButtons();
 
+  void startRepeating(
+    unsigned int id,
+    PIRKeyName name);
+
   void stopRepeating();
 
   void populateFavorites();
@@ -315,10 +319,5 @@ private:
   PIRModprobe modprobeObj;
 };
 
-
-inline void MainWindow::stopRepeating()
-{
-  myKeysets->stopRepeating();
-}
 
 #endif // MAINWINDOW_H

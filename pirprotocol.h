@@ -42,9 +42,6 @@ public:
     unsigned long data,
     unsigned int bits);
 
-//  void setIndex(
-//    unsigned int index);
-
   void setCarrierFrequency(
     unsigned int freq);
 

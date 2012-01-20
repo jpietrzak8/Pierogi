@@ -15,6 +15,17 @@
 
 //#define DEBUGGING
 
+// Some ugly globals used for thread communications:
+
+// A global to show that a command is being processed:
+bool commandInFlight = false;
+QMutex commandIFMutex;
+
+// The stopRepeatingFlag boolean is the method used to tell running commands
+// in the worker thread to stop:
+bool stopRepeatingFlag = false;
+QMutex stopRepeatingMutex;
+
 extern PIRMakeMgr makeManager;
 
 
@@ -261,7 +272,7 @@ void MainWindow::receivedExternalWarning(
 
 void MainWindow::on_powerButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Power_Key);
+  startRepeating(currentKeyset, Power_Key);
 }
 
 void MainWindow::on_powerButton_released()
@@ -271,7 +282,7 @@ void MainWindow::on_powerButton_released()
 
 void MainWindow::on_mainChannelUpButton_pressed()
 {
-  emit buttonPressed(currentKeyset, ChannelUp_Key);
+  startRepeating(currentKeyset, ChannelUp_Key);
 }
 
 void MainWindow::on_mainChannelUpButton_released()
@@ -281,7 +292,7 @@ void MainWindow::on_mainChannelUpButton_released()
 
 void MainWindow::on_mainChannelDownButton_pressed()
 {
-  emit buttonPressed(currentKeyset, ChannelDown_Key);
+  startRepeating(currentKeyset, ChannelDown_Key);
 }
 
 void MainWindow::on_mainChannelDownButton_released()
@@ -291,7 +302,7 @@ void MainWindow::on_mainChannelDownButton_released()
 
 void MainWindow::on_mainVolumeUp_pressed()
 {
-  emit buttonPressed(currentKeyset, VolumeUp_Key);
+  startRepeating(currentKeyset, VolumeUp_Key);
 }
 
 void MainWindow::on_mainVolumeUp_released()
@@ -301,7 +312,7 @@ void MainWindow::on_mainVolumeUp_released()
 
 void MainWindow::on_mainVolumeDownButton_pressed()
 {
-  emit buttonPressed(currentKeyset, VolumeDown_Key);
+  startRepeating(currentKeyset, VolumeDown_Key);
 }
 
 void MainWindow::on_mainVolumeDownButton_released()
@@ -314,7 +325,7 @@ void MainWindow::on_mainVolumeDownButton_released()
 
 void MainWindow::on_redButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Red_Key);
+  startRepeating(currentKeyset, Red_Key);
 }
 
 void MainWindow::on_redButton_released()
@@ -324,7 +335,7 @@ void MainWindow::on_redButton_released()
 
 void MainWindow::on_greenButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Green_Key);
+  startRepeating(currentKeyset, Green_Key);
 }
 
 void MainWindow::on_greenButton_released()
@@ -334,7 +345,7 @@ void MainWindow::on_greenButton_released()
 
 void MainWindow::on_yellowButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Yellow_Key);
+  startRepeating(currentKeyset, Yellow_Key);
 }
 
 void MainWindow::on_yellowButton_released()
@@ -344,7 +355,7 @@ void MainWindow::on_yellowButton_released()
 
 void MainWindow::on_blueButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Blue_Key);
+  startRepeating(currentKeyset, Blue_Key);
 }
 
 void MainWindow::on_blueButton_released()
@@ -354,7 +365,7 @@ void MainWindow::on_blueButton_released()
 
 void MainWindow::on_aspectRatioButton_pressed()
 {
-  emit buttonPressed(currentKeyset, AspectRatio_Key);
+  startRepeating(currentKeyset, AspectRatio_Key);
 }
 
 void MainWindow::on_aspectRatioButton_released()
@@ -364,7 +375,7 @@ void MainWindow::on_aspectRatioButton_released()
 
 void MainWindow::on_surroundButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Surround_Key);
+  startRepeating(currentKeyset, Surround_Key);
 }
 
 void MainWindow::on_surroundButton_released()
@@ -374,7 +385,7 @@ void MainWindow::on_surroundButton_released()
 
 void MainWindow::on_languageButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Language_Key);
+  startRepeating(currentKeyset, Language_Key);
 }
 
 void MainWindow::on_languageButton_released()
@@ -384,7 +395,7 @@ void MainWindow::on_languageButton_released()
 
 void MainWindow::on_favoritesButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Favorites_Key);
+  startRepeating(currentKeyset, Favorites_Key);
 }
 
 void MainWindow::on_favoritesButton_released()
@@ -394,7 +405,7 @@ void MainWindow::on_favoritesButton_released()
 
 void MainWindow::on_captionButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Captions_Key);
+  startRepeating(currentKeyset, Captions_Key);
 }
 
 void MainWindow::on_captionButton_released()
@@ -404,7 +415,7 @@ void MainWindow::on_captionButton_released()
 
 void MainWindow::on_inputButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Input_Key);
+  startRepeating(currentKeyset, Input_Key);
 }
 
 void MainWindow::on_inputButton_released()
@@ -414,7 +425,7 @@ void MainWindow::on_inputButton_released()
 
 void MainWindow::on_sleepButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Sleep_Key);
+  startRepeating(currentKeyset, Sleep_Key);
 }
 
 void MainWindow::on_sleepButton_released()
@@ -424,7 +435,7 @@ void MainWindow::on_sleepButton_released()
 
 void MainWindow::on_muteButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Mute_Key);
+  startRepeating(currentKeyset, Mute_Key);
 }
 
 void MainWindow::on_muteButton_released()
@@ -437,7 +448,7 @@ void MainWindow::on_muteButton_released()
 
 void MainWindow::on_oneButton_pressed()
 {
-  emit buttonPressed(currentKeyset, One_Key);
+  startRepeating(currentKeyset, One_Key);
 }
 
 void MainWindow::on_oneButton_released()
@@ -447,7 +458,7 @@ void MainWindow::on_oneButton_released()
 
 void MainWindow::on_twoButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Two_Key);
+  startRepeating(currentKeyset, Two_Key);
 }
 
 void MainWindow::on_twoButton_released()
@@ -457,7 +468,7 @@ void MainWindow::on_twoButton_released()
 
 void MainWindow::on_threeButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Three_Key);
+  startRepeating(currentKeyset, Three_Key);
 }
 
 void MainWindow::on_threeButton_released()
@@ -467,7 +478,7 @@ void MainWindow::on_threeButton_released()
 
 void MainWindow::on_fourButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Four_Key);
+  startRepeating(currentKeyset, Four_Key);
 }
 
 void MainWindow::on_fourButton_released()
@@ -477,7 +488,7 @@ void MainWindow::on_fourButton_released()
 
 void MainWindow::on_fiveButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Five_Key);
+  startRepeating(currentKeyset, Five_Key);
 }
 
 void MainWindow::on_fiveButton_released()
@@ -487,7 +498,7 @@ void MainWindow::on_fiveButton_released()
 
 void MainWindow::on_sixButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Six_Key);
+  startRepeating(currentKeyset, Six_Key);
 }
 
 void MainWindow::on_sixButton_released()
@@ -497,7 +508,7 @@ void MainWindow::on_sixButton_released()
 
 void MainWindow::on_sevenButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Seven_Key);
+  startRepeating(currentKeyset, Seven_Key);
 }
 
 void MainWindow::on_sevenButton_released()
@@ -507,7 +518,7 @@ void MainWindow::on_sevenButton_released()
 
 void MainWindow::on_eightButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Eight_Key);
+  startRepeating(currentKeyset, Eight_Key);
 }
 
 void MainWindow::on_eightButton_released()
@@ -517,7 +528,7 @@ void MainWindow::on_eightButton_released()
 
 void MainWindow::on_nineButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Nine_Key);
+  startRepeating(currentKeyset, Nine_Key);
 }
 
 void MainWindow::on_nineButton_released()
@@ -527,7 +538,7 @@ void MainWindow::on_nineButton_released()
 
 void MainWindow::on_zeroButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Zero_Key);
+  startRepeating(currentKeyset, Zero_Key);
 }
 
 void MainWindow::on_zeroButton_released()
@@ -537,7 +548,7 @@ void MainWindow::on_zeroButton_released()
 
 void MainWindow::on_enterButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Enter_Key);
+  startRepeating(currentKeyset, Enter_Key);
 }
 
 void MainWindow::on_enterButton_released()
@@ -547,7 +558,7 @@ void MainWindow::on_enterButton_released()
 
 void MainWindow::on_clearButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Clear_Key);
+  startRepeating(currentKeyset, Clear_Key);
 }
 
 void MainWindow::on_clearButton_released()
@@ -557,7 +568,7 @@ void MainWindow::on_clearButton_released()
 
 void MainWindow::on_prevChannelButton_pressed()
 {
-  emit buttonPressed(currentKeyset, PrevChannel_Key);
+  startRepeating(currentKeyset, PrevChannel_Key);
 }
 
 void MainWindow::on_prevChannelButton_released()
@@ -567,7 +578,7 @@ void MainWindow::on_prevChannelButton_released()
 
 void MainWindow::on_plusOneHundredButton_pressed()
 {
-  emit buttonPressed(currentKeyset, PlusOneHundred_Key);
+  startRepeating(currentKeyset, PlusOneHundred_Key);
 }
 
 void MainWindow::on_plusOneHundredButton_released()
@@ -577,7 +588,7 @@ void MainWindow::on_plusOneHundredButton_released()
 
 void MainWindow::on_dashButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Dash_Key);
+  startRepeating(currentKeyset, Dash_Key);
 }
 
 void MainWindow::on_dashButton_released()
@@ -587,7 +598,7 @@ void MainWindow::on_dashButton_released()
 
 void MainWindow::on_doubleDigitButton_pressed()
 {
-  emit buttonPressed(currentKeyset, DoubleDigit_Key);
+  startRepeating(currentKeyset, DoubleDigit_Key);
 }
 
 void MainWindow::on_doubleDigitButton_released()
@@ -600,7 +611,7 @@ void MainWindow::on_doubleDigitButton_released()
 
 void MainWindow::on_upButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Up_Key);
+  startRepeating(currentKeyset, Up_Key);
 }
 
 void MainWindow::on_upButton_released()
@@ -610,7 +621,7 @@ void MainWindow::on_upButton_released()
 
 void MainWindow::on_leftButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Left_Key);
+  startRepeating(currentKeyset, Left_Key);
 }
 
 void MainWindow::on_leftButton_released()
@@ -620,7 +631,7 @@ void MainWindow::on_leftButton_released()
 
 void MainWindow::on_rightButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Right_Key);
+  startRepeating(currentKeyset, Right_Key);
 }
 
 void MainWindow::on_rightButton_released()
@@ -630,7 +641,7 @@ void MainWindow::on_rightButton_released()
 
 void MainWindow::on_downButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Down_Key);
+  startRepeating(currentKeyset, Down_Key);
 }
 
 void MainWindow::on_downButton_released()
@@ -640,7 +651,7 @@ void MainWindow::on_downButton_released()
 
 void MainWindow::on_selectButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Select_Key);
+  startRepeating(currentKeyset, Select_Key);
 }
 
 void MainWindow::on_selectButton_released()
@@ -650,7 +661,7 @@ void MainWindow::on_selectButton_released()
 
 void MainWindow::on_menuButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Menu_Key);
+  startRepeating(currentKeyset, Menu_Key);
 }
 
 void MainWindow::on_menuButton_released()
@@ -660,7 +671,7 @@ void MainWindow::on_menuButton_released()
 
 void MainWindow::on_exitButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Exit_Key);
+  startRepeating(currentKeyset, Exit_Key);
 }
 
 void MainWindow::on_exitButton_released()
@@ -674,7 +685,7 @@ void MainWindow::on_exitButton_released()
 
 void MainWindow::on_mediaPreviousButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Previous_Key);
+  startRepeating(currentKeyset, Previous_Key);
 }
 
 void MainWindow::on_mediaPreviousButton_released()
@@ -684,7 +695,7 @@ void MainWindow::on_mediaPreviousButton_released()
 
 void MainWindow::on_mediaNextButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Next_Key);
+  startRepeating(currentKeyset, Next_Key);
 }
 
 void MainWindow::on_mediaNextButton_released()
@@ -694,7 +705,7 @@ void MainWindow::on_mediaNextButton_released()
 
 void MainWindow::on_replayButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Replay_Key);
+  startRepeating(currentKeyset, Replay_Key);
 }
 
 void MainWindow::on_replayButton_released()
@@ -704,7 +715,7 @@ void MainWindow::on_replayButton_released()
 
 void MainWindow::on_advanceButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Advance_Key);
+  startRepeating(currentKeyset, Advance_Key);
 }
 
 void MainWindow::on_advanceButton_released()
@@ -714,7 +725,7 @@ void MainWindow::on_advanceButton_released()
 
 void MainWindow::on_stepBackButton_pressed()
 {
-  emit buttonPressed(currentKeyset, StepBack_Key);
+  startRepeating(currentKeyset, StepBack_Key);
 }
 
 void MainWindow::on_stepBackButton_released()
@@ -724,7 +735,7 @@ void MainWindow::on_stepBackButton_released()
 
 void MainWindow::on_stepForwardButton_pressed()
 {
-  emit buttonPressed(currentKeyset, StepForward_Key);
+  startRepeating(currentKeyset, StepForward_Key);
 }
 
 void MainWindow::on_stepForwardButton_released()
@@ -734,7 +745,7 @@ void MainWindow::on_stepForwardButton_released()
 
 void MainWindow::on_reverseButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Rewind_Key);
+  startRepeating(currentKeyset, Rewind_Key);
 }
 
 void MainWindow::on_reverseButton_released()
@@ -744,7 +755,7 @@ void MainWindow::on_reverseButton_released()
 
 void MainWindow::on_fastForwardButton_pressed()
 {
-  emit buttonPressed(currentKeyset, FastForward_Key);
+  startRepeating(currentKeyset, FastForward_Key);
 }
 
 void MainWindow::on_fastForwardButton_released()
@@ -754,7 +765,7 @@ void MainWindow::on_fastForwardButton_released()
 
 void MainWindow::on_playButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Play_Key);
+  startRepeating(currentKeyset, Play_Key);
 }
 
 void MainWindow::on_playButton_released()
@@ -764,7 +775,7 @@ void MainWindow::on_playButton_released()
 
 void MainWindow::on_pauseButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Pause_Key);
+  startRepeating(currentKeyset, Pause_Key);
 }
 
 void MainWindow::on_pauseButton_released()
@@ -774,7 +785,7 @@ void MainWindow::on_pauseButton_released()
 
 void MainWindow::on_stopButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Stop_Key);
+  startRepeating(currentKeyset, Stop_Key);
 }
 
 void MainWindow::on_stopButton_released()
@@ -784,7 +795,7 @@ void MainWindow::on_stopButton_released()
 
 void MainWindow::on_ejectButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Eject_Key);
+  startRepeating(currentKeyset, Eject_Key);
 }
 
 void MainWindow::on_ejectButton_released()
@@ -797,7 +808,7 @@ void MainWindow::on_ejectButton_released()
 
 void MainWindow::on_pipOnOffButton_pressed()
 {
-  emit buttonPressed(currentKeyset, PIP_Key);
+  startRepeating(currentKeyset, PIP_Key);
 }
 
 void MainWindow::on_pipOnOffButton_released()
@@ -807,7 +818,7 @@ void MainWindow::on_pipOnOffButton_released()
 
 void MainWindow::on_pipSwapButton_pressed()
 {
-  emit buttonPressed(currentKeyset, PIPSwap_Key);
+  startRepeating(currentKeyset, PIPSwap_Key);
 }
 
 void MainWindow::on_pipSwapButton_released()
@@ -817,7 +828,7 @@ void MainWindow::on_pipSwapButton_released()
 
 void MainWindow::on_pipPositionButton_pressed()
 {
-  emit buttonPressed(currentKeyset, PIPMove_Key);
+  startRepeating(currentKeyset, PIPMove_Key);
 }
 
 void MainWindow::on_pipPositionButton_released()
@@ -827,7 +838,7 @@ void MainWindow::on_pipPositionButton_released()
 
 void MainWindow::on_pipSourceButton_pressed()
 {
-  emit buttonPressed(currentKeyset, PIPSource_Key);
+  startRepeating(currentKeyset, PIPSource_Key);
 }
 
 void MainWindow::on_pipSourceButton_released()
@@ -837,7 +848,7 @@ void MainWindow::on_pipSourceButton_released()
 
 void MainWindow::on_scanButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Scan_Key);
+  startRepeating(currentKeyset, Scan_Key);
 }
 
 void MainWindow::on_scanButton_released()
@@ -847,7 +858,7 @@ void MainWindow::on_scanButton_released()
 
 void MainWindow::on_programButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Program_Key);
+  startRepeating(currentKeyset, Program_Key);
 }
 
 void MainWindow::on_programButton_released()
@@ -857,7 +868,7 @@ void MainWindow::on_programButton_released()
 
 void MainWindow::on_pictureModeButton_pressed()
 {
-  emit buttonPressed(currentKeyset, PictureMode_Key);
+  startRepeating(currentKeyset, PictureMode_Key);
 }
 
 void MainWindow::on_pictureModeButton_released()
@@ -867,7 +878,7 @@ void MainWindow::on_pictureModeButton_released()
 
 void MainWindow::on_soundModeButton_pressed()
 {
-  emit buttonPressed(currentKeyset, SoundMode_Key);
+  startRepeating(currentKeyset, SoundMode_Key);
 }
 
 void MainWindow::on_soundModeButton_released()
@@ -877,7 +888,7 @@ void MainWindow::on_soundModeButton_released()
 
 void MainWindow::on_discTitleButton_pressed()
 {
-  emit buttonPressed(currentKeyset, DiscTitle_Key);
+  startRepeating(currentKeyset, DiscTitle_Key);
 }
 
 void MainWindow::on_discTitleButton_released()
@@ -887,7 +898,7 @@ void MainWindow::on_discTitleButton_released()
 
 void MainWindow::on_discMenuButton_pressed()
 {
-  emit buttonPressed(currentKeyset, DiscMenu_Key);
+  startRepeating(currentKeyset, DiscMenu_Key);
 }
 
 void MainWindow::on_discMenuButton_released()
@@ -897,7 +908,7 @@ void MainWindow::on_discMenuButton_released()
 
 void MainWindow::on_discSelectButton_pressed()
 {
-  emit buttonPressed(currentKeyset, DiscSelect_Key);
+  startRepeating(currentKeyset, DiscSelect_Key);
 }
 
 void MainWindow::on_discSelectButton_released()
@@ -907,7 +918,7 @@ void MainWindow::on_discSelectButton_released()
 
 void MainWindow::on_trackingPlusButton_pressed()
 {
-  emit buttonPressed(currentKeyset, TrackingPlus_Key);
+  startRepeating(currentKeyset, TrackingPlus_Key);
 }
 
 void MainWindow::on_trackingPlusButton_released()
@@ -917,7 +928,7 @@ void MainWindow::on_trackingPlusButton_released()
 
 void MainWindow::on_trackingMinusButton_pressed()
 {
-  emit buttonPressed(currentKeyset, TrackingMinus_Key);
+  startRepeating(currentKeyset, TrackingMinus_Key);
 }
 
 void MainWindow::on_trackingMinusButton_released()
@@ -927,7 +938,7 @@ void MainWindow::on_trackingMinusButton_released()
 
 void MainWindow::on_autoTrackingButton_pressed()
 {
-  emit buttonPressed(currentKeyset, AutoTracking_Key);
+  startRepeating(currentKeyset, AutoTracking_Key);
 }
 
 void MainWindow::on_autoTrackingButton_released()
@@ -937,7 +948,7 @@ void MainWindow::on_autoTrackingButton_released()
 
 void MainWindow::on_vhsSpeedButton_pressed()
 {
-  emit buttonPressed(currentKeyset, VHSSpeed_Key);
+  startRepeating(currentKeyset, VHSSpeed_Key);
 }
 
 void MainWindow::on_vhsSpeedButton_released()
@@ -947,7 +958,7 @@ void MainWindow::on_vhsSpeedButton_released()
 
 void MainWindow::on_recordButton_pressed()
 {
-  emit buttonPressed(currentKeyset, Record_Key);
+  startRepeating(currentKeyset, Record_Key);
 }
 
 void MainWindow::on_recordButton_released()
@@ -1117,4 +1128,24 @@ void MainWindow::populateFavorites()
   }
 
   settings.endArray();
+}
+
+
+void MainWindow::startRepeating(
+  unsigned int id,
+  PIRKeyName name)
+{
+  QMutexLocker locker(&commandIFMutex);
+  if (!commandInFlight)
+  {
+    commandInFlight = true;
+    emit buttonPressed(id, name);
+  }
+}
+
+
+void MainWindow::stopRepeating()
+{
+  QMutexLocker locker(&stopRepeatingMutex);
+  stopRepeatingFlag = true;
 }

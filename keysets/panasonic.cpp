@@ -544,27 +544,28 @@ PanasonicDVD1a::PanasonicDVD1a(
 }
 
 
-PanasonicAudio::PanasonicAudio(
+PanasonicAudio1::PanasonicAudio1(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "Audio System Keyset",
+      "Audio Keyset 1",
       Panasonic_Make,
       index)
 {
   addControlledDevice(Panasonic_Make, "RX-DS25", Audio_Device);
+  addControlledDevice(Panasonic_Make, "RX-e300", Audio_Device);
 
   NECProtocol *np = new NECProtocol(
     guiObject,
     index,
-    516, 358,
-    516, 1220,
-    83895, false);
+    400, 400,
+    400, 1200,
+    76000, false);
 
   threadableProtocol = np;
 
-  np->setHeaderPair(3581, 1655);
-  np->setTrailerPulse(524);
+  np->setHeaderPair(4000, 1600);
+  np->setTrailerPulse(400);
 
   np->setPreData(0x40040543, 32);
 
@@ -584,11 +585,13 @@ PanasonicAudio::PanasonicAudio(
   addKey("+10", DoubleDigit_Key, 0xF9BF, 16);
   addKey("10/0", Zero_Key, 0x99DF, 16);
   addKey("cancel", Clear_Key, 0xB1F7, 16);
-  addKey("program", Program_Key, 0xD197, 16);
+  addKey("program", Program_Key, 0xD197, 16); // "MEMORY"
   addKey("tuner-band", Unmapped_Key, 0x1D5B, 16);
-  addKey("tuning-", ChannelDown_Key, 0x5711, 16);
-  addKey("tuning+", ChannelUp_Key, 0x97D1, 16);
-  addKey("fm-mode", Unmapped_Key, 0x2761, 16);
+  addKey("tuning-", Unmapped_Key, 0x5711, 16);
+  addKey("tuning+", Unmapped_Key, 0x97D1, 16);
+  addKey("TUNER_PRESET_TUNE_DOWN", ChannelDown_Key, 0x1751, 16);
+  addKey("TUNER_PRESET_TUNE_UP", ChannelUp_Key, 0xE7A1, 16);
+  addKey("fm-mode", Unmapped_Key, 0x2761, 16); // "st-mono"
   addKey("cd", Unmapped_Key, 0x6D2B, 16);
   addKey("prev", Previous_Key, 0x2167, 16);
   addKey("next", Next_Key, 0xA1E7, 16);
@@ -599,4 +602,45 @@ PanasonicAudio::PanasonicAudio(
   addKey("xbs", Unmapped_Key, 0x6B2D, 16);
   addKey("vol-", VolumeDown_Key, 0x8DCB, 16);
   addKey("vol+", VolumeUp_Key, 0x0D4B, 16);
+  addKey("sleep", Sleep_Key, 0x3D7B, 16);
+  addKey("display", Info_Key, 0xF1B7, 16);
+  addKey("preset_eq", Unmapped_Key, 0x9BDD, 16);
+  addKey("bp", Unmapped_Key, 0xF7B1, 16); // "TUNER_BP"
+  addKey("tape_record", Record_Key, 0x2563, 16);
+  addKey("counter_reset", Reset_Key, 0xF5B3, 16);
+  addKey("rev_mode", Unmapped_Key, 0x7533, 16); // "TAPE_REV_MODE"
+  addKey("rew", Rewind_Key, 0x4503, 16);
+  addKey("ff", FastForward_Key, 0xC583, 16);
+  addKey("tape_play", Unmapped_Key, 0x6523, 16);
+  addKey("tape_stop", Unmapped_Key, 0x0543, 16);
+  addKey("random", Unmapped_Key, 0x4107, 16);
+  addKey("TAPE_DECK", Unmapped_Key, 0xB5F3, 16);
+  addKey("TAPE_PLAY_REWIND", Unmapped_Key, 0xA5E3, 16);
+  addKey("TAPE_PLAY_FORWARD", Unmapped_Key, 0x6523, 16);
+  addKey("panelclose", Unmapped_Key, 0xAFE9, 16); // "TOP_PANEL_CLOSE"
+  addKey("panelopen", Unmapped_Key, 0x2F69, 16);  // "TOP_PANEL_OPEN"
+  addKey("virtualizer", Unmapped_Key, 0x5B1D, 16); // "S.VIRT"
+  addKey("AUTOSCAN", Unmapped_Key, 0x3771, 16);
+  addKey("TRACK<<", Unmapped_Key, 0x8BCD, 16);
+  addKey("TRACK>>", Unmapped_Key, 0x0B4D, 16);
+  addKey("INTRO", Unmapped_Key, 0x6224, 16);
+}
+
+
+PanasonicAudio1a::PanasonicAudio1a(
+  QObject *guiObject,
+  unsigned int index)
+  : PanasonicAudio1(guiObject, index)
+{
+  setKeysetName("Audio Keyset 1a");
+
+  addControlledDevice(Panasonic_Make, "RX-DT55", Audio_Device);
+  addControlledDevice(Panasonic_Make, "RX-DT505", Audio_Device);
+
+  addKey("CD_PAUSE", Pause_Key, 0x6127, 16);
+  addKey("CD_<<", Rewind_Key, 0x2167, 16);
+  addKey("CD_>>", FastForward_Key, 0xA1E7, 16);
+  addKey("TAPE_<<", Unmapped_Key, 0x4503, 16);
+  addKey("TAPE_>>", Unmapped_Key, 0xC583, 16);
+  addKey("eject", Eject_Key, 0x7137, 16);
 }

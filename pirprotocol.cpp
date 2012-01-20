@@ -12,6 +12,10 @@
 extern bool stopRepeatingFlag;
 extern QMutex stopRepeatingMutex;
 
+// Total of all running commands
+extern bool commandInFlight;
+extern QMutex commandIFMutex;
+
 // From what I understand (mostly from reading LIRC config files), NEC
 // protocol based remotes mostly use a frequency of 38000 units and a
 // duty cycle of 50%.  They'll be set to these defaults here, and overridden
@@ -54,15 +58,6 @@ void PIRProtocol::addKey(
 {
   appendToBitSeq(keycodes[key], command, bits);
 }
-
-
-/*
-void PIRProtocol::setIndex(
-  unsigned int i)
-{
-  id = i;
-}
-*/
 
 
 void PIRProtocol::setCarrierFrequency(

@@ -109,10 +109,18 @@ public:
     unsigned int index);
 };
 
-class PanasonicAudio: public PIRKeysetMetaData
+class PanasonicAudio1: public PIRKeysetMetaData
 {
 public:
-  PanasonicAudio(
+  PanasonicAudio1(
+    QObject *guiObject,
+    unsigned int index);
+};
+
+class PanasonicAudio1a: public PanasonicAudio1
+{
+public:
+  PanasonicAudio1a(
     QObject *guiObject,
     unsigned int index);
 };

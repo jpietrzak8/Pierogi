@@ -27,8 +27,6 @@ public:
   void populateGuiWidget(
     PIRSelectKeysetForm *widget);
 
-  void stopRepeating();
-
   bool hasKey(
     int keysetID,
     PIRKeyName name);

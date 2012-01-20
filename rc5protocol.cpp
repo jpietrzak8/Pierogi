@@ -2,6 +2,10 @@
 
 #include "pirexception.h"
 
+#include <QMutex>
+extern bool commandInFlight;
+extern QMutex commandIFMutex;
+
 RC5Protocol::RC5Protocol(
   QObject *guiObject,
   unsigned int index,
@@ -53,9 +57,10 @@ void RC5Protocol::startSendingCommand(
   // exception handling:
   try
   {
-    clearRepeatFlag();
-
+    // Check if this command is meant for us:
     if (threadableID != id) return;
+
+    clearRepeatFlag();
 
     KeycodeCollection::const_iterator i = keycodes.find(command);
 
@@ -113,6 +118,8 @@ void RC5Protocol::startSendingCommand(
         {
           // Ok, then we can quit now:
           ++keypressCount;
+          QMutexLocker cifLocker(&commandIFMutex);
+          commandInFlight = false;
           return;
         }
       }
@@ -126,6 +133,8 @@ void RC5Protocol::startSendingCommand(
   }
 
   ++keypressCount;
+  QMutexLocker cifLocker(&commandIFMutex);
+  commandInFlight = false;
 }
 
 

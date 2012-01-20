@@ -4,6 +4,11 @@
 #include <string>
 //#include <iostream>
 
+// Some global communications stuff:
+#include <QMutex>
+extern bool commandInFlight;
+extern QMutex commandIFMutex;
+
 NECProtocol::NECProtocol(
   QObject *guiObject,
   unsigned int index,
@@ -85,10 +90,17 @@ void NECProtocol::startSendingCommand(
   // whole thing in a try/catch block:
   try
   {
-    clearRepeatFlag();
-
-    // Check if we are meant to be the recipient of this command:
+    // First, check if we are meant to be the recipient of this command:
     if (threadableID != id) return;
+
+    // An object that helps keep track of the number of commands:
+//    PIRCommandCounter commandCounter;
+
+    // Ok, we're going to lock down this method and make sure
+    // only one guy at a time passes this point:
+//    QMutexLocker commandLocker(&commandMutex);
+
+    clearRepeatFlag();
 
     KeycodeCollection::const_iterator i = keycodes.find(command);
 
@@ -134,6 +146,8 @@ void NECProtocol::startSendingCommand(
         // Check whether we've been asked to stop:
         if (checkRepeatFlag())
         {
+          QMutexLocker cifLocker(&commandIFMutex);
+          commandInFlight = false;
           return;
         }
       }
@@ -146,6 +160,9 @@ void NECProtocol::startSendingCommand(
     // inform the gui:
     emit commandFailed(e.getError().c_str());
   }
+
+  QMutexLocker cifLocker(&commandIFMutex);
+  commandInFlight = false;
 }
 
 
