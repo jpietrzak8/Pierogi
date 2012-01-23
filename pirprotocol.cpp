@@ -56,6 +56,13 @@ void PIRProtocol::addKey(
   unsigned long command,
   unsigned int bits)
 {
+  // First, if key already exists, clear it out:
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    i->second.clear();
+  }
+
   appendToBitSeq(keycodes[key], command, bits);
 }
 
@@ -78,6 +85,34 @@ void PIRProtocol::setMinimumRepetitions(
   unsigned int minrep)
 {
   minimumRepetitions = minrep;
+}
+
+
+void PIRProtocol::setPreData(
+  unsigned long data,
+  unsigned int bits)
+{
+  // If the container is not empty, first clear it out:
+  if (!preData.empty())
+  {
+    preData.clear();
+  }
+
+  appendToBitSeq(preData, data, bits);
+}
+
+
+void PIRProtocol::setPostData(
+  unsigned long data,
+  unsigned int bits)
+{
+  // If the container is not empty, first clear it out:
+  if (!postData.empty())
+  {
+    postData.clear();
+  }
+
+  appendToBitSeq(postData, data, bits);
 }
 
 

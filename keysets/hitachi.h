@@ -1,72 +1,71 @@
-#ifndef SANYO_H
-#define SANYO_H
+#ifndef HITACHI_H
+#define HITACHI_H
 
 #include "pirkeysetmetadata.h"
-
 #include <QObject>
 
-class SanyoVCR1: public PIRKeysetMetaData
+class HitachiTV1: public PIRKeysetMetaData
 {
 public:
-  SanyoVCR1(
+  HitachiTV1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class SanyoDVD1: public PIRKeysetMetaData
+class HitachiTV1a: public HitachiTV1
 {
 public:
-  SanyoDVD1(
+  HitachiTV1a(
     QObject *guiObject,
     unsigned int index);
 };
 
-class SanyoTV1: public PIRKeysetMetaData
+class HitachiTV1b: public HitachiTV1a
 {
 public:
-  SanyoTV1(
+  HitachiTV1b(
     QObject *guiObject,
     unsigned int index);
 };
 
-class SanyoTV1a: public SanyoTV1
+class HitachiTV1c: public HitachiTV1
 {
 public:
-  SanyoTV1a(
+  HitachiTV1c(
     QObject *guiObject,
     unsigned int index);
 };
 
-class SanyoTV1b: public SanyoTV1
+class HitachiProjector: public PIRKeysetMetaData
 {
 public:
-  SanyoTV1b(
+  HitachiProjector(
     QObject *guiObject,
     unsigned int index);
 };
 
-class SanyoTV1c: public SanyoTV1
+class HitachiDVD1: public PIRKeysetMetaData
 {
 public:
-  SanyoTV1c(
+  HitachiDVD1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class SanyoTV1d: public SanyoTV1a
+class HitachiAudio1: public PIRKeysetMetaData
 {
 public:
-  SanyoTV1d(
+  HitachiAudio1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class SanyoProjector: public PIRKeysetMetaData
+class HitachiVCR1: public PIRKeysetMetaData
 {
 public:
-  SanyoProjector(
+  HitachiVCR1(
     QObject *guiObject,
     unsigned int index);
 };
 
-#endif // SANYO_H
+#endif // HITACHI_H

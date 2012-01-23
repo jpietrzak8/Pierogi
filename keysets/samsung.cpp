@@ -12,6 +12,7 @@ SamsungTV1::SamsungTV1(
 {
   addControlledDevice(Samsung_Make, "SyncMaster 192MP", TV_Device);
   addControlledDevice(Samsung_Make, "LN32C530F1FXZA", TV_Device);
+  addControlledDevice(Samsung_Make, "UE46B6000VPXZG", TV_Device); // ?
 
   NECProtocol *np = new NECProtocol(
     guiObject,
@@ -25,7 +26,7 @@ SamsungTV1::SamsungTV1(
   np->setHeaderPair(4500, 4500);
   np->setTrailerPulse(600);
 
-  np->setPreData(0xE0E0, 16);
+  setPreData(0xE0E0, 16);
 
   addKey("Power", Power_Key, 0x40BF, 16);
   addKey("Channel Up", ChannelUp_Key, 0x48B7, 16);
@@ -279,7 +280,7 @@ SamsungVCR1::SamsungVCR1(
   np->setHeaderPair(4500, 4500);
   np->setTrailerPulse(600);
 
-  np->setPreData(0xA0A0, 16);
+  setPreData(0xA0A0, 16);
 
   addKey("Power", Power_Key, 0x40BF, 16);
   addKey("Eject", Eject_Key, 0x04FB, 16);
@@ -496,7 +497,7 @@ SamsungDVD1::SamsungDVD1(
   np->setTrailerPulse(600);
   np->setRepeatPair(9000, 4500);
 
-  np->setPreData(0x198133F, 26);
+  setPreData(0x198133F, 26);
 
   addKey("power", Power_Key, 0x8976, 16);
   addKey("open_close", Eject_Key, 0x31CE, 16);
@@ -599,7 +600,7 @@ SamsungDVD2::SamsungDVD2(
   np->setHeaderPair(4500, 4500);
   np->setTrailerPulse(600);
 
-  np->setPreData(0xC2CA, 16);
+  setPreData(0xC2CA, 16);
 
   addKey("1", One_Key, 0x827D, 16);
   addKey("2", Two_Key, 0x42BD, 16);
@@ -678,7 +679,7 @@ SamsungAC1::SamsungAC1(
   np->setHeaderPair(4500, 4500);
   np->setTrailerPulse(600);
 
-  np->setPreData(0x804, 12);
+  setPreData(0x804, 12);
 
 //  np->setMinimumRepetitions(1);
 

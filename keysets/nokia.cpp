@@ -22,7 +22,7 @@ NokiaGenericVCR::NokiaGenericVCR(
 
 //  np->setMinimumRepetitions(3);
 
-  np->setPreData(0x6, 3);
+  setPreData(0x6, 3);
 
   addKey("Power", Power_Key, 0x1A2, 12);
   addKey("1", One_Key, 0x202, 12);

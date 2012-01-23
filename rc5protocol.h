@@ -5,9 +5,8 @@
 #include "pirrx51hardware.h"
 
 //
-// The RC5 protocol is apparently quite a bit older than the NEC protocol, but
-// not as widespread.  Still, it continues to be in use, as I've seen
-// by my Elgato "Eye TV" remote control.
+// The RC5 protocol is not as widespread as the NEC protocol, but still
+// somewhat popular.  Philips, the inventor, uses it extensively.
 //
 
 class RC5Protocol: public PIRProtocol
@@ -26,10 +25,6 @@ public:
     unsigned int pulse,
     unsigned int space);
 
-  void setPreData(
-    unsigned long data,
-    unsigned int bits);
-
   void setToggleBit(
     unsigned int bit);
 
@@ -47,11 +42,6 @@ protected:
   unsigned int headerPulse;
   unsigned int headerSpace;
   bool hasHeaderPair;
-
-  CommandSequence preData;
-//  CommandSequence postData;
-
-//  int trail;
 
   // The original RC-5 specification marks a single bit as a "toggle bit",
   // which should be inverted on each separate keypress.  This was originally

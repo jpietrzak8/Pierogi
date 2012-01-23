@@ -10,21 +10,9 @@ YamahaDVD1::YamahaDVD1(
       Yamaha_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    107782, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-
-//  np->setMinimumRepetitions(3);
-
-  np->setPreData(0x3EC1, 16);
+  setPreData(0x3EC1, 16);
 
   addKey("title", DiscTitle_Key, 0x8D72, 16);
   addKey("menu", DiscMenu_Key, 0x4DB2, 16);
@@ -88,20 +76,9 @@ YamahaAudio1::YamahaAudio1(
       Yamaha_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    107823, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x9E61, 16);
+  setPreData(0x9E61, 16);
 
   addKey("SYNCHRO", Unmapped_Key, 0x1AE5, 16); // "DIRECT_OUT"
   addKey("DIMMER", Unmapped_Key, 0x7887, 16); // "MODE"
@@ -179,22 +156,9 @@ YamahaAudio2::YamahaAudio2(
       Yamaha_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    107500, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-//  np->setMinimumRepetitions(1);
-
-  np->setPreData(0x5EA1, 16);
+  setPreData(0x5EA1, 16);
 
   addKey("Power", Power_Key, 0xF807, 16); // "STANDBY"
   addKey("mute", Mute_Key, 0x38C7, 16); // "-20DB"
@@ -342,20 +306,9 @@ YamahaAudio3::YamahaAudio3(
       Yamaha_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    38500, false);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0xFE01, 16);
+  setPreData(0xFE01, 16);
 
   addKey("PLAY", Play_Key, 0x00FF, 16);
   addKey("STOP", Stop_Key, 0xC03F, 16);
@@ -400,20 +353,9 @@ YamahaAudio4::YamahaAudio4(
       Yamaha_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    50000, false);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x857A, 16);
+  setPreData(0x857A, 16);
 
   addKey("CD_PLAY", Play_Key, 0xF708, 16);
   addKey("CD_PAUSE/STOP", Pause_Key, 0xF609, 16);
@@ -459,19 +401,9 @@ YamahaAudio5::YamahaAudio5(
       Yamaha_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    40000, false);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-
-  np->setPreData(0xA25D, 16);
+  setPreData(0xA25D, 16);
 
   addKey("Power", Power_Key, 0x48B7, 16);
   addKey("Rewind", Rewind_Key, 0x9867, 16);
@@ -514,20 +446,9 @@ YamahaAudio6::YamahaAudio6(
       Yamaha_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    40000, false);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x8B74, 16);
+  setPreData(0x8B74, 16);
 
   addKey("A/B/C/D/E", Unmapped_Key, 0xB04F, 16);
   addKey("1", One_Key, 0x708F, 16);
@@ -549,20 +470,9 @@ YamahaAudio7::YamahaAudio7(
       Yamaha_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    40000, false);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x1EE1, 16);
+  setPreData(0x1EE1, 16);
 
   addKey("1", One_Key, 0x8877, 16);
   addKey("2", Two_Key, 0x48B7, 16);
@@ -620,20 +530,9 @@ YamahaTV1::YamahaTV1(
       Yamaha_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    41609, false);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x20DF, 16);
+  setPreData(0x20DF, 16);
 
   addKey("1", One_Key, 0x8877, 16);
   addKey("2", Two_Key, 0x48B7, 16);
@@ -662,20 +561,9 @@ YamahaKaraoke1::YamahaKaraoke1(
       Yamaha_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    40000, false);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0xDE21, 16);
+  setPreData(0xDE21, 16);
 
   addKey("POWER", Power_Key, 0x01FE, 16);
   addKey("VOL+", VolumeUp_Key, 0x41BE, 16);

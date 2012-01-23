@@ -9,6 +9,38 @@
 extern bool commandInFlight;
 extern QMutex commandIFMutex;
 
+// The official NEC protocol, as I understand it, has the following attributes:
+// A "zero" is encoded with a 560 usec pulse, 560 usec space.
+// A "one" is encoded with a 560 usec pulse, and 3*560 (1680) usec space.
+// The header is a 9000 usec pulse, 4500 usec space.
+// Commands end with a trailing 560 usec pulse.
+// A repeat block is a 9000 usec pulse, 2250 usec space, then trailing pulse.
+// Each command runs for 110000 usec before another can be executed.
+
+// For standard NEC, use this constructor:
+NECProtocol::NECProtocol(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRProtocol(guiObject, index, 110000, true),
+    zeroPulse(560),
+    zeroSpace(560),
+    onePulse(560),
+    oneSpace(1680),
+    headerPulse(9000),
+    headerSpace(4500),
+    hasHeaderPair(true),
+    trailerPulse(560),
+    hasTrailerPulse(true),
+    repeatPulse(9000),
+    repeatSpace(2250),
+    hasRepeatPair(true),
+    repeatNeedsHeader(false),
+    fullHeadlessRepeat(false),
+    elevenBitToggle(false)
+{
+}
+
+// For non-standard NEC, use this constructor:
 NECProtocol::NECProtocol(
   QObject *guiObject,
   unsigned int index,
@@ -23,11 +55,12 @@ NECProtocol::NECProtocol(
     zeroSpace(zSpace),
     onePulse(oPulse),
     oneSpace(oSpace),
-    hasTrailerPulse(false),
     hasHeaderPair(false),
+    hasTrailerPulse(false),
     hasRepeatPair(false),
     repeatNeedsHeader(false),
-    fullHeadlessRepeat(false)
+    fullHeadlessRepeat(false),
+    elevenBitToggle(false)
 {
 }
 
@@ -68,18 +101,10 @@ void NECProtocol::setFullHeadlessRepeat(
   fullHeadlessRepeat = flag;
 }
 
-void NECProtocol::setPreData(
-  unsigned long data,
-  unsigned int bits)
+void NECProtocol::setElevenBitToggle(
+  bool flag)
 {
-  appendToBitSeq(preData, data, bits);
-}
-
-void NECProtocol::setPostData(
-  unsigned long data,
-  unsigned int bits)
-{
-  appendToBitSeq(postData, data, bits);
+  elevenBitToggle = flag;
 }
 
 void NECProtocol::startSendingCommand(
@@ -128,6 +153,10 @@ void NECProtocol::startSendingCommand(
       else if (fullHeadlessRepeat && repeatCount)
       {
         commandDuration = generateHeadlessCommand((*i).second, rx51device);
+      }
+      else if (elevenBitToggle && (repeatCount % 2))
+      {
+        commandDuration = generateToggledCommand((*i).second, rx51device);
       }
       else
       {
@@ -247,6 +276,67 @@ int NECProtocol::generateRepeatCommand(
   duration += (repeatPulse + repeatSpace);
 
   // Finally add the trailer:
+  if (hasTrailerPulse)
+  {
+    rx51device.addSingle(trailerPulse);
+    duration += trailerPulse;
+  }
+
+  return duration;
+}
+
+
+// NOTE!  The following is a special command to toggle the last eleven bits
+// of the fifteen-bit commands used by Denon, Sharp, and a few others.  It
+// assumes the command sequence will contain all fifteen bits.  If this
+// is not the case, it will work incorrectly!
+int NECProtocol::generateToggledCommand(
+  const CommandSequence &bits,
+  PIRRX51Hardware &rx51device)
+{
+  int duration = 0;
+
+  CommandSequence::const_iterator i = bits.begin();
+
+  int bitcount = 0;
+  // First 4 bits:
+  while ((bitcount < 4) && (i != bits.end()))
+  {
+    if (*i)
+    {
+      // Send pulse for "one":
+      rx51device.addPair(onePulse, oneSpace);
+      duration += (onePulse + oneSpace);
+    }
+    else
+    {
+      // Send pulse for "zero":
+      rx51device.addPair(zeroPulse, zeroSpace);
+      duration += (zeroPulse + zeroSpace);
+    }
+    ++i;
+    ++bitcount;
+  }
+
+  // Now, invert the last eleven bits:
+  while (i != bits.end())
+  {
+    if (*i)
+    {
+      // Send pulse for "zero":
+      rx51device.addPair(zeroPulse, zeroSpace);
+      duration += (zeroPulse + zeroSpace);
+    }
+    else
+    {
+      // Send pulse for "one":
+      rx51device.addPair(onePulse, oneSpace);
+      duration += (onePulse + oneSpace);
+    }
+    ++i;
+  }
+
+  // Add trail on end:
   if (hasTrailerPulse)
   {
     rx51device.addSingle(trailerPulse);

@@ -69,6 +69,14 @@ protected:
     unsigned long data,
     unsigned int bits);
 
+  void setPreData(
+    unsigned long data,
+    unsigned int bits);
+
+  void setPostData(
+    unsigned long data,
+    unsigned int bits);
+
   KeyCollection keys;
 
   DeviceCollection controlledDevices;

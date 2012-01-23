@@ -12,20 +12,9 @@ GoldStarTV1::GoldStarTV1(
 {
   addControlledDevice(GoldStar_Make, "105-210A", TV_Device);
 
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    10800, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x20DF, 16);
+  setPreData(0x20DF, 16);
 
   addKey("power", Power_Key, 0x10EF, 16);
   addKey("mute", Mute_Key, 0x906F, 16);
@@ -46,7 +35,6 @@ GoldStarTV1::GoldStarTV1(
   addKey("volup", VolumeUp_Key, 0x40BF, 16);
   addKey("voldown", VolumeDown_Key, 0xC03F, 16);
   addKey("ok", Select_Key, 0x22DD, 16);
-//  addKey("ok", Enter_Key, 0x22DD, 16);
   addKey("prup", Up_Key, 0x00FF, 16);
   addKey("voldown", Left_Key, 0xC03F, 16);
   addKey("volup", Right_Key, 0x40BF, 16);
@@ -77,7 +65,7 @@ GoldStarTV2::GoldStarTV2(
 
   threadableProtocol = rp;
 
-  rp->setPreData(0x40, 7);
+  setPreData(0x40, 7);
 
   rp->setToggleBit(2);
 
@@ -133,20 +121,9 @@ GoldStarVCR1::GoldStarVCR1(
   addControlledDevice(GoldStar_Make, "GSE-Q204P", VCR_Device);
   addControlledDevice(GoldStar_Make, "QUISY 500", VCR_Device);
 
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    108000, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x7689, 16);
+  setPreData(0x7689, 16);
 
   addKey("power", Power_Key, 0x28D7, 16);
   addKey("eject", Eject_Key, 0x00FF, 16);
@@ -269,8 +246,8 @@ GoldStarCD1::GoldStarCD1(
   np->setRepeatPair(600, 1600);
   np->setRepeatNeedsHeader(true);
 
-  np->setPreData(0x0808, 16);
-  np->setPostData(0x1, 1);
+  setPreData(0x0808, 16);
+  setPostData(0x1, 1);
 
   addKey("power", Power_Key, 0x3C43, 15);
   addKey("mute", Mute_Key, 0x7C03, 15);

@@ -1,93 +1,140 @@
 #include "hauppauge.h"
 #include "rc5protocol.h"
 
-HauppaugeGeneric::HauppaugeGeneric(
+HauppaugePCTV1::HauppaugePCTV1(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "Generic Remote",
+      "PCTV Keyset 1",
       Hauppauge_Make,
       index)
 {
+  addControlledDevice(Hauppauge_Make, "PVR 350", Computer_Device);
+
   RC5Protocol *rp = new RC5Protocol(
     guiObject,
     index,
-    950, 820,     // biphase pulse
-    1000,         // lead pulse
+    900, 900,     // biphase pulse
+    900,         // lead pulse
     114000, true); // constant-length gap
 
   threadableProtocol = rp;
 
-  rp->setPreData(0x17, 5);
-
   rp->setToggleBit(2);
 
-  addKey("Power", Power_Key, 0xBD, 8);
-  addKey("Go", Unmapped_Key, 0xBB, 8);
-  addKey("TV", Unmapped_Key, 0x9C, 8);
-  addKey("Videos", Unmapped_Key, 0x98, 8);
-  addKey("Music", Unmapped_Key, 0x99, 8);
-  addKey("Pictures", Unmapped_Key, 0x9A, 8);
-  addKey("Guide", Unmapped_Key, 0x9B, 8);
-  addKey("Radio", Unmapped_Key, 0x8C, 8);
-  addKey("Up", Up_Key, 0x94, 8);
-  addKey("Down", Down_Key, 0x95, 8);
-  addKey("Left", Left_Key, 0x96, 8);
-  addKey("Right", Right_Key, 0x97, 8);
-  addKey("Ok", Enter_Key, 0xA5, 8);
-  addKey("Ok", Select_Key, 0xA5, 8);
-  addKey("Back/Exit", Exit_Key, 0x9F, 8);
-  addKey("Menu/i", Menu_Key, 0x8D, 8);
-  addKey("Vol+", VolumeUp_Key, 0x90, 8);
-  addKey("Vol-", VolumeDown_Key, 0x91, 8);
-  addKey("Prev.Ch", PrevChannel_Key, 0x92, 8);
-  addKey("Mute", Mute_Key, 0x8F, 8);
-  addKey("Ch+", ChannelUp_Key, 0xA0, 8);
-  addKey("Ch-", ChannelDown_Key, 0xA1, 8);
-  addKey("Record", Record_Key, 0xB7, 8);
-  addKey("Stop", Stop_Key, 0xB6, 8);
-  addKey("Rewind", Rewind_Key, 0xB2, 8);
-  addKey("Play", Play_Key, 0xB5, 8);
-  addKey("Forward", FastForward_Key, 0xB4, 8);
-  addKey("Replay/SkipBackward", Replay_Key, 0xA4, 8);
-  addKey("Pause", Pause_Key, 0xB0, 8);
-  addKey("SkipForward", Advance_Key, 0x9E, 8);
-  addKey("1", One_Key, 0x81, 8);
-  addKey("2", Two_Key, 0x82, 8);
-  addKey("3", Three_Key, 0x83, 8);
-  addKey("4", Four_Key, 0x84, 8);
-  addKey("5", Five_Key, 0x85, 8);
-  addKey("6", Six_Key, 0x86, 8);
-  addKey("7", Seven_Key, 0x87, 8);
-  addKey("8", Eight_Key, 0x88, 8);
-  addKey("9", Nine_Key, 0x89, 8);
-  addKey("0", Zero_Key, 0x80, 8);
-  addKey("Asterix", Unmapped_Key, 0x8A, 8);
-  addKey("sub/cc", Captions_Key, 0x8E, 8);
-  addKey("Red", Red_Key, 0x8B, 8);
-  addKey("Green", Green_Key, 0xAE, 8);
-  addKey("Yellow", Yellow_Key, 0xB8, 8);
-  addKey("Blue", Blue_Key, 0xA9, 8);
+  setPreData(0x5E, 7);
+
+  addKey("Power", Power_Key, 0x3D, 6);
+  addKey("Go", Unmapped_Key, 0x3B, 6);
+  addKey("TV", Unmapped_Key, 0x1C, 6);
+  addKey("Videos", Unmapped_Key, 0x18, 6);
+  addKey("Music", Unmapped_Key, 0x19, 6);
+  addKey("Pictures", Unmapped_Key, 0x1A, 6);
+  addKey("Guide", Unmapped_Key, 0x1B, 6);
+  addKey("Radio", Unmapped_Key, 0x0C, 6);
+  addKey("Up", Up_Key, 0x14, 6);
+  addKey("Down", Down_Key, 0x15, 6);
+  addKey("Left", Left_Key, 0x16, 6);
+  addKey("Right", Right_Key, 0x17, 6);
+  addKey("Ok", Select_Key, 0x25, 6);
+  addKey("Back/Exit", Exit_Key, 0x1F, 6);
+  addKey("Menu/i", Menu_Key, 0x0D, 6);
+  addKey("Vol+", VolumeUp_Key, 0x10, 6);
+  addKey("Vol-", VolumeDown_Key, 0x11, 6);
+  addKey("Prev.Ch", PrevChannel_Key, 0x12, 6);
+  addKey("Mute", Mute_Key, 0x0F, 6);
+  addKey("Ch+", ChannelUp_Key, 0x20, 6);
+  addKey("Ch-", ChannelDown_Key, 0x21, 6);
+  addKey("Record", Record_Key, 0x37, 6);
+  addKey("Stop", Stop_Key, 0x36, 6);
+  addKey("Rewind", Rewind_Key, 0x32, 6);
+  addKey("Play", Play_Key, 0x35, 6);
+  addKey("Forward", FastForward_Key, 0x34, 6);
+  addKey("Replay/SkipBackward", Replay_Key, 0x24, 6);
+  addKey("Pause", Pause_Key, 0x30, 6);
+  addKey("SkipForward", Advance_Key, 0x1E, 6);
+  addKey("0", Zero_Key, 0x00, 6);
+  addKey("1", One_Key, 0x01, 6);
+  addKey("2", Two_Key, 0x02, 6);
+  addKey("3", Three_Key, 0x03, 6);
+  addKey("4", Four_Key, 0x04, 6);
+  addKey("5", Five_Key, 0x05, 6);
+  addKey("6", Six_Key, 0x06, 6);
+  addKey("7", Seven_Key, 0x07, 6);
+  addKey("8", Eight_Key, 0x08, 6);
+  addKey("9", Nine_Key, 0x09, 6);
+  addKey("Asterix", Unmapped_Key, 0x0A, 6);
+  addKey("sub/cc", Captions_Key, 0x0E, 6); // "Recordings"
+  addKey("Red", Red_Key, 0x0B, 6);
+  addKey("Green", Green_Key, 0x2E, 6);
+  addKey("Yellow", Yellow_Key, 0x38, 6);
+  addKey("Blue", Blue_Key, 0x29, 6);
+}
+
+
+HauppaugePCTV1a::HauppaugePCTV1a(
+  QObject *guiObject,
+  unsigned int index)
+  : HauppaugePCTV1(guiObject, index)
+{
+  setKeysetName("PCTV Keyset 1a");
+
+  addControlledDevice(Hauppauge_Make, "WinTV-HVR-950Q", Computer_Device);
+
+  setPreData(0x5D, 7);
+}
+
+
+HauppaugePCTV1b::HauppaugePCTV1b(
+  QObject *guiObject,
+  unsigned int index)
+  : HauppaugePCTV1(guiObject, index)
+{
+  setKeysetName("PCTV Keyset 1b");
+
+  addControlledDevice(Hauppauge_Make, "MVP", Computer_Device);
+
+  setPreData(0x43, 7);
+
+  addKey("KEY_FN_1", Unmapped_Key, 0x0C, 6);
+  addKey("KEY_FN_2", Unmapped_Key, 0x3C, 6);
+}
+
+
+HauppaugePCTV1c::HauppaugePCTV1c(
+  QObject *guiObject,
+  unsigned int index)
+  : HauppaugePCTV1(guiObject, index)
+{
+  setKeysetName("PCTV Keyset 1c");
+
+  addControlledDevice(Hauppauge_Make, "PVR 250", Computer_Device);
+//  addControlledDevice(Hauppauge_Make, "PVR 350", Computer_Device);
+
+  setPreData(0x5F, 7);
+
+  addKey("blank", Unmapped_Key, 0x0C, 6);
+  addKey("full", Unmapped_Key, 0x3C, 6);
 }
 
 
 // Based on LIRC Sony_RM-V302-DVD010 config file
-HauppaugeTV1::HauppaugeTV1(
+HauppaugePCTV2::HauppaugePCTV2(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "TV Keyset 1",
+      "PCTV Keyset 2",
       Hauppauge_Make,
       index)
 {
-  addControlledDevice(Hauppauge_Make, "PVR-250", TV_Device);
+  addControlledDevice(Hauppauge_Make, "PVR-250", Computer_Device);
 
   RC5Protocol *rp = new RC5Protocol(
     guiObject,
     index,
-    889, 889,
-    889,
-    113792, true);
+    900, 900,
+    900,
+    114000, true);
 
   threadableProtocol = rp;
 
@@ -127,3 +174,32 @@ HauppaugeTV1::HauppaugeTV1(
   addKey("STOP", Stop_Key, 0x1520, 13);
 }
 
+
+/*
+// Translation of DSR-0095 config file
+HauppaugePCTV3::HauppaugePCTV3(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "PCTV Keyset 3",
+      Hauppauge_Make,
+      index)
+{
+  RC5Protocol *rp = new RC5Protocol(
+    guiObject,
+    index,
+    900, 900,
+    900,
+    114000, true);
+
+  threadableProtocol = rp;
+
+  rp->setToggleBit(2);
+
+  rp->setPreData(0x17, 5);
+
+  addKey("home", Unmapped_Key, 0x7B, 8);
+  addKey("choice", Unmapped_Key, 0x5B, 8);
+  addKey("stop", Stop_Key, 0x77, 8);
+}
+*/

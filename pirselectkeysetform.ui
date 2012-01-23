@@ -28,7 +28,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Make</string>
+        <string>Make:</string>
        </property>
       </widget>
      </item>

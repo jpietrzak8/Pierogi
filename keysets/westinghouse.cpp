@@ -21,7 +21,7 @@ WestinghouseTV1::WestinghouseTV1(
   np->setHeaderPair(9000, 4500);
   np->setTrailerPulse(600);
 
-  np->setPreData(0x807F, 16);
+  setPreData(0x807F, 16);
 
   addKey("KEY_1", One_Key, 0x8877, 16);
   addKey("KEY_2", Two_Key, 0x48B7, 16);

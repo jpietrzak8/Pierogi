@@ -14,24 +14,10 @@ AppleWhiteRemote::AppleWhiteRemote(
   addControlledDevice(Apple_Make, "Mac Mini", Computer_Device);
 
   // Set up the threadable object:
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    574, 547,   // zero pulse, zero space
-    574, 1668,  // one pulse, one space
-    37600,      // gap
-    false);     // gap is not constant length
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(567);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x77e1, 16);
-  np->setPostData(0xc5, 8);
-
-  // Finally, add the keys:
+  setPreData(0x77e1, 16);
+  setPostData(0xc5, 8);
 
 // Menu oriented:
   addKey("menu", Menu_Key, 0x40, 8);

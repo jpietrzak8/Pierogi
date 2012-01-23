@@ -9,22 +9,9 @@ SagemTVBox1::SagemTVBox1(
       Sagem_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    108000, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-//  np->setMinimumRepetitions(1);
-
-  np->setPreData(0xE17A, 16);
+  setPreData(0xE17A, 16);
 
   addKey("Power", Power_Key, 0x48B7, 16);
   addKey("P+", ChannelUp_Key, 0x08F7, 16);

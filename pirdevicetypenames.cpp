@@ -8,6 +8,7 @@ PIRDeviceTypeMgr::PIRDeviceTypeMgr()
   devices[DVD_Device] = "DVD";
   devices[Audio_Device] = "Audio";
   devices[Computer_Device] = "Computer";
+  devices[Other_Device] = "Other";
 }
 
 const char *PIRDeviceTypeMgr::getDeviceString(

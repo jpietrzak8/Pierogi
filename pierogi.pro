@@ -61,7 +61,10 @@ SOURCES += main.cpp mainwindow.cpp \
     pirdevicetypenames.cpp \
     keysets/raite.cpp \
     keysets/sagem.cpp \
-    keysets/yamaha.cpp
+    keysets/yamaha.cpp \
+    keysets/hitachi.cpp \
+    keysets/denon.cpp \
+    keysets/pinnacle.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     necprotocol.h \
@@ -97,7 +100,10 @@ HEADERS += mainwindow.h \
     pirdevicetypenames.h \
     keysets/raite.h \
     keysets/sagem.h \
-    keysets/yamaha.h
+    keysets/yamaha.h \
+    keysets/hitachi.h \
+    keysets/denon.h \
+    keysets/pinnacle.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -164,7 +170,7 @@ OTHER_FILES += \
     www/PierogiIcon.png \
     www/SelectKeysetWindow.png \
     www/UtilityTab.png \
-    qtc_packaging/debian_fremantle/postrm
+    qtc_packaging/debian_fremantle/postrm.needsfixing
 
 RESOURCES += \
     PierogiResources.qrc

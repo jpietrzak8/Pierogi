@@ -9,20 +9,9 @@ RaiteDVD1::RaiteDVD1(
       Raite_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    107823, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x04FB, 16);
+  setPreData(0x04FB, 16);
 
   addKey("mute", Mute_Key, 0xC03F, 16);
   addKey("1", One_Key, 0xC837, 16);

@@ -1,14 +1,17 @@
 #include "pirkeysetmanager.h"
 #include "pirkeysetmetadata.h"
 #include "keysets/apple.h"
+#include "keysets/denon.h"
 #include "keysets/ei.h"
 #include "keysets/goldstar.h"
 #include "keysets/hauppauge.h"
+#include "keysets/hitachi.h"
 #include "keysets/jvc.h"
 #include "keysets/lg.h"
 #include "keysets/mitsubishi.h"
 #include "keysets/nokia.h"
 #include "keysets/panasonic.h"
+#include "keysets/pinnacle.h"
 #include "keysets/raite.h"
 #include "keysets/rca.h"
 #include "keysets/sagem.h"
@@ -20,13 +23,11 @@
 #include "keysets/westinghouse.h"
 #include "keysets/yamaha.h"
 #include "keysets/zenith.h"
-//#include "protocol.h"
 #include "pirmakenames.h"
 
 #include "pirexception.h"
 
 #include <QObject>
-//#include <QMetaType>
 
 // I'll be handling the threading of the keyset commands in this object:
 #include <QMutex>
@@ -48,6 +49,29 @@ PIRKeysetManager::PIRKeysetManager(
   // Create the keysets.  Ugly!  This needs to be worked on!
   populateKeyset(new AppleWhiteRemote(guiObject, counter++));
 
+  populateKeyset(new DenonDVD1(guiObject, counter++));
+  populateKeyset(new DenonDVD2(guiObject, counter++));
+  populateKeyset(new DenonDVD3(guiObject, counter++));
+  populateKeyset(new DenonReceiver1(guiObject, counter++));
+  populateKeyset(new DenonReceiver1a(guiObject, counter++));
+  populateKeyset(new DenonReceiver1b(guiObject, counter++));
+  populateKeyset(new DenonReceiver1c(guiObject, counter++));
+  populateKeyset(new DenonReceiver2(guiObject, counter++));
+  populateKeyset(new DenonReceiver2a(guiObject, counter++));
+  populateKeyset(new DenonReceiver3(guiObject, counter++));
+  populateKeyset(new DenonReceiver3a(guiObject, counter++));
+  populateKeyset(new DenonReceiver4(guiObject, counter++));
+  populateKeyset(new DenonReceiver5(guiObject, counter++));
+  populateKeyset(new DenonAudio1(guiObject, counter++));
+  populateKeyset(new DenonAudio1a(guiObject, counter++));
+  populateKeyset(new DenonAudio1b(guiObject, counter++));
+  populateKeyset(new DenonAudio1c(guiObject, counter++));
+  populateKeyset(new DenonAudio1d(guiObject, counter++));
+  populateKeyset(new DenonAudio2(guiObject, counter++));
+  populateKeyset(new DenonAudio3(guiObject, counter++));
+  populateKeyset(new DenonAudio4(guiObject, counter++));
+  populateKeyset(new DenonAudio5(guiObject, counter++));
+
   populateKeyset(new EiKeyset(guiObject, counter++));
 
   populateKeyset(new GoldStarTV1(guiObject, counter++));
@@ -59,8 +83,11 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new GoldStarVCR1d(guiObject, counter++));
   populateKeyset(new GoldStarCD1(guiObject, counter++));
 
-  populateKeyset(new HauppaugeGeneric(guiObject, counter++));
-  populateKeyset(new HauppaugeTV1(guiObject, counter++));
+  populateKeyset(new HauppaugePCTV1(guiObject, counter++));
+  populateKeyset(new HauppaugePCTV1a(guiObject, counter++));
+  populateKeyset(new HauppaugePCTV1b(guiObject, counter++));
+  populateKeyset(new HauppaugePCTV1c(guiObject, counter++));
+  populateKeyset(new HauppaugePCTV2(guiObject, counter++));
 
   populateKeyset(new JVCSat1(guiObject, counter++));
   populateKeyset(new JVCSat2(guiObject, counter++));
@@ -127,6 +154,10 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new PanasonicAudio1(guiObject, counter++));
   populateKeyset(new PanasonicAudio1a(guiObject, counter++));
 
+  populateKeyset(new PinnaclePCTV1(guiObject, counter++));
+  populateKeyset(new PinnaclePCTV2(guiObject, counter++));
+  populateKeyset(new PinnaclePCTV3(guiObject, counter++));
+
   populateKeyset(new RaiteDVD1(guiObject, counter++));
 
   populateKeyset(new RCATV1(guiObject, counter++));
@@ -166,9 +197,14 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new SamsungDVD2(guiObject, counter++));
   populateKeyset(new SamsungAC1(guiObject, counter++));
 
-  populateKeyset(new SanyoTV1(guiObject, counter++));
-  populateKeyset(new SanyoTV2(guiObject, counter++));
   populateKeyset(new SanyoVCR1(guiObject, counter++));
+  populateKeyset(new SanyoDVD1(guiObject, counter++));
+  populateKeyset(new SanyoTV1(guiObject, counter++));
+  populateKeyset(new SanyoTV1a(guiObject, counter++));
+  populateKeyset(new SanyoTV1b(guiObject, counter++));
+  populateKeyset(new SanyoTV1c(guiObject, counter++));
+  populateKeyset(new SanyoTV1d(guiObject, counter++));
+  populateKeyset(new SanyoProjector(guiObject, counter++));
 
   populateKeyset(new SharpTV1(guiObject, counter++));
   populateKeyset(new SharpTV1a(guiObject, counter++));

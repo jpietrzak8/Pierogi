@@ -51,6 +51,14 @@ public:
   void setMinimumRepetitions(
     unsigned int minrep);
 
+  void setPreData(
+    unsigned long data,
+    unsigned int bits);
+
+  void setPostData(
+    unsigned long data,
+    unsigned int bits);
+
 public slots:
   virtual void startSendingCommand(
     unsigned int threadableID,
@@ -91,7 +99,12 @@ protected:
   bool isConstantLength;
   int gap;
 
+  // More administrative data wrapped around the actual command:
+  CommandSequence preData;
+  CommandSequence postData;
+
   // Some remotes require a minimum number of repetitions:
+  // Note: thinking about removing this -- don't know if it is needed
   int minimumRepetitions;
 
   unsigned int id;

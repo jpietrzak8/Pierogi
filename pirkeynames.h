@@ -49,6 +49,8 @@ enum PIRKeyName{
   Advance_Key,
   Replay_Key,
   Eject_Key,
+  Random_Key,
+  Repeat_Key,
   // Menu control:
   Menu_Key,
   Up_Key,

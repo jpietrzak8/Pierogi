@@ -21,13 +21,13 @@ EiKeyset::EiKeyset(
     index,
     931, 836,
     969,
-    113205, 2);
+    113205, true);
 
   threadableProtocol = rp;
 
-  rp->setPreData(0x10, 5);
-
   rp->setToggleBit(2);
+
+  setPreData(0x10, 5);
 
   addKey("i", Unmapped_Key, 0x35, 8);
   addKey("a", Unmapped_Key, 0x37, 8);

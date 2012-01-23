@@ -12,20 +12,9 @@ ZenithC32V37::ZenithC32V37(
 {
   addControlledDevice(Zenith_Make, "C32V37", TV_Device);
 
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    581, 528,
-    581, 1663,
-    106773, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(581);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x20DF, 16);
+  setPreData(0x20DF, 16);
 
   addKey("power", Power_Key, 0x10EF, 16);
   addKey("tv/video", Input_Key, 0xD02F, 16);

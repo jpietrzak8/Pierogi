@@ -20,9 +20,9 @@ MitsubishiTV1::MitsubishiTV1(
 
   np->setTrailerPulse(300);
 
-  np->setPreData(0xE2, 8);
-
 //  np->setMinimumRepetitions(1);
+
+  setPreData(0xE2, 8);
 
   addKey("POWER", Power_Key, 0x40, 8);
   addKey("0", Zero_Key, 0x90, 8);
@@ -124,9 +124,9 @@ MitsubishiVCR1::MitsubishiVCR1(
 
   np->setTrailerPulse(300);
 
-  np->setPreData(0xEA, 8);
-
 //  np->setMinimumRepetitions(1);
+
+  setPreData(0xEA, 8);
 
   addKey("POWER", Power_Key, 0x40, 8);
   addKey("CH-", ChannelDown_Key, 0x48, 8);

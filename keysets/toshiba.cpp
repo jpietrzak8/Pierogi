@@ -10,20 +10,9 @@ ToshibaTV1::ToshibaTV1(
       Toshiba_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 539,
-    600, 1672,
-    108000, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x02FD, 16);
+  setPreData(0x02FD, 16);
 
   addKey("POWER", Power_Key, 0x48B7, 16);
   addKey("1", One_Key, 0x807F, 16);
@@ -189,20 +178,9 @@ ToshibaVCR1::ToshibaVCR1(
       Toshiba_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 525,
-    600, 1650,
-    108000, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x22DD, 16);
+  setPreData(0x22DD, 16);
 
   addKey("power", Power_Key, 0x48B7, 16);
   addKey("1", One_Key, 0x807F, 16);
@@ -254,20 +232,9 @@ ToshibaDisc1::ToshibaDisc1(
       Toshiba_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 539,
-    600, 1672,
-    108000, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0xA25D, 16);
+  setPreData(0xA25D, 16);
 
   addKey("power", Power_Key, 0x48B7, 16);
   addKey("1", One_Key, 0x807F, 16);

@@ -308,9 +308,9 @@ SonyAmp1::SonyAmp1(
 
   np->setHeaderPair(2400, 600);
 
-  np->setPostData(0xC, 6);
-
 //  np->setMinimumRepetitions(2);
+
+  setPostData(0xC, 6);
 
   addKey("VIDEO1", Unmapped_Key, 0x22, 7);
   addKey("VIDEO2", Unmapped_Key, 0x3C, 7);
@@ -533,7 +533,7 @@ SonyCD2::SonyCD2(
 
   np->setHeaderPair(2412, 588);
 
-  np->setPostData(0x7, 4);
+  setPostData(0x7, 4);
 
   addKey("PLAY", Play_Key, 0x59, 7);
   addKey("STOP", Stop_Key, 0x71, 7);
@@ -604,9 +604,9 @@ SonyCD3::SonyCD3(
   np->setHeaderPair(2400, 600);
   np->setTrailerPulse(1200);
 
-  np->setPostData(0x08, 5);
-
 //  np->setMinimumRepetitions(2);
+
+  setPostData(0x08, 5);
 
   addKey("|<<", Previous_Key, 0x03, 6);
   addKey(">>|", Next_Key, 0x23, 6);
@@ -657,11 +657,11 @@ SonyDAT1::SonyDAT1(
 
   np->setHeaderPair(2400, 600);
 
-  np->setPostData(0x07, 5);
-
 //  np->setMinimumRepetitions(2);
 
   np->setCarrierFrequency(40000);
+
+  setPostData(0x07, 5);
 
   addKey("1", One_Key, 0x00, 7);
   addKey("2", Two_Key, 0x40, 7);

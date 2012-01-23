@@ -23,6 +23,13 @@ public:
   // command and the start of the next, and others specify each command be
   // started at a precise interval (so the spacing between the end of one
   // and the start of another may vary).
+
+  // Constructor for standard NEC:
+  NECProtocol(
+    QObject *guiObject,
+    unsigned int index);
+
+  // Constructor for non-standard NEC:
   NECProtocol(
     QObject *guiObject,
     unsigned int index,
@@ -44,18 +51,13 @@ public:
     unsigned int pulse,
     unsigned int space);
 
-  void setPreData(
-    unsigned long data,
-    unsigned int bits);
-
-  void setPostData(
-    unsigned long data,
-    unsigned int bits);
-
   void setRepeatNeedsHeader(
     bool flag);
 
   void setFullHeadlessRepeat(
+    bool flag);
+
+  void setElevenBitToggle(
     bool flag);
 
 public slots:
@@ -70,6 +72,11 @@ private:
   unsigned int onePulse;
   unsigned int oneSpace;
 
+  // Some administrative data that most NEC Protocol remotes have:
+  unsigned int headerPulse;
+  unsigned int headerSpace;
+  bool hasHeaderPair;
+
   // A tailing on-request, not followed by a specific off time:
   unsigned int trailerPulse;
   bool hasTrailerPulse;
@@ -77,21 +84,13 @@ private:
   // Each remote key has a unique command sequence:
 //  KeyCommandMap commands;
 
-  // Some administrative data that most NEC Protocol remotes have:
-  unsigned int headerPulse;
-  unsigned int headerSpace;
-  bool hasHeaderPair;
-
-  // More administrative data wrapped around the actual command:
-  CommandSequence preData;
-  CommandSequence postData;
-
   // A pulse that means "repeat the last command":
   unsigned int repeatPulse;
   unsigned int repeatSpace;
   bool hasRepeatPair;
   bool repeatNeedsHeader; // Put the header ahead of the repeat pulse
   bool fullHeadlessRepeat; // Repeat full command but without header
+  bool elevenBitToggle; // A few remotes toggle the last eleven bits on repeat
 
   int generateStandardCommand(
     const CommandSequence &bits,
@@ -102,6 +101,10 @@ private:
     PIRRX51Hardware &device);
 
   int generateRepeatCommand(
+    PIRRX51Hardware &device);
+
+  int generateToggledCommand(
+    const CommandSequence &bits,
     PIRRX51Hardware &device);
 
   int pushBits(

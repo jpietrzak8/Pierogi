@@ -1,3 +1,13 @@
+pierogi (0.1.6) unstable; urgency=low
+  * Still having installation problems!  For now, I'm just giving up on the postrm script; for now, users will have to live with the extra file when uninstalling.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Mon, 23 Jan 2012 09:50:25 -0500
+
+pierogi (0.1.5) unstable; urgency=low
+  * Fixed a design flaw allowing user to queue up unlimited number of commands.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 20 Jan 2012 00:00:29 -0500
+
 pierogi (0.1.4) unstable; urgency=low
   * I think uninstall is working now.  So, Initial Release time!
 

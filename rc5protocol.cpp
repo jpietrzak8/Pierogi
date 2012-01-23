@@ -34,14 +34,6 @@ void RC5Protocol::setHeaderPair(
 }
 
 
-void RC5Protocol::setPreData(
-  unsigned long data,
-  unsigned int bits)
-{
-  appendToBitSeq(preData, data, bits);
-}
-
-
 void RC5Protocol::setToggleBit(
   unsigned int bit)
 {

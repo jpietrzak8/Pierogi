@@ -11,22 +11,9 @@ LGTV1::LGTV1(
       LG_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    107753, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x20DF, 16);
-
-//  np->setMinimumRepetitions(2);
+  setPreData(0x20DF, 16);
 
   addKey("power", Power_Key, 0x10EF, 16);
   addKey("input", Input_Key, 0xD02F, 16);
@@ -170,9 +157,9 @@ LGTV2::LGTV2(
 
   threadableProtocol = rp;
 
-  rp->setPreData(0x10, 5);
-
   rp->setToggleBit(2);
+
+  setPreData(0x10, 5);
 
   addKey("POWER", Power_Key, 0x0C, 8);
   addKey("DRP", Unmapped_Key, 0x14, 8);
@@ -271,7 +258,7 @@ LGDisc1::LGDisc1(
   np->setRepeatPair(531, 1710);
   np->setRepeatNeedsHeader(true);
 
-  np->setPreData(0x3434, 16);
+  setPreData(0x3434, 16);
 
 //  np->setMinimumRepetitions(1);
 
@@ -360,7 +347,7 @@ LGDisc2::LGDisc2(
   np->setRepeatPair(600, 550);
   np->setRepeatNeedsHeader(true);
 
-  np->setPreData(0xB4B4, 16);
+  setPreData(0xB4B4, 16);
 
 //  np->setMinimumRepetitions(3);
 
@@ -441,20 +428,9 @@ LGVCR1::LGVCR1(
       LG_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 550,
-    600, 1650,
-    107753, true);
+  threadableProtocol = new NECProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(9000, 2250);
-
-  np->setPreData(0x7689, 16);
+  setPreData(0x7689, 16);
 
   addKey("power", Power_Key, 0x28D7, 16);
   addKey("rew", Rewind_Key, 0x40BF, 16);

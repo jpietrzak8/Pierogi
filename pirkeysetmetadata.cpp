@@ -71,6 +71,22 @@ void PIRKeysetMetaData::addKey(
 }
 
 
+void PIRKeysetMetaData::setPreData(
+  unsigned long data,
+  unsigned int bits)
+{
+  threadableProtocol->setPreData(data, bits);
+}
+
+
+void PIRKeysetMetaData::setPostData(
+  unsigned long data,
+  unsigned int bits)
+{
+  threadableProtocol->setPostData(data, bits);
+}
+
+
 PIRMakeName PIRKeysetMetaData::getMake()
 {
   return make;

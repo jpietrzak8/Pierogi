@@ -88,13 +88,13 @@ JVCSat2::JVCSat2(
   np->setHeaderPair(525, 6045);
   np->setTrailerPulse(450);
 
-  np->setPostData(0x000, 10);
-
 //  np->setMinimumRepetitions(6);
   np->setFullHeadlessRepeat(true);
 
   np->setCarrierFrequency(56000);
   np->setDutyCycle(32);
+
+  setPostData(0x000, 10);
 
   addKey("info", Info_Key, 0x0, 6);
   addKey("power_on", Unmapped_Key, 0x1, 6);
@@ -153,7 +153,7 @@ JVCVCR1::JVCVCR1(
 
   np->setTrailerPulse(600);
 
-  np->setPreData(0xC2, 8);
+  setPreData(0xC2, 8);
 
   addKey("power", Power_Key, 0xD0, 8);
   addKey("play", Play_Key, 0x30, 8);
@@ -254,8 +254,7 @@ JVCVCR1b::JVCVCR1b(
 {
   setKeysetName("VCR (alt) keyset 1b");
 
-  NECProtocol *np = dynamic_cast<NECProtocol *>(threadableProtocol);
-  np->setPreData(0xCA, 8);
+  setPreData(0xCA, 8);
 }
 
 
@@ -294,7 +293,7 @@ JVCVCR2::JVCVCR2(
   np->setTrailerPulse(600);
   np->setFullHeadlessRepeat(true);
 
-  np->setPreData(0xC2, 8);
+  setPreData(0xC2, 8);
 
   addKey("power", Power_Key, 0xD0, 8);
   addKey("play", Play_Key, 0x30, 8);
@@ -391,8 +390,7 @@ JVCVCR2b::JVCVCR2b(
 {
   setKeysetName("VCR (alt) keyset 2b");
 
-  NECProtocol *np = dynamic_cast<NECProtocol *>(threadableProtocol);
-  np->setPreData(0xCA, 8);
+  setPreData(0xCA, 8);
 }
 
 
@@ -426,7 +424,7 @@ JVCTV1::JVCTV1(
 
   np->setTrailerPulse(600);
 
-  np->setPreData(0xC0, 8);
+  setPreData(0xC0, 8);
 
   addKey("Power", Power_Key, 0xE8, 8);
   addKey("Vol+", VolumeUp_Key, 0x78, 8);
@@ -570,7 +568,7 @@ JVCTV2::JVCTV2(
   np->setTrailerPulse(600);
   np->setFullHeadlessRepeat(true);
 
-  np->setPreData(0xC0, 8);
+  setPreData(0xC0, 8);
 
   addKey("Power", Power_Key, 0xE8, 8);
   addKey("Vol+", VolumeUp_Key, 0x78, 8);
@@ -708,7 +706,7 @@ JVCDAT1::JVCDAT1(
 
   np->setFullHeadlessRepeat(true);
 
-  np->setPreData(0xC9, 8);
+  setPreData(0xC9, 8);
 
   addKey("1", One_Key, 0x84, 8);
   addKey("2", Two_Key, 0x44, 8);
@@ -763,7 +761,7 @@ JVCCarDeck1::JVCCarDeck1(
 
   np->setFullHeadlessRepeat(true);
 
-  np->setPreData(0xF1, 8);
+  setPreData(0xF1, 8);
 
   addKey("Power", Power_Key, 0x71, 8); // "Att"
   addKey("Sound", Mute_Key, 0xB1, 8); // "SCM"
@@ -949,7 +947,7 @@ JVCPortableAudio2::JVCPortableAudio2(
 
   np->setFullHeadlessRepeat(true);
 
-  np->setPreData(0xF9, 8);
+  setPreData(0xF9, 8);
 
   addKey("stop", Stop_Key, 0x8E, 8); // "CD_STOP" "stop_clear"
   addKey("stop", Clear_Key, 0x8E, 8); // "CD_STOP" "stop_clear"

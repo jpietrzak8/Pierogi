@@ -12,7 +12,8 @@ enum PIRDeviceTypeName {
   VCR_Device,
   DVD_Device,
   Audio_Device,
-  Computer_Device
+  Computer_Device,
+  Other_Device
 };
 
 typedef std::set<PIRDeviceTypeName> PIRDeviceTypeCollection;

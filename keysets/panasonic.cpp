@@ -21,11 +21,11 @@ PanasonicAmp::PanasonicAmp(
   np->setHeaderPair(4000, 1600);
   np->setTrailerPulse(400);
 
-  np->setPreData(0x80080A86, 32);
-
 //  np->setMinimumRepetitions(4);
 
   np->setCarrierFrequency(36000);
+
+  setPreData(0x80080A86, 32);
 
   addKey("POWER", Power_Key, 0xFDBB, 16);
   addKey("VOL+", VolumeUp_Key, 0x0D4B, 16);
@@ -55,7 +55,7 @@ PanasonicCarAudio::PanasonicCarAudio(
   np->setHeaderPair(9148, 4424);
   np->setTrailerPulse(667);
 
-  np->setPreData(0x8156, 16);
+  setPreData(0x8156, 16);
 
   addKey("Power", Power_Key, 0x48B7, 16);
   addKey("PRG", Unmapped_Key, 0x38C7, 16);
@@ -88,7 +88,7 @@ PanasonicSat1::PanasonicSat1(
   np->setHeaderPair(3565, 1700);
   np->setTrailerPulse(500);
 
-  np->setPreData(0x40040140, 32);
+  setPreData(0x40040140, 32);
 
   addKey("POWER", Power_Key, 0xBDFC, 16);
   addKey("CH+", ChannelUp_Key, 0xEDAC, 16);
@@ -164,9 +164,9 @@ PanasonicTV1::PanasonicTV1(
   np->setHeaderPair(3500, 1700);
   np->setTrailerPulse(500);
 
-  np->setPreData(0x400401, 24);
-
 //  np->setMinRepeat(1);
+
+  setPreData(0x400401, 24);
 
   addKey("POWER", Power_Key, 0x00BCBD, 24);
   addKey("MUTE", Mute_Key, 0x004C4D, 24);
@@ -295,7 +295,7 @@ PanasonicVCR1::PanasonicVCR1(
   np->setHeaderPair(3600, 1650);
   np->setTrailerPulse(550);
 
-  np->setPreData(0x400409, 24);
+  setPreData(0x400409, 24);
 
   addKey("POWER", Power_Key, 0x00BCB5, 24);
   addKey("PROGRAMME^", ChannelUp_Key, 0x002C25, 24);
@@ -448,7 +448,7 @@ PanasonicDVD1::PanasonicDVD1(
   np->setHeaderPair(3500, 1650);
   np->setTrailerPulse(500);
 
-  np->setPreData(0x40040D00, 32);
+  setPreData(0x40040D00, 32);
 
   addKey("POWER", Power_Key, 0xBCB1, 16);
   addKey("PLAY", Play_Key, 0x505D, 16);
@@ -567,9 +567,9 @@ PanasonicAudio1::PanasonicAudio1(
   np->setHeaderPair(4000, 1600);
   np->setTrailerPulse(400);
 
-  np->setPreData(0x40040543, 32);
-
 //  np->setMinimumRepetitions(1);
+
+  setPreData(0x40040543, 32);
 
   addKey("power", Power_Key, 0xFDBB, 16);
   addKey("tape", Unmapped_Key, 0x3573, 16);

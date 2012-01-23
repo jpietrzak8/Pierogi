@@ -21,9 +21,9 @@ RCATV1::RCATV1(
   np->setHeaderPair(4000, 4000);
   np->setTrailerPulse(500);
 
-  np->setPreData(0xF, 4);
-
 //  np->setMinimumRepetitions(1);
+
+  setPreData(0xF, 4);
 
   addKey("vol-left", VolumeDown_Key, 0x2E0D1, 20);
   addKey("vol-right", VolumeUp_Key, 0x2F0D0, 20);
@@ -108,7 +108,7 @@ RCATV2::RCATV2(
   np->setHeaderPair(17355, 3978);
   np->setTrailerPulse(897);
 
-  np->setPreData(0xF, 4);
+  setPreData(0xF, 4);
 
   addKey("off", Unmapped_Key, 0x3B0C4, 20);
   addKey("on", Unmapped_Key, 0x3A0C5, 20);
@@ -157,7 +157,7 @@ RCAAux1::RCAAux1(
   np->setHeaderPair(4000, 4000);
   np->setTrailerPulse(500);
 
-  np->setPreData(0x4, 4);
+  setPreData(0x4, 4);
 
   addKey("aux1_power", Power_Key, 0x2ABD5, 20);
   addKey("skip", Advance_Key, 0x53BAC, 20);
@@ -219,7 +219,7 @@ RCAAux2::RCAAux2(
   np->setHeaderPair(4000, 4000);
   np->setTrailerPulse(500);
 
-  np->setPreData(0xC, 4);
+  setPreData(0xC, 4);
 
   addKey("aux-on-off", Power_Key, 0x3B3C4, 20);
   addKey("aux-mute", Mute_Key, 0x3F3C0, 20);
@@ -297,9 +297,9 @@ RCAVCR1::RCAVCR1(
   np->setHeaderPair(4000, 4000);
   np->setTrailerPulse(500);
 
-  np->setPreData(0xE, 4);
-
 //  np->setMinimumRepetitions(1);
+
+  setPreData(0xE, 4);
 
   addKey("vcr1-on-off", Power_Key, 0x2A1D5, 20);
   addKey("vcr1-who", Unmapped_Key, 0x6119E, 20);
@@ -363,7 +363,7 @@ RCAVCR2::RCAVCR2(
   np->setHeaderPair(4000, 4000);
   np->setTrailerPulse(500);
 
-  np->setPreData(0xD, 4);
+  setPreData(0xD, 4);
 
   addKey("vcr2-on-off", Power_Key, 0x2A2D5, 20);
   addKey("vcr2-who", Unmapped_Key, 0x6129E, 20);
@@ -423,7 +423,7 @@ RCADVD1::RCADVD1(
   np->setHeaderPair(4000, 4000);
   np->setTrailerPulse(500);
 
-  np->setPreData(0x5, 4);
+  setPreData(0x5, 4);
 
   addKey("dvd-on-off", Power_Key, 0x2AAD5, 20);
   addKey("dvd-who", Unmapped_Key, 0x61A9E, 20);
@@ -500,7 +500,7 @@ RCASat1::RCASat1(
   np->setHeaderPair(4000, 4000);
   np->setTrailerPulse(500);
 
-  np->setPreData(0x7, 4);
+  setPreData(0x7, 4);
 
   addKey("on-off", Power_Key, 0x2A8D5, 20);
   addKey("who", Unmapped_Key, 0x6189E, 20); // "cc", "-"
@@ -565,13 +565,13 @@ RCASat2::RCASat2(
   np->setHeaderPair(525, 6045);
   np->setTrailerPulse(450);
 
-  np->setPostData(0x000, 10);
-
 //  np->setMinimumRepetitions(6);
   np->setFullHeadlessRepeat(true);
 
   np->setCarrierFrequency(56000);
   np->setDutyCycle(32);
+
+  setPostData(0x000, 10);
 
   addKey("info", Info_Key, 0x0, 6);
   addKey("power_on", Unmapped_Key, 0x1, 6);

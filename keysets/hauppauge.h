@@ -2,22 +2,44 @@
 #define HAUPPAUGE_H
 
 #include "pirkeysetmetadata.h"
-
 #include <QObject>
 
-class HauppaugeGeneric: public PIRKeysetMetaData
+class HauppaugePCTV1: public PIRKeysetMetaData
 {
 public:
-  HauppaugeGeneric(
+  HauppaugePCTV1(
     QObject *guiObject,
     unsigned int index);
 };
 
-
-class HauppaugeTV1: public PIRKeysetMetaData
+class HauppaugePCTV1a: public HauppaugePCTV1
 {
 public:
-  HauppaugeTV1(
+  HauppaugePCTV1a(
+    QObject *guiObject,
+    unsigned int index);
+};
+
+class HauppaugePCTV1b: public HauppaugePCTV1
+{
+public:
+  HauppaugePCTV1b(
+    QObject *guiObject,
+    unsigned int index);
+};
+
+class HauppaugePCTV1c: public HauppaugePCTV1
+{
+public:
+  HauppaugePCTV1c(
+    QObject *guiObject,
+    unsigned int index);
+};
+
+class HauppaugePCTV2: public PIRKeysetMetaData
+{
+public:
+  HauppaugePCTV2(
     QObject *guiObject,
     unsigned int index);
 };

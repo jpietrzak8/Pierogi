@@ -19,6 +19,8 @@ SharpTV1::SharpTV1(
 
   threadableProtocol = np;
 
+  np->setElevenBitToggle(true);
+
   np->setTrailerPulse(350);
 
 //  np->setMinimumRepetitions(1);
@@ -225,6 +227,8 @@ SharpVCR1::SharpVCR1(
 
   threadableProtocol = np;
 
+  np->setElevenBitToggle(true);
+
   np->setTrailerPulse(400);
 
 //  np->setMinimumRepetitions(1);
@@ -316,6 +320,8 @@ SharpReceiver1::SharpReceiver1(
     67000, true);
 
   threadableProtocol = np;
+
+  np->setElevenBitToggle(true);
 
   np->setTrailerPulse(350);
 
