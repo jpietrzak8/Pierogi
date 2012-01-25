@@ -71,6 +71,7 @@ enum PIRKeyName{
   PIPSource_Key,
   PIPChannelUp_Key,
   PIPChannelDown_Key,
+  PIPPause_Key,
   // DVD / Blue-ray / etc. keys:
   DiscTitle_Key,
   DiscMenu_Key,

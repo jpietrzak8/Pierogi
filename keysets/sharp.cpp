@@ -1,6 +1,6 @@
 #include "sharp.h"
 #include "necprotocol.h"
-#include "pirmakenames.h"
+//#include "pirmakenames.h"
 
 SharpTV1::SharpTV1(
   QObject *guiObject,

@@ -64,7 +64,11 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/yamaha.cpp \
     keysets/hitachi.cpp \
     keysets/denon.cpp \
-    keysets/pinnacle.cpp
+    keysets/pinnacle.cpp \
+    keysets/magnavox.cpp \
+    rc6protocol.cpp \
+    keysets/philips.cpp \
+    keysets/tivo.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     necprotocol.h \
@@ -103,7 +107,11 @@ HEADERS += mainwindow.h \
     keysets/yamaha.h \
     keysets/hitachi.h \
     keysets/denon.h \
-    keysets/pinnacle.h
+    keysets/pinnacle.h \
+    keysets/magnavox.h \
+    rc6protocol.h \
+    keysets/philips.h \
+    keysets/tivo.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

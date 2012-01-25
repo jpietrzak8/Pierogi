@@ -1,6 +1,6 @@
 #include "toshiba.h"
 #include "necprotocol.h"
-#include "pirmakenames.h"
+//#include "pirmakenames.h"
 
 ToshibaTV1::ToshibaTV1(
   QObject *guiObject,
@@ -10,6 +10,8 @@ ToshibaTV1::ToshibaTV1(
       Toshiba_Make,
       index)
 {
+  addControlledDevice(Toshiba_Make, "21S03D", TV_Device);
+
   threadableProtocol = new NECProtocol(guiObject, index);
 
   setPreData(0x02FD, 16);
@@ -26,7 +28,7 @@ ToshibaTV1::ToshibaTV1(
   addKey("9", Nine_Key, 0x906F, 16);
   addKey("0", Zero_Key, 0x00FF, 16);
   addKey("TV", Unmapped_Key, 0x4EB1, 16);
-  addKey("SCART", Unmapped_Key, 0x28D7, 16); // "AV", "inputs", "source"
+  addKey("SCART", Input_Key, 0x28D7, 16); // "AV", "inputs", "source"
   addKey("CALL", Unmapped_Key, 0x6897, 16);
   addKey("-/--", DoubleDigit_Key, 0xD02F, 16);
   addKey("DOULBY", Unmapped_Key, 0x5AA5, 16);
@@ -50,7 +52,7 @@ ToshibaTV1::ToshibaTV1(
   addKey("exit", Exit_Key, 0x1AE5, 16);
   addKey("100", PlusOneHundred_Key, 0x50AF, 16);
   addKey("recall", PrevChannel_Key, 0x38C7, 16);
-  addKey("tv/video", Input_Key, 0xF00F, 16); // "input"
+  addKey("tv/video", Unmapped_Key, 0xF00F, 16); // "input"
   addKey("fav+", Unmapped_Key, 0x9867, 16);
   addKey("reset", Reset_Key, 0x30CF, 16);
   addKey("cap/text", Captions_Key, 0xEA15, 16); // Image
@@ -79,13 +81,12 @@ ToshibaTV1::ToshibaTV1(
   addKey("SEARCH", Unmapped_Key, 0xF10E, 16);
 
   // teletext stuff:
-//  addKey("TXT/MIX", Unmapped_Key, 0xE817, 16);  // "ent", "ch_rtn"
-//  addKey("textindex", Unmapped_Key, 0xD42B, 16);
-//  addKey("textpages", Unmapped_Key, 0x34CB, 16);
-//  addKey("textanswer", Unmapped_Key, 0x2AD5, 16);
-//  addKey("texthold", Unmapped_Key, 0xCA35, 16);
-//  addKey("textzoom", Unmapped_Key, 0xB04F, 16);
-//  addKey("texttime", Unmapped_Key, 0xA857, 16);
+  addKey("TXT/MIX", Unmapped_Key, 0xE817, 16);  // "ent", "ch_rtn"
+  addKey("textindex", Unmapped_Key, 0xD42B, 16);
+  addKey("textpages", Unmapped_Key, 0x34CB, 16);
+  addKey("textanswer", Unmapped_Key, 0x2AD5, 16);
+  addKey("texthold", Unmapped_Key, 0xCA35, 16);
+  addKey("textzoom", Unmapped_Key, 0xB04F, 16);
 }
 
 
@@ -96,7 +97,10 @@ ToshibaTV1a::ToshibaTV1a(
 {
   setKeysetName("TV Keyset 1a");
 
-  addKey("enter", Select_Key, 0x01FE, 16);
+  addControlledDevice(Toshiba_Make, "27A51", TV_Device);
+
+  addKey("menu/enter", Menu_Key, 0x01FE, 16);
+  addKey("menu/enter", Select_Key, 0x01FE, 16);
 }
 
 
@@ -146,7 +150,7 @@ ToshibaTV1d::ToshibaTV1d(
   addKey("tv/fav/radio", Favorites_Key, 0xE21D, 16); // might be wrong
   addKey("info", Info_Key, 0x6897, 16); // might be wrong
   addKey("subtitle", Captions_Key, 0x30CF, 16);
-  addKey("stillpicture", Unmapped_Key, 0x44BB, 16);
+  addKey("stillpicture", Pause_Key, 0x44BB, 16);
   addKey("24-", Unmapped_Key, 0x2AD5, 16);
   addKey("page-", Unmapped_Key, 0xCA35, 16);
   addKey("page+", Unmapped_Key, 0xB04F, 16);
@@ -167,6 +171,22 @@ ToshibaTV1e::ToshibaTV1e(
   addKey("SKIPNEXT", Next_Key, 0xCA35, 16);
   addKey("frev", Rewind_Key, 0xD22D, 16);
   addKey("FFWD", FastForward_Key, 0x52AD, 16);
+}
+
+
+ToshibaTV1f::ToshibaTV1f(
+  QObject *guiObject,
+  unsigned int index)
+  : ToshibaTV1(guiObject, index)
+{
+  setKeysetName("TV Keyset 1f");
+
+  addControlledDevice(Toshiba_Make, "Regza AV50*", TV_Device);
+
+  addKey("back", PrevChannel_Key, 0x4AB5, 16);
+  addKey("exit", Exit_Key, 0xC23D, 16);
+  addKey("info", Info_Key, 0x6897, 16);
+  addKey("stillpicture", Pause_Key, 0x44BB, 16);
 }
 
 

@@ -9,6 +9,7 @@
 enum PIRDeviceTypeName {
   Any_Device,
   TV_Device,
+  Sat_Device,
   VCR_Device,
   DVD_Device,
   Audio_Device,

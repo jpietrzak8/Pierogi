@@ -9,35 +9,26 @@ extern QMutex commandIFMutex;
 RC5Protocol::RC5Protocol(
   QObject *guiObject,
   unsigned int index,
-  unsigned int bPulse,
-  unsigned int bSpace,
-  unsigned int lPulse,
-  unsigned int gSpace,
-  bool iclflag)
-  : PIRProtocol(guiObject, index, gSpace, iclflag),
-    biphasePulse(bPulse),
-    biphaseSpace(bSpace),
-    leadPulse(lPulse),
+  unsigned int sevenBitControl)
+  : PIRProtocol(guiObject, index, 114000, true),
+    biphaseUnit(889),
     buffer(0),
     keypressCount(0)
 {
+  setCarrierFrequency(36000);
+  setPreData(sevenBitControl, 7);
 }
 
 
-void RC5Protocol::setHeaderPair(
-  unsigned int pulse,
-  unsigned int space)
+RC5Protocol::RC5Protocol(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRProtocol(guiObject, index, 114000, true),
+    biphaseUnit(889),
+    buffer(0),
+    keypressCount(0)
 {
-  headerPulse = pulse;
-  headerSpace = space;
-  hasHeaderPair = true;
-}
-
-
-void RC5Protocol::setToggleBit(
-  unsigned int bit)
-{
-  toggleBit = bit;
+  setCarrierFrequency(36000);
 }
 
 
@@ -71,26 +62,33 @@ void RC5Protocol::startSendingCommand(
     {
       int commandDuration = 0;
 
-      // Now, throw together an RC5 protocol command string:
-      buffer = 0;
-      bufferContainsPulse = false;
-      bufferContainsSpace = false;
-  
-      // Start off the first pulse with the lead, if any:
-      if (leadPulse)
-      {
-        buffer = leadPulse;
-        bufferContainsPulse = true;
-      }
+      // Now, throw together an RC5 protocol command string.
 
-      // Encode the bits:
-      commandDuration += pushBits((*i).second, rx51device);
+      if (!preData.empty())
+      {
+        // For standard RC5, the "pre-data" contains the control portion,
+        // and the key contains only the 6-bit command portion.
+
+        // First, construct the control portion:
+        commandDuration += pushControlBits(rx51device);
+
+        // Next, the key-command portion:
+        commandDuration += pushKeyCommandBits((*i).second, rx51device);
+      }
+      else
+      {
+        // For non-standard RC5, the entire 13 bits are stuffed into the
+        // key portion, as all of them can vary:
+        commandDuration += pushNonStandardRC5((*i).second, rx51device);
+      }
 
       // Clear out the buffer, if necessary:
       if (buffer)
       {
         rx51device.addSingle(buffer);
         commandDuration += buffer;
+
+        // probably unnecessary cleanup of buffer:
         buffer = 0;
         bufferContainsSpace = false;
         bufferContainsPulse = false;
@@ -102,18 +100,14 @@ void RC5Protocol::startSendingCommand(
       // Sleep for an amount of time.  (Need to make this interruptable!)
       sleepUntilRepeat(commandDuration);
 
-      // Have we satisfied the minimum number of repetitions?
-      if (repeatCount >= minimumRepetitions)
+      // Have we been told to stop yet?
+      if (checkRepeatFlag())
       {
-        // Have we been told to stop yet?
-        if (checkRepeatFlag())
-        {
-          // Ok, then we can quit now:
-          ++keypressCount;
-          QMutexLocker cifLocker(&commandIFMutex);
-          commandInFlight = false;
-          return;
-        }
+        // Ok, then we can quit now:
+        ++keypressCount;
+        QMutexLocker cifLocker(&commandIFMutex);
+        commandInFlight = false;
+        return;
       }
 
       ++repeatCount;
@@ -130,98 +124,185 @@ void RC5Protocol::startSendingCommand(
 }
 
 
-int RC5Protocol::pushBits(
-  const CommandSequence &bits,
+int RC5Protocol::pushControlBits(
   PIRRX51Hardware &rx51device)
 {
-  int bitsDuration = 0;
+  int duration = 0;
 
-  // Rather than encoding a 0 or 1 through the timing of a pulse, RC5 encodes
-  // a bit by swapping the order of pulses and spaces.  (This is called
-  // "biphase".)
+  // Start off by pushing the lead pulse onto the buffer:
+  buffer = biphaseUnit;
+  bufferContainsPulse = true;
+  bufferContainsSpace = false;
 
-  CommandSequence::const_iterator i = bits.begin();
-  int bitCount = 1;
-  bool bitValue;
+  CommandSequence::const_iterator i = preData.begin();
 
-  while (i != bits.end())
+  // Push the first bit:
+  if (i != preData.end())
   {
-    bitValue = *i;
+    duration += pushBit(*i, rx51device);
+    ++i;
+  }
 
-    if (bitCount == toggleBit)  // are we on a toggled bit?
+  // Toggle the second bit, if it is time to do so:
+  if (i != preData.end())
+  {
+    if (keypressCount % 2)
     {
-      if (keypressCount % 2)  // is it time to toggle?
-      {
-        bitValue = !bitValue;  // then flip the bit
-      }
-    }
-
-    if (bitValue)
-    {
-      // We've got a "1".  First add a space, then a pulse.
-      if (bufferContainsSpace)
-      {
-        // Merge our space with the previous space, and send them to
-        // the device.
-        rx51device.addSingle(buffer + biphaseSpace);
-        bitsDuration += (buffer + biphaseSpace);
-        buffer = 0;
-        bufferContainsSpace = false;
-      }
-      else
-      {
-        if (bufferContainsPulse)
-        {
-          // Flush the buffer:
-          rx51device.addSingle(buffer);
-          bitsDuration += buffer;
-          buffer = 0;
-          bufferContainsPulse = false;
-        }
-        // Add a space:
-        rx51device.addSingle(biphaseSpace);
-        bitsDuration += biphaseSpace;
-      }
-
-      // Put a pulse into the buffer to wait.
-      buffer = biphasePulse;
-      bufferContainsPulse = true;
+      duration += pushBit(!(*i), rx51device);
     }
     else
     {
-      // We've got a "0".  First add a pulse, then a space.
-      if (bufferContainsPulse)
-      {
-        // Merge our pulse with the previous one, and send them to the device:
-        rx51device.addSingle(buffer + biphasePulse);
-        bitsDuration += (buffer + biphasePulse);
-        buffer = 0;
-        bufferContainsPulse = false;
-      }
-      else
-      {
-        if (bufferContainsSpace)
-        {
-          // Flush out the buffer:
-          rx51device.addSingle(buffer);
-          bitsDuration += buffer;
-          buffer = 0;
-          bufferContainsSpace = false;
-        }
-
-        // Add a pulse:
-        rx51device.addSingle(biphasePulse);
-        bitsDuration += biphasePulse;
-      }
-
-      // Put a space into the buffer to wait:
-      buffer = biphaseSpace;
-      bufferContainsSpace = true;
+      duration += pushBit(*i, rx51device);
     }
 
     ++i;
-    ++bitCount;
   }
 
-  return bitsDuration;
+  // Simply push the rest of the bits:
+  while (i != preData.end())
+  {
+    pushBit(*i, rx51device);
+    ++i;
+  }
+
+  return duration;
+}
+
+
+int RC5Protocol::pushKeyCommandBits(
+  const CommandSequence &bits,
+  PIRRX51Hardware &rx51device)
+{
+  int duration = 0;
+
+  // Just push all the bits:
+  CommandSequence::const_iterator i = bits.begin();
+  while (i != bits.end())
+  {
+    duration += pushBit(*i, rx51device);
+    ++i;
+  }
+
+  return duration;
+}
+
+
+int RC5Protocol::pushNonStandardRC5(
+  const CommandSequence &bits,
+  PIRRX51Hardware &rx51device)
+{
+  int duration = 0;
+
+  // Start off by pushing the lead pulse onto the buffer:
+  buffer = biphaseUnit;
+  bufferContainsPulse = true;
+  bufferContainsSpace = false;
+
+  CommandSequence::const_iterator i = bits.begin();
+
+  // Push the first bit:
+  if (i != bits.end())
+  {
+    duration += pushBit(*i, rx51device);
+    ++i;
+  }
+
+  // Toggle the second bit, if it is time to do so:
+  if (i != bits.end())
+  {
+    if (keypressCount % 2)
+    {
+      duration += pushBit(!(*i), rx51device);
+    }
+    else
+    {
+      duration += pushBit(*i, rx51device);
+    }
+
+    ++i;
+  }
+
+  // Simply push the rest of the bits:
+  while (i != bits.end())
+  {
+    pushBit(*i, rx51device);
+    ++i;
+  }
+
+  return duration;
+}
+
+
+int RC5Protocol::pushBit(
+  bool bitValue,
+  PIRRX51Hardware &device)
+{
+  unsigned int duration = 0;
+  // RC5 encodes a "0" by using a pulse followed by a space,
+  // and a "1" by using a space followed by a pulse.
+
+  if (bitValue)
+  {
+    // We've got a "1".  First add a space, then a pulse.
+    if (bufferContainsSpace)
+    {
+      // Merge our space with the previous space, and send them to
+      // the device.
+      device.addSingle(buffer + biphaseUnit);
+      duration += (buffer + biphaseUnit);
+      buffer = 0;
+      bufferContainsSpace = false;
+    }
+    else
+    {
+      if (bufferContainsPulse)
+      {
+        // Flush the buffer:
+        device.addSingle(buffer);
+        duration += buffer;
+        buffer = 0;
+        bufferContainsPulse = false;
+      }
+      // Add a space:
+      device.addSingle(biphaseUnit);
+      duration += biphaseUnit;
+    }
+
+    // Put a pulse into the buffer to wait.
+    buffer = biphaseUnit;
+    bufferContainsPulse = true;
+  }
+  else
+  {
+    // We've got a "0".  First add a pulse, then a space.
+    if (bufferContainsPulse)
+    {
+      // Merge our pulse with the previous one, and send them to the device:
+      device.addSingle(buffer + biphaseUnit);
+      duration += (buffer + biphaseUnit);
+      buffer = 0;
+      bufferContainsPulse = false;
+    }
+    else
+    {
+      if (bufferContainsSpace)
+      {
+        // Flush out the buffer:
+        device.addSingle(buffer);
+        duration += buffer;
+        buffer = 0;
+        bufferContainsSpace = false;
+      }
+
+      // Add a pulse:
+      device.addSingle(biphaseUnit);
+      duration += biphaseUnit;
+    }
+
+    // Put a space into the buffer to wait:
+    buffer = biphaseUnit;
+    bufferContainsSpace = true;
+  }
+
+  return duration;
 }

@@ -8,9 +8,11 @@
 #include "keysets/hitachi.h"
 #include "keysets/jvc.h"
 #include "keysets/lg.h"
+#include "keysets/magnavox.h"
 #include "keysets/mitsubishi.h"
 #include "keysets/nokia.h"
 #include "keysets/panasonic.h"
+#include "keysets/philips.h"
 #include "keysets/pinnacle.h"
 #include "keysets/raite.h"
 #include "keysets/rca.h"
@@ -19,6 +21,7 @@
 #include "keysets/sanyo.h"
 #include "keysets/sharp.h"
 #include "keysets/sony.h"
+#include "keysets/tivo.h"
 #include "keysets/toshiba.h"
 #include "keysets/westinghouse.h"
 #include "keysets/yamaha.h"
@@ -131,6 +134,11 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new LGVCR1a(guiObject, counter++));
   populateKeyset(new LGVCR1b(guiObject, counter++));
 
+  populateKeyset(new MagnavoxDVD1(guiObject, counter++));
+  populateKeyset(new MagnavoxVCR1(guiObject, counter++));
+  populateKeyset(new MagnavoxConverterBox1(guiObject, counter++));
+  populateKeyset(new MagnavoxTV1(guiObject, counter++));
+
   populateKeyset(new MitsubishiTV1(guiObject, counter++));
   populateKeyset(new MitsubishiTV1a(guiObject, counter++));
   populateKeyset(new MitsubishiVCR1(guiObject, counter++));
@@ -153,6 +161,40 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new PanasonicDVD1a(guiObject, counter++));
   populateKeyset(new PanasonicAudio1(guiObject, counter++));
   populateKeyset(new PanasonicAudio1a(guiObject, counter++));
+
+  populateKeyset(new PhilipsTV1(guiObject, counter++));
+  populateKeyset(new PhilipsTV1a(guiObject, counter++));
+  populateKeyset(new PhilipsTV1b(guiObject, counter++));
+  populateKeyset(new PhilipsTV1c(guiObject, counter++));
+  populateKeyset(new PhilipsTV1d(guiObject, counter++));
+  populateKeyset(new PhilipsTV1e(guiObject, counter++));
+  populateKeyset(new PhilipsTV1f(guiObject, counter++));
+  populateKeyset(new PhilipsTV2(guiObject, counter++));
+  populateKeyset(new PhilipsTV2a(guiObject, counter++));
+  populateKeyset(new PhilipsTV2b(guiObject, counter++));
+  populateKeyset(new PhilipsTV3(guiObject, counter++));
+  populateKeyset(new PhilipsDVD1(guiObject, counter++));
+  populateKeyset(new PhilipsDVD1a(guiObject, counter++));
+  populateKeyset(new PhilipsDVD1b(guiObject, counter++));
+  populateKeyset(new PhilipsDVD1c(guiObject, counter++));
+  populateKeyset(new PhilipsDVD1d(guiObject, counter++));
+  populateKeyset(new PhilipsDVD2(guiObject, counter++));
+  populateKeyset(new PhilipsDVD3(guiObject, counter++));
+  populateKeyset(new PhilipsDVD4(guiObject, counter++));
+  populateKeyset(new PhilipsVCR1(guiObject, counter++));
+  populateKeyset(new PhilipsVCR1a(guiObject, counter++));
+  populateKeyset(new PhilipsVCR1b(guiObject, counter++));
+  populateKeyset(new PhilipsVCR1c(guiObject, counter++));
+  populateKeyset(new PhilipsSat1(guiObject, counter++));
+  populateKeyset(new PhilipsSat2(guiObject, counter++));
+  populateKeyset(new PhilipsSat2a(guiObject, counter++));
+  populateKeyset(new PhilipsSat3(guiObject, counter++));
+  populateKeyset(new PhilipsAudio1(guiObject, counter++));
+  populateKeyset(new PhilipsAudio1a(guiObject, counter++));
+  populateKeyset(new PhilipsAudio1b(guiObject, counter++));
+  populateKeyset(new PhilipsAudio2(guiObject, counter++));
+  populateKeyset(new PhilipsAudio3(guiObject, counter++));
+  populateKeyset(new PhilipsAudio4(guiObject, counter++));
 
   populateKeyset(new PinnaclePCTV1(guiObject, counter++));
   populateKeyset(new PinnaclePCTV2(guiObject, counter++));
@@ -234,12 +276,19 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new SonyVCR1a(guiObject, counter++));
   populateKeyset(new SonyReceiver1(guiObject, counter++));
 
+  populateKeyset(new Tivo1(guiObject, counter++));
+  populateKeyset(new Tivo1a(guiObject, counter++));
+  populateKeyset(new Tivo1b(guiObject, counter++));
+  populateKeyset(new Tivo1c(guiObject, counter++));
+  populateKeyset(new Tivo1d(guiObject, counter++));
+
   populateKeyset(new ToshibaTV1(guiObject, counter++));
   populateKeyset(new ToshibaTV1a(guiObject, counter++));
   populateKeyset(new ToshibaTV1b(guiObject, counter++));
   populateKeyset(new ToshibaTV1c(guiObject, counter++));
   populateKeyset(new ToshibaTV1d(guiObject, counter++));
   populateKeyset(new ToshibaTV1e(guiObject, counter++));
+  populateKeyset(new ToshibaTV1f(guiObject, counter++));
   populateKeyset(new ToshibaVCR1(guiObject, counter++));
   populateKeyset(new ToshibaVCR1a(guiObject, counter++));
   populateKeyset(new ToshibaDisc1(guiObject, counter++));
@@ -299,8 +348,17 @@ PIRKeysetManager::~PIRKeysetManager()
 }
 
 
+bool PIRKeysetManager::keysetExists(
+  unsigned int keysetID)
+{
+  PIRKeysetCollection::const_iterator i = keysetsInfo.find(keysetID);
+
+  return (i != keysetsInfo.end());
+}
+
+
 bool PIRKeysetManager::hasKey(
-  int keysetID,
+  unsigned int keysetID,
   PIRKeyName name)
 {
   PIRKeysetMetaData *meta = keysetsInfo[keysetID];
@@ -312,7 +370,7 @@ bool PIRKeysetManager::hasKey(
 
 
 PIRMakeName PIRKeysetManager::getMake(
-  int keysetID)
+  unsigned int keysetID)
 {
   PIRKeysetMetaData *meta = keysetsInfo[keysetID];
 
@@ -323,7 +381,7 @@ PIRMakeName PIRKeysetManager::getMake(
 
 
 QString PIRKeysetManager::getDisplayName(
-  int keysetID)
+  unsigned int keysetID)
 {
   PIRKeysetMetaData *meta = keysetsInfo[keysetID];
 
@@ -366,7 +424,7 @@ void PIRKeysetManager::populateGuiWidget(
 
 void PIRKeysetManager::populateDeviceTypes(
   PIRKeysetWidgetItem *kwi,
-  int keysetID)
+  unsigned int keysetID)
 {
   // Pass the buck:  (Need to check for bad keysetID here?)
   keysetsInfo[keysetID]->populateDeviceTypes(kwi);

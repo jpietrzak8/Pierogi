@@ -11,6 +11,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Hitachi_Make] = "Hitachi";
   makes[JVC_Make] = "JVC";
   makes[LG_Make] = "LG";
+  makes[Magnavox_Make] = "Magnavox";
   makes[Mitsubishi_Make] = "Mitsubishi";
   makes[Nokia_Make] = "Nokia";
   makes[Panasonic_Make] = "Panasonic";
@@ -23,6 +24,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Sanyo_Make] = "Sanyo";
   makes[Sharp_Make] = "Sharp";
   makes[Sony_Make] = "Sony";
+  makes[Tivo_Make] = "TiVo";
   makes[Toshiba_Make] = "Toshiba";
   makes[Westinghouse_Make] = "Westinghouse";
   makes[Yamaha_Make] = "Yamaha";

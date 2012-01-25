@@ -196,16 +196,7 @@ SamsungTV2::SamsungTV2(
       Samsung_Make,
       index)
 {
-  RC5Protocol *rp = new RC5Protocol(
-    guiObject,
-    index,
-    900, 850,
-    900,
-    110000, true);
-
-  threadableProtocol = rp;
-
-  rp->setToggleBit(2);
+  threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("1", One_Key, 0x1001, 13);
   addKey("2", Two_Key, 0x1002, 13);

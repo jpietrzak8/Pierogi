@@ -12,21 +12,17 @@
 class RC5Protocol: public PIRProtocol
 {
 public:
+  // For standard RC5, the control portion will be passed in as
+  // a seven-bit value:
   RC5Protocol(
     QObject *guiObject,
     unsigned int index,
-    unsigned int bPulse,
-    unsigned int bSpace,
-    unsigned int lPulse,
-    unsigned int gSpace,
-    bool iclflag);
+    unsigned int sevenBitControl);
 
-  void setHeaderPair(
-    unsigned int pulse,
-    unsigned int space);
-
-  void setToggleBit(
-    unsigned int bit);
+  // For extended RC5, each key must contain the entire 13 bits.
+  RC5Protocol(
+    QObject *guiObject,
+    unsigned int index);
 
 public slots:
   void startSendingCommand(
@@ -34,24 +30,22 @@ public slots:
     PIRKeyName command);
 
 protected:
-  unsigned int biphasePulse;
-  unsigned int biphaseSpace;
-
-  unsigned int leadPulse;
-
-  unsigned int headerPulse;
-  unsigned int headerSpace;
-  bool hasHeaderPair;
-
-  // The original RC-5 specification marks a single bit as a "toggle bit",
-  // which should be inverted on each separate keypress.  This was originally
-  // the third bit, but apparently some remotes invert a different bit.
-  // If set to 0, then no bits are inverted.
-  int toggleBit;
+  unsigned int biphaseUnit;
 
 private:
-  int pushBits(
+  int pushControlBits(
+    PIRRX51Hardware &device);
+
+  int pushKeyCommandBits(
     const CommandSequence &bits,
+    PIRRX51Hardware &device);
+
+  int pushNonStandardRC5(
+    const CommandSequence &bits,
+    PIRRX51Hardware &device);
+
+  int pushBit(
+    bool bitValue,
     PIRRX51Hardware &device);
 
   unsigned int buffer;

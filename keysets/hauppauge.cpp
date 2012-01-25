@@ -11,18 +11,7 @@ HauppaugePCTV1::HauppaugePCTV1(
 {
   addControlledDevice(Hauppauge_Make, "PVR 350", Computer_Device);
 
-  RC5Protocol *rp = new RC5Protocol(
-    guiObject,
-    index,
-    900, 900,     // biphase pulse
-    900,         // lead pulse
-    114000, true); // constant-length gap
-
-  threadableProtocol = rp;
-
-  rp->setToggleBit(2);
-
-  setPreData(0x5E, 7);
+  threadableProtocol = new RC5Protocol(guiObject, index, 0x5E);
 
   addKey("Power", Power_Key, 0x3D, 6);
   addKey("Go", Unmapped_Key, 0x3B, 6);
@@ -129,16 +118,7 @@ HauppaugePCTV2::HauppaugePCTV2(
 {
   addControlledDevice(Hauppauge_Make, "PVR-250", Computer_Device);
 
-  RC5Protocol *rp = new RC5Protocol(
-    guiObject,
-    index,
-    900, 900,
-    900,
-    114000, true);
-
-  threadableProtocol = rp;
-
-  rp->setToggleBit(2);
+  threadableProtocol = new RC5Protocol(guiObject, index, 0x54);
 
   addKey("POWER", Power_Key, 0x150C, 13);
   addKey("1", One_Key, 0x1525, 13);

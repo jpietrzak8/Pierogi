@@ -56,18 +56,7 @@ GoldStarTV2::GoldStarTV2(
       GoldStar_Make,
       index)
 {
-  RC5Protocol *rp = new RC5Protocol(
-    guiObject,
-    index,
-    899, 783,
-    962,
-    107722, true);
-
-  threadableProtocol = rp;
-
-  setPreData(0x40, 7);
-
-  rp->setToggleBit(2);
+  threadableProtocol = new RC5Protocol(guiObject, index, 0x40);
 
   addKey("0", Zero_Key, 0x00, 6);
   addKey("1", One_Key, 0x01, 6);

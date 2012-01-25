@@ -4,6 +4,7 @@ PIRDeviceTypeMgr::PIRDeviceTypeMgr()
 {
   devices[Any_Device] = "Any";
   devices[TV_Device] = "TV";
+  devices[Sat_Device] = "Sat Receiver";
   devices[VCR_Device] = "VCR";
   devices[DVD_Device] = "DVD";
   devices[Audio_Device] = "Audio";

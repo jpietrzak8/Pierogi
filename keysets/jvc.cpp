@@ -5,7 +5,7 @@ JVCSat1::JVCSat1(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "Satellite (Dish Network) Keyset 1",
+      "Sat (Dish) Keyset 1",
       JVC_Make,
       index)
 {
@@ -72,7 +72,7 @@ JVCSat2::JVCSat2(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "Satellite (Dish Network) Keyset 2",
+      "Sat (Dish) Keyset 2",
       JVC_Make,
       index)
 {
@@ -781,7 +781,7 @@ JVCPortableAudio1::JVCPortableAudio1(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "Portable Audio Keyset 1",
+      "Audio Keyset 1",
       JVC_Make,
       index)
 {
@@ -855,7 +855,7 @@ JVCPortableAudio1a::JVCPortableAudio1a(
   unsigned int index)
   : JVCPortableAudio1(guiObject, index)
 {
-  setKeysetName("Portable Audio Keyset 1a");
+  setKeysetName("Audio Keyset 1a");
 
   addKey("CD-PLAY-PAUSE", Play_Key, 0xC5BC, 16);
   addKey("MD-PLAY-PAUSE", Unmapped_Key, 0xF50C, 16);
@@ -869,7 +869,7 @@ JVCPortableAudio1b::JVCPortableAudio1b(
   unsigned int index)
   : JVCPortableAudio1(guiObject, index)
 {
-  setKeysetName("Portable(?) Audio Keyset 1b");
+  setKeysetName("Audio Keyset 1b");
 
   addKey("0", Zero_Key, 0xCD06, 16); // What about "10" key here?
   addKey("TUNER", Unmapped_Key, 0xC5D0, 16);
@@ -929,7 +929,7 @@ JVCPortableAudio2::JVCPortableAudio2(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "Portable Audio Keyset 2",
+      "Audio Keyset 2",
       JVC_Make,
       index)
 {

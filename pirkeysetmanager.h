@@ -27,19 +27,22 @@ public:
   void populateGuiWidget(
     PIRSelectKeysetForm *widget);
 
+  bool keysetExists(
+    unsigned int keysetID);
+
   bool hasKey(
-    int keysetID,
+    unsigned int keysetID,
     PIRKeyName name);
 
   PIRMakeName getMake(
-    int keysetID);
+    unsigned int keysetID);
 
   QString getDisplayName(
-    int keysetID);
+    unsigned int keysetID);
 
   void populateDeviceTypes(
     PIRKeysetWidgetItem *kwi,
-    int keysetID);
+    unsigned int keysetID);
 
 private:
   // This needs to be improved:

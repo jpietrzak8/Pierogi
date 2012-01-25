@@ -52,6 +52,14 @@ public:
     unsigned int index);
 };
 
+class ToshibaTV1f: public ToshibaTV1
+{
+public:
+  ToshibaTV1f(
+    QObject *guiObject,
+    unsigned int index);
+};
+
 class ToshibaVCR1: public PIRKeysetMetaData
 {
 public:

@@ -148,62 +148,51 @@ LGTV2::LGTV2(
       LG_Make,
       index)
 {
-  RC5Protocol *rp = new RC5Protocol(
-    guiObject,
-    index,
-    800, 800,
-    800,
-    107000, true);
+  threadableProtocol = new RC5Protocol(guiObject, index, 0x40);
 
-  threadableProtocol = rp;
-
-  rp->setToggleBit(2);
-
-  setPreData(0x10, 5);
-
-  addKey("POWER", Power_Key, 0x0C, 8);
-  addKey("DRP", Unmapped_Key, 0x14, 8);
-  addKey("TVAV", Unmapped_Key, 0x38, 8);
-  addKey("TURBOSOUND", Unmapped_Key, 0x24, 8);
-  addKey("TURBOPICTURE", Unmapped_Key, 0x13, 8);
-  addKey("PIP", PIP_Key, 0x3A, 8);
-  addKey("TEXT", Unmapped_Key, 0x3C, 8);
-  addKey("PR-MINUS", Unmapped_Key, 0x37, 8);
-  addKey("PR-PLUS", Unmapped_Key, 0x36, 8);
-  addKey("SWAP", PIPSwap_Key, 0x32, 8);
-  addKey("INPUT", Input_Key, 0x34, 8);
-  addKey("MENU", Menu_Key, 0x3B, 8);
-  addKey("MUTE", Mute_Key, 0x0D, 8);
-  addKey("PROGUP", ChannelUp_Key, 0x20, 8);
-  addKey("PROGDOWN", ChannelDown_Key, 0x21, 8);
-  addKey("VOLDOWN", VolumeDown_Key, 0x11, 8);
-  addKey("VOLUP", VolumeUp_Key, 0x10, 8);
-  addKey("OK", Select_Key, 0x25, 8);
-  addKey("1", One_Key, 0x01, 8);
-  addKey("2", Two_Key, 0x02, 8);
-  addKey("3", Three_Key, 0x03, 8);
-  addKey("4", Four_Key, 0x04, 8);
-  addKey("5", Five_Key, 0x05, 8);
-  addKey("6", Six_Key, 0x06, 8);
-  addKey("7", Seven_Key, 0x07, 8);
-  addKey("8", Eight_Key, 0x08, 8);
-  addKey("9", Nine_Key, 0x09, 8);
-  addKey("0", Zero_Key, 0x00, 8);
-  addKey("PSM", Unmapped_Key, 0x0E, 8); // preset picture
-  addKey("SSM", Unmapped_Key, 0x16, 8); // preset sound
-  addKey("POS", Unmapped_Key, 0x2D, 8); // position, "UPDATE"
-  addKey("2-12PIP", Unmapped_Key, 0x35, 8); // strobe, "KEY_SHOP"
-  addKey("STILL", Pause_Key, 0x29, 8); // "KEY_PAUSE", "HOLD"
-  addKey("SIZE", Unmapped_Key, 0x2B, 8);  // "KEY_SAVE"
-  addKey("TIME", Unmapped_Key, 0x2A, 8);
-  addKey("REVEAL", Unmapped_Key, 0x2C, 8); // "KEY_REDO"
-  addKey("MIX", Unmapped_Key, 0x2E, 8);  // "KEY_MAX"
-  addKey("SLEEP", Sleep_Key, 0x3E, 8);
-  addKey("LIST", Unmapped_Key, 0x0F, 8);
-  addKey("I-II", DoubleDigit_Key, 0x23, 8);
-  addKey("ARC", AspectRatio_Key, 0x33, 8);
-  addKey("EYE", Unmapped_Key, 0x12, 8);
-  addKey("KEY_MEDIA", Unmapped_Key, 0x15, 8);
+  addKey("POWER", Power_Key, 0x0C, 6);
+  addKey("DRP", Unmapped_Key, 0x14, 6);
+  addKey("TVAV", Unmapped_Key, 0x38, 6);
+  addKey("TURBOSOUND", Unmapped_Key, 0x24, 6);
+  addKey("TURBOPICTURE", Unmapped_Key, 0x13, 6);
+  addKey("PIP", PIP_Key, 0x3A, 6);
+  addKey("TEXT", Unmapped_Key, 0x3C, 6);
+  addKey("PR-MINUS", Unmapped_Key, 0x37, 6);
+  addKey("PR-PLUS", Unmapped_Key, 0x36, 6);
+  addKey("SWAP", PIPSwap_Key, 0x32, 6);
+  addKey("INPUT", Input_Key, 0x34, 6);
+  addKey("MENU", Menu_Key, 0x3B, 6);
+  addKey("MUTE", Mute_Key, 0x0D, 6);
+  addKey("PROGUP", ChannelUp_Key, 0x20, 6);
+  addKey("PROGDOWN", ChannelDown_Key, 0x21, 6);
+  addKey("VOLDOWN", VolumeDown_Key, 0x11, 6);
+  addKey("VOLUP", VolumeUp_Key, 0x10, 6);
+  addKey("OK", Select_Key, 0x25, 6);
+  addKey("1", One_Key, 0x01, 6);
+  addKey("2", Two_Key, 0x02, 6);
+  addKey("3", Three_Key, 0x03, 6);
+  addKey("4", Four_Key, 0x04, 6);
+  addKey("5", Five_Key, 0x05, 6);
+  addKey("6", Six_Key, 0x06, 6);
+  addKey("7", Seven_Key, 0x07, 6);
+  addKey("8", Eight_Key, 0x08, 6);
+  addKey("9", Nine_Key, 0x09, 6);
+  addKey("0", Zero_Key, 0x00, 6);
+  addKey("PSM", Unmapped_Key, 0x0E, 6); // preset picture
+  addKey("SSM", Unmapped_Key, 0x16, 6); // preset sound
+  addKey("POS", Unmapped_Key, 0x2D, 6); // position, "UPDATE"
+  addKey("2-12PIP", Unmapped_Key, 0x35, 6); // strobe, "KEY_SHOP"
+  addKey("STILL", Pause_Key, 0x29, 6); // "KEY_PAUSE", "HOLD"
+  addKey("SIZE", Unmapped_Key, 0x2B, 6);  // "KEY_SAVE"
+  addKey("TIME", Unmapped_Key, 0x2A, 6);
+  addKey("REVEAL", Unmapped_Key, 0x2C, 6); // "KEY_REDO"
+  addKey("MIX", Unmapped_Key, 0x2E, 6);  // "KEY_MAX"
+  addKey("SLEEP", Sleep_Key, 0x3E, 6);
+  addKey("LIST", Unmapped_Key, 0x0F, 6);
+  addKey("I-II", DoubleDigit_Key, 0x23, 6);
+  addKey("ARC", AspectRatio_Key, 0x33, 6);
+  addKey("EYE", Unmapped_Key, 0x12, 6);
+  addKey("KEY_MEDIA", Unmapped_Key, 0x15, 6);
 }
 
 
@@ -214,10 +203,10 @@ LGTV2a::LGTV2a(
 {
   setKeysetName("TV Keyset 2a");
 
-  addKey("KEY_RED", Red_Key, 0x37, 8);
-  addKey("KEY_GREEN", Green_Key, 0x36, 8);
-  addKey("KEY_YELLOW", Yellow_Key, 0x32, 8);
-  addKey("KEY_BLUE", Blue_Key, 0x34, 8);
+  addKey("KEY_RED", Red_Key, 0x37, 6);
+  addKey("KEY_GREEN", Green_Key, 0x36, 6);
+  addKey("KEY_YELLOW", Yellow_Key, 0x32, 6);
+  addKey("KEY_BLUE", Blue_Key, 0x34, 6);
 }
 
 
@@ -228,11 +217,11 @@ LGTV2b::LGTV2b(
 {
   setKeysetName("TV Keyset 2b");
 
-  addKey("EYE/*", Unmapped_Key, 0x37, 8);
-  addKey("I/II/*", DoubleDigit_Key, 0x36, 8);
-  addKey("Q.VIEW", Unmapped_Key, 0x32, 8);
-  addKey("LIST", Unmapped_Key, 0x34, 8);
-  addKey("sleep", Sleep_Key, 0x26, 8); // might need separate class
+  addKey("EYE/*", Unmapped_Key, 0x37, 6);
+  addKey("I/II/*", DoubleDigit_Key, 0x36, 6);
+  addKey("Q.VIEW", Unmapped_Key, 0x32, 6);
+  addKey("LIST", Unmapped_Key, 0x34, 6);
+  addKey("sleep", Sleep_Key, 0x26, 6); // might need separate class
 }
 
 

@@ -1026,7 +1026,7 @@ void MainWindow::finalCleanup()
 
 void MainWindow::on_addKeysetButton_clicked()
 {
-  // Is the current keylist already a favorite?
+  // Is the current keyset already a favorite?
   int count = ui->favoriteKeysetsWidget->count();
   int index = 0;
   PIRKeysetWidgetItem *kwi = NULL;
@@ -1043,7 +1043,7 @@ void MainWindow::on_addKeysetButton_clicked()
     ++index;
   }
 
-  // Ok, add the current keylist to the favorites:
+  // Ok, add the current keyset to the favorites:
   PIRMakeName make = myKeysets->getMake(currentKeyset);
 
   QString name = makeManager.getMakeString(make);
@@ -1053,7 +1053,7 @@ void MainWindow::on_addKeysetButton_clicked()
   ui->favoriteKeysetsWidget->addItem(
     new PIRKeysetWidgetItem(name, currentKeyset, make));
 
-  // And, add the keylist id to the persistent list:
+  // And, add the keyset id to the persistent list:
   QSettings settings("pietrzak.org", "Pierogi");
 
   int favSettingsSize = settings.beginReadArray("favorites");
@@ -1061,7 +1061,7 @@ void MainWindow::on_addKeysetButton_clicked()
 
   settings.beginWriteArray("favorites");
   settings.setArrayIndex(favSettingsSize);
-  settings.setValue("keylistID", currentKeyset);
+  settings.setValue("keysetID", currentKeyset);
   settings.endArray();
 }
 
@@ -1096,7 +1096,7 @@ void MainWindow::on_removeKeysetButton_clicked()
       ui->favoriteKeysetsWidget->item(index));
 
     settings.setArrayIndex(index);
-    settings.setValue("keylistID", kwi->getID());
+    settings.setValue("keysetID", kwi->getID());
     ++index;
   }
   settings.endArray();
@@ -1116,14 +1116,21 @@ void MainWindow::populateFavorites()
   while (index < size)
   {
     settings.setArrayIndex(index);
-    id = settings.value("keylistID").toInt();
-    make = myKeysets->getMake(id);
-    name = makeManager.getMakeString(make);
-    name.append(" ");
-    name.append(myKeysets->getDisplayName(id));
+    id = settings.value("keysetID").toInt();
+
+    // Sanity check: Does this keyset even exist?
+    if (myKeysets->keysetExists(id))
+    {
+      // Keyset does exist, so continue:
+      make = myKeysets->getMake(id);
+      name = makeManager.getMakeString(make);
+      name.append(" ");
+      name.append(myKeysets->getDisplayName(id));
 //    kwi = new PIRKeysetWidgetItem(name, id, make);
 //    myKeysets->populateDeviceTypes(kwi, id);
-    ui->favoriteKeysetsWidget->addItem(new PIRKeysetWidgetItem(name, id, make));
+      ui->favoriteKeysetsWidget->addItem(new PIRKeysetWidgetItem(name, id, make));
+    }
+
     ++index;
   }
 
