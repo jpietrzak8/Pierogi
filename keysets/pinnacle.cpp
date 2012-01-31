@@ -30,7 +30,7 @@ PinnaclePCTV1::PinnaclePCTV1(
   addKey("btn_8", Eight_Key, 0x21, 6);
   addKey("btn_9", Nine_Key, 0x12, 6);
   addKey("btn_0", Zero_Key, 0x27, 6);
-  addKey("key_screen", Unmapped_Key, 0x24, 6);
+  addKey("key_screen", AspectRatio_Key, 0x24, 6);
   addKey("key_t", Unmapped_Key, 0x2A, 6);
   addKey("key_rewind", Rewind_Key, 0x2D, 6);
   addKey("key_playpause", Play_Key, 0x30, 6);
@@ -58,7 +58,7 @@ PinnaclePCTV2::PinnaclePCTV2(
   addKey("play-pause", Pause_Key, 0x06, 6);
   addKey("stop", Stop_Key, 0x05, 6);
   addKey("exit", Exit_Key, 0x03, 6);
-  addKey("screen", Unmapped_Key, 0x02, 6);
+  addKey("screen", AspectRatio_Key, 0x02, 6);
   addKey("rew", Rewind_Key, 0x04, 6);
   addKey("ff", FastForward_Key, 0x07, 6);
   addKey("mute", Mute_Key, 0x00, 6);

@@ -20,7 +20,8 @@ extern QMutex commandIFMutex;
 // For standard NEC, use this constructor:
 NECProtocol::NECProtocol(
   QObject *guiObject,
-  unsigned int index)
+  unsigned int index,
+  NECKeyFormat fmt)
   : PIRProtocol(guiObject, index, 110000, true),
     zeroPulse(560),
     zeroSpace(560),
@@ -36,7 +37,8 @@ NECProtocol::NECProtocol(
     hasRepeatPair(true),
     repeatNeedsHeader(false),
     fullHeadlessRepeat(false),
-    elevenBitToggle(false)
+    elevenBitToggle(false),
+    encodingFormat(fmt)
 {
 }
 
@@ -49,7 +51,8 @@ NECProtocol::NECProtocol(
   unsigned int oPulse,
   unsigned int oSpace,
   unsigned int gSpace,
-  bool iclflag)
+  bool iclflag,
+  NECKeyFormat fmt)
   : PIRProtocol(guiObject, index, gSpace, iclflag),
     zeroPulse(zPulse),
     zeroSpace(zSpace),
@@ -60,7 +63,8 @@ NECProtocol::NECProtocol(
     hasRepeatPair(false),
     repeatNeedsHeader(false),
     fullHeadlessRepeat(false),
-    elevenBitToggle(false)
+    elevenBitToggle(false),
+    encodingFormat(fmt)
 {
 }
 
@@ -140,10 +144,9 @@ void NECProtocol::startSendingCommand(
     PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
+    int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      int commandDuration;
-
       // If we are currently repeating, and have a special "repeat signal",
       // use that signal.  Otherwise, generate a normal command string.
       if (hasRepeatPair && repeatCount)
@@ -208,14 +211,38 @@ int NECProtocol::generateStandardCommand(
     duration += (headerPulse + headerSpace);
   }
 
-  // Next, the "pre" data:
-  duration += pushBits(preData, rx51device);
-
-  // Next, add the actual command:
-  duration += pushBits(bits, rx51device);
-
-  // Next, add the "post" data:
-  duration += pushBits(postData, rx51device);
+  // Now, check the encoding format:
+  switch(encodingFormat)
+  {
+  case Standard_NEC:
+    // Standard NEC is made up of an eight-bit "address" and an eight-bit
+    // "command".  First the address bits are sent (in reverse order), then
+    // the address bits are inverted and sent again (in reverse order).
+    // Next, we do the same to the command bits.
+    // - "preData" should contain 8-bit value
+    // - "bits" should contain 8-bit value
+    duration += pushReverseBits(preData, rx51device);
+    duration += pushInvertedReverseBits(preData, rx51device);
+    duration += pushReverseBits(bits, rx51device);
+    duration += pushInvertedReverseBits(bits, rx51device);
+    break;
+  case Extended_NEC:
+    // In extended NEC, the address has been extended to 16 bits, but only
+    // the reversed bits are sent, not inverted.  The command portion stays
+    // the same.
+    // - "preData" should contain 16-bit value
+    // - "bits" should contain 8-bit value
+    duration += pushReverseBits(preData, rx51device);
+    duration += pushReverseBits(bits, rx51device);
+    duration += pushInvertedReverseBits(bits, rx51device);
+    break;
+  case LIRC_NEC: default:
+    // In this case, we just dump the raw bits into the device:
+    duration += pushBits(preData, rx51device);
+    duration += pushBits(bits, rx51device);
+    duration += pushBits(postData, rx51device);
+    break;
+  }
 
   // Finally add the "trail":
   if (hasTrailerPulse)
@@ -366,6 +393,60 @@ int NECProtocol::pushBits(
       // Send the pulse for "Zero":
       rx51device.addPair(zeroPulse, zeroSpace);
       duration += (zeroPulse + zeroSpace);
+    }
+    ++i;
+  }
+
+  return duration;
+}
+
+
+int NECProtocol::pushReverseBits(
+  const CommandSequence &bits,
+  PIRRX51Hardware &rx51device)
+{
+  int duration = 0;
+  CommandSequence::const_reverse_iterator i = bits.rbegin();
+  while (i != bits.rend())
+  {
+    if (*i)
+    {
+      // Send the pulse for "One":
+      rx51device.addPair(onePulse, oneSpace);
+      duration += (onePulse + oneSpace);
+    }
+    else
+    {
+      // Send the pulse for "Zero":
+      rx51device.addPair(zeroPulse, zeroSpace);
+      duration += (zeroPulse + zeroSpace);
+    }
+    ++i;
+  }
+
+  return duration;
+}
+
+
+int NECProtocol::pushInvertedReverseBits(
+  const CommandSequence &bits,
+  PIRRX51Hardware &rx51device)
+{
+  int duration = 0;
+  CommandSequence::const_reverse_iterator i = bits.rbegin();
+  while (i != bits.rend())
+  {
+    if (*i)
+    {
+      // Send the pulse for "Zero":
+      rx51device.addPair(zeroPulse, zeroSpace);
+      duration += (zeroPulse + zeroSpace);
+    }
+    else
+    {
+      // Send the pulse for "One":
+      rx51device.addPair(onePulse, oneSpace);
+      duration += (onePulse + oneSpace);
     }
     ++i;
   }

@@ -1,3 +1,8 @@
+pierogi (0.5.0) unstable; urgency=low
+  * Somewhat extended and improved UI, some backend improvements, I'm labeling this as now "half-way usable", thus version 0.5
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Mon, 30 Jan 2012 20:24:28 -0500
+
 pierogi (0.1.7) unstable; urgency=low
   * Finally put together RC6 codepath, and created a Philips keyset.  Still not tested, though!  Also, some general cleanup work on protocol classes.
 

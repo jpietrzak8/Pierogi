@@ -67,7 +67,34 @@ protected:
     const char *name,
     PIRKeyName key,
     unsigned long data,
-    unsigned int bits);
+    unsigned int size);
+
+  // Special helper methods for SIRC keys:
+  void addSIRC12Key(
+    const char *name,
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
+
+  void addSIRC15Key(
+    const char *name,
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
+
+  void addSIRC20Key(
+    const char *name,
+    PIRKeyName key,
+    unsigned int secondaryAddressData,
+    unsigned int primaryAddressData,
+    unsigned int commandData);
+
+  // Helper method for Sharp keys:
+  void addSharpKey(
+    const char *name,
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
 
   void setPreData(
     unsigned long data,

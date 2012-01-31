@@ -9,50 +9,41 @@ WestinghouseTV1::WestinghouseTV1(
       Westinghouse_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    108000, true);
+  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
 
-  threadableProtocol = np;
+//  setPreData(0x807F, 16);
+  setPreData(0x01, 8);
 
-  np->setHeaderPair(9000, 4500);
-  np->setTrailerPulse(600);
-
-  setPreData(0x807F, 16);
-
-  addKey("KEY_1", One_Key, 0x8877, 16);
-  addKey("KEY_2", Two_Key, 0x48B7, 16);
-  addKey("KEY_3", Three_Key, 0xC837, 16);
-  addKey("KEY_4", Four_Key, 0x28D7, 16);
-  addKey("KEY_5", Five_Key, 0xA857, 16);
-  addKey("KEY_6", Six_Key, 0x6897, 16);
-  addKey("KEY_7", Seven_Key, 0xE817, 16);
-  addKey("KEY_8", Eight_Key, 0x18E7, 16);
-  addKey("KEY_9", Nine_Key, 0x9867, 16);
-  addKey("KEY_0", Zero_Key, 0x58A7, 16);
-  addKey("KEY_BACK", PrevChannel_Key, 0x10EF, 16);
-  addKey("KEY_MENU", Menu_Key, 0x629D, 16);
-  addKey("KEY_POWER", Power_Key, 0x807F, 16);
-  addKey("KEY_UP", Up_Key, 0x02FD, 16);
-  addKey("KEY_DOWN", Down_Key, 0x22DD, 16);
-  addKey("KEY_LEFT", Left_Key, 0x827D, 16);
-  addKey("KEY_RIGHT", Right_Key, 0xC23D, 16);
-  addKey("KEY_MUTE", Mute_Key, 0x08F7, 16);
-  addKey("KEY_INFO", Info_Key, 0xD827, 16);
-  addKey("KEY_VOLUMEUP", VolumeUp_Key, 0x20DF, 16);
-  addKey("KEY_VOLUMEDOWN", VolumeDown_Key, 0xA05F, 16);
-  addKey("INPUT", Input_Key, 0x00FF, 16);
-  addKey("YPbPr", Unmapped_Key, 0x50AF, 16);
-  addKey("FREEZE", Unmapped_Key, 0x38C7, 16);
-  addKey("VGA", Unmapped_Key, 0x906F, 16);
-  addKey("DVI", Unmapped_Key, 0x609F, 16);
-  addKey("S-Video", Unmapped_Key, 0x30CF, 16);
-  addKey("AV", Unmapped_Key, 0xD02F, 16);
-  addKey("KEY_ENTER", Enter_Key, 0x42BD, 16);
-  addKey("ASPECT_RATIO", AspectRatio_Key, 0xE01F, 16);
+  addKey("INPUT", Input_Key, 0x00, 8);
+  addKey("KEY_POWER", Power_Key, 0x01, 8);
+  addKey("KEY_VOLUMEUP", VolumeUp_Key, 0x04, 8);
+  addKey("KEY_VOLUMEDOWN", VolumeDown_Key, 0x05, 8);
+  addKey("DVI", Unmapped_Key, 0x06, 8);
+  addKey("ASPECT_RATIO", AspectRatio_Key, 0x07, 8);
+  addKey("KEY_BACK", PrevChannel_Key, 0x08, 8);
+  addKey("VGA", Unmapped_Key, 0x09, 8);
+  addKey("YPbPr", Unmapped_Key, 0x0A, 8);
+  addKey("AV", Unmapped_Key, 0x0B, 8);
+  addKey("S-Video", Unmapped_Key, 0x0C, 8);
+  addKey("KEY_MUTE", Mute_Key, 0x10, 8);
+  addKey("KEY_1", One_Key, 0x11, 8);
+  addKey("KEY_2", Two_Key, 0x12, 8);
+  addKey("KEY_3", Three_Key, 0x13, 8);
+  addKey("KEY_4", Four_Key, 0x14, 8);
+  addKey("KEY_5", Five_Key, 0x15, 8);
+  addKey("KEY_6", Six_Key, 0x16, 8);
+  addKey("KEY_7", Seven_Key, 0x17, 8);
+  addKey("KEY_8", Eight_Key, 0x18, 8);
+  addKey("KEY_9", Nine_Key, 0x19, 8);
+  addKey("KEY_0", Zero_Key, 0x1A, 8);
+  addKey("KEY_INFO", Info_Key, 0x1B, 8);
+  addKey("FREEZE", Pause_Key, 0x1C, 8);
+  addKey("KEY_UP", Up_Key, 0x40, 8);
+  addKey("KEY_LEFT", Left_Key, 0x41, 8);
+  addKey("KEY_ENTER", Enter_Key, 0x42, 8);
+  addKey("KEY_RIGHT", Right_Key, 0x43, 8);
+  addKey("KEY_DOWN", Down_Key, 0x44, 8);
+  addKey("KEY_MENU", Menu_Key, 0x46, 8);
 }
 
 
@@ -69,7 +60,8 @@ WestinghouseTV2::WestinghouseTV2(
     index,
     600, 500,
     1200, 500,
-    45000, true);
+    45000, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -100,7 +92,7 @@ WestinghouseTV2::WestinghouseTV2(
   addKey(".", Unmapped_Key, 0x510, 12);
   addKey("EnterNumPad", Enter_Key, 0xD10, 12);
   addKey("Input", Input_Key, 0xA50, 12);
-  addKey("Zoom", Unmapped_Key, 0x390, 12);
+  addKey("Zoom", Zoom_Key, 0x390, 12);
   addKey("Vol+", VolumeUp_Key, 0x490, 12);
   addKey("Vol-", VolumeDown_Key, 0xC90, 12);
   addKey("Ch+", ChannelUp_Key, 0x090, 12);

@@ -1,5 +1,9 @@
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+Pierogi UIRC
+</title>
 </head>
 <body>
 
@@ -63,8 +67,9 @@ controls.  The name of the current keyset is also provided in this tab.</p>
 
 <p>The Utility tab contains a selection of commonly useful controls, such as
 "Mute", "Sleep", "Input", "Closed Captions / Subtitles", and the color buttons.
-The exact selection of buttons on this tab will probably change to reflect
-which commands turn out to be the most popular.</p>
+This tab is intended to be a quick way to reach the most frequently used
+buttons; as such, the selection may be updated in future versions of Pierogi.
+</p>
 
 <h3>Keypad Tab</h3>
 
@@ -82,8 +87,9 @@ allow you to enter a second digit.</p>
 
 <p>This tab contains buttons used to enter and exit a menu, navigate within
 a menu, and select menu entries.  The "Menu" button is meant to enter the
-main system menu of a given device; the "Info" and "Guide" buttons are
-targeted towards entering other useful menus when available.</p>
+main system menu of a given device; "Guide" is a content-related menu available
+on many modern devices; and "Disc Menu" is used to access the menu interface
+provided with DVD and Blu-Ray media.</p>
 
 <h3>Media Tab</h3>
 
@@ -92,16 +98,23 @@ targeted towards entering other useful menus when available.</p>
 (often called rewind) and "Fast Forward".  A variety of other less common
 navigation controls are included, along with the "Eject" command.</p>
 
-<h3>Misc Tab</h3>
+<h3>Media2 Tab</h3>
 
-<p>This tab contains a selection of buttons that did not fit into any of the
-previous tabs.  The content of this tab is subject to change.</p>
+<p>This is another page of media buttons, containing a mix of commands useful
+for DVD players, VCRs, audio devices, and possibly other devices.  The content
+of this page may change in the future.</p>
 
-<h3>Favorites Tab</h3>
+<h3>TV Tab</h3>
 
-<p>As there are numerous keysets available in Pierogi, a "favorites" tab has
+<p>This page contains several more TV-oriented buttons, including controls for
+picture-in-picture, teletext, and some graphics and audio controls.  The
+content of this page is subject to change.</p>
+
+<h3>Favorite Tab</h3>
+
+<p>As there are numerous keysets available in Pierogi, a "Favorite" tab has
 been implemented.  To add a favorite keyset to the tab, first select that
-keyset from the "Select Keyset" window.  Then, navigate to the Favorites tab
+keyset from the "Select Keyset" window.  Then, navigate to the Favorite tab
 and press "Add Current Keyset".</p>
 
 <p>Once you have added some keysets to the favorites list, you can tell
@@ -264,14 +277,15 @@ of code once I've seen it, so I've rewritten it in C++, reorganizing it in
 an object-oriented manner along the way.</p>
 
 <p>
-Here's one way in which I disagree with the authors of LIRC: they've managed
-to cram support for practically every protocol used by every remote control
-ever made into a single codepath.  So, there's a single "transmit" function,
-sorting through a massive pile of flags, conditional statements, and some
-really funky delayed-action buffering to make everything work.  The simple act
-of splitting the code into one routine for the RC5 (biphase) protocol and
-another for the NEC (space-encoded) protocol makes it much easier to read, at
-least to my eyes.  (I haven't yet implemented the RC6 or other protocols.)
+As I have progressed in adding support for additional IR protocols, I'm
+beginning to see why the authors of the LIRC made the attempt to compress
+every possible IR protocol into a straightforward count of individual IR
+pulses.  The total number of IR protocols in use is amazing, and many of them
+(through oversight or due to the longevity of their use) are mind-numbingly
+complicated to deal with.  Still, I believe that separating the major protocols
+into their own code paths results in code that is easier to understand and
+maintain; I'm slowly moving away from the LIRC's system to my own as time
+goes on.
 </p>
 
 <p>
@@ -307,11 +321,12 @@ to the theory and practice behind consumer IR devices
 
 <li>Some <a href="http://www2.renesas.com/faq/en/mi_com/f_com_remo.html">More info on the NEC protocol</a>
 
+<li>An introduction to the <a href="http://www.sbprojects.com/knowledge/ir/sirc.php">Sony SIRC protocol</a>
+
+<li>An excellent collection of <a href="http://www.hifi-remote.com/sony/">Sony command codes</a>
+
 <li>Link to (what appears to be) source code for the N900's
 <a href="http://svn.jacekowski.org/host_mode/trunk/drivers/input/lirc/lirc_rx51.c">/dev/lirc0 device driver</a>.
-
-<li>A surprisingly decent description of how to use the
-<a href="http://www.yamahapab.com/assets/downloads/codes/Custom_Install_HB.pdf">Yamaha Remote Control</a>.
 
 <ul>
 

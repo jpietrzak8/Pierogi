@@ -9,14 +9,14 @@ Tivo1::Tivo1(
       Tivo_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index);
+  threadableProtocol = new NECProtocol(guiObject, index, LIRC_NEC);
 
   setPreData(0xA10C, 16);
 
 //  setCarrierFrequency(40000);
 
   addKey("TIVO", Power_Key, 0x000F, 16);
-  addKey("LIVETV", Unmapped_Key, 0x8807, 16);
+  addKey("LIVETV", LiveTV_Key, 0x8807, 16);
   addKey("UP", Up_Key, 0x2807, 16);
   addKey("DOWN", Down_Key, 0x6807, 16);
   addKey("RIGHT", Right_Key, 0xA807, 16);
@@ -31,7 +31,7 @@ Tivo1::Tivo1(
   addKey("REV", Rewind_Key, 0x440B, 16);
   addKey("FWD", FastForward_Key, 0x240B, 16);
   addKey("PAUSE", Pause_Key, 0xC40B, 16);
-  addKey("SLOW", Unmapped_Key, 0xA40B, 16);
+  addKey("SLOW", Slow_Key, 0xA40B, 16);
   addKey("REPLAY", Replay_Key, 0x640B, 16);
   addKey("JUMPTOEND", Advance_Key, 0xE40B, 16);
   addKey("1", One_Key, 0x140B, 16);

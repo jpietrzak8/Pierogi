@@ -1,5 +1,5 @@
 #include "sony.h"
-#include "necprotocol.h"
+#include "sircprotocol.h"
 
 
 SonyTV1::SonyTV1(
@@ -10,139 +10,6 @@ SonyTV1::SonyTV1(
       Sony_Make,
       index)
 {
-  addControlledDevice(Sony_Make, "Trinitron KDW-25", TV_Device);
-
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 600,
-    1200, 600,
-    45000, true);
-
-  threadableProtocol = np;
-
-  np->setHeaderPair(2400, 600);
-
-//  np->setMinimumRepetitions(2);
-
-  //np->setCarrierFrequency(40000);
-  //np->setDutyCycle(33);
-
-  addKey("MUTE", Mute_Key, 0x290, 12); // 0x148
-  addKey("POWER", Power_Key, 0xA90, 12); // 0x548
-  addKey("TV-RETURN", Unmapped_Key, 0x1D0, 12); // teletext 0x0E8, also "analog"
-  addKey("TELETXT", Unmapped_Key, 0xFD0, 12);   // teletext 0x7E8
-  addKey("tv/video", Input_Key, 0xA50, 12); // 0x528
-  addKey("1", One_Key, 0x010, 12);   // 0x008
-  addKey("2", Two_Key, 0x810, 12);   // 0x408
-  addKey("3", Three_Key, 0x410, 12); // 0x208
-  addKey("4", Four_Key, 0xC10, 12);  // 0x608
-  addKey("5", Five_Key, 0x210, 12);  // 0x108
-  addKey("6", Six_Key, 0xA10, 12);   // 0x508
-  addKey("7", Seven_Key, 0x610, 12); // 0x308
-  addKey("8", Eight_Key, 0xE10, 12); // 0x708
-  addKey("9", Nine_Key, 0x110, 12);  // 0x088
-  addKey("0", Zero_Key, 0x910, 12);  // 0x488
-  addKey("?/INFO", Info_Key, 0x5D0, 12); // 0x2E8
-  addKey("-/--", DoubleDigit_Key, 0xB90, 12); // 0x5C8
-  addKey("OK", Select_Key, 0xA70, 12); // 0x538
-//  addKey("OK", Enter_Key, 0xA70, 12); // 0x538
-  addKey("MENU", Menu_Key, 0x070, 12); //0x038
-  addKey("UP/GREEN", Up_Key, 0xB38, 12); // 0x59C
-  addKey("DOWN/BLUE", Down_Key, 0xF38, 12); // 0x79C
-  addKey("RIGHT/+/YELLOW", Right_Key, 0x738, 12); // 0x39C
-  addKey("LEFT/-/RED", Left_Key, 0x338, 12); // 0x19C
-  addKey("LEFT/-/RED", Red_Key, 0x338, 12); // 0x19C
-  addKey("UP/GREEN", Green_Key, 0xB38, 12); // 0x59C
-  addKey("RIGHT/+/YELLOW", Yellow_Key, 0x738, 12); //0x39C
-  addKey("DOWN/BLUE", Blue_Key, 0xF38, 12); // 0x79C
-  addKey("VOLUME+", VolumeUp_Key, 0x490, 12); // 0x248
-  addKey("VOLUME-", VolumeDown_Key, 0xC90, 12); // 0x648
-  addKey("CHANNEL/PAGE+", ChannelUp_Key, 0x090, 12); // 0x048
-  addKey("CHANNEL/PAGE-", ChannelDown_Key, 0x890, 12); // 0x448
-  addKey("prev_ch", PrevChannel_Key, 0xDD0, 12); // 0x6E8 "jump", "refresh", "toggle"
-  addKey("1-", Unmapped_Key, 0x310, 12);
-  addKey("2-", Unmapped_Key, 0xB10, 12);
-  addKey("sleep", Sleep_Key, 0x6D0, 12); // 0x368
-  addKey("select", Unmapped_Key, 0x3F0, 12); // 0x1F8
-  addKey("normalise", Unmapped_Key, 0x690, 12); // 0x348 "reset"
-  addKey("C", Clear_Key, 0x710, 12); // 0x388
-  addKey("output", Unmapped_Key, 0x670, 12);  // 0x338
-  addKey("a/b", Language_Key, 0xE90, 12); // 0x748  "mts", "sap", "audio", "language"
-  addKey("stereo", Surround_Key, 0x950, 12); // Might be wrong
-  addKey("subtitles", Captions_Key, 0xD38, 12);
-  addKey("expand", Unmapped_Key, 0x938, 12);
-  addKey("shrink", Unmapped_Key, 0x538, 12);
-  addKey("favourite", Unmapped_Key, 0x530, 12);
-  addKey("setup", Program_Key, 0x370, 12);
-  addKey("tune_down", Unmapped_Key, 0xF70, 12);
-  addKey("tune_up", Unmapped_Key, 0x770, 12);
-  addKey("diamond", Unmapped_Key, 0x1F0, 12); // 0x0F8 "add"
-  addKey("asterisk", Unmapped_Key, 0x170, 12);
-  addKey("C00", Unmapped_Key, 0xF10, 12);
-  addKey("bucket", Unmapped_Key, 0x150, 12);
-  addKey("vt_inf", Unmapped_Key, 0x138, 12); // teletext info
-//  addKey("vt_dots", Unmapped_Key, 0xD38, 12); // teletext
-  addKey("time", Unmapped_Key, 0xD50, 12); // 0x6A8 teletext?
-  addKey("timer/block", Unmapped_Key, 0x0D0, 12); // 0x068
-  addKey("off/repeat", Unmapped_Key, 0x3D0, 12); // 0x1E8
-  addKey("cable", Unmapped_Key, 0x730, 12); // 0x398
-  addKey("auto_program", Unmapped_Key, 0xD70, 12); // 0x6B8
-  addKey("erase", Unmapped_Key, 0x9F0, 12); // 0x4F8
-  addKey("picture_up", Unmapped_Key, 0x190, 12); // 0x0C8
-  addKey("picture_down", Unmapped_Key, 0x990, 12); // 0x4C8
-  addKey("PIP", PIP_Key, 0xDB0, 12); // 0x6D8
-  addKey("PIP_SWAP", PIPSwap_Key, 0xFB0, 12); // 0x7D8
-  addKey("PIP_POSITION", PIPMove_Key, 0x7B0, 12); // 0x3D8
-  addKey("PIP_SOURCE", PIPSource_Key, 0xE70, 12); // 0x738
-  addKey("pip_ch+", PIPChannelUp_Key, 0x1B0, 12);
-  addKey("pip_ch-", PIPChannelDown_Key, 0x9B0, 12);
-  addKey("pipfreeze", Unmapped_Key, 0x3B0, 12);
-  addKey("piptv_video", Unmapped_Key, 0x5B0, 12);
-  addKey("Sat", Unmapped_Key, 0x8B0, 12); // 0x458
-  addKey("Settup_V", Unmapped_Key, 0x870, 12); // 0x438
-  addKey("Settup_A", Unmapped_Key, 0x470, 12); // 0x238
-  addKey("EXIT", Exit_Key, 0xC70, 12);
-  addKey("enter", Enter_Key, 0xD10, 12); // 0x688
-  addKey("picturemode", Unmapped_Key, 0x270, 12); // 0x138
-  addKey("ANT", Unmapped_Key, 0x550, 12);
-
-  addKey("16:9", AspectRatio_Key, 0x5E25, 15); // "WIDE"
-  addKey("DIGITAL", Unmapped_Key, 0x25EE, 15);
-  addKey("EPG", Guide_Key, 0x6D25, 15);
-  addKey("RETURN", Unmapped_Key, 0x62E9, 15);
-  addKey("TOOLS", Unmapped_Key, 0x36E9, 15);
-  addKey("theatre", Unmapped_Key, 0x03EE, 15);
-  addKey("SYNC_MENU", Unmapped_Key, 0x0D58, 15);
-  addKey("PREVIOUS", Previous_Key, 0x1EE9, 15);
-  addKey("STOP", Stop_Key, 0x0CE9, 15);
-  addKey("NEXT", Next_Key, 0x5EE9, 15);
-  addKey("I-MANUAL", Unmapped_Key, 0x6F58, 15);
-  addKey("SCENE", Unmapped_Key, 0x0F58, 15);
-  addKey("DIGITAL_ANALOG", Unmapped_Key, 0x58EE, 15);
-  addKey("FBACKWARD", Rewind_Key, 0x6CE9, 15);
-  addKey("PLAY", Play_Key, 0x2CE9, 15);
-  addKey("FFORWARD", FastForward_Key, 0x1CE9, 15);
-  addKey("INTERNET_VIDEO", Unmapped_Key, 0x4F58, 15);
-  addKey("FAVORITES", Unmapped_Key, 0x37EE, 15);
-  addKey("OPTIONS", Unmapped_Key, 0x36E9, 15);
-  addKey("PIP_Audio", Unmapped_Key, 0x1F25, 15);
-  addKey("Surround_Mode", Unmapped_Key, 0x7C25, 15);
-  addKey("DOT", Unmapped_Key, 0x5CE9, 15);
-  addKey("SOUND", Unmapped_Key, 0x6FE9, 15);
-  addKey("REPLAY", Replay_Key, 0x4FE9, 15);
-  addKey("ADVANCE", Advance_Key, 0x0FE9, 15);
-  addKey("PAUSE", Pause_Key, 0x4CE9, 15);
-}
-
-
-SonyTV1a::SonyTV1a(
-  QObject *guiObject,
-  unsigned int index)
-  : SonyTV1(guiObject, index)
-{
-  setKeysetName("TV Keyset 1a");
-
   addControlledDevice(Sony_Make, "Trinitron KV-2184MT", TV_Device);
   addControlledDevice(Sony_Make, "KV-M1420D", TV_Device);
   addControlledDevice(Sony_Make, "KV-20FV10", TV_Device);
@@ -154,29 +21,147 @@ SonyTV1a::SonyTV1a(
   addControlledDevice(Sony_Make, "KDL-46X2000", TV_Device);
   addControlledDevice(Sony_Make, "KDL-40X2000", TV_Device);
 
-  // Overwrite directional keys:
-  addKey("up", Up_Key, 0x2F0, 12); // 0x178
-  addKey("down", Down_Key, 0xAF0, 12); // 0x578
-  addKey("left", Left_Key, 0x2D0, 12); // 0x168
-  addKey("right", Right_Key, 0xCD0, 12); // 0x668
+  threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  addSIRC12Key("1", One_Key, 0x01, 0x0);
+  addSIRC12Key("2", Two_Key, 0x01, 0x1);
+  addSIRC12Key("3", Three_Key, 0x01, 0x2);
+  addSIRC12Key("4", Four_Key, 0x01, 0x3);
+  addSIRC12Key("5", Five_Key, 0x01, 0x4);
+  addSIRC12Key("6", Six_Key, 0x01, 0x5);
+  addSIRC12Key("7", Seven_Key, 0x01, 0x6);
+  addSIRC12Key("8", Eight_Key, 0x01, 0x7);
+  addSIRC12Key("9", Nine_Key, 0x01, 0x8);
+  addSIRC12Key("0", Zero_Key, 0x01, 0x9);
+  addSIRC12Key("enter", Enter_Key, 0x01, 0x0B);
+  addSIRC12Key("1-", Unmapped_Key, 0x01, 0x0C);
+  addSIRC12Key("2-", Unmapped_Key, 0x01, 0x0D);
+  addSIRC12Key("C", Clear_Key, 0x01, 0x0E); // "C00"
+  addSIRC12Key("CHANNEL/PAGE+", ChannelUp_Key, 0x01, 0x10);
+  addSIRC12Key("CHANNEL/PAGE-", ChannelDown_Key, 0x01, 0x11);
+  addSIRC12Key("VOLUME+", VolumeUp_Key, 0x01, 0x12);
+  addSIRC12Key("VOLUME-", VolumeDown_Key, 0x01, 0x13);
+  addSIRC12Key("MUTE", Mute_Key, 0x01, 0x14);
+  addSIRC12Key("POWER", Power_Key, 0x01, 0x15);
+  addSIRC12Key("normalise", Reset_Key, 0x01, 0x16); // "reset"
+  addSIRC12Key("a/b", Audio_Key, 0x01, 0x17); // "mts", "sap", "language"
+  addSIRC12Key("picture_up", Unmapped_Key, 0x01, 0x18); // "Contrast Up"
+  addSIRC12Key("picture_down", Unmapped_Key, 0x1, 0x19); // "Contrast Down"
+  addSIRC12Key("-/--", DoubleDigit_Key, 0x01, 0x1D);
+  addSIRC12Key("tv/video", Input_Key, 0x01, 0x25);
+  addSIRC12Key("bucket", Unmapped_Key, 0x01, 0x28);
+  addSIRC12Key("stereo", Surround_Key, 0x01, 0x29);
+  addSIRC12Key("ANT", Unmapped_Key, 0x01, 0x2A);
+  addSIRC12Key("time", Clock_Key, 0x01, 0x2B);
+  addSIRC12Key("timer/block", Timer_Key, 0x01, 0x30);
+  addSIRC12Key("right", Right_Key, 0x01, 0x33);
+  addSIRC12Key("left", Left_Key, 0x01, 0x34);
+  addSIRC12Key("sleep", Sleep_Key, 0x01, 0x36);
+  addSIRC12Key("TV-RETURN", Unmapped_Key, 0x01, 0x38); // "analog"
+  addSIRC12Key("?/INFO", Info_Key, 0x01, 0x3A); // Teletext Index
+  addSIRC12Key("prev_ch", PrevChannel_Key, 0x01, 0x3B); // "jump"
+  addSIRC12Key("off/repeat", Repeat_Key, 0x01, 0x3C);
+  addSIRC12Key("TELETXT", Teletext_Key, 0x01, 0x3F);
+  addSIRC12Key("favourite", Unmapped_Key, 0x01, 0x4A); // separate keyset?
+  addSIRC12Key("cable", Unmapped_Key, 0x01, 0x4E);
+  addSIRC12Key("pip_ch+", PIPChannelUp_Key, 0x01, 0x58);
+  addSIRC12Key("pip_ch-", PIPChannelDown_Key, 0x01, 0x59);
+  addSIRC12Key("piptv_video", PIPSource_Key, 0x01, 0x5A);
+  addSIRC12Key("PIP", PIP_Key, 0x01, 0x5B);
+  addSIRC12Key("pipfreeze", PIPPause_Key, 0x01, 0x5C);
+  addSIRC12Key("PIP_POSITION", PIPMove_Key, 0x01, 0x5E);
+  addSIRC12Key("PIP_SWAP", PIPSwap_Key, 0x01, 0x5F);
+  addSIRC12Key("PIP_SOURCE", Unmapped_Key, 0x01, 0x67); // separate keyset?
+  addSIRC12Key("Sat", Unmapped_Key, 0x01, 0x51);
+  addSIRC12Key("MENU", Menu_Key, 0x01, 0x60);
+  addSIRC12Key("Settup_V", Unmapped_Key, 0x01, 0x61); // alternate pic mode
+  addSIRC12Key("Settup_A", Unmapped_Key, 0x01, 0x62); // alternate sound mode
+  addSIRC12Key("EXIT", Exit_Key, 0x01, 0x63);
+  addSIRC12Key("picturemode", PictureMode_Key, 0x01, 0x64);
+  addSIRC12Key("OK", Select_Key, 0x01, 0x65); // "return", "select", "enter"
+  addSIRC12Key("output", Unmapped_Key, 0x01, 0x66);
+  addSIRC12Key("asterisk", Unmapped_Key, 0x01, 0x68); // "TV System"
+  addSIRC12Key("auto_program", Unmapped_Key, 0x01, 0x6B);
+  addSIRC12Key("setup", Program_Key, 0x01, 0x6C);
+  addSIRC12Key("tune_down", Unmapped_Key, 0x01, 0x6F); // "search -"
+  addSIRC12Key("tune_up", Unmapped_Key, 0x01, 0x6E); // "search +"
+  addSIRC12Key("up", Up_Key, 0x01, 0x74);
+  addSIRC12Key("down", Down_Key, 0x01, 0x75);
+  addSIRC12Key("diamond", Unmapped_Key, 0x01, 0x78); // "add"
+  addSIRC12Key("erase", Unmapped_Key, 0x01, 0x79);
+  addSIRC12Key("select", Unmapped_Key, 0x01, 0x7C); // PictureMode_Key?
+
+  addSIRC12Key("vt_inf", TeletextIndex_Key, 0x03, 0x48); // "Teletext Home"
+  addSIRC12Key("expand", TeletextSize_Key, 0x03, 0x49);
+  addSIRC12Key("Teletext Hold", TeletextHold_Key, 0x03, 0x4A); // "shrink"
+  addSIRC12Key("subtitles", Unmapped_Key, 0x03, 0x4B); // Teletext subtitles
+  addSIRC12Key("LEFT/-/RED", Red_Key, 0x03, 0x4C);
+  addSIRC12Key("UP/GREEN", Green_Key, 0x03, 0x4D);
+  addSIRC12Key("RIGHT/+/YELLOW", Yellow_Key, 0x03, 0x4E);
+  addSIRC12Key("DOWN/BLUE", Blue_Key, 0x03, 0x4F);
+
+  addSIRC15Key("SYNC_MENU", Unmapped_Key, 0x1A, 0x58);
+  addSIRC15Key("SCENE", Unmapped_Key, 0x1A, 0x78);
+  addSIRC15Key("INTERNET_VIDEO", Unmapped_Key, 0x1A, 0x79);
+  addSIRC15Key("I-MANUAL", Unmapped_Key, 0x1A, 0x7B);
+
+  addSIRC15Key("DIGITAL_ANALOG", Unmapped_Key, 0x77, 0x0D);
+  addSIRC15Key("DIGITAL", Unmapped_Key, 0x77, 0x52);
+  addSIRC15Key("theatre", Unmapped_Key, 0x77, 0x60); // "Home Theater"
+  addSIRC15Key("FAVORITES", Favorites_Key, 0x77, 0x76);
+
+  addSIRC15Key("STOP", Stop_Key, 0x97, 0x18);
+  addSIRC15Key("PAUSE", Pause_Key, 0x97, 0x19);
+  addSIRC15Key("PLAY", Play_Key, 0x97, 0x1A);
+  addSIRC15Key("FBACKWARD", Rewind_Key, 0x97, 0x1B);
+  addSIRC15Key("FFORWARD", FastForward_Key, 0x97, 0x1C);
+  addSIRC15Key("DOT", Unmapped_Key, 0x97, 0x1D);
+  addSIRC15Key("RETURN", Unmapped_Key, 0x97, 0x23); // exit?
+  addSIRC15Key("TOOLS", Unmapped_Key, 0x97, 0x36); // "OPTIONS"
+  addSIRC15Key("PREVIOUS", Previous_Key, 0x97, 0x3C);
+  addSIRC15Key("NEXT", Next_Key, 0x97, 0x3D);
+  addSIRC15Key("REPLAY", Replay_Key, 0x97, 0x79);
+  addSIRC15Key("ADVANCE", Advance_Key, 0x97, 0x78);
+  addSIRC15Key("SOUND", Unmapped_Key, 0x97, 0x7B);
+
+  addSIRC15Key("Surround_Mode", Unmapped_Key, 0xA4, 0x1F); // "Music"
+  addSIRC15Key("16:9", AspectRatio_Key, 0xA4, 0x3D); // "WIDE"
+  addSIRC15Key("EPG", Guide_Key, 0xA4, 0x5B);
+  addSIRC15Key("PIP_Audio", Unmapped_Key, 0xA4, 0x7C);
+}
+
+
+SonyTV1a::SonyTV1a(
+  QObject *guiObject,
+  unsigned int index)
+  : SonyTV1(guiObject, index)
+{
+  setKeysetName("TV Keyset 1a");
+
+  addControlledDevice(Sony_Make, "Trinitron KDW-25", TV_Device);
+
+  addSIRC12Key("LEFT/-/RED", Left_Key, 0x03, 0x4C);
+  addSIRC12Key("UP/GREEN", Up_Key, 0x03, 0x4D);
+  addSIRC12Key("RIGHT/+/YELLOW", Right_Key, 0x03, 0x4E);
+  addSIRC12Key("DOWN/BLUE", Down_Key, 0x03, 0x4F);
 }
 
 
 SonyTV1b::SonyTV1b(
   QObject *guiObject,
   unsigned int index)
-  : SonyTV1(guiObject, index)
+  : SonyTV1a(guiObject, index)
 {
   setKeysetName("TV Keyset 1b");
 
-  addKey("clear", Unmapped_Key, 0x2D0, 12); // 0x168
-  addKey("level_plus", Unmapped_Key, 0x2F0, 12); // 0x178
-  addKey("level_minus", Unmapped_Key, 0xAF0, 12); // 0x578
-  addKey("am/pm", Unmapped_Key, 0xCD0, 12); // 0x668
+  addSIRC12Key("clear", Unmapped_Key, 0x01, 0x34); // "Clock Clear"
+  addSIRC12Key("level_plus", Unmapped_Key, 0x01, 0x74);
+  addSIRC12Key("level_minus", Unmapped_Key, 0x01, 0x75);
+  addSIRC12Key("am/pm", Unmapped_Key, 0x01, 0x33);
 }
 
 
-/*
+// Not sure about these codes:
 SonyTV1c::SonyTV1c(
   QObject *guiObject,
   unsigned int index)
@@ -184,111 +169,23 @@ SonyTV1c::SonyTV1c(
 {
   setKeysetName("TV Keyset 1c");
 
-  addKey("pip_move", PIPPosition_Key, 0x7B0, 12);
-  addKey("pip_swap", PIPSwap_Key, 0xFB0, 12);
-  addKey("pip_ch+", PIPChannelUp_Key, 0x1B0, 12);
-  addKey("pip_ch-", PIPChannelDown_Key, 0x9B0, 12);
-}
-*/
+  addSIRC12Key(">>", FastForward_Key, 0x01, 0x58);
+  addSIRC12Key("<<", Rewind_Key, 0x01, 0x59);
+  addSIRC12Key("rec", Record_Key, 0x01, 0x5A);
+  addSIRC12Key("pause", Pause_Key, 0x01, 0x5C);
+  addSIRC12Key("stop", Stop_Key, 0x01, 0x5E);
+  addSIRC12Key("play", Play_Key, 0x01, 0x5F);
 
-
-// Note, deeper inheritance on this one:
-SonyTV1d::SonyTV1d(
-  QObject *guiObject,
-  unsigned int index)
-  : SonyTV1a(guiObject, index)
-{
-  setKeysetName("TV Keyset 1d");
-
-  addKey("play", Play_Key, 0xFB0, 12);
-  addKey("<<", Rewind_Key, 0x9B0, 12);
-  addKey(">>", FastForward_Key, 0x1B0, 12);
-  addKey("pause", Pause_Key, 0x3B0, 12);
-  addKey("stop", Stop_Key, 0x7B0, 12);
-  addKey("rec", Record_Key, 0x5B0, 12);
-
-  addKey("RED", Red_Key, 0x52E9, 15);
-  addKey("GREEN", Green_Key, 0x32E9, 15);
-  addKey("YELLOW", Yellow_Key, 0x72E9, 15);
-  addKey("BLUE", Blue_Key, 0x12E9, 15);
-  addKey("SUBTITLES", Captions_Key, 0x0AE9, 15); // this might be wrong
+  addSIRC15Key("BLUE", Blue_Key, 0x97, 0x24);
+  addSIRC15Key("RED", Red_Key, 0x97, 0x25);
+  addSIRC15Key("GREEN", Green_Key, 0x97, 0x26);
+  addSIRC15Key("YELLOW", Yellow_Key, 0x97, 0x27);
+  addSIRC15Key("SUBTITLES", Captions_Key, 0x97, 0x28);
 }
 
 
-/*
-SonyTV2::SonyTV2(
-  QObject *guiObject,
-  unsigned int index)
-  : PIRKeysetMetaData(
-      "TV Keyset 2",
-      Sony_Make,
-      index)
-{
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    1262, 515,
-    661, 515,
-    26187, false);
-
-  threadableProtocl = np;
-
-  np->setHeaderPair(2470, 515);
-  np->setTrailer(661);
-
-  addKey("MUTE", Mute_Key, 0x6B7, 11);
-  addKey("ON/STANDBY", Power_Key, 0x2B7, 11);
-  addKey("TV", Unmapped_Key, 0x717, 11); // teletext
-  addKey("TELETEXT", Unmapped_Key, 0x017, 11); // teletext
-  addKey("INPUT", Input_Key, 0x2D7, 11);
-  addKey("OUTPUT", Unmapped_Key, 0x4C7, 11);
-  addKey("1", One_Key, 0x7F7, 11);
-  addKey("2", Two_Key, 0x3F7, 11);
-  addKey("3", Three_Key, 0x5F7, 11);
-  addKey("4", Four_Key, 0x1F7, 11);
-  addKey("5", Five_Key, 0x6F7, 11);
-  addKey("6", Six_Key, 0x2F7, 11);
-  addKey("7", Seven_Key, 0x4F7, 11);
-  addKey("8", Eight_Key, 0x0F7, 11);
-  addKey("9", Nine_Key, 0x777, 11);
-  addKey("0", Zero_Key, 0x377, 11);
-  addKey("-/--", DoubleDigit_Key, 0x237, 11);
-  addKey("C", Clear_Key, 0x477, 11);
-  addKey("PIP", PIP_Key, 0x127, 11);
-  addKey("PIP_POSITION", PIPPosition_Key, 0x427, 11);
-  addKey("PIP_SWAP", PIPSwap_Key, 0x027, 11);
-  addKey("PIP_SOURCE", PIPSource_Key, 0x0C7, 11);
-  addKey("RED", Red_Key, 0x663, 11);
-  addKey("GREEN", Green_Key, 0x263, 11);
-  addKey("YELLOW", Yellow_Key, 0x463, 11);
-  addKey("BLUE", Blue_Key, 0x063, 11);
-  addKey("TELETEXT_HOLD", Unmapped_Key, 0x563, 11);
-  addKey("INFO", Info_Key, 0x517, 11);
-  addKey("SAT", Unmapped_Key, 0x3A7, 11);
-  addKey("VOLUME+", VolumeUp_Key, 0x5B7, 11);
-  addKey("VOLUME-", VolumeDown_Key, 0x1B7, 11);
-  addKey("PROGR+", ChannelUp_Key, 0x7B7, 11);
-  addKey("PROGR-", ChannelDown_Key, 0x3B7, 11);
-  addKey("PICTURE", Unmapped_Key, 0x3C7, 11);
-  addKey("SOUND", Unmapped_Key, 0x5C7, 11);
-  addKey("MENU", Menu_Key, 0x7C7, 11);
-  addKey("BACK", Left_Key, 0x697, 11);
-  addKey("UP", Up_Key, 0x687, 11);
-  addKey("DOWN", Down_Key, 0x287, 11);
-  addKey("OK", Enter_Key, 0x2C7, 11);
-  addKey("OK", Select_Key, 0x2C7, 11);
-  addKey("RGB1", Unmapped_Key, 0x1E7, 11);
-  addKey("RGB2", Unmapped_Key, 0x6E7, 11);
-  addKey("Line", Unmapped_Key, 0x7E7, 11);
-  addKey("Y-C", Unmapped_Key, 0x267, 11);
-  addKey("MTS-MPX", Unmapped_Key, 0x0B7, 11);
-  addKey("Still", Unmapped_Key, 0x627, 11);
-  addKey("PowerOn", Unmapped_Key, 0x457, 11);
-  addKey("PowerOff", Unmapped_Key, 0x057, 11);
-}
-*/
-
-
+// These controls don't quite match other SIRC data.  (some do, some don't)
+// This all taken from LIRC "AMPIR" config file.
 SonyAmp1::SonyAmp1(
   QObject *guiObject,
   unsigned int index)
@@ -297,56 +194,44 @@ SonyAmp1::SonyAmp1(
       Sony_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 600,
-    1200, 600,
-    25000, false);
+  threadableProtocol = new SIRCProtocol(guiObject, index);
 
-  threadableProtocol = np;
-
-  np->setHeaderPair(2400, 600);
-
-//  np->setMinimumRepetitions(2);
-
-  setPostData(0xC, 6);
-
-  addKey("VIDEO1", Unmapped_Key, 0x22, 7);
-  addKey("VIDEO2", Unmapped_Key, 0x3C, 7);
-  addKey("VIDEO3", Unmapped_Key, 0x21, 7);
-  addKey("VIDEO4", Unmapped_Key, 0x61, 7);
-  addKey("DVD", Unmapped_Key, 0x5F, 7);
-  addKey("LD", Unmapped_Key, 0x4C, 7);
-  addKey("TV2", Unmapped_Key, 0x2B, 7);
-  addKey("TV", Unmapped_Key, 0x0C, 7);
-  addKey("MD", Unmapped_Key, 0x4B, 7);
-  addKey("TAPE", Unmapped_Key, 0x62, 7);
-  addKey("DAT", Unmapped_Key, 0x31, 7);
-  addKey("CD", Unmapped_Key, 0x52, 7);
-  addKey("TUNER", Unmapped_Key, 0x42, 7);
-  addKey("PHONO", Unmapped_Key, 0x02, 7);
-  addKey("DIGITAL", Unmapped_Key, 0x11, 7);
-  addKey("5.1CH", Unmapped_Key, 0x27, 7);
-  addKey("VOL+", VolumeUp_Key, 0x24, 7);
-  addKey("VOL-", VolumeDown_Key, 0x64, 7);
-  addKey("MUTE", Mute_Key, 0x14, 7);
-  addKey("POWER", Power_Key, 0x54, 7);
-  addKey("SLEEP", Sleep_Key, 0x03, 7);
-  addKey("1", One_Key, 0x00, 7);
-  addKey("2", Two_Key, 0x40, 7);
-  addKey("3", Three_Key, 0x20, 7);
-  addKey("4", Four_Key, 0x60, 7);
-  addKey("5", Five_Key, 0x10, 7);
-  addKey("6", Six_Key, 0x50, 7);
-  addKey("7", Seven_Key, 0x30, 7);
-  addKey("8", Eight_Key, 0x70, 7);
-  addKey("9", Nine_Key, 0x08, 7);
-  addKey("0", Zero_Key, 0x48, 7);
-  addKey("ENTER", Enter_Key, 0x68, 7);
+  addSIRC12Key("1", One_Key, 0x0C, 0x00);
+  addSIRC12Key("2", Two_Key, 0x0C, 0x01);
+  addSIRC12Key("3", Three_Key, 0x0C, 0x02);
+  addSIRC12Key("4", Four_Key, 0x0C, 0x03);
+  addSIRC12Key("5", Five_Key, 0x0C, 0x04);
+  addSIRC12Key("6", Six_Key, 0x0C, 0x05);
+  addSIRC12Key("7", Seven_Key, 0x0C, 0x06);
+  addSIRC12Key("8", Eight_Key, 0x0C, 0x07);
+  addSIRC12Key("9", Nine_Key, 0x0C, 0x08);
+  addSIRC12Key("0", Zero_Key, 0x0C, 0x09);
+  addSIRC12Key("ENTER", Enter_Key, 0x0C, 0x0B);
+  addSIRC12Key("DIGITAL", Unmapped_Key, 0x0C, 0x0C);
+  addSIRC12Key("VIDEO3", Unmapped_Key, 0x0C, 0x0A);
+  addSIRC12Key("VIDEO4", Unmapped_Key, 0x0C, 0x0B);
+  addSIRC12Key("VOL+", VolumeUp_Key, 0x0C, 0x12);
+  addSIRC12Key("VOL-", VolumeDown_Key, 0x0C, 0x13);
+  addSIRC12Key("MUTE", Mute_Key, 0x0C, 0x14);
+  addSIRC12Key("POWER", Power_Key, 0x0C, 0x15);
+  addSIRC12Key("LD", Unmapped_Key, 0x0C, 0x19);
+  addSIRC12Key("TV", Unmapped_Key, 0x0C, 0x18);
+  addSIRC12Key("VIDEO2", Unmapped_Key, 0x0C, 0x1E);
+  addSIRC12Key("PHONO", Unmapped_Key, 0x0C, 0x20);
+  addSIRC12Key("TUNER", Unmapped_Key, 0x0C, 0x21);
+  addSIRC12Key("VIDEO1", Unmapped_Key, 0x0C, 0x22);
+  addSIRC12Key("TAPE", Unmapped_Key, 0x0C, 0x23);
+  addSIRC12Key("CD", Unmapped_Key, 0x0C, 0x25);
+  addSIRC12Key("DAT", Unmapped_Key, 0x0C, 0x46);
+  addSIRC12Key("SLEEP", Sleep_Key, 0x0C, 0x60);
+  addSIRC12Key("MD", Unmapped_Key, 0x0C, 0x69);
+  addSIRC12Key("TV2", Unmapped_Key, 0x0C, 0x6A);
+  addSIRC12Key("5.1CH", Unmapped_Key, 0x0C, 0x72);
+  addSIRC12Key("DVD", Unmapped_Key, 0x0C, 0x7D);
 }
 
 
+// These taken from LIRC config file "RM-AV2100T".
 SonyAmp2::SonyAmp2(
   QObject *guiObject,
   unsigned int index)
@@ -355,286 +240,151 @@ SonyAmp2::SonyAmp2(
       Sony_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 600,
-    1200, 600,
-    44737, true);
+  threadableProtocol = new SIRCProtocol(guiObject, index);
 
-  threadableProtocol = np;
+  addSIRC12Key("up", Up_Key, 0x0C, 0x78);
+  addSIRC12Key("down", Down_Key, 0x0C, 0x79);
+  addSIRC12Key("left", Left_Key, 0x0C, 0x7A);
+  addSIRC12Key("right", Right_Key, 0x0C, 0x7B);
 
-  np->setHeaderPair(2400, 600);
+  addSIRC12Key("program_+", ChannelUp_Key, 0x0D, 0x10);
+  addSIRC12Key("program_-", ChannelDown_Key, 0x0D, 0x11);
+  addSIRC12Key("shift", Unmapped_Key, 0x0D, 0x55);
 
-//  np->setMinimumRepetitions(2);
+  addSIRC12Key("1", One_Key, 0x10, 0x00);
+  addSIRC12Key("2", Two_Key, 0x10, 0x01);
+  addSIRC12Key("3", Three_Key, 0x10, 0x02);
+  addSIRC12Key("4", Four_Key, 0x10, 0x03);
+  addSIRC12Key("5", Five_Key, 0x10, 0x04);
+  addSIRC12Key("6", Six_Key, 0x10, 0x05);
+  addSIRC12Key("7", Seven_Key, 0x10, 0x06);
+  addSIRC12Key("8", Eight_Key, 0x10, 0x07);
+  addSIRC12Key("9", Nine_Key, 0x10, 0x08);
+  addSIRC12Key("0", Zero_Key, 0x10, 0x09);
+  addSIRC12Key("enter", Enter_Key, 0x10, 0x0C);
+  addSIRC12Key("vol_+", VolumeUp_Key, 0x10, 0x12);
+  addSIRC12Key("vol_-", VolumeDown_Key, 0x10, 0x13);
+  addSIRC12Key("mute", Mute_Key, 0x10, 0x14);
+  addSIRC12Key("power", Power_Key, 0x10, 0x15);
+  addSIRC12Key("aux/vdp", Unmapped_Key, 0x10, 0x1D);
+  addSIRC12Key("video2", Unmapped_Key, 0x10, 0x1E);
+  addSIRC12Key("phono", Unmapped_Key, 0x10, 0x20);
+  addSIRC12Key("tuner", Unmapped_Key, 0x10, 0x21);
+  addSIRC12Key("video1", Unmapped_Key, 0x10, 0x22);
+  addSIRC12Key("tape", Unmapped_Key, 0x10, 0x23);
+  addSIRC12Key("cd", Unmapped_Key, 0x10, 0x25);
+  addSIRC12Key("power_on", PowerOn_Key, 0x10, 0x2E);
+  addSIRC12Key("video3", Unmapped_Key, 0x10, 0x42);
+  addSIRC12Key("tv", Unmapped_Key, 0x10, 0x6A);
+  addSIRC12Key("dvd", Unmapped_Key, 0x10, 0x7D);
 
-  addKey("power_on", Unmapped_Key, 0x741, 12);
-  addKey("power", Power_Key, 0xA81, 12);
-  addKey("up", Up_Key, 0x1E6, 12);
-  addKey("down", Down_Key, 0x9E6, 12);
-  addKey("left", Left_Key, 0x5E6, 12);
-  addKey("right", Right_Key, 0xDE6, 12);
-  addKey("shift", Unmapped_Key, 0xCD6, 12);
-  addKey("program_+", ChannelUp_Key, 0x096, 12);
-  addKey("program_-", ChannelDown_Key, 0x896, 12);
-  addKey("vol_+", VolumeUp_Key, 0x481, 12);
-  addKey("vol_-", VolumeDown_Key, 0xC81, 12);
-  addKey("mute", Mute_Key, 0x281, 12);
-  addKey("1", One_Key, 0x001, 12);
-  addKey("2", Two_Key, 0x801, 12);
-  addKey("3", Three_Key, 0x401, 12);
-  addKey("4", Four_Key, 0xC01, 12);
-  addKey("5", Five_Key, 0x201, 12);
-  addKey("6", Six_Key, 0xA01, 12);
-  addKey("7", Seven_Key, 0x601, 12);
-  addKey("8", Eight_Key, 0xE01, 12);
-  addKey("9", Nine_Key, 0x101, 12);
-  addKey("0", Zero_Key, 0x901, 12);
-  addKey("enter", Enter_Key, 0x301, 12);
-  addKey("video1", Unmapped_Key, 0x441, 12);
-  addKey("video2", Unmapped_Key, 0x781, 12);
-  addKey("video3", Unmapped_Key, 0x421, 12);
-  addKey("aux/vdp", Unmapped_Key, 0xB81, 12);
-  addKey("tuner", Unmapped_Key, 0x841, 12);
-  addKey("dvd", Unmapped_Key, 0xBE1, 12);
-  addKey("tv", Unmapped_Key, 0x561, 12);
-  addKey("cd", Unmapped_Key, 0xA41, 12);
-  addKey("tape", Unmapped_Key, 0xC41, 12);
-  addKey("phono", Unmapped_Key, 0x041, 12);
-  addKey("md/dat", Unmapped_Key, 0x4B08, 15); // note, longer command
+  addSIRC15Key("md/dat", Unmapped_Key, 0x10, 0x69);
 }
 
 
-SonyCD1::SonyCD1(
+SonyAudio1::SonyAudio1(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "CD Player Keyset 1",
+      "Audio Keyset 1",
       Sony_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 600,
-    1200, 600,
-    45000, true);
+  threadableProtocol = new SIRCProtocol(guiObject, index);
 
-  threadableProtocol = np;
+  addSIRC12Key("tv_video", Input_Key, 0x01, 0x25);
 
-  np->setHeaderPair(2400, 600);
+  addSIRC12Key("DSG", Unmapped_Key, 0x0C, 0x31);
 
-  addKey("DSG", Unmapped_Key, 0x8C6, 12);
-  addKey("DISPLAY", Info_Key, 0xD21, 12);
-  addKey("ON-OFF", Power_Key, 0xA81, 12);
-  addKey("CD", Unmapped_Key, 0x4D1, 12);
-  addKey("TUNER-BAND", Unmapped_Key, 0xF16, 12);
-  addKey("TAPE", Unmapped_Key, 0x2CE, 12);
-  addKey("DIR_MODE", Unmapped_Key, 0x28E, 12);
-  addKey("PLAY_MODE", Unmapped_Key, 0x371, 12);
-  addKey("REC", Record_Key, 0x78E, 12);
-  addKey("CD_REPEAT", Unmapped_Key, 0x351, 12);
-  addKey("STEREO-MONO", Unmapped_Key, 0x856, 12);
-  addKey("TUNING_MODE", Unmapped_Key, 0xE96, 12);
-  addKey("MEMORY", Unmapped_Key, 0x716, 12);
-  addKey("TIMER_SET", Unmapped_Key, 0xA61, 12);
-  addKey("TIMER_SELECT", Unmapped_Key, 0x461, 12); // also "clock_select"
-  addKey("SLEEP", Sleep_Key, 0x061, 12);
-  addKey("VOL+", VolumeUp_Key, 0x481, 12);
-  addKey("VOL-", VolumeDown_Key, 0xC81, 12);
-  addKey("md", Unmapped_Key, 0x961, 12);
-  addKey("tuner", Unmapped_Key, 0xF01, 12);
-  addKey("game", Unmapped_Key, 0x3E1, 12);
-  addKey("cd", Unmapped_Key, 0xA41, 12);
-  addKey("dimmer", Unmapped_Key, 0xB21, 12);
-  addKey("karaoke_mpx", Unmapped_Key, 0xFA1, 12);
-  addKey("effect_on_off", Unmapped_Key, 0xF81, 12);
-  addKey("display", Unmapped_Key, 0xD21, 12);
-  addKey("tv_video", Input_Key, 0xA50, 12);
+  addSIRC12Key("MEMORY", Program_Key, 0x0D, 0x0E);
+  addSIRC12Key("TUNER-BAND", TunerBand_Key, 0x0D, 0x0F);
+  addSIRC12Key("TUNING_MODE", Unmapped_Key, 0x0D, 0x17);
+  addSIRC12Key("STEREO-MONO", Audio_Key, 0x0D, 0x21);
 
-  addKey("game_mixing", Unmapped_Key, 0x6609, 15);
-  addKey("spectrum", Unmapped_Key, 0x1609, 15);
-  addKey("cinema_effect", Unmapped_Key, 0x0109, 15);
-  addKey("surround_speaker_mode", Surround_Key, 0x7D09, 15);
-  addKey("music_eq", Unmapped_Key, 0x0309, 15);
-  addKey("movie_eq", Unmapped_Key, 0x4309, 15);
-  addKey("game_eq", Unmapped_Key, 0x2309, 15);
-  addKey("p_file", Unmapped_Key, 0x4E09, 15);
+  addSIRC12Key("DIR_MODE", Unmapped_Key, 0x0E, 0x14);
+  addSIRC12Key("REC", Record_Key, 0x0E, 0x1E);
+  addSIRC12Key("TAPE", Unmapped_Key, 0x0E, 0x34);
 
-  addKey("KEY_PAUSE", Pause_Key, 0x9CB9C, 20);
-  addKey("KEY_STOP", Stop_Key, 0x1CB9C, 20);
-  addKey("KEY_PREV_SONG", Previous_Key, 0x0CB9C, 20);
-  addKey("KEY_NEXT_SONG", Next_Key, 0x8CB9C, 20);
-  addKey("KEY_PREV", Rewind_Key, 0xCCB9C, 20);
-  addKey("KEY_NEXT", FastForward_Key, 0x2CB9C, 20);
-  addKey("KEY_ENTER", Enter_Key, 0x30B9C, 20);
-  addKey("1", One_Key, 0x00B9C, 20);
-  addKey("2", Two_Key, 0x80B9C, 20);
-  addKey("3", Three_Key, 0x40B9C, 20);
-  addKey("4", Four_Key, 0xC0B9C, 20);
-  addKey("5", Five_Key, 0x20B9C, 20);
-  addKey("6", Six_Key, 0xA0B9C, 20);
-  addKey("7", Seven_Key, 0x60B9C, 20);
-  addKey("8", Eight_Key, 0xE0B9C, 20);
-  addKey("9", Nine_Key, 0x10B9C, 20);
-  addKey("0", Zero_Key, 0x90B9C, 20);
-  addKey("gt_10", DoubleDigit_Key, 0xB0B9C, 20);
-  addKey("special_menu", Menu_Key, 0xCAB8C, 20);
-  addKey("clear", Clear_Key, 0xF0B9C, 20);
-  addKey("repeat", Unmapped_Key, 0x34B9C, 20);
-  addKey("d_skip", Unmapped_Key, 0x7CB9C, 20);
-  addKey("on_screen", Unmapped_Key, 0xAAB8C, 20);
-  addKey("prev_r", Unmapped_Key, 0x6CB8C, 20);
-  addKey("next_r", Unmapped_Key, 0xECB8C, 20);
-  addKey("return", Exit_Key, 0x70B8C, 20);
-  addKey("album+", Unmapped_Key, 0xF6B8C, 20);
-  addKey("album-", Unmapped_Key, 0x76B8C, 20);
-  addKey("sharp", Unmapped_Key, 0xD6B8C, 20);
-  addKey("flat", Unmapped_Key, 0x36B8C, 20);
-  addKey("up", Up_Key, 0x1EB9C, 20);
-  addKey("down", Down_Key, 0x9EB9C, 20);
-  addKey("left", Left_Key, 0x5EB9C, 20);
-  addKey("right", Right_Key, 0xDEB9C, 20);
+  addSIRC12Key("tuner", Unmapped_Key, 0x10, 0x0F); // "Tune Up"
+  addSIRC12Key("VOL+", VolumeUp_Key, 0x10, 0x12);
+  addSIRC12Key("VOL-", VolumeDown_Key, 0x10, 0x13);
+  addSIRC12Key("ON-OFF", Power_Key, 0x10, 0x15);
+  addSIRC12Key("effect_on_off", Unmapped_Key, 0x10, 0x1F);
+  addSIRC12Key("cd", Unmapped_Key, 0x10, 0x25);
+  addSIRC12Key("DISPLAY", Info_Key, 0x10, 0x4B);
+  addSIRC12Key("dimmer", Unmapped_Key, 0x10, 0x4D);
+  addSIRC12Key("karaoke_mpx", Unmapped_Key, 0x10, 0x5F);
+  addSIRC12Key("SLEEP", Sleep_Key, 0x10, 0x60);
+  addSIRC12Key("TIMER_SELECT", Unmapped_Key, 0x10, 0x62); // "clock_select"
+  addSIRC12Key("TIMER_SET", Timer_Key, 0x10, 0x65);
+  addSIRC12Key("md", Unmapped_Key, 0x10, 0x69);
+  addSIRC12Key("game", Unmapped_Key, 0x10, 0x7C);
+
+  addSIRC12Key("CD_REPEAT", Repeat_Key, 0x11, 0x2C);
+  addSIRC12Key("CD", Unmapped_Key, 0x11, 0x32);
+  addSIRC12Key("PLAY_MODE", Unmapped_Key, 0x11, 0x6C);
+
+  addSIRC15Key("cinema_effect", Unmapped_Key, 0x90, 0x08);
+  addSIRC15Key("game_mixing", Unmapped_Key, 0x90, 0x33);
+  addSIRC15Key("spectrum", Unmapped_Key, 0x90, 0x34);
+  addSIRC15Key("p_file", Unmapped_Key, 0x90, 0x39);
+  addSIRC15Key("surround_speaker_mode", Surround_Key, 0x90, 0x5F);
+  addSIRC15Key("music_eq", Unmapped_Key, 0x90, 0x60);
+  addSIRC15Key("movie_eq", Unmapped_Key, 0x90, 0x61);
+  addSIRC15Key("game_eq", Unmapped_Key, 0x90, 0x62);
+
+  addSIRC20Key("return", Exit_Key, 0x31, 0x1A, 0x0E);
+  addSIRC20Key("prev_r", Unmapped_Key, 0x31, 0x1A, 0x36);
+  addSIRC20Key("next_r", Unmapped_Key, 0x31, 0x1A, 0x37);
+  addSIRC20Key("special_menu", Menu_Key, 0x31, 0x1A, 0x53);
+  addSIRC20Key("on_screen", Unmapped_Key, 0x31, 0x1A, 0x55);
+  addSIRC20Key("sharp", Unmapped_Key, 0x31, 0x1A, 0x6B);
+  addSIRC20Key("flat", Unmapped_Key, 0x31, 0x1A, 0x6C);
+  addSIRC20Key("album-", Unmapped_Key, 0x31, 0x1A, 0x6E);
+  addSIRC20Key("album+", Unmapped_Key, 0x31, 0x1A, 0x6F);
+
+  addSIRC20Key("1", One_Key, 0x39, 0x1A, 0x00);
+  addSIRC20Key("2", Two_Key, 0x39, 0x1A, 0x01);
+  addSIRC20Key("3", Three_Key, 0x39, 0x1A, 0x02);
+  addSIRC20Key("4", Four_Key, 0x39, 0x1A, 0x03);
+  addSIRC20Key("5", Five_Key, 0x39, 0x1A, 0x04);
+  addSIRC20Key("6", Six_Key, 0x39, 0x1A, 0x05);
+  addSIRC20Key("7", Seven_Key, 0x39, 0x1A, 0x06);
+  addSIRC20Key("8", Eight_Key, 0x39, 0x1A, 0x07);
+  addSIRC20Key("9", Nine_Key, 0x39, 0x1A, 0x08);
+  addSIRC20Key("0", Zero_Key, 0x39, 0x1A, 0x09);
+  addSIRC20Key("KEY_ENTER", Enter_Key, 0x39, 0x1A, 0x0C);
+  addSIRC20Key("gt_10", DoubleDigit_Key, 0x39, 0x1A, 0x0D);
+  addSIRC20Key("clear", Clear_Key, 0x39, 0x1A, 0x0F);
+  addSIRC20Key("repeat", Repeat_Key, 0x39, 0x1A, 0x2C);
+  addSIRC20Key("KEY_PREV_SONG", Previous_Key, 0x39, 0x1A, 0x30);
+  addSIRC20Key("KEY_NEXT_SONG", Next_Key, 0x39, 0x1A, 0x31);
+  addSIRC20Key("KEY_PREV", Rewind_Key, 0x39, 0x1A, 0x33); // "Rewind"
+  addSIRC20Key("KEY_NEXT", FastForward_Key, 0x39, 0x1A, 0x34); // "Fast Forward"
+  addSIRC20Key("KEY_STOP", Stop_Key, 0x39, 0x1A, 0x38);
+  addSIRC20Key("KEY_PAUSE", Pause_Key, 0x39, 0x1A, 0x39);
+  addSIRC20Key("d_skip", DiscSelect_Key, 0x39, 0x1A, 0x3E);
+  addSIRC20Key("up", Up_Key, 0x39, 0x1A, 0x78);
+  addSIRC20Key("down", Down_Key, 0x39, 0x1A, 0x79);
+  addSIRC20Key("left", Left_Key, 0x39, 0x1A, 0x7A);
+  addSIRC20Key("right", Right_Key, 0x39, 0x1A, 0x7B);
+  addSIRC20Key("Select", Select_Key, 0x39, 0x1A, 0x7C);
 }
 
 
-SonyCD1a::SonyCD1a(
+SonyAudio1a::SonyAudio1a(
   QObject *guiObject,
   unsigned int index)
-  : SonyCD1(guiObject, index)
+  : SonyAudio1(guiObject, index)
 {
-  setKeysetName("CD Keyset 1a");
+  setKeysetName("Audio Keyset 1a");
 
-  addKey("tape", Unmapped_Key, 0xC41, 12);
+  addSIRC12Key("tape", Unmapped_Key, 0x10, 0x23);
 
-  addKey("select", Select_Key, 0x4CB9C, 20);
-  addKey("play", Play_Key, 0x4CB9C, 20);
-  addKey("play_mode", Unmapped_Key, 0x64B9C, 20);
-  addKey("enter", Enter_Key, 0x3EB9C, 20);
-}
-
-
-SonyCD2::SonyCD2(
-  QObject *guiObject,
-  unsigned int index)
-  : PIRKeysetMetaData(
-      "CD Keyset 2",
-      Sony_Make,
-      index)
-{
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    612, 588,
-    1210, 588,
-    45604, true);
-
-  threadableProtocol = np;
-
-  np->setHeaderPair(2412, 588);
-
-  setPostData(0x7, 4);
-
-  addKey("PLAY", Play_Key, 0x59, 7);
-  addKey("STOP", Stop_Key, 0x71, 7);
-  addKey("PAUSE", Pause_Key, 0x31, 7);
-  addKey("NEXT", Next_Key, 0x39, 7);
-  addKey("PREV", Previous_Key, 0x79, 7);
-  addKey("FAST_FORWARD", FastForward_Key, 0x69, 7);
-  addKey("FAST_BACKWARD", Rewind_Key, 0x19, 7);
-  addKey("FORWARD", StepForward_Key, 0x11, 7);
-  addKey("BACKWARD", StepBack_Key, 0x51, 7);
-  addKey("VOLUME_UP", VolumeUp_Key, 0x5B, 7);
-  addKey("VOLUME_DOWN", VolumeDown_Key, 0x1B, 7);
-  addKey("RED", Red_Key, 0x03, 7);
-  addKey("GREEN", Green_Key, 0x29, 7);
-  addKey("YELLOW", Yellow_Key, 0x23, 7);
-  addKey("BLUE", Blue_Key, 0x43, 7);
-  addKey("QUIT", Exit_Key, 0x4B, 7);
-  addKey("UP", Up_Key, 0x07, 7);
-  addKey("DOWN", Down_Key, 0x02, 7);
-  addKey("RIGHT", Right_Key, 0x75, 7);
-  addKey("LEFT", Left_Key, 0x55, 7);
-  addKey("OK", Enter_Key, 0x0D, 7);
-  addKey("MENU1", Menu_Key, 0x0D, 7); // This might be wrong
-  addKey("MENU2", Unmapped_Key, 0x65, 7);
-  addKey("1", One_Key, 0x7F, 7);
-  addKey("TWO", Two_Key, 0x3F, 7);
-  addKey("3", Three_Key, 0x5F, 7);
-  addKey("4", Four_Key, 0x1F, 7);
-  addKey("5", Five_Key, 0x6F, 7);
-  addKey("6", Six_Key, 0x2F, 7);
-  addKey("7", Seven_Key, 0x4F, 7);
-  addKey("8", Eight_Key, 0x0F, 7);
-  addKey("9", Nine_Key, 0x77, 7);
-  addKey("10", Unmapped_Key, 0x7D, 7);
-  addKey("11", Unmapped_Key, 0x3D, 7);
-  addKey("12", Unmapped_Key, 0x5D, 7);
-  addKey("13", Unmapped_Key, 0x1D, 7);
-  addKey("14", Unmapped_Key, 0x6D, 7);
-  addKey("15", Unmapped_Key, 0x2D, 7);
-  addKey("16", Unmapped_Key, 0x4D, 7);
-  addKey("17", Unmapped_Key, 0x7B, 7);
-  addKey("18", Unmapped_Key, 0x3B, 7);
-  addKey("19", Unmapped_Key, 0x0B, 7);
-  addKey("20", Unmapped_Key, 0x35, 7);
-  addKey("ZERO", Zero_Key, 0x0D, 7);
-  addKey("CHECK", Unmapped_Key, 0x27, 7);
-  addKey("CLEAR", Clear_Key, 0x07, 7);
-}
-
-
-SonyCD3::SonyCD3(
-  QObject *guiObject,
-  unsigned int index)
-  : PIRKeysetMetaData(
-      "CD Keyset 3",
-      Sony_Make,
-      index)
-{
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 600,
-    1200, 600,
-    44735, true);
-
-  threadableProtocol = np;
-
-  np->setHeaderPair(2400, 600);
-  np->setTrailerPulse(1200);
-
-//  np->setMinimumRepetitions(2);
-
-  setPostData(0x08, 5);
-
-  addKey("|<<", Previous_Key, 0x03, 6);
-  addKey(">>|", Next_Key, 0x23, 6);
-  addKey("<<", Rewind_Key, 0x33, 6);
-  addKey(">>", FastForward_Key, 0x0B, 6);
-  addKey("play", Play_Key, 0x13, 6);
-  addKey("stop", Stop_Key, 0x07, 6);
-  addKey("pause", Pause_Key, 0x27, 6);
-  addKey("power_on", Unmapped_Key, 0x1D, 6);
-  addKey("power", Power_Key, 0x2A, 6);
-  addKey("1", One_Key, 0x00, 6);
-  addKey("2", Two_Key, 0x20, 6);
-  addKey("3", Three_Key, 0x10, 6);
-  addKey("4", Four_Key, 0x30, 6);
-  addKey("5", Five_Key, 0x08, 6);
-  addKey("6", Six_Key, 0x28, 6);
-  addKey("7", Seven_Key, 0x18, 6);
-  addKey("8", Eight_Key, 0x38, 6);
-  addKey("9", Nine_Key, 0x04, 6);
-  addKey("0", Zero_Key, 0x01, 6);
-  addKey("+10", DoubleDigit_Key, 0x39, 6);
-  addKey("enter", Enter_Key, 0x34, 6);
-  addKey("clear", Clear_Key, 0x3C, 6);
-  addKey("d_skip", Unmapped_Key, 0x1F, 6);
-  addKey("repeat", Unmapped_Key, 0x2D, 6);
-  addKey("continue", Unmapped_Key, 0x2E, 6);
-  addKey("shuffle", Unmapped_Key, 0x2B, 6);
-  addKey("program", Program_Key, 0x3E, 6);
+//  addSIRC20Key("select", Select_Key, 0x39, 0x1A, 0x32); // Doesn't make sense
+  addSIRC20Key("play", Play_Key, 0x39, 0x1A, 0x32);
+  addSIRC20Key("play_mode", Unmapped_Key, 0x39, 0x1A, 0x26);
+  addSIRC20Key("enter", Select_Key, 0x39, 0x1A, 0x7C);
 }
 
 
@@ -646,48 +396,38 @@ SonyDAT1::SonyDAT1(
       Sony_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 600,
-    1200, 600,
-    25000, false);
-
-  threadableProtocol = np;
-
-  np->setHeaderPair(2400, 600);
-
-//  np->setMinimumRepetitions(2);
-
-  np->setCarrierFrequency(40000);
+  threadableProtocol = new SIRCProtocol(guiObject, index);
 
   setPostData(0x07, 5);
 
-  addKey("1", One_Key, 0x00, 7);
-  addKey("2", Two_Key, 0x40, 7);
-  addKey("3", Three_Key, 0x20, 7);
-  addKey("4", Four_Key, 0x60, 7);
-  addKey("5", Five_Key, 0x10, 7);
-  addKey("6", Six_Key, 0x50, 7);
-  addKey("7", Seven_Key, 0x30, 7);
-  addKey("8", Eight_Key, 0x70, 7);
-  addKey("9", Nine_Key, 0x08, 7);
-  addKey("0", Zero_Key, 0x14, 7);
-  addKey("PLAY", Play_Key, 0x2F, 7);
-  addKey("PAUSE", Pause_Key, 0x4E, 7);
-  addKey("STOP", Stop_Key, 0x0E, 7);
-  addKey("<<", Rewind_Key, 0x6E, 7);
-  addKey(">>", FastForward_Key, 0x1E, 7);
-  addKey("|<<", Previous_Key, 0x0B, 7);
-  addKey(">>|", Next_Key, 0x4B, 7);
-  addKey("RECORD", Record_Key, 0x3E, 7);
-  addKey("VOL+", VolumeUp_Key, 0x24, 7);
-  addKey("VOL-", VolumeDown_Key, 0x64, 7);
-  addKey("POWER_ON", Unmapped_Key, 0x3A, 7);
-  addKey("POWER_OFF", Unmapped_Key, 0x7A, 7);
-  addKey("MUTE", Mute_Key, 0x14, 7);
-  addKey("POWER", Power_Key, 0x54, 7);
-  addKey("ENTER", Enter_Key, 0x68, 7);
+  addSIRC12Key("1", One_Key, 0x1C, 0x00);
+  addSIRC12Key("2", Two_Key, 0x1C, 0x01);
+  addSIRC12Key("3", Three_Key, 0x1C, 0x02);
+  addSIRC12Key("4", Four_Key, 0x1C, 0x03); 
+  addSIRC12Key("5", Five_Key, 0x1C, 0x04);
+  addSIRC12Key("6", Six_Key, 0x1C, 0x05);
+  addSIRC12Key("7", Seven_Key, 0x1C, 0x06);
+  addSIRC12Key("8", Eight_Key, 0x1C, 0x07);
+  addSIRC12Key("9", Nine_Key, 0x1C, 0x08);
+  addSIRC12Key("0", Zero_Key, 0x1C, 0x14);
+  addSIRC12Key("PLAY", Play_Key, 0x1C, 0x3A);
+  addSIRC12Key("PAUSE", Pause_Key, 0x1C, 0x39);
+  addSIRC12Key("STOP", Stop_Key, 0x1C, 0x38);
+  addSIRC12Key("<<", Rewind_Key, 0x1C, 0x3B);
+  addSIRC12Key(">>", FastForward_Key, 0x1C, 0x3C);
+  addSIRC12Key("|<<", Previous_Key, 0x1C, 0x68);
+  addSIRC12Key(">>|", Next_Key, 0x1C, 0x69);
+  addSIRC12Key("RECORD", Record_Key, 0x1C, 0x3E);
+  addSIRC12Key("Open/Close", Eject_Key, 0x1C, 0x20);
+
+  // The following commands are dubious:
+  addSIRC12Key("VOL+", VolumeUp_Key, 0x1C, 0x12);
+  addSIRC12Key("VOL-", VolumeDown_Key, 0x1C, 0x13);
+  addSIRC12Key("POWER_ON", PowerOn_Key, 0x1C, 0x2E);
+  addSIRC12Key("POWER_OFF", PowerOff_Key, 0x1C, 0x2F);
+  addSIRC12Key("MUTE", Mute_Key, 0x1C, 0x14); // Makes no sense...
+  addSIRC12Key("POWER", Power_Key, 0x1C, 0x15);
+  addSIRC12Key("ENTER", Enter_Key, 0x1C, 0x0B);
 }
 
 
@@ -699,102 +439,96 @@ SonyDVD1::SonyDVD1(
       Sony_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 600,
-    1200, 600,
-    45000, true);
+  threadableProtocol = new SIRCProtocol(guiObject, index);
 
-  threadableProtocol = np;
+  addSIRC20Key("1", One_Key, 0x49, 0x1A, 0x00);
+  addSIRC20Key("2", Two_Key, 0x49, 0x1A, 0x01);
+  addSIRC20Key("3", Three_Key, 0x49, 0x1A, 0x02);
+  addSIRC20Key("4", Four_Key, 0x49, 0x1A, 0x03);
+  addSIRC20Key("5", Five_Key, 0x49, 0x1A, 0x04);
+  addSIRC20Key("6", Six_Key, 0x49, 0x1A, 0x05);
+  addSIRC20Key("7", Seven_Key, 0x49, 0x1A, 0x06);
+  addSIRC20Key("8", Eight_Key, 0x49, 0x1A, 0x07);
+  addSIRC20Key("9", Nine_Key, 0x49, 0x1A, 0x08);
+  addSIRC20Key("0", Zero_Key, 0x49, 0x1A, 0x09);
+  addSIRC20Key("select", Select_Key, 0x49, 0x1A, 0x0B); //"Enter"
+  addSIRC20Key("Disc Explorer", Unmapped_Key, 0x49, 0x1A, 0x0C);
+  addSIRC20Key("Ent", Enter_Key, 0x49, 0x1A, 0x0D); // "Set"
+  addSIRC20Key("return", Exit_Key, 0x49, 0x1A, 0x0E);
+  addSIRC20Key("CLEAR", Clear_Key, 0x49, 0x1A, 0x0F);
+  addSIRC20Key("-/--", DoubleDigit_Key, 0x49, 0x1A, 0x0F);
 
-  np->setHeaderPair(2400, 600);
+  addSIRC20Key("Input", Input_Key, 0x49, 0x1A, 0x12);
+  addSIRC20Key("prog+", ChannelUp_Key, 0x49, 0x1A, 0x13);
+  addSIRC20Key("prog-", ChannelDown_Key, 0x49, 0x1A, 0x14);
+  addSIRC20Key("power", Power_Key, 0x49, 0x1A, 0x15);
+  addSIRC20Key("open/close", Eject_Key, 0x49, 0x1A, 0x16);
+  addSIRC20Key("rec", Record_Key, 0x49, 0x1A, 0x19);
+  addSIRC20Key("top_menu", DiscTitle_Key, 0x49, 0x1A, 0x1A); // "Title"
+  addSIRC20Key("dvd_menu", DiscMenu_Key, 0x49, 0x1A, 0x1B);
+  addSIRC20Key("program", Program_Key, 0x49, 0x1A, 0x1F);
+  addSIRC20Key("INDEX-", Unmapped_Key, 0x49, 0x1A, 0x26);
+  addSIRC20Key("INDEX+", Unmapped_Key, 0x49, 0x1A, 0x27);
+  addSIRC20Key("TIME", Unmapped_Key, 0x49, 0x1A, 0x28);
+  addSIRC20Key("JOG_STOP", Unmapped_Key, 0x49, 0x1A, 0x29); // "Pause"
+  addSIRC20Key("a-b", RepeatAB_Key, 0x49, 0x1A, 0x2A);
+  addSIRC20Key("repeat", Repeat_Key, 0x49, 0x1A, 0x2C);
+  addSIRC20Key("POWER_ON", PowerOn_Key, 0x49, 0x1A, 0x2E);
+  addSIRC20Key("POWER_OFF", PowerOff_Key, 0x49, 0x1A, 0x2F);
 
-//  np->setMinimumRepetitions(2);
+  addSIRC20Key("prev", Previous_Key, 0x49, 0x1A, 0x30);
+  addSIRC20Key("next", Next_Key, 0x49, 0x1A, 0x31);
+  addSIRC20Key("play", Play_Key, 0x49, 0x1A, 0x32);
+  addSIRC20Key("rew", Rewind_Key, 0x49, 0x1A, 0x33);
+  addSIRC20Key("ffwd", FastForward_Key, 0x49, 0x1A, 0x34);
+  addSIRC20Key("shuffle", Random_Key, 0x49, 0x1A, 0x35);
+  addSIRC20Key("X2_BACK", Unmapped_Key, 0x49, 0x1A, 0x36);
+  addSIRC20Key("X2_FORWARD", Unmapped_Key, 0x49, 0x1A, 0x37);
+  addSIRC20Key("stop", Stop_Key, 0x49, 0x1A, 0x38);
+  addSIRC20Key("pause", Pause_Key, 0x49, 0x1A, 0x39);
+  addSIRC20Key("STEP_BACK", StepBack_Key, 0x49, 0x1A, 0x3A); // "Jog Rev"
+  addSIRC20Key("STEP_FORWARD", StepForward_Key, 0x49, 0x1A, 0x3B); // "Jog Fwd"
+  addSIRC20Key("RecStop", RecordStop_Key, 0x49, 0x1A, 0x3D);
+  addSIRC20Key("RecPause", RecordPause_Key, 0x49, 0x1A, 0x3E);
 
-//  np->setCarrierFrequency(40000);
+  addSIRC20Key("DNR", Unmapped_Key, 0x49, 0x1A, 0x48);
+  addSIRC20Key("SEARCH_MODE", Unmapped_Key, 0x49, 0x1A, 0x4B);
+  addSIRC20Key("Picture_Navi", Unmapped_Key, 0x49, 0x1A, 0x50);
+  addSIRC20Key("TV_DVD", Unmapped_Key, 0x49, 0x1A, 0x51);
+  addSIRC20Key("menu", Menu_Key, 0x49, 0x1A, 0x53); // "setup"
+  addSIRC20Key("Display", Info_Key, 0x49, 0x1A, 0x54);
+  addSIRC20Key("surround", Surround_Key, 0x49, 0x1A, 0x5A);
+  addSIRC20Key("PICTUREMODE", PictureMode_Key, 0x49, 0x1A, 0x5B);
+  addSIRC20Key("Replay", Replay_Key, 0x49, 0x1A, 0x5C);
+  addSIRC20Key("SA-CD_MULTI/2CH", Unmapped_Key, 0x49, 0x1A, 0x5E);
+  addSIRC20Key("SA-CD/CD", Unmapped_Key, 0x49, 0x1A, 0x5F);
 
-  addKey("power", Power_Key, 0xA8B92, 20);
-  addKey("Display", Info_Key, 0x2AB92, 20);
-  addKey("prev", Previous_Key, 0x0CB92, 20);
-  addKey("next", Next_Key, 0x8CB92, 20);
-  addKey("Replay", Replay_Key, 0x3AB92, 20);
-  addKey("Advance", Advance_Key, 0x28B46, 20);
-  addKey("ffwd", FastForward_Key, 0x2CB92, 20);
-  addKey("rew", Rewind_Key, 0xCCB92, 20);
-  addKey("play", Play_Key, 0x4CB92, 20);
-  addKey("pause", Pause_Key, 0x9CB92, 20);
-  addKey("stop", Stop_Key, 0x1CB92, 20);
-  addKey("Favorites", Unmapped_Key, 0x7AB46, 20);
-  addKey("Input", Input_Key, 0x48B92, 20);
-  addKey("Guide", Guide_Key, 0x68B46, 20);
-  addKey("return", Exit_Key, 0x70B92, 20);
-  addKey("Options", Unmapped_Key, 0xE8B46, 20);
-  addKey("menu", Menu_Key, 0xCAB92, 20); // "setup"
-  addKey("up", Up_Key, 0x9EB92, 20);
-  addKey("down", Down_Key, 0x5EB92, 20);
-  addKey("left", Left_Key, 0xDEB92, 20);
-  addKey("right", Right_Key, 0x3EB92, 20);
-  addKey("select", Select_Key, 0xD0B92, 20);
-  addKey("1", One_Key, 0x00B92, 20);
-  addKey("2", Two_Key, 0x80B92, 20);
-  addKey("3", Three_Key, 0x40B92, 20);
-  addKey("4", Four_Key, 0xC0B92, 20);
-  addKey("5", Five_Key, 0x20B92, 20);
-  addKey("6", Six_Key, 0xA0B92, 20);
-  addKey("7", Seven_Key, 0x60B92, 20);
-  addKey("8", Eight_Key, 0xE0B92, 20);
-  addKey("9", Nine_Key, 0x10B92, 20);
-  addKey("0", Zero_Key, 0x90B92, 20);
-  addKey("Ent", Enter_Key, 0xB0B92, 20);
-  addKey("Dot", Unmapped_Key, 0xB8B46, 20);
-  addKey("prog+", ChannelUp_Key, 0xC8B92, 20);
-  addKey("prog-", ChannelDown_Key, 0x28B92, 20);
-  addKey("rec", Record_Key, 0x98B92, 20);
-  addKey("RecPause", Unmapped_Key, 0x7CB92, 20);
-  addKey("RecStop", Unmapped_Key, 0xBCB92, 20);
-  addKey("top_menu", DiscTitle_Key, 0x58B92, 20); // "Title"
-  addKey("dvd_menu", DiscMenu_Key, 0xD8B92, 20);
-  addKey("F1", Unmapped_Key, 0x74B46, 20);
-  addKey("F2", Unmapped_Key, 0xF4B46, 20);
-  addKey("Red", Red_Key, 0xE6B46, 20);
-  addKey("Green", Green_Key, 0x16B46, 20);
-  addKey("Purple", Blue_Key, 0x66B46, 20);
-  addKey("Yellow", Yellow_Key, 0x96B46, 20);
-  addKey("Language", Language_Key, 0x26B92, 20);
-  addKey("subtitles", Captions_Key, 0xC6B92, 20); // "Subtitle_Change"
-  addKey("X2_BACK", Unmapped_Key, 0x6CB92, 20);
-  addKey("X2_FORWARD", Unmapped_Key, 0xECB92, 20);
-  addKey("SUBTITLE_ON_OFF", Unmapped_Key, 0x46B92, 20);
-  addKey("CLEAR", Clear_Key, 0xF0B92, 20);
-  addKey("SLOW_BACK", Unmapped_Key, 0x06B92, 20);
-  addKey("SLOW_FORWARD", Unmapped_Key, 0x86B92, 20);
-  addKey("STEP_BACK", StepBack_Key, 0x5CB92, 20);       // JOG-
-  addKey("STEP_FORWARD", StepForward_Key, 0xDCB92, 20); // JOG+
-  addKey("SEARCH_MODE", Unmapped_Key, 0xD2B92, 20);
-  addKey("TIME", Unmapped_Key, 0x14B92, 20);
-  addKey("DNR", Unmapped_Key, 0x12B92, 20);
-  addKey("TV_DVD", Unmapped_Key, 0x8AB92, 20);
-  addKey("surround", Surround_Key, 0x5AB92, 20);
-  addKey("open/close", Eject_Key, 0x68B92, 20);
-  addKey("a-b", Unmapped_Key, 0x54B92, 20);
-  addKey("shuffle", Unmapped_Key, 0xACB92, 20);
-  addKey("repeat", Unmapped_Key, 0x34B92, 20);
-  addKey("program", Program_Key, 0xF8B92, 20);
-  addKey("PICTUREMODE", Unmapped_Key, 0xDAB92, 20);
-  addKey("Picture_Navi", Unmapped_Key, 0x0AB92, 20);
-  addKey("DiscSkip", Unmapped_Key, 0x7CB46, 20);
-  addKey("SA-CD_MULTI/2CH", Unmapped_Key, 0x7AB92, 20);
-  addKey("SA-CD/CD", Unmapped_Key, 0xFAB92, 20);
-  addKey("ALBUM-MINUS", Unmapped_Key, 0x94B46, 20);
-  addKey("ALBUM-PLUS", Unmapped_Key, 0x54B46, 20);
-  addKey("ZOOM", Unmapped_Key, 0x9EB46, 20);
-  addKey("POWER_ON", Unmapped_Key, 0x74B92, 20);
-  addKey("POWER_OFF", Unmapped_Key, 0xF4B92, 20);
-  addKey("INDEX+", Unmapped_Key, 0xE4B92, 20);
-  addKey("INDEX-", Unmapped_Key, 0x64B92, 20);
-  addKey("ANGLE_CHANGE", Unmapped_Key, 0xA6B92, 20);
-  addKey("JOG_STOP", Unmapped_Key, 0x94B92, 20);
+  addSIRC20Key("SLOW_BACK", SlowMinus_Key, 0x49, 0x1A, 0x60);
+  addSIRC20Key("SLOW_FORWARD", SlowPlus_Key, 0x49, 0x1A, 0x61);
+  addSIRC20Key("SUBTITLE_ON_OFF", Captions_Key, 0x49, 0x1A, 0x62);
+  addSIRC20Key("Subtitle Change", Unmapped_Key, 0x49, 0x1A, 0x63);
+  addSIRC20Key("Language", Audio_Key, 0x49, 0x1A, 0x64); // "Audio"
+  addSIRC20Key("ANGLE_CHANGE", Angle_Key, 0x49, 0x1A, 0x65); // "Angle"
+  addSIRC20Key("up", Up_Key, 0x49, 0x1A, 0x79);
+  addSIRC20Key("down", Down_Key, 0x49, 0x1A, 0x7A);
+  addSIRC20Key("left", Left_Key, 0x49, 0x1A, 0x7B);
+  addSIRC20Key("right", Right_Key, 0x49, 0x1A, 0x7C);
+
+  addSIRC20Key("Advance", Advance_Key, 0x62, 0x1A, 0x14);
+  addSIRC20Key("Guide", Guide_Key, 0x62, 0x1A, 0x16);
+  addSIRC20Key("Options", Unmapped_Key, 0x62, 0x1A, 0x17); // "Tools"
+  addSIRC20Key("Dot", Unmapped_Key, 0x62, 0x1A, 0x1D);
+  addSIRC20Key("ALBUM-MINUS", Unmapped_Key, 0x62, 0x1A, 0x29);
+  addSIRC20Key("ALBUM-PLUS", Unmapped_Key, 0x62, 0x1A, 0x2A);
+  addSIRC20Key("F1", Unmapped_Key, 0x62, 0x1A, 0x2E); // "HDD"
+  addSIRC20Key("F2", Unmapped_Key, 0x62, 0x1A, 0x2F); // "DVD"
+  addSIRC20Key("DiscSkip", DiscSelect_Key, 0x62, 0x1A, 0x3E);
+  addSIRC20Key("Favorites", Favorites_Key, 0x62, 0x1A, 0x5E);
+  addSIRC20Key("Purple", Blue_Key, 0x62, 0x1A, 0x66);
+  addSIRC20Key("Red", Red_Key, 0x62, 0x1A, 0x67);
+  addSIRC20Key("Green", Green_Key, 0x62, 0x1A, 0x68);
+  addSIRC20Key("Yellow", Yellow_Key, 0x62, 0x1A, 0x69);
+  addSIRC20Key("ZOOM", Zoom_Key, 0x62, 0x1A, 0x79);
 }
 
 
@@ -805,10 +539,10 @@ SonyDVD1a::SonyDVD1a(
 {
   setKeysetName("DVD Keyset 1a");
 
-  addKey("STEP_BACK", StepBack_Key, 0x04B92, 20);
-  addKey("STEP_FORWARD", StepForward_Key, 0x84B92, 20);
-  addKey("SLOW_BACK", Unmapped_Key, 0x44B92, 20);
-  addKey("SLOW_FORWARD", Unmapped_Key, 0xC4B92, 20);
+  addSIRC20Key("STEP_BACK", StepBack_Key, 0x49, 0x1A, 0x20);
+  addSIRC20Key("STEP_FORWARD", StepForward_Key, 0x49, 0x1A, 0x21);
+  addSIRC20Key("SLOW_BACK", SlowMinus_Key, 0x49, 0x1A, 0x22);
+  addSIRC20Key("SLOW_FORWARD", SlowPlus_Key, 0x49, 0x1A, 0x23);
 }
 
 
@@ -819,8 +553,8 @@ SonyDVD1b::SonyDVD1b(
 {
   setKeysetName("DVD Keyset 1b");
 
-  addKey("SLOW-", Unmapped_Key, 0x4EB92, 20);
-  addKey("SLOW+", Unmapped_Key, 0xCEB92, 20);
+  addSIRC20Key("SLOW-", SlowMinus_Key, 0x49, 0x1A, 0x72);
+  addSIRC20Key("SLOW+", SlowPlus_Key, 0x49, 0x1A, 0x73);
 }
 
 
@@ -831,12 +565,12 @@ SonyDVD1c::SonyDVD1c(
 {
   setKeysetName("DVD Keyset 1c");
 
-  addKey("up", Up_Key, 0x9CB92, 20);
-  addKey("down", Down_Key, 0x1CB92, 20);
-  addKey("left", Left_Key, 0xCCB92, 20);
-  addKey("right", Right_Key, 0x2CB92, 20);
-  addKey("ok", Select_Key, 0x4CB92, 7);
-  addKey("enter", Enter_Key, 0xD0B92, 7);
+  addSIRC20Key("up", Up_Key, 0x49, 0x1A, 0x39);
+  addSIRC20Key("down", Down_Key, 0x49, 0x1A, 0x38);
+  addSIRC20Key("left", Left_Key, 0x49, 0x1A, 0x33);
+  addSIRC20Key("right", Right_Key, 0x49, 0x1A, 0x34);
+  addSIRC20Key("ok", Select_Key, 0x49, 0x1A, 0x32);
+  addSIRC20Key("enter", Enter_Key, 0x49, 0x1A, 0x0B);
 }
 
 
@@ -848,56 +582,52 @@ SonyVCR1::SonyVCR1(
       Sony_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    703, 517,
-    1301, 517,
-    45239, true);
+  threadableProtocol = new SIRCProtocol(guiObject, index);
 
-  threadableProtocol = np;
+  addSIRC12Key("VOL_UP", VolumeUp_Key, 0x01, 0x12);
+  addSIRC12Key("VOL_DOWN", VolumeDown_Key, 0x01, 0x13);
 
-  np->setHeaderPair(2499, 517);
-  np->setTrailerPulse(703);
+  addSIRC12Key("red", Red_Key, 0x03, 0x4C);
+  addSIRC12Key("green", Green_Key, 0x03, 0x4D);
+  addSIRC12Key("Yellow", Yellow_Key, 0x03, 0x4E);
+  addSIRC12Key("blue", Blue_Key, 0x03, 0x4F);
 
-//  np->setMinimumRepetitions(2);
+  addSIRC12Key("1", One_Key, 0x0B, 0x00);
+  addSIRC12Key("2", Two_Key, 0x0B, 0x01);
+  addSIRC12Key("3", Three_Key, 0x0B, 0x02);
+  addSIRC12Key("4", Four_Key, 0x0B, 0x03);
+  addSIRC12Key("5", Five_Key, 0x0B, 0x04);
+  addSIRC12Key("6", Six_Key, 0x0B, 0x05);
+  addSIRC12Key("7", Seven_Key, 0x0B, 0x06);
+  addSIRC12Key("8", Eight_Key, 0x0B, 0x07);
+  addSIRC12Key("9", Nine_Key, 0x0B, 0x08);
+  addSIRC12Key("0", Zero_Key, 0x0B, 0x09);
+//  addSIRC12Key("jump", PrevChannel_Key, 0x0B, 0x0A); // might be wrong
+  addSIRC12Key("-/--", DoubleDigit_Key, 0x0B, 0x0A);
+  addSIRC12Key("ENT", Enter_Key, 0x0B, 0x0B); // "Enter"
 
-  addKey("pwon", Power_Key, 0x54D, 11);
-  addKey("1", One_Key, 0x00D, 11);
-  addKey("2", Two_Key, 0x40D, 11);
-  addKey("3", Three_Key, 0x20D, 11);
-  addKey("4", Four_Key, 0x60D, 11);
-  addKey("5", Five_Key, 0x10D, 11);
-  addKey("6", Six_Key, 0x50D, 11);
-  addKey("7", Seven_Key, 0x30D, 11);
-  addKey("8", Eight_Key, 0x70D, 11);
-  addKey("9", Nine_Key, 0x08D, 11);
-  addKey("0", Zero_Key, 0x48D, 11);
-  addKey("jump", PrevChannel_Key, 0x28D, 11); // might be wrong
-  addKey("red", Red_Key, 0x19C, 11);
-  addKey("green", Green_Key, 0x59C, 11);
-  addKey("blue", Blue_Key, 0x79C, 11);
-  addKey("rec", Record_Key, 0x5CD, 11);
-  addKey("up", Up_Key, 0x4CD, 11);
-  addKey("down", Down_Key, 0x0CD, 11);
-  addKey("left", Left_Key, 0x6CD, 11);
-  addKey("right", Right_Key, 0x1CD, 11);
-  addKey("ok", Select_Key, 0x2CD, 11);
-  addKey("prog-next", ChannelUp_Key, 0x04D, 11);
-  addKey("prog-prev", ChannelDown_Key, 0x44D, 11);
-  addKey("power_on", Unmapped_Key, 0x3AD, 11);
-  addKey("<<", Rewind_Key, 0x6CD, 11); // 0xD9A
-  addKey(">>", FastForward_Key, 0x1CD, 11); // 0x39A
-  addKey("play", Play_Key, 0x2CD, 11); // 0x59A
-  addKey("stop", Stop_Key, 0x0CD, 11); // 0x19A
-  addKey("pause", Pause_Key, 0x4CD, 11); // 0x99A
-  addKey("menu", Menu_Key, 0x59D, 11);
-  addKey("ant/sw", Unmapped_Key, 0x2AD, 11);
-  addKey("input", Input_Key, 0x79D, 11);
-  addKey("display", Info_Key, 0x2DD, 11);
-  addKey("ENT", Unmapped_Key, 0x68D, 11);
-  addKey("VOL_UP", VolumeUp_Key, 0x248, 11);
-  addKey("VOL_DOWN", VolumeDown_Key, 0x648, 11);
+  addSIRC12Key("prog-next", ChannelUp_Key, 0x0B, 0x10);
+  addSIRC12Key("prog-prev", ChannelDown_Key, 0x0B, 0x11);
+  addSIRC12Key("pwon", Power_Key, 0x0B, 0x15);
+  addSIRC12Key("stop", Stop_Key, 0x0B, 0x18);
+  addSIRC12Key("pause", Pause_Key, 0x0B, 0x19);
+  addSIRC12Key("play", Play_Key, 0x0B, 0x1A);
+  addSIRC12Key("<<", Rewind_Key, 0x0B, 0x1B);
+  addSIRC12Key(">>", FastForward_Key, 0x0B, 0x1C);
+  addSIRC12Key("rec", Record_Key, 0x0B, 0x1D);
+  addSIRC12Key("ant/sw", Unmapped_Key, 0x0B, 0x2A);  // "tv/vcr"
+  addSIRC12Key("power_on", PowerOn_Key, 0x0B, 0x2E);
+  addSIRC12Key("Power Off", PowerOff_Key, 0x0B, 0x2F);
+  addSIRC12Key("menu", Menu_Key, 0x0B, 0x4D);
+  addSIRC12Key("input", Input_Key, 0x0B, 0x4F);
+  addSIRC12Key("display", Info_Key, 0x0B, 0x5A);
+
+  // Odd cursor keys, overlap with media controls:
+  addSIRC12Key("down", Down_Key, 0x0B, 0x18);
+  addSIRC12Key("up", Up_Key, 0x0B, 0x19);
+  addSIRC12Key("ok", Select_Key, 0x0B, 0x1A);
+  addSIRC12Key("left", Left_Key, 0x0B, 0x1B);
+  addSIRC12Key("right", Right_Key, 0x0B, 0x1C);
 }
 
 
@@ -908,13 +638,40 @@ SonyVCR1a::SonyVCR1a(
 {
   setKeysetName("VCR Keyset 1a");
 
-  addKey("up", Up_Key, 0x21D, 11);  // 0x43A
-  addKey("down", Down_Key, 0x61D, 11);  // 0xC3A
-  addKey("left", Left_Key, 0x23D, 11);  // 0x47A
-  addKey("right", Right_Key, 0x43D, 11); // 0x87A
-  addKey("execute", Select_Key, 0x45D, 11); // 0x8BA
-  addKey("-/--", DoubleDigit_Key, 0x28D, 11);
-  addKey("SLEEP", Sleep_Key, 0x79D, 11); // 0xF3A
+  // These are the expected cursor keys:
+  addSIRC12Key("up", Up_Key, 0x0B, 0x42);
+  addSIRC12Key("down", Down_Key, 0x0B, 0x43);
+  addSIRC12Key("left", Left_Key, 0x0B, 0x62);
+  addSIRC12Key("right", Right_Key, 0x0B, 0x61);
+  addSIRC12Key("execute", Select_Key, 0x0B, 0x51); //"OK"
+
+//  addKey("SLEEP", Sleep_Key, 0x0B, 0x4F); // odd
+}
+
+
+// Extra codes off of hifi-remote website:
+SonyVCR1b::SonyVCR1b(
+  QObject *guiObject,
+  unsigned int index)
+  : SonyVCR1a(guiObject, index)
+{
+  setKeysetName("VCR Keyset 1b");
+
+  addSIRC12Key("Volume Up", VolumeUp_Key, 0x0B, 0x12);
+  addSIRC12Key("Volume Down", VolumeDown_Key, 0x0B, 0x13);
+  addSIRC12Key("Eject", Eject_Key, 0x0B, 0x16);
+  addSIRC12Key("Record Pause", RecordPause_Key, 0x0B, 0x1E);
+  addSIRC12Key("Record Mute", RecordMute_Key, 0x0B, 0x1F);
+  addSIRC12Key("Auto Tracking", AutoTracking_Key, 0x0B, 0x27);
+  addSIRC12Key("Frame Reverse", StepBack_Key, 0x0B, 0x30);
+  addSIRC12Key("Frame Advance", StepForward_Key, 0x0B, 0x31);
+  addSIRC12Key("Mute", Mute_Key, 0x0B, 0x35);
+  addSIRC12Key("Sleep", Sleep_Key, 0x0B, 0x36);
+  addSIRC12Key("Slow +", SlowPlus_Key, 0x0B, 0x3D);
+  addSIRC12Key("Slow -", SlowMinus_Key, 0x0B, 0x3E);
+  addSIRC12Key("Tracking Up", TrackingPlus_Key, 0x0B, 0x44);
+  addSIRC12Key("Tracking Down", TrackingMinus_Key, 0x0B, 0x45);
+  addSIRC12Key("SP/EP", VHSSpeed_Key, 0x0B, 0x58);
 }
 
 
@@ -926,52 +683,42 @@ SonyReceiver1::SonyReceiver1(
       Sony_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    693, 502,
-    1291, 502,
-    40006, true);
+  threadableProtocol = new SIRCProtocol(guiObject, index);
 
-  threadableProtocol = np;
+  addSIRC15Key("1", One_Key, 0x30, 0x00);
+  addSIRC15Key("2", Two_Key, 0x30, 0x01);
+  addSIRC15Key("3", Three_Key, 0x30, 0x02);
+  addSIRC15Key("4", Four_Key, 0x30, 0x03);
+  addSIRC15Key("5", Five_Key, 0x30, 0x04);
+  addSIRC15Key("6", Six_Key, 0x30, 0x05);
+  addSIRC15Key("7", Seven_Key, 0x30, 0x06);
+  addSIRC15Key("8", Eight_Key, 0x30, 0x07);
+  addSIRC15Key("9", Nine_Key, 0x30, 0x08);
+  addSIRC15Key("0", Zero_Key, 0x30, 0x09);
+  addSIRC15Key("SELECT", Select_Key, 0x30, 0x0C);
+  addSIRC15Key("VOLUME_UP", VolumeUp_Key, 0x30, 0x12);
+  addSIRC15Key("VOLUME_DOWN", VolumeDown_Key, 0x30, 0x13);
+  addSIRC15Key("MUTING", Mute_Key, 0x30, 0x14);
+  addSIRC15Key("POWER", Power_Key, 0x30, 0x15);
+  addSIRC15Key("VIDEO2", Unmapped_Key, 0x30, 0x1E);
+  addSIRC15Key("TUNER", Unmapped_Key, 0x30, 0x21);
+  addSIRC15Key("VIDEO1", Unmapped_Key, 0x30, 0x22);
+  addSIRC15Key("SA_CD", Unmapped_Key, 0x30, 0x25);
+  addSIRC15Key("VIDEO3", Unmapped_Key, 0x30, 0x42);
+  addSIRC15Key("DISPLAY", Info_Key, 0x30, 0x4B);
+  addSIRC15Key("SLEEP", Sleep_Key, 0x30, 0x60);
+  addSIRC15Key("TV", Unmapped_Key, 0x30, 0x6A);
+  addSIRC15Key("DVD", Unmapped_Key, 0x30, 0x7D);
 
-  np->setHeaderPair(2486, 498);
-
-//  np->setMinimumRepetitions(1);
-
-  addKey("SLEEP", Sleep_Key, 0x030C, 15);
-  addKey("POWER", Power_Key, 0x540C, 15);
-  addKey("VIDEO1", Unmapped_Key, 0x220C, 15);
-  addKey("VIDEO2", Unmapped_Key, 0x3C0C, 15);
-  addKey("VIDEO3", Unmapped_Key, 0x210C, 15);
-  addKey("DVD", Unmapped_Key, 0x5F0C, 15);
-  addKey("SAT", Unmapped_Key, 0x600D, 15);
-  addKey("TV", Unmapped_Key, 0x2B0C, 15);
-  addKey("SA_CD", Unmapped_Key, 0x520C, 15);
-  addKey("TUNER", Unmapped_Key, 0x420C, 15);
-  addKey("2CH", Unmapped_Key, 0x410D, 15);
-  addKey("AFD", Unmapped_Key, 0x210D, 15);
-  addKey("MOVIE", Unmapped_Key, 0x610D, 15);
-  addKey("MUSIC", Unmapped_Key, 0x490D, 15);
-  addKey("1", One_Key, 0x000C, 15);
-  addKey("2", Two_Key, 0x400C, 15);
-  addKey("3", Three_Key, 0x200C, 15);
-  addKey("4", Four_Key, 0x600C, 15);
-  addKey("5", Five_Key, 0x100C, 15);
-  addKey("6", Six_Key, 0x500C, 15);
-  addKey("7", Seven_Key, 0x300C, 15);
-  addKey("8", Eight_Key, 0x700C, 15);
-  addKey("9", Nine_Key, 0x080C, 15);
-  addKey("0", Zero_Key, 0x480C, 15);
-  addKey("AMP_MENU", Menu_Key, 0x770D, 15);
-  addKey("DVD_MENU", Unmapped_Key, 0x5A0D, 15);
-  addKey("DISPLAY", Info_Key, 0x690C, 15);
-  addKey("MUTING", Mute_Key, 0x140C, 15);
-  addKey("LEFT", Left_Key, 0x2F0D, 15);
-  addKey("UP", Up_Key, 0x0F0D, 15);
-  addKey("RIGHT", Right_Key, 0x6F0D, 15);
-  addKey("DOWN", Down_Key, 0x4F0D, 15);
-  addKey("SELECT", Select_Key, 0x180C, 15);
-  addKey("VOLUME_UP", VolumeUp_Key, 0x240C, 15);
-  addKey("VOLUME_DOWN", VolumeDown_Key, 0x640C, 15);
+  addSIRC15Key("SAT", Unmapped_Key, 0xB0, 0x03);
+  addSIRC15Key("2CH", Unmapped_Key, 0xB0, 0x09);
+  addSIRC15Key("AFD", Unmapped_Key, 0xB0, 0x0A);
+  addSIRC15Key("MOVIE", Unmapped_Key, 0xB0, 0x0B);
+  addSIRC15Key("DVD_MENU", DiscMenu_Key, 0xB0, 0x2D); // Not sure about this
+  addSIRC15Key("MUSIC", Unmapped_Key, 0xB0, 0x49);
+  addSIRC15Key("AMP_MENU", Menu_Key, 0xB0, 0x77);
+  addSIRC15Key("UP", Up_Key, 0xB0, 0x78);
+  addSIRC15Key("DOWN", Down_Key, 0xB0, 0x79);
+  addSIRC15Key("LEFT", Left_Key, 0xB0, 0x7A);
+  addSIRC15Key("RIGHT", Right_Key, 0xB0, 0x7B);
 }

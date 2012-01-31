@@ -59,15 +59,74 @@ void PIRKeysetMetaData::addKey(
   const char *name,
   PIRKeyName key,
   unsigned long data,
-  unsigned int bits)
+  unsigned int size)
 {
   // Don't have a system for the unmapped keys yet!
   if (key != Unmapped_Key)
   {
     keys[key] = name;
-  }
 
-  threadableProtocol->addKey(key, data, bits);
+    threadableProtocol->addKey(key, data, size);
+  }
+}
+
+
+void PIRKeysetMetaData::addSIRC12Key(
+  const char *name,
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+
+    threadableProtocol->addSIRCKey(key, addressData, 5, commandData);
+  }
+}
+
+
+void PIRKeysetMetaData::addSIRC15Key(
+  const char *name,
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+    threadableProtocol->addSIRCKey(key, addressData, 8, commandData);
+  }
+}
+
+
+void PIRKeysetMetaData::addSIRC20Key(
+  const char *name,
+  PIRKeyName key,
+  unsigned int secondaryAddressData,
+  unsigned int primaryAddressData,
+  unsigned int commandData)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+    threadableProtocol->addSIRC20Key(
+      key, secondaryAddressData, primaryAddressData, commandData);
+  }
+}
+
+
+void PIRKeysetMetaData::addSharpKey(
+  const char *name,
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+    threadableProtocol->addSharpKey(key, addressData, commandData);
+  }
 }
 
 

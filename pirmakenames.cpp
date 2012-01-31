@@ -6,6 +6,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Apple_Make] = "Apple";
   makes[Denon_Make] = "Denon";
   makes[Ei_Make] = "Ei";
+  makes[Elgato_Make] = "Elgato";
   makes[GoldStar_Make] = "GoldStar";
   makes[Hauppauge_Make] = "Hauppauge";
   makes[Hitachi_Make] = "Hitachi";

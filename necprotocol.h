@@ -14,6 +14,21 @@
 // and mostly define 0s and 1s by the length of time between pulses...
 //
 
+//
+// There exist two well-defined NEC protocols: "standard" and "extended".
+// Some remotes might not fit into either format; LIRC has given up and
+// simply recorded the exact set of IR pulses as bits, rather than attempt
+// to follow the standard encodings.  I'll use the following enum to
+// describe which mechanism the key data follows:
+//
+
+enum NECKeyFormat
+{
+  Standard_NEC,
+  Extended_NEC,
+  LIRC_NEC
+};
+
 class NECProtocol: public PIRProtocol
 {
 public:
@@ -27,7 +42,8 @@ public:
   // Constructor for standard NEC:
   NECProtocol(
     QObject *guiObject,
-    unsigned int index);
+    unsigned int index,
+    NECKeyFormat type);
 
   // Constructor for non-standard NEC:
   NECProtocol(
@@ -38,7 +54,8 @@ public:
     unsigned int oPulse,
     unsigned int oSpace,
     unsigned int gapSpace,
-    bool iclflag);
+    bool iclflag,
+    NECKeyFormat type);
 
   void setHeaderPair(
     unsigned int pulse,
@@ -81,9 +98,6 @@ private:
   unsigned int trailerPulse;
   bool hasTrailerPulse;
 
-  // Each remote key has a unique command sequence:
-//  KeyCommandMap commands;
-
   // A pulse that means "repeat the last command":
   unsigned int repeatPulse;
   unsigned int repeatSpace;
@@ -91,6 +105,9 @@ private:
   bool repeatNeedsHeader; // Put the header ahead of the repeat pulse
   bool fullHeadlessRepeat; // Repeat full command but without header
   bool elevenBitToggle; // A few remotes toggle the last eleven bits on repeat
+
+  // A flag used to determine how to encode the bits:
+  NECKeyFormat encodingFormat;
 
   int generateStandardCommand(
     const CommandSequence &bits,
@@ -108,6 +125,14 @@ private:
     PIRRX51Hardware &device);
 
   int pushBits(
+    const CommandSequence &bits,
+    PIRRX51Hardware &device);
+
+  int pushReverseBits(
+    const CommandSequence &bits,
+    PIRRX51Hardware &device);
+
+  int pushInvertedReverseBits(
     const CommandSequence &bits,
     PIRRX51Hardware &device);
 };

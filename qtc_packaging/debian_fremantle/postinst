@@ -1,7 +1,5 @@
 #!/bin/sh
 
-chmod u+s /opt/pierogi/bin/loadRX51Module
-chmod u+s /opt/pierogi/bin/unloadRX51Module
 update-sudoers
 
 exit 0

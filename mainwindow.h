@@ -50,8 +50,8 @@ signals:
   void blueEnabled(bool);
   void aspectRatioEnabled(bool);
   void surroundEnabled(bool);
-  void languageEnabled(bool);
-  void favoritesEnabled(bool);
+  void audioEnabled(bool);
+  void infoEnabled(bool);
   void captionsEnabled(bool);
   void inputEnabled(bool);
   void muteEnabled(bool);
@@ -83,8 +83,8 @@ signals:
   void rightEnabled(bool);
   void selectEnabled(bool);
   void exitEnabled(bool);
-  void infoEnabled(bool);
   void guideEnabled(bool);
+  void discMenuEnabled(bool);
 
   // Media keys
   void playEnabled(bool);
@@ -100,23 +100,41 @@ signals:
   void replayEnabled(bool);
   void ejectEnabled(bool);
 
-  // Other Keys
+  // Media2 Keys
+  void discTitleEnabled(bool);
+  void discSelectEnabled(bool);
+  void vhsSpeedEnabled(bool);
+  void trackingMinusEnabled(bool);
+  void trackingPlusEnabled(bool);
+  void autoTrackingEnabled(bool);
+  void pageUpEnabled(bool);
+  void pageDownEnabled(bool);
+  void slowEnabled(bool);
+  void slowPlusEnabled(bool);
+  void slowMinusEnabled(bool);
+  void programEnabled(bool);
+  void tunerBandEnabled(bool);
+  void repeatEnabled(bool);
+  void repeatABEnabled(bool);
+  void randomEnabled(bool);
+
+  // TV Keys
+  void pictureModeEnabled(bool);
+  void soundModeEnabled(bool);
+  void liveTVEnabled(bool);
+  void favoritesEnabled(bool);
+  void teletextEnabled(bool);
+  void teletextHoldEnabled(bool);
+  void teletextRevealEnabled(bool);
+  void teletextSizeEnabled(bool);
   void pipEnabled(bool);
   void pipSwapEnabled(bool);
   void pipMoveEnabled(bool);
   void pipSourceEnabled(bool);
-  void scanEnabled(bool);
-  void programEnabled(bool);
-  void pictureModeEnabled(bool);
-  void soundModeEnabled(bool);
-  void discTitleEnabled(bool);
-  void discMenuEnabled(bool);
-  void discSelectEnabled(bool);
-  void recordEnabled(bool);
-  void trackingMinusEnabled(bool);
-  void trackingPlusEnabled(bool);
-  void autoTrackingEnabled(bool);
-  void vhsSpeedEnabled(bool);
+  void pipChannelUpEnabled(bool);
+  void pipChannelDownEnabled(bool);
+  void pipPauseEnabled(bool);
+  void pipSizeEnabled(bool);
 
   void keysetMakeChanged(QString);
   void keysetNameChanged(QString);
@@ -157,10 +175,10 @@ private slots:
   void on_aspectRatioButton_released();
   void on_surroundButton_pressed();
   void on_surroundButton_released();
-  void on_languageButton_pressed();
-  void on_languageButton_released();
-  void on_favoritesButton_pressed();
-  void on_favoritesButton_released();
+  void on_audioButton_pressed();
+  void on_audioButton_released();
+  void on_infoButton_pressed();
+  void on_infoButton_released();
   void on_captionButton_pressed();
   void on_captionButton_released();
   void on_inputButton_pressed();
@@ -219,6 +237,10 @@ private slots:
   void on_menuButton_released();
   void on_exitButton_pressed();
   void on_exitButton_released();
+  void on_guideButton_pressed();
+  void on_guideButton_released();
+  void on_discMenuButton_pressed();
+  void on_discMenuButton_released();
 
   // Media tab slots:
   void on_mediaPreviousButton_pressed();
@@ -246,39 +268,73 @@ private slots:
   void on_ejectButton_pressed();
   void on_ejectButton_released();
 
-  // Misc tab slots:
-  void on_pipOnOffButton_pressed();
-  void on_pipOnOffButton_released();
-  void on_pipSwapButton_pressed();
-  void on_pipSwapButton_released();
-  void on_recordButton_pressed();
-  void on_recordButton_released();
-  void on_pipPositionButton_pressed();
-  void on_pipPositionButton_released();
-  void on_pipSourceButton_pressed();
-  void on_pipSourceButton_released();
-  void on_scanButton_pressed();
-  void on_scanButton_released();
-  void on_programButton_pressed();
-  void on_programButton_released();
-  void on_pictureModeButton_pressed();
-  void on_pictureModeButton_released();
-  void on_soundModeButton_pressed();
-  void on_soundModeButton_released();
+  // Media2 tab slots:
   void on_discTitleButton_pressed();
   void on_discTitleButton_released();
-  void on_discMenuButton_pressed();
-  void on_discMenuButton_released();
   void on_discSelectButton_pressed();
   void on_discSelectButton_released();
+  void on_vhsSpeedButton_pressed();
+  void on_vhsSpeedButton_released();
   void on_trackingPlusButton_pressed();
   void on_trackingPlusButton_released();
   void on_trackingMinusButton_pressed();
   void on_trackingMinusButton_released();
   void on_autoTrackingButton_pressed();
   void on_autoTrackingButton_released();
-  void on_vhsSpeedButton_pressed();
-  void on_vhsSpeedButton_released();
+  void on_pageUpButton_pressed();
+  void on_pageUpButton_released();
+  void on_pageDownButton_pressed();
+  void on_pageDownButton_released();
+  void on_slowButton_pressed();
+  void on_slowButton_released();
+  void on_slowMinusButton_pressed();
+  void on_slowMinusButton_released();
+  void on_slowPlusButton_pressed();
+  void on_slowPlusButton_released();
+  void on_programButton_pressed();
+  void on_programButton_released();
+  void on_tunerBandButton_pressed();
+  void on_tunerBandButton_released();
+  void on_repeatButton_pressed();
+  void on_repeatButton_released();
+  void on_repeatABButton_pressed();
+  void on_repeatABButton_released();
+  void on_randomButton_pressed();
+  void on_randomButton_released();
+
+  // TV Tab slots:
+  void on_pictureModeButton_pressed();
+  void on_pictureModeButton_released();
+  void on_soundModeButton_pressed();
+  void on_soundModeButton_released();
+  void on_liveTVButton_pressed();
+  void on_liveTVButton_released();
+  void on_favoritesButton_pressed();
+  void on_favoritesButton_released();
+  void on_teletextButton_pressed();
+  void on_teletextButton_released();
+  void on_teletextHoldButton_pressed();
+  void on_teletextHoldButton_released();
+  void on_teletextRevealButton_pressed();
+  void on_teletextRevealButton_released();
+  void on_teletextSizeButton_pressed();
+  void on_teletextSizeButton_released();
+  void on_pipOnOffButton_pressed();
+  void on_pipOnOffButton_released();
+  void on_pipSwapButton_pressed();
+  void on_pipSwapButton_released();
+  void on_pipPositionButton_pressed();
+  void on_pipPositionButton_released();
+  void on_pipSourceButton_pressed();
+  void on_pipSourceButton_released();
+  void on_pipChannelUpButton_pressed();
+  void on_pipChannelUpButton_released();
+  void on_pipChannelDownButton_pressed();
+  void on_pipChannelDownButton_released();
+  void on_pipPauseButton_pressed();
+  void on_pipPauseButton_released();
+  void on_pipSizeButton_pressed();
+  void on_pipSizeButton_released();
 
   // Favorites tab actions:
   void on_addKeysetButton_clicked();

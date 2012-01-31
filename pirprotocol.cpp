@@ -54,7 +54,7 @@ PIRProtocol::PIRProtocol(
 void PIRProtocol::addKey(
   PIRKeyName key,
   unsigned long command,
-  unsigned int bits)
+  unsigned int size)
 {
   // First, if key already exists, clear it out:
   KeycodeCollection::iterator i = keycodes.find(key);
@@ -63,7 +63,70 @@ void PIRProtocol::addKey(
     i->second.clear();
   }
 
-  appendToBitSeq(keycodes[key], command, bits);
+  appendToBitSeq(keycodes[key], command, size);
+}
+
+
+void PIRProtocol::addSIRCKey(
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int size,
+  unsigned int commandData)
+{
+  // First, if key already exists, clear it out:
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    i->second.clear();
+  }
+
+  // First, append the address data:
+  appendToBitSeq(keycodes[key], addressData, size);
+
+  // Next, the command data.  The size is always 7 bits:
+  appendToBitSeq(keycodes[key], commandData, 7);
+}
+
+
+void PIRProtocol::addSIRC20Key(
+  PIRKeyName key,
+  unsigned int secondaryAddressData,
+  unsigned int primaryAddressData,
+  unsigned int commandData)
+{
+  // First, if key already exists, clear it out:
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    i->second.clear();
+  }
+
+  // First, append the secondary address data:
+  appendToBitSeq(keycodes[key], secondaryAddressData, 8);
+
+  // Next, the primary address data:
+  appendToBitSeq(keycodes[key], primaryAddressData, 5);
+
+  // Next, the command data.  The size is always 7 bits:
+  appendToBitSeq(keycodes[key], commandData, 7);
+}
+
+
+void PIRProtocol::addSharpKey(
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  // First, if key already exists, clear it out:
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    i->second.clear();
+  }
+
+  // Sharp commands are all 5 bit address, 8 bit command:
+  appendToBitSeq(keycodes[key], addressData, 5);
+  appendToBitSeq(keycodes[key], commandData, 8);
 }
 
 
@@ -126,9 +189,9 @@ bool PIRProtocol::isCommandSupported(
 void PIRProtocol::appendToBitSeq(
   CommandSequence &sequence,
   unsigned int bits,
-  int significantBits)
+  int size)
 {
-  if (significantBits == 0)
+  if (size == 0)
   {
     // This is bad, but just return silently for now...
     return;
@@ -136,7 +199,7 @@ void PIRProtocol::appendToBitSeq(
 
   // For each bit in the char, append a 1 or a 0 into the sequence.
   // Starting with the largest bit, move forward one bit at a time:
-  unsigned int currentBit = 1 << (significantBits - 1);
+  unsigned int currentBit = 1 << (size - 1);
 
   do
   {
@@ -196,10 +259,18 @@ void PIRProtocol::sleepUntilRepeat(
     microseconds = gap - PIEROGI_OVERHEAD_HACK;
   }
 
+/*
   // Don't even bother sleeping if there's only a few microseconds:
   if (microseconds < 1000)
   {
     return;
+  }
+*/
+  // For now, I'm going to enforce a minimum sleep of 10 ms, so that we
+  // don't get runaway commands:
+  if (microseconds < 10000)
+  {
+    microseconds = 10000;
   }
 
   timespec sleeptime;

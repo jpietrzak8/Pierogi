@@ -9,58 +9,59 @@ HitachiTV1::HitachiTV1(
       Hitachi_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index);
+  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
 
-  setPreData(0x0AF5, 16);
+//  setPreData(0x0AF5, 16);
+  setPreData(0x50, 8);
 
-  addKey("1", One_Key, 0xB04F, 16);
-  addKey("2", Two_Key, 0x708F, 16);
-  addKey("3", Three_Key, 0xF00F, 16);
-  addKey("4", Four_Key, 0x38C7, 16);
-  addKey("5", Five_Key, 0xB847, 16);
-  addKey("6", Six_Key, 0x7887, 16);
-  addKey("7", Seven_Key, 0xF807, 16);
-  addKey("8", Eight_Key, 0x20DF, 16);
-  addKey("9", Nine_Key, 0xA05F, 16);
-  addKey("0", Zero_Key, 0x30CF, 16);
-  addKey("ch_down", ChannelDown_Key, 0x18E7, 16);
-  addKey("ch_up", ChannelUp_Key, 0x9867, 16);
-  addKey("recall", PrevChannel_Key, 0x08F7, 16);
-  addKey("tv/video", Input_Key, 0x906F, 16); // "AV"
-  addKey("power", Power_Key, 0xE817, 16);
-  addKey("vol_up", VolumeUp_Key, 0x48B7, 16);
-  addKey("vol_down", VolumeDown_Key, 0xA857, 16);
-  addKey("timer", Sleep_Key, 0x8877, 16);
-  addKey("return", Exit_Key, 0x22DD, 16);
-  addKey("mute", Mute_Key, 0xD02F, 16);
-  addKey("krasn", Unmapped_Key, 0xDA25, 16);
-  addKey("zelen", Unmapped_Key, 0x7A85, 16);
-  addKey("Reveal", Unmapped_Key, 0xBA45, 16); // "jolt"
-  addKey("zelen", Unmapped_Key, 0x3AC5, 16);
-  addKey("OK", Select_Key, 0xC23D, 16);
-  addKey("FWD", FastForward_Key, 0xF609, 16);
-  addKey("REV", Rewind_Key, 0xB649, 16);
-  addKey("PLAY", Play_Key, 0xD629, 16);
-  addKey("STOP", Stop_Key, 0x36C9, 16);
-  addKey("HELP", Info_Key, 0x58A7, 16);
-  addKey("CH", Unmapped_Key, 0xC837, 16);
-  addKey("MENU", Menu_Key, 0x02FD, 16);
-  addKey("PSCAN100HZ", Unmapped_Key, 0xB24D, 16);
-  addKey("X", Unmapped_Key, 0x2AD5, 16);
-  addKey("3D-SOUND", Surround_Key, 0xD827, 16);
-  addKey("UP", Up_Key, 0x0EF1, 16);
-  addKey("DOWN", Down_Key, 0x8E71, 16);
-  addKey("CH_I/II", Unmapped_Key, 0x10EF, 16);
-  addKey("TV/TEXT", Unmapped_Key, 0x6699, 16);
-  addKey("SOUND", SoundMode_Key, 0xF20D, 16);
-  addKey("Picture", PictureMode_Key, 0xE619, 16);
-  addKey("Red", Red_Key, 0x32CD, 16);
-  addKey("SUB", Unmapped_Key, 0xA25D, 16);
-  addKey("U.N.L", Unmapped_Key, 0x629D, 16);
-  addKey("HOLD", Unmapped_Key, 0xE21D, 16);
-  addKey("Cancel", Clear_Key, 0x16E9, 16);
-  addKey("Store", Unmapped_Key, 0x28D7, 16);
-  addKey("Language", Language_Key, 0x609F, 16);
+  addKey("8", Eight_Key, 0x04, 8);
+  addKey("9", Nine_Key, 0x05, 8);
+//  addKey("Language", Language_Key, 0x06, 8);
+  addKey("CH_I/II", Audio_Key, 0x08, 8);
+  addKey("tv/video", Input_Key, 0x09, 8); // "AV"
+  addKey("mute", Mute_Key, 0x0B, 8);
+  addKey("0", Zero_Key, 0x0C, 8);
+  addKey("1", One_Key, 0x0D, 8);
+  addKey("2", Two_Key, 0x0E, 8);
+  addKey("3", Three_Key, 0x0F, 8);
+  addKey("recall", PrevChannel_Key, 0x10, 8);
+  addKey("timer", Sleep_Key, 0x11, 8);
+  addKey("vol_up", VolumeUp_Key, 0x12, 8);
+  addKey("CH", Unmapped_Key, 0x13, 8);
+  addKey("Store", Unmapped_Key, 0x14, 8);
+  addKey("vol_down", VolumeDown_Key, 0x15, 8);
+  addKey("power", Power_Key, 0x17, 8);
+  addKey("ch_down", ChannelDown_Key, 0x18, 8);
+  addKey("ch_up", ChannelUp_Key, 0x19, 8);
+  addKey("HELP", Info_Key, 0x1A, 8);
+  addKey("3D-SOUND", Surround_Key, 0x1B, 8);
+  addKey("4", Four_Key, 0x1C, 8);
+  addKey("5", Five_Key, 0x1D, 8);
+  addKey("6", Six_Key, 0x1E, 8);
+  addKey("7", Seven_Key, 0x1F, 8);
+  addKey("MENU", Menu_Key, 0x40, 8);
+  addKey("OK", Select_Key, 0x43, 8);
+  addKey("return", Exit_Key, 0x44, 8);
+  addKey("SUB", Captions_Key, 0x45, 8);
+  addKey("U.N.L", Unmapped_Key, 0x46, 8);
+  addKey("HOLD", TeletextHold_Key, 0x47, 8);
+  addKey("Red", Red_Key, 0x4C, 8);
+  addKey("PSCAN100HZ", Unmapped_Key, 0x4D, 8);
+  addKey("SOUND", SoundMode_Key, 0x4F, 8);
+  addKey("X", Unmapped_Key, 0x54, 8);
+  addKey("krasn", Unmapped_Key, 0x5B, 8);
+  addKey("zelen", Unmapped_Key, 0x5C, 8);
+  addKey("Reveal", Unmapped_Key, 0x5D, 8); // "jolt"
+  addKey("zelen", Unmapped_Key, 0x5E, 8);
+  addKey("TV/TEXT", Teletext_Key, 0x66, 8);
+  addKey("Picture", PictureMode_Key, 0x67, 8);
+  addKey("Cancel", Clear_Key, 0x68, 8);
+  addKey("PLAY", Play_Key, 0x6B, 8);
+  addKey("STOP", Stop_Key, 0x6C, 8);
+  addKey("REV", Rewind_Key, 0x6D, 8);
+  addKey("FWD", FastForward_Key, 0x6F, 8);
+  addKey("UP", Up_Key, 0x70, 8);
+  addKey("DOWN", Down_Key, 0x71, 8);
 }
 
 
@@ -71,7 +72,7 @@ HitachiTV1a::HitachiTV1a(
 {
   setKeysetName("TV Keyset 1a");
 
-  addKey("menu", Menu_Key, 0xCA35, 16);
+  addKey("menu", Menu_Key, 0x53, 8);
 }
 
 HitachiTV1b::HitachiTV1b(
@@ -81,9 +82,9 @@ HitachiTV1b::HitachiTV1b(
 {
   setKeysetName("TV Keyset 1b");
 
-  addKey("Sound+", VolumeUp_Key, 0x4EB1, 16);
-  addKey("Sound-", VolumeDown_Key, 0xCE31, 16);
-  addKey("Timer", Sleep_Key, 0xD629, 16);
+  addKey("Sound+", VolumeUp_Key, 0x72, 8);
+  addKey("Sound-", VolumeDown_Key, 0x73, 8);
+  addKey("Timer", Sleep_Key, 0x6B, 8);
 }
 
 
@@ -96,45 +97,45 @@ HitachiTV1c::HitachiTV1c(
 
   addControlledDevice(Hitachi_Make, "57F510", TV_Device);
 
-  addKey("LastChannel", PrevChannel_Key, 0x50AF, 16);
-  addKey("Info", Info_Key, 0x08F7, 16);
-  addKey("Input1", Unmapped_Key, 0x847B, 16);
-  addKey("Input2", Unmapped_Key, 0x44BB, 16);
-  addKey("Input3", Unmapped_Key, 0xC43B, 16);
-  addKey("Input4", Unmapped_Key, 0x24DB, 16);
-  addKey("ChannelUp", Unmapped_Key, 0x14EB, 16); // these four are odd
-  addKey("ChannelDown", Unmapped_Key, 0x946B, 16); // duplicate?
-  addKey("VolumeDown", Unmapped_Key, 0x54AB, 16); // maybe pip?
-  addKey("VolumeUp", Unmapped_Key, 0xD42B, 16); // doesn't make sense
-  addKey("SELECT", Select_Key, 0x748B, 16);
-  addKey("CC", Captions_Key, 0xEC13, 16);
-  addKey("FavouriteChannel", Favorites_Key, 0x1CE3, 16);
-  addKey("1080i/540p", Unmapped_Key, 0x3CC3, 16);
-  addKey("Input5", Unmapped_Key, 0xBC43, 16);
-  addKey("PowerON", Unmapped_Key, 0x7C83, 16);
-  addKey("PowerOFF", Unmapped_Key, 0xFC03, 16);
-  addKey("Menu", Menu_Key, 0xCA35, 16);
-  addKey("PIP", PIP_Key, 0x1AE5, 16);
-  addKey("Day/Night", Unmapped_Key, 0x7A85, 16);
-  addKey("Freeze/Pause", Unmapped_Key, 0x8679, 16);
-  addKey("EXIT", Exit_Key, 0x26D9, 16);
-  addKey("16:9", Unmapped_Key, 0xA659, 16);
-  addKey("16:9Zoom", Unmapped_Key, 0x6699, 16);
-  addKey("4:3Standard", Unmapped_Key, 0xE619, 16);
-  addKey("4:3Expanded", Unmapped_Key, 0x16E9, 16);
-  addKey("4:3Zoom1", Unmapped_Key, 0x9669, 16);
-  addKey("4:3Zoom2", Unmapped_Key, 0x56A9, 16);
-  addKey("540p", Unmapped_Key, 0xD629, 16);
-  addKey("1080i", Unmapped_Key, 0x36C9, 16);
-  addKey("Aspect", AspectRatio_Key, 0xF609, 16);
-  addKey("ArrowRight", Right_Key, 0x4EB1, 16);
-  addKey("ArrowLeft", Left_Key, 0xCE31, 16);
-  addKey("DayMode", Unmapped_Key, 0x2ED1, 16);
-  addKey("NightMode", Unmapped_Key, 0xAE51, 16);
-  addKey("AntennaA", Unmapped_Key, 0x6E91, 16);
-  addKey("AntennaB", Unmapped_Key, 0xEE11, 16);
-  addKey("CC", Unmapped_Key, 0x1EE1, 16); // Another CC key?
-  addKey("Guide", Guide_Key, 0xAC53, 16);
+  addKey("LastChannel", PrevChannel_Key, 0x0A, 8);
+  addKey("Info", Info_Key, 0x10, 8);
+  addKey("Input1", Unmapped_Key, 0x21, 8);
+  addKey("Input2", Unmapped_Key, 0x22, 8);
+  addKey("Input3", Unmapped_Key, 0x23, 8);
+  addKey("Input4", Unmapped_Key, 0x24, 8);
+  addKey("ChannelUp", Unmapped_Key, 0x28, 8); // these four are odd
+  addKey("ChannelDown", Unmapped_Key, 0x29, 8); // duplicate?
+  addKey("VolumeDown", Unmapped_Key, 0x2A, 8); // maybe pip?
+  addKey("VolumeUp", Unmapped_Key, 0x2B, 8); // doesn't make sense
+  addKey("SELECT", Select_Key, 0x2E, 8);
+  addKey("Guide", Guide_Key, 0x35, 8);
+  addKey("CC", Captions_Key, 0x37, 8);
+  addKey("FavouriteChannel", Favorites_Key, 0x38, 8);
+  addKey("1080i/540p", Unmapped_Key, 0x3C, 8);
+  addKey("Input5", Unmapped_Key, 0x3D, 8);
+  addKey("PowerON", PowerOn_Key, 0x3E, 8);
+  addKey("PowerOFF", PowerOff_Key, 0x3F, 8);
+  addKey("Menu", Menu_Key, 0x53, 8);
+  addKey("PIP", PIP_Key, 0x58, 8);
+  addKey("Day/Night", Unmapped_Key, 0x5E, 8);
+  addKey("Freeze/Pause", Unmapped_Key, 0x61, 8);
+  addKey("EXIT", Exit_Key, 0x64, 8);
+  addKey("16:9", Unmapped_Key, 0x65, 8);
+  addKey("16:9Zoom", Unmapped_Key, 0x66, 8);
+  addKey("4:3Standard", Unmapped_Key, 0x67, 8);
+  addKey("4:3Expanded", Unmapped_Key, 0x68, 8);
+  addKey("4:3Zoom1", Unmapped_Key, 0x69, 8);
+  addKey("4:3Zoom2", Unmapped_Key, 0x6A, 8);
+  addKey("540p", Unmapped_Key, 0x6B, 8);
+  addKey("1080i", Unmapped_Key, 0x6C, 8);
+  addKey("Aspect", AspectRatio_Key, 0x6F, 8);
+  addKey("ArrowRight", Right_Key, 0x72, 8);
+  addKey("ArrowLeft", Left_Key, 0x73, 8);
+  addKey("DayMode", Unmapped_Key, 0x74, 8);
+  addKey("NightMode", Unmapped_Key, 0x75, 8);
+  addKey("AntennaA", Unmapped_Key, 0x76, 8);
+  addKey("AntennaB", Unmapped_Key, 0x77, 8);
+  addKey("CC", Unmapped_Key, 0x78, 8); // Another CC key?
   // Many more codes available in LIRC's hitachi/CLU4341UG2 config file
 }
 
@@ -147,36 +148,37 @@ HitachiProjector::HitachiProjector(
       Hitachi_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index);
+  threadableProtocol = new NECProtocol(guiObject, index, Extended_NEC);
 
-  setPreData(0xE1A2, 16);
+//  setPreData(0xE1A2, 16);
+  setPreData(0x4587, 16);
 
-  addKey("Power", Power_Key, 0xE817, 16);
-  addKey("PageUp", Unmapped_Key, 0x0BF4, 16);
-  addKey("PageDown", Unmapped_Key, 0x8B74, 16);
-  addKey("Home", Unmapped_Key, 0xAB54, 16);
-  addKey("End", Unmapped_Key, 0x6B94, 16);
-  addKey("Enter", Select_Key, 0x847B, 16);
-  addKey("Left", Left_Key, 0x748B, 16);
-  addKey("Right", Right_Key, 0x54AB, 16);
-  addKey("Up", Up_Key, 0x14EB, 16);
-  addKey("Down", Down_Key, 0x34CB, 16);
-  addKey("Menu", Menu_Key, 0x04FB, 16);
-  addKey("Reset", Reset_Key, 0x44BB, 16);
-  addKey("Esc", Unmapped_Key, 0x2BD4, 16);
-  addKey("Position", Unmapped_Key, 0x0CF3, 16);
-  addKey("Freeze", Unmapped_Key, 0x2DD2, 16);
-  addKey("Keystone", Unmapped_Key, 0x6D92, 16);
-  addKey("Search", Unmapped_Key, 0x58A7, 16);
-  addKey("RGB", PictureMode_Key, 0x18E7, 16);
-  addKey("Video", Unmapped_Key, 0x9867, 16);
-  addKey("Aspect", AspectRatio_Key, 0x5EA1, 16);
-  addKey("MagnifyOn", Unmapped_Key, 0x0DF2, 16);
-  addKey("MagnifyOff", Unmapped_Key, 0xCD32, 16);
-  addKey("Volume", Unmapped_Key, 0xCA35, 16);
-  addKey("Mute", Mute_Key, 0x4AB5, 16);
-  addKey("Auto", Unmapped_Key, 0x24DB, 16);
-  addKey("Blank", Unmapped_Key, 0x827D, 16);
+  addKey("Power", Power_Key, 0x17, 8);
+  addKey("RGB", PictureMode_Key, 0x18, 8);
+  addKey("Video", Unmapped_Key, 0x19, 8);
+  addKey("Search", Unmapped_Key, 0x1A, 8);
+  addKey("Menu", Menu_Key, 0x20, 8);
+  addKey("Enter", Select_Key, 0x21, 8);
+  addKey("Reset", Reset_Key, 0x22, 8);
+  addKey("Auto", Unmapped_Key, 0x24, 8);
+  addKey("Up", Up_Key, 0x28, 8);
+  addKey("Right", Right_Key, 0x2A, 8);
+  addKey("Down", Down_Key, 0x2C, 8);
+  addKey("Left", Left_Key, 0x2E, 8);
+  addKey("Position", Unmapped_Key, 0x30, 8);
+  addKey("Blank", Unmapped_Key, 0x41, 8);
+  addKey("Mute", Mute_Key, 0x52, 8);
+  addKey("Volume", Unmapped_Key, 0x53, 8);
+  addKey("Aspect", AspectRatio_Key, 0x7A, 8);
+  addKey("MagnifyOn", Unmapped_Key, 0xB0, 8);
+  addKey("MagnifyOff", Unmapped_Key, 0xB3, 8);
+  addKey("Freeze", Unmapped_Key, 0xB4, 8);
+  addKey("Keystone", Unmapped_Key, 0xB6, 8);
+  addKey("PageUp", PageUp_Key, 0xD0, 8);
+  addKey("PageDown", PageDown_Key, 0xD1, 8);
+  addKey("Esc", Unmapped_Key, 0xD4, 8);
+  addKey("Home", Unmapped_Key, 0xD5, 8);
+  addKey("End", Unmapped_Key, 0xD6, 8);
 }
 
 
@@ -188,51 +190,52 @@ HitachiDVD1::HitachiDVD1(
       Hitachi_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index);
+  threadableProtocol = new NECProtocol(guiObject, index, Extended_NEC);
 
-  setPreData(0x01C4, 16);
+//  setPreData(0x01C4, 16);
+  setPreData(0x2380, 16);
 
-  addKey("Power", Power_Key, 0x50AF, 16);
-  addKey("Surround", Surround_Key, 0xBA45, 16);
-  addKey("SearchMode", Unmapped_Key, 0x7C83, 16);
-  addKey("OpenClose", Eject_Key, 0x906F, 16);
-  addKey("ABRepeat", Unmapped_Key, 0x04FB, 16);
-  addKey("1", One_Key, 0xB04F, 16);
-  addKey("2", Two_Key, 0x708F, 16);
-  addKey("3", Three_Key, 0xF00F, 16);
-  addKey("4", Four_Key, 0x38C7, 16);
-  addKey("5", Five_Key, 0xB847, 16);
-  addKey("6", Six_Key, 0x7887, 16);
-  addKey("7", Seven_Key, 0xF807, 16);
-  addKey("8", Eight_Key, 0x20DF, 16);
-  addKey("9", Nine_Key, 0xA05F, 16);
-  addKey("0", Zero_Key, 0x30CF, 16);
-  addKey("Repeat", Unmapped_Key, 0x00FF, 16);
-  addKey("Mode", Unmapped_Key, 0xB44B, 16);
-  addKey("Zoom", Unmapped_Key, 0xDC23, 16);
-  addKey("Clear", Clear_Key, 0x9867, 16);
-  addKey("+10", DoubleDigit_Key, 0x08F7, 16);
-  addKey("Angle", Unmapped_Key, 0x54AB, 16);
-  addKey("Subtitle", Captions_Key, 0xD42B, 16);
-  addKey("Audio", Language_Key, 0x34CB, 16);
-  addKey("Display", Info_Key, 0xD02F, 16);
-  addKey("Menu", DiscMenu_Key, 0xE01F, 16);
-  addKey("TopMenu", DiscTitle_Key, 0x609F, 16);
-  addKey("Up", Up_Key, 0x44BB, 16);
-  addKey("Left", Left_Key, 0x24DB, 16);
-  addKey("Enter", Select_Key, 0x649B, 16);
-  addKey("Right", Right_Key, 0xA45B, 16);
-  addKey("Down", Down_Key, 0xC43B, 16);
-  addKey("Return", Exit_Key, 0xE41B, 16);
-  addKey("Setup", Menu_Key, 0x10EF, 16);
-  addKey("DiscNav", Guide_Key, 0x4CB3, 16);
-  addKey("Prev", Previous_Key, 0xC03F, 16);
-  addKey("Next", Next_Key, 0x40BF, 16);
-  addKey("Stop", Stop_Key, 0xD827, 16);
-  addKey("Play", Play_Key, 0x28D7, 16);
-  addKey("Rew", Rewind_Key, 0x48B7, 16);
-  addKey("Pause", Pause_Key, 0x58A7, 16);
-  addKey("FF", FastForward_Key, 0x8877, 16);
+  addKey("Repeat", Repeat_Key, 0x00, 8);
+  addKey("Next", Next_Key, 0x02, 8);
+  addKey("Prev", Previous_Key, 0x03, 8);
+  addKey("8", Eight_Key, 0x04, 8);
+  addKey("9", Nine_Key, 0x05, 8);
+  addKey("TopMenu", DiscTitle_Key, 0x06, 8);
+  addKey("Menu", DiscMenu_Key, 0x07, 8);
+  addKey("Setup", Menu_Key, 0x08, 8);
+  addKey("OpenClose", Eject_Key, 0x09, 8);
+  addKey("Power", Power_Key, 0x0A, 8);
+  addKey("Display", Info_Key, 0x0B, 8);
+  addKey("0", Zero_Key, 0x0C, 8);
+  addKey("1", One_Key, 0x0D, 8);
+  addKey("2", Two_Key, 0x0E, 8);
+  addKey("3", Three_Key, 0x0F, 8);
+  addKey("+10", DoubleDigit_Key, 0x10, 8);
+  addKey("FF", FastForward_Key, 0x11, 8);
+  addKey("Rew", Rewind_Key, 0x12, 8);
+  addKey("Play", Play_Key, 0x14, 8);
+  addKey("Clear", Clear_Key, 0x19, 8);
+  addKey("Pause", Pause_Key, 0x1A, 8);
+  addKey("Stop", Stop_Key, 0x1B, 8);
+  addKey("4", Four_Key, 0x1C, 8);
+  addKey("5", Five_Key, 0x1D, 8);
+  addKey("6", Six_Key, 0x1E, 8);
+  addKey("7", Seven_Key, 0x1F, 8);
+  addKey("ABRepeat", RepeatAB_Key, 0x20, 8);
+  addKey("Up", Up_Key, 0x22, 8);
+  addKey("Down", Down_Key, 0x23, 8);
+  addKey("Left", Left_Key, 0x24, 8);
+  addKey("Right", Right_Key, 0x25, 8);
+  addKey("Enter", Select_Key, 0x26, 8);
+  addKey("Return", Exit_Key, 0x27, 8);
+  addKey("Angle", Angle_Key, 0x2A, 8);
+  addKey("Subtitle", Captions_Key, 0x2B, 8);
+  addKey("Audio", Audio_Key, 0x2C, 8);
+  addKey("Mode", Unmapped_Key, 0x2D, 8);
+  addKey("DiscNav", Guide_Key, 0x32, 8);
+  addKey("Zoom", Zoom_Key, 0x3B, 8);
+  addKey("SearchMode", Unmapped_Key, 0x3E, 8);
+  addKey("Surround", Surround_Key, 0x5D, 8);
 }
 
 
@@ -247,39 +250,40 @@ HitachiAudio1::HitachiAudio1(
   addControlledDevice(Hitachi_Make, "FX-7", Audio_Device);
   addControlledDevice(Hitachi_Make, "FX-77", Audio_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index);
+  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
 
-  setPreData(0xDA25, 16);
+//  setPreData(0xDA25, 16);
+  setPreData(0x5B, 8);
 
-  addKey("1", One_Key, 0xB24D, 16);
-  addKey("2", Two_Key, 0x728D, 16);
-  addKey("3", Three_Key, 0xF20D, 16);
-  addKey("4", Four_Key, 0x0AF5, 16);
-  addKey("5", Five_Key, 0x8A75, 16);
-  addKey("6", Six_Key, 0x4AB5, 16);
-  addKey("7", Seven_Key, 0xCA35, 16);
-  addKey("8", Eight_Key, 0x2AD5, 16);
-  addKey("9", Nine_Key, 0xAA55, 16);
-  addKey("10", Unmapped_Key, 0x6A95, 16);
-  addKey("0/11", Zero_Key, 0xDA25, 16);
-  addKey("10+/12", DoubleDigit_Key, 0xEA15, 16);
-  addKey("CD_SKIP_BACK", Previous_Key, 0xA857, 16);
-  addKey("CD_SKIP_FWD", Next_Key, 0x28D7, 16);
-  addKey("CD_STOP", Stop_Key, 0xC837, 16);
-  addKey("CD_PLAY/PAUSE", Play_Key, 0x48B7, 16);
-  addKey("CD_PLAY/PAUSE", Pause_Key, 0x48B7, 16);
-  addKey("CD_PROG", Program_Key, 0x6897, 16);
-  addKey("CASSETTE_PLAY_BACK", Unmapped_Key, 0x58A7, 16);
-  addKey("CASSETTE_STOP", Unmapped_Key, 0xB847, 16);
-  addKey("CASSETTE_PLAY_FORWARD", Unmapped_Key, 0x9867, 16);
-  addKey("CASSETTE_REC", Record_Key, 0xF807, 16);
-  addKey("CASSETTE_TAPE_1/2", Unmapped_Key, 0x906F, 16);
-  addKey("CASSETTE_REW", Unmapped_Key, 0x38C7, 16);
-  addKey("CASSETTE_FFW", Unmapped_Key, 0xD827, 16);
-  addKey("VOLUME_DOWN", VolumeDown_Key, 0x40BF, 16);
-  addKey("VOLUME_UP", VolumeUp_Key, 0x807F, 16);
-  addKey("TUNER_BAND", Input_Key, 0xE01F, 16);
-  addKey("POWER", Power_Key, 0x00FF, 16);
+  addKey("POWER", Power_Key, 0x00, 8);
+  addKey("VOLUME_UP", VolumeUp_Key, 0x01, 8);
+  addKey("VOLUME_DOWN", VolumeDown_Key, 0x02, 8);
+  addKey("TUNER_BAND", TunerBand_Key, 0x07, 8);
+  addKey("CASSETTE_TAPE_1/2", Unmapped_Key, 0x09, 8);
+  addKey("CD_PLAY/PAUSE", Play_Key, 0x12, 8);
+  addKey("CD_PLAY/PAUSE", Pause_Key, 0x12, 8);
+  addKey("CD_STOP", Stop_Key, 0x13, 8);
+  addKey("CD_SKIP_FWD", Next_Key, 0x14, 8);
+  addKey("CD_SKIP_BACK", Previous_Key, 0x15, 8);
+  addKey("CD_PROG", Program_Key, 0x16, 8);
+  addKey("CASSETTE_PLAY_FORWARD", Unmapped_Key, 0x19, 8);
+  addKey("CASSETTE_PLAY_BACK", Unmapped_Key, 0x1A, 8);
+  addKey("CASSETTE_FFW", Unmapped_Key, 0x1B, 8);
+  addKey("CASSETTE_REW", Unmapped_Key, 0x1C, 8);
+  addKey("CASSETTE_STOP", Unmapped_Key, 0x1D, 8);
+  addKey("CASSETTE_REC", Record_Key, 0x1F, 8);
+  addKey("1", One_Key, 0x4D, 8);
+  addKey("2", Two_Key, 0x4E, 8);
+  addKey("3", Three_Key, 0x4F, 8);
+  addKey("4", Four_Key, 0x50, 8);
+  addKey("5", Five_Key, 0x51, 8);
+  addKey("6", Six_Key, 0x52, 8);
+  addKey("7", Seven_Key, 0x53, 8);
+  addKey("8", Eight_Key, 0x54, 8);
+  addKey("9", Nine_Key, 0x55, 8);
+  addKey("10", Unmapped_Key, 0x56, 8);
+  addKey("10+/12", DoubleDigit_Key, 0x57, 8);
+  addKey("0/11", Zero_Key, 0x5B, 8);
 }
 
 
@@ -291,53 +295,55 @@ HitachiVCR1::HitachiVCR1(
       Hitachi_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index);
+  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
 
-  setPreData(0x06F9, 16);
+//  setPreData(0x06F9, 16);
+  setPreData(0x60, 8);
 
-  addKey("Power", Power_Key, 0xE817, 16);
-  addKey("Eject", Eject_Key, 0x9C63, 16);
-  addKey("VCR/TV", Input_Key, 0x6897, 16);
-  addKey("P+", ChannelUp_Key, 0x9867, 16);
-  addKey("P-", ChannelDown_Key, 0x18E7, 16);
-  addKey("Play", Play_Key, 0x28D7, 16);
-  addKey("FF", FastForward_Key, 0x906F, 16);
-  addKey("Rew", Rewind_Key, 0x50AF, 16);
-  addKey("Stop", Stop_Key, 0xD02F, 16);
-  addKey("Pause", Pause_Key, 0x58A7, 16);
-  addKey("Step", StepForward_Key, 0x08F7, 16);
-  addKey("SpinRight", Right_Key, 0xFE01, 16);
-  addKey("SpinLeft", Left_Key, 0x7E81, 16);
-  addKey("Enter", Select_Key, 0x22DD, 16);
-  addKey("TransAux", Unmapped_Key, 0x2CD3, 16); // "AVX"
-  addKey("1", One_Key, 0xB04F, 16);
-  addKey("2", Two_Key, 0x708F, 16);
-  addKey("3", Three_Key, 0xF00F, 16);
-  addKey("4", Four_Key, 0x38C7, 16);
-  addKey("5", Five_Key, 0xB847, 16);
-  addKey("6", Six_Key, 0x7887, 16);
-  addKey("7", Seven_Key, 0xF807, 16);
-  addKey("8", Eight_Key, 0x20DF, 16);
-  addKey("9", Nine_Key, 0xA05F, 16);
-  addKey("0", Zero_Key, 0x30CF, 16);
-  addKey("Menu", Menu_Key, 0x02FD, 16);
-  addKey("Disp", Info_Key, 0x42BD, 16);
-  addKey("Index", Unmapped_Key, 0xA25D, 16);
-  addKey("SP/LP", VHSSpeed_Key, 0x0CF3, 16);
-  addKey("Count/Clock", Unmapped_Key, 0x629D, 16);
-  addKey("CLEAR", Reset_Key, 0x827D, 16); // "reset", "0000"
-  addKey("Slow", Unmapped_Key, 0x8877, 16);
-  addKey("CH1/2", Unmapped_Key, 0xA857, 16); // "CHANNEL"
-  addKey("A.DUB", Unmapped_Key, 0x34CB, 16);
-  addKey("V.DUB", Unmapped_Key, 0x5CA3, 16);
-  addKey("Tracking+", TrackingPlus_Key, 0x00FF, 16);
-  addKey("Tracking-", TrackingMinus_Key, 0x807F, 16);
-  addKey("100/ENT", PlusOneHundred_Key, 0x609F, 16);
-  addKey("-", Unmapped_Key, 0xC03F, 16);
-  addKey("+", Unmapped_Key, 0x40BF, 16);
-  addKey("GO-TO", Unmapped_Key, 0x619E, 16);
-  addKey("FRAME+", Unmapped_Key, 0xBE41, 16); // This is for jog/shuttle!
-  addKey("FRAME-", Unmapped_Key, 0x7E81, 16); // I'll get the other j/s later
+  addKey("Tracking+", TrackingPlus_Key, 0x00, 8);
+  addKey("Tracking-", TrackingMinus_Key, 0x01, 8);
+  addKey("+", Unmapped_Key, 0x02, 8);
+  addKey("-", Unmapped_Key, 0x03, 8);
+  addKey("8", Eight_Key, 0x04, 8);
+  addKey("9", Nine_Key, 0x05, 8);
+  addKey("100/ENT", PlusOneHundred_Key, 0x06, 8);
+  addKey("FF", FastForward_Key, 0x09, 8);
+  addKey("Step", StepForward_Key, 0x10, 8);
+  addKey("Rew", Rewind_Key, 0x0A, 8);
+  addKey("Stop", Stop_Key, 0x0B, 8);
+  addKey("0", Zero_Key, 0x0C, 8);
+  addKey("1", One_Key, 0x0D, 8);
+  addKey("2", Two_Key, 0x0E, 8);
+  addKey("3", Three_Key, 0x0F, 8);
+  addKey("Slow", Slow_Key, 0x11, 8);
+  addKey("Play", Play_Key, 0x14, 8);
+  addKey("CH1/2", Unmapped_Key, 0x15, 8); // "CHANNEL"
+  addKey("VCR/TV", Input_Key, 0x16, 8);
+  addKey("Power", Power_Key, 0x17, 8);
+  addKey("P-", ChannelDown_Key, 0x18, 8);
+  addKey("P+", ChannelUp_Key, 0x19, 8);
+  addKey("Pause", Pause_Key, 0x1A, 8);
+  addKey("4", Four_Key, 0x1C, 8);
+  addKey("5", Five_Key, 0x1D, 8);
+  addKey("6", Six_Key, 0x1E, 8);
+  addKey("7", Seven_Key, 0x1F, 8);
+  addKey("A.DUB", Unmapped_Key, 0x2C, 8);
+  addKey("SP/LP", VHSSpeed_Key, 0x30, 8);
+  addKey("TransAux", Unmapped_Key, 0x34, 8); // "AVX"
+  addKey("Eject", Eject_Key, 0x39, 8);
+  addKey("V.DUB", Unmapped_Key, 0x3A, 8);
+  addKey("tracking_auto", AutoTracking_Key, 0x3E, 8);
+  addKey("Menu", Menu_Key, 0x40, 8);
+  addKey("CLEAR", Reset_Key, 0x41, 8); // "reset", "0000"
+  addKey("Disp", Info_Key, 0x42, 8);
+  addKey("Enter", Select_Key, 0x44, 8);
+  addKey("Index", Unmapped_Key, 0x45, 8);
+  addKey("Count/Clock", Clock_Key, 0x46, 8);
+  addKey("SpinRight", Right_Key, 0x7F, 8);
+  addKey("SpinLeft", Left_Key, 0x7E, 8);
+  addKey("GO-TO", Unmapped_Key, 0x86, 8);
+
+//  addKey("FRAME+", Unmapped_Key, 0x7D, 8); // This is for jog/shuttle!
+//  addKey("FRAME-", Unmapped_Key, 0x7E, 8); // I'll get the other j/s later
   // For more Jog/Shuttle see LIRC hitachi/VT-RM783E
-  addKey("tracking_auto", AutoTracking_Key, 0x7C83, 16);
 }

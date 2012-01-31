@@ -40,7 +40,25 @@ public:
   void addKey(
     PIRKeyName key,
     unsigned long data,
-    unsigned int bits);
+    unsigned int size);
+
+  // A special addKey used for Sony's SIRC protocol:
+  void addSIRCKey(
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int size,
+    unsigned int commandData);
+
+  void addSIRC20Key(
+    PIRKeyName key,
+    unsigned int secondaryAddressData,
+    unsigned int primaryAddressData,
+    unsigned int commandData);
+
+  void addSharpKey(
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
 
   void setCarrierFrequency(
     unsigned int freq);

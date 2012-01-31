@@ -3,6 +3,7 @@
 #include "keysets/apple.h"
 #include "keysets/denon.h"
 #include "keysets/ei.h"
+#include "keysets/elgato.h"
 #include "keysets/goldstar.h"
 #include "keysets/hauppauge.h"
 #include "keysets/hitachi.h"
@@ -75,7 +76,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new DenonAudio4(guiObject, counter++));
   populateKeyset(new DenonAudio5(guiObject, counter++));
 
-  populateKeyset(new EiKeyset(guiObject, counter++));
+  populateKeyset(new EiTV1(guiObject, counter++));
+
+  populateKeyset(new ElgatoEyeTV1(guiObject, counter++));
 
   populateKeyset(new GoldStarTV1(guiObject, counter++));
   populateKeyset(new GoldStarTV2(guiObject, counter++));
@@ -83,7 +86,6 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new GoldStarVCR1a(guiObject, counter++));
   populateKeyset(new GoldStarVCR1b(guiObject, counter++));
   populateKeyset(new GoldStarVCR1c(guiObject, counter++));
-  populateKeyset(new GoldStarVCR1d(guiObject, counter++));
   populateKeyset(new GoldStarCD1(guiObject, counter++));
 
   populateKeyset(new HauppaugePCTV1(guiObject, counter++));
@@ -96,28 +98,19 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new JVCSat2(guiObject, counter++));
   populateKeyset(new JVCVCR1(guiObject, counter++));
   populateKeyset(new JVCVCR1a(guiObject, counter++));
-  populateKeyset(new JVCVCR1b(guiObject, counter++));
-  populateKeyset(new JVCVCR1c(guiObject, counter++));
-  populateKeyset(new JVCVCR2(guiObject, counter++));
-  populateKeyset(new JVCVCR2a(guiObject, counter++));
-  populateKeyset(new JVCVCR2b(guiObject, counter++));
-  populateKeyset(new JVCVCR2c(guiObject, counter++));
+  populateKeyset(new JVCVCRBmode1(guiObject, counter++));
+  populateKeyset(new JVCVCRBmode1a(guiObject, counter++));
   populateKeyset(new JVCTV1(guiObject, counter++));
   populateKeyset(new JVCTV1a(guiObject, counter++));
   populateKeyset(new JVCTV1b(guiObject, counter++));
   populateKeyset(new JVCTV1c(guiObject, counter++));
   populateKeyset(new JVCTV1d(guiObject, counter++));
-  populateKeyset(new JVCTV2(guiObject, counter++));
-  populateKeyset(new JVCTV2a(guiObject, counter++));
-  populateKeyset(new JVCTV2b(guiObject, counter++));
-  populateKeyset(new JVCTV2c(guiObject, counter++));
-  populateKeyset(new JVCTV2d(guiObject, counter++));
   populateKeyset(new JVCDAT1(guiObject, counter++));
   populateKeyset(new JVCCarDeck1(guiObject, counter++));
-  populateKeyset(new JVCPortableAudio1(guiObject, counter++));
-  populateKeyset(new JVCPortableAudio1a(guiObject, counter++));
-  populateKeyset(new JVCPortableAudio1b(guiObject, counter++));
-  populateKeyset(new JVCPortableAudio2(guiObject, counter++));
+  populateKeyset(new JVCAudio1(guiObject, counter++));
+  populateKeyset(new JVCAudio1a(guiObject, counter++));
+  populateKeyset(new JVCAudio1b(guiObject, counter++));
+  populateKeyset(new JVCAudio2(guiObject, counter++));
   populateKeyset(new JVCDVD1(guiObject, counter++));
 
   populateKeyset(new LGTV1(guiObject, counter++));
@@ -246,6 +239,7 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new SanyoTV1b(guiObject, counter++));
   populateKeyset(new SanyoTV1c(guiObject, counter++));
   populateKeyset(new SanyoTV1d(guiObject, counter++));
+  populateKeyset(new SanyoTV1e(guiObject, counter++));
   populateKeyset(new SanyoProjector(guiObject, counter++));
 
   populateKeyset(new SharpTV1(guiObject, counter++));
@@ -260,13 +254,11 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new SonyTV1(guiObject, counter++));
   populateKeyset(new SonyTV1a(guiObject, counter++));
   populateKeyset(new SonyTV1b(guiObject, counter++));
-  populateKeyset(new SonyTV1d(guiObject, counter++));
+  populateKeyset(new SonyTV1c(guiObject, counter++));
   populateKeyset(new SonyAmp1(guiObject, counter++));
   populateKeyset(new SonyAmp2(guiObject, counter++));
-  populateKeyset(new SonyCD1(guiObject, counter++));
-  populateKeyset(new SonyCD1a(guiObject, counter++));
-  populateKeyset(new SonyCD2(guiObject, counter++));
-  populateKeyset(new SonyCD3(guiObject, counter++));
+  populateKeyset(new SonyAudio1(guiObject, counter++));
+  populateKeyset(new SonyAudio1a(guiObject, counter++));
   populateKeyset(new SonyDAT1(guiObject, counter++));
   populateKeyset(new SonyDVD1(guiObject, counter++));
   populateKeyset(new SonyDVD1a(guiObject, counter++));
@@ -274,6 +266,7 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new SonyDVD1c(guiObject, counter++));
   populateKeyset(new SonyVCR1(guiObject, counter++));
   populateKeyset(new SonyVCR1a(guiObject, counter++));
+  populateKeyset(new SonyVCR1b(guiObject, counter++));
   populateKeyset(new SonyReceiver1(guiObject, counter++));
 
   populateKeyset(new Tivo1(guiObject, counter++));
@@ -289,6 +282,7 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new ToshibaTV1d(guiObject, counter++));
   populateKeyset(new ToshibaTV1e(guiObject, counter++));
   populateKeyset(new ToshibaTV1f(guiObject, counter++));
+  populateKeyset(new ToshibaTV1g(guiObject, counter++));
   populateKeyset(new ToshibaVCR1(guiObject, counter++));
   populateKeyset(new ToshibaVCR1a(guiObject, counter++));
   populateKeyset(new ToshibaDisc1(guiObject, counter++));
@@ -357,6 +351,50 @@ bool PIRKeysetManager::keysetExists(
 }
 
 
+bool PIRKeysetManager::findKeysetID(
+  QString make,
+  QString name,
+  unsigned int &id)
+{
+  // Only modify the id if we actually find a match!
+
+  PIRKeysetMakeIndex::const_iterator i = makeIndex.find(make);
+  if (i == makeIndex.end())
+  {
+    return false;
+  }
+
+  PIRKeysetNameIndex::const_iterator ii = (*i).second.find(name);
+  if (ii == (*i).second.end())
+  {
+    return false;
+  }
+
+  //  Ok, we've found it, pull out the id:
+  id = (*ii).second;
+  return true;
+}
+
+
+PIRKeysetWidgetItem *PIRKeysetManager::makeKeysetItem(
+  QString make,
+  QString name)
+{
+  unsigned int id;
+
+  if (!findKeysetID(make, name, id))
+  {
+    return NULL;
+  }
+
+  QString fullname = make;
+  fullname.append(" ");
+  fullname.append(name);
+
+  return new PIRKeysetWidgetItem(fullname, id, getMake(id));
+}
+
+
 bool PIRKeysetManager::hasKey(
   unsigned int keysetID,
   PIRKeyName name)
@@ -394,9 +432,16 @@ QString PIRKeysetManager::getDisplayName(
 void PIRKeysetManager::populateKeyset(
   PIRKeysetMetaData *keyset)
 {
+  // Set up the keyset collection:
   keysetsInfo[keyset->getID()] = keyset;
 
   keyset->moveProtocolToThread(commandThread);
+
+  // Also, set up a name-based index into the collection:
+  makeIndex
+    [QString(makeManager.getMakeString(keyset->getMake()))]
+    [QString(keyset->getKeysetName())]
+    = keyset->getID();
 }
 
 

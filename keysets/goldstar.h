@@ -59,15 +59,6 @@ public:
 };
 
 
-class GoldStarVCR1d: public GoldStarVCR1
-{
-public:
-  GoldStarVCR1d(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-
 class GoldStarCD1: public PIRKeysetMetaData
 {
 public:

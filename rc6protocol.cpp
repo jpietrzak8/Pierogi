@@ -51,10 +51,9 @@ void RC6Protocol::startSendingCommand(
     PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
+    int duration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      int duration = 0;
-
       // First, construct the "Header" segment of the pulse train.  For now,
       // I'm only supporting the "consumer electronics mode" of RC6; this code
       // must be changed if we want to support more than that!

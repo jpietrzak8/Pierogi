@@ -14,7 +14,8 @@ RCATV1::RCATV1(
     index,
     500, 1000,
     500, 2000,
-    64500, true);
+    64500, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -82,7 +83,7 @@ RCATV1a::RCATV1a(
 {
   setKeysetName("TV Keyset 1a");
 
-  addKey("repeat", Unmapped_Key, 0x050FA, 20);
+  addKey("repeat", Repeat_Key, 0x050FA, 20);
   addKey("pip", PIP_Key, 0x1B0E4, 20);
   addKey("swap", PIPSwap_Key, 0xC303C, 20);
   addKey("aspect", AspectRatio_Key, 0x9006F, 20);
@@ -102,7 +103,8 @@ RCATV2::RCATV2(
     index,
     500, 1000,
     500, 2000,
-    12390, false);
+    12390, false,
+    LIRC_NEC);
 
   threadableProtocol = np;
   np->setHeaderPair(17355, 3978);
@@ -110,8 +112,8 @@ RCATV2::RCATV2(
 
   setPreData(0xF, 4);
 
-  addKey("off", Unmapped_Key, 0x3B0C4, 20);
-  addKey("on", Unmapped_Key, 0x3A0C5, 20);
+  addKey("off", PowerOff_Key, 0x3B0C4, 20);
+  addKey("on", PowerOn_Key, 0x3A0C5, 20);
   addKey("display", Info_Key, 0x3C0C3, 20);
   addKey("reset", Reset_Key, 0x120ED, 20);
   addKey("pc", PrevChannel_Key, 0x270D8, 20);
@@ -150,7 +152,8 @@ RCAAux1::RCAAux1(
     index,
     500, 1000,
     500, 2000,
-    64500, true);
+    64500, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -212,7 +215,8 @@ RCAAux2::RCAAux2(
     index,
     500, 1000,
     500, 2000,
-    64500, true);
+    64500, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -290,7 +294,8 @@ RCAVCR1::RCAVCR1(
     index,
     500, 1000,
     500, 2000,
-    64500, true);
+    64500, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -356,7 +361,8 @@ RCAVCR2::RCAVCR2(
     index,
     500, 1000,
     500, 2000,
-    64500, true);
+    64500, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -416,7 +422,8 @@ RCADVD1::RCADVD1(
     index,
     500, 1000,
     500, 2000,
-    64500, true);
+    64500, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -460,9 +467,9 @@ RCADVD1::RCADVD1(
   addKey("dvd-stop", Stop_Key, 0x1FAE0, 20);
   addKey("dvd-pause", Pause_Key, 0x19AE6, 20);
   addKey("skip", Advance_Key, 0x53AAC, 20);
-  addKey("dvd_again", Unmapped_Key, 0xBAA45, 20);
+  addKey("dvd_again", Replay_Key, 0xBAA45, 20);
   addKey("dvd_open_close", Eject_Key, 0x40ABF, 20);
-  addKey("dvd_zoom", Unmapped_Key, 0x90A6F, 20);
+  addKey("dvd_zoom", Zoom_Key, 0x90A6F, 20);
   addKey("dvd_preset", Unmapped_Key, 0x12AED, 20);
   addKey("dvd", Unmapped_Key, 0x3AAC5, 20);
 }
@@ -493,7 +500,8 @@ RCASat1::RCASat1(
     index,
     500, 1000,
     500, 2000,
-    64500, true);
+    64500, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -558,7 +566,8 @@ RCASat2::RCASat2(
     index,
     440, 2780,
     440, 1645,
-    6115, false);
+    6115, false,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -574,7 +583,7 @@ RCASat2::RCASat2(
   setPostData(0x000, 10);
 
   addKey("info", Info_Key, 0x0, 6);
-  addKey("power_on", Unmapped_Key, 0x1, 6);
+  addKey("power_on", PowerOn_Key, 0x1, 6);
   addKey("power", Power_Key, 0x2, 6);
   addKey("1", One_Key, 0x4, 6);
   addKey("2", Two_Key, 0x5, 6);
@@ -603,7 +612,7 @@ RCASat2::RCASat2(
   addKey("sys_info", Info_Key, 0x36, 6);
   addKey("asterisk", Unmapped_Key, 0x37, 6);
   addKey("pound", Unmapped_Key, 0x38, 6);
-  addKey("power_off", Unmapped_Key, 0x39, 6);
+  addKey("power_off", PowerOff_Key, 0x39, 6);
   addKey("sat", Unmapped_Key, 0x41, 6);
   addKey("dish_home", Unmapped_Key, 0x52, 6);
   addKey("sys_info2", Unmapped_Key, 0x54, 6);

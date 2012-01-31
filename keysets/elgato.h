@@ -1,16 +1,15 @@
-#ifndef EI_H
-#define EI_H
+#ifndef ELGATO_H
+#define ELGATO_H
 
 #include "pirkeysetmetadata.h"
-
 #include <QObject>
 
-class EiTV1: public PIRKeysetMetaData
+class ElgatoEyeTV1: public PIRKeysetMetaData
 {
 public:
-  EiTV1(
+  ElgatoEyeTV1(
     QObject *guiObject,
     unsigned int index);
 };
 
-#endif // EI_H
+#endif // ELGATO_H

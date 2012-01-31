@@ -14,7 +14,8 @@ PanasonicAmp::PanasonicAmp(
     index,
     400, 400,
     400, 1200,
-    76000, false);
+    76000, false,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -48,23 +49,25 @@ PanasonicCarAudio::PanasonicCarAudio(
     index,
     665, 465,
     665, 1595,
-    108609, true);
+    108609, true,
+    Extended_NEC);
 
   threadableProtocol = np;
 
   np->setHeaderPair(9148, 4424);
   np->setTrailerPulse(667);
 
-  setPreData(0x8156, 16);
+//  setPreData(0x8156, 16);
+  setPreData(0x6A81, 16);
 
-  addKey("Power", Power_Key, 0x48B7, 16);
-  addKey("PRG", Unmapped_Key, 0x38C7, 16);
-  addKey("Mode", Unmapped_Key, 0x58A7, 16);
-  addKey("ATT", Unmapped_Key, 0x28D7, 16);
-  addKey("Vol_Up", VolumeUp_Key, 0xB847, 16);
-  addKey("Vol_Down", VolumeDown_Key, 0x9867, 16);
-  addKey("Tune/Track_Up", ChannelUp_Key, 0xF807, 16);
-  addKey("Tune/Track_Down", ChannelDown_Key, 0x7887, 16);
+  addKey("Power", Power_Key, 0x12, 8);
+  addKey("ATT", Unmapped_Key, 0x14, 8);
+  addKey("Vol_Down", VolumeDown_Key, 0x19, 8);
+  addKey("Mode", SoundMode_Key, 0x1A, 8);
+  addKey("PRG", Program_Key, 0x1C, 8);
+  addKey("Vol_Up", VolumeUp_Key, 0x1D, 8);
+  addKey("Tune/Track_Down", ChannelDown_Key, 0x1E, 8);
+  addKey("Tune/Track_Up", ChannelUp_Key, 0x1F, 8);
 }
 
 
@@ -81,7 +84,8 @@ PanasonicSat1::PanasonicSat1(
     index,
     500, 400,
     500, 1212,
-    74500, false);
+    74500, false,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -103,7 +107,7 @@ PanasonicSat1::PanasonicSat1(
   addKey("RIGHT", Right_Key, 0x7332, 16);
   addKey("UP", Up_Key, 0x5312, 16);
   addKey("DOWN", Down_Key, 0xD392, 16);
-  addKey("FAV", Unmapped_Key, 0x0B4A, 16);
+  addKey("FAV", Favorites_Key, 0x0B4A, 16);
   addKey("INFO", Info_Key, 0x9DDC, 16);
   addKey("1", One_Key, 0x0544, 16);
   addKey("2", Two_Key, 0x85C4, 16);
@@ -120,7 +124,7 @@ PanasonicSat1::PanasonicSat1(
   addKey("TV/DSS", Input_Key, 0x3D7C, 16);
   addKey("REC", Record_Key, 0x4302, 16);
   addKey("ACTION", Select_Key, 0xC382, 16);
-  addKey("PROG", Unmapped_Key, 0x5110, 16);
+  addKey("PROG", Program_Key, 0x5110, 16);
   addKey("TXT", Unmapped_Key, 0x7B3A, 16);
   addKey("STTL", Unmapped_Key, 0xFBBA, 16);
   addKey("GUIDE", Guide_Key, 0xCB8A, 16);
@@ -157,7 +161,8 @@ PanasonicTV1::PanasonicTV1(
     index,
     500, 400,
     500, 1250,
-    75000, false);
+    75000, false,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -204,7 +209,7 @@ PanasonicTV1::PanasonicTV1(
   addKey("MULTIWINDOW", Unmapped_Key, 0x006766, 24);
   addKey("N", Unmapped_Key, 0x003031, 24);
   addKey("STR", Unmapped_Key, 0x00ABAA, 24);
-  addKey("TIMER", Unmapped_Key, 0x00F0F1, 24);
+  addKey("TIMER", Timer_Key, 0x00F0F1, 24);
   addKey("HELP", Unmapped_Key, 0x003534, 24);
   addKey("R-TUNE", Unmapped_Key, 0x00ECED, 24);
   addKey("GAME", Unmapped_Key, 0x00DDDC, 24);
@@ -217,20 +222,20 @@ PanasonicTV1::PanasonicTV1(
   addKey("Return", Unmapped_Key, 0x002B2A, 24);
   addKey("MOOD_LIGHT", Unmapped_Key, 0x008584, 24);
 
-  addKey("ASPECT", Unmapped_Key, 0x207B5A, 24);
+  addKey("ASPECT", AspectRatio_Key, 0x207B5A, 24);
 
-  addKey("PROG", Unmapped_Key, 0x405110, 24);
-  addKey("MENU", Unmapped_Key, 0x402362, 24);
+  addKey("PROG", Program_Key, 0x405110, 24);
+  addKey("MENU", Menu_Key, 0x402362, 24);
   addKey("EXIT", Exit_Key, 0x406322, 24);
   addKey("GUIDE", Guide_Key, 0x40A3E2, 24);
   addKey("TV", Unmapped_Key, 0x400C4D, 24);
 
-  addKey("TV/TEXT", Unmapped_Key, 0x80C041, 24);
+  addKey("TV/TEXT", Teletext_Key, 0x80C041, 24);
   addKey("FP", Unmapped_Key, 0x80A021, 24);
   addKey("INDEX", Unmapped_Key, 0x801091, 24);
-  addKey("HOLD", Unmapped_Key, 0x809011, 24);
-  addKey("TIMETEXT", Unmapped_Key, 0x80D051, 24);
-  addKey("REVEAL", Unmapped_Key, 0x8038B9, 24);
+  addKey("HOLD", TeletextHold_Key, 0x809011, 24);
+  addKey("TIMETEXT", TeletextTime_Key, 0x80D051, 24);
+  addKey("REVEAL", TeletextReveal_Key, 0x8038B9, 24);
   addKey("FTB", Unmapped_Key, 0x8030B1, 24);
   addKey("Display_Cancel", Unmapped_Key, 0x8020A1, 24);
   addKey("List/F.Text", Unmapped_Key, 0x80B839, 24);
@@ -288,7 +293,8 @@ PanasonicVCR1::PanasonicVCR1(
     index,
     550, 330,
     550, 1200,
-    75000, false);
+    75000, false,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -319,9 +325,9 @@ PanasonicVCR1::PanasonicVCR1(
   addKey("0", Zero_Key, 0x009891, 24);
   addKey("100", PlusOneHundred_Key, 0x00A7AE, 24);
   addKey("TV-SAT", Input_Key, 0x006C65, 24);
-  addKey("TRACKING_MINUS", Unmapped_Key, 0x004D44, 24);
-  addKey("TRACKING_PLUS", Unmapped_Key, 0x008D84, 24);
-  addKey("TRACKING_AUTO", Unmapped_Key, 0x000D04, 24);
+  addKey("TRACKING_MINUS", TrackingMinus_Key, 0x004D44, 24);
+  addKey("TRACKING_PLUS", TrackingPlus_Key, 0x008D84, 24);
+  addKey("TRACKING_AUTO", AutoTracking_Key, 0x000D04, 24);
   addKey("STILL", StepForward_Key, 0x003039, 24);  // also "ADV"
   addKey("INDEXL", Unmapped_Key, 0x00929B, 24);
   addKey("INDEXR", Unmapped_Key, 0x00525B, 24);
@@ -331,20 +337,20 @@ PanasonicVCR1::PanasonicVCR1(
   addKey("DIRECT_TV_REC", Unmapped_Key, 0x00434A, 24);
   addKey("TIMERREC", Timer_Key, 0x002D24, 24);
   addKey("COUNTER_RESET", Unmapped_Key, 0x002A23, 24);
-  addKey("AUDIO", Unmapped_Key, 0x00CCC5, 24);
-  addKey("SLOW", Unmapped_Key, 0x00F0F9, 24);
+  addKey("AUDIO", Audio_Key, 0x00CCC5, 24);
+  addKey("SLOW", Slow_Key, 0x00F0F9, 24);
   addKey("INDEX", Unmapped_Key, 0x00020B, 24);
   addKey("+", Unmapped_Key, 0x007178, 24);
   addKey("-", Unmapped_Key, 0x00F1F8, 24);
   addKey("mem_rep", Unmapped_Key, 0x00CAC3, 24);
   addKey("time_search", Unmapped_Key, 0x00222B, 24);
   addKey("monitor", Unmapped_Key, 0x008980, 24);
-  addKey("repeat", Unmapped_Key, 0x000F06, 24);
-  addKey("memory", Unmapped_Key, 0x008F86, 24);
+  addKey("repeat", Repeat_Key, 0x000F06, 24);
+  addKey("memory", Program_Key, 0x008F86, 24);
   addKey("sleep", Sleep_Key, 0x004F46, 24);
   addKey("rew2", Unmapped_Key, 0x00CFC6, 24);
   addKey("cm-zero", Unmapped_Key, 0x001F16, 24);
-  addKey("CLOCK/COUNTER", Unmapped_Key, 0x006A63, 24);
+  addKey("CLOCK/COUNTER", Clock_Key, 0x006A63, 24);
   addKey("TAPE_REMAIN", Unmapped_Key, 0x00AAA3, 24);
   addKey("mesecam", Unmapped_Key, 0x00939A, 24);
   addKey("zerostop", Unmapped_Key, 0x00AFA6, 24);
@@ -371,7 +377,7 @@ PanasonicVCR1::PanasonicVCR1(
   addKey("ADD/DELETE", Unmapped_Key, 0x808C05, 24);
   addKey("RADIO_TUNE", Unmapped_Key, 0x801C95, 24);
   addKey("VPS/PDC", Unmapped_Key, 0x8060E9, 24);
-  addKey("OffTimer", Unmapped_Key, 0x801099, 24);
+  addKey("OffTimer", Sleep_Key, 0x801099, 24);
   addKey("rotate", Unmapped_Key, 0x8040C9, 24);
   addKey("rotatedown", Unmapped_Key, 0x80C049, 24);
   addKey("set", Unmapped_Key, 0x8020A9, 24);
@@ -410,7 +416,7 @@ PanasonicVCR1b::PanasonicVCR1b(
 
   addKey("clear", Clear_Key, 0x8050D9, 24);
   addKey("prog", Program_Key, 0x00FFF6, 24);
-  addKey("repeat", Unmapped_Key, 0x009F96, 24);
+  addKey("repeat", Repeat_Key, 0x009F96, 24);
 }
 
 
@@ -441,7 +447,8 @@ PanasonicDVD1::PanasonicDVD1(
     index,
     500, 400,
     500, 1200,
-    75000, false);
+    75000, false,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -480,25 +487,25 @@ PanasonicDVD1::PanasonicDVD1(
   addKey("+10", DoubleDigit_Key, 0x919C, 16);
   addKey("inputselect", Input_Key, 0x919C, 16);
 //  addKey("R-TUNE", Unmapped_Key, 0xD9D4, 16);
-  addKey("TOP_MENU", Unmapped_Key, 0xD9D4, 16);
+  addKey("TOP_MENU", DiscTitle_Key, 0xD9D4, 16);
   addKey("OPEN/CLOSE", Eject_Key, 0x808D, 16);
 //  addKey("TV-SAT", Input_Key, 0x808D, 16);
   addKey("CH_DOWN", ChannelDown_Key, 0xE0ED, 16);
   addKey("CH_UP", ChannelUp_Key, 0xF0FD, 16);
   addKey("SLEEP", Sleep_Key, 0xD7DA, 16);
   addKey("SUBTITLE", Captions_Key, 0x8984, 16);
-  addKey("AUDIO", Unmapped_Key, 0xCCC1, 16);
-  addKey("ANGLE", Unmapped_Key, 0x0904, 16);
+  addKey("AUDIO", Audio_Key, 0xCCC1, 16);
+  addKey("ANGLE", Angle_Key, 0x0904, 16);
   addKey("QUICK_REPLAY", Replay_Key, 0xD1DC, 16);
   addKey("PROGRAM", Program_Key, 0x515C, 16);
-  addKey("RANDOM", Unmapped_Key, 0xB2BF, 16);
-  addKey("REPEAT", Unmapped_Key, 0x313C, 16);
-  addKey("A-B_REPEAT", Unmapped_Key, 0x121F, 16);
+  addKey("RANDOM", Random_Key, 0xB2BF, 16);
+  addKey("REPEAT", Repeat_Key, 0x313C, 16);
+  addKey("A-B_REPEAT", RepeatAB_Key, 0x121F, 16);
   addKey("A.SRD", Unmapped_Key, 0x7974, 16);
   addKey("BASS", Unmapped_Key, 0x2B26, 16);
   addKey("CINEMA", Unmapped_Key, 0x030E, 16);
   addKey("D.ENH", Unmapped_Key, 0xABA6, 16);
-  addKey("ZOOM", Unmapped_Key, 0x838E, 16);
+  addKey("ZOOM", Zoom_Key, 0x838E, 16);
   addKey("POSITION_MEMORY", Unmapped_Key, 0x626F, 16);
   addKey("ONETOUCH_MEMORY", Unmapped_Key, 0x6B66, 16);
   addKey("GROUP", Unmapped_Key, 0x070A, 16);
@@ -516,7 +523,7 @@ PanasonicDVD1::PanasonicDVD1(
   addKey("rec", Record_Key, 0x101D, 16);
   addKey("recmode", Unmapped_Key, 0x8A87, 16);
   addKey("extlink", Unmapped_Key, 0xC4C9, 16);
-  addKey("timer", Unmapped_Key, 0x1E13, 16);
+  addKey("timer", Timer_Key, 0x1E13, 16);
   addKey("createchapter", Unmapped_Key, 0x1A17, 16);
   addKey("erase", Unmapped_Key, 0x222F, 16);
   addKey("frec", Unmapped_Key, 0xE3EE, 16);
@@ -560,7 +567,8 @@ PanasonicAudio1::PanasonicAudio1(
     index,
     400, 400,
     400, 1200,
-    76000, false);
+    76000, false,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -586,11 +594,11 @@ PanasonicAudio1::PanasonicAudio1(
   addKey("10/0", Zero_Key, 0x99DF, 16);
   addKey("cancel", Clear_Key, 0xB1F7, 16);
   addKey("program", Program_Key, 0xD197, 16); // "MEMORY"
-  addKey("tuner-band", Unmapped_Key, 0x1D5B, 16);
-  addKey("tuning-", Unmapped_Key, 0x5711, 16);
-  addKey("tuning+", Unmapped_Key, 0x97D1, 16);
-  addKey("TUNER_PRESET_TUNE_DOWN", ChannelDown_Key, 0x1751, 16);
-  addKey("TUNER_PRESET_TUNE_UP", ChannelUp_Key, 0xE7A1, 16);
+  addKey("tuner-band", TunerBand_Key, 0x1D5B, 16);
+  addKey("tuning-", ChannelDown_Key, 0x5711, 16);
+  addKey("tuning+", ChannelUp_Key, 0x97D1, 16);
+  addKey("TUNER_PRESET_TUNE_DOWN", Unmapped_Key, 0x1751, 16);
+  addKey("TUNER_PRESET_TUNE_UP", Unmapped_Key, 0xE7A1, 16);
   addKey("fm-mode", Unmapped_Key, 0x2761, 16); // "st-mono"
   addKey("cd", Unmapped_Key, 0x6D2B, 16);
   addKey("prev", Previous_Key, 0x2167, 16);
@@ -598,7 +606,7 @@ PanasonicAudio1::PanasonicAudio1(
   addKey("stop-clear", Stop_Key, 0x0147, 16);
   addKey("play-pause", Play_Key, 0xE1A7, 16);
   addKey("play-pause", Pause_Key, 0xE1A7, 16);
-  addKey("repeat", Unmapped_Key, 0x81C7, 16);
+  addKey("repeat", Repeat_Key, 0x81C7, 16);
   addKey("xbs", Unmapped_Key, 0x6B2D, 16);
   addKey("vol-", VolumeDown_Key, 0x8DCB, 16);
   addKey("vol+", VolumeUp_Key, 0x0D4B, 16);
@@ -613,7 +621,7 @@ PanasonicAudio1::PanasonicAudio1(
   addKey("ff", FastForward_Key, 0xC583, 16);
   addKey("tape_play", Unmapped_Key, 0x6523, 16);
   addKey("tape_stop", Unmapped_Key, 0x0543, 16);
-  addKey("random", Unmapped_Key, 0x4107, 16);
+  addKey("random", Random_Key, 0x4107, 16);
   addKey("TAPE_DECK", Unmapped_Key, 0xB5F3, 16);
   addKey("TAPE_PLAY_REWIND", Unmapped_Key, 0xA5E3, 16);
   addKey("TAPE_PLAY_FORWARD", Unmapped_Key, 0x6523, 16);

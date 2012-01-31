@@ -19,92 +19,94 @@ SamsungTV1::SamsungTV1(
     index,
     600, 500,
     600, 1600,
-    107500, true);
+    107500, true,
+    Extended_NEC);
 
   threadableProtocol = np;
 
   np->setHeaderPair(4500, 4500);
   np->setTrailerPulse(600);
 
-  setPreData(0xE0E0, 16);
+//  setPreData(0xE0E0, 16);
+  setPreData(0x0707, 16);
 
-  addKey("Power", Power_Key, 0x40BF, 16);
-  addKey("Channel Up", ChannelUp_Key, 0x48B7, 16);
-  addKey("Channel Down", ChannelDown_Key, 0x08F7, 16);
-  addKey("Volume Up", VolumeUp_Key, 0xE01F, 16);
-  addKey("Volume Down", VolumeDown_Key, 0xD02F, 16);
-  addKey("TV/Video", Input_Key, 0x807F, 16);
-  addKey("1", One_Key, 0x20DF, 16);
-  addKey("2", Two_Key, 0xA05F, 16);
-  addKey("3", Three_Key, 0x609F, 16);
-  addKey("4", Four_Key, 0x10EF, 16);
-  addKey("5", Five_Key, 0x906F, 16);
-  addKey("6", Six_Key, 0x50AF, 16);
-  addKey("7", Seven_Key, 0x30CF, 16);
-  addKey("8", Eight_Key, 0xB04F, 16);
-  addKey("9", Nine_Key, 0x708F, 16);
-  addKey("0", Zero_Key, 0x8877, 16);
-  addKey("-/--", DoubleDigit_Key, 0xC43B, 16);
-  addKey("+100", PlusOneHundred_Key, 0xC43B, 16);
-  addKey("DASH", Dash_Key, 0xC43B, 16);
-  addKey("Sleep", Sleep_Key, 0xC03F, 16);
-  addKey("PrevCh", PrevChannel_Key, 0xC837, 16);
-  addKey("Mute", Mute_Key, 0xF00F, 16);
-  addKey("Display", Info_Key, 0xF807, 16);
-  addKey("Menu", Menu_Key, 0x58A7, 16);
-  addKey("Red", Red_Key, 0x36C9, 16);
-  addKey("Green", Green_Key, 0x28D7, 16);
-  addKey("Yellow", Yellow_Key, 0xA857, 16);
-  addKey("Blue", Blue_Key, 0x6897, 16);
-  addKey("Up", Up_Key, 0x06F9, 16);
-  addKey("Down", Down_Key, 0x8679, 16);
-  addKey("Left", Left_Key, 0xA659, 16);
-  addKey("Right", Right_Key, 0x46B9, 16);
-//  addKey("Enter", Enter_Key, 0x16E9, 16);
-  addKey("Enter", Select_Key, 0x16E9, 16);
-  addKey("Exit", Exit_Key, 0xB44B, 16);
-  addKey("PIP", PIP_Key, 0x04FB, 16);
-  addKey("Swap", PIPSwap_Key, 0x847B, 16);
-  addKey("Closed Captions", Captions_Key, 0xA45B, 16); // "SUBTITLE"
-  addKey("Guide", Guide_Key, 0xF20D, 16);
-  addKey("Play", Play_Key, 0xE21D, 16);
-  addKey("PLAY-PAUSE", Pause_Key, 0xE21D, 16);
-  addKey("Stop", Stop_Key, 0x629D, 16);
-  addKey("Fast Forward", FastForward_Key, 0x12ED, 16);
-  addKey("Rewind", Rewind_Key, 0xA25D, 16);
-  addKey("Record", Record_Key, 0x926D, 16);
-  addKey("PMode", PictureMode_Key, 0x14EB, 16); // "p.std"
-  addKey("SMode", SoundMode_Key, 0xD42B, 16);
-  addKey("PSize", AspectRatio_Key, 0x7C83, 16);
-  addKey("ch.scan", Scan_Key, 0x8C73, 16);  // "h.scan"
-  addKey("surf", Unmapped_Key, 0xBC43, 16); // "r.surf"
-  addKey("turbo", Unmapped_Key, 0xA659, 16);
-  addKey("ttx/mix", Unmapped_Key, 0x34CB, 16); // "teletext"
-  addKey("tv", Unmapped_Key, 0xD827, 16);
-  addKey("mts", Language_Key, 0x00FF, 16); // "dual"
-  addKey("PIP.SOURCE", PIPSource_Key, 0x24DB, 16);
-  addKey("ch-mgr", Unmapped_Key, 0xD629, 16); // "CH_LIST"
-  addKey("srs", Surround_Key, 0x7689, 16);
-  addKey("size", Unmapped_Key, 0xF40B, 16); // PIP size?
-  addKey("PIP.chan+", Unmapped_Key, 0x4CB3, 16); // "AUDCH_UP"
-  addKey("position", PIPMove_Key, 0x44BB, 16);
-  addKey("PIP.chan-", Unmapped_Key, 0xCC33, 16); // "AUDCH_DOWN"
-  addKey("pc", Unmapped_Key, 0x9669, 16);
-  addKey("TV-DTV", Unmapped_Key, 0xC23D, 16);
-  addKey("D.MENU", DiscMenu_Key, 0x718E, 16);
-  addKey("STILL", Unmapped_Key, 0x42BD, 16);
-  addKey("WISELINK", Unmapped_Key, 0x31CE, 16); // "W.Link", "Media.P"
-  addKey("ANTENNA", Unmapped_Key, 0x6C93, 16);
-  addKey("ANYNET", Unmapped_Key, 0xE916, 16);
-  addKey("FAV-CH", Favorites_Key, 0x22DD, 16);
-  addKey("RETURN", Unmapped_Key, 0x1AE5, 16);
-  addKey("E.SAVING", Unmapped_Key, 0xEE11, 16);
-  addKey("Tools", Unmapped_Key, 0xD22D, 16);
-  addKey("E.Mode", Unmapped_Key, 0x29D6, 16);
-  addKey("HDMI", Unmapped_Key, 0xD12E, 16);
-  addKey("Content", Unmapped_Key, 0x9E61, 16);
-  addKey("Internet", Unmapped_Key, 0xC936, 16);
-  addKey("AD", Unmapped_Key, 0xE41B, 16);
+  addKey("mts", Audio_Key, 0x00, 8); // "dual"
+  addKey("TV/Video", Input_Key, 0x01, 8);
+  addKey("Power", Power_Key, 0x02, 8);
+  addKey("Sleep", Sleep_Key, 0x03, 8);
+  addKey("1", One_Key, 0x04, 8);
+  addKey("2", Two_Key, 0x05, 8);
+  addKey("3", Three_Key, 0x06, 8);
+  addKey("Volume Up", VolumeUp_Key, 0x07, 8);
+  addKey("4", Four_Key, 0x08, 8);
+  addKey("5", Five_Key, 0x09, 8);
+  addKey("6", Six_Key, 0x0A, 8);
+  addKey("Volume Down", VolumeDown_Key, 0x0B, 8);
+  addKey("7", Seven_Key, 0x0C, 8);
+  addKey("8", Eight_Key, 0x0D, 8);
+  addKey("9", Nine_Key, 0x0E, 8);
+  addKey("Mute", Mute_Key, 0x0F, 8);
+  addKey("Channel Down", ChannelDown_Key, 0x10, 8);
+  addKey("0", Zero_Key, 0x11, 8);
+  addKey("Channel Up", ChannelUp_Key, 0x12, 8);
+  addKey("PrevCh", PrevChannel_Key, 0x13, 8);
+  addKey("Green", Green_Key, 0x14, 8);
+  addKey("Yellow", Yellow_Key, 0x15, 8);
+  addKey("Blue", Blue_Key, 0x16, 8);
+  addKey("Menu", Menu_Key, 0x1A, 8);
+  addKey("tv", Unmapped_Key, 0x1B, 8);
+  addKey("Display", Info_Key, 0x1F, 8);
+  addKey("PIP", PIP_Key, 0x20, 8);
+  addKey("Swap", PIPSwap_Key, 0x21, 8);
+  addKey("position", PIPMove_Key, 0x22, 8);
+  addKey("-/--", DoubleDigit_Key, 0x23, 8);
+  addKey("+100", PlusOneHundred_Key, 0x23, 8);
+  addKey("DASH", Dash_Key, 0x23, 8);
+  addKey("PIP.SOURCE", PIPSource_Key, 0x24, 8);
+  addKey("Closed Captions", Captions_Key, 0x25, 8); // "SUBTITLE"
+  addKey("AD", Unmapped_Key, 0x27, 8);
+  addKey("PMode", PictureMode_Key, 0x28, 8); // "p.std"
+  addKey("SMode", SoundMode_Key, 0x2B, 8);
+  addKey("ttx/mix", Teletext_Key, 0x2C, 8); // "teletext"
+  addKey("Exit", Exit_Key, 0x2D, 8);
+  addKey("size", AspectRatio_Key, 0x2F, 8);
+  addKey("ch.scan", PIPScan_Key, 0x31, 8);  // "h.scan"
+  addKey("PIP.chan+", PIPChannelUp_Key, 0x32, 8); // "AUDCH_UP"
+  addKey("PIP.chan-", PIPChannelDown_Key, 0x33, 8); // "AUDCH_DOWN"
+  addKey("ANTENNA", Unmapped_Key, 0x36, 8);
+  addKey("surf", Unmapped_Key, 0x3D, 8); // "r.surf"
+  addKey("PSize", PIPSize_Key, 0x3E, 8);
+  addKey("STILL", PIPPause_Key, 0x42, 8);
+  addKey("TV-DTV", Unmapped_Key, 0x43, 8);
+  addKey("FAV-CH", Favorites_Key, 0x44, 8);
+  addKey("Rewind", Rewind_Key, 0x45, 8);
+  addKey("Stop", Stop_Key, 0x46, 8);
+  addKey("Play/Pause", Play_Key, 0x47, 8);
+  addKey("Play/Pause", Pause_Key, 0x47, 8);
+  addKey("Fast Forward", FastForward_Key, 0x48, 8);
+  addKey("Record", Record_Key, 0x49, 8);
+  addKey("Tools", Unmapped_Key, 0x4B, 8);
+  addKey("Guide", Guide_Key, 0x4F, 8);
+  addKey("RETURN", Unmapped_Key, 0x58, 8);
+  addKey("Up", Up_Key, 0x60, 8);
+  addKey("Down", Down_Key, 0x61, 8);
+  addKey("Right", Right_Key, 0x62, 8);
+  addKey("Left", Left_Key, 0x65, 8);
+  addKey("Enter", Select_Key, 0x68, 8);
+  addKey("pc", Unmapped_Key, 0x69, 8);
+  addKey("ch-mgr", Unmapped_Key, 0x6B, 8); // "CH_LIST"
+  addKey("Red", Red_Key, 0x6C, 8);
+  addKey("srs", Surround_Key, 0x6E, 8);
+  addKey("E.SAVING", Unmapped_Key, 0x77, 8);
+  addKey("Content", Unmapped_Key, 0x79, 8);
+  addKey("HDMI", Unmapped_Key, 0x8B, 8);
+  addKey("WISELINK", Unmapped_Key, 0x8C, 8); // "W.Link", "Media.P"
+  addKey("D.MENU", DiscMenu_Key, 0x8E, 8);
+  addKey("Internet", Unmapped_Key, 0x93, 8);
+  addKey("E.Mode", Unmapped_Key, 0x94, 8);
+  addKey("ANYNET", Unmapped_Key, 0x97, 8);
+
+//  addKey("turbo", Unmapped_Key, 0xA659, 16);
 }
 
 
@@ -115,10 +117,10 @@ SamsungTV1a::SamsungTV1a(
 {
   setKeysetName("TV Keyset 1a");
 
-  addKey("turbo", Unmapped_Key, 0xC837, 16);
-  addKey("s.menu", SoundMode_Key, 0x28D7, 16);
-  addKey("s.std", Unmapped_Key, 0xA857, 16);
-  addKey("p.std", Unmapped_Key, 0x6897, 16);
+  addKey("turbo", Unmapped_Key, 0x13, 8);
+  addKey("s.menu", SoundMode_Key, 0x14, 8);
+  addKey("s.std", Unmapped_Key, 0x15, 8);
+  addKey("p.std", Unmapped_Key, 0x16, 8);
 }
 
 
@@ -129,8 +131,8 @@ SamsungTV1b::SamsungTV1b(
 {
   setKeysetName("TV Keyset 1b");
 
-  addKey("Red", Red_Key, 0x847B, 16);
-  addKey("Exit", Exit_Key, 0x34CB, 16);
+  addKey("Red", Red_Key, 0x21, 8);
+  addKey("Exit", Exit_Key, 0x2C, 8);
 }
 
 
@@ -142,11 +144,11 @@ SamsungTV1c::SamsungTV1c(
   setKeysetName("TV Keyset 1c");
 
   // Some remotes apparently use channel and volume keys for navigation:
-  addKey("up", Up_Key, 0x48B7, 16);
-  addKey("down", Down_Key, 0x08F7, 16);
-  addKey("left", Left_Key, 0xD02F, 16);
-  addKey("right", Right_Key, 0xE01F, 16);
-  addKey("center", Unmapped_Key, 0x58A7, 16);
+  addKey("right", Right_Key, 0x07, 8);
+  addKey("left", Left_Key, 0x0B, 8);
+  addKey("down", Down_Key, 0x10, 8);
+  addKey("up", Up_Key, 0x12, 8);
+  addKey("center", Unmapped_Key, 0x1A, 8);
 }
 
 
@@ -157,7 +159,7 @@ SamsungTV1d::SamsungTV1d(
 {
   setKeysetName("TV Keyset 1d");
 
-  addKey("turbo", Unmapped_Key, 0x26D9, 16);
+  addKey("turbo", Unmapped_Key, 0x64, 8);
 }
 
 
@@ -168,7 +170,7 @@ SamsungTV1e::SamsungTV1e(
 {
   setKeysetName("TV Keyset 1e");
 
-  addKey("p.mode", PictureMode_Key, 0x6897, 16);
+  addKey("p.mode", PictureMode_Key, 0x16, 8);
 }
 
 
@@ -180,10 +182,10 @@ SamsungTV1f::SamsungTV1f(
 {
   setKeysetName("TV Keyset 1f");
 
-  addKey("p-mode", PictureMode_Key, 0x36C9, 16);
-  addKey("s-mode", SoundMode_Key, 0x28D7, 16);
-  addKey("still", Unmapped_Key, 0xA857, 16);
-  addKey("p-size", AspectRatio_Key, 0x6897, 16);
+  addKey("p-mode", PictureMode_Key, 0x6C, 8);
+  addKey("s-mode", SoundMode_Key, 0x14, 8);
+  addKey("still", PIPPause_Key, 0x15, 8);
+  addKey("p-size", PIPSize_Key, 0x16, 8);
 }
 
 
@@ -192,7 +194,7 @@ SamsungTV2::SamsungTV2(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "TV Keyset 2 (dubious)",
+      "TV Keyset 2",
       Samsung_Make,
       index)
 {
@@ -222,7 +224,7 @@ SamsungTV2::SamsungTV2(
   addKey("CH/P_UP", ChannelUp_Key, 0x0010, 13);
   addKey("CH/P_DOWN", ChannelDown_Key, 0x0011, 13);
   addKey("Menu", Menu_Key, 0x0012, 13);
-  addKey("TTX/MIX", Unmapped_Key, 0x103C, 13);
+  addKey("TTX/MIX", Teletext_Key, 0x103C, 13);
   addKey("Red", Red_Key, 0x002B, 13);
   addKey("Green", Green_Key, 0x002C, 13);
   addKey("Yellow", Yellow_Key, 0x002D, 13);
@@ -264,7 +266,8 @@ SamsungVCR1::SamsungVCR1(
     index,
     600, 500,
     600, 1650,
-    113837, true);
+    113837, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -286,7 +289,7 @@ SamsungVCR1::SamsungVCR1(
   addKey("Eight", Eight_Key, 0xB04F, 16);
   addKey("Nine", Nine_Key, 0x708F, 16);
   addKey("Zero", Zero_Key, 0x8877, 16);
-  addKey("Clear", Clear_Key, 0xB847, 16); // "CNT.RESET"
+  addKey("Clear", Reset_Key, 0xB847, 16); // "CNT.RESET"
   addKey("Rewind", Rewind_Key, 0x18E7, 16);
   addKey("Stop", Stop_Key, 0xA857, 16);
   addKey("Play", Play_Key, 0x9867, 16);
@@ -295,7 +298,7 @@ SamsungVCR1::SamsungVCR1(
   addKey("Menu", Menu_Key, 0xF807, 16);
   addKey("Captions", Captions_Key, 0x44BB, 16);
   addKey("Info", Info_Key, 0x7887, 16); // "display"
-  addKey("Exit", Exit_Key, 0xB847, 16);
+//  addKey("Exit", Exit_Key, 0xB847, 16);
   addKey("Up", Up_Key, 0xF40B, 16);
   addKey("Down", Down_Key, 0x946B, 16);
   addKey("Left", Left_Key, 0xBE41, 16);
@@ -323,8 +326,8 @@ SamsungVCR1::SamsungVCR1(
   addKey("BAND", Unmapped_Key, 0x621D, 16);
   addKey("Q_PRO", Unmapped_Key, 0x5E21, 16);
   addKey("SHOWVIEW", Unmapped_Key, 0x0679, 16);
-  addKey("SLOW_DOWN", Unmapped_Key, 0x740B, 16);
-  addKey("SLOW_UP", Unmapped_Key, 0x641B, 16);
+  addKey("SLOW_DOWN", SlowMinus_Key, 0x740B, 16);
+  addKey("SLOW_UP", SlowPlus_Key, 0x641B, 16);
   addKey("PRESET", Unmapped_Key, 0x5629, 16);
 }
 
@@ -338,10 +341,10 @@ SamsungVCR1a::SamsungVCR1a(
 
   addKey("power", Power_Key, 0x12ED, 16);
   addKey("clear", Clear_Key, 0x8C73, 16);
-  addKey("audio", Language_Key, 0xBC43, 16);
+  addKey("audio", Audio_Key, 0xBC43, 16);
   addKey("dvd", Unmapped_Key, 0xAA55, 16);
   addKey("vcr", Unmapped_Key, 0x14EB, 16);
-  addKey("input_sel", Unmapped_Key, 0x9A65, 16);
+  addKey("input_sel", Input_Key, 0x9A65, 16);
   addKey("menu", Menu_Key, 0x16E9, 16);
   addKey("up", Up_Key, 0x34CB, 16);
   addKey("down", Down_Key, 0xB44B, 16);
@@ -361,12 +364,12 @@ SamsungVCR1b::SamsungVCR1b(
 {
   setKeysetName("VCR(DVD) Keyset 1b");
 
-  addKey("audio", Language_Key, 0x44BB, 16); // "output"
+  addKey("audio", Audio_Key, 0x44BB, 16); // "output"
   addKey("Input", Input_Key, 0x24DB, 16);
   addKey("+", Unmapped_Key, 0x649B, 16);
   addKey("-", Unmapped_Key, 0x14EB, 16);
-  addKey("slowup", Unmapped_Key, 0xC837, 16);
-  addKey("slowdown", Unmapped_Key, 0xE817, 16);
+  addKey("slowup", SlowPlus_Key, 0xC837, 16);
+  addKey("slowdown", SlowMinus_Key, 0xE817, 16);
   addKey("reset", Clear_Key, 0xB847, 16); // "CLR/RST"
   addKey("pause", Pause_Key, 0x6897, 16); // "P/S"
   addKey("shuttle<", Unmapped_Key, 0xBE41, 16);
@@ -429,7 +432,7 @@ SamsungVCR1d::SamsungVCR1d(
   addKey("VOL-", VolumeDown_Key, 0xD02F, 16);
   addKey("PRE-CH", PrevChannel_Key, 0x54AB, 16);
   addKey("P./STILL", Pause_Key, 0x6897, 16);
-  addKey("REPEAT", Unmapped_Key, 0xEC13, 16);
+  addKey("REPEAT", Repeat_Key, 0xEC13, 16);
   addKey("TRK+", TrackingPlus_Key, 0xB44B, 16);
   addKey("TRK-", TrackingMinus_Key, 0x34CB, 16);
 }
@@ -443,15 +446,15 @@ SamsungVCR1e::SamsungVCR1e(
   setKeysetName("VCR(DVD) Keyset 1e");
 
   addKey("OPEN/CLOSE", Eject_Key, 0x4CB3, 16);
-  addKey("AUDIO", Unmapped_Key, 0x16E9, 16);
-  addKey("MODE/REPEAT", Unmapped_Key, 0x6699, 16);
-  addKey("ZOOM", Unmapped_Key, 0x5CA3, 16);
-  addKey("CLOCK/COUNTER", Unmapped_Key, 0x8C73, 16);
-  addKey("ANGLE", Unmapped_Key, 0x2AD5, 16);
+  addKey("AUDIO", Audio_Key, 0x16E9, 16);
+  addKey("MODE/REPEAT", Repeat_Key, 0x6699, 16);
+  addKey("ZOOM", Zoom_Key, 0x5CA3, 16);
+  addKey("CLOCK/COUNTER", Clock_Key, 0x8C73, 16);
+  addKey("ANGLE", Angle_Key, 0x2AD5, 16);
   addKey("3D_SOUND", Surround_Key, 0x649B, 16);
   addKey("DVD", Unmapped_Key, 0xAA55, 16);
   addKey("VCR", Unmapped_Key, 0x14EB, 16);
-  addKey("INPUT_SEL", Unmapped_Key, 0x9A65, 16);
+  addKey("INPUT_SEL", Input_Key, 0x9A65, 16);
   addKey("DIGEST", Unmapped_Key, 0x00FF, 16);
   addKey("TRK_UP", TrackingPlus_Key, 0xC639, 16);
   addKey("TRK_DOWN", TrackingMinus_Key, 0x02FD, 16);
@@ -480,7 +483,8 @@ SamsungDVD1::SamsungDVD1(
     index,
     600, 500,
     600, 1600,
-    108000, true);
+    108000, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -525,10 +529,10 @@ SamsungDVD1::SamsungDVD1(
   addKey("enter", Select_Key, 0xD926, 16);
   addKey("ez_view", Unmapped_Key, 0xF50A, 16); // s.fit
   addKey("subtitle", Captions_Key, 0x09F6, 16);
-  addKey("audio", Language_Key, 0x718E, 16);
-  addKey("angle", Unmapped_Key, 0x49B6, 16);
-  addKey("repeat", Unmapped_Key, 0xB946, 16);
-  addKey("repeat_A-B", Unmapped_Key, 0x15EA, 16);
+  addKey("audio", Audio_Key, 0x718E, 16);
+  addKey("angle", Angle_Key, 0x49B6, 16);
+  addKey("repeat", Repeat_Key, 0xB946, 16);
+  addKey("repeat_A-B", RepeatAB_Key, 0x15EA, 16);
   addKey("step_r", StepForward_Key, 0xEB14, 16);
   addKey("step_l", StepBack_Key, 0x1BE4, 16);
   addKey("jog_r", Unmapped_Key, 0x936C, 16);
@@ -537,12 +541,12 @@ SamsungDVD1::SamsungDVD1(
   addKey("bookmark", Unmapped_Key, 0x956A, 16);
   addKey("index_pre", Unmapped_Key, 0x837C, 16);
   addKey("index_next", Unmapped_Key, 0x639C, 16);
-  addKey("page_pre", Unmapped_Key, 0x23DC, 16);
-  addKey("page_next", Unmapped_Key, 0x639C, 16);
-  addKey("zoom", Unmapped_Key, 0x35CA, 16);
+  addKey("page_pre", PageUp_Key, 0x23DC, 16);
+  addKey("page_next", PageDown_Key, 0x639C, 16);
+  addKey("zoom", Zoom_Key, 0x35CA, 16);
   addKey("hdmi_sel", Unmapped_Key, 0xE41B, 16);
   addKey("video_sel", Unmapped_Key, 0x44BB, 16);
-  addKey("3D_Sound", Unmapped_Key, 0xD52A, 16);
+  addKey("3D_Sound", Surround_Key, 0xD52A, 16);
   addKey("TopMenu", DiscTitle_Key, 0xC936, 16);
 }
 
@@ -565,7 +569,7 @@ SamsungDVD1b::SamsungDVD1b(
 {
   setKeysetName("DVD Keyset 1b");
 
-  addKey("Zoom", Unmapped_Key, 0x55AA, 16);
+  addKey("Zoom", Zoom_Key, 0x55AA, 16);
   addKey("i.replay", Replay_Key, 0xB54A, 16);
   addKey("Volume_Con", Unmapped_Key, 0x35CA, 16);
 }
@@ -584,7 +588,8 @@ SamsungDVD2::SamsungDVD2(
     index,
     600, 500,
     600, 1600,
-    108000, true);
+    108000, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -629,9 +634,9 @@ SamsungDVD2::SamsungDVD2(
   addKey("SUBTITLE", Captions_Key, 0x708F, 16);
   addKey("MENU", Menu_Key, 0x6C93, 16);
   addKey("INFO", Info_Key, 0x649B, 16);
-  addKey("AUDIO", Language_Key, 0x609F, 16);
+  addKey("AUDIO", Audio_Key, 0x609F, 16);
   addKey("RETURN", Exit_Key, 0x38C7, 16);
-  addKey("ZOOM", Unmapped_Key, 0xF00F, 16);
+  addKey("ZOOM", Zoom_Key, 0xF00F, 16);
   addKey("MUSIC", Unmapped_Key, 0x24DB, 16);
   addKey("MOVIE", Unmapped_Key, 0x16E9, 16);
   addKey("ASC", Unmapped_Key, 0x9669, 16);
@@ -640,9 +645,9 @@ SamsungDVD2::SamsungDVD2(
   addKey("PLII-MODE", Unmapped_Key, 0x20DF, 16);
   addKey("PLII-EFFECT", Unmapped_Key, 0x30CF, 16);
   addKey("SOUND-EDIT", SoundMode_Key, 0x28D7, 16);
-  addKey("STEP", Unmapped_Key, 0xBC43, 16);
-  addKey("REPEAT", Unmapped_Key, 0x6699, 16);
-  addKey("SLOW", Unmapped_Key, 0xAC53, 16);
+  addKey("STEP", StepForward_Key, 0xBC43, 16);
+  addKey("REPEAT", Repeat_Key, 0x6699, 16);
+  addKey("SLOW", Slow_Key, 0xAC53, 16);
   addKey("LOGO", Unmapped_Key, 0x1CE3, 16);
   addKey("HDMI-AUDIO", Unmapped_Key, 0x0EF1, 16);
   addKey("SD-HD", AspectRatio_Key, 0x9A65, 16);
@@ -663,7 +668,8 @@ SamsungAC1::SamsungAC1(
     index,
     600, 500,
     600, 1600,
-    60000, true);
+    60000, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -674,16 +680,16 @@ SamsungAC1::SamsungAC1(
 
 //  np->setMinimumRepetitions(1);
 
-  addKey("TIMER", Unmapped_Key, 0xA4, 8);
+  addKey("TIMER", Timer_Key, 0xA4, 8);
   addKey("SLEEP", Sleep_Key, 0xE4, 8);
-  addKey("TEMP+", Unmapped_Key, 0x4C, 8);
-  addKey("TEMP-", Unmapped_Key, 0x8C, 8);
-  addKey("FAN", Unmapped_Key, 0x9C, 8);
-  addKey("COOL", Unmapped_Key, 0x3C, 8);
-  addKey("HEAT", Unmapped_Key, 0x5C, 8);
-  addKey("FAN_HIGH", Unmapped_Key, 0xEC, 8);
-  addKey("FAN_MED", Unmapped_Key, 0x6C, 8);
-  addKey("FAN_LOW", Unmapped_Key, 0xAC, 8);
-  addKey("SWING", Unmapped_Key, 0x94, 8);
+  addKey("TEMP+", VolumeUp_Key, 0x4C, 8);
+  addKey("TEMP-", VolumeDown_Key, 0x8C, 8);
+  addKey("FAN", One_Key, 0x9C, 8);
+  addKey("COOL", Two_Key, 0x3C, 8);
+  addKey("HEAT", Three_Key, 0x5C, 8);
+  addKey("FAN_HIGH", Four_Key, 0xEC, 8);
+  addKey("FAN_MED", Five_Key, 0x6C, 8);
+  addKey("FAN_LOW", Six_Key, 0xAC, 8);
+  addKey("SWING", Seven_Key, 0x94, 8);
   addKey("POWER", Power_Key, 0xFC, 8);
 }

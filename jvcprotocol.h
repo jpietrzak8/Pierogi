@@ -1,0 +1,50 @@
+#ifndef JVCPROTOCOL_H
+#define JVCPROTOCOL_H
+
+#include "pirprotocol.h"
+#include "pirrx51hardware.h"
+
+//
+// JVC has its own protocol, similar in some ways to the popular NEC protocol.
+// The main differences are that the address and command segments are not
+// sent with an inverted copy, and that repeats are implemented by sending
+// the body without a header, rather than a header without a body.
+//
+
+class JVCProtocol: public PIRProtocol
+{
+public:
+  JVCProtocol(
+    QObject *guiObject,
+    unsigned int index);
+
+public slots:
+  void startSendingCommand(
+    unsigned int threadableID,
+    PIRKeyName command);
+
+private:
+  unsigned int zeroPulse;
+  unsigned int zeroSpace;
+  unsigned int onePulse;
+  unsigned int oneSpace;
+
+  unsigned int headerPulse;
+  unsigned int headerSpace;
+
+  unsigned int trailerPulse;
+
+  int generateStandardCommand(
+    const CommandSequence &bits,
+    PIRRX51Hardware &device);
+
+  int generateHeadlessCommand(
+    const CommandSequence &bits,
+    PIRRX51Hardware &device);
+
+  int pushReverseBits(
+    const CommandSequence &bits,
+    PIRRX51Hardware &device);
+};
+
+#endif // JVCPROTOCOL_H

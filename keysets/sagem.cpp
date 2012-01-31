@@ -9,49 +9,49 @@ SagemTVBox1::SagemTVBox1(
       Sagem_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index);
+  threadableProtocol = new NECProtocol(guiObject, index, Extended_NEC);
 
-  setPreData(0xE17A, 16);
+//  setPreData(0xE17A, 16);
+  setPreData(0x5E87, 16);
 
-  addKey("Power", Power_Key, 0x48B7, 16);
-  addKey("P+", ChannelUp_Key, 0x08F7, 16);
-  addKey("P-", ChannelDown_Key, 0x58A7, 16);
-  addKey("Vol+", VolumeUp_Key, 0xB04F, 16);
-  addKey("Vol-", VolumeDown_Key, 0x708F, 16);
-  addKey("Red_A", Red_Key, 0x6897, 16);
-  addKey("Green_B", Green_Key, 0xE817, 16);
-  addKey("Yellow_C", Yellow_Key, 0x18E7, 16);
-  addKey("Blue_D", Blue_Key, 0x9867, 16);
-  addKey("Up", Up_Key, 0xD02F, 16);
-  addKey("Right", Right_Key, 0x38C7, 16);
-  addKey("Down", Down_Key, 0x30CF, 16);
-  addKey("Left", Left_Key, 0xD827, 16);
-  addKey("OK", Select_Key, 0xA857, 16);
-  addKey("INFO", Info_Key, 0x7887, 16); // "Menu"
-  addKey("MENU", Menu_Key, 0x8877, 16);
-  addKey("Head", Unmapped_Key, 0xC837, 16); // "FREEZE", "satdtt"
-  addKey("Q", Unmapped_Key, 0x8877, 16);
-  addKey("LeftArr", Unmapped_Key, 0x14AB, 16);
-  addKey("RightArr", Unmapped_Key, 0x649B, 16); // "LIST", "hd"
-  addKey("EPG", Guide_Key, 0xA45B, 16); // "Navigator"
-  addKey("INPUT", Input_Key, 0x24DB, 16); // "i"
-  addKey("Tone", SoundMode_Key, 0x847B, 16); // "SOUND"
-  addKey("Text", Unmapped_Key, 0xB847, 16); // "TELETEXT"
-  addKey("SUBTITLE", Captions_Key, 0xF807, 16); // "swap"
-  addKey("Interface", Language_Key, 0x04FB, 16); // "AUDIO"
-  addKey("Mute", Mute_Key, 0xF00F, 16);
-  addKey("1", One_Key, 0x807F, 16);
-  addKey("2", Two_Key, 0x40BF, 16);
-  addKey("3", Three_Key, 0xC03F, 16);
-  addKey("4", Four_Key, 0x20DF, 16);
-  addKey("5", Five_Key, 0xA05F, 16);
-  addKey("6", Six_Key, 0x609F, 16);
-  addKey("7", Seven_Key, 0xE01F, 16);
-  addKey("8", Eight_Key, 0x10EF, 16);
-  addKey("9", Nine_Key, 0x906F, 16);
-  addKey("0", Zero_Key, 0x00FF, 16);
-  addKey("EXIT", Exit_Key, 0x50AF, 16); // "Key"
-  addKey("BACK", PrevChannel_Key, 0x28D7, 16); // "R"
+  addKey("0", Zero_Key, 0x00, 8);
+  addKey("1", One_Key, 0x01, 8);
+  addKey("2", Two_Key, 0x02, 8);
+  addKey("3", Three_Key, 0x03, 8);
+  addKey("4", Four_Key, 0x04, 8);
+  addKey("5", Five_Key, 0x05, 8);
+  addKey("6", Six_Key, 0x06, 8);
+  addKey("7", Seven_Key, 0x07, 8);
+  addKey("8", Eight_Key, 0x08, 8);
+  addKey("9", Nine_Key, 0x09, 8);
+  addKey("EXIT", Exit_Key, 0x0A, 8); // "Key"
+  addKey("Up", Up_Key, 0x0B, 8);
+  addKey("Down", Down_Key, 0x0C, 8);
+  addKey("Vol+", VolumeUp_Key, 0x0D, 8);
+  addKey("Vol-", VolumeDown_Key, 0x0E, 8);
+  addKey("Mute", Mute_Key, 0x0F, 8);
+  addKey("P+", ChannelUp_Key, 0x10, 8);
+  addKey("MENU", Menu_Key, 0x11, 8); // "Q"
+  addKey("Power", Power_Key, 0x12, 8);
+  addKey("Head", Unmapped_Key, 0x13, 8); // "FREEZE", "satdtt"
+  addKey("BACK", PrevChannel_Key, 0x14, 8); // "R"
+  addKey("OK", Select_Key, 0x15, 8);
+  addKey("Red_A", Red_Key, 0x16, 8);
+  addKey("Green_B", Green_Key, 0x17, 8);
+  addKey("Yellow_C", Yellow_Key, 0x18, 8);
+  addKey("Blue_D", Blue_Key, 0x19, 8);
+  addKey("P-", ChannelDown_Key, 0x1A, 8);
+  addKey("Left", Left_Key, 0x1B, 8);
+  addKey("Right", Right_Key, 0x1C, 8);
+  addKey("Text", Teletext_Key, 0x1D, 8); // "TELETEXT"
+  addKey("INFO", Info_Key, 0x1E, 8); // "Menu"
+  addKey("SUBTITLE", Captions_Key, 0x1F, 8); // "swap"
+  addKey("Interface", Audio_Key, 0x20, 8); // "AUDIO"
+  addKey("Tone", SoundMode_Key, 0x21, 8); // "SOUND"
+  addKey("INPUT", Input_Key, 0x24, 8); // "i"
+  addKey("EPG", Guide_Key, 0x25, 8); // "Navigator"
+  addKey("RightArr", Unmapped_Key, 0x26, 8); // "LIST", "hd"
+  addKey("LeftArr", Unmapped_Key, 0x28, 8);
 }
 
 
@@ -62,15 +62,15 @@ SagemTVBox1a::SagemTVBox1a(
 {
   setKeysetName("DVB-T/Cable Box Keyset 1a");
 
-  addKey("epg", Guide_Key, 0x8877, 16);
-  addKey("menu", Menu_Key, 0x9867, 16);
-  addKey("v-", VolumeDown_Key, 0x6897, 16);
-  addKey("v+", VolumeUp_Key, 0xB847, 16);
-  addKey("mute", Mute_Key, 0xE817, 16);
-  addKey("p+", ChannelUp_Key, 0xA45B, 16);
-  addKey("p-", ChannelDown_Key, 0x18E7, 16);
-  addKey("note", Unmapped_Key, 0x847B, 16);
-  addKey("teletext6", Unmapped_Key, 0x04FB, 16);
-  addKey("tria2", Unmapped_Key, 0xF00F, 16);
-  addKey("ext", Unmapped_Key, 0x24DB, 16);
+  addKey("tria2", Unmapped_Key, 0x0F, 8);
+  addKey("epg", Guide_Key, 0x11, 8);
+  addKey("v-", VolumeDown_Key, 0x16, 8);
+  addKey("mute", Mute_Key, 0x17, 8);
+  addKey("p-", ChannelDown_Key, 0x18, 8);
+  addKey("menu", Menu_Key, 0x19, 8);
+  addKey("v+", VolumeUp_Key, 0x1D, 8);
+  addKey("teletext6", Unmapped_Key, 0x20, 8);
+  addKey("note", Unmapped_Key, 0x21, 8);
+  addKey("ext", Unmapped_Key, 0x24, 8);
+  addKey("p+", ChannelUp_Key, 0x25, 8);
 }

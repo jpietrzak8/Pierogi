@@ -68,7 +68,11 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/magnavox.cpp \
     rc6protocol.cpp \
     keysets/philips.cpp \
-    keysets/tivo.cpp
+    keysets/tivo.cpp \
+    keysets/elgato.cpp \
+    sircprotocol.cpp \
+    jvcprotocol.cpp \
+    sharpprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     necprotocol.h \
@@ -111,7 +115,11 @@ HEADERS += mainwindow.h \
     keysets/magnavox.h \
     rc6protocol.h \
     keysets/philips.h \
-    keysets/tivo.h
+    keysets/tivo.h \
+    keysets/elgato.h \
+    sircprotocol.h \
+    jvcprotocol.h \
+    sharpprotocol.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -169,16 +177,18 @@ OTHER_FILES += \
     pierogi.sudoers \
     qtc_packaging/debian_fremantle/postinst \
     www/index.html \
-    www/FavoritesTab.png \
     www/KeypadTab.png \
     www/MainTab.png \
     www/MediaTab.png \
     www/MenuTab.png \
-    www/MiscTab.png \
     www/PierogiIcon.png \
     www/SelectKeysetWindow.png \
     www/UtilityTab.png \
-    qtc_packaging/debian_fremantle/postrm.needsfixing
+    qtc_packaging/debian_fremantle/postrm.needsfixing \
+    www/FavoriteTab.png \
+    www/Media2Tab.png \
+    www/TVTab.png \
+    www/PierogiIcon.png
 
 RESOURCES += \
     PierogiResources.qrc

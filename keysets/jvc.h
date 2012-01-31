@@ -37,50 +37,18 @@ public:
     unsigned int index);
 };
 
-class JVCVCR1b: public JVCVCR1
+class JVCVCRBmode1: public JVCVCR1
 {
 public:
-  JVCVCR1b(
+  JVCVCRBmode1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class JVCVCR1c: public JVCVCR1
+class JVCVCRBmode1a: public JVCVCR1a
 {
 public:
-  JVCVCR1c(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class JVCVCR2: public PIRKeysetMetaData
-{
-public:
-  JVCVCR2(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class JVCVCR2a: public JVCVCR2
-{
-public:
-  JVCVCR2a(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class JVCVCR2b: public JVCVCR2
-{
-public:
-  JVCVCR2b(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class JVCVCR2c: public JVCVCR2
-{
-public:
-  JVCVCR2c(
+  JVCVCRBmode1a(
     QObject *guiObject,
     unsigned int index);
 };
@@ -125,46 +93,6 @@ public:
     unsigned int index);
 };
 
-class JVCTV2: public PIRKeysetMetaData
-{
-public:
-  JVCTV2(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class JVCTV2a: public JVCTV2
-{
-public:
-  JVCTV2a(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class JVCTV2b: public JVCTV2
-{
-public:
-  JVCTV2b(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class JVCTV2c: public JVCTV2
-{
-public:
-  JVCTV2c(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class JVCTV2d: public JVCTV2
-{
-public:
-  JVCTV2d(
-    QObject *guiObject,
-    unsigned int index);
-};
-
 class JVCDAT1: public PIRKeysetMetaData
 {
 public:
@@ -181,34 +109,34 @@ public:
     unsigned int index);
 };
 
-class JVCPortableAudio1: public PIRKeysetMetaData
+class JVCAudio1: public PIRKeysetMetaData
 {
 public:
-  JVCPortableAudio1(
+  JVCAudio1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class JVCPortableAudio1a: public JVCPortableAudio1
+class JVCAudio1a: public JVCAudio1
 {
 public:
-  JVCPortableAudio1a(
+  JVCAudio1a(
     QObject *guiObject,
     unsigned int index);
 };
 
-class JVCPortableAudio1b: public JVCPortableAudio1
+class JVCAudio1b: public JVCAudio1
 {
 public:
-  JVCPortableAudio1b(
+  JVCAudio1b(
     QObject *guiObject,
     unsigned int index);
 };
 
-class JVCPortableAudio2: public PIRKeysetMetaData
+class JVCAudio2: public PIRKeysetMetaData
 {
 public:
-  JVCPortableAudio2(
+  JVCAudio2(
     QObject *guiObject,
     unsigned int index);
 };

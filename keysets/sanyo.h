@@ -61,6 +61,14 @@ public:
     unsigned int index);
 };
 
+class SanyoTV1e: public SanyoTV1
+{
+public:
+  SanyoTV1e(
+    QObject *guiObject,
+    unsigned int index);
+};
+
 class SanyoProjector: public PIRKeysetMetaData
 {
 public:

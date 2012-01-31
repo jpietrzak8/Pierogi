@@ -14,7 +14,8 @@ MitsubishiTV1::MitsubishiTV1(
     index,
     300, 900,
     300, 2100,
-    53715, true);
+    53715, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -64,11 +65,11 @@ MitsubishiTV1::MitsubishiTV1(
   addKey("GREEN", Green_Key, 0xEC, 8);
   addKey("YELLOW", Yellow_Key, 0xFC, 8);
   addKey("BLUE", Blue_Key, 0xE4, 8);
-  addKey("SIZE", Unmapped_Key, 0x34, 8);
+  addKey("SIZE", TeletextSize_Key, 0x34, 8);
   addKey("S****", Unmapped_Key, 0x74, 8);
-  addKey("REVEAL", Unmapped_Key, 0x7C, 8);
+  addKey("REVEAL", TeletextReveal_Key, 0x7C, 8);
   addKey("MODE", Unmapped_Key, 0xA4, 8);
-  addKey("STORE", Unmapped_Key, 0x78, 8);
+  addKey("STORE", TeletextStore_Key, 0x78, 8);
   addKey("STATUS", Unmapped_Key, 0xB0, 8);
   addKey("BROWSE", Unmapped_Key, 0x6C, 8);
   addKey("PIP", PIP_Key, 0xEE, 8);
@@ -118,7 +119,8 @@ MitsubishiVCR1::MitsubishiVCR1(
     index,
     300, 900,
     300, 2100,
-    53815, true);
+    53815, true,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -144,11 +146,11 @@ MitsubishiVCR1::MitsubishiVCR1(
   addKey("REC", Record_Key, 0x30, 8);
   addKey("PAUSE", Pause_Key, 0x38, 8);
   addKey("STOP", Stop_Key, 0x28, 8);
-  addKey("SLOW", Unmapped_Key, 0x2C, 8); // "UP"
+  addKey("SLOW", Slow_Key, 0x2C, 8); // "UP"
   addKey("REW", Rewind_Key, 0x34, 8);
   addKey("PLAY", Play_Key, 0x20, 8);
   addKey("FF", FastForward_Key, 0x24, 8);
-  addKey("REPEAT", Unmapped_Key, 0xE8, 8);
+  addKey("REPEAT", Repeat_Key, 0xE8, 8);
   addKey("SKIP_SEARCH", Advance_Key, 0xBC, 8);
   addKey("INDEX_SEARCH-", Previous_Key, 0x68, 8);
   addKey("INDEX_SEARCH+", Next_Key, 0x70, 8);

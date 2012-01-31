@@ -58,10 +58,9 @@ void RC5Protocol::startSendingCommand(
     PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
+    int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      int commandDuration = 0;
-
       // Now, throw together an RC5 protocol command string.
 
       if (!preData.empty())

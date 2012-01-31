@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.0, 2012-01-25T13:47:37. -->
+<!-- Written by Qt Creator 2.4.0, 2012-01-30T20:37:02. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -79,7 +79,7 @@
       <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">dpkg-buildpackage -sa -S -uc -us</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.Command">/Users/john/QtSDK/Maemo/4.6.2/bin/mad</value>
       <value type="bool" key="ProjectExplorer.ProcessStep.Enabled">false</value>
-      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">/Users/john/Develop/n900/pierogi-0.1.6</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">/Users/john/Develop/n900/pierogi-0.1.7</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Custom Process Step</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.ProcessStep</value>
@@ -189,10 +189,12 @@
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_1_1_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_0_1_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_1_0_armel.deb</value>
+       <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_1_7_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_0_1_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_1_6_armel.deb</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedHosts">
+       <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
@@ -213,6 +215,7 @@
        <value type="QString"></value>
        <value type="QString"></value>
        <value type="QString"></value>
+       <value type="QString"></value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
        <value type="QDateTime">2012-01-23T09:47:37</value>
@@ -222,6 +225,7 @@
        <value type="QDateTime">2012-01-17T00:15:23</value>
        <value type="QDateTime">2012-01-14T13:11:32</value>
        <value type="QDateTime">2012-01-17T00:03:13</value>
+       <value type="QDateTime">2012-01-30T20:23:06</value>
        <value type="QDateTime">2012-01-01T15:35:35</value>
        <value type="QDateTime">2012-01-25T13:42:55</value>
       </valuelist>

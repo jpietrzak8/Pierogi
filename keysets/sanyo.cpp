@@ -13,55 +13,56 @@ SanyoVCR1::SanyoVCR1(
   addControlledDevice(Sanyo_Make, "DVW-5000", VCR_Device);
   addControlledDevice(Sanyo_Make, "DVW-5000", DVD_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index);
+  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
 
-  setPreData(0x8C73, 16);
+//  setPreData(0x8C73, 16);
+  setPreData(0x31, 8);
 
-  addKey("Power", Power_Key, 0xDA25, 16);
-  addKey("1", One_Key, 0x20DF, 16);
-  addKey("2", Two_Key, 0xA05F, 16);
-  addKey("3", Three_Key, 0x609F, 16);
-  addKey("4", Four_Key, 0xE01F, 16);
-  addKey("5", Five_Key, 0x30CF, 16);
-  addKey("6", Six_Key, 0xB04F, 16);
-  addKey("7", Seven_Key, 0x708F, 16);
-  addKey("8", Eight_Key, 0xF00F, 16);
-  addKey("9", Nine_Key, 0x38C7, 16);
-  addKey("0", Zero_Key, 0xB847, 16);
-  addKey("Cancel", Clear_Key, 0x52AD, 16);
-  addKey("Ch Up", ChannelUp_Key, 0x807F, 16);
-  addKey("Ch Down", ChannelDown_Key, 0x40BF, 16);
-  addKey("Rew", Rewind_Key, 0x48B7, 16);
-  addKey("Play", Play_Key, 0x28D7, 16);
-  addKey("FF", FastForward_Key, 0xC837, 16);
-  addKey("Rec", Record_Key, 0xA857, 16);
-  addKey("Stop", Stop_Key, 0x08F7, 16);
-  addKey("Pause", Pause_Key, 0x8877, 16);
-  addKey("TV/VCR", Input_Key, 0x10EF, 16);
-  addKey("Menu", Menu_Key, 0x53AC, 16);
-  addKey("Up", Up_Key, 0xE916, 16);
-  addKey("Down", Down_Key, 0x6996, 16);
-  addKey("Left", Left_Key, 0xA956, 16);
-  addKey("Right", Right_Key, 0x29D6, 16);
-  addKey("Ok", Select_Key, 0xD22D, 16);
-  addKey("Clock", Clock_Key, 0x6A95, 16);
-  addKey("Reset", Reset_Key, 0x22DD, 16);
-  addKey("Display", Info_Key, 0x32CD, 16);
-  addKey("Memory", Unmapped_Key, 0xC23D, 16); // "->0<-"
-  addKey("PROG", Program_Key, 0x629D, 16);
-  addKey("BLANK", Unmapped_Key, 0x0BF4, 16);
-  addKey("Monitor", Unmapped_Key, 0x8A75, 16);
-  addKey("ShowView", Unmapped_Key, 0x31CE, 16);
-  addKey("ATR", Unmapped_Key, 0xF807, 16);
-  addKey("Slow", Unmapped_Key, 0x58A7, 16);
-  addKey("SP/LP", VHSSpeed_Key, 0x7A85, 16);
-  addKey("VPS", Unmapped_Key, 0xF20D, 16); // "vps/pdc", "dpc"
-  addKey("Preset", Unmapped_Key, 0x7986, 16);
-  addKey("Input", Unmapped_Key, 0x7887, 16);  // need a subclass for this?
-  addKey("Audio", Language_Key, 0xC03F, 16);
-  addKey("Index", Unmapped_Key, 0x9867, 16);
-  addKey("+100", PlusOneHundred_Key, 0xD827, 16);
-  addKey("x2", Unmapped_Key, 0xD02F, 16);
+  addKey("Ch Up", ChannelUp_Key, 0x01, 8);
+  addKey("Ch Down", ChannelDown_Key, 0x02, 8);
+  addKey("Audio", Audio_Key, 0x03, 8);
+  addKey("1", One_Key, 0x04, 8);
+  addKey("2", Two_Key, 0x05, 8);
+  addKey("3", Three_Key, 0x06, 8);
+  addKey("4", Four_Key, 0x07, 8);
+  addKey("TV/VCR", Input_Key, 0x08, 8);
+  addKey("x2", Unmapped_Key, 0x0B, 8);
+  addKey("5", Five_Key, 0x0C, 8);
+  addKey("6", Six_Key, 0x0D, 8);
+  addKey("7", Seven_Key, 0x0E, 8);
+  addKey("8", Eight_Key, 0x0F, 8);
+  addKey("Stop", Stop_Key, 0x10, 8);
+  addKey("Pause", Pause_Key, 0x11, 8);
+  addKey("Rew", Rewind_Key, 0x12, 8);
+  addKey("FF", FastForward_Key, 0x13, 8);
+  addKey("Play", Play_Key, 0x14, 8);
+  addKey("Rec", Record_Key, 0x15, 8);
+  addKey("Index", Unmapped_Key, 0x19, 8);
+  addKey("Slow", Slow_Key, 0x1A, 8);
+  addKey("+100", PlusOneHundred_Key, 0x1B, 8);
+  addKey("9", Nine_Key, 0x1C, 8);
+  addKey("0", Zero_Key, 0x1D, 8);
+  addKey("Input", Unmapped_Key, 0x1E, 8);  // need a subclass for this?
+  addKey("ATR", Unmapped_Key, 0x1F, 8);
+  addKey("Memory", Unmapped_Key, 0x43, 8); // "->0<-"
+  addKey("Reset", Reset_Key, 0x44, 8);
+  addKey("PROG", Program_Key, 0x46, 8);
+  addKey("Cancel", Clear_Key, 0x4A, 8);
+  addKey("Ok", Select_Key, 0x4B, 8);
+  addKey("Display", Info_Key, 0x4C, 8);
+  addKey("VPS", Unmapped_Key, 0x4F, 8); // "vps/pdc", "dpc"
+  addKey("Monitor", Unmapped_Key, 0x51, 8);
+  addKey("Clock", Clock_Key, 0x56, 8);
+  addKey("Power", Power_Key, 0x5B, 8);
+  addKey("SP/LP", VHSSpeed_Key, 0x5E, 8);
+  addKey("ShowView", Unmapped_Key, 0x8C, 8);
+  addKey("Right", Right_Key, 0x94, 8);
+  addKey("Left", Left_Key, 0x95, 8);
+  addKey("Down", Down_Key, 0x96, 8);
+  addKey("Up", Up_Key, 0x97, 8);
+  addKey("Preset", Unmapped_Key, 0x9E, 8);
+  addKey("Menu", Menu_Key, 0xCA, 8);
+  addKey("BLANK", Unmapped_Key, 0xD0, 8);
 }
 
 
@@ -75,54 +76,55 @@ SanyoDVD1::SanyoDVD1(
 {
   addControlledDevice(Sanyo_Make, "DVD-SL25", DVD_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index);
+  threadableProtocol = new NECProtocol(guiObject, index, Extended_NEC);
 
-  setPreData(0x3C23, 16);
+//  setPreData(0x3C23, 16);
+  setPreData(0xC43C, 16);
 
-  addKey("On", Power_Key, 0x00FF, 16);
-  addKey("LastMemo", Unmapped_Key, 0xF40B, 16);
-  addKey("PictureMode", PictureMode_Key, 0x5CA3, 16);
-  addKey("OpenClose", Eject_Key, 0x807F, 16);
-  addKey("ProgramRandom", Random_Key, 0x9C63, 16);
-  addKey("Repeat", Repeat_Key, 0xAC53, 16);
-  addKey("ABRepeat", Unmapped_Key, 0x6C93, 16);
-  addKey("OnScreen", Unmapped_Key, 0xC03F, 16);
-  addKey("Zoom", Unmapped_Key, 0xDC23, 16);
-  addKey("Angle", Unmapped_Key, 0x10EF, 16);
-  addKey("AngleReplay", Unmapped_Key, 0x906F, 16);
-  addKey("SubtitleChange", Unmapped_Key, 0xA05F, 16);
-  addKey("Setup", Menu_Key, 0x40BF, 16);
-  addKey("Menu", DiscMenu_Key, 0xE01F, 16);
-  addKey("SubtitleOnOff", Captions_Key, 0x52AD, 16);
-  addKey("Audio", Language_Key, 0x50AF, 16);
-  addKey("Up", Up_Key, 0xD02F, 16);
-  addKey("Down", Down_Key, 0x30CF, 16);
-  addKey("Left", Left_Key, 0xB04F, 16);
-  addKey("Right", Right_Key, 0x708F, 16);
-  addKey("Enter", Select_Key, 0xF00F, 16);
-  addKey("TopMenu", DiscTitle_Key, 0x609F, 16);
-  addKey("Return", Exit_Key, 0x08F7, 16);
-  addKey("RevSlow", StepBack_Key, 0x34CB, 16);
-  addKey("FwdSlow", StepForward_Key, 0x946B, 16);
-  addKey("PauseStep", Pause_Key, 0x04FB, 16);
-  addKey("Stop", Stop_Key, 0x7887, 16);
-  addKey("Play", Play_Key, 0xF807, 16);
-  addKey("Prev", Previous_Key, 0x44BB, 16);
-  addKey("Next", Next_Key, 0x847B, 16);
-  addKey("Rev", Rewind_Key, 0x649B, 16);
-  addKey("Fwd", FastForward_Key, 0xC43B, 16);
-  addKey("1", One_Key, 0x8877, 16);
-  addKey("2", Two_Key, 0x48B7, 16);
-  addKey("3", Three_Key, 0xC837, 16);
-  addKey("4", Four_Key, 0x28D7, 16);
-  addKey("5", Five_Key, 0xA857, 16);
-  addKey("6", Six_Key, 0x6897, 16);
-  addKey("7", Seven_Key, 0xE817, 16);
-  addKey("8", Eight_Key, 0x18E7, 16);
-  addKey("9", Nine_Key, 0x9867, 16);
-  addKey("0", Zero_Key, 0x58A7, 16);
-  addKey("Clear", Clear_Key, 0x38C7, 16);
-  addKey("SearchMode", Unmapped_Key, 0x1CE3, 16);
+  addKey("On", Power_Key, 0x00, 8);
+  addKey("OpenClose", Eject_Key, 0x01, 8);
+  addKey("Setup", Menu_Key, 0x02, 8);
+  addKey("OnScreen", Unmapped_Key, 0x03, 8);
+  addKey("SubtitleChange", Unmapped_Key, 0x05, 8);
+  addKey("TopMenu", DiscTitle_Key, 0x06, 8);
+  addKey("Menu", DiscMenu_Key, 0x07, 8);
+  addKey("Angle", Angle_Key, 0x08, 8);
+  addKey("AngleReplay", Unmapped_Key, 0x09, 8);
+  addKey("Audio", Audio_Key, 0x0A, 8);
+  addKey("Up", Up_Key, 0x0B, 8);
+  addKey("Down", Down_Key, 0x0C, 8);
+  addKey("Left", Left_Key, 0x0D, 8);
+  addKey("Right", Right_Key, 0x0E, 8);
+  addKey("Enter", Select_Key, 0x0F, 8);
+  addKey("Return", Exit_Key, 0x10, 8);
+  addKey("1", One_Key, 0x11, 8);
+  addKey("2", Two_Key, 0x12, 8);
+  addKey("3", Three_Key, 0x13, 8);
+  addKey("4", Four_Key, 0x14, 8);
+  addKey("5", Five_Key, 0x15, 8);
+  addKey("6", Six_Key, 0x16, 8);
+  addKey("7", Seven_Key, 0x17, 8);
+  addKey("8", Eight_Key, 0x18, 8);
+  addKey("9", Nine_Key, 0x19, 8);
+  addKey("0", Zero_Key, 0x1A, 8);
+  addKey("Clear", Clear_Key, 0x1C, 8);
+  addKey("Stop", Stop_Key, 0x1E, 8);
+  addKey("Play", Play_Key, 0x1F, 8);
+  addKey("PauseStep", Pause_Key, 0x20, 8);
+  addKey("Next", Next_Key, 0x21, 8);
+  addKey("Prev", Previous_Key, 0x22, 8);
+  addKey("Fwd", FastForward_Key, 0x23, 8);
+  addKey("Rev", Rewind_Key, 0x26, 8);
+  addKey("FwdSlow", StepForward_Key, 0x29, 8);
+  addKey("RevSlow", StepBack_Key, 0x2C, 8);
+  addKey("LastMemo", Unmapped_Key, 0x2F, 8);
+  addKey("Repeat", Repeat_Key, 0x35, 8);
+  addKey("ABRepeat", RepeatAB_Key, 0x36, 8);
+  addKey("SearchMode", Unmapped_Key, 0x38, 8);
+  addKey("ProgramRandom", Random_Key, 0x39, 8);
+  addKey("PictureMode", PictureMode_Key, 0x3A, 8);
+  addKey("Zoom", Zoom_Key, 0x3B, 8);
+  addKey("SubtitleOnOff", Captions_Key, 0x4A, 8);
 }
 
 
@@ -134,46 +136,40 @@ SanyoTV1::SanyoTV1(
       Sanyo_Make,
       index)
 {
-  addControlledDevice(Sanyo_Make, "CTP-6791P", TV_Device);
+  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
 
-  threadableProtocol = new NECProtocol(guiObject, index);
+//  setPreData(0x1CE3, 16);
+  setPreData(0x38, 8);
 
-  setPreData(0x1CE3, 16);
-
-  addKey("Power", Power_Key, 0x48B7, 16);
-  addKey("audio_mode", SoundMode_Key, 0x38C7, 16); // "auto"
-  addKey("video_mode", PictureMode_Key, 0xC837, 16);
-  addKey("1", One_Key, 0x807F, 16);
-  addKey("2", Two_Key, 0x40BF, 16);
-  addKey("3", Three_Key, 0xC03F, 16);
-  addKey("4", Four_Key, 0x20DF, 16);
-  addKey("5", Five_Key, 0xA05F, 16);
-  addKey("6", Six_Key, 0x609F, 16);
-  addKey("7", Seven_Key, 0xE01F, 16);
-  addKey("8", Eight_Key, 0x10EF, 16);
-  addKey("9", Nine_Key, 0x906F, 16);
-  addKey("0", Zero_Key, 0x00FF, 16);
-  addKey("Channel Up", ChannelUp_Key, 0x50AF, 16);
-  addKey("Channel Down", ChannelDown_Key, 0xD02F, 16);
-  addKey("Volume Up", VolumeUp_Key, 0x708F, 16);
-  addKey("Volume Down", VolumeDown_Key, 0xF00F, 16);
-  addKey("Mute", Mute_Key, 0x18E7, 16);
-  addKey("Display", Info_Key, 0x30CF, 16);
-  addKey("image", AspectRatio_Key, 0x8877, 16);
-  addKey("Menu", Menu_Key, 0xE817, 16); // "setup"
-  addKey("Enter", Select_Key, 0x58A7, 16); // "F/OK"
-  addKey("Sleep", Sleep_Key, 0xB04F, 16);
-  addKey("Recall", PrevChannel_Key, 0x9867, 16);
-  addKey("PIP", PIP_Key, 0xDA25, 16);
-  addKey("Swap", PIPSwap_Key, 0xBA45, 16);
-  addKey("Red", Red_Key, 0x926D, 16);
-  addKey("Green", Green_Key, 0x52AD, 16);
-  addKey("Yellow", Yellow_Key, 0xD22D, 16);
-  addKey("Blue", Blue_Key, 0x32CD, 16);
-  addKey("Menu +", Up_Key, 0x7887, 16);
-  addKey("Menu -", Down_Key, 0xF807, 16);
-  addKey("Digicon", Guide_Key, 0xB847, 16);
-  addKey("TV", Input_Key, 0x28D7, 16); // tv/video
+  addKey("0", Zero_Key, 0x00, 8);
+  addKey("1", One_Key, 0x01, 8);
+  addKey("2", Two_Key, 0x02, 8);
+  addKey("3", Three_Key, 0x03, 8);
+  addKey("4", Four_Key, 0x04, 8);
+  addKey("5", Five_Key, 0x05, 8);
+  addKey("6", Six_Key, 0x06, 8);
+  addKey("7", Seven_Key, 0x07, 8);
+  addKey("8", Eight_Key, 0x08, 8);
+  addKey("9", Nine_Key, 0x09, 8);
+  addKey("Channel Up", ChannelUp_Key, 0x0A, 8);
+  addKey("Channel Down", ChannelDown_Key, 0x0B, 8);
+  addKey("Display", Info_Key, 0x0C, 8);
+  addKey("Sleep", Sleep_Key, 0x0D, 8);
+  addKey("Volume Up", VolumeUp_Key, 0x0E, 8);
+  addKey("Volume Down", VolumeDown_Key, 0x0F, 8);
+  addKey("image", Unmapped_Key, 0x11, 8);
+  addKey("Power", Power_Key, 0x12, 8);
+  addKey("video_mode", PictureMode_Key, 0x13, 8);
+  addKey("TV", Input_Key, 0x14, 8); // tv/video
+  addKey("Menu", Menu_Key, 0x17, 8); // "setup"
+  addKey("Recall", PrevChannel_Key, 0x19, 8);
+  addKey("Enter", Select_Key, 0x1A, 8); // "F/OK"
+  addKey("Red", Red_Key, 0x49, 8);
+  addKey("Green", Green_Key, 0x4A, 8);
+  addKey("Yellow", Yellow_Key, 0x4B, 8);
+  addKey("Blue", Blue_Key, 0x4C, 8);
+  addKey("PIP", PIP_Key, 0x5B, 8);
+  addKey("Swap", PIPSwap_Key, 0x5D, 8);
 }
 
 
@@ -193,28 +189,28 @@ SanyoTV1a::SanyoTV1a(
 //  addControlledDevice(Sanyo_Make, "CEM6011PV", TV_Device);
 //  addControlledDevice(Sanyo_Make, "DP32746", TV_Device);
 
-  addKey("POWER", Power_Key, 0x38C7, 16);
-  addKey("WIDE", AspectRatio_Key, 0xC23D, 16);
-  addKey("-/--", DoubleDigit_Key, 0x50AF, 16);
-  addKey("CS", Unmapped_Key, 0xD02F, 16); // 2-
-  addKey("OSD", Info_Key, 0x18E7, 16); // "SYMBOL_1
-  addKey("NORMAL", Unmapped_Key, 0x8877, 16); // "SYMBOL_2"
-  addKey("MUTE", Mute_Key, 0xA857, 16);
-  addKey("P--P", Unmapped_Key, 0xB847, 16); // "ALTERNATE"
-  addKey("MENU", Menu_Key, 0x8A75, 16);
-  addKey("P+", ChannelUp_Key, 0x30CF, 16);
-  addKey("UP", Up_Key, 0x30CF, 16);
-  addKey("P-", ChannelDown_Key, 0xB04F, 16);
-  addKey("DOWN", Down_Key, 0xB04F, 16);
-  addKey("VOL-", VolumeDown_Key, 0xE817, 16);
-  addKey("LEFT", Left_Key, 0xE817, 16);
-  addKey("VOL+", VolumeUp_Key, 0x6897, 16);
-  addKey("RIGHT", Right_Key, 0x6897, 16);
-  addKey("CLOCK", Sleep_Key, 0x9867, 16); // "SLEEP/ON-TIMER/TEXT_CANCEL"
-  addKey("EXPAND", Unmapped_Key, 0x6A95, 16); // "SYMBOL_4" teletext
-  addKey("SHRINK", Unmapped_Key, 0x728D, 16); // "SYMBOL_5" teletext
-  addKey("TXT/TV", Unmapped_Key, 0x629D, 16); // teletext
-  addKey("A-B", Language_Key, 0x02FD, 16); //?
+  addKey("-/--", DoubleDigit_Key, 0x0A, 8);
+  addKey("CS", Unmapped_Key, 0x0B, 8); // 2-
+  addKey("P+", ChannelUp_Key, 0x0C, 8);
+  addKey("UP", Up_Key, 0x0C, 8);
+  addKey("P-", ChannelDown_Key, 0x0D, 8);
+  addKey("DOWN", Down_Key, 0x0D, 8);
+  addKey("NORMAL", Unmapped_Key, 0x11, 8); // "SYMBOL_2"
+  addKey("MUTE", Mute_Key, 0x15, 8);
+  addKey("VOL+", VolumeUp_Key, 0x16, 8);
+  addKey("RIGHT", Right_Key, 0x16, 8);
+  addKey("VOL-", VolumeDown_Key, 0x17, 8);
+  addKey("LEFT", Left_Key, 0x17, 8);
+  addKey("OSD", Info_Key, 0x18, 8); // "SYMBOL_1
+  addKey("CLOCK", Sleep_Key, 0x19, 8); // "SLEEP/ON-TIMER/TEXT_CANCEL"
+  addKey("POWER", Power_Key, 0x1C, 8);
+  addKey("P--P", PrevChannel_Key, 0x1D, 8); // "ALTERNATE"
+  addKey("A-B", Unmapped_Key, 0x40, 8); //?
+  addKey("WIDE", Unmapped_Key, 0x43, 8);
+  addKey("TXT/TV", Teletext_Key, 0x46, 8); // teletext
+  addKey("SHRINK", Unmapped_Key, 0x4E, 8); // "SYMBOL_5" teletext
+  addKey("EXPAND", Unmapped_Key, 0x56, 8); // "SYMBOL_4" teletext
+  addKey("MENU", Menu_Key, 0x51, 8);
 }
 
 
@@ -225,8 +221,9 @@ SanyoTV1b::SanyoTV1b(
 {
   setKeysetName("TV Keyset 1b");
 
-  addKey("Reset", Reset_Key, 0x38C7, 16);
-  addKey("Closed Captions", Captions_Key, 0x8877, 16);
+  addKey("Mute", Mute_Key, 0x18, 8);
+  addKey("Reset", Reset_Key, 0x1C, 8);
+  addKey("Closed Captions", Captions_Key, 0x11, 8);
 }
 
 
@@ -237,7 +234,9 @@ SanyoTV1c::SanyoTV1c(
 {
   setKeysetName("TV Keyset 1c");
 
-  addKey("tv/vid", Input_Key, 0xC837, 16);
+  addKey("Mute", Mute_Key, 0x18, 8);
+  addKey("tv/vid", Input_Key, 0x13, 8);
+  addKey("Reset", Reset_Key, 0x1C, 8);
 }
 
 
@@ -248,16 +247,33 @@ SanyoTV1d::SanyoTV1d(
 {
   setKeysetName("TV Keyset 1d");
 
-  addKey("prg_scan", Scan_Key, 0x08F7, 16);
-  addKey("tuning_<", ChannelDown_Key, 0xC837, 16);
-  addKey("tuning_>", ChannelUp_Key, 0x48B7, 16);
-  addKey("colour_<", Unmapped_Key, 0xD827, 16);
-  addKey("colour_>", Unmapped_Key, 0x58A7, 16);
-  addKey("bright_<", Unmapped_Key, 0xF807, 16);
-  addKey("bright_>", Unmapped_Key, 0x7887, 16);
-  addKey("contrast_<", Unmapped_Key, 0xF00F, 16);
-  addKey("contrast_>", Unmapped_Key, 0x708F, 16);
-  addKey("clear_screen", Unmapped_Key, 0x18E7, 16);
+  addKey("contrast_>", Unmapped_Key, 0x0E, 8);
+  addKey("contrast_<", Unmapped_Key, 0x0F, 8);
+  addKey("prg_scan", Scan_Key, 0x10, 8);
+  addKey("tuning_>", ChannelUp_Key, 0x12, 8);
+  addKey("tuning_<", ChannelDown_Key, 0x13, 8);
+  addKey("clear_screen", Unmapped_Key, 0x18, 8);
+  addKey("colour_>", Unmapped_Key, 0x1A, 8);
+  addKey("colour_<", Unmapped_Key, 0x1B, 8);
+  addKey("bright_>", Unmapped_Key, 0x1E, 8);
+  addKey("bright_<", Unmapped_Key, 0x1F, 8);
+}
+
+
+SanyoTV1e::SanyoTV1e(
+  QObject *guiObject,
+  unsigned int index)
+  : SanyoTV1(guiObject, index)
+{
+  setKeysetName("TV Keyset 1e");
+
+  addControlledDevice(Sanyo_Make, "CTP-6791P", TV_Device);
+
+  addKey("Mute", Mute_Key, 0x18, 8);
+  addKey("audio_mode", SoundMode_Key, 0x1C, 8); // "auto"
+  addKey("Digicon", PictureMode_Key, 0x1D, 8);
+  addKey("Menu +", Right_Key, 0x1E, 8);
+  addKey("Menu -", Left_Key, 0x1F, 8);
 }
 
 
@@ -271,32 +287,33 @@ SanyoProjector::SanyoProjector(
 {
   addControlledDevice(Sanyo_Make, "PLV-Z1", Other_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index);
+  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
 
-  setPreData(0x0C, 8);
+//  setPreData(0x0CF3, 16);
+  setPreData(0x30, 16);
 
-  addKey("ONOFF0", Power_Key, 0xF300FF, 24);
-  addKey("ONOFF1", Unmapped_Key, 0x73FF00, 24);
-  addKey("AUTO_PC_ADJ", Unmapped_Key, 0xF3916E, 24);
-  addKey("MENU", Menu_Key, 0xF338C7, 24);
-  addKey("SCREEN", Unmapped_Key, 0xF341BE, 24);
-  addKey("INPUT", Input_Key, 0xF3A05F, 24);
-  addKey("IMAGE", Unmapped_Key, 0xF330CF, 24);
-  addKey("AUTO", Unmapped_Key, 0xF3FC03, 24);
-  addKey("COMPOSITE", Unmapped_Key, 0xF3BC43, 24);
-  addKey("S-VIDEO", Unmapped_Key, 0xF37C83, 24);
-  addKey("COMPONENT", Unmapped_Key, 0xF3C13E, 24);
-  addKey("NOSHOW", Unmapped_Key, 0xF3D12E, 24);
-  addKey("KEYSTONE_UP", Unmapped_Key, 0xF3718E, 24);
-  addKey("KEYSTONE_DOWN", Unmapped_Key, 0xF3F10E, 24);
-  addKey("IMAGE_1", One_Key, 0xF30AF5, 24);
-  addKey("IMAGE_2", Two_Key, 0xF38A75, 24);
-  addKey("IMAGE_3", Three_Key, 0xF36A95, 24);
-  addKey("IMAGE_4", Four_Key, 0xF3EA15, 24);
-  addKey("SELECT", Select_Key, 0xF3F00F, 24);
-  addKey("LEFT", Left_Key, 0xF37887, 24);
-  addKey("RIGHT", Right_Key, 0xF3B847, 24);
-  addKey("UP", Up_Key, 0xF331CE, 24);
-  addKey("DOWN", Down_Key, 0xF3B14E, 24);
+  addKey("ONOFF0", Power_Key, 0x00, 8);
+  addKey("INPUT", Input_Key, 0x05, 8);
+  addKey("IMAGE", Unmapped_Key, 0x0C, 8);
+  addKey("SELECT", Select_Key, 0x0F, 8);
+  addKey("MENU", Menu_Key, 0x1C, 8);
+  addKey("RIGHT", Right_Key, 0x1D, 8);
+  addKey("LEFT", Left_Key, 0x1E, 8);
+  addKey("AUTO", Unmapped_Key, 0x3C, 8);
+  addKey("COMPOSITE", Unmapped_Key, 0x3D, 8);
+  addKey("S-VIDEO", Unmapped_Key, 0x3E, 8);
+  addKey("IMAGE_1", One_Key, 0x50, 8);
+  addKey("IMAGE_2", Two_Key, 0x51, 8);
+  addKey("IMAGE_3", Three_Key, 0x56, 8);
+  addKey("IMAGE_4", Four_Key, 0x57, 8);
+  addKey("SCREEN", Unmapped_Key, 0x82, 8);
+  addKey("COMPONENT", Unmapped_Key, 0x83, 8);
+  addKey("AUTO_PC_ADJ", Unmapped_Key, 0x89, 8);
+  addKey("NOSHOW", Unmapped_Key, 0x8B, 8);
+  addKey("UP", Up_Key, 0x8C, 8);
+  addKey("DOWN", Down_Key, 0x8D, 8);
+  addKey("KEYSTONE_UP", Unmapped_Key, 0x8E, 8);
+  addKey("KEYSTONE_DOWN", Unmapped_Key, 0x8F, 8);
+//  addKey("ONOFF1", Unmapped_Key, 0x0C73FF00, 32);
 }
 

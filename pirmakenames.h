@@ -10,6 +10,7 @@ enum PIRMakeName{
   Apple_Make,
   Denon_Make,
   Ei_Make,
+  Elgato_Make,
   GoldStar_Make,
   Hauppauge_Make,
   Hitachi_Make,

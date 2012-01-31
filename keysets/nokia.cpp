@@ -14,7 +14,8 @@ NokiaGenericVCR::NokiaGenericVCR(
     index,
     272, 737,
     272, 1711,
-    42100, false);
+    42100, false,
+    LIRC_NEC);
 
   threadableProtocol = np;
 
@@ -35,7 +36,7 @@ NokiaGenericVCR::NokiaGenericVCR(
   addKey("8", Eight_Key, 0x042, 12);
   addKey("9", Nine_Key, 0x242, 12);
   addKey("0", Zero_Key, 0x142, 12);
-  addKey("Timer", Unmapped_Key, 0x262, 12);
+  addKey("Timer", Timer_Key, 0x262, 12);
   addKey("Clear", Clear_Key, 0x012, 12);
   addKey("P+", ChannelUp_Key, 0x222, 12);
   addKey("P-", ChannelDown_Key, 0x122, 12);
@@ -50,7 +51,7 @@ NokiaGenericVCR::NokiaGenericVCR(
   addKey("Yellow", Yellow_Key, 0x032, 12);
   addKey("Blue", Blue_Key, 0x3D2, 12);
   addKey("Rec", Record_Key, 0x052, 12);
-  addKey("Clock", Unmapped_Key, 0x1C2, 12);
-  addKey("Prog", Unmapped_Key, 0x066, 12);
+  addKey("Clock", Clock_Key, 0x1C2, 12);
+  addKey("Prog", Program_Key, 0x066, 12);
   addKey("PIP", PIP_Key, 0x0C6, 12);
 }

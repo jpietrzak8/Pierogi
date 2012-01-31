@@ -13,35 +13,6 @@ HauppaugePCTV1::HauppaugePCTV1(
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x5E);
 
-  addKey("Power", Power_Key, 0x3D, 6);
-  addKey("Go", Unmapped_Key, 0x3B, 6);
-  addKey("TV", Unmapped_Key, 0x1C, 6);
-  addKey("Videos", Unmapped_Key, 0x18, 6);
-  addKey("Music", Unmapped_Key, 0x19, 6);
-  addKey("Pictures", Unmapped_Key, 0x1A, 6);
-  addKey("Guide", Unmapped_Key, 0x1B, 6);
-  addKey("Radio", Unmapped_Key, 0x0C, 6);
-  addKey("Up", Up_Key, 0x14, 6);
-  addKey("Down", Down_Key, 0x15, 6);
-  addKey("Left", Left_Key, 0x16, 6);
-  addKey("Right", Right_Key, 0x17, 6);
-  addKey("Ok", Select_Key, 0x25, 6);
-  addKey("Back/Exit", Exit_Key, 0x1F, 6);
-  addKey("Menu/i", Menu_Key, 0x0D, 6);
-  addKey("Vol+", VolumeUp_Key, 0x10, 6);
-  addKey("Vol-", VolumeDown_Key, 0x11, 6);
-  addKey("Prev.Ch", PrevChannel_Key, 0x12, 6);
-  addKey("Mute", Mute_Key, 0x0F, 6);
-  addKey("Ch+", ChannelUp_Key, 0x20, 6);
-  addKey("Ch-", ChannelDown_Key, 0x21, 6);
-  addKey("Record", Record_Key, 0x37, 6);
-  addKey("Stop", Stop_Key, 0x36, 6);
-  addKey("Rewind", Rewind_Key, 0x32, 6);
-  addKey("Play", Play_Key, 0x35, 6);
-  addKey("Forward", FastForward_Key, 0x34, 6);
-  addKey("Replay/SkipBackward", Replay_Key, 0x24, 6);
-  addKey("Pause", Pause_Key, 0x30, 6);
-  addKey("SkipForward", Advance_Key, 0x1E, 6);
   addKey("0", Zero_Key, 0x00, 6);
   addKey("1", One_Key, 0x01, 6);
   addKey("2", Two_Key, 0x02, 6);
@@ -53,11 +24,41 @@ HauppaugePCTV1::HauppaugePCTV1(
   addKey("8", Eight_Key, 0x08, 6);
   addKey("9", Nine_Key, 0x09, 6);
   addKey("Asterix", Unmapped_Key, 0x0A, 6);
-  addKey("sub/cc", Captions_Key, 0x0E, 6); // "Recordings"
   addKey("Red", Red_Key, 0x0B, 6);
-  addKey("Green", Green_Key, 0x2E, 6);
-  addKey("Yellow", Yellow_Key, 0x38, 6);
+  addKey("Radio", Unmapped_Key, 0x0C, 6);
+  addKey("Menu/i", Menu_Key, 0x0D, 6);
+  addKey("sub/cc", Captions_Key, 0x0E, 6); // "Recordings"
+  addKey("Mute", Mute_Key, 0x0F, 6);
+  addKey("Vol+", VolumeUp_Key, 0x10, 6);
+  addKey("Vol-", VolumeDown_Key, 0x11, 6);
+  addKey("Prev.Ch", PrevChannel_Key, 0x12, 6);
+  addKey("Up", Up_Key, 0x14, 6);
+  addKey("Down", Down_Key, 0x15, 6);
+  addKey("Left", Left_Key, 0x16, 6);
+  addKey("Right", Right_Key, 0x17, 6);
+  addKey("Videos", Unmapped_Key, 0x18, 6);
+  addKey("Music", Unmapped_Key, 0x19, 6);
+  addKey("Pictures", Unmapped_Key, 0x1A, 6);
+  addKey("Guide", Unmapped_Key, 0x1B, 6);
+  addKey("TV", Unmapped_Key, 0x1C, 6);
+  addKey("SkipForward", Next_Key, 0x1E, 6);
+  addKey("Back/Exit", Exit_Key, 0x1F, 6);
+  addKey("Ch+", ChannelUp_Key, 0x20, 6);
+  addKey("Ch-", ChannelDown_Key, 0x21, 6);
+  addKey("Replay/SkipBackward", Previous_Key, 0x24, 6);
+  addKey("Ok", Select_Key, 0x25, 6);
+  addKey("minimize", Unmapped_Key, 0x26, 6);
   addKey("Blue", Blue_Key, 0x29, 6);
+  addKey("Green", Green_Key, 0x2E, 6);
+  addKey("Pause", Pause_Key, 0x30, 6);
+  addKey("Rewind", Rewind_Key, 0x32, 6);
+  addKey("Forward", FastForward_Key, 0x34, 6);
+  addKey("Play", Play_Key, 0x35, 6);
+  addKey("Stop", Stop_Key, 0x36, 6);
+  addKey("Record", Record_Key, 0x37, 6);
+  addKey("Yellow", Yellow_Key, 0x38, 6);
+  addKey("Go", Unmapped_Key, 0x3B, 6);
+  addKey("Power", Power_Key, 0x3D, 6);
 }
 
 
@@ -103,7 +104,7 @@ HauppaugePCTV1c::HauppaugePCTV1c(
   setPreData(0x5F, 7);
 
   addKey("blank", Unmapped_Key, 0x0C, 6);
-  addKey("full", Unmapped_Key, 0x3C, 6);
+  addKey("full", AspectRatio_Key, 0x3C, 6);  // full screen?
 }
 
 
@@ -118,7 +119,7 @@ HauppaugePCTV2::HauppaugePCTV2(
 {
   addControlledDevice(Hauppauge_Make, "PVR-250", Computer_Device);
 
-  threadableProtocol = new RC5Protocol(guiObject, index, 0x54);
+  threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("POWER", Power_Key, 0x150C, 13);
   addKey("1", One_Key, 0x1525, 13);

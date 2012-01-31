@@ -23,7 +23,7 @@ public:
 };
 
 
-class SonyTV1b: public SonyTV1
+class SonyTV1b: public SonyTV1a
 {
 public:
   SonyTV1b(
@@ -32,10 +32,10 @@ public:
 };
 
 
-class SonyTV1d: public SonyTV1a
+class SonyTV1c: public SonyTV1
 {
 public:
-  SonyTV1d(
+  SonyTV1c(
     QObject *guiObject,
     unsigned int index);
 };
@@ -59,37 +59,19 @@ public:
 };
 
 
-class SonyCD1: public PIRKeysetMetaData
+class SonyAudio1: public PIRKeysetMetaData
 {
 public:
-  SonyCD1(
+  SonyAudio1(
     QObject *guiObject,
     unsigned int index);
 };
 
 
-class SonyCD1a: public SonyCD1
+class SonyAudio1a: public SonyAudio1
 {
 public:
-  SonyCD1a(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-
-class SonyCD2: public PIRKeysetMetaData
-{
-public:
-  SonyCD2(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-
-class SonyCD3: public PIRKeysetMetaData
-{
-public:
-  SonyCD3(
+  SonyAudio1a(
     QObject *guiObject,
     unsigned int index);
 };
@@ -153,6 +135,15 @@ class SonyVCR1a: public SonyVCR1
 {
 public:
   SonyVCR1a(
+    QObject *guiObject,
+    unsigned int index);
+};
+
+
+class SonyVCR1b: public SonyVCR1a
+{
+public:
+  SonyVCR1b(
     QObject *guiObject,
     unsigned int index);
 };

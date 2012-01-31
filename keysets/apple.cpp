@@ -14,7 +14,7 @@ AppleWhiteRemote::AppleWhiteRemote(
   addControlledDevice(Apple_Make, "Mac Mini", Computer_Device);
 
   // Set up the threadable object:
-  threadableProtocol = new NECProtocol(guiObject, index);
+  threadableProtocol = new NECProtocol(guiObject, index, LIRC_NEC);
 
   setPreData(0x77e1, 16);
   setPostData(0xc5, 8);
