@@ -200,7 +200,9 @@ OTHER_FILES += \
     www/FavoriteTab.png \
     www/Media2Tab.png \
     www/TVTab.png \
-    www/PierogiIcon.png
+    www/PierogiIcon.png \
+    www/AdjustTab.png \
+    www/InputTab.png
 
 RESOURCES += \
     PierogiResources.qrc
