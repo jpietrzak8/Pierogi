@@ -1,5 +1,5 @@
 #include "sharp.h"
-#include "sharpprotocol.h"
+#include "protocols/sharpprotocol.h"
 
 SharpTV1::SharpTV1(
   QObject *guiObject,
@@ -25,7 +25,7 @@ SharpTV1::SharpTV1(
   addSharpKey("stereo", Unmapped_Key, 0x01, 0x0C); // "VpsPds"
   addSharpKey("40+", Unmapped_Key, 0x01, 0x0F); // odd!
 
-  addSharpKey("NR", Unmapped_Key, 0x01, 0x10);
+  addSharpKey("NR", NoiseReduction_Key, 0x01, 0x10);
   addSharpKey("CH_UP", ChannelUp_Key, 0x01, 0x11);
   addSharpKey("CH_DOWN", ChannelDown_Key, 0x01, 0x12);
   addSharpKey("TV/VIDEO", Input_Key, 0x01, 0x13);
@@ -41,13 +41,13 @@ SharpTV1::SharpTV1(
   addSharpKey("PROG", Program_Key, 0x01, 0x1D);
 
   addSharpKey("PICTURE_NORMALIZE", Unmapped_Key, 0x01, 0x21);
-  addSharpKey("CONTRAST_UP", Unmapped_Key, 0x01, 0x22);
-  addSharpKey("CONTRAST_DOWN", Unmapped_Key, 0x01, 0x23);
-  addSharpKey("COLOR_UP", Unmapped_Key, 0x01, 0x24);
-  addSharpKey("COLOR_DOWN", Unmapped_Key, 0x01, 0x25);
+  addSharpKey("CONTRAST_UP", ContrastUp_Key, 0x01, 0x22);
+  addSharpKey("CONTRAST_DOWN", ContrastDown_Key, 0x01, 0x23);
+  addSharpKey("COLOR_UP", ColorUp_Key, 0x01, 0x24);
+  addSharpKey("COLOR_DOWN", ColorDown_Key, 0x01, 0x25);
   addSharpKey("SOUND_NORMALIZE", Unmapped_Key, 0x01, 0x26);
-  addSharpKey("BRIGHTNESS_UP", Unmapped_Key, 0x01, 0x28);
-  addSharpKey("BRIGHTNESS_DOWN", Unmapped_Key, 0x01, 0x29);
+  addSharpKey("BRIGHTNESS_UP", BrightnessUp_Key, 0x01, 0x28);
+  addSharpKey("BRIGHTNESS_DOWN", BrightnessDown_Key, 0x01, 0x29);
   addSharpKey("CH_SWAP", PrevChannel_Key, 0x01, 0x27); // "FLASHBACK", "ret"
   addSharpKey("MONO", Unmapped_Key, 0x01, 0x2C);
   addSharpKey("BROWSE", Unmapped_Key, 0x01, 0x2F);
@@ -71,7 +71,7 @@ SharpTV1::SharpTV1(
   addSharpKey("COLOR_GREEN", Green_Key, 0x01, 0x49);
   addSharpKey("COLOR_YELLOW", Yellow_Key, 0x01, 0x4A);
   addSharpKey("COLOR_BLUE", Blue_Key, 0x01, 0x4B);
-  addSharpKey("INDEX", Unmapped_Key, 0x01, 0x4C);
+  addSharpKey("INDEX", TeletextIndex_Key, 0x01, 0x4C);
   addSharpKey("MENU", Menu_Key, 0x01, 0x4D);
   addSharpKey("LOCK", Unmapped_Key, 0x01, 0x51);
   addSharpKey("RESET", Reset_Key, 0x01, 0x52);
@@ -79,14 +79,14 @@ SharpTV1::SharpTV1(
 
   addSharpKey("PICTURE", PictureMode_Key, 0x01, 0x60);
   addSharpKey("SOUND", SoundMode_Key, 0x01, 0x61);
-  addSharpKey("TREBLE_UP", Unmapped_Key, 0x01, 0x62);
-  addSharpKey("TREBLE_DOWN", Unmapped_Key, 0x01, 0x63);
-  addSharpKey("BASS_UP", Unmapped_Key, 0x01, 0x64);
-  addSharpKey("BASS_DOWN", Unmapped_Key, 0x01, 0x65);
+  addSharpKey("TREBLE_UP", TrebleUp_Key, 0x01, 0x62);
+  addSharpKey("TREBLE_DOWN", TrebleDown_Key, 0x01, 0x63);
+  addSharpKey("BASS_UP", BassUp_Key, 0x01, 0x64);
+  addSharpKey("BASS_DOWN", BassDown_Key, 0x01, 0x65);
   addSharpKey("WOOFER_UP", Unmapped_Key, 0x01, 0x66);
   addSharpKey("WOOFER_DOWN", Unmapped_Key, 0x01, 0x67);
-  addSharpKey("BALANCE_LEFT", Unmapped_Key, 0x01, 0x6B);
-  addSharpKey("BALANCE_RIGHT", Unmapped_Key, 0x01, 0x6C);
+  addSharpKey("BALANCE_LEFT", BalanceLeft_Key, 0x01, 0x6B);
+  addSharpKey("BALANCE_RIGHT", BalanceRight_Key, 0x01, 0x6C);
   addSharpKey("SURROUND", Surround_Key, 0x01, 0x6E);
 
   addSharpKey("calendar", Unmapped_Key, 0x01, 0x76);
@@ -295,11 +295,11 @@ SharpReceiver1::SharpReceiver1(
   addSharpKey("VOL+", VolumeUp_Key, 0x12, 0x14);
   addSharpKey("VOL-", VolumeDown_Key, 0x12, 0x15);
   addSharpKey("POWER", Power_Key, 0x12, 0x16);
-  addSharpKey("TUNER", Unmapped_Key, 0x12, 0x19);
-  addSharpKey("TAPE", Unmapped_Key, 0x12, 0x1A);
-  addSharpKey("CD", Unmapped_Key, 0x12, 0x1B);
-  addSharpKey("PHONO", Unmapped_Key, 0x12, 0x1D);
-  addSharpKey("X-BASS", Unmapped_Key, 0x12, 0x2E);
+  addSharpKey("TUNER", TunerInput_Key, 0x12, 0x19);
+  addSharpKey("TAPE", TapeInput_Key, 0x12, 0x1A);
+  addSharpKey("CD", CDInput_Key, 0x12, 0x1B);
+  addSharpKey("PHONO", PhonoInput_Key, 0x12, 0x1D);
+  addSharpKey("X-BASS", EnhancedBass_Key, 0x12, 0x2E);
   addSharpKey("FM", Unmapped_Key, 0x12, 0x32);
   addSharpKey("LW", Unmapped_Key, 0x12, 0x33);
   addSharpKey("MW", Unmapped_Key, 0x12, 0x34);
@@ -315,7 +315,7 @@ SharpReceiver1::SharpReceiver1(
   addSharpKey("8", Eight_Key, 0x14, 0x08);
   addSharpKey("9", Nine_Key, 0x14, 0x09);
   addSharpKey("0", Zero_Key, 0x14, 0x0A);
-  addSharpKey("CALL", Unmapped_Key, 0x14, 0x11);
+  addSharpKey("CALL", Call_Key, 0x14, 0x11);
   addSharpKey("CLEAR", Clear_Key, 0x14, 0x12);
   addSharpKey("MEMORY", Program_Key, 0x14, 0x13);
   addSharpKey("CUE", FastForward_Key, 0x14, 0x19);

@@ -93,30 +93,6 @@ public:
     unsigned int index);
 };
 
-class YamahaAudio5: public PIRKeysetMetaData
-{
-public:
-  YamahaAudio5(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class YamahaAudio6: public PIRKeysetMetaData
-{
-public:
-  YamahaAudio6(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class YamahaAudio7: public PIRKeysetMetaData
-{
-public:
-  YamahaAudio7(
-    QObject *guiObject,
-    unsigned int index);
-};
-
 class YamahaTV1: public PIRKeysetMetaData
 {
 public:

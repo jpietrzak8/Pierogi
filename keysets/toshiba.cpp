@@ -1,6 +1,5 @@
 #include "toshiba.h"
-#include "necprotocol.h"
-//#include "pirmakenames.h"
+#include "protocols/necprotocol.h"
 
 ToshibaTV1::ToshibaTV1(
   QObject *guiObject,
@@ -12,7 +11,7 @@ ToshibaTV1::ToshibaTV1(
 {
   addControlledDevice(Toshiba_Make, "21S03D", TV_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x02FD, 16);
   setPreData(0x40, 8);
@@ -35,10 +34,10 @@ ToshibaTV1::ToshibaTV1(
   addKey("MUTE", Mute_Key, 0x10, 8);
   addKey("BLANK", PictureMode_Key, 0x11, 8); // "Contrast", "picture_preset"
   addKey("POWER", Power_Key, 0x12, 8);
-  addKey("mts", Unmapped_Key, 0x13, 8); // "audio_stereo_2channel"
+  addKey("mts", FMMode_Key, 0x13, 8); // "audio_stereo_2channel"
   addKey("SCART", Input_Key, 0x14, 8); // "AV", "inputs", "source"
   addKey("sleep", Sleep_Key, 0x15, 8);  // Clock
-  addKey("CALL", Unmapped_Key, 0x16, 8);
+  addKey("CALL", Call_Key, 0x16, 8);
   addKey("ent", Enter_Key, 0x17, 8);  // "ch_rtn"
   addKey("TXT/MIX", Teletext_Key, 0x17, 8);
   addKey("fav+", Unmapped_Key, 0x19, 8);
@@ -54,7 +53,7 @@ ToshibaTV1::ToshibaTV1(
   addKey("P-", Down_Key, 0x1F, 8);
   addKey("OK", Select_Key, 0x21, 8);
   addKey("POP_DIR", Unmapped_Key, 0x26, 8);
-  addKey("textindex", Unmapped_Key, 0x2B, 8);
+  addKey("textindex", TeletextIndex_Key, 0x2B, 8);
   addKey("textpages", Unmapped_Key, 0x2C, 8);
   addKey("a/d", Unmapped_Key, 0x44, 8);
   addKey("RED", Red_Key, 0x48, 8);
@@ -63,9 +62,9 @@ ToshibaTV1::ToshibaTV1(
   addKey("pip_ch_up", PIPChannelUp_Key, 0x4A, 8); // Yellow
   addKey("BLUE", Blue_Key, 0x4B, 8);
   addKey("pip_ch_down", PIPChannelDown_Key, 0x4B, 8); // Blue
-  addKey("still", Unmapped_Key, 0x4C, 8);
-  addKey("locate", Unmapped_Key, 0x4E, 8);
-  addKey("source", Unmapped_Key, 0x4F, 8);
+  addKey("still", PIPPause_Key, 0x4C, 8);
+  addKey("locate", PIPMove_Key, 0x4E, 8);
+  addKey("source", PIPSource_Key, 0x4F, 8);
   addKey("pip", PIP_Key, 0x51, 8);
   addKey("Double_Arrow", Unmapped_Key, 0x52, 8); // "swap", but not pip!; "back"
   addKey("swap", PIPSwap_Key, 0x53, 8); // Reduce
@@ -76,7 +75,7 @@ ToshibaTV1::ToshibaTV1(
   addKey("cap/text", Captions_Key, 0x57, 8); // Image
   addKey("exit", Exit_Key, 0x58, 8);
   addKey("SIZE", AspectRatio_Key, 0x59, 8); // "WIDE"
-  addKey("DOULBY", Unmapped_Key, 0x5A, 8);
+  addKey("DOULBY", NoiseReduction_Key, 0x5A, 8);
   addKey("1/2", Audio_Key, 0x63, 8); // "cap1/cap2"
   addKey("MENU", Menu_Key, 0x5B, 8);
   addKey("CLOCK", Timer_Key, 0x71, 8);  // "TIMER"
@@ -209,7 +208,7 @@ ToshibaVCR1::ToshibaVCR1(
       Toshiba_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x44, 16);
 
@@ -263,7 +262,7 @@ ToshibaDisc1::ToshibaDisc1(
       Toshiba_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0xA25D, 16);
   setPreData(0x45, 8);
@@ -294,7 +293,7 @@ ToshibaDisc1::ToshibaDisc1(
   addKey("skip+", Next_Key, 0x24, 8);
   addKey("+10", DoubleDigit_Key, 0x25, 8);
   addKey("100", PlusOneHundred_Key, 0x25, 8);
-  addKey("T", Unmapped_Key, 0x26, 8); // direct access to title by number
+  addKey("T", Unmapped_Key, 0x26, 8); // "Index", direct access to title by number
   addKey("SUBTITLE", Captions_Key, 0x28, 8);
   addKey("KEY_ANGLE", Angle_Key, 0x29, 8);
   addKey("MEMORY", Program_Key, 0x2A, 8);
@@ -303,7 +302,7 @@ ToshibaDisc1::ToshibaDisc1(
   addKey("RANDOM", Random_Key, 0x2E, 8);
   addKey("FL_DIMMER", Unmapped_Key, 0x41, 8); // "FlDim"
   addKey("3D", Unmapped_Key, 0x43, 8);
-  addKey("disc", DiscSelect_Key, 0x4A, 8); // "DISC SELECT"
+  addKey("disc", NextDisc_Key, 0x4A, 8); // "DISC SELECT"
   addKey("vol+", VolumeUp_Key, 0x4D, 8);
   addKey("right", Right_Key, 0x4D, 8); // "vol+"
   addKey("vol-", VolumeDown_Key, 0x51, 8);

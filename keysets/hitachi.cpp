@@ -1,5 +1,5 @@
 #include "hitachi.h"
-#include "necprotocol.h"
+#include "protocols/necprotocol.h"
 
 HitachiTV1::HitachiTV1(
   QObject *guiObject,
@@ -9,7 +9,7 @@ HitachiTV1::HitachiTV1(
       Hitachi_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x0AF5, 16);
   setPreData(0x50, 8);
@@ -133,8 +133,8 @@ HitachiTV1c::HitachiTV1c(
   addKey("ArrowLeft", Left_Key, 0x73, 8);
   addKey("DayMode", Unmapped_Key, 0x74, 8);
   addKey("NightMode", Unmapped_Key, 0x75, 8);
-  addKey("AntennaA", Unmapped_Key, 0x76, 8);
-  addKey("AntennaB", Unmapped_Key, 0x77, 8);
+  addKey("AntennaA", AntennaInput_Key, 0x76, 8);
+  addKey("AntennaB", Antenna2Input_Key, 0x77, 8);
   addKey("CC", Unmapped_Key, 0x78, 8); // Another CC key?
   // Many more codes available in LIRC's hitachi/CLU4341UG2 config file
 }
@@ -148,7 +148,7 @@ HitachiProjector::HitachiProjector(
       Hitachi_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Extended_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
 //  setPreData(0xE1A2, 16);
   setPreData(0x4587, 16);
@@ -190,7 +190,7 @@ HitachiDVD1::HitachiDVD1(
       Hitachi_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Extended_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
 //  setPreData(0x01C4, 16);
   setPreData(0x2380, 16);
@@ -231,7 +231,7 @@ HitachiDVD1::HitachiDVD1(
   addKey("Angle", Angle_Key, 0x2A, 8);
   addKey("Subtitle", Captions_Key, 0x2B, 8);
   addKey("Audio", Audio_Key, 0x2C, 8);
-  addKey("Mode", Unmapped_Key, 0x2D, 8);
+  addKey("Mode", Mode_Key, 0x2D, 8);
   addKey("DiscNav", Guide_Key, 0x32, 8);
   addKey("Zoom", Zoom_Key, 0x3B, 8);
   addKey("SearchMode", Unmapped_Key, 0x3E, 8);
@@ -250,7 +250,7 @@ HitachiAudio1::HitachiAudio1(
   addControlledDevice(Hitachi_Make, "FX-7", Audio_Device);
   addControlledDevice(Hitachi_Make, "FX-77", Audio_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0xDA25, 16);
   setPreData(0x5B, 8);
@@ -295,7 +295,7 @@ HitachiVCR1::HitachiVCR1(
       Hitachi_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x06F9, 16);
   setPreData(0x60, 8);

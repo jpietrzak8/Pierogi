@@ -1,6 +1,6 @@
 #include "apple.h"
-#include "necprotocol.h"
-#include "pirmakenames.h"
+#include "protocols/lircprotocol.h"
+//#include "pirmakenames.h"
 
 // Based on LIRC Apple_A1156 config file
 AppleWhiteRemote::AppleWhiteRemote(
@@ -14,7 +14,17 @@ AppleWhiteRemote::AppleWhiteRemote(
   addControlledDevice(Apple_Make, "Mac Mini", Computer_Device);
 
   // Set up the threadable object:
-  threadableProtocol = new NECProtocol(guiObject, index, LIRC_NEC);
+  LIRCProtocol *lp = new LIRCProtocol(
+    guiObject, index,
+    560, 560,
+    560, 1680,
+    110000, true);
+
+  threadableProtocol = lp;
+
+  lp->setHeaderPair(9000, 4500);
+  lp->setTrailerPulse(560);
+  lp->setRepeatPair(9000, 2250);
 
   setPreData(0x77e1, 16);
   setPostData(0xc5, 8);

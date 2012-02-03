@@ -116,7 +116,7 @@ void RC6Protocol::startSendingCommand(
       duration += pushBits(preData, rx51device);
 
       // push the actual command:
-      duration += pushBits((*i).second, rx51device);
+      duration += pushBits((*i).second.firstCode, rx51device);
 
       // Flush out the buffer, if necessary:
       if (buffer)

@@ -1,5 +1,5 @@
 #include "zenith.h"
-#include "necprotocol.h"
+#include "protocols/necprotocol.h"
 
 // Based solely on LIRC Zenith_C32V37 config file
 ZenithC32V37::ZenithC32V37(
@@ -12,7 +12,7 @@ ZenithC32V37::ZenithC32V37(
 {
   addControlledDevice(Zenith_Make, "C32V37", TV_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x20DF, 16);
   setPreData(0x04, 8);
@@ -49,7 +49,7 @@ ZenithC32V37::ZenithC32V37(
   addKey("front", Unmapped_Key, 0x51, 8);
   addKey("exit", Exit_Key, 0x5B, 8);
   addKey("pip", PIP_Key, 0x60, 8);
-  addKey("pcin", Unmapped_Key, 0x61, 8);
+  addKey("pcin", PCInput_Key, 0x61, 8);
   addKey("swap", PIPSwap_Key, 0x63, 8);
   addKey("freeze", PIPPause_Key, 0x65, 8);
   addKey("pipch+", PIPChannelUp_Key, 0x71, 8);

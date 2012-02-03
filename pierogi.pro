@@ -28,14 +28,11 @@ DEPLOYMENTFOLDERS = sudoers_stuff loadModule
 # MOBILITY +=
 
 SOURCES += main.cpp mainwindow.cpp \
-    necprotocol.cpp \
-    rc5protocol.cpp \
     pirmakenames.cpp \
     pirdocumentationform.cpp \
     piraboutform.cpp \
     pirexception.cpp \
     pirkeysetwidgetitem.cpp \
-    pirprotocol.cpp \
     keysets/apple.cpp \
     keysets/ei.cpp \
     keysets/goldstar.cpp \
@@ -66,23 +63,29 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/denon.cpp \
     keysets/pinnacle.cpp \
     keysets/magnavox.cpp \
-    rc6protocol.cpp \
     keysets/philips.cpp \
     keysets/tivo.cpp \
     keysets/elgato.cpp \
-    sircprotocol.cpp \
-    jvcprotocol.cpp \
-    sharpprotocol.cpp
+    protocols/jvcprotocol.cpp \
+    protocols/necprotocol.cpp \
+    protocols/pirprotocol.cpp \
+    protocols/rc5protocol.cpp \
+    protocols/rc6protocol.cpp \
+    protocols/sharpprotocol.cpp \
+    protocols/sircprotocol.cpp \
+    protocols/pioneerprotocol.cpp \
+    protocols/lircprotocol.cpp \
+    protocols/samsungprotocol.cpp \
+    keysets/pioneer.cpp \
+    protocols/spaceprotocol.cpp \
+    pirsecondaryform.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
-    necprotocol.h \
-    rc5protocol.h \
     pirmakenames.h \
     pirdocumentationform.h \
     piraboutform.h \
     pirexception.h \
     pirkeysetwidgetitem.h \
-    pirprotocol.h \
     keysets/apple.h \
     keysets/ei.h \
     keysets/goldstar.h \
@@ -113,17 +116,27 @@ HEADERS += mainwindow.h \
     keysets/denon.h \
     keysets/pinnacle.h \
     keysets/magnavox.h \
-    rc6protocol.h \
     keysets/philips.h \
     keysets/tivo.h \
     keysets/elgato.h \
-    sircprotocol.h \
-    jvcprotocol.h \
-    sharpprotocol.h
+    protocols/jvcprotocol.h \
+    protocols/necprotocol.h \
+    protocols/pirprotocol.h \
+    protocols/rc5protocol.h \
+    protocols/rc6protocol.h \
+    protocols/sharpprotocol.h \
+    protocols/sircprotocol.h \
+    protocols/pioneerprotocol.h \
+    protocols/lircprotocol.h \
+    protocols/samsungprotocol.h \
+    keysets/pioneer.h \
+    protocols/spaceprotocol.h \
+    pirsecondaryform.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
-    pirselectkeysetform.ui
+    pirselectkeysetform.ui \
+    pirsecondaryform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
@@ -184,7 +197,6 @@ OTHER_FILES += \
     www/PierogiIcon.png \
     www/SelectKeysetWindow.png \
     www/UtilityTab.png \
-    qtc_packaging/debian_fremantle/postrm.needsfixing \
     www/FavoriteTab.png \
     www/Media2Tab.png \
     www/TVTab.png \

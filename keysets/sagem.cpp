@@ -1,5 +1,5 @@
 #include "sagem.h"
-#include "necprotocol.h"
+#include "protocols/necprotocol.h"
 
 SagemTVBox1::SagemTVBox1(
   QObject *guiObject,
@@ -9,7 +9,7 @@ SagemTVBox1::SagemTVBox1(
       Sagem_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Extended_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
 //  setPreData(0xE17A, 16);
   setPreData(0x5E87, 16);

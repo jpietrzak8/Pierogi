@@ -1,5 +1,5 @@
 #include "ei.h"
-#include "rc5protocol.h"
+#include "protocols/rc5protocol.h"
 
 // Based on LIRC Ei-TV90 config file
 EiTV1::EiTV1(
@@ -37,12 +37,12 @@ EiTV1::EiTV1(
   addKey("TV_STATUS", Info_Key, 0x0F, 6);
   addKey("VOLUME+", VolumeUp_Key, 0x10, 6);
   addKey("VOLUME-", VolumeDown_Key, 0x11, 6);
-  addKey("LIGHT+", Unmapped_Key, 0x12, 6);
-  addKey("LIGHT-", Unmapped_Key, 0x13, 6);
-  addKey("COLOR+", Unmapped_Key, 0x14, 6);
-  addKey("COLOR-", Unmapped_Key, 0x15, 6);
-  addKey("CONTRAST+", Unmapped_Key, 0x1C, 6);
-  addKey("CONTRAST-", Unmapped_Key, 0x1D, 6);
+  addKey("LIGHT+", BrightnessUp_Key, 0x12, 6);
+  addKey("LIGHT-", BrightnessDown_Key, 0x13, 6);
+  addKey("COLOR+", ColorUp_Key, 0x14, 6);
+  addKey("COLOR-", ColorDown_Key, 0x15, 6);
+  addKey("CONTRAST+", ContrastUp_Key, 0x1C, 6);
+  addKey("CONTRAST-", ContrastDown_Key, 0x1D, 6);
   addKey("->*", Unmapped_Key, 0x1E, 6);
   addKey("P+", ChannelUp_Key, 0x20, 6);
   addKey("P-", ChannelDown_Key, 0x21, 6);

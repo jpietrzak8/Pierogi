@@ -1,7 +1,7 @@
 #include "philips.h"
-#include "rc5protocol.h"
-#include "rc6protocol.h"
-#include "necprotocol.h"
+#include "protocols/rc5protocol.h"
+#include "protocols/rc6protocol.h"
+#include "protocols/necprotocol.h"
 
 PhilipsTV1::PhilipsTV1(
   QObject *guiObject,
@@ -50,7 +50,7 @@ PhilipsTV1::PhilipsTV1(
   addKey("MY_AUDIO", Unmapped_Key, 0x10D2, 13);
   addKey("EXPAND", Surround_Key, 0x1024, 13); // "STEREO", "spatial"
   addKey("INFO", Info_Key, 0x100F, 13); // "+", "OSD"
-  addKey("TEXT_TV", Unmapped_Key, 0x103C, 13); // "TELETEXT"
+  addKey("TEXT_TV", TeletextAndTV_Key, 0x103C, 13); // "TELETEXT"
   addKey("SURF", Unmapped_Key, 0x1022, 13);
   addKey("TEXT_CLOCK", TeletextTime_Key, 0x102A, 13); // "time"
   addKey("TEXT_ENLARGE", TeletextSize_Key, 0x102B, 13); // "Reduce_Teletext"
@@ -62,26 +62,26 @@ PhilipsTV1::PhilipsTV1(
   addKey("TV-Dash", Dash_Key, 0x100A, 13);
   addKey("CP", Unmapped_Key, 0x100B, 13); // "C/P"
   addKey("pp", PrevChannel_Key, 0x100E, 13); // "GREEN"
-  addKey("BRIGHTNESS_UP", Unmapped_Key, 0x1012, 13);
-  addKey("BRIGHTNESS_DOWN", Unmapped_Key, 0x1013, 13);
-  addKey("CONTRAST_UP", Unmapped_Key, 0x1014, 13);
-  addKey("CONTRAST_DOWN", Unmapped_Key, 0x1015, 13);
-  addKey("BASS_UP", Unmapped_Key, 0x1016, 13);
-  addKey("BASS_DOWN", Unmapped_Key, 0x1017, 13);
-  addKey("TREBLE_UP", Unmapped_Key, 0x1018, 13);
-  addKey("TREBLE_DOWN", Unmapped_Key, 0x1019, 13);
-  addKey("BALANCE_RIGHT", Unmapped_Key, 0x101A, 13);
-  addKey("BALANCE_LEFT", Unmapped_Key, 0x101B, 13);
+  addKey("BRIGHTNESS_UP", BrightnessUp_Key, 0x1012, 13);
+  addKey("BRIGHTNESS_DOWN", BrightnessDown_Key, 0x1013, 13);
+  addKey("CONTRAST_UP", ContrastUp_Key, 0x1014, 13);
+  addKey("CONTRAST_DOWN", ContrastDown_Key, 0x1015, 13);
+  addKey("BASS_UP", BassUp_Key, 0x1016, 13);
+  addKey("BASS_DOWN", BassDown_Key, 0x1017, 13);
+  addKey("TREBLE_UP", TrebleUp_Key, 0x1018, 13);
+  addKey("TREBLE_DOWN", TrebleDown_Key, 0x1019, 13);
+  addKey("BALANCE_RIGHT", BalanceRight_Key, 0x101A, 13);
+  addKey("BALANCE_LEFT", BalanceLeft_Key, 0x101B, 13);
   addKey("TT_OUT", Unmapped_Key, 0x101D, 13);
-  addKey("TT_UPDOWN", Unmapped_Key, 0x102B, 13); // "TELETEXT_RESIZE"
-  addKey("TT_X", Unmapped_Key, 0x102D, 13); // "TELETEXT_OFF"
-  addKey("TT_TV", Unmapped_Key, 0x103F, 13);
-  addKey("TT_PLAY", Unmapped_Key, 0x101E, 13);
+  addKey("TT_UPDOWN", TeletextSize_Key, 0x102B, 13); // "TELETEXT_RESIZE"
+  addKey("TT_X", TeletextOff_Key, 0x102D, 13); // "TELETEXT_OFF"
+  addKey("TT_TV", TeletextAndTV_Key, 0x103F, 13);
+  addKey("TT_PLAY", TeletextReveal_Key, 0x101E, 13);
   addKey("TT_INFO", Unmapped_Key, 0x102C, 13); // "TELETEXT_ADDINFO"
-  addKey("TT_STOP", Unmapped_Key, 0x1029, 13);
-  addKey("TT_TIME", Unmapped_Key, 0x102A, 13);
+  addKey("TT_STOP", TeletextHold_Key, 0x1029, 13);
+  addKey("TT_TIME", TeletextTime_Key, 0x102A, 13);
   addKey("TT_MIX", Unmapped_Key, 0x102E, 13);
-  addKey("TELETEXT", Unmapped_Key, 0x103C, 13);
+  addKey("TELETEXT", Teletext_Key, 0x103C, 13);
   // The media keys are not well described!  -- config file 5373
   addKey("RECORD", Record_Key, 0x1037, 13);
   addKey("BACK", Unmapped_Key, 0x102F, 13);
@@ -180,7 +180,7 @@ PhilipsTV1d::PhilipsTV1d(
   addKey("pip_switch", PIPSwap_Key, 0x001A, 13);
   addKey("pip_prog+", PIPChannelUp_Key, 0x0026, 13);
   addKey("pip_prog-", PIPChannelDown_Key, 0x0027, 13);
-  addKey("tvtxt_index", Unmapped_Key, 0x002F, 13);
+  addKey("tvtxt_index", TeletextIndex_Key, 0x002F, 13);
 }
 
 
@@ -344,7 +344,7 @@ PhilipsTV3::PhilipsTV3(
   threadableProtocol = new RC6Protocol(guiObject, index, 0x28);
 
   addKey("power", Power_Key, 0x0C, 8);
-  addKey("text", Unmapped_Key, 0x3C, 8);
+  addKey("text", Teletext_Key, 0x3C, 8);
   addKey("red", Red_Key, 0x6D, 8);
   addKey("green", Green_Key, 0x6E, 8);
   addKey("yellow", Yellow_Key, 0x6F, 8);
@@ -520,7 +520,7 @@ PhilipsDVD2::PhilipsDVD2(
   addKey("topmenu", DiscTitle_Key, 0x9C, 8);
   addKey("bonus", Unmapped_Key, 0x5D, 8);
   addKey("repeat", Repeat_Key, 0x1D, 8);
-  addKey("hdmi", Unmapped_Key, 0xC6, 8);
+  addKey("hdmi", HDMIInput_Key, 0xC6, 8);
   addKey("red", Red_Key, 0x6D, 8);
   addKey("green", Green_Key, 0x6E, 8);
   addKey("yellow", Yellow_Key, 0x6F, 8);
@@ -593,7 +593,7 @@ PhilipsDVD3::PhilipsDVD3(
   addKey("Up", Up_Key, 0x58, 8);
   addKey("Audio", Audio_Key, 0x4E, 8);
   addKey("Subtitle", Captions_Key, 0x4B, 8);
-  addKey("Scart", Unmapped_Key, 0x43, 8);
+  addKey("Scart", ScartInput_Key, 0x43, 8);
   addKey("Rec", Record_Key, 0x37, 8);
   addKey("Stop", Stop_Key, 0x31, 8);
   addKey("Play", Play_Key, 0x2C, 8);
@@ -663,7 +663,7 @@ PhilipsDVD4::PhilipsDVD4(
   addKey("9", Nine_Key, 0x09, 8);
   addKey("0", Zero_Key, 0x00, 8);
   addKey("TC", Unmapped_Key, 0xC8, 8);
-  addKey("TUNER", Unmapped_Key, 0xEE, 8);
+  addKey("TUNER", TunerInput_Key, 0xEE, 8);
   addKey("ZOOM", Zoom_Key, 0xF7, 8);
   addKey("ANGLE", Angle_Key, 0x85, 8);
   addKey("SUBTITLE", Captions_Key, 0x4B, 8);
@@ -771,7 +771,7 @@ PhilipsVCR1b::PhilipsVCR1b(
   addKey("Previous", Previous_Key, 0x0171, 13);
   addKey("Next", Next_Key, 0x0170, 13);
   addKey("Monitor", Unmapped_Key, 0x017A, 13);
-  addKey("Tuner", Unmapped_Key, 0x017D, 13);
+  addKey("Tuner", TunerInput_Key, 0x017D, 13);
   addKey("Tracking", AutoTracking_Key, 0x114E, 13);
 }
 
@@ -800,14 +800,14 @@ PhilipsVCR1c::PhilipsVCR1c(
   addKey("VPS", Unmapped_Key, 0x114B, 13);
   addKey("Cassette", Eject_Key, 0x017E, 13);
   addKey("DECODER", Unmapped_Key, 0x0169, 13);
-  addKey("Tuner", Unmapped_Key, 0x017D, 13);
+  addKey("Tuner", TunerInput_Key, 0x017D, 13);
   addKey("Monitor", Unmapped_Key, 0x017A, 13);
   addKey("SYSTEM", Unmapped_Key, 0x014A, 13);
   addKey("REC_MODE", Unmapped_Key, 0x115E, 13);
   addKey("SHOWVIEW", Unmapped_Key, 0x0145, 13);
   addKey("DW", Unmapped_Key, 0x0144, 13); // "D/W"
-  addKey("SPEED-", Unmapped_Key, 0x1165, 13);
-  addKey("SPEED+", Unmapped_Key, 0x1166, 13);
+  addKey("SPEED-", SlowMinus_Key, 0x1165, 13);
+  addKey("SPEED+", SlowPlus_Key, 0x1166, 13);
 }
 
 
@@ -1001,7 +1001,7 @@ PhilipsAudio1::PhilipsAudio1(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
-  addKey("Dynamic Bass Boost", Unmapped_Key, 0x0406, 13); // "dbb"
+  addKey("Dynamic Bass Boost", EnhancedBass_Key, 0x0406, 13); // "dbb"
   addKey("Digital Sound Control", Unmapped_Key, 0x040F, 13); // "dsc"
   addKey("mute", Mute_Key, 0x140D, 13);
   addKey("Vol+", VolumeUp_Key, 0x1410, 13);
@@ -1036,16 +1036,16 @@ PhilipsAudio1::PhilipsAudio1(
   addKey("cd_1", One_Key, 0x1537, 13);
   addKey("cd_2", Two_Key, 0x1538, 13);
   addKey("cd_3", Three_Key, 0x1539, 13);
-  addKey("cd", Unmapped_Key, 0x153F, 13);
+  addKey("cd", CDInput_Key, 0x153F, 13);
   addKey("aux_power", Unmapped_Key, 0x154C, 13); // "power", "standby"
-  addKey("aux", Unmapped_Key, 0x157F, 13);
+  addKey("aux", AuxInput_Key, 0x157F, 13);
   addKey("DPL", Unmapped_Key, 0x1425, 13);
   addKey("SleepTimer", Sleep_Key, 0x1426, 13);
-  addKey("Rear+", Unmapped_Key, 0x0401, 13);
-  addKey("Rear-", Unmapped_Key, 0x0402, 13);
+  addKey("Rear+", RearVolumeUp_Key, 0x0401, 13);
+  addKey("Rear-", RearVolumeDown_Key, 0x0402, 13);
   addKey("TestTone", Unmapped_Key, 0x0418, 13);
-  addKey("Center+", Unmapped_Key, 0x0426, 13);
-  addKey("Center-", Unmapped_Key, 0x0427, 13);
+  addKey("Center+", CenterVolumeUp_Key, 0x0426, 13);
+  addKey("Center-", CenterVolumeDown_Key, 0x0427, 13);
   addKey("incredible_surround", Surround_Key, 0x0400, 13); // "inc_s"
   addKey("osm", Unmapped_Key, 0x042C, 13);
   addKey("vec", Unmapped_Key, 0x042B, 13);
@@ -1056,12 +1056,12 @@ PhilipsAudio1::PhilipsAudio1(
   addKey("TIMER", Timer_Key, 0x142A, 13);
   addKey("FLAT", Unmapped_Key, 0x1434, 13);
   addKey("LOUDNESS", Unmapped_Key, 0x1432, 13);
-  addKey("BASS_UP", Unmapped_Key, 0x1416, 13);
-  addKey("BASS_DOWN", Unmapped_Key, 0x1417, 13);
-  addKey("TREBLE_UP", Unmapped_Key, 0x1418, 13);
-  addKey("TREBLE_DOWN", Unmapped_Key, 0x1419, 13);
-  addKey("BALANCE_RIGHT", Right_Key, 0x141A, 13); // "BalR"
-  addKey("BALANCE_LEFT", Left_Key, 0x141B, 13); // "BalL"
+  addKey("BASS_UP", BassUp_Key, 0x1416, 13);
+  addKey("BASS_DOWN", BassDown_Key, 0x1417, 13);
+  addKey("TREBLE_UP", TrebleUp_Key, 0x1418, 13);
+  addKey("TREBLE_DOWN", TrebleDown_Key, 0x1419, 13);
+  addKey("BALANCE_RIGHT", BalanceRight_Key, 0x141A, 13); // "BalR"
+  addKey("BALANCE_LEFT", BalanceLeft_Key, 0x141B, 13); // "BalL"
   addKey("TUNER_DISPLAY", Unmapped_Key, 0x144F, 13);
   addKey("CDR", Unmapped_Key, 0x16BF, 13);
   addKey("CDR_POWER", Unmapped_Key, 0x100C, 13);
@@ -1103,8 +1103,8 @@ PhilipsAudio1b::PhilipsAudio1b(
   addControlledDevice(Philips_Make, "FW 362", Audio_Device);
 
   addKey("tv_power", Unmapped_Key, 0x100C, 13);
-  addKey("tv_vcr", Unmapped_Key, 0x103F, 13);
-  addKey("tape1", Unmapped_Key, 0x14AC, 13);
+  addKey("tv_vcr", VCRInput_Key, 0x103F, 13);
+  addKey("tape1", TapeInput_Key, 0x14AC, 13);
   addKey("tape2", Unmapped_Key, 0x14AE, 13);
   addKey("play", Play_Key, 0x1175, 13);
   addKey("pause", Pause_Key, 0x1170, 13);
@@ -1113,7 +1113,7 @@ PhilipsAudio1b::PhilipsAudio1b(
   addKey("skip_back", Previous_Key, 0x1021, 13);
   addKey("forw", FastForward_Key, 0x1010, 13);
   addKey("back", Rewind_Key, 0x1011, 13);
-  addKey("disc_up", Unmapped_Key, 0x151E, 13);
+  addKey("disc_up", NextDisc_Key, 0x151E, 13);
 }
 
 
@@ -1127,15 +1127,15 @@ PhilipsAudio2::PhilipsAudio2(
 {
   addControlledDevice(Philips_Make, "FW2104", Audio_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index, Extended_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
 //  setPreData(0x61CA, 16);
   setPreData(0x5386, 16);
 
   addKey("POWER", Power_Key, 0x01, 8);
-  addKey("TAPE", Unmapped_Key, 0x02, 8);
-  addKey("CD", Unmapped_Key, 0x03, 8);
-  addKey("TUNER", TunerBand_Key, 0x04, 8);
+  addKey("TAPE", TapeInput_Key, 0x02, 8);
+  addKey("CD", CDInput_Key, 0x03, 8);
+  addKey("TUNER", TunerInput_Key, 0x04, 8);
   addKey("MUTE", Mute_Key, 0x06, 8);
   addKey("VOL_UP", VolumeUp_Key, 0x07, 8);
   addKey("VOL_DOWN", VolumeDown_Key, 0x08, 8);
@@ -1144,7 +1144,7 @@ PhilipsAudio2::PhilipsAudio2(
   addKey("SNOOZE", Unmapped_Key, 0x0B, 8);
   addKey("SLEEP", Sleep_Key, 0x0C, 8);
   addKey("TIMER", Timer_Key, 0x0D, 8);
-  addKey("AUX", Unmapped_Key, 0x05, 8);
+  addKey("AUX", AuxInput_Key, 0x05, 8);
   addKey("REP_A_B", RepeatAB_Key, 0x13, 8);
   addKey("MEMORY", Program_Key, 0x14, 8);
   addKey("CANCEL", Clear_Key, 0x15, 8);

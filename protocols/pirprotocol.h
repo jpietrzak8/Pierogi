@@ -6,7 +6,6 @@
 #include <QObject>
 //#include <QMutex>
 #include "pirkeynames.h"
-//#include "pirdevice.h"
 
 #include <map>
 #include <deque>
@@ -18,8 +17,22 @@
 
 typedef std::deque<bool> CommandSequence;
 
+// As I've learned more about IR protocols, the concept of what a specific
+// key is gets more and more complex.  To deal with this, I'm going to allow
+// a key to have more than one command sequence associated with it.  (I need
+// up to three codes for Sony keys, and as many as four to define an
+// individual Pioneer key.)
+class PIRKeyBits
+{
+public:
+  CommandSequence firstCode;
+  CommandSequence secondCode;
+  CommandSequence thirdCode;
+  CommandSequence fourthCode;
+};
+
 // I'll go ahead and use associative arrays to build up lists of keycodes.
-typedef std::map<int, CommandSequence> KeycodeCollection;
+typedef std::map<int, PIRKeyBits> KeycodeCollection;
 
 
 // Right now, the only reason for this object to inherit from QObject is
@@ -60,6 +73,18 @@ public:
     unsigned int addressData,
     unsigned int commandData);
 
+  void addNECKey(
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
+
+  void addPioneerKey(
+    PIRKeyName key,
+    unsigned int firstAddress,
+    unsigned int firstCommand,
+    unsigned int secondAddress,
+    unsigned int secondCommand);
+
   void setCarrierFrequency(
     unsigned int freq);
 
@@ -96,11 +121,10 @@ protected:
   unsigned int carrierFrequency;
   unsigned int dutyCycle;
 
-  // "appendToBitSeq" really doesn't belong in this class...
   void appendToBitSeq(
-    CommandSequence &sequence,
-    unsigned int bits,
-    int significantBits);
+    CommandSequence &bits,
+    unsigned int code,
+    int size);
 
   KeycodeCollection keycodes;
 

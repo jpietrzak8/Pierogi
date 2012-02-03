@@ -1,5 +1,6 @@
 #include "panasonic.h"
-#include "necprotocol.h"
+#include "protocols/lircprotocol.h"
+#include "protocols/necprotocol.h"
 
 PanasonicAmp::PanasonicAmp(
   QObject *guiObject,
@@ -9,22 +10,21 @@ PanasonicAmp::PanasonicAmp(
       Panasonic_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     400, 400,
     400, 1200,
-    76000, false,
-    LIRC_NEC);
+    76000, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(4000, 1600);
-  np->setTrailerPulse(400);
+  lp->setHeaderPair(4000, 1600);
+  lp->setTrailerPulse(400);
 
-//  np->setMinimumRepetitions(4);
+//  lp->setMinimumRepetitions(4);
 
-  np->setCarrierFrequency(36000);
+  lp->setCarrierFrequency(36000);
 
   setPreData(0x80080A86, 32);
 
@@ -44,18 +44,7 @@ PanasonicCarAudio::PanasonicCarAudio(
       Panasonic_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    665, 465,
-    665, 1595,
-    108609, true,
-    Extended_NEC);
-
-  threadableProtocol = np;
-
-  np->setHeaderPair(9148, 4424);
-  np->setTrailerPulse(667);
+  threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
 //  setPreData(0x8156, 16);
   setPreData(0x6A81, 16);
@@ -79,18 +68,17 @@ PanasonicSat1::PanasonicSat1(
       Panasonic_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     500, 400,
     500, 1212,
-    74500, false,
-    LIRC_NEC);
+    74500, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(3565, 1700);
-  np->setTrailerPulse(500);
+  lp->setHeaderPair(3565, 1700);
+  lp->setTrailerPulse(500);
 
   setPreData(0x40040140, 32);
 
@@ -99,7 +87,7 @@ PanasonicSat1::PanasonicSat1(
 //  addKey("CH+", ChannelUp_Key, 0x2D6C, 16);
   addKey("CH-", ChannelDown_Key, 0x6D2C, 16);
 //  addKey("CH-", ChannelDown_Key, 0xADEC, 16);
-  addKey("R_TUNE", Unmapped_Key, 0x8BCA, 16);
+  addKey("R_TUNE", PrevChannel_Key, 0x8BCA, 16);
   addKey("GUIDE", Guide_Key, 0xA3E2, 16);
   addKey("MENU", Menu_Key, 0x2362, 16);
   addKey("EXIT", Exit_Key, 0x6322, 16);
@@ -120,12 +108,12 @@ PanasonicSat1::PanasonicSat1(
   addKey("9", Nine_Key, 0x1554, 16);
   addKey("0", Zero_Key, 0x95D4, 16);
   addKey("LOGO_TUNE", Unmapped_Key, 0xABEA, 16);
-  addKey("ALT_AUD", Unmapped_Key, 0x1D5C, 16);
+  addKey("ALT_AUD", Audio_Key, 0x1D5C, 16);
   addKey("TV/DSS", Input_Key, 0x3D7C, 16);
   addKey("REC", Record_Key, 0x4302, 16);
   addKey("ACTION", Select_Key, 0xC382, 16);
   addKey("PROG", Program_Key, 0x5110, 16);
-  addKey("TXT", Unmapped_Key, 0x7B3A, 16);
+  addKey("TXT", Teletext_Key, 0x7B3A, 16);
   addKey("STTL", Unmapped_Key, 0xFBBA, 16);
   addKey("GUIDE", Guide_Key, 0xCB8A, 16);
 //  addKey("EXIT", Unmapped_Key, 0xF3B2, 16);
@@ -156,27 +144,26 @@ PanasonicTV1::PanasonicTV1(
       Panasonic_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     500, 400,
     500, 1250,
-    75000, false,
-    LIRC_NEC);
+    75000, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(3500, 1700);
-  np->setTrailerPulse(500);
+  lp->setHeaderPair(3500, 1700);
+  lp->setTrailerPulse(500);
 
-//  np->setMinRepeat(1);
+//  lp->setMinRepeat(1);
 
   setPreData(0x400401, 24);
 
   addKey("POWER", Power_Key, 0x00BCBD, 24);
   addKey("MUTE", Mute_Key, 0x004C4D, 24);
-  addKey("PICTURE", Unmapped_Key, 0x006061, 24);
-  addKey("SOUND", Unmapped_Key, 0x00E0E1, 24);
+  addKey("PICTURE", PictureMode_Key, 0x006061, 24);
+  addKey("SOUND", SoundMode_Key, 0x00E0E1, 24);
   addKey("ACTION", Enter_Key, 0x004A4B, 24);
   addKey("ACTION", Select_Key, 0x004A4B, 24);
   addKey("UP", Up_Key, 0x005253, 24);
@@ -211,7 +198,7 @@ PanasonicTV1::PanasonicTV1(
   addKey("STR", Unmapped_Key, 0x00ABAA, 24);
   addKey("TIMER", Timer_Key, 0x00F0F1, 24);
   addKey("HELP", Unmapped_Key, 0x003534, 24);
-  addKey("R-TUNE", Unmapped_Key, 0x00ECED, 24);
+  addKey("R-TUNE", PrevChannel_Key, 0x00ECED, 24);
   addKey("GAME", Unmapped_Key, 0x00DDDC, 24);
   addKey("S", Unmapped_Key, 0x007071, 24);
   addKey("S_MENU", Unmapped_Key, 0x008A8B, 24);
@@ -288,18 +275,17 @@ PanasonicVCR1::PanasonicVCR1(
       Panasonic_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     550, 330,
     550, 1200,
-    75000, false,
-    LIRC_NEC);
+    75000, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(3600, 1650);
-  np->setTrailerPulse(550);
+  lp->setHeaderPair(3600, 1650);
+  lp->setTrailerPulse(550);
 
   setPreData(0x400409, 24);
 
@@ -442,18 +428,17 @@ PanasonicDVD1::PanasonicDVD1(
       Panasonic_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     500, 400,
     500, 1200,
-    75000, false,
-    LIRC_NEC);
+    75000, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(3500, 1650);
-  np->setTrailerPulse(500);
+  lp->setHeaderPair(3500, 1650);
+  lp->setTrailerPulse(500);
 
   setPreData(0x40040D00, 32);
 
@@ -486,7 +471,7 @@ PanasonicDVD1::PanasonicDVD1(
   addKey("CANCEL", Clear_Key, 0xC1CC, 16);
   addKey("+10", DoubleDigit_Key, 0x919C, 16);
   addKey("inputselect", Input_Key, 0x919C, 16);
-//  addKey("R-TUNE", Unmapped_Key, 0xD9D4, 16);
+//  addKey("R-TUNE", PrevChannel_Key, 0xD9D4, 16);
   addKey("TOP_MENU", DiscTitle_Key, 0xD9D4, 16);
   addKey("OPEN/CLOSE", Eject_Key, 0x808D, 16);
 //  addKey("TV-SAT", Input_Key, 0x808D, 16);
@@ -502,7 +487,7 @@ PanasonicDVD1::PanasonicDVD1(
   addKey("REPEAT", Repeat_Key, 0x313C, 16);
   addKey("A-B_REPEAT", RepeatAB_Key, 0x121F, 16);
   addKey("A.SRD", Unmapped_Key, 0x7974, 16);
-  addKey("BASS", Unmapped_Key, 0x2B26, 16);
+  addKey("BASS", EnhancedBass_Key, 0x2B26, 16);
   addKey("CINEMA", Unmapped_Key, 0x030E, 16);
   addKey("D.ENH", Unmapped_Key, 0xABA6, 16);
   addKey("ZOOM", Zoom_Key, 0x838E, 16);
@@ -562,25 +547,24 @@ PanasonicAudio1::PanasonicAudio1(
   addControlledDevice(Panasonic_Make, "RX-DS25", Audio_Device);
   addControlledDevice(Panasonic_Make, "RX-e300", Audio_Device);
 
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     400, 400,
     400, 1200,
-    76000, false,
-    LIRC_NEC);
+    76000, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(4000, 1600);
-  np->setTrailerPulse(400);
+  lp->setHeaderPair(4000, 1600);
+  lp->setTrailerPulse(400);
 
-//  np->setMinimumRepetitions(1);
+//  lp->setMinimumRepetitions(1);
 
   setPreData(0x40040543, 32);
 
   addKey("power", Power_Key, 0xFDBB, 16);
-  addKey("tape", Unmapped_Key, 0x3573, 16);
+  addKey("tape", TapeInput_Key, 0x3573, 16);
   addKey("1", One_Key, 0x094F, 16);
   addKey("2", Two_Key, 0x89CF, 16);
   addKey("3", Three_Key, 0x490F, 16);
@@ -599,8 +583,8 @@ PanasonicAudio1::PanasonicAudio1(
   addKey("tuning+", ChannelUp_Key, 0x97D1, 16);
   addKey("TUNER_PRESET_TUNE_DOWN", Unmapped_Key, 0x1751, 16);
   addKey("TUNER_PRESET_TUNE_UP", Unmapped_Key, 0xE7A1, 16);
-  addKey("fm-mode", Unmapped_Key, 0x2761, 16); // "st-mono"
-  addKey("cd", Unmapped_Key, 0x6D2B, 16);
+  addKey("fm-mode", FMMode_Key, 0x2761, 16); // "st-mono"
+  addKey("cd", CDInput_Key, 0x6D2B, 16);
   addKey("prev", Previous_Key, 0x2167, 16);
   addKey("next", Next_Key, 0xA1E7, 16);
   addKey("stop-clear", Stop_Key, 0x0147, 16);

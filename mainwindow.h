@@ -5,7 +5,7 @@
 #include <QListWidgetItem>
 //#include <QThread>
 
-//#include "selectionwindow.h"
+#include "pirsecondaryform.h"
 #include "pirselectkeysetform.h"
 #include "pirdocumentationform.h"
 #include "piraboutform.h"
@@ -34,6 +34,11 @@ public:
   void setOrientation(ScreenOrientation orientation);
 
   void showExpanded();
+
+  void startRepeating(
+    PIRKeyName name);
+
+  void stopRepeating();
 
 signals:
   // Main keys
@@ -100,6 +105,7 @@ signals:
   void replayEnabled(bool);
   void ejectEnabled(bool);
 
+/*
   // Media2 Keys
   void discTitleEnabled(bool);
   void discSelectEnabled(bool);
@@ -135,6 +141,7 @@ signals:
   void pipChannelDownEnabled(bool);
   void pipPauseEnabled(bool);
   void pipSizeEnabled(bool);
+*/
 
   void keysetMakeChanged(QString);
   void keysetNameChanged(QString);
@@ -268,6 +275,7 @@ private slots:
   void on_ejectButton_pressed();
   void on_ejectButton_released();
 
+/*
   // Media2 tab slots:
   void on_discTitleButton_pressed();
   void on_discTitleButton_released();
@@ -335,6 +343,7 @@ private slots:
   void on_pipPauseButton_released();
   void on_pipSizeButton_pressed();
   void on_pipSizeButton_released();
+*/
 
   // Favorites tab actions:
   void on_addKeysetButton_clicked();
@@ -342,6 +351,7 @@ private slots:
 
   // Menu actions:
   void on_actionSelectKeyset_triggered();
+  void on_actionSecondary_Buttons_triggered();
   void on_actionAbout_triggered();
   void on_actionDocumentation_triggered();
 
@@ -354,17 +364,12 @@ private slots:
 private:
   void enableButtons();
 
-  void startRepeating(
-    unsigned int id,
-    PIRKeyName name);
-
-  void stopRepeating();
-
   void populateFavorites();
 
   Ui::MainWindow *ui;
 
   PIRSelectKeysetForm *selectKeysetForm;
+  PIRSecondaryForm *secondaryForm;
   PIRDocumentationForm *documentationForm;
   PIRAboutForm *aboutForm;
 

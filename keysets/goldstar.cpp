@@ -1,6 +1,7 @@
 #include "goldstar.h"
-#include "necprotocol.h"
-#include "rc5protocol.h"
+#include "protocols/necprotocol.h"
+#include "protocols/rc5protocol.h"
+#include "protocols/lircprotocol.h"
 
 GoldStarTV1::GoldStarTV1(
   QObject *guiObject,
@@ -12,7 +13,7 @@ GoldStarTV1::GoldStarTV1(
 {
   addControlledDevice(GoldStar_Make, "105-210A", TV_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x20DF, 16);
   setPreData(0x04, 8);
@@ -110,7 +111,7 @@ GoldStarVCR1::GoldStarVCR1(
   addControlledDevice(GoldStar_Make, "GSE-Q204P", VCR_Device);
   addControlledDevice(GoldStar_Make, "QUISY 500", VCR_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x7689, 16);
   setPreData(0x6E, 8);
@@ -211,34 +212,35 @@ GoldStarCD1::GoldStarCD1(
 {
   addControlledDevice(GoldStar_Make, "FFH-272A/L", Audio_Device);
 
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     600, 500,
     600, 1600,
-    108000, true,
-    LIRC_NEC);
+    108000, true);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(4500, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(600, 1600);
-  np->setRepeatNeedsHeader(true);
+  lp->setHeaderPair(4500, 4500);
+  lp->setTrailerPulse(600);
+  lp->setRepeatPair(600, 1600);
+  lp->setRepeatNeedsHeader(true);
 
   setPreData(0x0808, 16);
   setPostData(0x1, 1);
 
   addKey("power", Power_Key, 0x3C43, 15);
   addKey("mute", Mute_Key, 0x7C03, 15);
-  addKey("cd", Unmapped_Key, 0x601F, 15);
-  addKey("tape", Unmapped_Key, 0x0877, 15);
-  addKey("aux", Unmapped_Key, 0x4837, 15);
+  addKey("cd", CDInput_Key, 0x601F, 15);
+  addKey("tape", TapeInput_Key, 0x0877, 15);
+  addKey("aux", AuxInput_Key, 0x4837, 15);
   addKey("fm", Unmapped_Key, 0x007F, 15);
   addKey("mw", Unmapped_Key, 0x403F, 15);
   addKey("lw", Unmapped_Key, 0x205F, 15);
   addKey("pre-", ChannelDown_Key, 0x245B, 15);
+  addKey("pre-", PrevPreset_Key, 0x245B, 15);
   addKey("pre+", ChannelUp_Key, 0x641B, 15);
+  addKey("pre+", NextPreset_Key, 0x641B, 15);
   addKey("ply/pau", Play_Key, 0x106F, 15);
   addKey("stop", Stop_Key, 0x502F, 15);
   addKey("prev", Previous_Key, 0x304F, 15);
@@ -246,7 +248,7 @@ GoldStarCD1::GoldStarCD1(
   addKey("prog", Program_Key, 0x5926, 15);
   addKey("repeat", Repeat_Key, 0x3946, 15);
   addKey("random", Random_Key, 0x057A, 15);
-  addKey("dskip", Unmapped_Key, 0x2956, 15);
+  addKey("dskip", NextDisc_Key, 0x2956, 15);
   addKey("remain", Unmapped_Key, 0x453A, 15);
   addKey("eqpatt", Unmapped_Key, 0x017E, 15);
   addKey("vol-", VolumeDown_Key, 0x344B, 15);

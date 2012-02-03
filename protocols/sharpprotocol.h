@@ -1,7 +1,7 @@
 #ifndef SHARPPROTOCOL_H
 #define SHARPPROTOCOL_H
 
-#include "pirprotocol.h"
+#include "spaceprotocol.h"
 #include "pirrx51hardware.h"
 
 //
@@ -12,7 +12,7 @@
 // header pulse.
 //
 
-class SharpProtocol: public PIRProtocol
+class SharpProtocol: public SpaceProtocol
 {
 public:
   SharpProtocol(
@@ -26,35 +26,16 @@ public slots:
     PIRKeyName command);
 
 private:
-  // First, define what is used to represent 0 and 1:
-  unsigned int zeroPulse;
-  unsigned int zeroSpace;
-  unsigned int onePulse;
-  unsigned int oneSpace;
-
-  // A tailing on-request, not followed by a specific off time:
-  unsigned int trailerPulse;
-
   // An "expansion bit".  Not sure what this is, but Sharp seems to leave it
   // at 1, and Denon usually sets it to 0.
   bool expansionBit;
 
   int generateStandardCommand(
-    const CommandSequence &bits,
+    const PIRKeyBits &pkb,
     PIRRX51Hardware &device);
 
   int generateToggledCommand(
-    const CommandSequence &bits,
-    PIRRX51Hardware &device);
-
-  int pushBits(
-    CommandSequence::const_reverse_iterator i,
-    CommandSequence::const_reverse_iterator end,
-    PIRRX51Hardware &device);
-
-  int pushInvertedBits(
-    CommandSequence::const_reverse_iterator i,
-    CommandSequence::const_reverse_iterator end,
+    const PIRKeyBits &pkb,
     PIRRX51Hardware &device);
 };
 

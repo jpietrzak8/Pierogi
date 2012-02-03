@@ -9,7 +9,7 @@
 #include "pirmakenames.h"
 #include "pirdevicetypenames.h"
 #include "pirkeysetwidgetitem.h"
-#include "pirprotocol.h"
+#include "protocols/pirprotocol.h"
 
 typedef std::map<PIRKeyName, const char *> KeyCollection;
 
@@ -41,18 +41,19 @@ public:
     unsigned int index);
 
   bool hasKey(
-    PIRKeyName name);
+    PIRKeyName name) const;
 
-  unsigned int getID();
+  unsigned int getID() const;
 
-  PIRMakeName getMake();
-  const char *getKeysetName();
+  PIRMakeName getMake() const;
+
+  const char *getKeysetName() const;
 
   void moveProtocolToThread(
     QThread &thread);
 
   void populateDeviceTypes(
-    PIRKeysetWidgetItem *kwi);
+    PIRKeysetWidgetItem *kwi) const;
 
 protected:
   void addControlledDevice(
@@ -95,6 +96,20 @@ protected:
     PIRKeyName key,
     unsigned int addressData,
     unsigned int commandData);
+
+  void addNECKey(
+    const char *name,
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
+
+  void addPioneerKey(
+    const char *name,
+    PIRKeyName key,
+    unsigned int addressOne,
+    unsigned int commandOne,
+    unsigned int addressTwo,
+    unsigned int commandTwo);
 
   void setPreData(
     unsigned long data,

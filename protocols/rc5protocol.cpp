@@ -169,14 +169,14 @@ int RC5Protocol::pushControlBits(
 
 
 int RC5Protocol::pushKeyCommandBits(
-  const CommandSequence &bits,
+  const PIRKeyBits &pkb,
   PIRRX51Hardware &rx51device)
 {
   int duration = 0;
 
   // Just push all the bits:
-  CommandSequence::const_iterator i = bits.begin();
-  while (i != bits.end())
+  CommandSequence::const_iterator i = pkb.firstCode.begin();
+  while (i != pkb.firstCode.end())
   {
     duration += pushBit(*i, rx51device);
     ++i;
@@ -187,7 +187,7 @@ int RC5Protocol::pushKeyCommandBits(
 
 
 int RC5Protocol::pushNonStandardRC5(
-  const CommandSequence &bits,
+  const PIRKeyBits &pkb,
   PIRRX51Hardware &rx51device)
 {
   int duration = 0;
@@ -197,17 +197,17 @@ int RC5Protocol::pushNonStandardRC5(
   bufferContainsPulse = true;
   bufferContainsSpace = false;
 
-  CommandSequence::const_iterator i = bits.begin();
+  CommandSequence::const_iterator i = pkb.firstCode.begin();
 
   // Push the first bit:
-  if (i != bits.end())
+  if (i != pkb.firstCode.end())
   {
     duration += pushBit(*i, rx51device);
     ++i;
   }
 
   // Toggle the second bit, if it is time to do so:
-  if (i != bits.end())
+  if (i != pkb.firstCode.end())
   {
     if (keypressCount % 2)
     {
@@ -222,7 +222,7 @@ int RC5Protocol::pushNonStandardRC5(
   }
 
   // Simply push the rest of the bits:
-  while (i != bits.end())
+  while (i != pkb.firstCode.end())
   {
     pushBit(*i, rx51device);
     ++i;

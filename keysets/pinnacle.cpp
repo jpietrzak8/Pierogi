@@ -1,5 +1,5 @@
 #include "pinnacle.h"
-#include "rc5protocol.h"
+#include "protocols/rc5protocol.h"
 
 PinnaclePCTV1::PinnaclePCTV1(
   QObject *guiObject,

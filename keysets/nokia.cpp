@@ -1,5 +1,5 @@
 #include "nokia.h"
-#include "necprotocol.h"
+#include "protocols/lircprotocol.h"
 
 NokiaGenericVCR::NokiaGenericVCR(
   QObject *guiObject,
@@ -9,19 +9,18 @@ NokiaGenericVCR::NokiaGenericVCR(
       Nokia_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     272, 737,
     272, 1711,
-    42100, false,
-    LIRC_NEC);
+    42100, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setTrailerPulse(272);
+  lp->setTrailerPulse(272);
 
-//  np->setMinimumRepetitions(3);
+//  lp->setMinimumRepetitions(3);
 
   setPreData(0x6, 3);
 

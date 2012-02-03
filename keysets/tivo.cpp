@@ -1,5 +1,5 @@
 #include "tivo.h"
-#include "necprotocol.h"
+#include "protocols/lircprotocol.h"
 
 Tivo1::Tivo1(
   QObject *guiObject,
@@ -9,7 +9,17 @@ Tivo1::Tivo1(
       Tivo_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, LIRC_NEC);
+  LIRCProtocol *lp = new LIRCProtocol(
+    guiObject, index,
+    560, 560,
+    560, 1680,
+    110000, true);
+
+  threadableProtocol = lp;
+
+  lp->setHeaderPair(9000, 4500);
+  lp->setTrailerPulse(560);
+  lp->setRepeatPair(9000, 2250);
 
   setPreData(0xA10C, 16);
 

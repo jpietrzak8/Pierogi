@@ -1,7 +1,7 @@
 #ifndef SIRCPROTOCOL_H
 #define SIRCPROTOCOL_H
 
-#include "pirprotocol.h"
+#include "spaceprotocol.h"
 #include "pirrx51hardware.h"
 
 //
@@ -24,7 +24,7 @@
 // give up and just encode the raw IR bits, rather than wade into this mess...
 //
 
-class SIRCProtocol: public PIRProtocol
+class SIRCProtocol: public SpaceProtocol
 {
 public:
   SIRCProtocol(
@@ -37,20 +37,8 @@ public slots:
     PIRKeyName command);
 
 private:
-  unsigned int zeroPulse;
-  unsigned int zeroSpace;
-  unsigned int onePulse;
-  unsigned int oneSpace;
-
-  unsigned int headerPulse;
-  unsigned int headerSpace;
-
   int generateStandardCommand(
-    const CommandSequence &bits,
-    PIRRX51Hardware &device);
-
-  int pushReverseBits(
-    const CommandSequence &bits,
+    const PIRKeyBits &pkb,
     PIRRX51Hardware &device);
 };
 

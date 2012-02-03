@@ -1,7 +1,7 @@
 #include "magnavox.h"
-#include "rc6protocol.h"
-#include "rc5protocol.h"
-#include "necprotocol.h"
+#include "protocols/rc6protocol.h"
+#include "protocols/rc5protocol.h"
+#include "protocols/lircprotocol.h"
 
 MagnavoxDVD1::MagnavoxDVD1(
   QObject *guiObject,
@@ -130,18 +130,17 @@ MagnavoxConverterBox1::MagnavoxConverterBox1(
 {
   addControlledDevice(Magnavox_Make, "TB100MG9", TV_Device);
 
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     894, 795,
     894, 2537,
-    33751, false,
-    LIRC_NEC);
+    33751, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(3514, 3396);
-  np->setTrailerPulse(894);
+  lp->setHeaderPair(3514, 3396);
+  lp->setTrailerPulse(894);
 
   addKey("KEY_POWER", Power_Key, 0x541ABE, 24);
   addKey("KEY_1", One_Key, 0x57EA81, 24);

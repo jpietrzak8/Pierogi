@@ -37,11 +37,11 @@ private:
     PIRRX51Hardware &device);
 
   int pushKeyCommandBits(
-    const CommandSequence &bits,
+    const PIRKeyBits &pkb,
     PIRRX51Hardware &device);
 
   int pushNonStandardRC5(
-    const CommandSequence &bits,
+    const PIRKeyBits &bits,
     PIRRX51Hardware &device);
 
   int pushBit(

@@ -15,6 +15,7 @@
 #include "keysets/panasonic.h"
 #include "keysets/philips.h"
 #include "keysets/pinnacle.h"
+#include "keysets/pioneer.h"
 #include "keysets/raite.h"
 #include "keysets/rca.h"
 #include "keysets/sagem.h"
@@ -60,12 +61,12 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new DenonReceiver1a(guiObject, counter++));
   populateKeyset(new DenonReceiver1b(guiObject, counter++));
   populateKeyset(new DenonReceiver1c(guiObject, counter++));
+  populateKeyset(new DenonReceiver1d(guiObject, counter++));
+  populateKeyset(new DenonReceiver1e(guiObject, counter++));
+  populateKeyset(new DenonReceiver1f(guiObject, counter++));
   populateKeyset(new DenonReceiver2(guiObject, counter++));
   populateKeyset(new DenonReceiver2a(guiObject, counter++));
   populateKeyset(new DenonReceiver3(guiObject, counter++));
-  populateKeyset(new DenonReceiver3a(guiObject, counter++));
-  populateKeyset(new DenonReceiver4(guiObject, counter++));
-  populateKeyset(new DenonReceiver5(guiObject, counter++));
   populateKeyset(new DenonAudio1(guiObject, counter++));
   populateKeyset(new DenonAudio1a(guiObject, counter++));
   populateKeyset(new DenonAudio1b(guiObject, counter++));
@@ -74,7 +75,6 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new DenonAudio2(guiObject, counter++));
   populateKeyset(new DenonAudio3(guiObject, counter++));
   populateKeyset(new DenonAudio4(guiObject, counter++));
-  populateKeyset(new DenonAudio5(guiObject, counter++));
 
   populateKeyset(new EiTV1(guiObject, counter++));
 
@@ -120,9 +120,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new LGTV2(guiObject, counter++));
   populateKeyset(new LGTV2a(guiObject, counter++));
   populateKeyset(new LGTV2b(guiObject, counter++));
-  populateKeyset(new LGDisc1(guiObject, counter++));
-  populateKeyset(new LGDisc2(guiObject, counter++));
-  populateKeyset(new LGDisc2a(guiObject, counter++));
+//  populateKeyset(new LGDisc1(guiObject, counter++));
+//  populateKeyset(new LGDisc2(guiObject, counter++));
+//  populateKeyset(new LGDisc2a(guiObject, counter++));
   populateKeyset(new LGVCR1(guiObject, counter++));
   populateKeyset(new LGVCR1a(guiObject, counter++));
   populateKeyset(new LGVCR1b(guiObject, counter++));
@@ -192,6 +192,19 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new PinnaclePCTV1(guiObject, counter++));
   populateKeyset(new PinnaclePCTV2(guiObject, counter++));
   populateKeyset(new PinnaclePCTV3(guiObject, counter++));
+
+  populateKeyset(new PioneerTV1(guiObject, counter++));
+  populateKeyset(new PioneerTV2(guiObject, counter++));
+  populateKeyset(new PioneerTV3(guiObject, counter++));
+  populateKeyset(new PioneerAudio1(guiObject, counter++));
+  populateKeyset(new PioneerAudio1a(guiObject, counter++));
+  populateKeyset(new PioneerAudio2(guiObject, counter++));
+  populateKeyset(new PioneerAudio3(guiObject, counter++));
+  populateKeyset(new PioneerAudio4(guiObject, counter++));
+  populateKeyset(new PioneerAudio5(guiObject, counter++));
+  populateKeyset(new PioneerCD1(guiObject, counter++));
+  populateKeyset(new PioneerLaserDisc1(guiObject, counter++));
+  populateKeyset(new PioneerDVD1(guiObject, counter++));
 
   populateKeyset(new RaiteDVD1(guiObject, counter++));
 
@@ -305,9 +318,6 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new YamahaAudio2d(guiObject, counter++));
   populateKeyset(new YamahaAudio3(guiObject, counter++));
   populateKeyset(new YamahaAudio4(guiObject, counter++));
-  populateKeyset(new YamahaAudio5(guiObject, counter++));
-  populateKeyset(new YamahaAudio6(guiObject, counter++));
-  populateKeyset(new YamahaAudio7(guiObject, counter++));
   populateKeyset(new YamahaTV1(guiObject, counter++));
   populateKeyset(new YamahaKaraoke1(guiObject, counter++));
 
@@ -343,7 +353,7 @@ PIRKeysetManager::~PIRKeysetManager()
 
 
 bool PIRKeysetManager::keysetExists(
-  unsigned int keysetID)
+  unsigned int keysetID) const
 {
   PIRKeysetCollection::const_iterator i = keysetsInfo.find(keysetID);
 
@@ -354,7 +364,7 @@ bool PIRKeysetManager::keysetExists(
 bool PIRKeysetManager::findKeysetID(
   QString make,
   QString name,
-  unsigned int &id)
+  unsigned int &id) const
 {
   // Only modify the id if we actually find a match!
 
@@ -378,7 +388,7 @@ bool PIRKeysetManager::findKeysetID(
 
 PIRKeysetWidgetItem *PIRKeysetManager::makeKeysetItem(
   QString make,
-  QString name)
+  QString name) const
 {
   unsigned int id;
 
@@ -397,35 +407,36 @@ PIRKeysetWidgetItem *PIRKeysetManager::makeKeysetItem(
 
 bool PIRKeysetManager::hasKey(
   unsigned int keysetID,
-  PIRKeyName name)
+  PIRKeyName name) const
 {
-  PIRKeysetMetaData *meta = keysetsInfo[keysetID];
+  PIRKeysetCollection::const_iterator i = keysetsInfo.find(keysetID);
 
-  if (!meta) return false;
+  if ((i == keysetsInfo.end()) || !i->second) return false;
 
-  return meta->hasKey(name);
+  return i->second->hasKey(name);
 }
 
 
 PIRMakeName PIRKeysetManager::getMake(
-  unsigned int keysetID)
+  unsigned int keysetID) const
 {
-  PIRKeysetMetaData *meta = keysetsInfo[keysetID];
+  PIRKeysetCollection::const_iterator i = keysetsInfo.find(keysetID);
 
-  if (!meta) return Any_Make; // Work on this!
+  if ((i == keysetsInfo.end()) || !i->second) return Any_Make;
 
-  return meta->getMake();
+  return i->second->getMake();
 }
 
 
 QString PIRKeysetManager::getDisplayName(
-  unsigned int keysetID)
+  unsigned int keysetID) const
 {
-  PIRKeysetMetaData *meta = keysetsInfo[keysetID];
+  PIRKeysetCollection::const_iterator i = keysetsInfo.find(keysetID);
 
-  if (!meta) return QString("Database Error");
+  if ((i == keysetsInfo.end()) || !i->second)
+    return QString("Database Error");
 
-  return QString(meta->getKeysetName());
+  return QString(i->second->getKeysetName());
 }
 
 
@@ -446,7 +457,7 @@ void PIRKeysetManager::populateKeyset(
 
 
 void PIRKeysetManager::populateGuiWidget(
-  PIRSelectKeysetForm *skf)
+  PIRSelectKeysetForm *skf) const
 {
   PIRMakeName make;
   PIRKeysetWidgetItem *kwi;
@@ -469,8 +480,11 @@ void PIRKeysetManager::populateGuiWidget(
 
 void PIRKeysetManager::populateDeviceTypes(
   PIRKeysetWidgetItem *kwi,
-  unsigned int keysetID)
+  unsigned int keysetID) const
 {
-  // Pass the buck:  (Need to check for bad keysetID here?)
-  keysetsInfo[keysetID]->populateDeviceTypes(kwi);
+  PIRKeysetCollection::const_iterator i = keysetsInfo.find(keysetID);
+  if ((i != keysetsInfo.end()) && i->second)
+  {
+    i->second->populateDeviceTypes(kwi);
+  }
 }

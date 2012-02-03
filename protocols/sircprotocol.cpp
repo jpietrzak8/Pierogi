@@ -20,13 +20,13 @@ extern QMutex commandIFMutex;
 SIRCProtocol::SIRCProtocol(
   QObject *guiObject,
   unsigned int index)
-  : PIRProtocol(guiObject, index, 45000, true),
-    zeroPulse(600),
-    zeroSpace(600),
-    onePulse(1200),
-    oneSpace(600),
-    headerPulse(2400),
-    headerSpace(600)
+  : SpaceProtocol(
+      guiObject, index,
+      600, 600,
+      1200, 600,
+      2400, 600,
+      0,
+      45000, true)
 {
   setCarrierFrequency(40000);
   setDutyCycle(33);
@@ -98,7 +98,7 @@ void SIRCProtocol::startSendingCommand(
 
 
 int SIRCProtocol::generateStandardCommand(
-  const CommandSequence &bits,
+  const PIRKeyBits &pkb,
   PIRRX51Hardware &rx51device)
 {
   int duration = 0;
@@ -107,37 +107,12 @@ int SIRCProtocol::generateStandardCommand(
   rx51device.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
-  // Next, push the data.  Each key _must_ contain all 12, 15, or 20 bits.
-  // These bits are sent in reverse order.
-  duration += pushReverseBits(bits, rx51device);
+  // Next, push the data.
+  // These bits are sent in reverse order, and moreover, the codes are sent
+  // in reverse order as well:
+  duration += pushReverseBits(pkb.thirdCode, rx51device);
+  duration += pushReverseBits(pkb.secondCode, rx51device);
+  duration += pushReverseBits(pkb.firstCode, rx51device);
 
   return duration;
 }
-
-
-int SIRCProtocol::pushReverseBits(
-  const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
-{
-  int duration = 0;
-  CommandSequence::const_reverse_iterator i = bits.rbegin();
-  while (i != bits.rend())
-  {
-    if (*i)
-    {
-      // Send the pulse for "One":
-      rx51device.addPair(onePulse, oneSpace);
-      duration += (onePulse + oneSpace);
-    }
-    else
-    {
-      // Send the pulse for "Zero":
-      rx51device.addPair(zeroPulse, zeroSpace);
-      duration += (zeroPulse + zeroSpace);
-    }
-    ++i;
-  }
-
-  return duration;
-}
-

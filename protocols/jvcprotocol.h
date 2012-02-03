@@ -1,7 +1,7 @@
 #ifndef JVCPROTOCOL_H
 #define JVCPROTOCOL_H
 
-#include "pirprotocol.h"
+#include "spaceprotocol.h"
 #include "pirrx51hardware.h"
 
 //
@@ -11,7 +11,7 @@
 // the body without a header, rather than a header without a body.
 //
 
-class JVCProtocol: public PIRProtocol
+class JVCProtocol: public SpaceProtocol
 {
 public:
   JVCProtocol(
@@ -24,26 +24,12 @@ public slots:
     PIRKeyName command);
 
 private:
-  unsigned int zeroPulse;
-  unsigned int zeroSpace;
-  unsigned int onePulse;
-  unsigned int oneSpace;
-
-  unsigned int headerPulse;
-  unsigned int headerSpace;
-
-  unsigned int trailerPulse;
-
   int generateStandardCommand(
-    const CommandSequence &bits,
+    const PIRKeyBits &pkb,
     PIRRX51Hardware &device);
 
   int generateHeadlessCommand(
-    const CommandSequence &bits,
-    PIRRX51Hardware &device);
-
-  int pushReverseBits(
-    const CommandSequence &bits,
+    const PIRKeyBits &pkb,
     PIRRX51Hardware &device);
 };
 

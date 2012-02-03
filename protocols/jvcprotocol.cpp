@@ -21,14 +21,13 @@ extern QMutex commandIFMutex;
 JVCProtocol::JVCProtocol(
   QObject *guiObject,
   unsigned int index)
-  : PIRProtocol(guiObject, index, 60000, true),
-    zeroPulse(526),
-    zeroSpace(526),
-    onePulse(526),
-    oneSpace(1578),
-    headerPulse(8400),
-    headerSpace(4200),
-    trailerPulse(526)
+  : SpaceProtocol(
+      guiObject, index,
+      526, 526,
+      526, 1578,
+      8400, 4200,
+      526,
+      60000, true)
 {
   setCarrierFrequency(38000);
   setDutyCycle(33);
@@ -110,7 +109,7 @@ void JVCProtocol::startSendingCommand(
 // JVC data is sent in reverse order, i.e., the least signficant bit is
 // sent first.
 int JVCProtocol::generateStandardCommand(
-  const CommandSequence &bits,
+  const PIRKeyBits &pkb,
   PIRRX51Hardware &rx51device)
 {
   int duration = 0;
@@ -121,7 +120,7 @@ int JVCProtocol::generateStandardCommand(
 
   // Now, push the actual data:
   duration += pushReverseBits(preData, rx51device);
-  duration += pushReverseBits(bits, rx51device);
+  duration += pushReverseBits(pkb.firstCode, rx51device);
 
   // Finally add the "trail":
   rx51device.addSingle(trailerPulse);
@@ -132,14 +131,14 @@ int JVCProtocol::generateStandardCommand(
 
 
 int JVCProtocol::generateHeadlessCommand(
-  const CommandSequence &bits,
+  const PIRKeyBits &pkb,
   PIRRX51Hardware &rx51device)
 {
   int duration = 0;
 
   // Push the actual data:
   duration += pushReverseBits(preData, rx51device);
-  duration += pushReverseBits(bits, rx51device);
+  duration += pushReverseBits(pkb.firstCode, rx51device);
 
   // Finally add the "trail":
   rx51device.addSingle(trailerPulse);
@@ -147,31 +146,3 @@ int JVCProtocol::generateHeadlessCommand(
 
   return duration;
 }
-
-
-int JVCProtocol::pushReverseBits(
-  const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
-{
-  int duration = 0;
-  CommandSequence::const_reverse_iterator i = bits.rbegin();
-  while (i != bits.rend())
-  {
-    if (*i)
-    {
-      // Send the pulse for "One":
-      rx51device.addPair(onePulse, oneSpace);
-      duration += (onePulse + oneSpace);
-    }
-    else
-    {
-      // Send the pulse for "Zero":
-      rx51device.addPair(zeroPulse, zeroSpace);
-      duration += (zeroPulse + zeroSpace);
-    }
-    ++i;
-  }
-
-  return duration;
-}
-

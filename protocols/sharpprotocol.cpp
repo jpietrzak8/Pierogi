@@ -25,12 +25,13 @@ SharpProtocol::SharpProtocol(
   QObject *guiObject,
   unsigned int index,
   bool expBit)
-  : PIRProtocol(guiObject, index, 40000, false),
-    zeroPulse(320),
-    zeroSpace(680),
-    onePulse(320),
-    oneSpace(1680),
-    trailerPulse(320),
+  : SpaceProtocol(
+      guiObject, index,
+      320, 680,
+      320, 1680,
+      0, 0,
+      320,
+      40000, false),
     expansionBit(expBit)
 {
   setCarrierFrequency(38000);
@@ -111,27 +112,16 @@ void SharpProtocol::startSendingCommand(
 
 
 int SharpProtocol::generateStandardCommand(
-  const CommandSequence &bits,
+  const PIRKeyBits &pkb,
   PIRRX51Hardware &rx51device)
 {
   int duration = 0;
 
-  // Right now, I've got both the 5-bit address and the 8-bit command
-  // smushed together into the command sequence.  Need to pick each of
-  // these out and reverse their bits:
-
   // First, push the address:
-
-  CommandSequence::const_reverse_iterator addressStart = bits.rbegin();
-  // Move past the command's 8 bits:
-  addressStart += 8;
-  duration += pushBits(addressStart, bits.rend(), rx51device);
+  duration += pushReverseBits(pkb.firstCode, rx51device);
 
   // Next, push the command:
-  CommandSequence::const_reverse_iterator commandEnd = bits.rbegin();
-  // Again, move past the commands's 8 bits:
-  commandEnd += 8;
-  duration += pushBits(bits.rbegin(), commandEnd, rx51device);
+  duration += pushReverseBits(pkb.secondCode, rx51device);
 
   // Next, there is an "expansion" bit and a "check" bit.  Not entirely sure
   // what these two do.  The check bit is fixed at "1".
@@ -160,19 +150,15 @@ int SharpProtocol::generateStandardCommand(
 // This is the same as the standard command, except all bits but the address
 // are inverted:
 int SharpProtocol::generateToggledCommand(
-  const CommandSequence &bits,
+  const PIRKeyBits &pkb,
   PIRRX51Hardware &rx51device)
 {
   int duration = 0;
 
-  CommandSequence::const_reverse_iterator addressStart = bits.rbegin();
-  addressStart += 8;
-  duration += pushBits(addressStart, bits.rend(), rx51device);
+  pushReverseBits(pkb.firstCode, rx51device);
 
-  CommandSequence::const_reverse_iterator commandEnd = bits.rbegin();
-  commandEnd += 8;
-  // This time we invert the bits:
-  duration += pushInvertedBits(bits.rbegin(), commandEnd, rx51device);
+  // This time we invert the command bits:
+  pushInvertedReverseBits(pkb.secondCode, rx51device);
 
   // We'll also invert the two administrative bits here:
   if (expansionBit)
@@ -192,62 +178,6 @@ int SharpProtocol::generateToggledCommand(
   // Add trail on end:
   rx51device.addSingle(trailerPulse);
   duration += trailerPulse;
-
-  return duration;
-}
-
-
-int SharpProtocol::pushBits(
-  CommandSequence::const_reverse_iterator i,
-  CommandSequence::const_reverse_iterator end,
-  PIRRX51Hardware &rx51device)
-{
-  int duration = 0;
-
-  while (i != end);
-  {
-    if (*i)
-    {
-      // Send the pulse for "One":
-      rx51device.addPair(onePulse, oneSpace);
-      duration += (onePulse + oneSpace);
-    }
-    else
-    {
-      // Send the pulse for "Zero":
-      rx51device.addPair(zeroPulse, zeroSpace);
-      duration += (zeroPulse + zeroSpace);
-    }
-    ++i;
-  }
-
-  return duration;
-}
-
-
-int SharpProtocol::pushInvertedBits(
-  CommandSequence::const_reverse_iterator i,
-  CommandSequence::const_reverse_iterator end,
-  PIRRX51Hardware &rx51device)
-{
-  int duration = 0;
-
-  while (i != end)
-  {
-    if (*i)
-    {
-      // Send the pulse for "Zero":
-      rx51device.addPair(zeroPulse, zeroSpace);
-      duration += (zeroPulse + zeroSpace);
-    }
-    else
-    {
-      // Send the pulse for "One":
-      rx51device.addPair(onePulse, oneSpace);
-      duration += (onePulse + oneSpace);
-    }
-    ++i;
-  }
 
   return duration;
 }

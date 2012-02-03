@@ -1,7 +1,6 @@
 #include "lg.h"
-#include "necprotocol.h"
-#include "rc5protocol.h"
-#include "pirmakenames.h"
+#include "protocols/necprotocol.h"
+#include "protocols/rc5protocol.h"
 
 LGTV1::LGTV1(
   QObject *guiObject,
@@ -11,7 +10,7 @@ LGTV1::LGTV1(
       LG_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, false);
 
 //  setPreData(0x20DF, 16);
   setPreData(0x04, 8);
@@ -40,13 +39,13 @@ LGTV1::LGTV1(
   addKey("8", Eight_Key, 0x18, 8);
   addKey("9", Nine_Key, 0x19, 8);
   addKey("qview", Unmapped_Key, 0x1A, 8); // "review"
-  addKey("fav", Unmapped_Key, 0x1E, 8);
+  addKey("fav", Favorites_Key, 0x1E, 8);
   addKey("text", Teletext_Key, 0x20, 8);
   addKey("topt", Unmapped_Key, 0x21, 8);
   addKey("topt/rev", Rewind_Key, 0x21, 8);
   addKey("MIX", TeletextAndTV_Key, 0x24, 8);
   addKey("TIME", TeletextTime_Key, 0x26, 8);
-  addKey("INDEX", Unmapped_Key, 0x27, 8);
+  addKey("INDEX", TeletextIndex_Key, 0x27, 8);
   addKey("return/exit", Exit_Key, 0x28, 8);
   addKey("avmode", Unmapped_Key, 0x30, 8); // "UPDATE"
   addKey("subtitle", Captions_Key, 0x39, 8); // "cc"
@@ -57,11 +56,11 @@ LGTV1::LGTV1(
   addKey("ok", Select_Key, 0x44, 8);
   addKey("qmenu", Unmapped_Key, 0x45, 8);
   addKey("video", Unmapped_Key, 0x4D, 8); // "apc", "PSM"
-  addKey("TV/PC", Unmapped_Key, 0x50, 8);
+  addKey("TV/PC", PCInput_Key, 0x50, 8);
   addKey("sound", Unmapped_Key, 0x52, 8); // "SSM"
   addKey("list", Unmapped_Key, 0x53, 8);
   addKey("auto", Unmapped_Key, 0x54, 8);
-  addKey("memory/erase", Unmapped_Key, 0x55, 8);
+  addKey("memory/erase", Memory_Key, 0x55, 8);
   addKey("pip", PIP_Key, 0x60, 8);
   addKey("blue", Blue_Key, 0x61, 8);
   addKey("blue/pause", Pause_Key, 0x61, 8);
@@ -223,6 +222,7 @@ LGTV2b::LGTV2b(
 }
 
 
+/*
 LGDisc1::LGDisc1(
   QObject *guiObject,
   unsigned int index)
@@ -254,7 +254,7 @@ LGDisc1::LGDisc1(
   addKey("stop", Stop_Key, 0x05, 8);
   addKey("<<<", Unmapped_Key, 0x06, 8);
   addKey(">>>", Unmapped_Key, 0x07, 8);
-  addKey("aux", Unmapped_Key, 0x09, 8);
+  addKey("aux", AuxInput_Key, 0x09, 8);
   addKey("minus", Unmapped_Key, 0x12, 8);  // "pr_preset_down"
   addKey("plus", Unmapped_Key, 0x13, 8); // "pr_preset_up"
   addKey("volume-", VolumeDown_Key, 0x16, 8);
@@ -275,7 +275,7 @@ LGDisc1::LGDisc1(
   addKey("program", Program_Key, 0x4D, 8);
   addKey("repeat", Repeat_Key, 0x4E, 8);
   addKey("pause", Pause_Key, 0x4F, 8);
-  addKey("band", Unmapped_Key, 0x59, 8);
+  addKey("band", TunerBand_Key, 0x59, 8);
   addKey("dimmer", Unmapped_Key, 0x5E, 8);
   addKey("rds", Unmapped_Key, 0x60, 8);
   addKey("exit_cancel", Unmapped_Key, 0x69, 8);
@@ -310,8 +310,10 @@ LGDisc1::LGDisc1(
   addKey("marker", Unmapped_Key, 0xB4, 8);
   addKey("sleep", Sleep_Key, 0xC2, 8);
 }
+*/
 
 
+/*
 LGDisc2::LGDisc2(
   QObject *guiObject,
   unsigned int index)
@@ -401,6 +403,7 @@ LGDisc2a::LGDisc2a(
   addKey("KEY_YELLOW", Yellow_Key, 0x7E, 8);
   addKey("KEY_BLUE", Blue_Key, 0x7F, 8);
 }
+*/
 
 
 LGVCR1::LGVCR1(
@@ -411,7 +414,7 @@ LGVCR1::LGVCR1(
       LG_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x7689, 16);
   setPreData(0x6E, 8);

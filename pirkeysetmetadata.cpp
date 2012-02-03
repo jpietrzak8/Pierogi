@@ -13,7 +13,7 @@ PIRKeysetMetaData::PIRKeysetMetaData(
 }
 
 bool PIRKeysetMetaData::hasKey(
-  PIRKeyName name)
+  PIRKeyName name) const
 {
   return (keys.find(name) != keys.end());
 }
@@ -27,7 +27,7 @@ void PIRKeysetMetaData::moveProtocolToThread(
 
 
 void PIRKeysetMetaData::populateDeviceTypes(
-  PIRKeysetWidgetItem *kwi)
+  PIRKeysetWidgetItem *kwi) const
 {
   PIRDeviceTypeCollection::const_iterator i = deviceTypes.begin();
   while (i != deviceTypes.end())
@@ -38,9 +38,20 @@ void PIRKeysetMetaData::populateDeviceTypes(
 }
 
 
-unsigned int PIRKeysetMetaData::getID()
+unsigned int PIRKeysetMetaData::getID() const
 {
   return id;
+}
+
+
+PIRMakeName PIRKeysetMetaData::getMake() const
+{
+  return make;
+}
+
+const char *PIRKeysetMetaData::getKeysetName() const
+{
+  return keysetName;
 }
 
 
@@ -130,6 +141,37 @@ void PIRKeysetMetaData::addSharpKey(
 }
 
 
+void PIRKeysetMetaData::addNECKey(
+  const char *name,
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+    threadableProtocol->addNECKey(key, addressData, commandData);
+  }
+}
+
+
+void PIRKeysetMetaData::addPioneerKey(
+  const char *name,
+  PIRKeyName key,
+  unsigned int addressOne,
+  unsigned int commandOne,
+  unsigned int addressTwo,
+  unsigned int commandTwo)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+    threadableProtocol->addPioneerKey(
+      key, addressOne, commandOne, addressTwo, commandTwo);
+  }
+}
+
+
 void PIRKeysetMetaData::setPreData(
   unsigned long data,
   unsigned int bits)
@@ -143,17 +185,6 @@ void PIRKeysetMetaData::setPostData(
   unsigned int bits)
 {
   threadableProtocol->setPostData(data, bits);
-}
-
-
-PIRMakeName PIRKeysetMetaData::getMake()
-{
-  return make;
-}
-
-const char *PIRKeysetMetaData::getKeysetName()
-{
-  return keysetName;
 }
 
 

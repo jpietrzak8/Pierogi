@@ -1,6 +1,7 @@
 #include "denon.h"
-#include "sharpprotocol.h"
-#include "necprotocol.h"
+#include "protocols/sharpprotocol.h"
+#include "protocols/lircprotocol.h"
+#include "protocols/necprotocol.h"
 
 // This whole set of Denon keysets is a mess.  Need to clean it up!!!
 
@@ -47,7 +48,7 @@ DenonDVD1::DenonDVD1(
   addSharpKey("SKIP_DOWN", Next_Key, 0x08, 0x99);
   addSharpKey("FAST_FORWARD", FastForward_Key, 0x08, 0x9A);
   addSharpKey("FAST_REVERSE", Rewind_Key, 0x08, 0x9B);
-  addSharpKey("MODE", Unmapped_Key, 0x08, 0x9C);
+  addSharpKey("MODE", Mode_Key, 0x08, 0x9C);
   addSharpKey("PAUSE", Pause_Key, 0x08, 0x9D);
   addSharpKey("PLAY", Play_Key, 0x08, 0xA0);
   addSharpKey("STOP", Stop_Key, 0x08, 0xA1);
@@ -76,18 +77,17 @@ DenonDVD2::DenonDVD2(
 {
   addControlledDevice(Denon_Make, "DVD-2500", DVD_Device);
 
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     400, 500,
     400, 1400,
-    43000, false,
-    LIRC_NEC);
+    43000, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(3500, 1800);
-  np->setTrailerPulse(400);
+  lp->setHeaderPair(3500, 1800);
+  lp->setTrailerPulse(400);
 
   setPreData(0x40040D00, 32);
 
@@ -184,11 +184,10 @@ DenonDVD3::DenonDVD3(
   addSharpKey("select", Select_Key, 0x01, 0xBB);
   addSharpKey("setup", Menu_Key, 0x01, 0xBC);
   addSharpKey("title", DiscTitle_Key, 0x01, 0xBD);
-  addSharpKey("call", Unmapped_Key, 0x01, 0xBE);
+  addSharpKey("call", Call_Key, 0x01, 0xBE);
 }
 
 
-// This one is messed up:
 DenonReceiver1::DenonReceiver1(
   QObject *guiObject,
   unsigned int index)
@@ -199,44 +198,65 @@ DenonReceiver1::DenonReceiver1(
 {
   addControlledDevice(Denon_Make, "avr-1708", Audio_Device);
 
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    400, 700,
-    400, 1700,
-    67000, true,
-    LIRC_NEC);
+  threadableProtocol = new SharpProtocol(guiObject, index, false);
 
-  threadableProtocol = np;
+  addSharpKey("Phono", PhonoInput_Key, 0x02, 0xC3);
+  addSharpKey("CD", CDInput_Key, 0x02, 0xC4);
+  addSharpKey("Tuner", TunerInput_Key, 0x02, 0xC5); // "SRC_TUNNER"
+  addSharpKey("SRC_SATCBL", SatInput_Key, 0x02, 0xC8);
+  addSharpKey("TV_CBL", CableInput_Key, 0x02, 0xC9);
+  addSharpKey("SRC_HDP", DVDInput_Key, 0x02, 0xCA); // "DVD_TV"
+  addSharpKey("SRC_VAUX", AuxInput_Key, 0x02, 0xCC);
+  addSharpKey("VCR", VCRInput_Key, 0x02, 0xCD);
+  addSharpKey("SRC_DVR", DVRInput_Key, 0x02, 0xCE);
+  addSharpKey("DAT_Tape", TapeInput_Key, 0x02, 0xD2);
+  addSharpKey("Setup", Menu_Key, 0x02, 0xD8); // "VIDEO_SELECT"
+  addSharpKey("multi", Unmapped_Key, 0x02, 0xDB);
+  addSharpKey("analog", Unmapped_Key, 0x02, 0xDC);
+  addSharpKey("Right", Right_Key, 0x02, 0xDD);
+  addSharpKey("Return", Exit_Key, 0x02, 0xDE);
+  addSharpKey("Display", Info_Key, 0x02, 0xDF); // "onscreen"
+  addSharpKey("Enter", Select_Key, 0x02, 0xE0);
+  addSharpKey("On", PowerOn_Key, 0x02, 0xE1);
+  addSharpKey("Off", PowerOff_Key, 0x02, 0xE2);
+  addSharpKey("DVD_HDP", Unmapped_Key, 0x02, 0xE3); // "SRC_DVD"
+  addSharpKey("BTN_STD", Unmapped_Key, 0x02, 0xE4);
+  addSharpKey("Mode", Mode_Key, 0x02, 0xE6); // "BTN_SIMU"
+  addSharpKey("Stereo", Audio_Key, 0x02, 0xE7);
+  addSharpKey("Delay", Unmapped_Key, 0x02, 0xE9);
+  addSharpKey("Test_Tone", Unmapped_Key, 0x02, 0xEA);
+  addSharpKey("Mute", Mute_Key, 0x02, 0xF0);
+  addSharpKey("Volume_up", VolumeUp_Key, 0x02, 0xF1);
+  addSharpKey("Volume_down", VolumeDown_Key, 0x02, 0xF2);
+  addSharpKey("RearVolumeUp", RearVolumeUp_Key, 0x02, 0xF3);
+  addSharpKey("RearVolumeDown", RearVolumeDown_Key, 0x02, 0xF4);
+  addSharpKey("CenterVolumeUp", CenterVolumeUp_Key, 0x02, 0xF5);
+  addSharpKey("CenterVolumeDown", CenterVolumeDown_Key, 0x02, 0xF6);
 
-  np->setElevenBitToggle(true);
+  addSharpKey("Pause", Pause_Key, 0x04, 0x53);
+  addSharpKey("Skip_Favorite", Favorites_Key, 0x04, 0x57);
+  addSharpKey("Forward", FastForward_Key, 0x04, 0x5A);
+  addSharpKey("Rewind", Rewind_Key, 0x04, 0x5B);
+  addSharpKey("Play", Play_Key, 0x04, 0x5C);
+  addSharpKey("Stop", Stop_Key, 0x04, 0x5E);
+  addSharpKey("TAPE_REC", Unmapped_Key, 0x04, 0x5F);
+  addSharpKey("BTN_STD_CINEMA", Unmapped_Key, 0x04, 0x95);
+  addSharpKey("BTN_STD_MUSIC", Unmapped_Key, 0x04, 0x96);
+  addSharpKey("Night_Audio", Unmapped_Key, 0x04, 0x98);
+  addSharpKey("BTN_MULTEQ", Unmapped_Key, 0x04, 0x9D);
 
-  np->setTrailerPulse(400);
-
-  addKey("On", PowerOn_Key, 0x221C, 15);
-  addKey("Off", PowerOff_Key, 0x211C, 15);
-  addKey("DVD_HDP", Unmapped_Key, 0x231C, 15); // "SRC_DVD"
-  addKey("TV_CBL", Unmapped_Key, 0x224C, 15);
-  addKey("VCR", Unmapped_Key, 0x22CC, 15);
-  addKey("Play", Play_Key, 0x10E8, 15);
-  addKey("Stop", Stop_Key, 0x11E8, 15);
-  addKey("Skip_Favorite", Favorites_Key, 0x13A8, 15);
-  addKey("Pause", Pause_Key, 0x1328, 15);
-  addKey("Volume_up", VolumeUp_Key, 0x223C, 15);
-  addKey("Volume_down", VolumeDown_Key, 0x213C, 15);
-  addKey("Rewind", Rewind_Key, 0x1368, 15);
-  addKey("Forward", FastForward_Key, 0x1168, 15);
-  addKey("Setup", Menu_Key, 0x206C, 15);
-  addKey("Mute", Mute_Key, 0x203C, 15);
-  addKey("Night_Audio", Unmapped_Key, 0x1064, 15);
-  addKey("Display", Info_Key, 0x23EC, 15); // "onscreen"
-  addKey("Enter", Select_Key, 0x201C, 15);
-  addKey("Left", Left_Key, 0x1BF8, 15);
-  addKey("Up", Up_Key, 0x1B14, 15);
-  addKey("Right", Right_Key, 0x22EC, 15);
-  addKey("Down", Down_Key, 0x1894, 15);
-  addKey("Return", Exit_Key, 0x21EC, 15);
-  addKey("Dimmer", Unmapped_Key, 0x1BEC, 15);
+  addSharpKey("Left", Left_Key, 0x0C, 0x7F); // This looks wrong
+  addSharpKey("RCVR_SURROUND", Surround_Key, 0x0C, 0xA1);
+  addSharpKey("Up", Up_Key, 0x0C, 0xA3);
+  addSharpKey("Down", Down_Key, 0x0C, 0xA4);
+  addSharpKey("output", Unmapped_Key, 0x0C, 0xA5);
+  addSharpKey("BTN_HDMI_CONTROL", Unmapped_Key, 0x0C, 0xAF);
+  addSharpKey("ext.in", Unmapped_Key, 0x0C, 0xB5);
+  addSharpKey("input-mode", Unmapped_Key, 0x0C, 0xB6);
+  addSharpKey("Shift", TunerBand_Key, 0x0C, 0xCD);
+  addSharpKey("channel-", ChannelDown_Key, 0x0C, 0xD5);
+  addSharpKey("channel+", ChannelUp_Key, 0x0C, 0xD6);
+  addSharpKey("Dimmer", Unmapped_Key, 0x0C, 0xDF);
 }
 
 
@@ -249,34 +269,16 @@ DenonReceiver1a::DenonReceiver1a(
 
   addControlledDevice(Denon_Make, "AVR-1610", Audio_Device);
 
-  // This keyset may need work, see denon/RC-1120
-  addKey("SRC_TV", Unmapped_Key, 0x21B3, 15);
-  addKey("SRC_TUNNER", Unmapped_Key, 0x228C, 15);
-  addKey("SRC_VAUX", Unmapped_Key, 0x20CC, 15);
-  addKey("SRC_HDP", Unmapped_Key, 0x214C, 15);
-  addKey("SRC_DVR", Unmapped_Key, 0x2233, 15);
-  addKey("SRC_VCR", Unmapped_Key, 0x2133, 15);
-  addKey("SRC_SATCBL", Unmapped_Key, 0x204C, 15);
-  addKey("BTN_VSEL", Unmapped_Key, 0x2393, 15);
-  addKey("BTN_INPUT_MODE", Unmapped_Key, 0x19B4, 15);
-  addKey("BTN_MULTEQ", Unmapped_Key, 0x111B, 15);
-  addKey("BTN_HDMI_CONTROL", Unmapped_Key, 0x182B, 15);
-  addKey("BTN_UP", Up_Key, 0x18EB, 15);
-  addKey("BTN_DOWN", Down_Key, 0x1894, 15);
-  addKey("BTN_SKIP", Unmapped_Key, 0x18CC, 15);
-  addKey("BTN_STOP", Stop_Key, 0x1BAC, 15);
-  addKey("BTN_PAUSE", Pause_Key, 0x1ACC, 15);
-  addKey("BTN_PLAY", Play_Key, 0x186C, 15);
-  addKey("FAST_REVERSE", Rewind_Key, 0x1A93, 15);
-  addKey("FAST_FORWARD", FastForward_Key, 0x1A6C, 15);
-  addKey("BTN_PREV", Previous_Key, 0x1AAC, 15);
-  addKey("BTN_NEXT", Next_Key, 0x19AC, 15);
-  addKey("BTN_STD", Unmapped_Key, 0x2363, 15);
-  addKey("PAGE_DN", PageDown_Key, 0x1813, 15);
-  addKey("PAGE_UP", PageUp_Key, 0x21EC, 15);
-  addKey("BTN_STD_CINEMA", Unmapped_Key, 0x115B, 15);
-  addKey("BTN_STD_MUSIC", Unmapped_Key, 0x125B, 15);
-  addKey("BTN_SIMU", Unmapped_Key, 0x219C, 15);
+  addSharpKey("BTN_SKIP", Unmapped_Key, 0x0C, 0xCC);
+  addSharpKey("BTN_PAUSE", Pause_Key, 0x0C, 0xCD);
+  addSharpKey("BTN_STOP", Stop_Key, 0x0C, 0xD7);
+  addSharpKey("BTN_PLAY", Play_Key, 0x0C, 0xD8);
+  addSharpKey("FAST_FORWARD", FastForward_Key, 0x0C, 0xD9);
+  addSharpKey("FAST_REVERSE", Rewind_Key, 0x0C, 0xDA);
+  addSharpKey("BTN_PREV", Previous_Key, 0x0C, 0xD5);
+  addSharpKey("BTN_NEXT", Next_Key, 0x0C, 0xD6);
+  addSharpKey("PAGE_UP", PageUp_Key, 0x0C, 0xDE);
+  addSharpKey("PAGE_DN", PageDown_Key, 0x0C, 0xDF);
 }
 
 
@@ -289,16 +291,8 @@ DenonReceiver1b::DenonReceiver1b(
 
   addControlledDevice(Denon_Make, "avr-3300", Audio_Device);
 
-  addKey("vol+", VolumeUp_Key, 0x21C3, 15);
-  addKey("channel+", ChannelUp_Key, 0x19AC, 15);
-  addKey("channel-", ChannelDown_Key, 0x1AAC, 15);
-  addKey("setup", Menu_Key, 0x1814, 15);
-  addKey("params", Unmapped_Key, 0x1A14, 15);
-  addKey("input-mode", Unmapped_Key, 0x19B4, 15);
-  addKey("analog", Unmapped_Key, 0x20EC, 15);
-  addKey("ext.in", Unmapped_Key, 0x1AB4, 15);
-  addKey("output", Unmapped_Key, 0x1A94, 15);
-  addKey("multi", Unmapped_Key, 0x236C, 15);
+  addSharpKey("setup", Menu_Key, 0x0C, 0x50);
+  addSharpKey("params", Unmapped_Key, 0x0C, 0x51);
 }
 
 
@@ -313,33 +307,111 @@ DenonReceiver1c::DenonReceiver1c(
   addControlledDevice(Denon_Make, "AVR-1802", Audio_Device);
   addControlledDevice(Denon_Make, "AVR-1803", Audio_Device);
 
-  addKey("ONE", One_Key, 0x230C, 15);
-  addKey("TWO", Two_Key, 0x208C, 15);
-  addKey("THREE", Three_Key, 0x231C, 15);
-  addKey("FOUR", Four_Key, 0x20CC, 15);
-  addKey("FIVE", Five_Key, 0x22CC, 15);
-  addKey("SIX", Six_Key, 0x21CC, 15);
-  addKey("SEVEN", Seven_Key, 0x224C, 15);
-  addKey("EIGHT", Eight_Key, 0x19B4, 15);
-  addKey("NINE", Nine_Key, 0x212C, 15);
-  addKey("ZERO", Zero_Key, 0x228C, 15);
-  addKey("RCVR_SURROUND_MODE", Unmapped_Key, 0x219C, 15);
-  addKey("RCVR_CHANNEL+", ChannelUp_Key, 0x19AC, 15);
-  addKey("RCVR_CHANNEL-", ChannelDown_Key, 0x1AAC, 15);
-  addKey("VIDEO_SELECT", Unmapped_Key, 0x206C, 15);
-  addKey("CD_DISC_SKIP", Unmapped_Key, 0x0B58, 15);
-  addKey("CD_PLAY", Unmapped_Key, 0x08E8, 15);
-  addKey("CD_PAUSE", Unmapped_Key, 0x0AE8, 15);
-  addKey("CD_NEXT", Unmapped_Key, 0x0868, 15);
-  addKey("CD_PREV", Unmapped_Key, 0x0A68, 15);
-  addKey("CD_STOP", Unmapped_Key, 0x09E8, 15);
-  addKey("CD_REW", Unmapped_Key, 0x0B68, 15);
-  addKey("CD_FFW", Unmapped_Key, 0x0968, 15);
-  addKey("SYSTEM", Menu_Key, 0x1814, 15);
-  addKey("RCVR_SURROUND", Surround_Key, 0x1A14, 15);
-//  addKey("RCVR_CH_SELECT", Select_Key, 0x201C, 15);
-  addKey("RCVR_T_TONE", Unmapped_Key, 0x215C, 15);
-  addKey("RCVR_STATUS", Info_Key, 0x21EC, 15);
+  addSharpKey("ONE", One_Key, 0x02, 0xC3);
+  addSharpKey("TWO", Two_Key, 0x02, 0xC4);
+  addSharpKey("THREE", Three_Key, 0x02, 0xE3);
+  addSharpKey("FOUR", Four_Key, 0x02, 0xCC);
+  addSharpKey("FIVE", Five_Key, 0x02, 0xCD);
+  addSharpKey("SIX", Six_Key, 0x02, 0xCE);
+  addSharpKey("SEVEN", Seven_Key, 0x02, 0xC9);
+  addSharpKey("EIGHT", Eight_Key, 0x0C, 0xB6); // must be wrong
+  addSharpKey("NINE", Nine_Key, 0x02, 0xD2);
+  addSharpKey("ZERO", Zero_Key, 0x02, 0xCA);
+  addSharpKey("RCVR_SURROUND_MODE", Surround_Key, 0x02, 0xE6);
+  addSharpKey("RCVR_STATUS", Info_Key, 0x02, 0xDE); // "Panel"
+  addSharpKey("RCVR_T_TONE", Unmapped_Key, 0x02, 0xEA);
+
+  addSharpKey("REPEAT", Repeat_Key, 0x08, 0x54);
+  addSharpKey("CD_NEXT", Next_Key, 0x08, 0x58);
+  addSharpKey("CD_PREV", Previous_Key, 0x08, 0x59);
+  addSharpKey("CD_FFW", FastForward_Key, 0x08, 0x5A);
+  addSharpKey("CD_REW", Rewind_Key, 0x08, 0x5B);
+  addSharpKey("CD_PLAY", Play_Key, 0x08, 0x5C);
+  addSharpKey("CD_PAUSE", Pause_Key, 0x08, 0x5D);
+  addSharpKey("CD_STOP", Stop_Key, 0x08, 0x5E);
+  addSharpKey("DISC1", Unmapped_Key, 0x08, 0x64);
+  addSharpKey("DISC2", Unmapped_Key, 0x08, 0x65);
+  addSharpKey("DISC3", Unmapped_Key, 0x08, 0x66);
+  addSharpKey("DISC4", Unmapped_Key, 0x08, 0x67);
+  addSharpKey("DISC5", Unmapped_Key, 0x08, 0x68);
+  addSharpKey("DISC6", Unmapped_Key, 0x08, 0x69);
+  addSharpKey("random", Random_Key, 0x08, 0x6A);
+  addSharpKey("CD_DISC_SKIP", NextDisc_Key, 0x08, 0x6B);
+  addSharpKey("CD", CDInput_Key, 0x08, 0x73);
+
+  addSharpKey("SYSTEM", Menu_Key, 0x0C, 0xA0);
+}
+
+
+DenonReceiver1d::DenonReceiver1d(
+  QObject *guiObject,
+  unsigned int index)
+  : DenonReceiver1c(guiObject, index)
+{
+  setKeysetName("Receiver Keyset 1d");
+
+  addControlledDevice(Denon_Make, "PMA-480R", Audio_Device);
+
+  addSharpKey("AMP_PHONO", PhonoInput_Key, 0x02, 0x81);
+  addSharpKey("AMP_TUNER", TunerInput_Key, 0x02, 0x83);
+  addSharpKey("AMP_AUX", AuxInput_Key, 0x02, 0x84);
+  addSharpKey("AMP_MUTING", Mute_Key, 0x02, 0x8B);
+  addSharpKey("AMP_VOL_DOWN", VolumeDown_Key, 0x02, 0x8C);
+  addSharpKey("AMP_VOL_UP", VolumeUp_Key, 0x02, 0x8D);
+  addSharpKey("AMP_POWER", Power_Key, 0x02, 0x90);
+  addSharpKey("AMP_CD", CDInput_Key, 0x02, 0x92);
+  addSharpKey("AMP_TAPE-1", TapeInput_Key, 0x02, 0x99);
+  addSharpKey("AMP_TAPE-2", Unmapped_Key, 0x02, 0x9A);
+
+  addSharpKey("TAPE_A/B", Unmapped_Key, 0x04, 0x53);
+  addSharpKey("TAPE_PLAY_REV", Unmapped_Key, 0x04, 0x57);
+  addSharpKey("TAPE_PAUSE", Unmapped_Key, 0x04, 0x5D);
+  addSharpKey("DECK", Unmapped_Key, 0x04, 0x75);
+
+  addSharpKey("panel", Info_Key, 0x0C, 0x7E);
+  addSharpKey("TUNER", TunerInput_Key, 0x0C, 0xDD);
+}
+
+
+DenonReceiver1e::DenonReceiver1e(
+  QObject *guiObject,
+  unsigned int index)
+  : DenonReceiver1d(guiObject, index)
+{
+  setKeysetName("Receiver Keyset 1e");
+
+  addControlledDevice(Denon_Make, "DRA-385RD", Audio_Device);
+
+  addSharpKey("voldwn", VolumeDown_Key, 0x0C, 0x4C);
+  addSharpKey("volup", VolumeUp_Key, 0x0C, 0x4D);
+  addSharpKey("preset+", NextPreset_Key, 0x0C, 0x4E);
+  addSharpKey("preset-", PrevPreset_Key, 0x0C, 0x4F);
+  addSharpKey("video", CableInput_Key, 0x0C, 0x53);
+  addSharpKey("phono", PhonoInput_Key, 0x0C, 0x58);
+  addSharpKey("tuner", TunerInput_Key, 0x0C, 0x59);
+  addSharpKey("cd", CDInput_Key, 0x0C, 0x5A);
+  addSharpKey("tape_mon", Unmapped_Key, 0x0C, 0x5C);
+  addSharpKey("tape1", Unmapped_Key, 0x0C, 0x5D);
+  addSharpKey("tape2", Unmapped_Key, 0x0C, 0x5E);
+}
+
+DenonReceiver1f::DenonReceiver1f(
+  QObject *guiObject,
+  unsigned int index)
+  : DenonReceiver1c(guiObject, index)
+{
+  setKeysetName("Receiver Keyset 1f");
+
+  addControlledDevice(Denon_Make, "AVR-700RD", Audio_Device);
+  addControlledDevice(Denon_Make, "RC-841", Audio_Device);
+
+  addSharpKey("Power", Power_Key, 0x02, 0xC1);
+
+  addSharpKey("Deck_A_B", Unmapped_Key, 0x04, 0x53);
+  addSharpKey("Deck_PlayLeft", Unmapped_Key, 0x04, 0x57);
+
+  addSharpKey("Preset_Down", NextPreset_Key, 0x0C, 0xB5);
+  addSharpKey("Preset_Up", PrevPreset_Key, 0x0C, 0xB6);
 }
 
 
@@ -365,11 +437,11 @@ DenonReceiver2::DenonReceiver2(
   addSharpKey("amp_vol-down", VolumeDown_Key, 0x13, 0x4C);
   addSharpKey("amp_vol-up", VolumeUp_Key, 0x13, 0x4D);
   addSharpKey("amp_power", Power_Key, 0x13, 0x50);
-  addSharpKey("amp_phono", Unmapped_Key, 0x13, 0x58);
-  addSharpKey("amp_tuner", Unmapped_Key, 0x13, 0x59);
-  addSharpKey("amp_aux/video", Unmapped_Key, 0x13, 0x5B);
-  addSharpKey("amp_cd", Unmapped_Key, 0x13, 0x5A);
-  addSharpKey("amp_tape", Unmapped_Key, 0x13, 0x5D);
+  addSharpKey("amp_phono", PhonoInput_Key, 0x13, 0x58);
+  addSharpKey("amp_tuner", TunerInput_Key, 0x13, 0x59);
+  addSharpKey("amp_aux/video", AuxInput_Key, 0x13, 0x5B);
+  addSharpKey("amp_cd", CDInput_Key, 0x13, 0x5A);
+  addSharpKey("amp_tape", TapeInput_Key, 0x13, 0x5D);
   addSharpKey("TUN_CH_DOWN", ChannelDown_Key, 0x13, 0xD5);
   addSharpKey("TUN_CH_UP", ChannelUp_Key, 0x13, 0xD6);
 
@@ -382,7 +454,7 @@ DenonReceiver2::DenonReceiver2(
   addSharpKey("cd_pause", Pause_Key, 0x17, 0x5D);
   addSharpKey("cd_stop", Stop_Key, 0x17, 0x5E);
   addSharpKey("CD_RANDOM", Random_Key, 0x17, 0x6A);
-  addSharpKey("CD_SKIP", Unmapped_Key, 0x17, 0x6B);
+  addSharpKey("CD_SKIP", NextDisc_Key, 0x17, 0x6B);
 
   addSharpKey("tape_a/b", Unmapped_Key, 0x1B, 0x53);
   addSharpKey("tape_playrev", Unmapped_Key, 0x1B, 0x57);
@@ -405,11 +477,11 @@ DenonReceiver2a::DenonReceiver2a(
   addControlledDevice(Denon_Make, "PMA-425R", Audio_Device);
 
   addSharpKey("AMP_TAPE2", Unmapped_Key, 0x1D, 0x9A);
-  addSharpKey("AMP_TAPE1", Unmapped_Key, 0x1D, 0x99);
-  addSharpKey("AMP_AUX", Unmapped_Key, 0x1D, 0x84);
-  addSharpKey("AMP_TUNER", Unmapped_Key, 0x1D, 0x73);
-  addSharpKey("AMP_CD", Unmapped_Key, 0x1D, 0x82);
-  addSharpKey("AMP_PHONO", Unmapped_Key, 0x1D, 0x81);
+  addSharpKey("AMP_TAPE1", TapeInput_Key, 0x1D, 0x99);
+  addSharpKey("AMP_AUX", AuxInput_Key, 0x1D, 0x84);
+  addSharpKey("AMP_TUNER", TunerInput_Key, 0x1D, 0x73);
+  addSharpKey("AMP_CD", CDInput_Key, 0x1D, 0x82);
+  addSharpKey("AMP_PHONO", PhonoInput_Key, 0x1D, 0x81);
   addSharpKey("AMP_VOL_UP", VolumeUp_Key, 0x1D, 0x8D);
   addSharpKey("AMP_VOL_DOWN", VolumeDown_Key, 0x1D, 0x8C);
   addSharpKey("AMP_POWER", Power_Key, 0x1D, 0x90);
@@ -425,177 +497,40 @@ DenonReceiver3::DenonReceiver3(
       Denon_Make,
       index)
 {
-  addControlledDevice(Denon_Make, "PMA-480R", Audio_Device);
-
-  threadableProtocol = new SharpProtocol(guiObject, index, false);
-
-  addSharpKey("AMP_PHONO", Unmapped_Key, 0x02, 0x81);
-  addSharpKey("AMP_TUNER", Unmapped_Key, 0x02, 0x83);
-  addSharpKey("AMP_AUX", Unmapped_Key, 0x02, 0x84);
-  addSharpKey("AMP_MUTING", Mute_Key, 0x02, 0x8B);
-  addSharpKey("AMP_VOL_DOWN", VolumeDown_Key, 0x02, 0x8C);
-  addSharpKey("AMP_VOL_UP", VolumeUp_Key, 0x02, 0x8D);
-  addSharpKey("AMP_POWER", Power_Key, 0x02, 0x90);
-  addSharpKey("AMP_CD", Unmapped_Key, 0x02, 0x92);
-  addSharpKey("AMP_TAPE-1", Unmapped_Key, 0x02, 0x99);
-  addSharpKey("AMP_TAPE-2", Unmapped_Key, 0x02, 0x9A);
-
-  addSharpKey("TAPE_A/B", Unmapped_Key, 0x04, 0x53);
-  addSharpKey("TAPE_PLAY_REV", Unmapped_Key, 0x04, 0x57);
-  addSharpKey("TAPE_FF", Unmapped_Key, 0x04, 0x5A);
-  addSharpKey("TAPE_REW", Unmapped_Key, 0x04, 0x5B);
-  addSharpKey("TAPE_PLAY", Unmapped_Key, 0x04, 0x5C);
-  addSharpKey("TAPE_PAUSE", Unmapped_Key, 0x04, 0x5D);
-  addSharpKey("TAPE_STOP", Unmapped_Key, 0x04, 0x5E);
-  addSharpKey("TAPE_REC", Unmapped_Key, 0x04, 0x5F);
-  addSharpKey("DECK", Unmapped_Key, 0x04, 0x75);
-
-  addSharpKey("REPEAT", Repeat_Key, 0x08, 0x54);
-  addSharpKey("CD_NEXT", Next_Key, 0x08, 0x58);
-  addSharpKey("CD_BACK", Previous_Key, 0x08, 0x59);
-  addSharpKey("CD_FF", FastForward_Key, 0x08, 0x5A);
-  addSharpKey("CD_REW", Rewind_Key, 0x08, 0x5B);
-  addSharpKey("CD_PLAY", Play_Key, 0x08, 0x5C);
-  addSharpKey("CD_PAUSE", Pause_Key, 0x08, 0x5D);
-  addSharpKey("CD_STOP", Stop_Key, 0x08, 0x5E);
-  addSharpKey("DISC1", One_Key, 0x08, 0x64);
-  addSharpKey("DISC2", Two_Key, 0x08, 0x65);
-  addSharpKey("DISC3", Three_Key, 0x08, 0x66);
-  addSharpKey("DISC4", Four_Key, 0x08, 0x67);
-  addSharpKey("DISC5", Five_Key, 0x08, 0x68);
-  addSharpKey("DISC6", Six_Key, 0x08, 0x69);
-  addSharpKey("random", Random_Key, 0x08, 0x6A);
-  addSharpKey("CD", Unmapped_Key, 0x08, 0x73);
-  addSharpKey("disksk", DiscSelect_Key, 0x08, 0x6B);
-
-  addSharpKey("panel", Info_Key, 0x0C, 0x7E);
-  addSharpKey("TUNER_UP", ChannelUp_Key, 0x0C, 0xD5);
-  addSharpKey("TUNER_DOWN", ChannelDown_Key, 0x0C, 0xD6);
-  addSharpKey("TUNER", Unmapped_Key, 0x0C, 0xDD);
-}
-
-
-DenonReceiver3a::DenonReceiver3a(
-  QObject *guiObject,
-  unsigned int index)
-  : DenonReceiver3(guiObject, index)
-{
-  setKeysetName("Receiver Keyset 3a");
-
-  addControlledDevice(Denon_Make, "DRA-385RD", Audio_Device);
-
-  addSharpKey("voldwn", VolumeDown_Key, 0x0C, 0x4C);
-  addSharpKey("volup", VolumeUp_Key, 0x0C, 0x4D);
-  addSharpKey("preset+", Unmapped_Key, 0x0C, 0x4E);
-  addSharpKey("preset-", Unmapped_Key, 0x0C, 0x4F);
-  addSharpKey("tape2", Unmapped_Key, 0x0C, 0x5E);
-  addSharpKey("video", Unmapped_Key, 0x0C, 0x53);
-  addSharpKey("phono", Unmapped_Key, 0x0C, 0x58);
-  addSharpKey("tuner", Unmapped_Key, 0x0C, 0x59);
-  addSharpKey("cd", Unmapped_Key, 0x0C, 0x5A);
-  addSharpKey("tape_mon", Unmapped_Key, 0x0C, 0x5C);
-  addSharpKey("tape1", Unmapped_Key, 0x0C, 0x5D);
-}
-
-
-DenonReceiver4::DenonReceiver4(
-  QObject *guiObject,
-  unsigned int index)
-  : PIRKeysetMetaData(
-      "Receiver Keyset 4",
-      Denon_Make,
-      index)
-{
   addControlledDevice(Denon_Make, "AVR-600 RD", Audio_Device);
 
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     561, 489,
     561, 1543,
-    67329, true,
-    LIRC_NEC);
+    67329, true);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setTrailerPulse(561);
+  lp->setTrailerPulse(561);
 
   addKey("POWER", Power_Key, 0xA20C, 16);
   addKey("UP", Up_Key, 0x99AC, 16);
   addKey("DOWN", Down_Key, 0x9AAC, 16);
-  addKey("TUNER", Unmapped_Key, 0xA28C, 16);
-  addKey("CD", Unmapped_Key, 0xA08C, 16);
-  addKey("PHONO", Unmapped_Key, 0xA30C, 16);
-  addKey("VCR", Unmapped_Key, 0xA2CC, 16);
-  addKey("TV", Unmapped_Key, 0xA14C, 16);
-  addKey("TAPE", Unmapped_Key, 0xA12C, 16);
+  addKey("TUNER", TunerInput_Key, 0xA28C, 16);
+  addKey("CD", CDInput_Key, 0xA08C, 16);
+  addKey("PHONO", PhonoInput_Key, 0xA30C, 16);
+  addKey("VCR", VCRInput_Key, 0xA2CC, 16);
+  addKey("TV", CableInput_Key, 0xA14C, 16);
+  addKey("TAPE", TapeInput_Key, 0xA12C, 16);
   addKey("STEREO", Unmapped_Key, 0xA39C, 16);
-  addKey("MODE", Unmapped_Key, 0xA19C, 16);
+  addKey("MODE", Mode_Key, 0xA19C, 16);
   addKey("TESTTONE", Unmapped_Key, 0xA15C, 16);
   addKey("DELAY", Unmapped_Key, 0xA25C, 16);
   addKey("MUTE", Mute_Key, 0xA03C, 16);
   addKey("PANEL", Info_Key, 0xA1EC, 16);
-  addKey("CENTER_UP", Unmapped_Key, 0xA2BC, 16);
-  addKey("CENTER_DOWN", Unmapped_Key, 0xA1BC, 16);
-  addKey("REAR_UP", Unmapped_Key, 0xA33C, 16);
-  addKey("REAR_DOWN", Unmapped_Key, 0xA0BC, 16);
+  addKey("CENTER_UP", CenterVolumeUp_Key, 0xA2BC, 16);
+  addKey("CENTER_DOWN", CenterVolumeDown_Key, 0xA1BC, 16);
+  addKey("REAR_UP", RearVolumeUp_Key, 0xA33C, 16);
+  addKey("REAR_DOWN", RearVolumeDown_Key, 0xA0BC, 16);
   addKey("VOL_UP", VolumeUp_Key, 0xA23C, 16);
   addKey("VOL_DOWN", VolumeDown_Key, 0xA13C, 16);
-}
-
-
-DenonReceiver5::DenonReceiver5(
-  QObject *guiObject,
-  unsigned int index)
-  : PIRKeysetMetaData(
-      "Receiver Keyset 5",
-      Denon_Make,
-      index)
-{
-  addControlledDevice(Denon_Make, "AVR-700RD", Audio_Device);
-  addControlledDevice(Denon_Make, "RC-841", Audio_Device);
-
-  threadableProtocol = new SharpProtocol(guiObject, index, false);
-
-  addSharpKey("Power", Power_Key, 0x02, 0xC1);
-  addSharpKey("Phono", Unmapped_Key, 0x02, 0xC3);
-  addSharpKey("CD", Unmapped_Key, 0x02, 0xC4);
-  addSharpKey("Tuner", Unmapped_Key, 0x02, 0xC5);
-  addSharpKey("DVD_TV", Unmapped_Key, 0x02, 0xCA);
-  addSharpKey("NoName1", Unmapped_Key, 0x02, 0xCC);
-  addSharpKey("VCR", Unmapped_Key, 0x02, 0xCD);
-  addSharpKey("DAT_Tape", Unmapped_Key, 0x02, 0xD2);
-  addSharpKey("Panel", Info_Key, 0x02, 0xDE);
-  addSharpKey("NoName2", Unmapped_Key, 0x02, 0xDF);
-  addSharpKey("Mode", Unmapped_Key, 0x02, 0xE6);
-  addSharpKey("Stereo", Unmapped_Key, 0x02, 0xE7);
-  addSharpKey("Delay", Unmapped_Key, 0x02, 0xE9);
-  addSharpKey("Test_Tone", Unmapped_Key, 0x02, 0xEA);
-  addSharpKey("Muting", Mute_Key, 0x02, 0xF0);
-  addSharpKey("MasterVolumeUp", VolumeUp_Key, 0x02, 0xF1);
-  addSharpKey("MasterVolumeDown", VolumeDown_Key, 0x02, 0xF2);
-  addSharpKey("RearVolumeUp", Unmapped_Key, 0x02, 0xF3);
-  addSharpKey("RearVolumeDown", Unmapped_Key, 0x02, 0xF4);
-  addSharpKey("CenterVolumeUp", Unmapped_Key, 0x02, 0xF5);
-  addSharpKey("CenterVolumeDown", Unmapped_Key, 0x02, 0xF6);
-
-  addSharpKey("Deck_A_B", Unmapped_Key, 0x04, 0x53);
-  addSharpKey("Deck_PlayLeft", Unmapped_Key, 0x04, 0x57);
-  addSharpKey("Deck_FastForward", Unmapped_Key, 0x04, 0x5A);
-  addSharpKey("Deck_Rewind", Unmapped_Key, 0x04, 0x5B);
-  addSharpKey("Deck_PlayRight", Unmapped_Key, 0x04, 0x5C);
-  addSharpKey("Deck_Stop", Unmapped_Key, 0x04, 0x5E);
-
-  addSharpKey("CD_Next", Next_Key, 0x08, 0x58);
-  addSharpKey("CD_Prev", Previous_Key, 0x08, 0x59);
-  addSharpKey("CD_Pause", Pause_Key, 0x08, 0x5B);
-  addSharpKey("CD_Play", Play_Key, 0x08, 0x5C);
-  addSharpKey("CD_Stop", Stop_Key, 0x08, 0x5E);
-  addSharpKey("CD_Disc_Skip_Plus", DiscSelect_Key, 0x08, 0x6B);
-
-  addSharpKey("Preset_Down", ChannelDown_Key, 0x0C, 0xB5);
-  addSharpKey("Preset_Up", ChannelUp_Key, 0x0C, 0xB6);
-  addSharpKey("Shift", TunerBand_Key, 0x0C, 0xCD);
 }
 
 
@@ -647,11 +582,13 @@ DenonAudio1::DenonAudio1(
   addSharpKey("KEY_PROGRAM", Program_Key, 0x08, 0x4D);
   addSharpKey("open_close", Eject_Key, 0x08, 0x50);
   addSharpKey("KEY_CANCEL", Clear_Key, 0x08, 0x51); // "cancel", "CD_CANCEL"
+  addSharpKey("call", Call_Key, 0x08, 0x52);
   addSharpKey("time", Unmapped_Key, 0x08, 0x53); // "CD_TIME"
   addSharpKey("repeat", Repeat_Key, 0x08, 0x54); // "CD_REPEAT"
+  addSharpKey("a-b", RepeatAB_Key, 0x08, 0x55);
   addSharpKey("DIRECT", Unmapped_Key, 0x08, 0x57); // "direct"
-  addSharpKey("KEY_NEXT", Next_Key, 0x08, 0x58); // "cdfwd", "cdnexttrack"
-  addSharpKey("KEY_PREVIOUS", Previous_Key, 0x08, 0x59); // "cdrew", "cdprevtrack"
+  addSharpKey("KEY_NEXT", Next_Key, 0x08, 0x58); // "cdnexttrack"
+  addSharpKey("KEY_PREVIOUS", Previous_Key, 0x08, 0x59); // "cdprevtrack"
   addSharpKey("KEY_FORWARD", FastForward_Key, 0x08, 0x5A); // "cdffwd"
   addSharpKey("KEY_REWIND", Rewind_Key, 0x08, 0x5B); // "cdfrew"
   addSharpKey("KEY_PLAY", Play_Key, 0x08, 0x5C); // "cdplay"
@@ -660,9 +597,8 @@ DenonAudio1::DenonAudio1(
   addSharpKey("auto_space", Unmapped_Key, 0x08, 0x61);
   addSharpKey("auto_edit", Unmapped_Key, 0x08, 0x63);
   addSharpKey("random", Random_Key, 0x08, 0x6A); // "CD_RANDOM"
-  addSharpKey("cdskip", Unmapped_Key, 0x08, 0x6B);
-  addSharpKey("DISC_SKIP+", DiscSelect_Key, 0x08, 0x6B); // "cdskip"
-  addSharpKey("DISC_SKIP-", Unmapped_Key, 0x08, 0x6E);
+  addSharpKey("DISC_SKIP+", NextDisc_Key, 0x08, 0x6B); // "cdskip"
+  addSharpKey("DISC_SKIP-", PrevDisc_Key, 0x08, 0x6E);
   addSharpKey("peak", Unmapped_Key, 0x08, 0x6F);
   addSharpKey("edit", Unmapped_Key, 0x08, 0x70); // "CD_EDIT"
   addSharpKey("fader", Unmapped_Key, 0x08, 0x76);
@@ -675,21 +611,21 @@ DenonAudio1::DenonAudio1(
   addSharpKey("PRESET UP", Up_Key, 0x0C, 0x4E); // "up"
   addSharpKey("PRESET DOWN", Down_Key, 0x0C, 0x4F); // "dwn"
   addSharpKey("KEY_POWER", Power_Key, 0x0C, 0x50); // "aus"
-  addSharpKey("RCVR_VIDEO", Unmapped_Key, 0x0C, 0x53);
-  addSharpKey("RCVR_PHONO", Unmapped_Key, 0x0C, 0x58);
-  addSharpKey("tuner", Unmapped_Key, 0x0C, 0x59); // "RCVR_TUNER"
+  addSharpKey("RCVR_VIDEO", CableInput_Key, 0x0C, 0x53);
+  addSharpKey("RCVR_PHONO", PhonoInput_Key, 0x0C, 0x58);
+  addSharpKey("tuner", TunerInput_Key, 0x0C, 0x59); // "RCVR_TUNER"
   addSharpKey("RCVR_TAPE_MON", Unmapped_Key, 0x0C, 0x5C);
   addSharpKey("RCVR_TAPE1", Unmapped_Key, 0x0C, 0x5D);
   addSharpKey("RCVR_TAPE2", Unmapped_Key, 0x0C, 0x5E);
   addSharpKey("KEY_FN", Unmapped_Key, 0x0C, 0x5F); // "func"
-  addSharpKey("RCVR_CD", Unmapped_Key, 0x0C, 0x6A);
+  addSharpKey("RCVR_CD", CDInput_Key, 0x0C, 0x6A);
   addSharpKey("KEY_SLEEP", Sleep_Key, 0x0C, 0x72);
 //  addSharpKey("RCVR_PANEL", Info_Key, 0x0C, 0x7E);  // Either 0x7E or 0xDE here
   addSharpKey("memo", Unmapped_Key, 0x0C, 0xD1);
   addSharpKey("RDS", Unmapped_Key, 0x0C, 0xD2); // "TUNER_RDS"
   addSharpKey("CT", Unmapped_Key, 0x0C, 0xD3); // "TUNER_CT"
   addSharpKey("pty", Unmapped_Key, 0x0C, 0xD4); // "TUNER_PTY"
-  addSharpKey("TUNER BAND", Unmapped_Key, 0x0C, 0xD7);
+  addSharpKey("TUNER BAND", TunerBand_Key, 0x0C, 0xD7);
   addSharpKey("TUNER KEY_UP", ChannelUp_Key, 0x0C, 0xD9);
   addSharpKey("TUNER KEY_DOWN", ChannelDown_Key, 0x0C, 0xDA);
   addSharpKey("panel", Info_Key, 0x0C, 0xDE);
@@ -738,7 +674,7 @@ DenonAudio1c::DenonAudio1c(
 
   addControlledDevice(Denon_Make, "DCM-260", Audio_Device);
 
-  addSharpKey("DISC_SELECT", DiscSelect_Key, 0x08, 0x62);
+  addSharpKey("DISC_SELECT", NextDisc_Key, 0x08, 0x62);
 }
 
 
@@ -776,7 +712,7 @@ DenonAudio2::DenonAudio2(
 {
   addControlledDevice(Denon_Make, "D-C30", Audio_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0xDA25, 16);
   setPreData(0x5B, 8);
@@ -828,47 +764,41 @@ DenonAudio3::DenonAudio3(
       Denon_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    336, 717,
-    336, 1773,
-    67458, true,
-    LIRC_NEC);
+  addControlledDevice(Denon_Make, "DMD-800", Audio_Device);
 
-  threadableProtocol = np;
+  threadableProtocol = new SharpProtocol(guiObject, index, false);
 
-  np->setElevenBitToggle(true);
-
-  np->setTrailerPulse(336);
-
-  addKey("open_close", Eject_Key, 0x8828, 15);
-  addKey("call", Unmapped_Key, 0x8928, 15);
-  addKey("prog", Program_Key, 0x8B08, 15);
-  addKey("direct", Unmapped_Key, 0x8BA8, 15);
-  addKey("1", One_Key, 0x8908, 15);
-  addKey("2", Two_Key, 0x8B08, 15);
-  addKey("3", Three_Key, 0x8888, 15);
-  addKey("4", Four_Key, 0x8A88, 15);
-  addKey("5", Five_Key, 0x8988, 15);
-  addKey("6", Six_Key, 0x8B88, 15);
-  addKey("7", Seven_Key, 0x8848, 15);
-  addKey("8", Eight_Key, 0x8A48, 15);
-  addKey("9", Nine_Key, 0x8948, 15);
-  addKey("10", Zero_Key, 0x8B48, 15);
-  addKey("+10", DoubleDigit_Key, 0x88C8, 15);
-  addKey("play", Play_Key, 0x88E8, 15);
-  addKey("vol_up", VolumeUp_Key, 0x89C8, 15);
-  addKey("vol_down", VolumeDown_Key, 0x8BC8, 15);
-  addKey("pause", Pause_Key, 0x8AE8, 15);
-  addKey("stop", Stop_Key, 0x89E8, 15);
-  addKey("a_space", Unmapped_Key, 0x8A18, 15);
-  addKey("all", Unmapped_Key, 0x88A8, 15);
-  addKey("a-b", Unmapped_Key, 0x8AA8, 15);
-  addKey("rewind", Rewind_Key, 0x8B68, 15);
-  addKey("wind", FastForward_Key, 0x8968, 15);
-  addKey("prev", Previous_Key, 0x8A68, 15);
-  addKey("next", Next_Key, 0x8868, 15);
+  addKey("1", One_Key, 0x06, 0xC1);
+  addKey("2", Two_Key, 0x06, 0xC2);
+  addKey("3", Three_Key, 0x06, 0xC3);
+  addKey("4", Four_Key, 0x06, 0xC4);
+  addKey("5", Five_Key, 0x06, 0xC5);
+  addKey("6", Six_Key, 0x06, 0xC6);
+  addKey("7", Seven_Key, 0x06, 0xC7);
+  addKey("8", Eight_Key, 0x06, 0xC8);
+  addKey("9", Nine_Key, 0x06, 0xC9);
+  addKey("10", Zero_Key, 0x06, 0xCA);
+  addKey("CHAR", Unmapped_Key, 0x06, 0xDD);
+  addKey("ENTER", Select_Key, 0x06, 0xDE);
+  addKey("CLEAR", Clear_Key, 0x06, 0xDF);
+  addKey("POWER", Power_Key, 0x06, 0xE0);
+  addKey("STOP", Stop_Key, 0x06, 0xE1);
+  addKey("PLAY", Play_Key, 0x06, 0xE2);
+  addKey("PAUSE", Pause_Key, 0x06, 0xE3);
+  addKey("REC", Record_Key, 0x06, 0xE5);
+  addKey("EJECT", Eject_Key, 0x06, 0xE6);
+  addKey("+10", DoubleDigit_Key, 0x06, 0xE8);
+  addKey("NEXT_TRACK", Next_Key, 0x06, 0xE9);
+  addKey("PREV_TRACK", Previous_Key, 0x06, 0xEA);
+  addKey("FORWARD", Advance_Key, 0x06, 0xEB);
+  addKey("BACK", Replay_Key, 0x06, 0xEC);
+  addKey("EDIT", Unmapped_Key, 0x06, 0xEF);
+  addKey("PROG", Program_Key, 0x06, 0xF0);
+  addKey("REPEAT", Repeat_Key, 0x06, 0xF1);
+  addKey("RANDOM", Random_Key, 0x06, 0xF3);
+  addKey("TIME", Unmapped_Key, 0x06, 0xF4);
+  addKey("TITLE", Unmapped_Key, 0x06, 0xF5);
+  addKey("CALL", Call_Key, 0x06, 0xF6);
 }
 
 
@@ -880,78 +810,20 @@ DenonAudio4::DenonAudio4(
       Denon_Make,
       index)
 {
-  addControlledDevice(Denon_Make, "DMD-800", Audio_Device);
-
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    275, 775,
-    275, 1900,
-    43000, false,
-    LIRC_NEC);
-
-  threadableProtocol = np;
-
-  np->setElevenBitToggle(true);
-
-  np->setTrailerPulse(275);
-
-  addKey("EJECT", Eject_Key, 0x319C, 15);
-  addKey("POWER", Power_Key, 0x301C, 15);
-  addKey("PLAY", Play_Key, 0x311C, 15);
-  addKey("PAUSE", Pause_Key, 0x331C, 15);
-  addKey("STOP", Stop_Key, 0x321C, 15);
-  addKey("REC", Record_Key, 0x329C, 15);
-  addKey("1", One_Key, 0x320C, 15);
-  addKey("2", Two_Key, 0x310C, 15);
-  addKey("3", Three_Key, 0x330C, 15);
-  addKey("4", Four_Key, 0x308C, 15);
-  addKey("5", Five_Key, 0x328C, 15);
-  addKey("6", Six_Key, 0x318C, 15);
-  addKey("7", Seven_Key, 0x338C, 15);
-  addKey("8", Eight_Key, 0x304C, 15);
-  addKey("9", Nine_Key, 0x324C, 15);
-  addKey("10", Zero_Key, 0x314C, 15);
-  addKey("+10", DoubleDigit_Key, 0x305C, 15);
-  addKey("CALL", Unmapped_Key, 0x31BC, 15);
-  addKey("PREV_TRACK", Previous_Key, 0x315C, 15);
-  addKey("NEXT_TRACK", Next_Key, 0x325C, 15);
-  addKey("BACK", Replay_Key, 0x30DC, 15);
-  addKey("FORWARD", Advance_Key, 0x335C, 15);
-  addKey("CLEAR", Clear_Key, 0x33EC, 15);
-  addKey("PROG", Program_Key, 0x303C, 15);
-  addKey("REPEAT", Repeat_Key, 0x323C, 15);
-  addKey("RANDOM", Random_Key, 0x333C, 15);
-  addKey("EDIT", Unmapped_Key, 0x33DC, 15);
-  addKey("ENTER", Select_Key, 0x31EC, 15);
-  addKey("TIME", Unmapped_Key, 0x30BC, 15);
-  addKey("CHAR", Unmapped_Key, 0x32EC, 15);
-  addKey("TITLE", Unmapped_Key, 0x32BC, 15);
-}
-
-
-DenonAudio5::DenonAudio5(
-  QObject *guiObject,
-  unsigned int index)
-  : PIRKeysetMetaData(
-      "Audio Keyset 5",
-      Denon_Make,
-      index)
-{
   addControlledDevice(Denon_Make, "D-G1MD", Audio_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index, Extended_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
 //  setPreData(0x4040, 16);
   setPreData(0x0202, 16);
 
-  addKey("fm/am", Unmapped_Key, 0x00, 8);
+  addKey("fm/am", TunerBand_Key, 0x00, 8);
   addKey("rds", Unmapped_Key, 0x01, 8);
   addKey("1", One_Key, 0x02, 8);
   addKey("6", Six_Key, 0x03, 8);
   addKey("+10", DoubleDigit_Key, 0x04, 8);
-  addKey("mdrec", Unmapped_Key, 0x05, 8);
-  addKey("recmute", Unmapped_Key, 0x06, 8);
+  addKey("mdrec", Record_Key, 0x05, 8);
+  addKey("recmute", RecordMute_Key, 0x06, 8);
   addKey("edit", Unmapped_Key, 0x07, 8);
   addKey("tape", Unmapped_Key, 0x08, 8);
   addKey("pty", Unmapped_Key, 0x09, 8);
@@ -961,15 +833,15 @@ DenonAudio5::DenonAudio5(
   addKey("pickrec", Unmapped_Key, 0x0D, 8);
   addKey("revmode", Unmapped_Key, 0x0E, 8);
   addKey("editcancel", Unmapped_Key, 0x0F, 8);
-  addKey("cd", Unmapped_Key, 0x10, 8);
+  addKey("cd", CDInput_Key, 0x10, 8);
   addKey("ct", Unmapped_Key, 0x11, 8);
   addKey("3", Three_Key, 0x12, 8);
   addKey("8", Eight_Key, 0x13, 8);
   addKey("clock", Unmapped_Key, 0x14, 8);
   addKey("checkspace", Unmapped_Key, 0x15, 8);
-  addKey("dolby", Unmapped_Key, 0x16, 8);
+  addKey("dolby", NoiseReduction_Key, 0x16, 8);
   addKey("prog", Program_Key, 0x17, 8);
-  addKey("aux", Unmapped_Key, 0x18, 8);
+  addKey("aux", AuxInput_Key, 0x18, 8);
   addKey("rt", Unmapped_Key, 0x19, 8);
   addKey("4", Four_Key, 0x1A, 8);
   addKey("9", Nine_Key, 0x1B, 8);
@@ -977,7 +849,7 @@ DenonAudio5::DenonAudio5(
   addKey("clear", Clear_Key, 0x1D, 8);
   addKey("titleinput", Unmapped_Key, 0x1E, 8);
   addKey("vol-", VolumeDown_Key, 0x1F, 8);
-  addKey("md", Unmapped_Key, 0x40, 8);
+  addKey("md", MDInput_Key, 0x40, 8);
   addKey("fmmode", Unmapped_Key, 0x41, 8);
   addKey("5", Five_Key, 0x42, 8);
   addKey("0", Zero_Key, 0x43, 8);
@@ -993,7 +865,7 @@ DenonAudio5::DenonAudio5(
   addKey("timedisp", Info_Key, 0x4D, 8);
   addKey("eqmode", Unmapped_Key, 0x4E, 8);
   addKey("mute", Mute_Key, 0x4F, 8);
-  addKey("bass", Unmapped_Key, 0x50, 8);
+  addKey("bass", EnhancedBass_Key, 0x50, 8);
   addKey("forward", FastForward_Key, 0x51, 8);
   addKey("prev", Previous_Key, 0x52, 8);
   addKey("next", Next_Key, 0x53, 8);

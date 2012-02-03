@@ -1,5 +1,5 @@
 #include "mitsubishi.h"
-#include "necprotocol.h"
+#include "protocols/lircprotocol.h"
 
 MitsubishiTV1::MitsubishiTV1(
   QObject *guiObject,
@@ -9,19 +9,18 @@ MitsubishiTV1::MitsubishiTV1(
       Mitsubishi_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     300, 900,
     300, 2100,
-    53715, true,
-    LIRC_NEC);
+    53715, true);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setTrailerPulse(300);
+  lp->setTrailerPulse(300);
 
-//  np->setMinimumRepetitions(1);
+//  lp->setMinimumRepetitions(1);
 
   setPreData(0xE2, 8);
 
@@ -57,10 +56,10 @@ MitsubishiTV1::MitsubishiTV1(
   addKey("down", Down_Key, 0x36, 8);
   addKey("right", Right_Key, 0x82, 8);
   addKey("left", Left_Key, 0x92, 8);
-  addKey("TEXT", Unmapped_Key, 0x30, 8);
-  addKey("HOLD", Unmapped_Key, 0xA8, 8);
-  addKey("INDEX", Unmapped_Key, 0x64, 8);
-  addKey("CANCEL/TIME", Unmapped_Key, 0xB8, 8);
+  addKey("TEXT", Teletext_Key, 0x30, 8);
+  addKey("HOLD", TeletextHold_Key, 0xA8, 8);
+  addKey("INDEX", TeletextIndex_Key, 0x64, 8);
+  addKey("CANCEL/TIME", TeletextTime_Key, 0xB8, 8);
   addKey("RED", Red_Key, 0xF4, 8);
   addKey("GREEN", Green_Key, 0xEC, 8);
   addKey("YELLOW", Yellow_Key, 0xFC, 8);
@@ -76,16 +75,16 @@ MitsubishiTV1::MitsubishiTV1(
   addKey("SOURCE", PIPSource_Key, 0xFA, 8);
   addKey("POSITION", PIPMove_Key, 0x76, 8);
   addKey("EXCHANGE", PIPSwap_Key, 0xFE, 8);
-  addKey("STILL", Unmapped_Key, 0xE6, 8);
+  addKey("STILL", PIPPause_Key, 0xE6, 8);
   addKey("PREVMENU", Exit_Key, 0xD2, 8);
   addKey("ENTER", Select_Key, 0xDE, 8);
-  addKey("VIDEO", Unmapped_Key, 0xCC, 8);
-  addKey("AUDIO", Unmapped_Key, 0xDC, 8);
+  addKey("VIDEO", PictureMode_Key, 0xCC, 8);
+  addKey("AUDIO", SoundMode_Key, 0xDC, 8);
   addKey("ST/MONO", Unmapped_Key, 0xC0, 8);
   addKey("DEGAUSS", Unmapped_Key, 0xCE, 8);
   addKey("DEMO", Unmapped_Key, 0x62, 8);
   addKey("PRESET", Unmapped_Key, 0xA2, 8);
-  addKey("BAND", Unmapped_Key, 0xAE, 8);
+  addKey("BAND", TunerBand_Key, 0xAE, 8);
   addKey("AFT", Unmapped_Key, 0xA6, 8);
   addKey("SKIP", Unmapped_Key, 0xB6, 8);
   addKey("REALNAME", Unmapped_Key, 0xDA, 8);
@@ -114,19 +113,18 @@ MitsubishiVCR1::MitsubishiVCR1(
       Mitsubishi_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     300, 900,
     300, 2100,
-    53815, true,
-    LIRC_NEC);
+    53815, true);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setTrailerPulse(300);
+  lp->setTrailerPulse(300);
 
-//  np->setMinimumRepetitions(1);
+//  lp->setMinimumRepetitions(1);
 
   setPreData(0xEA, 8);
 

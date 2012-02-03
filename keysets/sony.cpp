@@ -1,5 +1,5 @@
 #include "sony.h"
-#include "sircprotocol.h"
+#include "protocols/sircprotocol.h"
 
 
 SonyTV1::SonyTV1(
@@ -45,13 +45,13 @@ SonyTV1::SonyTV1(
   addSIRC12Key("POWER", Power_Key, 0x01, 0x15);
   addSIRC12Key("normalise", Reset_Key, 0x01, 0x16); // "reset"
   addSIRC12Key("a/b", Audio_Key, 0x01, 0x17); // "mts", "sap", "language"
-  addSIRC12Key("picture_up", Unmapped_Key, 0x01, 0x18); // "Contrast Up"
-  addSIRC12Key("picture_down", Unmapped_Key, 0x1, 0x19); // "Contrast Down"
+  addSIRC12Key("picture_up", ContrastUp_Key, 0x01, 0x18); // "Contrast Up"
+  addSIRC12Key("picture_down", ContrastDown_Key, 0x1, 0x19); // "Contrast Down"
   addSIRC12Key("-/--", DoubleDigit_Key, 0x01, 0x1D);
   addSIRC12Key("tv/video", Input_Key, 0x01, 0x25);
   addSIRC12Key("bucket", Unmapped_Key, 0x01, 0x28);
   addSIRC12Key("stereo", Surround_Key, 0x01, 0x29);
-  addSIRC12Key("ANT", Unmapped_Key, 0x01, 0x2A);
+  addSIRC12Key("ANT", AntennaInput_Key, 0x01, 0x2A);
   addSIRC12Key("time", Clock_Key, 0x01, 0x2B);
   addSIRC12Key("timer/block", Timer_Key, 0x01, 0x30);
   addSIRC12Key("right", Right_Key, 0x01, 0x33);
@@ -63,7 +63,8 @@ SonyTV1::SonyTV1(
   addSIRC12Key("off/repeat", Repeat_Key, 0x01, 0x3C);
   addSIRC12Key("TELETXT", Teletext_Key, 0x01, 0x3F);
   addSIRC12Key("favourite", Unmapped_Key, 0x01, 0x4A); // separate keyset?
-  addSIRC12Key("cable", Unmapped_Key, 0x01, 0x4E);
+  addSIRC12Key("cable", CableInput_Key, 0x01, 0x4E);
+  addSIRC12Key("Sat", SatInput_Key, 0x01, 0x51);
   addSIRC12Key("pip_ch+", PIPChannelUp_Key, 0x01, 0x58);
   addSIRC12Key("pip_ch-", PIPChannelDown_Key, 0x01, 0x59);
   addSIRC12Key("piptv_video", PIPSource_Key, 0x01, 0x5A);
@@ -71,8 +72,6 @@ SonyTV1::SonyTV1(
   addSIRC12Key("pipfreeze", PIPPause_Key, 0x01, 0x5C);
   addSIRC12Key("PIP_POSITION", PIPMove_Key, 0x01, 0x5E);
   addSIRC12Key("PIP_SWAP", PIPSwap_Key, 0x01, 0x5F);
-  addSIRC12Key("PIP_SOURCE", Unmapped_Key, 0x01, 0x67); // separate keyset?
-  addSIRC12Key("Sat", Unmapped_Key, 0x01, 0x51);
   addSIRC12Key("MENU", Menu_Key, 0x01, 0x60);
   addSIRC12Key("Settup_V", Unmapped_Key, 0x01, 0x61); // alternate pic mode
   addSIRC12Key("Settup_A", Unmapped_Key, 0x01, 0x62); // alternate sound mode
@@ -80,6 +79,7 @@ SonyTV1::SonyTV1(
   addSIRC12Key("picturemode", PictureMode_Key, 0x01, 0x64);
   addSIRC12Key("OK", Select_Key, 0x01, 0x65); // "return", "select", "enter"
   addSIRC12Key("output", Unmapped_Key, 0x01, 0x66);
+  addSIRC12Key("PIP_SOURCE", Unmapped_Key, 0x01, 0x67); // separate keyset?
   addSIRC12Key("asterisk", Unmapped_Key, 0x01, 0x68); // "TV System"
   addSIRC12Key("auto_program", Unmapped_Key, 0x01, 0x6B);
   addSIRC12Key("setup", Program_Key, 0x01, 0x6C);
@@ -214,20 +214,20 @@ SonyAmp1::SonyAmp1(
   addSIRC12Key("VOL-", VolumeDown_Key, 0x0C, 0x13);
   addSIRC12Key("MUTE", Mute_Key, 0x0C, 0x14);
   addSIRC12Key("POWER", Power_Key, 0x0C, 0x15);
-  addSIRC12Key("LD", Unmapped_Key, 0x0C, 0x19);
-  addSIRC12Key("TV", Unmapped_Key, 0x0C, 0x18);
+  addSIRC12Key("LD", LDInput_Key, 0x0C, 0x19);
+  addSIRC12Key("TV", CableInput_Key, 0x0C, 0x18);
   addSIRC12Key("VIDEO2", Unmapped_Key, 0x0C, 0x1E);
-  addSIRC12Key("PHONO", Unmapped_Key, 0x0C, 0x20);
-  addSIRC12Key("TUNER", Unmapped_Key, 0x0C, 0x21);
+  addSIRC12Key("PHONO", PhonoInput_Key, 0x0C, 0x20);
+  addSIRC12Key("TUNER", TunerInput_Key, 0x0C, 0x21);
   addSIRC12Key("VIDEO1", Unmapped_Key, 0x0C, 0x22);
-  addSIRC12Key("TAPE", Unmapped_Key, 0x0C, 0x23);
-  addSIRC12Key("CD", Unmapped_Key, 0x0C, 0x25);
+  addSIRC12Key("TAPE", TapeInput_Key, 0x0C, 0x23);
+  addSIRC12Key("CD", CDInput_Key, 0x0C, 0x25);
   addSIRC12Key("DAT", Unmapped_Key, 0x0C, 0x46);
   addSIRC12Key("SLEEP", Sleep_Key, 0x0C, 0x60);
-  addSIRC12Key("MD", Unmapped_Key, 0x0C, 0x69);
+  addSIRC12Key("MD", MDInput_Key, 0x0C, 0x69);
   addSIRC12Key("TV2", Unmapped_Key, 0x0C, 0x6A);
   addSIRC12Key("5.1CH", Unmapped_Key, 0x0C, 0x72);
-  addSIRC12Key("DVD", Unmapped_Key, 0x0C, 0x7D);
+  addSIRC12Key("DVD", DVDInput_Key, 0x0C, 0x7D);
 }
 
 
@@ -266,19 +266,19 @@ SonyAmp2::SonyAmp2(
   addSIRC12Key("vol_-", VolumeDown_Key, 0x10, 0x13);
   addSIRC12Key("mute", Mute_Key, 0x10, 0x14);
   addSIRC12Key("power", Power_Key, 0x10, 0x15);
-  addSIRC12Key("aux/vdp", Unmapped_Key, 0x10, 0x1D);
+  addSIRC12Key("aux/vdp", AuxInput_Key, 0x10, 0x1D);
   addSIRC12Key("video2", Unmapped_Key, 0x10, 0x1E);
-  addSIRC12Key("phono", Unmapped_Key, 0x10, 0x20);
-  addSIRC12Key("tuner", Unmapped_Key, 0x10, 0x21);
+  addSIRC12Key("phono", PhonoInput_Key, 0x10, 0x20);
+  addSIRC12Key("tuner", TunerInput_Key, 0x10, 0x21);
   addSIRC12Key("video1", Unmapped_Key, 0x10, 0x22);
-  addSIRC12Key("tape", Unmapped_Key, 0x10, 0x23);
-  addSIRC12Key("cd", Unmapped_Key, 0x10, 0x25);
+  addSIRC12Key("tape", TapeInput_Key, 0x10, 0x23);
+  addSIRC12Key("cd", CDInput_Key, 0x10, 0x25);
   addSIRC12Key("power_on", PowerOn_Key, 0x10, 0x2E);
   addSIRC12Key("video3", Unmapped_Key, 0x10, 0x42);
-  addSIRC12Key("tv", Unmapped_Key, 0x10, 0x6A);
-  addSIRC12Key("dvd", Unmapped_Key, 0x10, 0x7D);
+  addSIRC12Key("tv", CableInput_Key, 0x10, 0x6A);
+  addSIRC12Key("dvd", DVDInput_Key, 0x10, 0x7D);
 
-  addSIRC15Key("md/dat", Unmapped_Key, 0x10, 0x69);
+  addSIRC15Key("md/dat", MDInput_Key, 0x10, 0x69);
 }
 
 
@@ -299,18 +299,18 @@ SonyAudio1::SonyAudio1(
   addSIRC12Key("MEMORY", Program_Key, 0x0D, 0x0E);
   addSIRC12Key("TUNER-BAND", TunerBand_Key, 0x0D, 0x0F);
   addSIRC12Key("TUNING_MODE", Unmapped_Key, 0x0D, 0x17);
-  addSIRC12Key("STEREO-MONO", Audio_Key, 0x0D, 0x21);
+  addSIRC12Key("STEREO-MONO", FMMode_Key, 0x0D, 0x21);
 
   addSIRC12Key("DIR_MODE", Unmapped_Key, 0x0E, 0x14);
   addSIRC12Key("REC", Record_Key, 0x0E, 0x1E);
-  addSIRC12Key("TAPE", Unmapped_Key, 0x0E, 0x34);
+  addSIRC12Key("TAPE", TapeInput_Key, 0x0E, 0x34);
 
-  addSIRC12Key("tuner", Unmapped_Key, 0x10, 0x0F); // "Tune Up"
+  addSIRC12Key("tuner", TunerInput_Key, 0x10, 0x0F); // "Tune Up"
   addSIRC12Key("VOL+", VolumeUp_Key, 0x10, 0x12);
   addSIRC12Key("VOL-", VolumeDown_Key, 0x10, 0x13);
   addSIRC12Key("ON-OFF", Power_Key, 0x10, 0x15);
   addSIRC12Key("effect_on_off", Unmapped_Key, 0x10, 0x1F);
-  addSIRC12Key("cd", Unmapped_Key, 0x10, 0x25);
+  addSIRC12Key("cd", CDInput_Key, 0x10, 0x25);
   addSIRC12Key("DISPLAY", Info_Key, 0x10, 0x4B);
   addSIRC12Key("dimmer", Unmapped_Key, 0x10, 0x4D);
   addSIRC12Key("karaoke_mpx", Unmapped_Key, 0x10, 0x5F);
@@ -363,7 +363,7 @@ SonyAudio1::SonyAudio1(
   addSIRC20Key("KEY_NEXT", FastForward_Key, 0x39, 0x1A, 0x34); // "Fast Forward"
   addSIRC20Key("KEY_STOP", Stop_Key, 0x39, 0x1A, 0x38);
   addSIRC20Key("KEY_PAUSE", Pause_Key, 0x39, 0x1A, 0x39);
-  addSIRC20Key("d_skip", DiscSelect_Key, 0x39, 0x1A, 0x3E);
+  addSIRC20Key("d_skip", NextDisc_Key, 0x39, 0x1A, 0x3E);
   addSIRC20Key("up", Up_Key, 0x39, 0x1A, 0x78);
   addSIRC20Key("down", Down_Key, 0x39, 0x1A, 0x79);
   addSIRC20Key("left", Left_Key, 0x39, 0x1A, 0x7A);
@@ -379,7 +379,7 @@ SonyAudio1a::SonyAudio1a(
 {
   setKeysetName("Audio Keyset 1a");
 
-  addSIRC12Key("tape", Unmapped_Key, 0x10, 0x23);
+  addSIRC12Key("tape", TapeInput_Key, 0x10, 0x23);
 
 //  addSIRC20Key("select", Select_Key, 0x39, 0x1A, 0x32); // Doesn't make sense
   addSIRC20Key("play", Play_Key, 0x39, 0x1A, 0x32);
@@ -491,7 +491,7 @@ SonyDVD1::SonyDVD1(
   addSIRC20Key("RecStop", RecordStop_Key, 0x49, 0x1A, 0x3D);
   addSIRC20Key("RecPause", RecordPause_Key, 0x49, 0x1A, 0x3E);
 
-  addSIRC20Key("DNR", Unmapped_Key, 0x49, 0x1A, 0x48);
+  addSIRC20Key("DNR", NoiseReduction_Key, 0x49, 0x1A, 0x48);
   addSIRC20Key("SEARCH_MODE", Unmapped_Key, 0x49, 0x1A, 0x4B);
   addSIRC20Key("Picture_Navi", Unmapped_Key, 0x49, 0x1A, 0x50);
   addSIRC20Key("TV_DVD", Unmapped_Key, 0x49, 0x1A, 0x51);
@@ -522,7 +522,7 @@ SonyDVD1::SonyDVD1(
   addSIRC20Key("ALBUM-PLUS", Unmapped_Key, 0x62, 0x1A, 0x2A);
   addSIRC20Key("F1", Unmapped_Key, 0x62, 0x1A, 0x2E); // "HDD"
   addSIRC20Key("F2", Unmapped_Key, 0x62, 0x1A, 0x2F); // "DVD"
-  addSIRC20Key("DiscSkip", DiscSelect_Key, 0x62, 0x1A, 0x3E);
+  addSIRC20Key("DiscSkip", NextDisc_Key, 0x62, 0x1A, 0x3E);
   addSIRC20Key("Favorites", Favorites_Key, 0x62, 0x1A, 0x5E);
   addSIRC20Key("Purple", Blue_Key, 0x62, 0x1A, 0x66);
   addSIRC20Key("Red", Red_Key, 0x62, 0x1A, 0x67);
@@ -615,7 +615,7 @@ SonyVCR1::SonyVCR1(
   addSIRC12Key("<<", Rewind_Key, 0x0B, 0x1B);
   addSIRC12Key(">>", FastForward_Key, 0x0B, 0x1C);
   addSIRC12Key("rec", Record_Key, 0x0B, 0x1D);
-  addSIRC12Key("ant/sw", Unmapped_Key, 0x0B, 0x2A);  // "tv/vcr"
+  addSIRC12Key("ant/sw", AntennaInput_Key, 0x0B, 0x2A);  // "tv/vcr"
   addSIRC12Key("power_on", PowerOn_Key, 0x0B, 0x2E);
   addSIRC12Key("Power Off", PowerOff_Key, 0x0B, 0x2F);
   addSIRC12Key("menu", Menu_Key, 0x0B, 0x4D);
@@ -701,16 +701,16 @@ SonyReceiver1::SonyReceiver1(
   addSIRC15Key("MUTING", Mute_Key, 0x30, 0x14);
   addSIRC15Key("POWER", Power_Key, 0x30, 0x15);
   addSIRC15Key("VIDEO2", Unmapped_Key, 0x30, 0x1E);
-  addSIRC15Key("TUNER", Unmapped_Key, 0x30, 0x21);
+  addSIRC15Key("TUNER", TunerInput_Key, 0x30, 0x21);
   addSIRC15Key("VIDEO1", Unmapped_Key, 0x30, 0x22);
   addSIRC15Key("SA_CD", Unmapped_Key, 0x30, 0x25);
   addSIRC15Key("VIDEO3", Unmapped_Key, 0x30, 0x42);
   addSIRC15Key("DISPLAY", Info_Key, 0x30, 0x4B);
   addSIRC15Key("SLEEP", Sleep_Key, 0x30, 0x60);
   addSIRC15Key("TV", Unmapped_Key, 0x30, 0x6A);
-  addSIRC15Key("DVD", Unmapped_Key, 0x30, 0x7D);
+  addSIRC15Key("DVD", DVDInput_Key, 0x30, 0x7D);
 
-  addSIRC15Key("SAT", Unmapped_Key, 0xB0, 0x03);
+  addSIRC15Key("SAT", SatInput_Key, 0xB0, 0x03);
   addSIRC15Key("2CH", Unmapped_Key, 0xB0, 0x09);
   addSIRC15Key("AFD", Unmapped_Key, 0xB0, 0x0A);
   addSIRC15Key("MOVIE", Unmapped_Key, 0xB0, 0x0B);

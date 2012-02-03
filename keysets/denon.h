@@ -60,6 +60,30 @@ public:
     unsigned int index);
 };
 
+class DenonReceiver1d: public DenonReceiver1c
+{
+public:
+  DenonReceiver1d(
+    QObject *guiObject,
+    unsigned int index);
+};
+
+class DenonReceiver1e: public DenonReceiver1d
+{
+public:
+  DenonReceiver1e(
+    QObject *guiObject,
+    unsigned int index);
+};
+
+class DenonReceiver1f: public DenonReceiver1c
+{
+public:
+  DenonReceiver1f(
+    QObject *guiObject,
+    unsigned int index);
+};
+
 class DenonReceiver2: public PIRKeysetMetaData
 {
 public:
@@ -80,30 +104,6 @@ class DenonReceiver3: public PIRKeysetMetaData
 {
 public:
   DenonReceiver3(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class DenonReceiver3a: public DenonReceiver3
-{
-public:
-  DenonReceiver3a(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class DenonReceiver4: public PIRKeysetMetaData
-{
-public:
-  DenonReceiver4(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class DenonReceiver5: public PIRKeysetMetaData
-{
-public:
-  DenonReceiver5(
     QObject *guiObject,
     unsigned int index);
 };
@@ -168,14 +168,6 @@ class DenonAudio4: public PIRKeysetMetaData
 {
 public:
   DenonAudio4(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class DenonAudio5: public PIRKeysetMetaData
-{
-public:
-  DenonAudio5(
     QObject *guiObject,
     unsigned int index);
 };

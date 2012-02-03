@@ -22,6 +22,7 @@ enum PIRMakeName{
   Panasonic_Make,
   Philips_Make,
   Pinnacle_Make,
+  Pioneer_Make,
   Raite_Make,
   RCA_Make,
   Sagem_Make,

@@ -31,33 +31,33 @@ public:
   ~PIRKeysetManager();
 
   void populateGuiWidget(
-    PIRSelectKeysetForm *widget);
+    PIRSelectKeysetForm *widget) const;
 
   bool keysetExists(
-    unsigned int keysetID);
+    unsigned int keysetID) const;
 
   bool findKeysetID(
     QString make,
     QString name,
-    unsigned int &id);
+    unsigned int &id) const;
 
   PIRKeysetWidgetItem *makeKeysetItem(
     QString make,
-    QString name);
+    QString name) const;
 
   bool hasKey(
     unsigned int keysetID,
-    PIRKeyName name);
+    PIRKeyName name) const;
 
   PIRMakeName getMake(
-    unsigned int keysetID);
+    unsigned int keysetID) const;
 
   QString getDisplayName(
-    unsigned int keysetID);
+    unsigned int keysetID) const;
 
   void populateDeviceTypes(
     PIRKeysetWidgetItem *kwi,
-    unsigned int keysetID);
+    unsigned int keysetID) const;
 
 private:
   // This needs to be improved:

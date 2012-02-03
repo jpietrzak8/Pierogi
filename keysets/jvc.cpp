@@ -1,6 +1,6 @@
 #include "jvc.h"
-#include "jvcprotocol.h"
-#include "necprotocol.h"
+#include "protocols/jvcprotocol.h"
+#include "protocols/lircprotocol.h"
 
 JVCSat1::JVCSat1(
   QObject *guiObject,
@@ -10,20 +10,19 @@ JVCSat1::JVCSat1(
       JVC_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
    guiObject,
    index,
    624, 1500,
    624, 2600,
-   6000, false,
-   LIRC_NEC);
+   6000, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(750, 6000);
-  np->setTrailerPulse(624);
+  lp->setHeaderPair(750, 6000);
+  lp->setTrailerPulse(624);
 
-  np->setFullHeadlessRepeat(true);
+  lp->setFullHeadlessRepeat(true);
 
 //  np->setCarrierFrequency(56000);
 //  np->setDutyCycle(32);
@@ -78,24 +77,23 @@ JVCSat2::JVCSat2(
       JVC_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     440, 2780,
     440, 1645,
-    6115, false,
-    LIRC_NEC);
+    6115, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(525, 6045);
-  np->setTrailerPulse(450);
+  lp->setHeaderPair(525, 6045);
+  lp->setTrailerPulse(450);
 
-//  np->setMinimumRepetitions(6);
-  np->setFullHeadlessRepeat(true);
+//  lp->setMinimumRepetitions(6);
+  lp->setFullHeadlessRepeat(true);
 
-  np->setCarrierFrequency(56000);
-  np->setDutyCycle(32);
+  lp->setCarrierFrequency(56000);
+  lp->setDutyCycle(32);
 
   setPostData(0x000, 10);
 
@@ -193,7 +191,7 @@ JVCVCR1::JVCVCR1(
 
   addKey("ch_set", Unmapped_Key, 0x66, 8);
   addKey("line", Unmapped_Key, 0x6E, 8);
-  addKey("mode", Unmapped_Key, 0x81, 8);
+  addKey("mode", Mode_Key, 0x81, 8);
   addKey("Red", Red_Key, 0x91, 8);
   addKey("INDEX1", Unmapped_Key, 0x93, 8);
   addKey("INDEX2", Unmapped_Key, 0x94, 8);
@@ -313,16 +311,16 @@ JVCTV1::JVCTV1(
   addKey("8", Eight_Key, 0x28, 8);
   addKey("9", Nine_Key, 0x29, 8);
 
-  addKey("br_up", Unmapped_Key, 0x30, 8);
-  addKey("br_down", Unmapped_Key, 0x31, 8);
-  addKey("col_up", Unmapped_Key, 0x32, 8);
-  addKey("col_down", Unmapped_Key, 0x33, 8);
-  addKey("con_up", Unmapped_Key, 0x36, 8);
-  addKey("con_down", Unmapped_Key, 0x37, 8);
+  addKey("br_up", BrightnessUp_Key, 0x30, 8);
+  addKey("br_down", BrightnessDown_Key, 0x31, 8);
+  addKey("col_up", ColorUp_Key, 0x32, 8);
+  addKey("col_down", ColorDown_Key, 0x33, 8);
+  addKey("con_up", ContrastUp_Key, 0x36, 8);
+  addKey("con_down", ContrastDown_Key, 0x37, 8);
   addKey("FUNCTION", Unmapped_Key, 0x3B, 8);
   addKey("RECALL", PrevChannel_Key, 0x3C, 8);
   addKey("sound", Unmapped_Key, 0x42, 8); // "<>"
-  addKey("VNR", Unmapped_Key, 0x45, 8);
+  addKey("VNR", NoiseReduction_Key, 0x45, 8);
   addKey("right", Right_Key, 0x55, 8);
   addKey("left", Left_Key, 0x5B, 8);
   addKey("X", Clear_Key, 0x70, 8);
@@ -428,7 +426,7 @@ JVCDAT1::JVCDAT1(
   addKey("INTRO", Unmapped_Key, 0x11, 8);
   addKey("MEMORY", Program_Key, 0x12, 8);
   addKey("DISPLAY", Info_Key, 0x14, 8);
-  addKey("CALL", Unmapped_Key, 0x15, 8);
+  addKey("CALL", Call_Key, 0x15, 8);
   addKey("SEARCH->>", Unmapped_Key, 0x16, 8);
   addKey("<<-SEARCH", Unmapped_Key, 0x17, 8);
   addKey("|<-SKIP", Previous_Key, 0x18, 8);
@@ -499,9 +497,9 @@ JVCAudio1::JVCAudio1(
   addKey("POWER", Power_Key, 0x17A3, 16);
   addKey("VOL+", VolumeUp_Key, 0x1EA3, 16);
   addKey("VOL-", VolumeDown_Key, 0x1FA3, 16);
-  addKey("MD-AUX", Unmapped_Key, 0x3EA3, 16); // "TAPE-AUX"
-  addKey("TAPE", Unmapped_Key, 0x3FA3, 16);
-  addKey("FM-MODE", Unmapped_Key, 0x5AA3, 16);
+  addKey("MD-AUX", AuxInput_Key, 0x3EA3, 16); // "TAPE-AUX"
+  addKey("TAPE", TapeInput_Key, 0x3FA3, 16);
+  addKey("FM-MODE", FMMode_Key, 0x5AA3, 16);
   addKey("TUNER-BAND", TunerBand_Key, 0x5BA3, 16);
   addKey("AHB-PRO", Unmapped_Key, 0x75A3, 16);
   addKey("AUTO-PRESET", Unmapped_Key, 0x77A3, 16);
@@ -565,7 +563,7 @@ JVCAudio1b::JVCAudio1b(
 {
   setKeysetName("Audio Keyset 1b");
 
-  addKey("VCR", Unmapped_Key, 0x2443, 16);
+  addKey("VCR", VCRInput_Key, 0x2443, 16);
 
   addKey("tape-stop", Unmapped_Key, 0x0383, 16); // "Deck.Stop"
   addKey("FORWARDS", Unmapped_Key, 0x0683, 16); // "Deck.Right"
@@ -582,7 +580,7 @@ JVCAudio1b::JVCAudio1b(
   addKey("RecPause", RecordPause_Key, 0xED83, 16);
 
   addKey("MONITOR/TAPE2", Unmapped_Key, 0x07A3, 16);
-  addKey("TUNER", Unmapped_Key, 0x0BA3, 16);
+  addKey("TUNER", TunerInput_Key, 0x0BA3, 16);
   addKey("tuner-", ChannelDown_Key, 0x18A3, 16);
   addKey("tuner+", ChannelUp_Key, 0x19A3, 16);
   addKey("FADE_MUTING", Unmapped_Key, 0x1CA3, 16);
@@ -599,7 +597,7 @@ JVCAudio1b::JVCAudio1b(
   addKey("Tuner 10", Unmapped_Key, 0x2AA3, 16);
   addKey("Tuner +10", Unmapped_Key, 0x2FA3, 16);
   addKey("SoundMode", SoundMode_Key, 0x38A3, 16);
-  addKey("PHONO", Unmapped_Key, 0x3CA3, 16);
+  addKey("PHONO", PhonoInput_Key, 0x3CA3, 16);
   addKey("cd-play", Play_Key, 0x3DA3, 16); // "CD"
 
   addKey("cd-stop", Stop_Key, 0x43B3, 16);
@@ -636,9 +634,9 @@ JVCAudio2::JVCAudio2(
   addKey("power", Power_Key, 0x00, 8);
   addKey("vol+", VolumeUp_Key, 0x01, 8);
   addKey("vol-", VolumeDown_Key, 0x02, 8);
-  addKey("ACTIVE_HYPER_BASS", Unmapped_Key, 0x04, 8); // "bass"
+  addKey("ACTIVE_HYPER_BASS", EnhancedBass_Key, 0x04, 8); // "bass"
   addKey("band", TunerBand_Key, 0x0B, 8);  // "TUNER_BAND"
-  addKey("aux", Unmapped_Key, 0x0D, 8);
+  addKey("aux", AuxInput_Key, 0x0D, 8);
 
   addKey("enter", Enter_Key, 0x11, 8);
   addKey("PRESET_SCAN", Scan_Key, 0x12, 8);
@@ -649,7 +647,7 @@ JVCAudio2::JVCAudio2(
   addKey("right-select", Unmapped_Key, 0x18, 8);
   addKey("left-select", Unmapped_Key, 0x19, 8);
   addKey("display", Info_Key, 0x1C, 8); // "CLOCK"
-  addKey("auto_mono", Unmapped_Key, 0x1F, 8);  // "fmstereo", "mode"
+  addKey("auto_mono", FMMode_Key, 0x1F, 8);  // "fmstereo", "mode"
 
   addKey("1", One_Key, 0x21, 8);
   addKey("2", Two_Key, 0x22, 8);
@@ -693,13 +691,13 @@ JVCAudio2::JVCAudio2(
   addKey("repeat", Repeat_Key, 0x78, 8);
   addKey("open_close", Eject_Key, 0x7B, 8); // "allcdeject"
   addKey("continue", Unmapped_Key, 0x7D, 8);
-  addKey("call", Unmapped_Key, 0x7F, 8);
+  addKey("call", Call_Key, 0x7F, 8);
   addKey("FREQUENCY", Unmapped_Key, 0x80, 8);
   addKey("tone", Unmapped_Key, 0x86, 8);
-  addKey("bass+", Unmapped_Key, 0x87, 8);
-  addKey("bass-", Unmapped_Key, 0x88, 8);
-  addKey("treble+", Unmapped_Key, 0x89, 8);
-  addKey("treble-", Unmapped_Key, 0x8A, 8);
+  addKey("bass+", BassUp_Key, 0x87, 8);
+  addKey("bass-", BassDown_Key, 0x88, 8);
+  addKey("treble+", TrebleUp_Key, 0x89, 8);
+  addKey("treble-", TrebleDown_Key, 0x8A, 8);
   addKey("sound", Unmapped_Key, 0x8F, 8);
   addKey("beat-cut", Unmapped_Key, 0xEE, 8);
   addKey("playcd1", Unmapped_Key, 0xF1, 8);

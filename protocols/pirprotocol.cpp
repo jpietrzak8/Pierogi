@@ -57,13 +57,19 @@ void PIRProtocol::addKey(
   unsigned int size)
 {
   // First, if key already exists, clear it out:
+  PIRKeyBits *pkb = 0;
   KeycodeCollection::iterator i = keycodes.find(key);
   if (i != keycodes.end())
   {
-    i->second.clear();
+    pkb = &(i->second);
+    pkb->firstCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
   }
 
-  appendToBitSeq(keycodes[key], command, size);
+  appendToBitSeq(pkb->firstCode, command, size);
 }
 
 
@@ -74,17 +80,25 @@ void PIRProtocol::addSIRCKey(
   unsigned int commandData)
 {
   // First, if key already exists, clear it out:
+  PIRKeyBits *pkb = 0;
   KeycodeCollection::iterator i = keycodes.find(key);
   if (i != keycodes.end())
   {
-    i->second.clear();
+    pkb = &(i->second);
+    pkb->firstCode.clear();
+    pkb->secondCode.clear();
+    pkb->thirdCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
   }
 
   // First, append the address data:
-  appendToBitSeq(keycodes[key], addressData, size);
+  appendToBitSeq(pkb->firstCode, addressData, size);
 
   // Next, the command data.  The size is always 7 bits:
-  appendToBitSeq(keycodes[key], commandData, 7);
+  appendToBitSeq(pkb->secondCode, commandData, 7);
 }
 
 
@@ -95,20 +109,28 @@ void PIRProtocol::addSIRC20Key(
   unsigned int commandData)
 {
   // First, if key already exists, clear it out:
+  PIRKeyBits *pkb = 0;
   KeycodeCollection::iterator i = keycodes.find(key);
   if (i != keycodes.end())
   {
-    i->second.clear();
+    pkb = &(i->second);
+    pkb->firstCode.clear();
+    pkb->secondCode.clear();
+    pkb->thirdCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
   }
 
   // First, append the secondary address data:
-  appendToBitSeq(keycodes[key], secondaryAddressData, 8);
+  appendToBitSeq(pkb->firstCode, secondaryAddressData, 8);
 
   // Next, the primary address data:
-  appendToBitSeq(keycodes[key], primaryAddressData, 5);
+  appendToBitSeq(pkb->secondCode, primaryAddressData, 5);
 
   // Next, the command data.  The size is always 7 bits:
-  appendToBitSeq(keycodes[key], commandData, 7);
+  appendToBitSeq(pkb->thirdCode, commandData, 7);
 }
 
 
@@ -118,15 +140,80 @@ void PIRProtocol::addSharpKey(
   unsigned int commandData)
 {
   // First, if key already exists, clear it out:
+  PIRKeyBits *pkb = 0;
   KeycodeCollection::iterator i = keycodes.find(key);
   if (i != keycodes.end())
   {
-    i->second.clear();
+    pkb = &(i->second);
+    pkb->firstCode.clear();
+    pkb->secondCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
   }
 
   // Sharp commands are all 5 bit address, 8 bit command:
-  appendToBitSeq(keycodes[key], addressData, 5);
-  appendToBitSeq(keycodes[key], commandData, 8);
+  appendToBitSeq(pkb->firstCode, addressData, 5);
+  appendToBitSeq(pkb->secondCode, commandData, 8);
+}
+
+
+void PIRProtocol::addNECKey(
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  PIRKeyBits *pkb = 0;
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    pkb = &(i->second);
+    pkb->firstCode.clear();
+    pkb->secondCode.clear();
+    pkb->thirdCode.clear();
+    pkb->fourthCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
+  }
+
+  // NEC commands should always be 8 bits address, 8 bits command:
+  appendToBitSeq(pkb->firstCode, addressData, 8);
+  appendToBitSeq(pkb->secondCode, commandData, 8);
+}
+
+
+// Most Pioneer keys use the NEC key format, but some are pairs of
+// NEC keys sent together:
+void PIRProtocol::addPioneerKey(
+  PIRKeyName key,
+  unsigned int firstAddress,
+  unsigned int firstCommand,
+  unsigned int secondAddress,
+  unsigned int secondCommand)
+{
+  PIRKeyBits *pkb = 0;
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    pkb = &(i->second);
+    pkb->firstCode.clear();
+    pkb->secondCode.clear();
+    pkb->thirdCode.clear();
+    pkb->fourthCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
+  }
+
+  // All four codes should be 8 bits in length:
+  appendToBitSeq(pkb->firstCode, firstAddress, 8);
+  appendToBitSeq(pkb->secondCode, firstCommand, 8);
+  appendToBitSeq(pkb->thirdCode, secondAddress, 8);
+  appendToBitSeq(pkb->fourthCode, secondCommand, 8);
 }
 
 

@@ -1,5 +1,5 @@
 #include "raite.h"
-#include "necprotocol.h"
+#include "protocols/necprotocol.h"
 
 RaiteDVD1::RaiteDVD1(
   QObject *guiObject,
@@ -9,7 +9,9 @@ RaiteDVD1::RaiteDVD1(
       Raite_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  addControlledDevice(Raite_Make, "DVD-703", DVD_Device);
+
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x04FB, 16);
   setPreData(0x20, 8);

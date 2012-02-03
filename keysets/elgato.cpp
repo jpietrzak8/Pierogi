@@ -1,5 +1,5 @@
 #include "elgato.h"
-#include "necprotocol.h"
+#include "protocols/necprotocol.h"
 
 ElgatoEyeTV1::ElgatoEyeTV1(
   QObject *guiObject,
@@ -9,7 +9,7 @@ ElgatoEyeTV1::ElgatoEyeTV1(
       Elgato_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x45, 8);
 

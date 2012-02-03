@@ -1,5 +1,5 @@
 #include "rca.h"
-#include "necprotocol.h"
+#include "protocols/lircprotocol.h"
 
 RCATV1::RCATV1(
   QObject *guiObject,
@@ -9,20 +9,19 @@ RCATV1::RCATV1(
       RCA_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     500, 1000,
     500, 2000,
-    64500, true,
-    LIRC_NEC);
+    64500, true);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(4000, 4000);
-  np->setTrailerPulse(500);
+  lp->setHeaderPair(4000, 4000);
+  lp->setTrailerPulse(500);
 
-//  np->setMinimumRepetitions(1);
+//  lp->setMinimumRepetitions(1);
 
   setPreData(0xF, 4);
 
@@ -56,7 +55,7 @@ RCATV1::RCATV1(
   addKey("tv-9", Nine_Key, 0x390C6, 20);
   addKey("tv-0", Zero_Key, 0x300CF, 20);
   addKey("tv-input", Input_Key, 0xA305C, 20);
-  addKey("tv-antenna", Unmapped_Key, 0x050FA, 20);
+  addKey("tv-antenna", AntennaInput_Key, 0x050FA, 20);
   addKey("tv-reverse", Rewind_Key, 0x1D0E2, 20);
   addKey("tv-play", Play_Key, 0x150EA, 20);
   addKey("tv-forward", FastForward_Key, 0x1C0E3, 20);
@@ -98,17 +97,16 @@ RCATV2::RCATV2(
       RCA_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     500, 1000,
     500, 2000,
-    12390, false,
-    LIRC_NEC);
+    12390, false);
 
-  threadableProtocol = np;
-  np->setHeaderPair(17355, 3978);
-  np->setTrailerPulse(897);
+  threadableProtocol = lp;
+  lp->setHeaderPair(17355, 3978);
+  lp->setTrailerPulse(897);
 
   setPreData(0xF, 4);
 
@@ -147,18 +145,17 @@ RCAAux1::RCAAux1(
       RCA_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     500, 1000,
     500, 2000,
-    64500, true,
-    LIRC_NEC);
+    64500, true);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(4000, 4000);
-  np->setTrailerPulse(500);
+  lp->setHeaderPair(4000, 4000);
+  lp->setTrailerPulse(500);
 
   setPreData(0x4, 4);
 
@@ -189,7 +186,7 @@ RCAAux1::RCAAux1(
   addKey("aux-9", Nine_Key, 0x39BC6, 20);
   addKey("aux-0", Zero_Key, 0x30BCF, 20);
   addKey("aux-who", Unmapped_Key, 0x61B9E, 20);
-  addKey("aux-antenna", Unmapped_Key, 0x05BFA, 20);
+  addKey("aux-antenna", AntennaInput_Key, 0x05BFA, 20);
   addKey("aux-reverse", Rewind_Key, 0x1DBE2, 20);
   addKey("aux-play", Play_Key, 0x15BEA, 20);
   addKey("aux-forward", FastForward_Key, 0x1CBE3, 20);
@@ -210,18 +207,17 @@ RCAAux2::RCAAux2(
       RCA_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     500, 1000,
     500, 2000,
-    64500, true,
-    LIRC_NEC);
+    64500, true);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(4000, 4000);
-  np->setTrailerPulse(500);
+  lp->setHeaderPair(4000, 4000);
+  lp->setTrailerPulse(500);
 
   setPreData(0xC, 4);
 
@@ -254,7 +250,7 @@ RCAAux2::RCAAux2(
   addKey("aux-8", Eight_Key, 0x383C7, 20);
   addKey("aux-9", Nine_Key, 0x393C6, 20);
   addKey("aux-0", Zero_Key, 0x303CF, 20);
-  addKey("aux-antenna", Unmapped_Key, 0x053FA, 20);
+  addKey("aux-antenna", AntennaInput_Key, 0x053FA, 20);
   addKey("aux-reverse", Rewind_Key, 0x1D3E2, 20);
   addKey("aux-play", Play_Key, 0x153EA, 20);
   addKey("aux-forward", FastForward_Key, 0x1C3E3, 20);
@@ -276,7 +272,7 @@ RCAAux2a::RCAAux2a(
   addKey("aux2_left", Left_Key, 0x6439B, 20);
   addKey("aux2_right", Right_Key, 0x6539A, 20);
   addKey("aux2_down", Down_Key, 0x6239D, 20);
-  addKey("aux2_antenna", Unmapped_Key, 0x413BE, 20);
+  addKey("aux2_antenna", AntennaInput_Key, 0x413BE, 20);
   addKey("aux2_whoinput", Input_Key, 0x283D7, 20);
 }
 
@@ -289,20 +285,19 @@ RCAVCR1::RCAVCR1(
       RCA_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     500, 1000,
     500, 2000,
-    64500, true,
-    LIRC_NEC);
+    64500, true);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(4000, 4000);
-  np->setTrailerPulse(500);
+  lp->setHeaderPair(4000, 4000);
+  lp->setTrailerPulse(500);
 
-//  np->setMinimumRepetitions(1);
+//  lp->setMinimumRepetitions(1);
 
   setPreData(0xE, 4);
 
@@ -333,7 +328,7 @@ RCAVCR1::RCAVCR1(
   addKey("vcr1-9", Nine_Key, 0x391C6, 20);
   addKey("vcr1-0", Zero_Key, 0x301CF, 20);
   addKey("vcr1-input", Input_Key, 0x471B8, 20);
-  addKey("vcr1-antenna", Unmapped_Key, 0x051FA, 20);
+  addKey("vcr1-antenna", AntennaInput_Key, 0x051FA, 20);
   addKey("vcr1-reverse", Rewind_Key, 0x1D1E2, 20);
   addKey("vcr1-play", Play_Key, 0x151EA, 20);
   addKey("vcr1-forward", FastForward_Key, 0x1C1E3, 20);
@@ -356,18 +351,17 @@ RCAVCR2::RCAVCR2(
       RCA_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     500, 1000,
     500, 2000,
-    64500, true,
-    LIRC_NEC);
+    64500, true);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(4000, 4000);
-  np->setTrailerPulse(500);
+  lp->setHeaderPair(4000, 4000);
+  lp->setTrailerPulse(500);
 
   setPreData(0xD, 4);
 
@@ -398,7 +392,7 @@ RCAVCR2::RCAVCR2(
   addKey("vcr2-9", Nine_Key, 0x392C6, 20);
   addKey("vcr2-0", Zero_Key, 0x302CF, 20);
   addKey("vcr2-input", Input_Key, 0x472B8, 20);
-  addKey("vcr2-antenna", Unmapped_Key, 0x052FA, 20);
+  addKey("vcr2-antenna", AntennaInput_Key, 0x052FA, 20);
   addKey("vcr2-reverse", Rewind_Key, 0x1D2E2, 20);
   addKey("vcr2-play", Play_Key, 0x152EA, 20);
   addKey("vcr2-forward", FastForward_Key, 0x1C2E3, 20);
@@ -417,18 +411,17 @@ RCADVD1::RCADVD1(
       RCA_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     500, 1000,
     500, 2000,
-    64500, true,
-    LIRC_NEC);
+    64500, true);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(4000, 4000);
-  np->setTrailerPulse(500);
+  lp->setHeaderPair(4000, 4000);
+  lp->setTrailerPulse(500);
 
   setPreData(0x5, 4);
 
@@ -459,7 +452,7 @@ RCADVD1::RCADVD1(
   addKey("dvd-9", Nine_Key, 0x39AC6, 20);
   addKey("dvd-0", Zero_Key, 0x30ACF, 20);
   addKey("dvd-input", Input_Key, 0x47AB8, 20);
-  addKey("dvd-antenna", Unmapped_Key, 0x05AFA, 20); // tv_vcr
+  addKey("dvd-antenna", AntennaInput_Key, 0x05AFA, 20); // tv_vcr
   addKey("dvd-reverse", Rewind_Key, 0x1DAE2, 20);
   addKey("dvd-play", Play_Key, 0x15AEA, 20);
   addKey("dvd-forward", FastForward_Key, 0x1CAE3, 20);
@@ -495,18 +488,17 @@ RCASat1::RCASat1(
       RCA_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     500, 1000,
     500, 2000,
-    64500, true,
-    LIRC_NEC);
+    64500, true);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(4000, 4000);
-  np->setTrailerPulse(500);
+  lp->setHeaderPair(4000, 4000);
+  lp->setTrailerPulse(500);
 
   setPreData(0x7, 4);
 
@@ -538,7 +530,7 @@ RCASat1::RCASat1(
   addKey("9", Nine_Key, 0x398C6, 20);
   addKey("0", Zero_Key, 0x308CF, 20);
   addKey("hd-input", Input_Key, 0x478B8, 20);
-  addKey("antenna", Unmapped_Key, 0x058FA, 20); // "TV/VCR"
+  addKey("antenna", AntennaInput_Key, 0x058FA, 20); // "TV/VCR"
   addKey("hd-reverse", Rewind_Key, 0x1D8E2, 20);
   addKey("hd-play", Play_Key, 0x158EA, 20);
   addKey("hd-forward", FastForward_Key, 0x1C8E3, 20);
@@ -546,7 +538,7 @@ RCASat1::RCASat1(
   addKey("hd-stop", Stop_Key, 0x1F8E0, 20);
   addKey("hd-pause", Pause_Key, 0x198E6, 20);
   addKey("skip", Advance_Key, 0x538AC, 20);
-  addKey("SAT", Unmapped_Key, 0x3A8C5, 20);
+  addKey("SAT", CableInput_Key, 0x3A8C5, 20);
   addKey("PIP", PIP_Key, 0x1B8E4, 20);
   addKey("SWAP", PIPSwap_Key, 0xC383C, 20);
   addKey("INPUT", Unmapped_Key, 0x6189E, 20);
@@ -561,24 +553,23 @@ RCASat2::RCASat2(
       RCA_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
+  LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
     440, 2780,
     440, 1645,
-    6115, false,
-    LIRC_NEC);
+    6115, false);
 
-  threadableProtocol = np;
+  threadableProtocol = lp;
 
-  np->setHeaderPair(525, 6045);
-  np->setTrailerPulse(450);
+  lp->setHeaderPair(525, 6045);
+  lp->setTrailerPulse(450);
 
-//  np->setMinimumRepetitions(6);
-  np->setFullHeadlessRepeat(true);
+//  lp->setMinimumRepetitions(6);
+  lp->setFullHeadlessRepeat(true);
 
-  np->setCarrierFrequency(56000);
-  np->setDutyCycle(32);
+  lp->setCarrierFrequency(56000);
+  lp->setDutyCycle(32);
 
   setPostData(0x000, 10);
 
@@ -613,7 +604,7 @@ RCASat2::RCASat2(
   addKey("asterisk", Unmapped_Key, 0x37, 6);
   addKey("pound", Unmapped_Key, 0x38, 6);
   addKey("power_off", PowerOff_Key, 0x39, 6);
-  addKey("sat", Unmapped_Key, 0x41, 6);
+  addKey("sat", CableInput_Key, 0x41, 6);
   addKey("dish_home", Unmapped_Key, 0x52, 6);
   addKey("sys_info2", Unmapped_Key, 0x54, 6);
   addKey("dish_home2", Unmapped_Key, 0x56, 6);

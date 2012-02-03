@@ -1,5 +1,5 @@
 #include "hauppauge.h"
-#include "rc5protocol.h"
+#include "protocols/rc5protocol.h"
 
 HauppaugePCTV1::HauppaugePCTV1(
   QObject *guiObject,
@@ -39,7 +39,7 @@ HauppaugePCTV1::HauppaugePCTV1(
   addKey("Videos", Unmapped_Key, 0x18, 6);
   addKey("Music", Unmapped_Key, 0x19, 6);
   addKey("Pictures", Unmapped_Key, 0x1A, 6);
-  addKey("Guide", Unmapped_Key, 0x1B, 6);
+  addKey("Guide", Guide_Key, 0x1B, 6);
   addKey("TV", Unmapped_Key, 0x1C, 6);
   addKey("SkipForward", Next_Key, 0x1E, 6);
   addKey("Back/Exit", Exit_Key, 0x1F, 6);

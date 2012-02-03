@@ -1,114 +1,103 @@
-#ifndef LG_H
-#define LG_H
+#ifndef PIONEER_H
+#define PIONEER_H
 
 #include "pirkeysetmetadata.h"
-
 #include <QObject>
 
-class LGTV1: public PIRKeysetMetaData
+class PioneerTV1: public PIRKeysetMetaData
 {
 public:
-  LGTV1(
+  PioneerTV1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV1a: public LGTV1
+class PioneerTV2: public PIRKeysetMetaData
 {
 public:
-  LGTV1a(
+  PioneerTV2(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV1b: public LGTV1
+class PioneerTV3: public PIRKeysetMetaData
 {
 public:
-  LGTV1b(
+  PioneerTV3(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV1c: public LGTV1
+class PioneerAudio1: public PIRKeysetMetaData
 {
 public:
-  LGTV1c(
+  PioneerAudio1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV2: public PIRKeysetMetaData
+class PioneerAudio1a: public PioneerAudio1
 {
 public:
-  LGTV2(
+  PioneerAudio1a(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV2a: public LGTV2
+class PioneerAudio2: public PIRKeysetMetaData
 {
 public:
-  LGTV2a(
+  PioneerAudio2(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV2b: public LGTV2
+class PioneerAudio3: public PIRKeysetMetaData
 {
 public:
-  LGTV2b(
+  PioneerAudio3(
     QObject *guiObject,
     unsigned int index);
 };
 
-/*
-class LGDisc1: public PIRKeysetMetaData
+class PioneerAudio4: public PIRKeysetMetaData
 {
 public:
-  LGDisc1(
+  PioneerAudio4(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGDisc2: public PIRKeysetMetaData
+class PioneerAudio5: public PIRKeysetMetaData
 {
 public:
-  LGDisc2(
+  PioneerAudio5(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGDisc2a: public LGDisc2
+class PioneerCD1: public PIRKeysetMetaData
 {
 public:
-  LGDisc2a(
-    QObject *guiObject,
-    unsigned int index);
-};
-*/
-
-class LGVCR1: public PIRKeysetMetaData
-{
-public:
-  LGVCR1(
+  PioneerCD1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGVCR1a: public LGVCR1
+class PioneerLaserDisc1: public PIRKeysetMetaData
 {
 public:
-  LGVCR1a(
+  PioneerLaserDisc1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGVCR1b: public LGVCR1
+class PioneerDVD1: public PIRKeysetMetaData
 {
 public:
-  LGVCR1b(
+  PioneerDVD1(
     QObject *guiObject,
     unsigned int index);
 };
 
-#endif // LG_H
+#endif // PIONEER_H

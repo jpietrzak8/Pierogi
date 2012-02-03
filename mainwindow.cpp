@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
   : QMainWindow(parent),
     ui(new Ui::MainWindow),
     selectKeysetForm(0),
+    secondaryForm(0),
     documentationForm(0),
     aboutForm(0),
     currentKeyset(0)
@@ -47,6 +48,9 @@ MainWindow::MainWindow(QWidget *parent)
 
   // Set up the keyset selection window:
   selectKeysetForm = new PIRSelectKeysetForm(this);
+
+  // Set up the secondary buttons window:
+  secondaryForm = new PIRSecondaryForm(this);
 
   myKeysets->populateGuiWidget(selectKeysetForm);
 
@@ -64,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent)
   }
 
   enableButtons();
+  secondaryForm->enableButtons(myKeysets, currentKeyset);
 
   connect(
     ui->favoriteKeysetsWidget,
@@ -243,9 +248,10 @@ void MainWindow::enableButtons()
   emit stopEnabled(myKeysets->hasKey(currentKeyset, Stop_Key));
   emit ejectEnabled(myKeysets->hasKey(currentKeyset, Eject_Key));
 
+/*
   // Media2 keys:
   emit discTitleEnabled(myKeysets->hasKey(currentKeyset, DiscTitle_Key));
-  emit discSelectEnabled(myKeysets->hasKey(currentKeyset, DiscSelect_Key));
+  emit discSelectEnabled(myKeysets->hasKey(currentKeyset, NextDisc_Key));
   emit vhsSpeedEnabled(myKeysets->hasKey(currentKeyset, VHSSpeed_Key));
   emit trackingMinusEnabled(myKeysets->hasKey(currentKeyset, TrackingMinus_Key));
   emit trackingPlusEnabled(myKeysets->hasKey(currentKeyset, TrackingPlus_Key));
@@ -278,6 +284,7 @@ void MainWindow::enableButtons()
   emit pipChannelDownEnabled(myKeysets->hasKey(currentKeyset, PIPChannelDown_Key));
   emit pipPauseEnabled(myKeysets->hasKey(currentKeyset, PIPPause_Key));
   emit pipSizeEnabled(myKeysets->hasKey(currentKeyset, PIPSize_Key));
+*/
 }
 
 
@@ -295,7 +302,7 @@ void MainWindow::receivedExternalWarning(
 
 void MainWindow::on_powerButton_pressed()
 {
-  startRepeating(currentKeyset, Power_Key);
+  startRepeating(Power_Key);
 }
 
 void MainWindow::on_powerButton_released()
@@ -305,7 +312,7 @@ void MainWindow::on_powerButton_released()
 
 void MainWindow::on_mainChannelUpButton_pressed()
 {
-  startRepeating(currentKeyset, ChannelUp_Key);
+  startRepeating(ChannelUp_Key);
 }
 
 void MainWindow::on_mainChannelUpButton_released()
@@ -315,7 +322,7 @@ void MainWindow::on_mainChannelUpButton_released()
 
 void MainWindow::on_mainChannelDownButton_pressed()
 {
-  startRepeating(currentKeyset, ChannelDown_Key);
+  startRepeating(ChannelDown_Key);
 }
 
 void MainWindow::on_mainChannelDownButton_released()
@@ -325,7 +332,7 @@ void MainWindow::on_mainChannelDownButton_released()
 
 void MainWindow::on_mainVolumeUp_pressed()
 {
-  startRepeating(currentKeyset, VolumeUp_Key);
+  startRepeating(VolumeUp_Key);
 }
 
 void MainWindow::on_mainVolumeUp_released()
@@ -335,7 +342,7 @@ void MainWindow::on_mainVolumeUp_released()
 
 void MainWindow::on_mainVolumeDownButton_pressed()
 {
-  startRepeating(currentKeyset, VolumeDown_Key);
+  startRepeating(VolumeDown_Key);
 }
 
 void MainWindow::on_mainVolumeDownButton_released()
@@ -348,7 +355,7 @@ void MainWindow::on_mainVolumeDownButton_released()
 
 void MainWindow::on_redButton_pressed()
 {
-  startRepeating(currentKeyset, Red_Key);
+  startRepeating(Red_Key);
 }
 
 void MainWindow::on_redButton_released()
@@ -358,7 +365,7 @@ void MainWindow::on_redButton_released()
 
 void MainWindow::on_greenButton_pressed()
 {
-  startRepeating(currentKeyset, Green_Key);
+  startRepeating(Green_Key);
 }
 
 void MainWindow::on_greenButton_released()
@@ -368,7 +375,7 @@ void MainWindow::on_greenButton_released()
 
 void MainWindow::on_yellowButton_pressed()
 {
-  startRepeating(currentKeyset, Yellow_Key);
+  startRepeating(Yellow_Key);
 }
 
 void MainWindow::on_yellowButton_released()
@@ -378,7 +385,7 @@ void MainWindow::on_yellowButton_released()
 
 void MainWindow::on_blueButton_pressed()
 {
-  startRepeating(currentKeyset, Blue_Key);
+  startRepeating(Blue_Key);
 }
 
 void MainWindow::on_blueButton_released()
@@ -388,7 +395,7 @@ void MainWindow::on_blueButton_released()
 
 void MainWindow::on_aspectRatioButton_pressed()
 {
-  startRepeating(currentKeyset, AspectRatio_Key);
+  startRepeating(AspectRatio_Key);
 }
 
 void MainWindow::on_aspectRatioButton_released()
@@ -398,7 +405,7 @@ void MainWindow::on_aspectRatioButton_released()
 
 void MainWindow::on_surroundButton_pressed()
 {
-  startRepeating(currentKeyset, Surround_Key);
+  startRepeating(Surround_Key);
 }
 
 void MainWindow::on_surroundButton_released()
@@ -408,7 +415,7 @@ void MainWindow::on_surroundButton_released()
 
 void MainWindow::on_audioButton_pressed()
 {
-  startRepeating(currentKeyset, Audio_Key);
+  startRepeating(Audio_Key);
 }
 
 void MainWindow::on_audioButton_released()
@@ -418,7 +425,7 @@ void MainWindow::on_audioButton_released()
 
 void MainWindow::on_infoButton_pressed()
 {
-  startRepeating(currentKeyset, Info_Key);
+  startRepeating(Info_Key);
 }
 
 void MainWindow::on_infoButton_released()
@@ -428,7 +435,7 @@ void MainWindow::on_infoButton_released()
 
 void MainWindow::on_captionButton_pressed()
 {
-  startRepeating(currentKeyset, Captions_Key);
+  startRepeating(Captions_Key);
 }
 
 void MainWindow::on_captionButton_released()
@@ -438,7 +445,7 @@ void MainWindow::on_captionButton_released()
 
 void MainWindow::on_inputButton_pressed()
 {
-  startRepeating(currentKeyset, Input_Key);
+  startRepeating(Input_Key);
 }
 
 void MainWindow::on_inputButton_released()
@@ -448,7 +455,7 @@ void MainWindow::on_inputButton_released()
 
 void MainWindow::on_sleepButton_pressed()
 {
-  startRepeating(currentKeyset, Sleep_Key);
+  startRepeating(Sleep_Key);
 }
 
 void MainWindow::on_sleepButton_released()
@@ -458,7 +465,7 @@ void MainWindow::on_sleepButton_released()
 
 void MainWindow::on_muteButton_pressed()
 {
-  startRepeating(currentKeyset, Mute_Key);
+  startRepeating(Mute_Key);
 }
 
 void MainWindow::on_muteButton_released()
@@ -471,7 +478,7 @@ void MainWindow::on_muteButton_released()
 
 void MainWindow::on_oneButton_pressed()
 {
-  startRepeating(currentKeyset, One_Key);
+  startRepeating(One_Key);
 }
 
 void MainWindow::on_oneButton_released()
@@ -481,7 +488,7 @@ void MainWindow::on_oneButton_released()
 
 void MainWindow::on_twoButton_pressed()
 {
-  startRepeating(currentKeyset, Two_Key);
+  startRepeating(Two_Key);
 }
 
 void MainWindow::on_twoButton_released()
@@ -491,7 +498,7 @@ void MainWindow::on_twoButton_released()
 
 void MainWindow::on_threeButton_pressed()
 {
-  startRepeating(currentKeyset, Three_Key);
+  startRepeating(Three_Key);
 }
 
 void MainWindow::on_threeButton_released()
@@ -501,7 +508,7 @@ void MainWindow::on_threeButton_released()
 
 void MainWindow::on_fourButton_pressed()
 {
-  startRepeating(currentKeyset, Four_Key);
+  startRepeating(Four_Key);
 }
 
 void MainWindow::on_fourButton_released()
@@ -511,7 +518,7 @@ void MainWindow::on_fourButton_released()
 
 void MainWindow::on_fiveButton_pressed()
 {
-  startRepeating(currentKeyset, Five_Key);
+  startRepeating(Five_Key);
 }
 
 void MainWindow::on_fiveButton_released()
@@ -521,7 +528,7 @@ void MainWindow::on_fiveButton_released()
 
 void MainWindow::on_sixButton_pressed()
 {
-  startRepeating(currentKeyset, Six_Key);
+  startRepeating(Six_Key);
 }
 
 void MainWindow::on_sixButton_released()
@@ -531,7 +538,7 @@ void MainWindow::on_sixButton_released()
 
 void MainWindow::on_sevenButton_pressed()
 {
-  startRepeating(currentKeyset, Seven_Key);
+  startRepeating(Seven_Key);
 }
 
 void MainWindow::on_sevenButton_released()
@@ -541,7 +548,7 @@ void MainWindow::on_sevenButton_released()
 
 void MainWindow::on_eightButton_pressed()
 {
-  startRepeating(currentKeyset, Eight_Key);
+  startRepeating(Eight_Key);
 }
 
 void MainWindow::on_eightButton_released()
@@ -551,7 +558,7 @@ void MainWindow::on_eightButton_released()
 
 void MainWindow::on_nineButton_pressed()
 {
-  startRepeating(currentKeyset, Nine_Key);
+  startRepeating(Nine_Key);
 }
 
 void MainWindow::on_nineButton_released()
@@ -561,7 +568,7 @@ void MainWindow::on_nineButton_released()
 
 void MainWindow::on_zeroButton_pressed()
 {
-  startRepeating(currentKeyset, Zero_Key);
+  startRepeating(Zero_Key);
 }
 
 void MainWindow::on_zeroButton_released()
@@ -571,7 +578,7 @@ void MainWindow::on_zeroButton_released()
 
 void MainWindow::on_enterButton_pressed()
 {
-  startRepeating(currentKeyset, Enter_Key);
+  startRepeating(Enter_Key);
 }
 
 void MainWindow::on_enterButton_released()
@@ -581,7 +588,7 @@ void MainWindow::on_enterButton_released()
 
 void MainWindow::on_clearButton_pressed()
 {
-  startRepeating(currentKeyset, Clear_Key);
+  startRepeating(Clear_Key);
 }
 
 void MainWindow::on_clearButton_released()
@@ -591,7 +598,7 @@ void MainWindow::on_clearButton_released()
 
 void MainWindow::on_prevChannelButton_pressed()
 {
-  startRepeating(currentKeyset, PrevChannel_Key);
+  startRepeating(PrevChannel_Key);
 }
 
 void MainWindow::on_prevChannelButton_released()
@@ -601,7 +608,7 @@ void MainWindow::on_prevChannelButton_released()
 
 void MainWindow::on_plusOneHundredButton_pressed()
 {
-  startRepeating(currentKeyset, PlusOneHundred_Key);
+  startRepeating(PlusOneHundred_Key);
 }
 
 void MainWindow::on_plusOneHundredButton_released()
@@ -611,7 +618,7 @@ void MainWindow::on_plusOneHundredButton_released()
 
 void MainWindow::on_dashButton_pressed()
 {
-  startRepeating(currentKeyset, Dash_Key);
+  startRepeating(Dash_Key);
 }
 
 void MainWindow::on_dashButton_released()
@@ -621,7 +628,7 @@ void MainWindow::on_dashButton_released()
 
 void MainWindow::on_doubleDigitButton_pressed()
 {
-  startRepeating(currentKeyset, DoubleDigit_Key);
+  startRepeating(DoubleDigit_Key);
 }
 
 void MainWindow::on_doubleDigitButton_released()
@@ -634,7 +641,7 @@ void MainWindow::on_doubleDigitButton_released()
 
 void MainWindow::on_upButton_pressed()
 {
-  startRepeating(currentKeyset, Up_Key);
+  startRepeating(Up_Key);
 }
 
 void MainWindow::on_upButton_released()
@@ -644,7 +651,7 @@ void MainWindow::on_upButton_released()
 
 void MainWindow::on_leftButton_pressed()
 {
-  startRepeating(currentKeyset, Left_Key);
+  startRepeating(Left_Key);
 }
 
 void MainWindow::on_leftButton_released()
@@ -654,7 +661,7 @@ void MainWindow::on_leftButton_released()
 
 void MainWindow::on_rightButton_pressed()
 {
-  startRepeating(currentKeyset, Right_Key);
+  startRepeating(Right_Key);
 }
 
 void MainWindow::on_rightButton_released()
@@ -664,7 +671,7 @@ void MainWindow::on_rightButton_released()
 
 void MainWindow::on_downButton_pressed()
 {
-  startRepeating(currentKeyset, Down_Key);
+  startRepeating(Down_Key);
 }
 
 void MainWindow::on_downButton_released()
@@ -674,7 +681,7 @@ void MainWindow::on_downButton_released()
 
 void MainWindow::on_selectButton_pressed()
 {
-  startRepeating(currentKeyset, Select_Key);
+  startRepeating(Select_Key);
 }
 
 void MainWindow::on_selectButton_released()
@@ -684,7 +691,7 @@ void MainWindow::on_selectButton_released()
 
 void MainWindow::on_menuButton_pressed()
 {
-  startRepeating(currentKeyset, Menu_Key);
+  startRepeating(Menu_Key);
 }
 
 void MainWindow::on_menuButton_released()
@@ -694,7 +701,7 @@ void MainWindow::on_menuButton_released()
 
 void MainWindow::on_exitButton_pressed()
 {
-  startRepeating(currentKeyset, Exit_Key);
+  startRepeating(Exit_Key);
 }
 
 void MainWindow::on_exitButton_released()
@@ -704,7 +711,7 @@ void MainWindow::on_exitButton_released()
 
 void MainWindow::on_guideButton_pressed()
 {
-  startRepeating(currentKeyset, Guide_Key);
+  startRepeating(Guide_Key);
 }
 
 void MainWindow::on_guideButton_released()
@@ -714,7 +721,7 @@ void MainWindow::on_guideButton_released()
 
 void MainWindow::on_discMenuButton_pressed()
 {
-  startRepeating(currentKeyset, DiscMenu_Key);
+  startRepeating(DiscMenu_Key);
 }
 
 void MainWindow::on_discMenuButton_released()
@@ -727,7 +734,7 @@ void MainWindow::on_discMenuButton_released()
 
 void MainWindow::on_mediaPreviousButton_pressed()
 {
-  startRepeating(currentKeyset, Previous_Key);
+  startRepeating(Previous_Key);
 }
 
 void MainWindow::on_mediaPreviousButton_released()
@@ -737,7 +744,7 @@ void MainWindow::on_mediaPreviousButton_released()
 
 void MainWindow::on_mediaNextButton_pressed()
 {
-  startRepeating(currentKeyset, Next_Key);
+  startRepeating(Next_Key);
 }
 
 void MainWindow::on_mediaNextButton_released()
@@ -747,7 +754,7 @@ void MainWindow::on_mediaNextButton_released()
 
 void MainWindow::on_replayButton_pressed()
 {
-  startRepeating(currentKeyset, Replay_Key);
+  startRepeating(Replay_Key);
 }
 
 void MainWindow::on_replayButton_released()
@@ -757,7 +764,7 @@ void MainWindow::on_replayButton_released()
 
 void MainWindow::on_advanceButton_pressed()
 {
-  startRepeating(currentKeyset, Advance_Key);
+  startRepeating(Advance_Key);
 }
 
 void MainWindow::on_advanceButton_released()
@@ -767,7 +774,7 @@ void MainWindow::on_advanceButton_released()
 
 void MainWindow::on_stepBackButton_pressed()
 {
-  startRepeating(currentKeyset, StepBack_Key);
+  startRepeating(StepBack_Key);
 }
 
 void MainWindow::on_stepBackButton_released()
@@ -777,7 +784,7 @@ void MainWindow::on_stepBackButton_released()
 
 void MainWindow::on_stepForwardButton_pressed()
 {
-  startRepeating(currentKeyset, StepForward_Key);
+  startRepeating(StepForward_Key);
 }
 
 void MainWindow::on_stepForwardButton_released()
@@ -787,7 +794,7 @@ void MainWindow::on_stepForwardButton_released()
 
 void MainWindow::on_reverseButton_pressed()
 {
-  startRepeating(currentKeyset, Rewind_Key);
+  startRepeating(Rewind_Key);
 }
 
 void MainWindow::on_reverseButton_released()
@@ -797,7 +804,7 @@ void MainWindow::on_reverseButton_released()
 
 void MainWindow::on_fastForwardButton_pressed()
 {
-  startRepeating(currentKeyset, FastForward_Key);
+  startRepeating(FastForward_Key);
 }
 
 void MainWindow::on_fastForwardButton_released()
@@ -807,7 +814,7 @@ void MainWindow::on_fastForwardButton_released()
 
 void MainWindow::on_playButton_pressed()
 {
-  startRepeating(currentKeyset, Play_Key);
+  startRepeating(Play_Key);
 }
 
 void MainWindow::on_playButton_released()
@@ -817,7 +824,7 @@ void MainWindow::on_playButton_released()
 
 void MainWindow::on_pauseButton_pressed()
 {
-  startRepeating(currentKeyset, Pause_Key);
+  startRepeating(Pause_Key);
 }
 
 void MainWindow::on_pauseButton_released()
@@ -827,7 +834,7 @@ void MainWindow::on_pauseButton_released()
 
 void MainWindow::on_stopButton_pressed()
 {
-  startRepeating(currentKeyset, Stop_Key);
+  startRepeating(Stop_Key);
 }
 
 void MainWindow::on_stopButton_released()
@@ -837,7 +844,7 @@ void MainWindow::on_stopButton_released()
 
 void MainWindow::on_ejectButton_pressed()
 {
-  startRepeating(currentKeyset, Eject_Key);
+  startRepeating(Eject_Key);
 }
 
 void MainWindow::on_ejectButton_released()
@@ -846,11 +853,12 @@ void MainWindow::on_ejectButton_released()
 }
 
 
+/*
 // Media2 tab slots:
 
 void MainWindow::on_discTitleButton_pressed()
 {
-  startRepeating(currentKeyset, DiscTitle_Key);
+  startRepeating(DiscTitle_Key);
 }
 
 void MainWindow::on_discTitleButton_released()
@@ -860,7 +868,7 @@ void MainWindow::on_discTitleButton_released()
 
 void MainWindow::on_discSelectButton_pressed()
 {
-  startRepeating(currentKeyset, DiscSelect_Key);
+  startRepeating(NextDisc_Key);
 }
 
 void MainWindow::on_discSelectButton_released()
@@ -870,7 +878,7 @@ void MainWindow::on_discSelectButton_released()
 
 void MainWindow::on_vhsSpeedButton_pressed()
 {
-  startRepeating(currentKeyset, VHSSpeed_Key);
+  startRepeating(VHSSpeed_Key);
 }
 
 void MainWindow::on_vhsSpeedButton_released()
@@ -880,7 +888,7 @@ void MainWindow::on_vhsSpeedButton_released()
 
 void MainWindow::on_trackingPlusButton_pressed()
 {
-  startRepeating(currentKeyset, TrackingPlus_Key);
+  startRepeating(TrackingPlus_Key);
 }
 
 void MainWindow::on_trackingPlusButton_released()
@@ -890,7 +898,7 @@ void MainWindow::on_trackingPlusButton_released()
 
 void MainWindow::on_trackingMinusButton_pressed()
 {
-  startRepeating(currentKeyset, TrackingMinus_Key);
+  startRepeating(TrackingMinus_Key);
 }
 
 void MainWindow::on_trackingMinusButton_released()
@@ -900,7 +908,7 @@ void MainWindow::on_trackingMinusButton_released()
 
 void MainWindow::on_autoTrackingButton_pressed()
 {
-  startRepeating(currentKeyset, AutoTracking_Key);
+  startRepeating(AutoTracking_Key);
 }
 
 void MainWindow::on_autoTrackingButton_released()
@@ -910,7 +918,7 @@ void MainWindow::on_autoTrackingButton_released()
 
 void MainWindow::on_pageUpButton_pressed()
 {
-  startRepeating(currentKeyset, PageUp_Key);
+  startRepeating(PageUp_Key);
 }
 
 void MainWindow::on_pageUpButton_released()
@@ -920,7 +928,7 @@ void MainWindow::on_pageUpButton_released()
 
 void MainWindow::on_pageDownButton_pressed()
 {
-  startRepeating(currentKeyset, PageDown_Key);
+  startRepeating(PageDown_Key);
 }
 
 void MainWindow::on_pageDownButton_released()
@@ -930,7 +938,7 @@ void MainWindow::on_pageDownButton_released()
 
 void MainWindow::on_slowButton_pressed()
 {
-  startRepeating(currentKeyset, Slow_Key);
+  startRepeating(Slow_Key);
 }
 
 void MainWindow::on_slowButton_released()
@@ -940,7 +948,7 @@ void MainWindow::on_slowButton_released()
 
 void MainWindow::on_slowMinusButton_pressed()
 {
-  startRepeating(currentKeyset, SlowMinus_Key);
+  startRepeating(SlowMinus_Key);
 }
 
 void MainWindow::on_slowMinusButton_released()
@@ -950,7 +958,7 @@ void MainWindow::on_slowMinusButton_released()
 
 void MainWindow::on_slowPlusButton_pressed()
 {
-  startRepeating(currentKeyset, SlowPlus_Key);
+  startRepeating(SlowPlus_Key);
 }
 
 void MainWindow::on_slowPlusButton_released()
@@ -960,7 +968,7 @@ void MainWindow::on_slowPlusButton_released()
 
 void MainWindow::on_programButton_pressed()
 {
-  startRepeating(currentKeyset, Program_Key);
+  startRepeating(Program_Key);
 }
 
 void MainWindow::on_programButton_released()
@@ -970,7 +978,7 @@ void MainWindow::on_programButton_released()
 
 void MainWindow::on_tunerBandButton_pressed()
 {
-  startRepeating(currentKeyset, TunerBand_Key);
+  startRepeating(TunerBand_Key);
 }
 
 void MainWindow::on_tunerBandButton_released()
@@ -980,7 +988,7 @@ void MainWindow::on_tunerBandButton_released()
 
 void MainWindow::on_repeatButton_pressed()
 {
-  startRepeating(currentKeyset, Repeat_Key);
+  startRepeating(Repeat_Key);
 }
 
 void MainWindow::on_repeatButton_released()
@@ -990,7 +998,7 @@ void MainWindow::on_repeatButton_released()
 
 void MainWindow::on_repeatABButton_pressed()
 {
-  startRepeating(currentKeyset, RepeatAB_Key);
+  startRepeating(RepeatAB_Key);
 }
 
 void MainWindow::on_repeatABButton_released()
@@ -1000,7 +1008,7 @@ void MainWindow::on_repeatABButton_released()
 
 void MainWindow::on_randomButton_pressed()
 {
-  startRepeating(currentKeyset, Random_Key);
+  startRepeating(Random_Key);
 }
 
 void MainWindow::on_randomButton_released()
@@ -1013,7 +1021,7 @@ void MainWindow::on_randomButton_released()
 
 void MainWindow::on_pictureModeButton_pressed()
 {
-  startRepeating(currentKeyset, PictureMode_Key);
+  startRepeating(PictureMode_Key);
 }
 
 void MainWindow::on_pictureModeButton_released()
@@ -1023,7 +1031,7 @@ void MainWindow::on_pictureModeButton_released()
 
 void MainWindow::on_soundModeButton_pressed()
 {
-  startRepeating(currentKeyset, SoundMode_Key);
+  startRepeating(SoundMode_Key);
 }
 
 void MainWindow::on_soundModeButton_released()
@@ -1033,7 +1041,7 @@ void MainWindow::on_soundModeButton_released()
 
 void MainWindow::on_liveTVButton_pressed()
 {
-  startRepeating(currentKeyset, LiveTV_Key);
+  startRepeating(LiveTV_Key);
 }
 
 void MainWindow::on_liveTVButton_released()
@@ -1043,7 +1051,7 @@ void MainWindow::on_liveTVButton_released()
 
 void MainWindow::on_favoritesButton_pressed()
 {
-  startRepeating(currentKeyset, Favorites_Key);
+  startRepeating(Favorites_Key);
 }
 
 void MainWindow::on_favoritesButton_released()
@@ -1053,7 +1061,7 @@ void MainWindow::on_favoritesButton_released()
 
 void MainWindow::on_teletextButton_pressed()
 {
-  startRepeating(currentKeyset, Teletext_Key);
+  startRepeating(Teletext_Key);
 }
 
 void MainWindow::on_teletextButton_released()
@@ -1063,7 +1071,7 @@ void MainWindow::on_teletextButton_released()
 
 void MainWindow::on_teletextHoldButton_pressed()
 {
-  startRepeating(currentKeyset, TeletextHold_Key);
+  startRepeating(TeletextHold_Key);
 }
 
 void MainWindow::on_teletextHoldButton_released()
@@ -1073,7 +1081,7 @@ void MainWindow::on_teletextHoldButton_released()
 
 void MainWindow::on_teletextRevealButton_pressed()
 {
-  startRepeating(currentKeyset, TeletextReveal_Key);
+  startRepeating(TeletextReveal_Key);
 }
 
 void MainWindow::on_teletextRevealButton_released()
@@ -1083,7 +1091,7 @@ void MainWindow::on_teletextRevealButton_released()
 
 void MainWindow::on_teletextSizeButton_pressed()
 {
-  startRepeating(currentKeyset, TeletextSize_Key);
+  startRepeating(TeletextSize_Key);
 }
 
 void MainWindow::on_teletextSizeButton_released()
@@ -1093,7 +1101,7 @@ void MainWindow::on_teletextSizeButton_released()
 
 void MainWindow::on_pipOnOffButton_pressed()
 {
-  startRepeating(currentKeyset, PIP_Key);
+  startRepeating(PIP_Key);
 }
 
 void MainWindow::on_pipOnOffButton_released()
@@ -1103,7 +1111,7 @@ void MainWindow::on_pipOnOffButton_released()
 
 void MainWindow::on_pipSwapButton_pressed()
 {
-  startRepeating(currentKeyset, PIPSwap_Key);
+  startRepeating(PIPSwap_Key);
 }
 
 void MainWindow::on_pipSwapButton_released()
@@ -1113,7 +1121,7 @@ void MainWindow::on_pipSwapButton_released()
 
 void MainWindow::on_pipPositionButton_pressed()
 {
-  startRepeating(currentKeyset, PIPMove_Key);
+  startRepeating(PIPMove_Key);
 }
 
 void MainWindow::on_pipPositionButton_released()
@@ -1123,7 +1131,7 @@ void MainWindow::on_pipPositionButton_released()
 
 void MainWindow::on_pipSourceButton_pressed()
 {
-  startRepeating(currentKeyset, PIPSource_Key);
+  startRepeating(PIPSource_Key);
 }
 
 void MainWindow::on_pipSourceButton_released()
@@ -1133,7 +1141,7 @@ void MainWindow::on_pipSourceButton_released()
 
 void MainWindow::on_pipChannelUpButton_pressed()
 {
-  startRepeating(currentKeyset, PIPChannelUp_Key);
+  startRepeating(PIPChannelUp_Key);
 }
 
 void MainWindow::on_pipChannelUpButton_released()
@@ -1143,7 +1151,7 @@ void MainWindow::on_pipChannelUpButton_released()
 
 void MainWindow::on_pipChannelDownButton_pressed()
 {
-  startRepeating(currentKeyset, PIPChannelDown_Key);
+  startRepeating(PIPChannelDown_Key);
 }
 
 void MainWindow::on_pipChannelDownButton_released()
@@ -1153,7 +1161,7 @@ void MainWindow::on_pipChannelDownButton_released()
 
 void MainWindow::on_pipPauseButton_pressed()
 {
-  startRepeating(currentKeyset, PIPPause_Key);
+  startRepeating(PIPPause_Key);
 }
 
 void MainWindow::on_pipPauseButton_released()
@@ -1163,13 +1171,14 @@ void MainWindow::on_pipPauseButton_released()
 
 void MainWindow::on_pipSizeButton_pressed()
 {
-  startRepeating(currentKeyset, PIPSize_Key);
+  startRepeating(PIPSize_Key);
 }
 
 void MainWindow::on_pipSizeButton_released()
 {
   stopRepeating();
 }
+*/
 
 
 
@@ -1178,6 +1187,16 @@ void MainWindow::on_pipSizeButton_released()
 void MainWindow::on_actionSelectKeyset_triggered()
 {
   selectKeysetForm->show();
+}
+
+void MainWindow::on_actionSecondary_Buttons_triggered()
+{
+  if (!secondaryForm)
+  {
+    secondaryForm = new PIRSecondaryForm(this);
+  }
+
+  secondaryForm->show();
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -1226,6 +1245,7 @@ void MainWindow::keysetSelectionChanged(
     myKeysets->getDisplayName(currentKeyset));
 
   enableButtons();
+  secondaryForm->enableButtons(myKeysets, currentKeyset);
 }
 
 
@@ -1375,14 +1395,13 @@ void MainWindow::populateFavorites()
 
 
 void MainWindow::startRepeating(
-  unsigned int id,
   PIRKeyName name)
 {
   QMutexLocker locker(&commandIFMutex);
   if (!commandInFlight)
   {
     commandInFlight = true;
-    emit buttonPressed(id, name);
+    emit buttonPressed(currentKeyset, name);
   }
 }
 
@@ -1392,3 +1411,4 @@ void MainWindow::stopRepeating()
   QMutexLocker locker(&stopRepeatingMutex);
   stopRepeatingFlag = true;
 }
+

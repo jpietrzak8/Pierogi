@@ -1,2 +1,3 @@
-user ALL = NOPASSWD: /opt/pierogi/bin/loadRX51Module
-user ALL = NOPASSWD: /opt/pierogi/bin/unloadRX51Module
+user ALL = NOPASSWD:  /opt/pierogi/bin/loadRX51Module
+
+user ALL = NOPASSWD:  /opt/pierogi/bin/unloadRX51Module

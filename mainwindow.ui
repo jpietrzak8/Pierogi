@@ -1141,504 +1141,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="media2Tab">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <attribute name="title">
-        <string>Media2</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_5">
-        <property name="margin">
-         <number>8</number>
-        </property>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="discTitleButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Disc Title</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="discSelectButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Disc Select</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="autoTrackingButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Auto Tracking</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="trackingMinusButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Tracking -</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QPushButton" name="trackingPlusButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Tracking +</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="slowButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Slow</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="slowMinusButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Slow -</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <widget class="QPushButton" name="slowPlusButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>slow +</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="3">
-         <widget class="QPushButton" name="programButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Program</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="tunerBandButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Tuner Band</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QPushButton" name="repeatButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Repeat</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <widget class="QPushButton" name="repeatABButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>RepeatAB</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="3">
-         <widget class="QPushButton" name="randomButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Random</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QPushButton" name="pageUpButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Page Up</string>
-          </property>
-          <property name="icon">
-           <iconset resource="PierogiResources.qrc">
-            <normaloff>:/icons/arrow_top_icon&amp;48.png</normaloff>:/icons/arrow_top_icon&amp;48.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="vhsSpeedButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>SP/LP/EP</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="3">
-         <widget class="QPushButton" name="pageDownButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Page Down</string>
-          </property>
-          <property name="icon">
-           <iconset resource="PierogiResources.qrc">
-            <normaloff>:/icons/arrow_bottom_icon&amp;48.png</normaloff>:/icons/arrow_bottom_icon&amp;48.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tvTab">
-       <attribute name="title">
-        <string>TV</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_6">
-        <property name="margin">
-         <number>8</number>
-        </property>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="teletextButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Teletext</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="teletextHoldButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Txt Hold</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="3">
-         <widget class="QPushButton" name="teletextRevealButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Txt Reveal</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="4">
-         <widget class="QPushButton" name="teletextSizeButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Txt Size</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QPushButton" name="pipChannelUpButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>PIP Ch Up</string>
-          </property>
-          <property name="icon">
-           <iconset resource="PierogiResources.qrc">
-            <normaloff>:/icons/br_up_icon&amp;48.png</normaloff>:/icons/br_up_icon&amp;48.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <widget class="QPushButton" name="pipChannelDownButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>PIP Ch Down</string>
-          </property>
-          <property name="icon">
-           <iconset resource="PierogiResources.qrc">
-            <normaloff>:/icons/br_down_icon&amp;48.png</normaloff>:/icons/br_down_icon&amp;48.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="3">
-         <widget class="QPushButton" name="pipPauseButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>PIP Pause</string>
-          </property>
-          <property name="icon">
-           <iconset resource="PierogiResources.qrc">
-            <normaloff>:/icons/playback_pause_icon&amp;48.png</normaloff>:/icons/playback_pause_icon&amp;48.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="4">
-         <widget class="QPushButton" name="pipSizeButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>PIP Size</string>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QPushButton" name="pipOnOffButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Picture in Picture</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPushButton" name="pipSwapButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>PIP Swap</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="3">
-         <widget class="QPushButton" name="pipPositionButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>PIP Move</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="4">
-         <widget class="QPushButton" name="pipSourceButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>PIP Source</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pictureModeButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Picture Mode</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="soundModeButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Sound Mode</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="4">
-         <widget class="QPushButton" name="favoritesButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Favorites</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="3">
-         <widget class="QPushButton" name="liveTVButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Live TV</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
       <widget class="QWidget" name="favoritesTab">
        <attribute name="title">
         <string>Favorite</string>
@@ -1684,6 +1186,7 @@
      <string>Pierogi</string>
     </property>
     <addaction name="actionSelectKeyset"/>
+    <addaction name="actionSecondary_Buttons"/>
     <addaction name="actionDocumentation"/>
     <addaction name="actionAbout"/>
    </widget>
@@ -1704,6 +1207,11 @@
     <string>Documentation</string>
    </property>
   </action>
+  <action name="actionSecondary_Buttons">
+   <property name="text">
+    <string>Secondary Buttons</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
@@ -1712,24 +1220,72 @@
  <connections>
   <connection>
    <sender>MainWindow</sender>
-   <signal>reverseEnabled(bool)</signal>
-   <receiver>reverseButton</receiver>
+   <signal>fourEnabled(bool)</signal>
+   <receiver>fourButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
+     <x>86</x>
+     <y>442</y>
     </hint>
     <hint type="destinationlabel">
-     <x>492</x>
-     <y>239</y>
+     <x>45</x>
+     <y>187</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>fastForwardEnabled(bool)</signal>
-   <receiver>fastForwardButton</receiver>
+   <signal>fiveEnabled(bool)</signal>
+   <receiver>fiveButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>269</x>
+     <y>442</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>230</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>volumeDownEnabled(bool)</signal>
+   <receiver>mainVolumeDownButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>796</x>
+     <y>232</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>546</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>enterEnabled(bool)</signal>
+   <receiver>enterButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>547</x>
+     <y>441</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>344</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>redEnabled(bool)</signal>
+   <receiver>redButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1737,8 +1293,184 @@
      <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>678</x>
-     <y>239</y>
+     <x>116</x>
+     <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>yellowEnabled(bool)</signal>
+   <receiver>yellowButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>oneEnabled(bool)</signal>
+   <receiver>oneButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>792</x>
+     <y>33</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>45</x>
+     <y>110</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>captionsEnabled(bool)</signal>
+   <receiver>captionButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>116</x>
+     <y>334</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>inputEnabled(bool)</signal>
+   <receiver>inputButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>305</x>
+     <y>334</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>sleepEnabled(bool)</signal>
+   <receiver>sleepButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>334</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>audioEnabled(bool)</signal>
+   <receiver>audioButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>497</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>muteEnabled(bool)</signal>
+   <receiver>muteButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>683</x>
+     <y>334</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>aspectRatioEnabled(bool)</signal>
+   <receiver>aspectRatioButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>107</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>ejectEnabled(bool)</signal>
+   <receiver>ejectButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>692</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>sixEnabled(bool)</signal>
+   <receiver>sixButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>441</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>eightEnabled(bool)</signal>
+   <receiver>eightButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>254</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>230</x>
+     <y>266</y>
     </hint>
    </hints>
   </connection>
@@ -1755,6 +1487,22 @@
     <hint type="destinationlabel">
      <x>306</x>
      <y>337</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>fastForwardEnabled(bool)</signal>
+   <receiver>fastForwardButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>678</x>
+     <y>239</y>
     </hint>
    </hints>
   </connection>
@@ -1808,70 +1556,6 @@
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>advanceEnabled(bool)</signal>
-   <receiver>advanceButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>678</x>
-     <y>141</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>plusOneHundredEnabled(bool)</signal>
-   <receiver>plusOneHundredButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>677</x>
-     <y>106</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>keysetMakeChanged(QString)</signal>
-   <receiver>makeLabel</receiver>
-   <slot>setText(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>283</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>dashEnabled(bool)</signal>
-   <receiver>dashButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>683</x>
-     <y>107</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
    <signal>doubleDigitEnabled(bool)</signal>
    <receiver>doubleDigitButton</receiver>
    <slot>setEnabled(bool)</slot>
@@ -1888,8 +1572,8 @@
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>greenEnabled(bool)</signal>
-   <receiver>greenButton</receiver>
+   <signal>reverseEnabled(bool)</signal>
+   <receiver>reverseButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1897,424 +1581,8 @@
      <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>305</x>
-     <y>153</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>redEnabled(bool)</signal>
-   <receiver>redButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>116</x>
-     <y>153</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>yellowEnabled(bool)</signal>
-   <receiver>yellowButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>494</x>
-     <y>153</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>blueEnabled(bool)</signal>
-   <receiver>blueButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>683</x>
-     <y>153</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>inputEnabled(bool)</signal>
-   <receiver>inputButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>305</x>
-     <y>334</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>captionsEnabled(bool)</signal>
-   <receiver>captionButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>116</x>
-     <y>334</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>sleepEnabled(bool)</signal>
-   <receiver>sleepButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>494</x>
-     <y>334</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>muteEnabled(bool)</signal>
-   <receiver>muteButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>683</x>
-     <y>334</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>audioEnabled(bool)</signal>
-   <receiver>audioButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>497</x>
-     <y>246</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>aspectRatioEnabled(bool)</signal>
-   <receiver>aspectRatioButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>107</x>
-     <y>246</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>ejectEnabled(bool)</signal>
-   <receiver>ejectButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>692</x>
-     <y>373</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>programEnabled(bool)</signal>
-   <receiver>programButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>302</x>
-     <y>199</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>discTitleEnabled(bool)</signal>
-   <receiver>discTitleButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>107</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>trackingMinusEnabled(bool)</signal>
-   <receiver>trackingMinusButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>107</x>
-     <y>389</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>trackingPlusEnabled(bool)</signal>
-   <receiver>trackingPlusButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>107</x>
-     <y>389</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>autoTrackingEnabled(bool)</signal>
-   <receiver>autoTrackingButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>497</x>
-     <y>389</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>vhsSpeedEnabled(bool)</signal>
-   <receiver>vhsSpeedButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>692</x>
-     <y>389</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>surroundEnabled(bool)</signal>
-   <receiver>surroundButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>302</x>
-     <y>246</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>discSelectEnabled(bool)</signal>
-   <receiver>discSelectButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>497</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>oneEnabled(bool)</signal>
-   <receiver>oneButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>792</x>
-     <y>33</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>45</x>
-     <y>110</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>twoEnabled(bool)</signal>
-   <receiver>twoButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>177</x>
-     <y>443</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>230</x>
-     <y>110</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>threeEnabled(bool)</signal>
-   <receiver>threeButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>479</x>
-     <y>439</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>417</x>
-     <y>110</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>fourEnabled(bool)</signal>
-   <receiver>fourButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>86</x>
-     <y>442</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>45</x>
-     <y>187</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>fiveEnabled(bool)</signal>
-   <receiver>fiveButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>269</x>
-     <y>442</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>230</x>
-     <y>187</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>sixEnabled(bool)</signal>
-   <receiver>sixButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>438</x>
-     <y>441</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>417</x>
-     <y>187</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>sevenEnabled(bool)</signal>
-   <receiver>sevenButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>90</x>
-     <y>442</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>45</x>
-     <y>266</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>eightEnabled(bool)</signal>
-   <receiver>eightButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>254</x>
-     <y>443</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>230</x>
-     <y>266</y>
+     <x>492</x>
+     <y>239</y>
     </hint>
    </hints>
   </connection>
@@ -2352,22 +1620,6 @@
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>leftEnabled(bool)</signal>
-   <receiver>leftButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>104</x>
-     <y>442</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>119</x>
-     <y>246</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
    <signal>zeroEnabled(bool)</signal>
    <receiver>zeroButton</receiver>
    <slot>setEnabled(bool)</slot>
@@ -2384,193 +1636,33 @@
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>enterEnabled(bool)</signal>
-   <receiver>enterButton</receiver>
+   <signal>leftEnabled(bool)</signal>
+   <receiver>leftButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>547</x>
-     <y>441</y>
+     <x>104</x>
+     <y>442</y>
     </hint>
     <hint type="destinationlabel">
-     <x>417</x>
-     <y>344</y>
+     <x>119</x>
+     <y>246</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>upEnabled(bool)</signal>
-   <receiver>upButton</receiver>
+   <signal>sevenEnabled(bool)</signal>
+   <receiver>sevenButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>350</x>
-     <y>25</y>
+     <x>90</x>
+     <y>442</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>139</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>selectEnabled(bool)</signal>
-   <receiver>selectButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>310</x>
-     <y>440</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>309</x>
-     <y>245</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>stepBackEnabled(bool)</signal>
-   <receiver>stepBackButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>120</x>
-     <y>239</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>menuEnabled(bool)</signal>
-   <receiver>menuButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>577</x>
-     <y>85</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>570</x>
-     <y>138</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>downEnabled(bool)</signal>
-   <receiver>downButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>363</x>
-     <y>443</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>372</x>
-     <y>346</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>rightEnabled(bool)</signal>
-   <receiver>rightButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>702</x>
-     <y>48</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>699</x>
-     <y>232</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>exitEnabled(bool)</signal>
-   <receiver>exitButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>578</x>
-     <y>441</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>583</x>
-     <y>343</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>channelDownEnabled(bool)</signal>
-   <receiver>mainChannelDownButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>222</x>
-     <y>27</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>51</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>channelUpEnabled(bool)</signal>
-   <receiver>mainChannelUpButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>102</x>
-     <y>26</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>51</x>
-     <y>164</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>volumeUpEnabled(bool)</signal>
-   <receiver>mainVolumeUp</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>621</x>
-     <y>24</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>546</x>
-     <y>164</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>volumeDownEnabled(bool)</signal>
-   <receiver>mainVolumeDownButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>796</x>
-     <y>232</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>546</x>
-     <y>294</y>
+     <x>45</x>
+     <y>266</y>
     </hint>
    </hints>
   </connection>
@@ -2592,22 +1684,6 @@
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>clearEnabled(bool)</signal>
-   <receiver>clearButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>43</x>
-     <y>443</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>45</x>
-     <y>344</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
    <signal>guideEnabled(bool)</signal>
    <receiver>guideButton</receiver>
    <slot>setEnabled(bool)</slot>
@@ -2619,6 +1695,22 @@
     <hint type="destinationlabel">
      <x>151</x>
      <y>337</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>clearEnabled(bool)</signal>
+   <receiver>clearButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>43</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>45</x>
+     <y>344</y>
     </hint>
    </hints>
   </connection>
@@ -2656,22 +1748,6 @@
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>previousEnabled(bool)</signal>
-   <receiver>mediaPreviousButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>120</x>
-     <y>141</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
    <signal>stepForwardEnabled(bool)</signal>
    <receiver>stepForwardButton</receiver>
    <slot>setEnabled(bool)</slot>
@@ -2688,17 +1764,17 @@
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>infoEnabled(bool)</signal>
-   <receiver>infoButton</receiver>
+   <signal>previousEnabled(bool)</signal>
+   <receiver>mediaPreviousButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>399</x>
-     <y>239</y>
+     <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>695</x>
-     <y>264</y>
+     <x>120</x>
+     <y>141</y>
     </hint>
    </hints>
   </connection>
@@ -2720,8 +1796,8 @@
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>pageUpEnabled(bool)</signal>
-   <receiver>pageUpButton</receiver>
+   <signal>infoEnabled(bool)</signal>
+   <receiver>infoButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -2730,391 +1806,311 @@
     </hint>
     <hint type="destinationlabel">
      <x>695</x>
-     <y>105</y>
+     <y>264</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>pageDownEnabled(bool)</signal>
-   <receiver>pageDownButton</receiver>
+   <signal>upEnabled(bool)</signal>
+   <receiver>upButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
+     <x>350</x>
+     <y>25</y>
     </hint>
     <hint type="destinationlabel">
-     <x>695</x>
-     <y>211</y>
+     <x>355</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>slowEnabled(bool)</signal>
-   <receiver>slowButton</receiver>
+   <signal>stepBackEnabled(bool)</signal>
+   <receiver>stepBackButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>399</x>
-     <y>239</y>
+     <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>104</x>
-     <y>317</y>
+     <x>120</x>
+     <y>239</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>slowMinusEnabled(bool)</signal>
-   <receiver>slowMinusButton</receiver>
+   <signal>selectEnabled(bool)</signal>
+   <receiver>selectButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
+     <x>310</x>
+     <y>440</y>
     </hint>
     <hint type="destinationlabel">
-     <x>301</x>
-     <y>317</y>
+     <x>309</x>
+     <y>245</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>slowPlusEnabled(bool)</signal>
-   <receiver>slowPlusButton</receiver>
+   <signal>menuEnabled(bool)</signal>
+   <receiver>menuButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
+     <x>577</x>
+     <y>85</y>
     </hint>
     <hint type="destinationlabel">
-     <x>498</x>
-     <y>317</y>
+     <x>570</x>
+     <y>138</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>tunerBandEnabled(bool)</signal>
-   <receiver>tunerBandButton</receiver>
+   <signal>rightEnabled(bool)</signal>
+   <receiver>rightButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
+     <x>702</x>
+     <y>48</y>
     </hint>
     <hint type="destinationlabel">
-     <x>104</x>
-     <y>422</y>
+     <x>699</x>
+     <y>232</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>repeatEnabled(bool)</signal>
-   <receiver>repeatButton</receiver>
+   <signal>downEnabled(bool)</signal>
+   <receiver>downButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
+     <x>363</x>
+     <y>443</y>
     </hint>
     <hint type="destinationlabel">
-     <x>301</x>
-     <y>422</y>
+     <x>372</x>
+     <y>346</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>repeatABEnabled(bool)</signal>
-   <receiver>repeatABButton</receiver>
+   <signal>twoEnabled(bool)</signal>
+   <receiver>twoButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
+     <x>177</x>
+     <y>443</y>
     </hint>
     <hint type="destinationlabel">
-     <x>498</x>
-     <y>422</y>
+     <x>230</x>
+     <y>110</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>randomEnabled(bool)</signal>
-   <receiver>randomButton</receiver>
+   <signal>threeEnabled(bool)</signal>
+   <receiver>threeButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
+     <x>479</x>
+     <y>439</y>
     </hint>
     <hint type="destinationlabel">
-     <x>695</x>
-     <y>422</y>
+     <x>417</x>
+     <y>110</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>pictureModeEnabled(bool)</signal>
-   <receiver>pictureModeButton</receiver>
+   <signal>blueEnabled(bool)</signal>
+   <receiver>blueButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>399</x>
-     <y>239</y>
+     <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>104</x>
-     <y>105</y>
+     <x>683</x>
+     <y>153</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>soundModeEnabled(bool)</signal>
-   <receiver>soundModeButton</receiver>
+   <signal>advanceEnabled(bool)</signal>
+   <receiver>advanceButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>399</x>
-     <y>239</y>
+     <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>301</x>
-     <y>105</y>
+     <x>678</x>
+     <y>141</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>liveTVEnabled(bool)</signal>
-   <receiver>liveTVButton</receiver>
+   <signal>plusOneHundredEnabled(bool)</signal>
+   <receiver>plusOneHundredButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>399</x>
-     <y>239</y>
+     <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>498</x>
-     <y>105</y>
+     <x>677</x>
+     <y>106</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>favoritesEnabled(bool)</signal>
-   <receiver>favoritesButton</receiver>
+   <signal>dashEnabled(bool)</signal>
+   <receiver>dashButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>399</x>
-     <y>239</y>
+     <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>695</x>
-     <y>105</y>
+     <x>683</x>
+     <y>107</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>teletextEnabled(bool)</signal>
-   <receiver>teletextButton</receiver>
-   <slot>setEnabled(bool)</slot>
+   <signal>keysetMakeChanged(QString)</signal>
+   <receiver>makeLabel</receiver>
+   <slot>setText(QString)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>399</x>
-     <y>239</y>
+     <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>104</x>
-     <y>211</y>
+     <x>399</x>
+     <y>283</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>teletextHoldEnabled(bool)</signal>
-   <receiver>teletextHoldButton</receiver>
+   <signal>greenEnabled(bool)</signal>
+   <receiver>greenButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>399</x>
-     <y>239</y>
+     <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>301</x>
-     <y>211</y>
+     <x>305</x>
+     <y>153</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>teletextRevealEnabled(bool)</signal>
-   <receiver>teletextRevealButton</receiver>
+   <signal>surroundEnabled(bool)</signal>
+   <receiver>surroundButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>399</x>
-     <y>239</y>
+     <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>498</x>
-     <y>211</y>
+     <x>302</x>
+     <y>246</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>pipEnabled(bool)</signal>
-   <receiver>pipOnOffButton</receiver>
+   <signal>exitEnabled(bool)</signal>
+   <receiver>exitButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
+     <x>578</x>
+     <y>441</y>
     </hint>
     <hint type="destinationlabel">
-     <x>104</x>
-     <y>317</y>
+     <x>583</x>
+     <y>343</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>pipSwapEnabled(bool)</signal>
-   <receiver>pipSwapButton</receiver>
+   <signal>channelUpEnabled(bool)</signal>
+   <receiver>mainChannelUpButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
+     <x>102</x>
+     <y>26</y>
     </hint>
     <hint type="destinationlabel">
-     <x>301</x>
-     <y>317</y>
+     <x>51</x>
+     <y>164</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>pipMoveEnabled(bool)</signal>
-   <receiver>pipPositionButton</receiver>
+   <signal>channelDownEnabled(bool)</signal>
+   <receiver>mainChannelDownButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
+     <x>222</x>
+     <y>27</y>
     </hint>
     <hint type="destinationlabel">
-     <x>498</x>
-     <y>317</y>
+     <x>51</x>
+     <y>294</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>pipSourceEnabled(bool)</signal>
-   <receiver>pipSourceButton</receiver>
+   <signal>volumeUpEnabled(bool)</signal>
+   <receiver>mainVolumeUp</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
+     <x>621</x>
+     <y>24</y>
     </hint>
     <hint type="destinationlabel">
-     <x>695</x>
-     <y>317</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>pipChannelUpEnabled(bool)</signal>
-   <receiver>pipChannelUpButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>104</x>
-     <y>422</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>pipChannelDownEnabled(bool)</signal>
-   <receiver>pipChannelDownButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>301</x>
-     <y>422</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>pipPauseEnabled(bool)</signal>
-   <receiver>pipPauseButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>498</x>
-     <y>422</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>pipSizeEnabled(bool)</signal>
-   <receiver>pipSizeButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>695</x>
-     <y>422</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>teletextSizeEnabled(bool)</signal>
-   <receiver>teletextSizeButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>695</x>
-     <y>211</y>
+     <x>546</x>
+     <y>164</y>
     </hint>
    </hints>
   </connection>

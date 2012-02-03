@@ -1,5 +1,5 @@
 #include "yamaha.h"
-#include "necprotocol.h"
+#include "protocols/necprotocol.h"
 
 
 YamahaDVD1::YamahaDVD1(
@@ -10,7 +10,7 @@ YamahaDVD1::YamahaDVD1(
       Yamaha_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x3EC1, 16);
   setPreData(0x7C, 8);
@@ -79,12 +79,12 @@ YamahaAudio1::YamahaAudio1(
       Yamaha_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x9E61, 16);
   setPreData(0x79, 8);
 
-  addKey("MODE", Unmapped_Key, 0x00, 8);
+  addKey("MODE", Mode_Key, 0x00, 8);
   addKey("OPEN", Eject_Key, 0x01, 8);
   addKey("PLAY", Play_Key, 0x02, 8);
   addKey("SKIP_BACK", Previous_Key, 0x04, 8); // "-", "PREV"
@@ -129,8 +129,8 @@ YamahaAudio1::YamahaAudio1(
   addKey("22", Unmapped_Key, 0x4C, 8);
   addKey("23", Unmapped_Key, 0x4D, 8);
   addKey("24", Unmapped_Key, 0x4E, 8);
-  addKey("DISC_SKIP_FORWARD", DiscSelect_Key, 0x4F, 8);
-  addKey("DISC_SKIP_REVERSE", Unmapped_Key, 0x50, 8);
+  addKey("DISC_SKIP_FORWARD", NextDisc_Key, 0x4F, 8);
+  addKey("DISC_SKIP_REVERSE", PrevDisc_Key, 0x50, 8);
   addKey("DISC_SCAN", Unmapped_Key, 0x53, 8);
   addKey("PAUSE", Pause_Key, 0x55, 8);
   addKey("STOP", Stop_Key, 0x56, 8);
@@ -160,7 +160,11 @@ YamahaAudio2::YamahaAudio2(
       Yamaha_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  addControlledDevice(Yamaha_Make, "RX-395-RDS", Audio_Device);
+  addControlledDevice(Yamaha_Make, "AX-570", Audio_Device);
+  addControlledDevice(Yamaha_Make, "CDX-570", Audio_Device);
+
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x5EA1, 16);
   setPreData(0x7A, 8);
@@ -186,11 +190,11 @@ YamahaAudio2::YamahaAudio2(
   addKey("ch-", ChannelDown_Key, 0x11, 8);
   addKey("abcde", TunerBand_Key, 0x12, 8); // "A/B/C/D/E" "tuner-toggle"
   addKey("GO_VCR2", Unmapped_Key, 0x13, 8);
-  addKey("phono", Unmapped_Key, 0x14, 8);
-  addKey("cd", Unmapped_Key, 0x15, 8);
-  addKey("tuner", Unmapped_Key, 0x16, 8);
-  addKey("dvdld", Unmapped_Key, 0x17, 8); // "d-tv/cbl", "AUX"
-  addKey("tapemonitor", Unmapped_Key, 0x18, 8); // "Tape/MD_Monitor", "DAT"
+  addKey("phono", PhonoInput_Key, 0x14, 8);
+  addKey("cd", CDInput_Key, 0x15, 8);
+  addKey("tuner", TunerInput_Key, 0x16, 8);
+  addKey("dvdld", DVDInput_Key, 0x17, 8); // "d-tv/cbl", "AUX"
+  addKey("tapemonitor", TapeInput_Key, 0x18, 8); // "Tape/MD_Monitor", "DAT"
   addKey("TAPE2", Unmapped_Key, 0x19, 8);
   addKey("vol+", VolumeUp_Key, 0x1A, 8);
   addKey("vol-", VolumeDown_Key, 0x1B, 8);
@@ -200,10 +204,10 @@ YamahaAudio2::YamahaAudio2(
   addKey("Power", Power_Key, 0x1F, 8); // "STANDBY"
 
   addKey("TapeDirB", Unmapped_Key, 0x40, 8);
-  addKey("DiscSkip", Unmapped_Key, 0x4F, 8); // "CD_DISC"
+  addKey("DiscSkip", NextDisc_Key, 0x4F, 8); // "CD_DISC"
   addKey("right", Right_Key, 0x52, 8);  // "DSP+", "DELAY_TIME+"
   addKey("left", Left_Key, 0x53, 8); // "DSP-", "DELAY_TIME-"
-  addKey("tvdbs", Unmapped_Key, 0x54, 8); // "SAT/D-TV" "d-tv/cbl alt"
+  addKey("tvdbs", SatInput_Key, 0x54, 8); // "SAT/D-TV" "d-tv/cbl alt"
   addKey("vaux", Unmapped_Key, 0x55, 8); // "GO_CDV1"
   addKey("effect", Unmapped_Key, 0x56, 8);
   addKey("sleep", Sleep_Key, 0x57, 8);
@@ -211,13 +215,13 @@ YamahaAudio2::YamahaAudio2(
   addKey("effect-", Unmapped_Key, 0x59, 8); // "DSP_Prg-"
   addKey("EQ_ON/FLAT", Unmapped_Key, 0x5A, 8);
   addKey("EQ_PRESET_SKIP", Unmapped_Key, 0x5B, 8);
-  addKey("REAR_LEVEL_+", Unmapped_Key, 0x5E, 8);
-  addKey("REAR_LEVEL_-", Unmapped_Key, 0x5F, 8);
+  addKey("REAR_LEVEL_+", RearVolumeUp_Key, 0x5E, 8);
+  addKey("REAR_LEVEL_-", RearVolumeDown_Key, 0x5F, 8);
 
   addKey("FRONT_EFFECT_LEVEL_+", Unmapped_Key, 0x80, 8);
   addKey("FRONT_EFFECT_LEVEL_-", Unmapped_Key, 0x81, 8);
-  addKey("CENTRE_LEVEL_+", Unmapped_Key, 0x82, 8);
-  addKey("CENTRE_LEVEL_-", Unmapped_Key, 0x83, 8);
+  addKey("CENTRE_LEVEL_+", CenterVolumeUp_Key, 0x82, 8);
+  addKey("CENTRE_LEVEL_-", CenterVolumeDown_Key, 0x83, 8);
   addKey("CENTRE_MODE", Unmapped_Key, 0x84, 8);
   addKey("test", Unmapped_Key, 0x85, 8); // "DSP_TEST"
   addKey("level", Unmapped_Key, 0x86, 8); // "Time/Level"
@@ -314,7 +318,7 @@ YamahaAudio3::YamahaAudio3(
       Yamaha_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0xFE01, 16);
   setPreData(0x7F, 8);
@@ -354,7 +358,6 @@ YamahaAudio3::YamahaAudio3(
 }
 
 
-// This one is strange, need to look at it harder:
 YamahaAudio4::YamahaAudio4(
   QObject *guiObject,
   unsigned int index)
@@ -363,126 +366,9 @@ YamahaAudio4::YamahaAudio4(
       Yamaha_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, LIRC_NEC);
+  addControlledDevice(Yamaha_Make, "GX-50", Audio_Device);
 
-  setPreData(0x857A, 16);
-
-  addKey("CD_PLAY", Play_Key, 0xF708, 16);
-  addKey("CD_PAUSE/STOP", Pause_Key, 0xF609, 16);
-  addKey("CD_PAUSE/STOP", Stop_Key, 0xF609, 16);
-  addKey("CD_SEARCH_>", FastForward_Key, 0xF30C, 16); // Might be wrong
-  addKey("CD_SEARCH_<", Rewind_Key, 0xF20D, 16); // And this
-  addKey("CD_TRACK_+", Next_Key, 0xF50A, 16);
-  addKey("CD_TRACK_-", Previous_Key, 0xF40B, 16);
-  addKey("CD_DISK", Unmapped_Key, 0xB04F, 16);
-  addKey("TAPE_PLAY", Unmapped_Key, 0xFF00, 16);
-  addKey("TAPE_STOP", Unmapped_Key, 0xFC03, 16);
-  addKey("TAPE_SEARCH_>", Unmapped_Key, 0xFD02, 16);
-  addKey("TAPE_SEARCH_<", Unmapped_Key, 0xFE01, 16);
-  addKey("TAPE_DIR_A", Unmapped_Key, 0xF807, 16);
-  addKey("TAPE_DIR_B", Unmapped_Key, 0xBF40, 16);
-  addKey("TAPE_REC/PAUSE", Unmapped_Key, 0xFB04, 16);
-  addKey("TAPE_REC/MUTE", Unmapped_Key, 0xFA05, 16);
-  addKey("TAPE_A/B", Unmapped_Key, 0xF906, 16);
-  addKey("AMP_AUX", Unmapped_Key, 0xE817, 16);
-  addKey("AMP_TAPE1", Unmapped_Key, 0xE718, 16);
-  addKey("AMP_TAPE2", Unmapped_Key, 0xE619, 16);
-  addKey("AMP_TUNER", Unmapped_Key, 0xE916, 16);
-  addKey("AMP_CD", Unmapped_Key, 0xEA15, 16);
-  addKey("AMP_PHONO", Unmapped_Key, 0xEB14, 16);
-  addKey("AMP_SLEEP", Sleep_Key, 0xA857, 16);
-  addKey("AMP_POWER", Power_Key, 0xE01F, 16);
-  addKey("VOL_UP", VolumeUp_Key, 0xE51A, 16);
-  addKey("VOL_DOWN", VolumeDown_Key, 0xE41B, 16);
-  addKey("TUNER_PRESET_+", ChannelUp_Key, 0xEF10, 16);
-  addKey("TUNER_PRESET_-", ChannelDown_Key, 0xEE11, 16);
-  addKey("TUNER_ABCDE", TunerBand_Key, 0xED12, 16);
-  addKey("EQ_PRESET_SKIP", Unmapped_Key, 0xA45B, 16);
-  addKey("EQ_ON/FLAT", Unmapped_Key, 0xA55A, 16);
-  addKey("PHONO_PLAY/CUT", Unmapped_Key, 0xF10E, 16);
-}
-
-
-YamahaAudio5::YamahaAudio5(
-  QObject *guiObject,
-  unsigned int index)
-  : PIRKeysetMetaData(
-      "Audio Keyset 5",
-      Yamaha_Make,
-      index)
-{
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
-
-//  setPreData(0xA25D, 16);
-  setPreData(0x45, 8);
-
-  addKey("Pause", Pause_Key, 0x00, 8);
-  addKey("1", One_Key, 0x01, 8);
-  addKey("2", Two_Key, 0x02, 8);
-  addKey("3", Three_Key, 0x03, 8);
-  addKey("4", Four_Key, 0x04, 8);
-  addKey("5", Five_Key, 0x05, 8);
-  addKey("6", Six_Key, 0x06, 8);
-  addKey("7", Seven_Key, 0x07, 8);
-  addKey("8", Eight_Key, 0x08, 8);
-  addKey("9", Nine_Key, 0x09, 8);
-  addKey("0", Zero_Key, 0x0A, 8);
-  addKey("Power", Power_Key, 0x12, 8);
-  addKey("Forward", FastForward_Key, 0x13, 8);
-  addKey("Stop", Stop_Key, 0x14, 8);
-  addKey("Play", Play_Key, 0x15, 8);
-  addKey("Display", Info_Key, 0x16, 8);
-  addKey("Rewind", Rewind_Key, 0x19, 8);
-  addKey("Select", Select_Key, 0x21, 8);
-  addKey("Return", Exit_Key, 0x22, 8);
-  addKey("SkipBack", Replay_Key, 0x23, 8);
-  addKey("SkipForward", Advance_Key, 0x24, 8);
-  addKey("+10", DoubleDigit_Key, 0x25, 8);
-  addKey("Index", Unmapped_Key, 0x26, 8);
-  addKey("Right", Right_Key, 0x4D, 8);
-  addKey("Left", Left_Key, 0x51, 8);
-  addKey("Up", Up_Key, 0x80, 8);
-  addKey("Down", Down_Key, 0x81, 8);
-  addKey("Menu", DiscMenu_Key, 0x84, 8);
-  addKey("Title", DiscTitle_Key, 0xDE, 8);
-  addKey("Clear", Clear_Key, 0xEF, 8);
-}
-
-
-YamahaAudio6::YamahaAudio6(
-  QObject *guiObject,
-  unsigned int index)
-  : PIRKeysetMetaData(
-      "Audio Keyset 6",
-      Yamaha_Make,
-      index)
-{
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
-
-//  setPreData(0x8B74, 16);
-  setPreData(0xD1, 8);
-
-  addKey("A/B/C/D/E", TunerBand_Key, 0x0D, 8);
-  addKey("1", One_Key, 0x0E, 8);
-  addKey("2", Two_Key, 0x0F, 8);
-  addKey("3", Three_Key, 0x10, 8);
-  addKey("4", Four_Key, 0x11, 8);
-  addKey("5", Five_Key, 0x12, 8);
-  addKey("6", Six_Key, 0x13, 8);
-  addKey("7", Seven_Key, 0x14, 8);
-  addKey("8", Eight_Key, 0x15, 8);
-}
-
-
-YamahaAudio7::YamahaAudio7(
-  QObject *guiObject,
-  unsigned int index)
-  : PIRKeysetMetaData(
-      "Audio Keyset 7",
-      Yamaha_Make,
-      index)
-{
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x1EE1, 16);
   setPreData(0x78, 8);
@@ -498,7 +384,7 @@ YamahaAudio7::YamahaAudio7(
   addKey("time", Unmapped_Key, 0x0A, 8);
   addKey("prog", Program_Key, 0x0B, 8);
   addKey("repeat", Repeat_Key, 0x0C, 8);
-  addKey("disc_skip", DiscSelect_Key, 0x0D, 8);
+  addKey("disc_skip", NextDisc_Key, 0x0D, 8);
   addKey("power", Power_Key, 0x0F, 8);
   addKey("0", Zero_Key, 0x10, 8);
   addKey("1", One_Key, 0x11, 8);
@@ -543,7 +429,7 @@ YamahaTV1::YamahaTV1(
       Yamaha_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x20DF, 16);
   setPreData(0x04, 8);
@@ -575,7 +461,7 @@ YamahaKaraoke1::YamahaKaraoke1(
       Yamaha_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0xDE21, 16);
   setPreData(0x7B, 8);
@@ -583,12 +469,12 @@ YamahaKaraoke1::YamahaKaraoke1(
   addKey("POWER", Power_Key, 0x80, 8);
   addKey("VOL+", VolumeUp_Key, 0x82, 8);
   addKey("VOL-", VolumeDown_Key, 0x83, 8);
-  addKey("LD", Unmapped_Key, 0x8C, 8);
-  addKey("CD/CDG", Unmapped_Key, 0x8D, 8);
-  addKey("VCR", Unmapped_Key, 0x8E, 8);
-  addKey("TAPE", Unmapped_Key, 0x8F, 8);
+  addKey("LD", LDInput_Key, 0x8C, 8);
+  addKey("CD/CDG", CDInput_Key, 0x8D, 8);
+  addKey("VCR", VCRInput_Key, 0x8E, 8);
+  addKey("TAPE", TapeInput_Key, 0x8F, 8);
   addKey("AUX2", Unmapped_Key, 0x90, 8);
-  addKey("AUX1", Unmapped_Key, 0x91, 8);
+  addKey("AUX1", AuxInput_Key, 0x91, 8);
   addKey("B_SYMBOL", Unmapped_Key, 0x96, 8);
   addKey("SQUARE_SYMBOL", Unmapped_Key, 0x97, 8);
   addKey("HASH", Unmapped_Key, 0x98, 8);

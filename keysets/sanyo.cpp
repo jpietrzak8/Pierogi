@@ -1,6 +1,6 @@
 #include "sanyo.h"
 
-#include "necprotocol.h"
+#include "protocols/necprotocol.h"
 
 SanyoVCR1::SanyoVCR1(
   QObject *guiObject,
@@ -13,7 +13,7 @@ SanyoVCR1::SanyoVCR1(
   addControlledDevice(Sanyo_Make, "DVW-5000", VCR_Device);
   addControlledDevice(Sanyo_Make, "DVW-5000", DVD_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x8C73, 16);
   setPreData(0x31, 8);
@@ -44,7 +44,7 @@ SanyoVCR1::SanyoVCR1(
   addKey("0", Zero_Key, 0x1D, 8);
   addKey("Input", Unmapped_Key, 0x1E, 8);  // need a subclass for this?
   addKey("ATR", Unmapped_Key, 0x1F, 8);
-  addKey("Memory", Unmapped_Key, 0x43, 8); // "->0<-"
+  addKey("Memory", Memory_Key, 0x43, 8); // "->0<-"
   addKey("Reset", Reset_Key, 0x44, 8);
   addKey("PROG", Program_Key, 0x46, 8);
   addKey("Cancel", Clear_Key, 0x4A, 8);
@@ -76,7 +76,7 @@ SanyoDVD1::SanyoDVD1(
 {
   addControlledDevice(Sanyo_Make, "DVD-SL25", DVD_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index, Extended_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
 //  setPreData(0x3C23, 16);
   setPreData(0xC43C, 16);
@@ -136,7 +136,7 @@ SanyoTV1::SanyoTV1(
       Sanyo_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x1CE3, 16);
   setPreData(0x38, 8);
@@ -157,9 +157,9 @@ SanyoTV1::SanyoTV1(
   addKey("Sleep", Sleep_Key, 0x0D, 8);
   addKey("Volume Up", VolumeUp_Key, 0x0E, 8);
   addKey("Volume Down", VolumeDown_Key, 0x0F, 8);
-  addKey("image", Unmapped_Key, 0x11, 8);
+  addKey("image", PictureMode_Key, 0x11, 8);
   addKey("Power", Power_Key, 0x12, 8);
-  addKey("video_mode", PictureMode_Key, 0x13, 8);
+  addKey("video_mode", Unmapped_Key, 0x13, 8);
   addKey("TV", Input_Key, 0x14, 8); // tv/video
   addKey("Menu", Menu_Key, 0x17, 8); // "setup"
   addKey("Recall", PrevChannel_Key, 0x19, 8);
@@ -247,16 +247,16 @@ SanyoTV1d::SanyoTV1d(
 {
   setKeysetName("TV Keyset 1d");
 
-  addKey("contrast_>", Unmapped_Key, 0x0E, 8);
-  addKey("contrast_<", Unmapped_Key, 0x0F, 8);
+  addKey("contrast_>", ContrastUp_Key, 0x0E, 8);
+  addKey("contrast_<", ContrastDown_Key, 0x0F, 8);
   addKey("prg_scan", Scan_Key, 0x10, 8);
   addKey("tuning_>", ChannelUp_Key, 0x12, 8);
   addKey("tuning_<", ChannelDown_Key, 0x13, 8);
   addKey("clear_screen", Unmapped_Key, 0x18, 8);
-  addKey("colour_>", Unmapped_Key, 0x1A, 8);
-  addKey("colour_<", Unmapped_Key, 0x1B, 8);
-  addKey("bright_>", Unmapped_Key, 0x1E, 8);
-  addKey("bright_<", Unmapped_Key, 0x1F, 8);
+  addKey("colour_>", ColorUp_Key, 0x1A, 8);
+  addKey("colour_<", ColorDown_Key, 0x1B, 8);
+  addKey("bright_>", BrightnessUp_Key, 0x1E, 8);
+  addKey("bright_<", BrightnessDown_Key, 0x1F, 8);
 }
 
 
@@ -287,7 +287,7 @@ SanyoProjector::SanyoProjector(
 {
   addControlledDevice(Sanyo_Make, "PLV-Z1", Other_Device);
 
-  threadableProtocol = new NECProtocol(guiObject, index, Standard_NEC);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x0CF3, 16);
   setPreData(0x30, 16);

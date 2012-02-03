@@ -7,6 +7,7 @@
 enum PIRKeyName{
   // The "Unmapped" key is a placeholder for commands with no key mapping:
   Unmapped_Key,
+
   // Number keys:
   Zero_Key,
   One_Key,
@@ -18,25 +19,34 @@ enum PIRKeyName{
   Seven_Key,
   Eight_Key,
   Nine_Key,
+
   // Other keypad commands:
   Enter_Key,
   Clear_Key,
   PlusOneHundred_Key,
   Dash_Key,
   DoubleDigit_Key,
+
   // Power control:
   Power_Key,
   PowerOn_Key,
   PowerOff_Key,
+
   // Volume control:
   VolumeUp_Key,
   VolumeDown_Key,
   Mute_Key,
+  Surround_Key,
+  RearVolumeUp_Key,
+  RearVolumeDown_Key,
+  CenterVolumeUp_Key,
+  CenterVolumeDown_Key,
+
   // Channel control:
   ChannelUp_Key,
   ChannelDown_Key,
   PrevChannel_Key,
-  Input_Key,
+
   // Recorded media control:
   Play_Key,
   Pause_Key,
@@ -62,6 +72,9 @@ enum PIRKeyName{
   SlowMinus_Key,
   Timer_Key,
   Clock_Key,
+  NextDisc_Key,
+  PrevDisc_Key,
+
   // Menu control:
   Menu_Key,
   Up_Key,
@@ -72,11 +85,14 @@ enum PIRKeyName{
   Exit_Key,
   PageUp_Key,
   PageDown_Key,
+  Guide_Key,
+
   // Color buttons:
   Red_Key,
   Green_Key,
   Yellow_Key,
   Blue_Key,
+
   // Teletext buttons:
   Teletext_Key,
   TeletextReveal_Key,
@@ -91,6 +107,7 @@ enum PIRKeyName{
   TeletextStore_Key,
   TeletextIndex_Key,
   TeletextOff_Key,
+
   // Picture-in-picture stuff:
   PIP_Key,
   PIPSwap_Key,
@@ -101,33 +118,80 @@ enum PIRKeyName{
   PIPPause_Key,
   PIPSize_Key,
   PIPScan_Key,
+
   // DVD / Blue-ray / etc. keys:
   DiscTitle_Key,
   DiscMenu_Key,
-  DiscSelect_Key,
   Angle_Key,
+
   // VHS / Beta / etc. keys:
   VHSSpeed_Key,
   TrackingPlus_Key,
   TrackingMinus_Key,
   AutoTracking_Key,
+
+  // Audio/Video Adjustment Controls:
+  PictureMode_Key,
+  SoundMode_Key,
+  NoiseReduction_Key,
+  EnhancedBass_Key,
+  BassUp_Key,
+  BassDown_Key,
+  TrebleUp_Key,
+  TrebleDown_Key,
+  BrightnessUp_Key,
+  BrightnessDown_Key,
+  ColorUp_Key,
+  ColorDown_Key,
+  ContrastUp_Key,
+  ContrastDown_Key,
+  BalanceRight_Key,
+  BalanceLeft_Key,
+
+  // Input Controls:
+  Input_Key,
+  CDInput_Key,
+  PhonoInput_Key,
+  TunerInput_Key,
+  LineInput_Key,
+  TapeInput_Key,
+  AntennaInput_Key,
+  Antenna2Input_Key,
+  PCInput_Key,
+  HDMIInput_Key,
+  HDMI2Input_Key,
+  AuxInput_Key,
+  MDInput_Key,
+  LDInput_Key,
+  DVDInput_Key,
+  VCRInput_Key,
+  HDDInput_Key,
+  CableInput_Key,
+  SatInput_Key,
+  DVRInput_Key,
+  ScartInput_Key,
+
+  // "Program" Controls:
+  Program_Key,
+  Memory_Key,
+  Call_Key,
+  NextPreset_Key,
+  PrevPreset_Key,
+
   // Other keys:
   Captions_Key,
   Info_Key,
-  Guide_Key,
   Sleep_Key,
-  PictureMode_Key, // "PMODE"
-  SoundMode_Key,
   Reset_Key,
-  Program_Key,
-  Surround_Key,
   AspectRatio_Key,
   Audio_Key,
   Favorites_Key,
   Scan_Key,
   Zoom_Key,
   LiveTV_Key,
-  TunerBand_Key
+  TunerBand_Key,
+  FMMode_Key,
+  Mode_Key
 };
 
 #endif // PIRKEYNAMES_H

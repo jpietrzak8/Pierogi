@@ -18,6 +18,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Panasonic_Make] = "Panasonic";
   makes[Philips_Make] = "Philips";
   makes[Pinnacle_Make] = "Pinnacle Systems";
+  makes[Pioneer_Make] = "Pioneer";
   makes[Raite_Make] = "Raite";
   makes[RCA_Make] = "RCA";
   makes[Sagem_Make] = "Sagem";
