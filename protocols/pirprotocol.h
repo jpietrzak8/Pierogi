@@ -4,7 +4,6 @@
 // The generic remote controller.
 
 #include <QObject>
-//#include <QMutex>
 #include "pirkeynames.h"
 
 #include <map>
@@ -84,6 +83,13 @@ public:
     unsigned int firstCommand,
     unsigned int secondAddress,
     unsigned int secondCommand);
+
+/*
+  void addRCAKey(
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
+*/
 
   void setCarrierFrequency(
     unsigned int freq);

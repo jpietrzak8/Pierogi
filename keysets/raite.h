@@ -3,7 +3,7 @@
 
 #include "pirkeysetmetadata.h"
 
-#include <QObject>
+class QObject;
 
 class RaiteDVD1: public PIRKeysetMetaData
 {

@@ -1,17 +1,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "pirkeysetwidgetitem.h"
-
-//#include "pirexception.h"
 
 #include <QtCore/QCoreApplication>
 #include <QMutex>
 #include <QtGui/QMessageBox>
 #include <QSettings>
-//#include <QDesktopServices>
-//#include <QUrl>
 
-//#include <iostream>
+#include "pirkeysetwidgetitem.h"
+#include "pirselectkeysetform.h"
+#include "pirsecondaryform.h"
+#include "pirdocumentationform.h"
+#include "piraboutform.h"
+#include "pirkeysetmanager.h"
 
 //#define DEBUGGING
 
@@ -247,44 +247,6 @@ void MainWindow::enableButtons()
   emit pauseEnabled(myKeysets->hasKey(currentKeyset, Pause_Key));
   emit stopEnabled(myKeysets->hasKey(currentKeyset, Stop_Key));
   emit ejectEnabled(myKeysets->hasKey(currentKeyset, Eject_Key));
-
-/*
-  // Media2 keys:
-  emit discTitleEnabled(myKeysets->hasKey(currentKeyset, DiscTitle_Key));
-  emit discSelectEnabled(myKeysets->hasKey(currentKeyset, NextDisc_Key));
-  emit vhsSpeedEnabled(myKeysets->hasKey(currentKeyset, VHSSpeed_Key));
-  emit trackingMinusEnabled(myKeysets->hasKey(currentKeyset, TrackingMinus_Key));
-  emit trackingPlusEnabled(myKeysets->hasKey(currentKeyset, TrackingPlus_Key));
-  emit autoTrackingEnabled(myKeysets->hasKey(currentKeyset, AutoTracking_Key));
-  emit pageUpEnabled(myKeysets->hasKey(currentKeyset, PageUp_Key));
-  emit pageDownEnabled(myKeysets->hasKey(currentKeyset, PageDown_Key));
-  emit slowEnabled(myKeysets->hasKey(currentKeyset, Slow_Key));
-  emit slowMinusEnabled(myKeysets->hasKey(currentKeyset, SlowMinus_Key));
-  emit slowPlusEnabled(myKeysets->hasKey(currentKeyset, SlowPlus_Key));
-  emit programEnabled(myKeysets->hasKey(currentKeyset, Program_Key));
-  emit tunerBandEnabled(myKeysets->hasKey(currentKeyset, TunerBand_Key));
-  emit repeatEnabled(myKeysets->hasKey(currentKeyset, Repeat_Key));
-  emit repeatABEnabled(myKeysets->hasKey(currentKeyset, RepeatAB_Key));
-  emit randomEnabled(myKeysets->hasKey(currentKeyset, Random_Key));
-
-  // TV Keys:
-  emit pictureModeEnabled(myKeysets->hasKey(currentKeyset, PictureMode_Key));
-  emit soundModeEnabled(myKeysets->hasKey(currentKeyset, SoundMode_Key));
-  emit liveTVEnabled(myKeysets->hasKey(currentKeyset, LiveTV_Key));
-  emit favoritesEnabled(myKeysets->hasKey(currentKeyset, Favorites_Key));
-  emit teletextEnabled(myKeysets->hasKey(currentKeyset, Teletext_Key));
-  emit teletextHoldEnabled(myKeysets->hasKey(currentKeyset, TeletextHold_Key));
-  emit teletextRevealEnabled(myKeysets->hasKey(currentKeyset, TeletextReveal_Key));
-  emit teletextSizeEnabled(myKeysets->hasKey(currentKeyset, TeletextSize_Key));
-  emit pipEnabled(myKeysets->hasKey(currentKeyset, PIP_Key));
-  emit pipSwapEnabled(myKeysets->hasKey(currentKeyset, PIPSwap_Key));
-  emit pipMoveEnabled(myKeysets->hasKey(currentKeyset, PIPMove_Key));
-  emit pipSourceEnabled(myKeysets->hasKey(currentKeyset, PIPSource_Key));
-  emit pipChannelUpEnabled(myKeysets->hasKey(currentKeyset, PIPChannelUp_Key));
-  emit pipChannelDownEnabled(myKeysets->hasKey(currentKeyset, PIPChannelDown_Key));
-  emit pipPauseEnabled(myKeysets->hasKey(currentKeyset, PIPPause_Key));
-  emit pipSizeEnabled(myKeysets->hasKey(currentKeyset, PIPSize_Key));
-*/
 }
 
 
@@ -853,335 +815,6 @@ void MainWindow::on_ejectButton_released()
 }
 
 
-/*
-// Media2 tab slots:
-
-void MainWindow::on_discTitleButton_pressed()
-{
-  startRepeating(DiscTitle_Key);
-}
-
-void MainWindow::on_discTitleButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_discSelectButton_pressed()
-{
-  startRepeating(NextDisc_Key);
-}
-
-void MainWindow::on_discSelectButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_vhsSpeedButton_pressed()
-{
-  startRepeating(VHSSpeed_Key);
-}
-
-void MainWindow::on_vhsSpeedButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_trackingPlusButton_pressed()
-{
-  startRepeating(TrackingPlus_Key);
-}
-
-void MainWindow::on_trackingPlusButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_trackingMinusButton_pressed()
-{
-  startRepeating(TrackingMinus_Key);
-}
-
-void MainWindow::on_trackingMinusButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_autoTrackingButton_pressed()
-{
-  startRepeating(AutoTracking_Key);
-}
-
-void MainWindow::on_autoTrackingButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_pageUpButton_pressed()
-{
-  startRepeating(PageUp_Key);
-}
-
-void MainWindow::on_pageUpButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_pageDownButton_pressed()
-{
-  startRepeating(PageDown_Key);
-}
-
-void MainWindow::on_pageDownButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_slowButton_pressed()
-{
-  startRepeating(Slow_Key);
-}
-
-void MainWindow::on_slowButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_slowMinusButton_pressed()
-{
-  startRepeating(SlowMinus_Key);
-}
-
-void MainWindow::on_slowMinusButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_slowPlusButton_pressed()
-{
-  startRepeating(SlowPlus_Key);
-}
-
-void MainWindow::on_slowPlusButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_programButton_pressed()
-{
-  startRepeating(Program_Key);
-}
-
-void MainWindow::on_programButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_tunerBandButton_pressed()
-{
-  startRepeating(TunerBand_Key);
-}
-
-void MainWindow::on_tunerBandButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_repeatButton_pressed()
-{
-  startRepeating(Repeat_Key);
-}
-
-void MainWindow::on_repeatButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_repeatABButton_pressed()
-{
-  startRepeating(RepeatAB_Key);
-}
-
-void MainWindow::on_repeatABButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_randomButton_pressed()
-{
-  startRepeating(Random_Key);
-}
-
-void MainWindow::on_randomButton_released()
-{
-  stopRepeating();
-}
-
-
-// TV Slots:
-
-void MainWindow::on_pictureModeButton_pressed()
-{
-  startRepeating(PictureMode_Key);
-}
-
-void MainWindow::on_pictureModeButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_soundModeButton_pressed()
-{
-  startRepeating(SoundMode_Key);
-}
-
-void MainWindow::on_soundModeButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_liveTVButton_pressed()
-{
-  startRepeating(LiveTV_Key);
-}
-
-void MainWindow::on_liveTVButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_favoritesButton_pressed()
-{
-  startRepeating(Favorites_Key);
-}
-
-void MainWindow::on_favoritesButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_teletextButton_pressed()
-{
-  startRepeating(Teletext_Key);
-}
-
-void MainWindow::on_teletextButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_teletextHoldButton_pressed()
-{
-  startRepeating(TeletextHold_Key);
-}
-
-void MainWindow::on_teletextHoldButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_teletextRevealButton_pressed()
-{
-  startRepeating(TeletextReveal_Key);
-}
-
-void MainWindow::on_teletextRevealButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_teletextSizeButton_pressed()
-{
-  startRepeating(TeletextSize_Key);
-}
-
-void MainWindow::on_teletextSizeButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_pipOnOffButton_pressed()
-{
-  startRepeating(PIP_Key);
-}
-
-void MainWindow::on_pipOnOffButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_pipSwapButton_pressed()
-{
-  startRepeating(PIPSwap_Key);
-}
-
-void MainWindow::on_pipSwapButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_pipPositionButton_pressed()
-{
-  startRepeating(PIPMove_Key);
-}
-
-void MainWindow::on_pipPositionButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_pipSourceButton_pressed()
-{
-  startRepeating(PIPSource_Key);
-}
-
-void MainWindow::on_pipSourceButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_pipChannelUpButton_pressed()
-{
-  startRepeating(PIPChannelUp_Key);
-}
-
-void MainWindow::on_pipChannelUpButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_pipChannelDownButton_pressed()
-{
-  startRepeating(PIPChannelDown_Key);
-}
-
-void MainWindow::on_pipChannelDownButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_pipPauseButton_pressed()
-{
-  startRepeating(PIPPause_Key);
-}
-
-void MainWindow::on_pipPauseButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_pipSizeButton_pressed()
-{
-  startRepeating(PIPSize_Key);
-}
-
-void MainWindow::on_pipSizeButton_released()
-{
-  stopRepeating();
-}
-*/
-
-
-
 // Menu actions:
 
 void MainWindow::on_actionSelectKeyset_triggered()
@@ -1360,30 +993,20 @@ void MainWindow::populateFavorites()
   int index = 0;
   QString make;
   QString name;
-//  unsigned int id;
   PIRKeysetWidgetItem *kwi;
 
   while (index < size)
   {
     settings.setArrayIndex(index);
-//    id = settings.value("keysetID").toInt();
     make = settings.value("keysetMake").toString();
     name = settings.value("keysetName").toString();
 
     kwi = myKeysets->makeKeysetItem(make, name);
 
     // Did the item creation work?
-//    if (myKeysets->keysetExists(id))
     if (kwi)
     {
       // Keyset does exist, so continue:
-//      make = myKeysets->getMake(id);
-//      name = makeManager.getMakeString(make);
-//      name.append(" ");
-//      name.append(myKeysets->getDisplayName(id));
-//    kwi = new PIRKeysetWidgetItem(name, id, make);
-//    myKeysets->populateDeviceTypes(kwi, id);
-//      ui->favoriteKeysetsWidget->addItem(new PIRKeysetWidgetItem(name, id, make));
       ui->favoriteKeysetsWidget->addItem(kwi);
     }
 

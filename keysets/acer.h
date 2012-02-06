@@ -1,24 +1,24 @@
-#ifndef SAGEM_H
-#define SAGEM_H
+#ifndef ACER_H
+#define ACER_H
 
 #include "pirkeysetmetadata.h"
 
 class QObject;
 
-class SagemTVBox1: public PIRKeysetMetaData
+class AcerTV1: public PIRKeysetMetaData
 {
 public:
-  SagemTVBox1(
+  AcerTV1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class SagemTVBox1a: public SagemTVBox1
+class AcerPC1: public PIRKeysetMetaData
 {
 public:
-  SagemTVBox1a(
+  AcerPC1(
     QObject *guiObject,
     unsigned int index);
 };
 
-#endif // SAGEM_H
+#endif // ACER_H

@@ -2,7 +2,8 @@
 #define ELGATO_H
 
 #include "pirkeysetmetadata.h"
-#include <QObject>
+
+class QObject;
 
 class ElgatoEyeTV1: public PIRKeysetMetaData
 {

@@ -279,24 +279,28 @@ JVCTV1::JVCTV1(
 
   setPreData(0x03, 8);
 
-  addKey("main/sap", Audio_Key, 0x00, 8); // "I/II"
-  addKey("info", Info_Key, 0x04, 8); // "display"
-  addKey("return", Unmapped_Key, 0x05, 8);
+  addKey("main/sap", Audio_Key, 0x00, 8); // "I/II", "Stereo/SAP/Mono"
+  addKey("info", Info_Key, 0x04, 8); // "display", "OSD"
+  addKey("last", PrevChannel_Key, 0x05, 8); // "return"
   addKey("RESET", Reset_Key, 0x06, 8);
+  addKey("antenna/cable", Unmapped_Key, 0x0A, 8);
   addKey("BROADCAST", Unmapped_Key, 0x0B, 8); // "ant/cable"
-  addKey("video_status", Unmapped_Key, 0x0D, 8);
+  addKey("video_status", Unmapped_Key, 0x0D, 8); // "AV Status/Reset"
   addKey("cc", Captions_Key, 0x0E, 8);
   addKey("input_s", Unmapped_Key, 0x0F, 8);
 
+  addKey("tuner discrete", AntennaInput_Key, 0x10, 8);
+  addKey("Video in discrete", CompositeInput_Key, 0x11, 8);
   addKey("input_2", Unmapped_Key, 0x12, 8);
   addKey("TV/VCR", Input_Key, 0x13, 8); // "input"
   addKey("input_3", Unmapped_Key, 0x14, 8);
   addKey("Power", Power_Key, 0x17, 8);
   addKey("Prog-", ChannelDown_Key, 0x18, 8);
   addKey("Prog+", ChannelUp_Key, 0x19, 8);
-  addKey("LEVELUP", Unmapped_Key, 0x1A, 8);
-  addKey("LEVELDOWN", Unmapped_Key, 0x1B, 8);
+  addKey("Power Off", PowerOff_Key, 0x1A, 8); // "LEVELUP"
+//  addKey("LEVELDOWN", Unmapped_Key, 0x1B, 8);
   addKey("AUDIO", Mute_Key, 0x1C, 8); // "mute"
+  addKey("Power On", PowerOn_Key, 0x1D, 8);
   addKey("Vol+", VolumeUp_Key, 0x1E, 8);
   addKey("Vol-", VolumeDown_Key, 0x1F, 8);
 
@@ -318,10 +322,10 @@ JVCTV1::JVCTV1(
   addKey("con_up", ContrastUp_Key, 0x36, 8);
   addKey("con_down", ContrastDown_Key, 0x37, 8);
   addKey("FUNCTION", Unmapped_Key, 0x3B, 8);
-  addKey("RECALL", PrevChannel_Key, 0x3C, 8);
+  addKey("RECALL", Unmapped_Key, 0x3C, 8); // "recall choice"
   addKey("sound", Unmapped_Key, 0x42, 8); // "<>"
   addKey("VNR", NoiseReduction_Key, 0x45, 8);
-  addKey("right", Right_Key, 0x55, 8);
+  addKey("right", Right_Key, 0x5A, 8);
   addKey("left", Left_Key, 0x5B, 8);
   addKey("X", Clear_Key, 0x70, 8);
   addKey("Timer", Sleep_Key, 0x71, 8);

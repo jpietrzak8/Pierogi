@@ -1,5 +1,7 @@
 #include "pioneerprotocol.h"
 
+#include "pirrx51hardware.h"
+
 #include "pirexception.h"
 #include <string>
 //#include <iostream>

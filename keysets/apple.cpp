@@ -1,6 +1,5 @@
 #include "apple.h"
 #include "protocols/lircprotocol.h"
-//#include "pirmakenames.h"
 
 // Based on LIRC Apple_A1156 config file
 AppleWhiteRemote::AppleWhiteRemote(

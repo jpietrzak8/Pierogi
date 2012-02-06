@@ -1,40 +1,43 @@
-#include "jvcprotocol.h"
-#include "pirrx51hardware.h"
+#include "rcaprotocol.h"
 
+#include "pirrx51hardware.h"
 #include "pirexception.h"
-#include <string>
 
 // Some global communications stuff:
 #include <QMutex>
 extern bool commandInFlight;
 extern QMutex commandIFMutex;
 
-// The JVC protocol should have the following attributes:
-// A "zero" is encoded with a 526 usec pulse, 52626 usec space.
-// A "one" is encoded with a 526 usec pulse, and 3*526 (1578) usec space.
-// The header is a 8400 usec pulse, 4200 usec space.
-// Commands end with a trailing 526 usec pulse.
-// Commands are repeated by re-sending entire command without the header.
-// Repeats are broadcast every 60000 usec.
-// The carrier frequency is 38 kHz, duty cycle is 1/3.
+// I've found no official data on the RCA protocol yet, but from available
+// notes and guesswork I'm using the following:
+// A "zero" is encoded with a 500 usec pulse, 500 usec space.
+// A "one" is encoded with a 500 usec pulse, and 2000 usec space.
+// The header is a 4000 usec pulse, 4000 usec space.
+// Commands end with a trailing 500 usec pulse.
+// When holding down a button, the entire command is repeated.
+// Commands are repeated every 64000 usec.
 
-JVCProtocol::JVCProtocol(
+// Each RCA word consists of 4 bits of address data and 8 bits of command data.
+// The address is sent first, in order of most significant bit to least,
+// followed by the command, also MSB to LSB.  Then, the same data is sent
+// again, but with all the bits inverted.  (This is a bit different from
+// how the NEC protocol does things.)
+
+RCAProtocol::RCAProtocol(
   QObject *guiObject,
   unsigned int index)
   : SpaceProtocol(
       guiObject, index,
-      526, 526,
-      526, 1578,
-      8400, 4200,
-      526,
-      60000, true)
+      500, 500,
+      500, 2000,
+      4000, 4000,
+      500,
+      64000, true)
 {
-  setCarrierFrequency(38000);
-  setDutyCycle(33);
 }
 
 
-void JVCProtocol::startSendingCommand(
+void RCAProtocol::startSendingCommand(
   unsigned int threadableID,
   PIRKeyName command)
 {
@@ -44,6 +47,13 @@ void JVCProtocol::startSendingCommand(
   {
     // First, check if we are meant to be the recipient of this command:
     if (threadableID != id) return;
+
+    // An object that helps keep track of the number of commands:
+//    PIRCommandCounter commandCounter;
+
+    // Ok, we're going to lock down this method and make sure
+    // only one guy at a time passes this point:
+//    QMutexLocker commandLocker(&commandMutex);
 
     clearRepeatFlag();
 
@@ -63,16 +73,7 @@ void JVCProtocol::startSendingCommand(
     int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      // If we are currently repeating, and have a special "repeat signal",
-      // use that signal.  Otherwise, generate a normal command string.
-      if (repeatCount)
-      {
-        commandDuration = generateHeadlessCommand((*i).second, rx51device);
-      }
-      else
-      {
-        commandDuration = generateStandardCommand((*i).second, rx51device);
-      }
+      commandDuration = generateStandardCommand((*i).second, rx51device);
 
       // Now, tell the device to send the whole command:
       rx51device.sendCommandToDevice();
@@ -106,9 +107,7 @@ void JVCProtocol::startSendingCommand(
 }
 
 
-// JVC data is sent in reverse order, i.e., the least signficant bit is
-// sent first.
-int JVCProtocol::generateStandardCommand(
+int RCAProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
   PIRRX51Hardware &rx51device)
 {
@@ -118,27 +117,11 @@ int JVCProtocol::generateStandardCommand(
   rx51device.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
-  // Now, push the actual data:
-  duration += pushReverseBits(preData, rx51device);
-  duration += pushReverseBits(pkb.firstCode, rx51device);
-
-  // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
-  duration += trailerPulse;
-
-  return duration;
-}
-
-
-int JVCProtocol::generateHeadlessCommand(
-  const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
-{
-  int duration = 0;
-
-  // Push the actual data:
-  duration += pushReverseBits(preData, rx51device);
-  duration += pushReverseBits(pkb.firstCode, rx51device);
+  // Now, set up the address and command bits:
+  duration += pushBits(preData, rx51device);
+  duration += pushBits(pkb.firstCode, rx51device);
+  duration += pushInvertedBits(preData, rx51device);
+  duration += pushInvertedBits(pkb.firstCode, rx51device);
 
   // Finally add the "trail":
   rx51device.addSingle(trailerPulse);

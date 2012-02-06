@@ -2,7 +2,8 @@
 #define JVCPROTOCOL_H
 
 #include "spaceprotocol.h"
-#include "pirrx51hardware.h"
+
+class PIRRX51Hardware;
 
 //
 // JVC has its own protocol, similar in some ways to the popular NEC protocol.

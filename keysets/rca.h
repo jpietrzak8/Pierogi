@@ -3,7 +3,7 @@
 
 #include "pirkeysetmetadata.h"
 
-#include <QObject>
+class QObject;
 
 class RCATV1: public PIRKeysetMetaData
 {
@@ -21,14 +21,15 @@ public:
     unsigned int index);
 };
 
-class RCATV2: public PIRKeysetMetaData
+class RCATV1b: public RCATV1
 {
 public:
-  RCATV2(
+  RCATV1b(
     QObject *guiObject,
     unsigned int index);
 };
 
+/*
 class RCAAux1: public PIRKeysetMetaData
 {
 public:
@@ -52,6 +53,7 @@ public:
     QObject *guiObject,
     unsigned int index);
 };
+*/
 
 class RCAVCR1: public PIRKeysetMetaData
 {
@@ -61,10 +63,10 @@ public:
     unsigned int index);
 };
 
-class RCAVCR2: public PIRKeysetMetaData
+class RCAVCR1a: public RCAVCR1
 {
 public:
-  RCAVCR2(
+  RCAVCR1a(
     QObject *guiObject,
     unsigned int index);
 };

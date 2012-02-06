@@ -2,7 +2,8 @@
 #define TIVO_H
 
 #include "pirkeysetmetadata.h"
-#include <QObject>
+
+class QObject;
 
 class Tivo1: public PIRKeysetMetaData
 {

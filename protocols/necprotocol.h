@@ -2,7 +2,8 @@
 #define NECPROTOCOL_H
 
 #include "spaceprotocol.h"
-#include "pirrx51hardware.h"
+
+class PIRRX51Hardware;
 
 //
 // The "NEC" Protocol is, more or less, followed by the majority of

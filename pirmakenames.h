@@ -1,12 +1,13 @@
 #ifndef PIRMAKENAMES_H
 #define PIRMAKENAMES_H
 
-#include <QComboBox>
-#include <map>
+class QComboBox;
 
 // The list of brands currently known by Pierogi:
 enum PIRMakeName{
   Any_Make,
+  Acer_Make,
+  Aiwa_Make,
   Apple_Make,
   Denon_Make,
   Ei_Make,
@@ -40,6 +41,7 @@ enum PIRMakeName{
 
 // An object of convenience:
 
+#include <map>
 typedef std::map<PIRMakeName, const char *> MakeCollection;
 
 class PIRMakeMgr

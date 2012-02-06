@@ -1,15 +1,17 @@
 #ifndef PIRKEYSETMETADATA_H
 #define PIRKEYSETMETADATA_H
 
-#include <map>
-#include <list>
-//#include <string>
-
 #include "pirkeynames.h"
 #include "pirmakenames.h"
 #include "pirdevicetypenames.h"
-#include "pirkeysetwidgetitem.h"
-#include "protocols/pirprotocol.h"
+
+#include <map>
+#include <list>
+
+class QThread;
+
+class PIRKeysetWidgetItem;
+class PIRProtocol;
 
 typedef std::map<PIRKeyName, const char *> KeyCollection;
 
@@ -50,7 +52,7 @@ public:
   const char *getKeysetName() const;
 
   void moveProtocolToThread(
-    QThread &thread);
+    QThread *thread);
 
   void populateDeviceTypes(
     PIRKeysetWidgetItem *kwi) const;
@@ -110,6 +112,14 @@ protected:
     unsigned int commandOne,
     unsigned int addressTwo,
     unsigned int commandTwo);
+
+/*
+  void addRCAKey(
+    const char *name,
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
+*/
 
   void setPreData(
     unsigned long data,

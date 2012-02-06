@@ -2,15 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QtGui/QMainWindow>
-#include <QListWidgetItem>
-//#include <QThread>
 
-#include "pirsecondaryform.h"
-#include "pirselectkeysetform.h"
-#include "pirdocumentationform.h"
-#include "piraboutform.h"
-#include "pirkeysetmanager.h"
+#include "pirkeynames.h"
 #include "pirmodprobe.h"
+
+class QListWidgetItem;
+class PIRSelectKeysetForm;
+class PIRSecondaryForm;
+class PIRDocumentationForm;
+class PIRAboutForm;
+class PIRKeysetManager;
 
 namespace Ui {
     class MainWindow;

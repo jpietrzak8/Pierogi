@@ -3,7 +3,7 @@
 
 #include "pirkeysetmetadata.h"
 
-#include <QObject>
+class QObject;
 
 class SanyoVCR1: public PIRKeysetMetaData
 {
@@ -45,7 +45,7 @@ public:
     unsigned int index);
 };
 
-class SanyoTV1c: public SanyoTV1
+class SanyoTV1c: public SanyoTV1a
 {
 public:
   SanyoTV1c(
@@ -53,18 +53,10 @@ public:
     unsigned int index);
 };
 
-class SanyoTV1d: public SanyoTV1a
+class SanyoTV1d: public SanyoTV1
 {
 public:
   SanyoTV1d(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class SanyoTV1e: public SanyoTV1
-{
-public:
-  SanyoTV1e(
     QObject *guiObject,
     unsigned int index);
 };

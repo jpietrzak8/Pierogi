@@ -1,6 +1,9 @@
 #include "pirkeysetmetadata.h"
+#include "pirkeysetwidgetitem.h"
+#include "protocols/pirprotocol.h"
 
 #include <iostream>
+
 
 PIRKeysetMetaData::PIRKeysetMetaData(
   const char *r,
@@ -20,9 +23,9 @@ bool PIRKeysetMetaData::hasKey(
 
 
 void PIRKeysetMetaData::moveProtocolToThread(
-  QThread &thread)
+  QThread *thread)
 {
-  threadableProtocol->moveToThread(&thread);
+  threadableProtocol->moveToThread(thread);
 }
 
 
@@ -170,6 +173,23 @@ void PIRKeysetMetaData::addPioneerKey(
       key, addressOne, commandOne, addressTwo, commandTwo);
   }
 }
+
+
+/*
+void PIRKeysetMetaData::addRCAKey(
+  const char *name,
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+    threadableProtocol->addPioneerKey(
+      key, addressData, commandData);
+  }
+}
+*/
 
 
 void PIRKeysetMetaData::setPreData(

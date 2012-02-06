@@ -2,7 +2,8 @@
 #define MAGNAVOX_H
 
 #include "pirkeysetmetadata.h"
-#include <QObject>
+
+class QObject;
 
 class MagnavoxDVD1: public PIRKeysetMetaData
 {

@@ -2,12 +2,13 @@
 #define PIRSELECTKEYSETFORM_H
 
 #include <QWidget>
-#include <QListWidget>
 #include <QString>
 
 #include "pirmakenames.h"
 #include "pirdevicetypenames.h"
-#include "pirkeysetwidgetitem.h"
+
+class QListWidget;
+class PIRKeysetWidgetItem;
 
 namespace Ui {
 class PIRSelectKeysetForm;

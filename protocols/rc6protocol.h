@@ -2,7 +2,8 @@
 #define RC6PROTOCOL_H
 
 #include "pirprotocol.h"
-#include "pirrx51hardware.h"
+
+class PIRRX51Hardware;
 
 //
 // The RC6 protocol is a much fancier, much more complex successor to the

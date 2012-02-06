@@ -1,6 +1,7 @@
 #include "pirselectkeysetform.h"
 #include "ui_pirselectkeysetform.h"
 #include "pirkeysetwidgetitem.h"
+#include <QListWidget>
 
 extern PIRMakeMgr makeManager;
 extern PIRDeviceTypeMgr deviceManager;

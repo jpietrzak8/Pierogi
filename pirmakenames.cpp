@@ -1,8 +1,12 @@
 #include "pirmakenames.h"
 
+#include <QComboBox>
+
 PIRMakeMgr::PIRMakeMgr()
 {
   makes[Any_Make] = "Any";
+  makes[Acer_Make] = "Acer";
+  makes[Aiwa_Make] = "Aiwa";
   makes[Apple_Make] = "Apple";
   makes[Denon_Make] = "Denon";
   makes[Ei_Make] = "Ei";

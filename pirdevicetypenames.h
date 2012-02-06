@@ -4,7 +4,7 @@
 #include <set>
 #include <map>
 
-#include <QComboBox>
+class QComboBox;
 
 enum PIRDeviceTypeName {
   Any_Device,

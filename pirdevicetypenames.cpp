@@ -1,5 +1,7 @@
 #include "pirdevicetypenames.h"
 
+#include <QComboBox>
+
 PIRDeviceTypeMgr::PIRDeviceTypeMgr()
 {
   devices[Any_Device] = "Any";

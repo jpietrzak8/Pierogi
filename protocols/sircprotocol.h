@@ -2,7 +2,8 @@
 #define SIRCPROTOCOL_H
 
 #include "spaceprotocol.h"
-#include "pirrx51hardware.h"
+
+class PIRRX51Hardware;
 
 //
 // The SIRC protocol is Sony's system for transmitting information via

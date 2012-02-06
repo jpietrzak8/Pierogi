@@ -2,7 +2,8 @@
 #define LIRCPROTOCOL_H
 
 #include "spaceprotocol.h"
-#include "pirrx51hardware.h"
+
+class PIRRX51Hardware;
 
 //
 // LIRC does not itself have an actual protocol; what it does do is attempt

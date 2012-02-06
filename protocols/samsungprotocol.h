@@ -2,7 +2,6 @@
 #define SAMSUNGPROTOCOL_H
 
 #include "necprotocol.h"
-#include "pirrx51hardware.h"
 
 //
 // The Samsung protocol is basically identical to the NEC protocol, except

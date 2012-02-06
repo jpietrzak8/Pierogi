@@ -1,5 +1,7 @@
 #include "spaceprotocol.h"
 
+#include "pirrx51hardware.h"
+
 SpaceProtocol::SpaceProtocol(
   QObject *guiObject,
   unsigned int index,
@@ -70,6 +72,33 @@ int SpaceProtocol::pushReverseBits(
       // Send the pulse for "Zero":
       rx51device.addPair(zeroPulse, zeroSpace);
       duration += (zeroPulse + zeroSpace);
+    }
+    ++i;
+  }
+
+  return duration;
+}
+
+
+int SpaceProtocol::pushInvertedBits(
+  const CommandSequence &bits,
+  PIRRX51Hardware &rx51device)
+{
+  int duration = 0;
+  CommandSequence::const_iterator i = bits.begin();
+  while (i != bits.end())
+  {
+    if (*i)
+    {
+      // Send the pulse for "Zero":
+      rx51device.addPair(zeroPulse, zeroSpace);
+      duration += (zeroPulse + zeroSpace);
+    }
+    else
+    {
+      // Send the pulse for "One":
+      rx51device.addPair(onePulse, oneSpace);
+      duration += (onePulse + oneSpace);
     }
     ++i;
   }

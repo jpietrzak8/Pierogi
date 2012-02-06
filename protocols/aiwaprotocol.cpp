@@ -1,4 +1,5 @@
-#include "jvcprotocol.h"
+#include "aiwaprotocol.h"
+
 #include "pirrx51hardware.h"
 
 #include "pirexception.h"
@@ -9,32 +10,34 @@
 extern bool commandInFlight;
 extern QMutex commandIFMutex;
 
-// The JVC protocol should have the following attributes:
-// A "zero" is encoded with a 526 usec pulse, 52626 usec space.
-// A "one" is encoded with a 526 usec pulse, and 3*526 (1578) usec space.
-// The header is a 8400 usec pulse, 4200 usec space.
-// Commands end with a trailing 526 usec pulse.
-// Commands are repeated by re-sending entire command without the header.
-// Repeats are broadcast every 60000 usec.
-// The carrier frequency is 38 kHz, duty cycle is 1/3.
+// My information on the Aiwa protocol is that it has the following attributes:
+// A "zero" is encoded with a 550 usec pulse, 550 usec space.
+// A "one" is encoded with a 550 usec pulse, 1650 (3 * 550) usec space.
+// The header has a 8800 usec pulse, 4400 usec space.
+// There is a 550 usec trailing pulse.
+// Repeat blocks are 8800 usec pulse, 4400 usec space, then trailing pulse.
+// Each command lasts for 108000 usec.
+// Carrier frequency is 38 kHz; I'm using 50% for the duty cycle, for now.
 
-JVCProtocol::JVCProtocol(
+AiwaProtocol::AiwaProtocol(
   QObject *guiObject,
   unsigned int index)
   : SpaceProtocol(
       guiObject, index,
-      526, 526,
-      526, 1578,
-      8400, 4200,
-      526,
-      60000, true)
+      550, 550,
+      550, 1650,
+      8800, 4400,
+      550,
+      108000, true),
+    repeatPulse(8800),
+    repeatSpace(2250)
 {
   setCarrierFrequency(38000);
-  setDutyCycle(33);
+  setDutyCycle(50);
 }
 
 
-void JVCProtocol::startSendingCommand(
+void AiwaProtocol::startSendingCommand(
   unsigned int threadableID,
   PIRKeyName command)
 {
@@ -63,11 +66,10 @@ void JVCProtocol::startSendingCommand(
     int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      // If we are currently repeating, and have a special "repeat signal",
-      // use that signal.  Otherwise, generate a normal command string.
+      // If we are currently repeating, send the repeat block:
       if (repeatCount)
       {
-        commandDuration = generateHeadlessCommand((*i).second, rx51device);
+        commandDuration = generateRepeatCommand(rx51device);
       }
       else
       {
@@ -106,9 +108,7 @@ void JVCProtocol::startSendingCommand(
 }
 
 
-// JVC data is sent in reverse order, i.e., the least signficant bit is
-// sent first.
-int JVCProtocol::generateStandardCommand(
+int AiwaProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
   PIRRX51Hardware &rx51device)
 {
@@ -118,9 +118,16 @@ int JVCProtocol::generateStandardCommand(
   rx51device.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
-  // Now, push the actual data:
+  // From the information I've got, the "address" portion of the Aiwa protocol
+  // might be split into 8-bit device and 5-bit subdevice subsections, but
+  // for now, I'm just lumping both into a single 13-bit address value.
+  // The command is an 8-bit value.
+  // As with NEC, the address is sent LSB first, then inverted LSB first,
+  // then the command is sent LSB first, then inverted LSB first.
   duration += pushReverseBits(preData, rx51device);
+  duration += pushInvertedReverseBits(preData, rx51device);
   duration += pushReverseBits(pkb.firstCode, rx51device);
+  duration += pushInvertedReverseBits(pkb.firstCode, rx51device);
 
   // Finally add the "trail":
   rx51device.addSingle(trailerPulse);
@@ -130,17 +137,16 @@ int JVCProtocol::generateStandardCommand(
 }
 
 
-int JVCProtocol::generateHeadlessCommand(
-  const PIRKeyBits &pkb,
+int AiwaProtocol::generateRepeatCommand(
   PIRRX51Hardware &rx51device)
 {
   int duration = 0;
 
-  // Push the actual data:
-  duration += pushReverseBits(preData, rx51device);
-  duration += pushReverseBits(pkb.firstCode, rx51device);
+  // Add the repeat pulse:
+  rx51device.addPair(repeatPulse, repeatSpace);
+  duration += (repeatPulse + repeatSpace);
 
-  // Finally add the "trail":
+  // Finally add the trailer:
   rx51device.addSingle(trailerPulse);
   duration += trailerPulse;
 

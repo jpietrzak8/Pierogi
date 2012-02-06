@@ -7,7 +7,7 @@ sudoers_stuff.source = pierogi.sudoers
 sudoers_stuff.target = ../../etc/sudoers.d
 loadModule.source = loadRX51Module unloadRX51Module
 loadModule.target = bin
-DEPLOYMENTFOLDERS = sudoers_stuff loadModule
+DEPLOYMENTFOLDERS = loadModule sudoers_stuff
 
 #symbian:TARGET.UID3 = 0xE0C0A793
 
@@ -78,7 +78,11 @@ SOURCES += main.cpp mainwindow.cpp \
     protocols/samsungprotocol.cpp \
     keysets/pioneer.cpp \
     protocols/spaceprotocol.cpp \
-    pirsecondaryform.cpp
+    pirsecondaryform.cpp \
+    protocols/rcaprotocol.cpp \
+    keysets/acer.cpp \
+    keysets/aiwa.cpp \
+    protocols/aiwaprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -111,7 +115,6 @@ HEADERS += mainwindow.h \
     pirdevicetypenames.h \
     keysets/raite.h \
     keysets/sagem.h \
-    keysets/yamaha.h \
     keysets/hitachi.h \
     keysets/denon.h \
     keysets/pinnacle.h \
@@ -131,7 +134,12 @@ HEADERS += mainwindow.h \
     protocols/samsungprotocol.h \
     keysets/pioneer.h \
     protocols/spaceprotocol.h \
-    pirsecondaryform.h
+    pirsecondaryform.h \
+    keysets/yamaha.h \
+    protocols/rcaprotocol.h \
+    keysets/acer.h \
+    keysets/aiwa.h \
+    protocols/aiwaprotocol.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

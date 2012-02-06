@@ -1,4 +1,7 @@
 #include "necprotocol.h"
+
+#include "pirrx51hardware.h"
+
 #include "pirexception.h"
 
 // Some global communications stuff:
@@ -14,7 +17,6 @@ extern QMutex commandIFMutex;
 // A repeat block is a 9000 usec pulse, 2250 usec space, then trailing pulse.
 // Each command runs for 110000 usec before another can be executed.
 
-// For standard NEC, use this constructor:
 NECProtocol::NECProtocol(
   QObject *guiObject,
   unsigned int index,

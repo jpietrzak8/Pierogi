@@ -1,6 +1,7 @@
 #include "hitachi.h"
 #include "protocols/necprotocol.h"
 
+
 HitachiTV1::HitachiTV1(
   QObject *guiObject,
   unsigned int index)
@@ -42,10 +43,13 @@ HitachiTV1::HitachiTV1(
   addKey("MENU", Menu_Key, 0x40, 8);
   addKey("OK", Select_Key, 0x43, 8);
   addKey("return", Exit_Key, 0x44, 8);
-  addKey("SUB", Captions_Key, 0x45, 8);
-  addKey("U.N.L", Unmapped_Key, 0x46, 8);
-  addKey("HOLD", TeletextHold_Key, 0x47, 8);
-  addKey("Red", Red_Key, 0x4C, 8);
+  addKey("green sub title", Green_Key, 0x45, 8);
+  addKey("green sub title", Captions_Key, 0x45, 8);
+  addKey("yellow pip a/b", Yellow_Key, 0x46, 8); // "U.N.L"
+  addKey("yellow pip a/b", PIPSource_Key, 0x46, 8); // "U.N.L"
+  addKey("blue pip 2 4 24", Blue_Key, 0x47, 8); // "HOLD"
+  addKey("red text", Red_Key, 0x4C, 8);
+  addKey("red text", Teletext_Key, 0x4C, 8); 
   addKey("PSCAN100HZ", Unmapped_Key, 0x4D, 8);
   addKey("SOUND", SoundMode_Key, 0x4F, 8);
   addKey("X", Unmapped_Key, 0x54, 8);
@@ -53,7 +57,7 @@ HitachiTV1::HitachiTV1(
   addKey("zelen", Unmapped_Key, 0x5C, 8);
   addKey("Reveal", Unmapped_Key, 0x5D, 8); // "jolt"
   addKey("zelen", Unmapped_Key, 0x5E, 8);
-  addKey("TV/TEXT", Teletext_Key, 0x66, 8);
+//  addKey("TV/TEXT", Teletext_Key, 0x66, 8);
   addKey("Picture", PictureMode_Key, 0x67, 8);
   addKey("Cancel", Clear_Key, 0x68, 8);
   addKey("PLAY", Play_Key, 0x6B, 8);
@@ -62,6 +66,8 @@ HitachiTV1::HitachiTV1(
   addKey("FWD", FastForward_Key, 0x6F, 8);
   addKey("UP", Up_Key, 0x70, 8);
   addKey("DOWN", Down_Key, 0x71, 8);
+  addKey("RIGHT", Right_Key, 0x72, 8);
+  addKey("LEFT", Left_Key, 0x73, 8);
 }
 
 
@@ -99,6 +105,7 @@ HitachiTV1c::HitachiTV1c(
 
   addKey("LastChannel", PrevChannel_Key, 0x0A, 8);
   addKey("Info", Info_Key, 0x10, 8);
+  addKey("-", Dash_Key, 0x11, 8);
   addKey("Input1", Unmapped_Key, 0x21, 8);
   addKey("Input2", Unmapped_Key, 0x22, 8);
   addKey("Input3", Unmapped_Key, 0x23, 8);
@@ -116,9 +123,10 @@ HitachiTV1c::HitachiTV1c(
   addKey("PowerON", PowerOn_Key, 0x3E, 8);
   addKey("PowerOFF", PowerOff_Key, 0x3F, 8);
   addKey("Menu", Menu_Key, 0x53, 8);
+  addKey("PIP Swap", PIPSwap_Key, 0x56, 8);
   addKey("PIP", PIP_Key, 0x58, 8);
   addKey("Day/Night", Unmapped_Key, 0x5E, 8);
-  addKey("Freeze/Pause", Unmapped_Key, 0x61, 8);
+  addKey("Freeze/Pause", Unmapped_Key, 0x61, 8); // note: have to hit "exit" to get out of frozen screen?
   addKey("EXIT", Exit_Key, 0x64, 8);
   addKey("16:9", Unmapped_Key, 0x65, 8);
   addKey("16:9Zoom", Unmapped_Key, 0x66, 8);
@@ -129,14 +137,139 @@ HitachiTV1c::HitachiTV1c(
   addKey("540p", Unmapped_Key, 0x6B, 8);
   addKey("1080i", Unmapped_Key, 0x6C, 8);
   addKey("Aspect", AspectRatio_Key, 0x6F, 8);
-  addKey("ArrowRight", Right_Key, 0x72, 8);
-  addKey("ArrowLeft", Left_Key, 0x73, 8);
+//  addKey("ArrowRight", Right_Key, 0x72, 8);
+//  addKey("ArrowLeft", Left_Key, 0x73, 8);
   addKey("DayMode", Unmapped_Key, 0x74, 8);
   addKey("NightMode", Unmapped_Key, 0x75, 8);
   addKey("AntennaA", AntennaInput_Key, 0x76, 8);
   addKey("AntennaB", Antenna2Input_Key, 0x77, 8);
   addKey("CC", Unmapped_Key, 0x78, 8); // Another CC key?
   // Many more codes available in LIRC's hitachi/CLU4341UG2 config file
+}
+
+
+// Taken from Hitachi 42HDM12.rmdu, a plasma HDMI monitor without a tuner
+HitachiTV2::HitachiTV2(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV (monitor) Keyset 2",
+      Hitachi_Make,
+      index)
+{
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  setPreData(0x50, 8); // This might be wrong...
+
+  addKey("Power", Power_Key, 0x17, 8);
+  addKey("Recall", PrevChannel_Key, 0xF7, 8);
+  addKey("Quick", Unmapped_Key, 0xD5, 8);
+  addKey("P.Mode", PictureMode_Key, 0x85, 8);
+  addKey("PC Adj.", Unmapped_Key, 0x27, 8);
+  addKey("Menu", Menu_Key, 0x35, 8);
+  addKey("Exit", Exit_Key, 0xD9, 8);
+  addKey("Up", Up_Key, 0xF1, 8);
+  addKey("Down", Down_Key, 0x71, 8);
+  addKey("Left", Left_Key, 0x31, 8);
+  addKey("Right", Right_Key, 0x81, 8);
+  addKey("Select", Select_Key, 0x8B, 8);
+  addKey("Return", Unmapped_Key, 0xAF, 8);
+  addKey("Video", Unmapped_Key, 0x6F, 8);
+  addKey("PC", PCInput_Key, 0x9B, 8);
+  addKey("PIP Input", PIPSource_Key, 0x39, 8);
+  addKey("PIP Swap", PIPSwap_Key, 0x65, 8);
+  addKey("Aspect", AspectRatio_Key, 0x09, 8);
+  addKey("Sleep", Sleep_Key, 0x77, 8);
+  addKey("Zoom+", Unmapped_Key, 0x15, 8);
+  addKey("Zoom-", Unmapped_Key, 0x95, 8);
+  addKey("Freeze", PIPPause_Key, 0x79, 8);
+  addKey("Mute", Mute_Key, 0x2F, 8);
+  addKey("Vol-", VolumeDown_Key, 0x57, 8);
+  addKey("Vol+", VolumeUp_Key, 0xB7, 8);
+}
+
+
+// See: http://www.hitachi-america.us/supportingdocs/forhome/ubcg/remote_ir_codes/2009_RC_Layouts_and_IR_Codes_L19_L26.pdf
+HitachiTV3::HitachiTV3(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV Keyset 3",
+      Hitachi_Make,
+      index)
+{
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+//  setPreData(0x0AF5, 16);
+  setPreData(0x50, 8);
+
+  addKey("8", Eight_Key, 0x04, 8);
+  addKey("9", Nine_Key, 0x05, 8);
+  addKey("CH_I/II", Audio_Key, 0x08, 8); // "AUDIO"
+  addKey("tv/video", Input_Key, 0x09, 8); // "AV", "INPUT"
+  addKey("LAST CH / ZOOM", PrevChannel_Key, 0x0A, 8);
+  addKey("LAST CH / ZOOM", Zoom_Key, 0x0A, 8);
+  addKey("mute", Mute_Key, 0x0B, 8); // "MUTE"
+  addKey("0", Zero_Key, 0x0C, 8);
+  addKey("1", One_Key, 0x0D, 8);
+  addKey("2", Two_Key, 0x0E, 8);
+  addKey("3", Three_Key, 0x0F, 8);
+
+  addKey("DASH/DISPLAY", Dash_Key, 0x11, 8);
+  addKey("DASH/DISPLAY", Info_Key, 0x11, 8);
+  addKey("vol_up", VolumeUp_Key, 0x12, 8); // "VOL +"
+  addKey("SLEEP", Sleep_Key, 0x13, 8);
+  addKey("vol_down", VolumeDown_Key, 0x15, 8); // "VOL -"
+  addKey("power", Power_Key, 0x17, 8); // "POWER"
+  addKey("4", Four_Key, 0x1C, 8);
+  addKey("5", Five_Key, 0x1D, 8);
+  addKey("6", Six_Key, 0x1E, 8);
+  addKey("7", Seven_Key, 0x1F, 8);
+
+  addKey("HDMI 2", HDMI2Input_Key, 0x20, 8);
+  addKey("AV 1", CompositeInput_Key, 0x21, 8); // "Input1"
+  addKey("COMPONENT 1", ComponentInput_Key, 0x22, 8); // "Input2"
+  addKey("COMPONENT 2", Component2Input_Key, 0x23, 8); // "Input3"
+  addKey("AV 2", Composite2Input_Key, 0x24, 8); // "Input4"
+  addKey("HDMI 3", HDMI3Input_Key, 0x25, 8);
+  addKey("CURSOR UP/CH UP", Up_Key, 0x28, 8);
+  addKey("CURSOR UP/CH UP", ChannelUp_Key, 0x28, 8);
+  addKey("CURSOR DOWN/CH DOWN", Down_Key, 0x29, 8);
+  addKey("CURSOR DOWN/CH DOWN", ChannelDown_Key, 0x29, 8);
+  addKey("VGA", PCInput_Key, 0x2C, 8);
+  addKey("ENTER", Select_Key, 0x2E, 8);
+  addKey("ENTER", Enter_Key, 0x2E, 8);
+  addKey("HDMI 1", HDMIInput_Key, 0x3D, 8);
+  addKey("POWER ON", PowerOn_Key, 0x3E, 8);
+  addKey("POWER OFF", PowerOff_Key, 0x3F, 8);
+
+  addKey("SEARCH REVERSE", Rewind_Key, 0x45, 8);
+  addKey("PLAY", Play_Key, 0x46, 8);
+  addKey("SEARCH FORWARD", FastForward_Key, 0x47, 8);
+  addKey("STOP", Stop_Key, 0x49, 8);
+  addKey("SKIP REVERSE", Previous_Key, 0x50, 8);
+  addKey("SKIP FORWARD", Next_Key, 0x52, 8);
+  addKey("MENU", Menu_Key, 0x53, 8);
+  addKey("PAUSE", Pause_Key, 0x61, 8);
+  addKey("EXIT/CANCEL", Exit_Key, 0x64, 8);
+  addKey("EXIT/CANCEL", Clear_Key, 0x64, 8);
+  addKey("ASPECT", AspectRatio_Key, 0x6F, 8);
+  addKey("CURSOR RIGHT", Right_Key, 0x72, 8);
+  addKey("CURSOR LEFT", Left_Key, 0x73, 8);
+  addKey("TV", AntennaInput_Key, 0x76, 8); // "AntennaA"
+  addKey("C.C./SUBTITLE", Captions_Key, 0x78, 8);
+  addKey("RETURN", Unmapped_Key, 0xE0, 8);
+  addKey("REPEAT A-B", RepeatAB_Key, 0xE1, 8);
+  addKey("ANGLE", Angle_Key, 0xE2, 8);
+  addKey("MARKER", Unmapped_Key, 0xE3, 8);
+  addKey("JUMP", Unmapped_Key, 0xE4, 8);
+  addKey("DVD MENU", DiscMenu_Key, 0xE6, 8);
+  addKey("TOP MENU", DiscTitle_Key, 0xE7, 8);
+  addKey("EJECT", Eject_Key, 0xE8, 8);
+  addKey("SLOW REVERSE", StepBack_Key, 0xE9, 8);
+  addKey("SLOW FORWARD", StepForward_Key, 0xEA, 8);
+  addKey("TV/DVD", Unmapped_Key, 0xEB, 8);
+  addKey("PLAY MODE", Unmapped_Key, 0xEC, 8);
 }
 
 

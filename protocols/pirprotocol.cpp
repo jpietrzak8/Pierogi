@@ -217,6 +217,32 @@ void PIRProtocol::addPioneerKey(
 }
 
 
+/*
+void PIRProtocol::addRCAKey(
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  PIRKeyBits *pkb = 0;
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    pkb = &(i->second);
+    pkb->firstcode.clear();
+    pkb->secondCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
+  }
+
+  // Address is 4 bits, command is 8 bits:
+  appendToBitSeq(pkb->firstCode, addressData, 4);
+  appendToBitSeq(pkb->secondCode, commandData, 8);
+}
+*/
+
+
 void PIRProtocol::setCarrierFrequency(
   unsigned int freq)
 {

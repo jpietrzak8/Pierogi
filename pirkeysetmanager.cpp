@@ -1,5 +1,11 @@
 #include "pirkeysetmanager.h"
+
 #include "pirkeysetmetadata.h"
+#include "pirselectkeysetform.h"
+#include "pirkeysetwidgetitem.h"
+
+#include "keysets/acer.h"
+#include "keysets/aiwa.h"
 #include "keysets/apple.h"
 #include "keysets/denon.h"
 #include "keysets/ei.h"
@@ -28,11 +34,8 @@
 #include "keysets/westinghouse.h"
 #include "keysets/yamaha.h"
 #include "keysets/zenith.h"
-#include "pirmakenames.h"
 
 #include "pirexception.h"
-
-#include <QObject>
 
 // I'll be handling the threading of the keyset commands in this object:
 #include <QMutex>
@@ -52,6 +55,19 @@ PIRKeysetManager::PIRKeysetManager(
   : counter(0)
 {
   // Create the keysets.  Ugly!  This needs to be worked on!
+  populateKeyset(new AcerTV1(guiObject, counter++));
+  populateKeyset(new AcerPC1(guiObject, counter++));
+
+  populateKeyset(new AiwaVCR1(guiObject, counter++));
+  populateKeyset(new AiwaVCR2(guiObject, counter++));
+  populateKeyset(new AiwaAudio1(guiObject, counter++));
+  populateKeyset(new AiwaAudio1a(guiObject, counter++));
+  populateKeyset(new AiwaAudio2(guiObject, counter++));
+  populateKeyset(new AiwaAudio3(guiObject, counter++));
+  populateKeyset(new AiwaAudio4(guiObject, counter++));
+  populateKeyset(new AiwaAudio5(guiObject, counter++));
+  populateKeyset(new AiwaDVD1(guiObject, counter++));
+
   populateKeyset(new AppleWhiteRemote(guiObject, counter++));
 
   populateKeyset(new DenonDVD1(guiObject, counter++));
@@ -93,6 +109,17 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new HauppaugePCTV1b(guiObject, counter++));
   populateKeyset(new HauppaugePCTV1c(guiObject, counter++));
   populateKeyset(new HauppaugePCTV2(guiObject, counter++));
+
+  populateKeyset(new HitachiTV1(guiObject, counter++));
+  populateKeyset(new HitachiTV1a(guiObject, counter++));
+  populateKeyset(new HitachiTV1b(guiObject, counter++));
+  populateKeyset(new HitachiTV1c(guiObject, counter++));
+  populateKeyset(new HitachiTV2(guiObject, counter++));
+  populateKeyset(new HitachiTV3(guiObject, counter++));
+  populateKeyset(new HitachiProjector(guiObject, counter++));
+  populateKeyset(new HitachiDVD1(guiObject, counter++));
+  populateKeyset(new HitachiAudio1(guiObject, counter++));
+  populateKeyset(new HitachiVCR1(guiObject, counter++));
 
   populateKeyset(new JVCSat1(guiObject, counter++));
   populateKeyset(new JVCSat2(guiObject, counter++));
@@ -210,12 +237,14 @@ PIRKeysetManager::PIRKeysetManager(
 
   populateKeyset(new RCATV1(guiObject, counter++));
   populateKeyset(new RCATV1a(guiObject, counter++));
-  populateKeyset(new RCATV2(guiObject, counter++));
+  populateKeyset(new RCATV1b(guiObject, counter++));
+/*
   populateKeyset(new RCAAux1(guiObject, counter++));
   populateKeyset(new RCAAux2(guiObject, counter++));
   populateKeyset(new RCAAux2a(guiObject, counter++));
+*/
   populateKeyset(new RCAVCR1(guiObject, counter++));
-  populateKeyset(new RCAVCR2(guiObject, counter++));
+  populateKeyset(new RCAVCR1a(guiObject, counter++));
   populateKeyset(new RCADVD1(guiObject, counter++));
   populateKeyset(new RCADVD1a(guiObject, counter++));
   populateKeyset(new RCASat1(guiObject, counter++));
@@ -252,7 +281,6 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new SanyoTV1b(guiObject, counter++));
   populateKeyset(new SanyoTV1c(guiObject, counter++));
   populateKeyset(new SanyoTV1d(guiObject, counter++));
-  populateKeyset(new SanyoTV1e(guiObject, counter++));
   populateKeyset(new SanyoProjector(guiObject, counter++));
 
   populateKeyset(new SharpTV1(guiObject, counter++));
@@ -446,7 +474,7 @@ void PIRKeysetManager::populateKeyset(
   // Set up the keyset collection:
   keysetsInfo[keyset->getID()] = keyset;
 
-  keyset->moveProtocolToThread(commandThread);
+  keyset->moveProtocolToThread(&commandThread);
 
   // Also, set up a name-based index into the collection:
   makeIndex

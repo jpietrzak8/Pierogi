@@ -2,7 +2,8 @@
 #define TOSHIBA_H
 
 #include "pirkeysetmetadata.h"
-#include <QObject>
+
+class QObject;
 
 class ToshibaTV1: public PIRKeysetMetaData
 {

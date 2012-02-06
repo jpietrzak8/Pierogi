@@ -101,6 +101,7 @@ enum PIRKeyName{
   TeletextSelect_Key,
   TeletextTime_Key,
   TeletextAndTV_Key,
+  TeletextMix_Key, // same as "AndTV"?
   TeletextDown_Key,
   TeletextUp_Key,
   TeletextBackgroundTV_Key,
@@ -158,8 +159,14 @@ enum PIRKeyName{
   AntennaInput_Key,
   Antenna2Input_Key,
   PCInput_Key,
+  CompositeInput_Key,
+  Composite2Input_Key,
+  ComponentInput_Key,
+  Component2Input_Key,
   HDMIInput_Key,
   HDMI2Input_Key,
+  HDMI3Input_Key,
+  ScartInput_Key,
   AuxInput_Key,
   MDInput_Key,
   LDInput_Key,
@@ -169,7 +176,6 @@ enum PIRKeyName{
   CableInput_Key,
   SatInput_Key,
   DVRInput_Key,
-  ScartInput_Key,
 
   // "Program" Controls:
   Program_Key,

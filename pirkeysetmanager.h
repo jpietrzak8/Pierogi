@@ -1,20 +1,18 @@
 #ifndef PIRKEYSETMANAGER_H
 #define PIRKEYSETMANAGER_H
 
-#include "pirkeysetmetadata.h"
-//#include "protocol.h"
 #include "pirkeynames.h"
-//#include "selectionwindow.h"
-#include "pirselectkeysetform.h"
-#include "pirkeysetwidgetitem.h"
+#include "pirmakenames.h"
 
-#include <QString> // needed to work with QSettings data...
-
-//#include <QtCore/QCoreApplication>
+#include <QString>
 #include <QThread>
-//#include <QStringList>
+
+class QObject;
+class PIRSelectKeysetForm;
+class PIRKeysetWidgetItem;
 
 #include <map>
+class PIRKeysetMetaData;
 
 typedef std::map<unsigned int, PIRKeysetMetaData *> PIRKeysetCollection;
 

@@ -2,7 +2,8 @@
 #define SHARPPROTOCOL_H
 
 #include "spaceprotocol.h"
-#include "pirrx51hardware.h"
+
+class PIRRX51Hardware;
 
 //
 // Sharp has its own protocol.  It is "space-encoded", like the popular NEC

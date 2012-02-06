@@ -2,7 +2,8 @@
 #define PINNACLE_H
 
 #include "pirkeysetmetadata.h"
-#include <QObject>
+
+class QObject;
 
 class PinnaclePCTV1: public PIRKeysetMetaData
 {

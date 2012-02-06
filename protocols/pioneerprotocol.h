@@ -2,7 +2,8 @@
 #define PIONEERPROTOCOL_H
 
 #include "spaceprotocol.h"
-#include "pirrx51hardware.h"
+
+class PIRRX51Hardware;
 
 //
 // The Pioneer protocol is basically the same as the standard NEC protocol,

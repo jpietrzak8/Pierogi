@@ -2,7 +2,8 @@
 #define RC5PROTOCOL_H
 
 #include "pirprotocol.h"
-#include "pirrx51hardware.h"
+
+class PIRRX51Hardware;
 
 //
 // The RC5 protocol is not as widespread as the NEC protocol, but still

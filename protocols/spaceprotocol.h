@@ -2,7 +2,8 @@
 #define SPACEPROTOCOL_H
 
 #include "pirprotocol.h"
-#include "pirrx51hardware.h"
+
+class PIRRX51Hardware;
 
 // This class supports the generic (LIRC-based) space encoded IR protocol.
 // It is intended to support all other space-based protocols through
@@ -31,6 +32,10 @@ protected:
     PIRRX51Hardware &device);
 
   int pushReverseBits(
+    const CommandSequence &bits,
+    PIRRX51Hardware &device);
+
+  int pushInvertedBits(
     const CommandSequence &bits,
     PIRRX51Hardware &device);
 
