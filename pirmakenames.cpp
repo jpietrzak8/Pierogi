@@ -8,6 +8,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Acer_Make] = "Acer";
   makes[Aiwa_Make] = "Aiwa";
   makes[Apple_Make] = "Apple";
+  makes[Bose_Make] = "Bose";
   makes[Denon_Make] = "Denon";
   makes[Ei_Make] = "Ei";
   makes[Elgato_Make] = "Elgato";

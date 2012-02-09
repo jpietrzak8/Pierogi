@@ -9,6 +9,7 @@ enum PIRMakeName{
   Acer_Make,
   Aiwa_Make,
   Apple_Make,
+  Bose_Make,
   Denon_Make,
   Ei_Make,
   Elgato_Make,

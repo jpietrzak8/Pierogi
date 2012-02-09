@@ -121,6 +121,12 @@ protected:
     unsigned int commandData);
 */
 
+  void addKaseikyoKey(
+    const char *name,
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
+
   void setPreData(
     unsigned long data,
     unsigned int bits);

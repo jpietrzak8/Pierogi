@@ -1,3 +1,10 @@
+pierogi (0.5.2) unstable; urgency=low
+  * Finally, got a fix for the uninstall problem!
+  * Some general internal cleanup.
+  * Keysets for Acer, Aiwa.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Mon, 06 Feb 2012 17:29:07 -0500
+
 pierogi (0.5.1) unstable; urgency=low
   * Updated UI with new window, moved tabs around.  Revamped back-end keyset system, added Pioneer, lots of changes.  Also, yet another attempt at pierogi.sudoers.
 

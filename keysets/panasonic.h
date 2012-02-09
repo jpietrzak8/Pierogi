@@ -5,14 +5,6 @@
 
 class QObject;
 
-class PanasonicAmp: public PIRKeysetMetaData
-{
-public:
-  PanasonicAmp(
-    QObject *guiObject,
-    unsigned int index);
-};
-
 class PanasonicCarAudio: public PIRKeysetMetaData
 {
 public:

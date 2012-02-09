@@ -3,11 +3,9 @@
 # file1.source = myfile
 # dir1.source = mydir
 #DEPLOYMENTFOLDERS = # file1 dir1
-sudoers_stuff.source = pierogi.sudoers
-sudoers_stuff.target = ../../etc/sudoers.d
 loadModule.source = loadRX51Module unloadRX51Module
 loadModule.target = bin
-DEPLOYMENTFOLDERS = loadModule sudoers_stuff
+DEPLOYMENTFOLDERS = loadModule
 
 #symbian:TARGET.UID3 = 0xE0C0A793
 
@@ -82,7 +80,10 @@ SOURCES += main.cpp mainwindow.cpp \
     protocols/rcaprotocol.cpp \
     keysets/acer.cpp \
     keysets/aiwa.cpp \
-    protocols/aiwaprotocol.cpp
+    protocols/aiwaprotocol.cpp \
+    protocols/kaseikyoprotocol.cpp \
+    keysets/bose.cpp \
+    protocols/boseprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -139,7 +140,10 @@ HEADERS += mainwindow.h \
     protocols/rcaprotocol.h \
     keysets/acer.h \
     keysets/aiwa.h \
-    protocols/aiwaprotocol.h
+    protocols/aiwaprotocol.h \
+    protocols/kaseikyoprotocol.h \
+    protocols/boseprotocol.h \
+    keysets/bose.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -195,7 +199,6 @@ OTHER_FILES += \
     qtc_packaging/debian_fremantle/control \
     qtc_packaging/debian_fremantle/compat \
     qtc_packaging/debian_fremantle/changelog \
-    pierogi.sudoers \
     qtc_packaging/debian_fremantle/postinst \
     www/index.html \
     www/KeypadTab.png \

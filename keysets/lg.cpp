@@ -23,11 +23,12 @@ LGTV1::LGTV1(
   addKey("left", Left_Key, 0x07, 8);
   addKey("power", Power_Key, 0x08, 8);
   addKey("mute", Mute_Key, 0x09, 8);
-  addKey("sap", Audio_Key, 0x0A, 8); // I/II
+  addKey("sap", Audio_Key, 0x0A, 8); // "I/II", "tv/av"
   addKey("input", Input_Key, 0x0B, 8);
   addKey("picture", PictureMode_Key, 0x0C, 8);
   addKey("sound", SoundMode_Key, 0x0D, 8);
   addKey("sleep", Sleep_Key, 0x0E, 8);
+  addKey("TvVideo", Unmapped_Key, 0x0F, 8);
   addKey("0", Zero_Key, 0x10, 8);
   addKey("1", One_Key, 0x11, 8);
   addKey("2", Two_Key, 0x12, 8);
@@ -38,47 +39,77 @@ LGTV1::LGTV1(
   addKey("7", Seven_Key, 0x17, 8);
   addKey("8", Eight_Key, 0x18, 8);
   addKey("9", Nine_Key, 0x19, 8);
-  addKey("qview", Unmapped_Key, 0x1A, 8); // "review"
+  addKey("qview", PrevChannel_Key, 0x1A, 8); // "review", "ChannelPrev"
   addKey("fav", Favorites_Key, 0x1E, 8);
   addKey("text", Teletext_Key, 0x20, 8);
-  addKey("topt", Unmapped_Key, 0x21, 8);
-  addKey("topt/rev", Rewind_Key, 0x21, 8);
+  addKey("topt", Unmapped_Key, 0x21, 8); // "topt/rev", "t.opt"
   addKey("MIX", TeletextAndTV_Key, 0x24, 8);
   addKey("TIME", TeletextTime_Key, 0x26, 8);
   addKey("INDEX", TeletextIndex_Key, 0x27, 8);
   addKey("return/exit", Exit_Key, 0x28, 8);
+  addKey("reveal", TeletextReveal_Key, 0x2A, 8);
   addKey("avmode", Unmapped_Key, 0x30, 8); // "UPDATE"
-  addKey("subtitle", Captions_Key, 0x39, 8); // "cc"
-  addKey("subtitle/ffw", FastForward_Key, 0x39, 8);
+  addKey("subtitle", Captions_Key, 0x39, 8); // "cc", "subtitle/ffw"
   addKey("up", Up_Key, 0x40, 8);
   addKey("down", Down_Key, 0x41, 8);
-  addKey("menu", Menu_Key, 0x43, 8);
+  addKey("menu", Menu_Key, 0x43, 8); // "setup menu", "Home"
   addKey("ok", Select_Key, 0x44, 8);
   addKey("qmenu", Unmapped_Key, 0x45, 8);
-  addKey("video", Unmapped_Key, 0x4D, 8); // "apc", "PSM"
+  addKey("-", Dash_Key, 0x4C, 8);
+  addKey("video", PictureMode_Key, 0x4D, 8); // "apc", "PSM", "picture mode"
   addKey("TV/PC", PCInput_Key, 0x50, 8);
-  addKey("sound", Unmapped_Key, 0x52, 8); // "SSM"
+  addKey("AV-2", Unmapped_Key, 0x51, 8);
+  addKey("sound", SoundMode_Key, 0x52, 8); // "SSM", "Select Sound Mode"
   addKey("list", Unmapped_Key, 0x53, 8);
   addKey("auto", Unmapped_Key, 0x54, 8);
   addKey("memory/erase", Memory_Key, 0x55, 8);
+  addKey("av1", CompositeInput_Key, 0x5A, 8);
   addKey("pip", PIP_Key, 0x60, 8);
   addKey("blue", Blue_Key, 0x61, 8);
   addKey("blue/pause", Pause_Key, 0x61, 8);
   addKey("yellow", Yellow_Key, 0x63, 8);
   addKey("yellow/play", Play_Key, 0x63, 8);
   addKey("brt.w", Unmapped_Key, 0x6E, 8);
-  addKey("red", Red_Key, 0x72, 8);
   addKey("green", Green_Key, 0x71, 8);
   addKey("green/stop", Stop_Key, 0x71, 8);
+  addKey("red", Red_Key, 0x72, 8);
   addKey("ratio", AspectRatio_Key, 0x79, 8);
   addKey("xstudio", Unmapped_Key, 0x7C, 8);
   addKey("simplink", Unmapped_Key, 0x7E, 8);
+  addKey("Ratio16:9", Unmapped_Key, 0x88, 8);
+  addKey("Ratio4:3", Unmapped_Key, 0x89, 8);
+  addKey("app/x", Unmapped_Key, 0x90, 8);
+  addKey("ad", Unmapped_Key, 0x91, 8);
   addKey("energy", Unmapped_Key, 0x95, 8); // "EYEASTERISK"
-  addKey("comp-rgb-dvi", Unmapped_Key, 0x98, 8);
+  addKey("comp-rgb-dvi", ComponentInput_Key, 0x98, 8);
+  addKey("InputAv1", Unmapped_Key, 0xA5, 8);
   addKey("info", Info_Key, 0xAA, 8);
   addKey("guide", Guide_Key, 0xAB, 8);
+  addKey("RatioZoom", Zoom_Key, 0xAF, 8);
   addKey("rec", Record_Key, 0xBD, 8);
-  addKey("tv/radio", Unmapped_Key, 0xF0, 8);
+  addKey("InputComponent1", Unmapped_Key, 0xBF, 8);
+  addKey("PowerOn", PowerOn_Key, 0xC4, 8);
+  addKey("PowerOff", PowerOff_Key, 0xC5, 8);
+  addKey("hdmi", HDMIInput_Key, 0xC6, 8);
+  addKey("InputHDMI2", HDMI2Input_Key, 0xCC, 8);
+//  addKey("InputHDMI1", HDMIInput_Key, 0xCE, 8);
+  addKey("InputAv2", Unmapped_Key, 0xD0, 8);
+  addKey("InputComponent2", Unmapped_Key, 0xD2, 8);
+  addKey("InputRgb-Pc", PCInput_Key, 0xD5, 8);
+  addKey("aerial", AntennaInput_Key, 0xD6, 8);
+  addKey("InputTv", Unmapped_Key, 0xD9, 8);
+  addKey("InputHDMI4", Unmapped_Key, 0xDA, 8);
+  addKey("InputHDMI3", Unmapped_Key, 0xE9, 8);
+  addKey("Auto Demo Mode", Unmapped_Key, 0xED, 8);
+  addKey("tv/radio", TunerInput_Key, 0xF0, 8);
+
+  // Factory controls:
+  addKey("Picture Test Mode", Unmapped_Key, 0xF9, 8);
+  addKey("InStop(FactoryReset)", Unmapped_Key, 0xFA, 8);
+  addKey("InStart", Unmapped_Key, 0xFB, 8);
+  addKey("Password Protected Function", Unmapped_Key, 0xFC, 8);
+  addKey("PowerOnly", Unmapped_Key, 0xFE, 8);
+  addKey("EZadjust", Unmapped_Key, 0xFF, 8);
 }
 
 
@@ -128,12 +159,25 @@ LGTV1c::LGTV1c(
 {
   setKeysetName("TV Keyset 1c");
 
-  addKey("backward", Rewind_Key, 0x80, 8);
+  addControlledDevice(LG_Make, "60px950", TV_Device);
+  addControlledDevice(LG_Make, "60pg60", TV_Device);
+  addControlledDevice(LG_Make, "55lw9500", TV_Device);
+
+//  addKey("Mark", Unmapped_Key, 0x1E, 8); // This is probably an error
+//  addKey("3DOption", Unmapped_Key, 0x45, 8); // also probably error
+//  addKey("List", Unmapped_Key, 0x4C, 8); // also odd
+  addKey("info", Info_Key, 0x55, 8);
+  addKey("Premium", Unmapped_Key, 0x56, 8);
+  addKey("WIDGETS", Unmapped_Key, 0x58, 8);
+  addKey("exit", Exit_Key, 0x5B, 8); // "Return"
   addKey("forward", FastForward_Key, 0x8E, 8);
-  addKey("stop", Stop_Key, 0xB1, 8);
+  addKey("backward", Rewind_Key, 0x8F, 8);
+  addKey("netcast", Unmapped_Key, 0xA9, 8);
   addKey("play", Play_Key, 0xB0, 8);
-  addKey("pause", Pause_Key, 0xBA, 8);
+  addKey("stop", Stop_Key, 0xB1, 8);
+  addKey("pause", Pause_Key, 0xBA, 8); // "Freeze"
   addKey("rec", Record_Key, 0xBD, 8);
+  addKey("3D", Unmapped_Key, 0xDC, 8);
 }
 
 

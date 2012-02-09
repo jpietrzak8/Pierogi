@@ -91,6 +91,11 @@ public:
     unsigned int commandData);
 */
 
+  void addKaseikyoKey(
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
+
   void setCarrierFrequency(
     unsigned int freq);
 

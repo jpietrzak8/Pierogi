@@ -192,6 +192,20 @@ void PIRKeysetMetaData::addRCAKey(
 */
 
 
+void PIRKeysetMetaData::addKaseikyoKey(
+  const char *name,
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+    threadableProtocol->addKaseikyoKey(key, addressData, commandData);
+  }
+}
+
+
 void PIRKeysetMetaData::setPreData(
   unsigned long data,
   unsigned int bits)

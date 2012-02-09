@@ -7,6 +7,7 @@
 #include "keysets/acer.h"
 #include "keysets/aiwa.h"
 #include "keysets/apple.h"
+#include "keysets/bose.h"
 #include "keysets/denon.h"
 #include "keysets/ei.h"
 #include "keysets/elgato.h"
@@ -60,15 +61,25 @@ PIRKeysetManager::PIRKeysetManager(
 
   populateKeyset(new AiwaVCR1(guiObject, counter++));
   populateKeyset(new AiwaVCR2(guiObject, counter++));
+  populateKeyset(new AiwaVCR3(guiObject, counter++));
   populateKeyset(new AiwaAudio1(guiObject, counter++));
   populateKeyset(new AiwaAudio1a(guiObject, counter++));
   populateKeyset(new AiwaAudio2(guiObject, counter++));
+  populateKeyset(new AiwaAudio2a(guiObject, counter++));
+  populateKeyset(new AiwaAudio2b(guiObject, counter++));
+  populateKeyset(new AiwaAudio2c(guiObject, counter++));
   populateKeyset(new AiwaAudio3(guiObject, counter++));
   populateKeyset(new AiwaAudio4(guiObject, counter++));
   populateKeyset(new AiwaAudio5(guiObject, counter++));
+  populateKeyset(new AiwaAudio6(guiObject, counter++));
+  populateKeyset(new AiwaCarStereo1(guiObject, counter++));
   populateKeyset(new AiwaDVD1(guiObject, counter++));
 
   populateKeyset(new AppleWhiteRemote(guiObject, counter++));
+
+  populateKeyset(new BoseRadio1(guiObject, counter++));
+  populateKeyset(new BoseRadio2(guiObject, counter++));
+  populateKeyset(new BoseRadio3(guiObject, counter++));
 
   populateKeyset(new DenonDVD1(guiObject, counter++));
   populateKeyset(new DenonDVD2(guiObject, counter++));
@@ -166,7 +177,6 @@ PIRKeysetManager::PIRKeysetManager(
 
   populateKeyset(new NokiaGenericVCR(guiObject, counter++));
 
-  populateKeyset(new PanasonicAmp(guiObject, counter++));
   populateKeyset(new PanasonicCarAudio(guiObject, counter++));
   populateKeyset(new PanasonicSat1(guiObject, counter++));
   populateKeyset(new PanasonicSat1a(guiObject, counter++));
@@ -180,7 +190,6 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new PanasonicDVD1(guiObject, counter++));
   populateKeyset(new PanasonicDVD1a(guiObject, counter++));
   populateKeyset(new PanasonicAudio1(guiObject, counter++));
-  populateKeyset(new PanasonicAudio1a(guiObject, counter++));
 
   populateKeyset(new PhilipsTV1(guiObject, counter++));
   populateKeyset(new PhilipsTV1a(guiObject, counter++));

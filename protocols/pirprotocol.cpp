@@ -243,6 +243,29 @@ void PIRProtocol::addRCAKey(
 */
 
 
+void PIRProtocol::addKaseikyoKey(
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  PIRKeyBits *pkb = 0;
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    pkb = &(i->second);
+    pkb->firstCode.clear();
+    pkb->secondCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
+  }
+
+  appendToBitSeq(pkb->firstCode, addressData, 12);
+  appendToBitSeq(pkb->secondCode, commandData, 8);
+}
+
+
 void PIRProtocol::setCarrierFrequency(
   unsigned int freq)
 {
