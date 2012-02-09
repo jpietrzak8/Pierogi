@@ -1,0 +1,7 @@
+#!/bin/sh
+
+rm /etc/sudoers.d/pierogi.sudoers
+
+update-sudoers
+
+exit 0

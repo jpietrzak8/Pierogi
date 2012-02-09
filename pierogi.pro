@@ -213,7 +213,8 @@ OTHER_FILES += \
     www/TVTab.png \
     www/PierogiIcon.png \
     www/AdjustTab.png \
-    www/InputTab.png
+    www/InputTab.png \
+    qtc_packaging/debian_fremantle/postrm
 
 RESOURCES += \
     PierogiResources.qrc
