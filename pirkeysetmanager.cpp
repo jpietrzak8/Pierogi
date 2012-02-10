@@ -343,6 +343,7 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new ToshibaTV1e(guiObject, counter++));
   populateKeyset(new ToshibaTV1f(guiObject, counter++));
   populateKeyset(new ToshibaTV1g(guiObject, counter++));
+  populateKeyset(new ToshibaTV1h(guiObject, counter++));
   populateKeyset(new ToshibaVCR1(guiObject, counter++));
   populateKeyset(new ToshibaVCR1a(guiObject, counter++));
   populateKeyset(new ToshibaDisc1(guiObject, counter++));

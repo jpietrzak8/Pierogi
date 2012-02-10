@@ -29,7 +29,15 @@ public:
     unsigned int index);
 };
 
-class ToshibaTV1c: public ToshibaTV1
+class ToshibaTV1f: public ToshibaTV1
+{
+public:
+  ToshibaTV1f(
+    QObject *guiObject,
+    unsigned int index);
+};
+
+class ToshibaTV1c: public ToshibaTV1f
 {
 public:
   ToshibaTV1c(
@@ -37,7 +45,7 @@ public:
     unsigned int index);
 };
 
-class ToshibaTV1d: public ToshibaTV1
+class ToshibaTV1d: public ToshibaTV1f
 {
 public:
   ToshibaTV1d(
@@ -53,18 +61,18 @@ public:
     unsigned int index);
 };
 
-class ToshibaTV1f: public ToshibaTV1
-{
-public:
-  ToshibaTV1f(
-    QObject *guiObject,
-    unsigned int index);
-};
-
 class ToshibaTV1g: public ToshibaTV1
 {
 public:
   ToshibaTV1g(
+    QObject *guiObject,
+    unsigned int index);
+};
+
+class ToshibaTV1h: public ToshibaTV1b
+{
+public:
+  ToshibaTV1h(
     QObject *guiObject,
     unsigned int index);
 };
