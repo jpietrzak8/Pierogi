@@ -467,6 +467,10 @@ SonyDVD1::SonyDVD1(
   addSIRC20Key("top_menu", DiscTitle_Key, 0x49, 0x1A, 0x1A); // "Title"
   addSIRC20Key("dvd_menu", DiscMenu_Key, 0x49, 0x1A, 0x1B);
   addSIRC20Key("program", Program_Key, 0x49, 0x1A, 0x1F);
+  addSIRC20Key("step/search -", StepBack_Key, 0x49, 0x1A, 0x20);
+  addSIRC20Key("step/search +", StepForward_Key, 0x49, 0x1A, 0x21);
+  addSIRC20Key("scan/slow -", SlowMinus_Key, 0x49, 0x1A, 0x22);
+  addSIRC20Key("scan/slow +", SlowPlus_Key, 0x49, 0x1A, 0x23);
   addSIRC20Key("INDEX-", Unmapped_Key, 0x49, 0x1A, 0x26);
   addSIRC20Key("INDEX+", Unmapped_Key, 0x49, 0x1A, 0x27);
   addSIRC20Key("TIME", Unmapped_Key, 0x49, 0x1A, 0x28);
@@ -486,8 +490,8 @@ SonyDVD1::SonyDVD1(
   addSIRC20Key("X2_FORWARD", Unmapped_Key, 0x49, 0x1A, 0x37);
   addSIRC20Key("stop", Stop_Key, 0x49, 0x1A, 0x38);
   addSIRC20Key("pause", Pause_Key, 0x49, 0x1A, 0x39);
-  addSIRC20Key("STEP_BACK", StepBack_Key, 0x49, 0x1A, 0x3A); // "Jog Rev"
-  addSIRC20Key("STEP_FORWARD", StepForward_Key, 0x49, 0x1A, 0x3B); // "Jog Fwd"
+  addSIRC20Key("STEP_BACK", Unmapped_Key, 0x49, 0x1A, 0x3A); // "Jog Rev"
+  addSIRC20Key("STEP_FORWARD", Unmapped_Key, 0x49, 0x1A, 0x3B); // "Jog Fwd"
   addSIRC20Key("RecStop", RecordStop_Key, 0x49, 0x1A, 0x3D);
   addSIRC20Key("RecPause", RecordPause_Key, 0x49, 0x1A, 0x3E);
 
@@ -518,11 +522,17 @@ SonyDVD1::SonyDVD1(
   addSIRC20Key("Guide", Guide_Key, 0x62, 0x1A, 0x16);
   addSIRC20Key("Options", Unmapped_Key, 0x62, 0x1A, 0x17); // "Tools"
   addSIRC20Key("Dot", Unmapped_Key, 0x62, 0x1A, 0x1D);
+  addSIRC20Key("file", Unmapped_Key, 0x62, 0x1A, 0x20);
+  addSIRC20Key("sort", Unmapped_Key, 0x62, 0x1A, 0x21);
+  addSIRC20Key("edit", Unmapped_Key, 0x62, 0x1A, 0x22);
   addSIRC20Key("ALBUM-MINUS", Unmapped_Key, 0x62, 0x1A, 0x29);
   addSIRC20Key("ALBUM-PLUS", Unmapped_Key, 0x62, 0x1A, 0x2A);
   addSIRC20Key("F1", Unmapped_Key, 0x62, 0x1A, 0x2E); // "HDD"
   addSIRC20Key("F2", Unmapped_Key, 0x62, 0x1A, 0x2F); // "DVD"
-  addSIRC20Key("DiscSkip", NextDisc_Key, 0x62, 0x1A, 0x3E);
+  addSIRC20Key("picture memory", Unmapped_Key, 0x62, 0x1A, 0x3C);
+  addSIRC20Key("disc skip -", PrevDisc_Key, 0x62, 0x1A, 0x3D);
+  addSIRC20Key("DiscSkip", NextDisc_Key, 0x62, 0x1A, 0x3E); // "disc skip +"
+  addSIRC20Key("folder", Unmapped_Key, 0x62, 0x1A, 0x40);
   addSIRC20Key("Favorites", Favorites_Key, 0x62, 0x1A, 0x5E);
   addSIRC20Key("Purple", Blue_Key, 0x62, 0x1A, 0x66);
   addSIRC20Key("Red", Red_Key, 0x62, 0x1A, 0x67);

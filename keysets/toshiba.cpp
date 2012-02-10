@@ -29,17 +29,15 @@ ToshibaTV1::ToshibaTV1(
   addKey("100", PlusOneHundred_Key, 0x0A, 8);
   addKey("-/--", DoubleDigit_Key, 0x0B, 8);
   addKey("reset", Reset_Key, 0x0C, 8);
-  addKey("textzoom", TeletextSize_Key, 0x0D, 8); // "Enlarge"
   addKey("tv/video", Unmapped_Key, 0x0F, 8); // "input"
   addKey("MUTE", Mute_Key, 0x10, 8);
-  addKey("BLANK", PictureMode_Key, 0x11, 8); // "Contrast", "picture_preset"
+  addKey("picturepref", PictureMode_Key, 0x11, 8); // "Contrast", "PP"
   addKey("POWER", Power_Key, 0x12, 8);
-  addKey("mts", FMMode_Key, 0x13, 8); // "audio_stereo_2channel"
+  addKey("mts", Audio_Key, 0x13, 8); // "audio_stereo_2channel"
   addKey("SCART", Input_Key, 0x14, 8); // "AV", "inputs", "source"
-  addKey("sleep", Sleep_Key, 0x15, 8);  // Clock
+  addKey("sleep", Sleep_Key, 0x15, 8);
   addKey("CALL", Call_Key, 0x16, 8);
   addKey("ent", Enter_Key, 0x17, 8);  // "ch_rtn"
-  addKey("TXT/MIX", Teletext_Key, 0x17, 8);
   addKey("fav+", Unmapped_Key, 0x19, 8);
   addKey("V+", VolumeUp_Key, 0x1A, 8);
   addKey("V+", Right_Key, 0x1A, 8);
@@ -53,8 +51,6 @@ ToshibaTV1::ToshibaTV1(
   addKey("P-", Down_Key, 0x1F, 8);
   addKey("OK", Select_Key, 0x21, 8);
   addKey("POP_DIR", Unmapped_Key, 0x26, 8);
-  addKey("textindex", TeletextIndex_Key, 0x2B, 8);
-  addKey("textpages", Unmapped_Key, 0x2C, 8);
   addKey("a/d", Unmapped_Key, 0x44, 8);
   addKey("RED", Red_Key, 0x48, 8);
   addKey("GREEN", Green_Key, 0x49, 8);
@@ -66,18 +62,15 @@ ToshibaTV1::ToshibaTV1(
   addKey("locate", PIPMove_Key, 0x4E, 8);
   addKey("source", PIPSource_Key, 0x4F, 8);
   addKey("pip", PIP_Key, 0x51, 8);
-  addKey("Double_Arrow", Unmapped_Key, 0x52, 8); // "swap", but not pip!; "back"
   addKey("swap", PIPSwap_Key, 0x53, 8); // Reduce
-  addKey("texthold", TeletextHold_Key, 0x53, 8);
   addKey("PIC_SIZE", AspectRatio_Key, 0x54, 8); // "16:9"
-  addKey("textanswer", TeletextReveal_Key, 0x54, 8); // "?"
   addKey("Tone", Unmapped_Key, 0x55, 8);
   addKey("cap/text", Captions_Key, 0x57, 8); // Image
   addKey("exit", Exit_Key, 0x58, 8);
   addKey("SIZE", AspectRatio_Key, 0x59, 8); // "WIDE"
   addKey("DOULBY", NoiseReduction_Key, 0x5A, 8);
-  addKey("1/2", Audio_Key, 0x63, 8); // "cap1/cap2"
   addKey("MENU", Menu_Key, 0x5B, 8);
+  addKey("1/2", Unmapped_Key, 0x63, 8); // "cap1/cap2"
   addKey("CLOCK", Timer_Key, 0x71, 8);  // "TIMER"
   addKey("TV", Unmapped_Key, 0x72, 8);
   addKey("SEARCH", Unmapped_Key, 0x8F, 8);
@@ -120,37 +113,39 @@ ToshibaTV1b::ToshibaTV1b(
 ToshibaTV1c::ToshibaTV1c(
   QObject *guiObject,
   unsigned int index)
-  : ToshibaTV1(guiObject, index)
+  : ToshibaTV1f(guiObject, index)
 {
   setKeysetName("TV Keyset 1c");
 
-  addKey("exit", Exit_Key, 0xC23D, 16);
-  addKey("pipswap", PIPSwap_Key, 0x1AE5, 16);
-  addKey("osdinfo", Info_Key, 0x6897, 16);
+  addKey("textzoom", TeletextSize_Key, 0x0D, 8); // "Enlarge"
+  addKey("texttime", TeletextTime_Key, 0x15, 8);
+  addKey("TXT/MIX", Teletext_Key, 0x17, 8); // "teletext"
+  addKey("textindex", TeletextIndex_Key, 0x2B, 8);
+  addKey("textpages", Unmapped_Key, 0x2C, 8);
+  addKey("texthold", TeletextHold_Key, 0x53, 8);
+  addKey("textanswer", TeletextReveal_Key, 0x54, 8);
+  addKey("pipswap", PIPSwap_Key, 0x58, 8);
 }
 
 
 ToshibaTV1d::ToshibaTV1d(
   QObject *guiObject,
   unsigned int index)
-  : ToshibaTV1(guiObject, index)
+  : ToshibaTV1f(guiObject, index)
 {
   setKeysetName("TV Keyset 1d");
 
-  addKey("Left", Left_Key, 0x42BD, 16);
-  addKey("Right", Right_Key, 0x02FD, 16);
-  addKey("Down", Down_Key, 0xB847, 16);
-  addKey("Up", Up_Key, 0x9867, 16);
-  addKey("Back", Exit_Key, 0xC23D, 16);
-  addKey("guide", Guide_Key, 0xA25D, 16);
-  addKey("tv/fav/radio", Favorites_Key, 0xE21D, 16); // might be wrong
-  addKey("info", Info_Key, 0x6897, 16); // might be wrong
-  addKey("subtitle", Captions_Key, 0x30CF, 16);
-  addKey("stillpicture", Pause_Key, 0x44BB, 16);
-  addKey("24-", Unmapped_Key, 0x2AD5, 16);
-  addKey("page-", PageUp_Key, 0xCA35, 16);
-  addKey("page+", PageDown_Key, 0xB04F, 16);
-  addKey("24+", Unmapped_Key, 0xA857, 16);
+  addKey("subtitle", Captions_Key, 0x0C, 8);
+  addKey("page+", PageDown_Key, 0x0D,8);
+  addKey("24+", Unmapped_Key, 0x15, 8);
+  addKey("Up", Up_Key, 0x19, 8);
+  addKey("Down", Down_Key, 0x1D, 8);
+  addKey("Right", Right_Key, 0x40, 8);
+  addKey("Left", Left_Key, 0x42, 8);
+  addKey("guide", Guide_Key, 0x45, 8);
+  addKey("tv/fav/radio", Favorites_Key, 0x47, 8); // might be wrong
+  addKey("page-", PageUp_Key, 0x53, 8);
+  addKey("24-", Unmapped_Key, 0x54, 8);
 }
 
 
@@ -161,12 +156,12 @@ ToshibaTV1e::ToshibaTV1e(
 {
   setKeysetName("TV Keyset 1e");
 
-  addKey("STOP", Stop_Key, 0xF20D, 16);
-  addKey("PLAY", Play_Key, 0x8A75, 16);
-  addKey("SKIPPREV", Previous_Key, 0x8877, 16);
-  addKey("SKIPNEXT", Next_Key, 0xCA35, 16);
-  addKey("frev", Rewind_Key, 0xD22D, 16);
-  addKey("FFWD", FastForward_Key, 0x52AD, 16);
+  addKey("SKIPPREV", Previous_Key, 0x11, 8);
+  addKey("FFWD", FastForward_Key, 0x2A, 8);
+  addKey("STOP", Stop_Key, 0x40, 8);
+  addKey("frev", Rewind_Key, 0x4B, 8);
+  addKey("PLAY", Play_Key, 0x51, 8);
+  addKey("SKIPNEXT", Next_Key, 0x53, 8);
 }
 
 
@@ -179,10 +174,10 @@ ToshibaTV1f::ToshibaTV1f(
 
   addControlledDevice(Toshiba_Make, "Regza AV50*", TV_Device);
 
-  addKey("back", PrevChannel_Key, 0x4AB5, 16);
-  addKey("exit", Exit_Key, 0xC23D, 16);
-  addKey("info", Info_Key, 0x6897, 16);
-  addKey("stillpicture", Pause_Key, 0x44BB, 16);
+  addKey("info", Info_Key, 0x16, 8);
+  addKey("stillpicture", Pause_Key, 0x22, 8);
+  addKey("exit", Exit_Key, 0x43, 8);
+  addKey("back", PrevChannel_Key, 0x52, 8); // "Double_Arrow", "swap"
 }
 
 
@@ -197,6 +192,19 @@ ToshibaTV1g::ToshibaTV1g(
   addKey("set+", Right_Key, 0x82, 8);
   addKey("set-", Left_Key, 0x83, 8);
   addKey("enter", Select_Key, 0x89, 8);
+}
+
+
+ToshibaTV1h::ToshibaTV1h(
+  QObject *guiObject,
+  unsigned int index)
+  : ToshibaTV1b(guiObject, index)
+{
+  setKeysetName("TV Keyset 1h");
+
+  addKey("last (prev ch)", PrevChannel_Key, 0x17, 8);
+  addKey("program guide", Guide_Key, 0x1C, 8);
+  addKey("pip on/off", PIP_Key, 0x54, 8);
 }
 
 

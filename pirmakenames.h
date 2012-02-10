@@ -19,6 +19,7 @@ enum PIRMakeName{
   JVC_Make,
   LG_Make,
   Magnavox_Make,
+  Microsoft_Make,
   Mitsubishi_Make,
   Nokia_Make,
   Panasonic_Make,

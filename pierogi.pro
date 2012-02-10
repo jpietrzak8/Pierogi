@@ -83,7 +83,9 @@ SOURCES += main.cpp mainwindow.cpp \
     protocols/aiwaprotocol.cpp \
     protocols/kaseikyoprotocol.cpp \
     keysets/bose.cpp \
-    protocols/boseprotocol.cpp
+    protocols/boseprotocol.cpp \
+    keysets/mce.cpp \
+    protocols/mceprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -143,7 +145,9 @@ HEADERS += mainwindow.h \
     protocols/aiwaprotocol.h \
     protocols/kaseikyoprotocol.h \
     protocols/boseprotocol.h \
-    keysets/bose.h
+    keysets/bose.h \
+    keysets/mce.h \
+    protocols/mceprotocol.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

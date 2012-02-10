@@ -18,6 +18,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[JVC_Make] = "JVC";
   makes[LG_Make] = "LG";
   makes[Magnavox_Make] = "Magnavox";
+  makes[Microsoft_Make] = "Microsoft";
   makes[Mitsubishi_Make] = "Mitsubishi";
   makes[Nokia_Make] = "Nokia";
   makes[Panasonic_Make] = "Panasonic";

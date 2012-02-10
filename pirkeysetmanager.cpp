@@ -17,6 +17,7 @@
 #include "keysets/jvc.h"
 #include "keysets/lg.h"
 #include "keysets/magnavox.h"
+#include "keysets/mce.h"
 #include "keysets/mitsubishi.h"
 #include "keysets/nokia.h"
 #include "keysets/panasonic.h"
@@ -169,6 +170,15 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new MagnavoxVCR1(guiObject, counter++));
   populateKeyset(new MagnavoxConverterBox1(guiObject, counter++));
   populateKeyset(new MagnavoxTV1(guiObject, counter++));
+
+  populateKeyset(new MCERemote1(guiObject, counter++));
+  populateKeyset(new MCERemote1a(guiObject, counter++));
+  populateKeyset(new MCERemote1b(guiObject, counter++));
+  populateKeyset(new MCERemote1c(guiObject, counter++));
+  populateKeyset(new MCERemote1d(guiObject, counter++));
+  populateKeyset(new MCERemote1e(guiObject, counter++));
+  populateKeyset(new MCERemote1f(guiObject, counter++));
+  populateKeyset(new MCERemote1g(guiObject, counter++));
 
   populateKeyset(new MitsubishiTV1(guiObject, counter++));
   populateKeyset(new MitsubishiTV1a(guiObject, counter++));

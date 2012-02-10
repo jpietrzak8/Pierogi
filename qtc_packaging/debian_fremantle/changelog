@@ -1,3 +1,17 @@
+pierogi (0.6.0) unstable; urgency=low
+  * My first candidate for Extras-Testing, so up to version 0.6
+  * Fixed some bugs in Toshiba keysets
+  * Added MCE (Media Center Edition) remote keysets
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 10 Feb 2012 11:08:18 -0500
+
+pierogi (0.5.3) unstable; urgency=low
+  * Another "final" fix for the uninstall problem, this time for sure. :)
+  * Completely revamped Panasonic protocol, needs testing
+  * Created Bose keysets, added more Aiwa keysets
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Wed, 08 Feb 2012 20:51:14 -0500
+
 pierogi (0.5.2) unstable; urgency=low
   * Finally, got a fix for the uninstall problem!
   * Some general internal cleanup.

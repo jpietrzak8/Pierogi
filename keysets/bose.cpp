@@ -58,12 +58,13 @@ BoseRadio2::BoseRadio2(
 
   addKey("on/off", Power_Key, 0x00, 8);
   addKey("4", Four_Key, 0x08, 8);
-  addKey("am", Unmapped_Key, 0x10, 8);
+  addKey("am", Red_Key, 0x10, 8); // sort of a hack to get AM in
   addKey("6", Six_Key, 0x20, 8);
   addKey("trackprev", Previous_Key, 0x30, 8);
+  addKey("trackprev", ChannelDown_Key, 0x30, 8);
   addKey("volup", VolumeUp_Key, 0x40,8);
   addKey("cdstop", Stop_Key, 0x50, 8);
-  addKey("fm", Unmapped_Key, 0x60, 8);
+  addKey("fm", Green_Key, 0x60, 8); // also hack
   addKey("2", Two_Key, 0x70, 8);
   addKey("mute", Mute_Key, 0x80, 8);
   addKey("5", Five_Key, 0x88, 8);
@@ -73,6 +74,7 @@ BoseRadio2::BoseRadio2(
   addKey("1", One_Key, 0xB0, 8);
   addKey("voldown", VolumeDown_Key, 0xC0, 8);
   addKey("tracknext", Next_Key, 0xD0, 8);
+  addKey("tracknext", ChannelUp_Key, 0xD0, 8);
   addKey("aux", AuxInput_Key, 0xE0, 8);
   addKey("3", Three_Key, 0xF0, 8);
 }
