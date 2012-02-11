@@ -1,5 +1,6 @@
 #include "lg.h"
 #include "protocols/necprotocol.h"
+#include "protocols/necxprotocol.h"
 #include "protocols/rc5protocol.h"
 
 LGTV1::LGTV1(
@@ -266,7 +267,6 @@ LGTV2b::LGTV2b(
 }
 
 
-/*
 LGDisc1::LGDisc1(
   QObject *guiObject,
   unsigned int index)
@@ -275,20 +275,7 @@ LGDisc1::LGDisc1(
       LG_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    563, 559,
-    563, 1681,
-    108234, true,
-    Extended_NEC);
-
-  threadableProtocol = np;
-
-  np->setHeaderPair(4500, 4500);
-  np->setTrailerPulse(545);
-  np->setRepeatPair(531, 1710);
-  np->setRepeatNeedsHeader(true);
+  threadableProtocol = new NECXProtocol(guiObject, index, true);
 
 //  setPreData(0x3434, 16);
   setPreData(0x2C2C, 16);
@@ -354,10 +341,8 @@ LGDisc1::LGDisc1(
   addKey("marker", Unmapped_Key, 0xB4, 8);
   addKey("sleep", Sleep_Key, 0xC2, 8);
 }
-*/
 
 
-/*
 LGDisc2::LGDisc2(
   QObject *guiObject,
   unsigned int index)
@@ -366,20 +351,7 @@ LGDisc2::LGDisc2(
       LG_Make,
       index)
 {
-  NECProtocol *np = new NECProtocol(
-    guiObject,
-    index,
-    600, 550,
-    600, 1650,
-    107000, true,
-    Extended_NEC);
-
-  threadableProtocol = np;
-
-  np->setHeaderPair(4500, 4500);
-  np->setTrailerPulse(600);
-  np->setRepeatPair(600, 550);
-  np->setRepeatNeedsHeader(true);
+  threadableProtocol = new NECXProtocol(guiObject, index, true);
 
 //  setPreData(0xB4B4, 16);
   setPreData(0x2D2D, 16);
@@ -447,7 +419,6 @@ LGDisc2a::LGDisc2a(
   addKey("KEY_YELLOW", Yellow_Key, 0x7E, 8);
   addKey("KEY_BLUE", Blue_Key, 0x7F, 8);
 }
-*/
 
 
 LGVCR1::LGVCR1(

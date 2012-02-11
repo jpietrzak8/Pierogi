@@ -85,7 +85,16 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/bose.cpp \
     protocols/boseprotocol.cpp \
     keysets/mce.cpp \
-    protocols/mceprotocol.cpp
+    protocols/mceprotocol.cpp \
+    keysets/philco.cpp \
+    keysets/roku.cpp \
+    keysets/admiral.cpp \
+    keysets/daewoo.cpp \
+    protocols/daewooprotocol.cpp \
+    keysets/grundig.cpp \
+    keysets/topfield.cpp \
+    keysets/logitech.cpp \
+    protocols/necxprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -147,7 +156,16 @@ HEADERS += mainwindow.h \
     protocols/boseprotocol.h \
     keysets/bose.h \
     keysets/mce.h \
-    protocols/mceprotocol.h
+    protocols/mceprotocol.h \
+    keysets/philco.h \
+    keysets/roku.h \
+    keysets/admiral.h \
+    keysets/daewoo.h \
+    protocols/daewooprotocol.h \
+    keysets/grundig.h \
+    keysets/topfield.h \
+    keysets/logitech.h \
+    protocols/necxprotocol.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

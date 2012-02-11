@@ -185,6 +185,7 @@ void MainWindow::enableButtons()
   emit volumeDownEnabled(myKeysets->hasKey(currentKeyset, VolumeDown_Key));
   emit channelUpEnabled(myKeysets->hasKey(currentKeyset, ChannelUp_Key));
   emit channelDownEnabled(myKeysets->hasKey(currentKeyset, ChannelDown_Key));
+  emit muteEnabled(myKeysets->hasKey(currentKeyset, Mute_Key));
 
   // Main tab labels:
   emit keysetMakeChanged(
@@ -196,14 +197,15 @@ void MainWindow::enableButtons()
   emit greenEnabled(myKeysets->hasKey(currentKeyset, Green_Key));
   emit yellowEnabled(myKeysets->hasKey(currentKeyset, Yellow_Key));
   emit blueEnabled(myKeysets->hasKey(currentKeyset, Blue_Key));
+  emit pictureModeEnabled(myKeysets->hasKey(currentKeyset, PictureMode_Key));
+  emit soundModeEnabled(myKeysets->hasKey(currentKeyset, SoundMode_Key));
   emit aspectRatioEnabled(myKeysets->hasKey(currentKeyset, AspectRatio_Key));
-  emit surroundEnabled(myKeysets->hasKey(currentKeyset, Surround_Key));
+//  emit surroundEnabled(myKeysets->hasKey(currentKeyset, Surround_Key));
   emit audioEnabled(myKeysets->hasKey(currentKeyset, Audio_Key));
   emit infoEnabled(myKeysets->hasKey(currentKeyset, Info_Key));
   emit captionsEnabled(myKeysets->hasKey(currentKeyset, Captions_Key));
   emit sleepEnabled(myKeysets->hasKey(currentKeyset, Sleep_Key));
   emit inputEnabled(myKeysets->hasKey(currentKeyset, Input_Key));
-  emit muteEnabled(myKeysets->hasKey(currentKeyset, Mute_Key));
 
   // Keypad keys
   emit zeroEnabled(myKeysets->hasKey(currentKeyset, Zero_Key));
@@ -312,6 +314,16 @@ void MainWindow::on_mainVolumeDownButton_released()
   stopRepeating();
 }
 
+void MainWindow::on_muteButton_pressed()
+{
+  startRepeating(Mute_Key);
+}
+
+void MainWindow::on_muteButton_released()
+{
+  stopRepeating();
+}
+
 
 // Utility tab buttons:
 
@@ -355,6 +367,26 @@ void MainWindow::on_blueButton_released()
   stopRepeating();
 }
 
+void MainWindow::on_pictureModeButton_pressed()
+{
+  startRepeating(PictureMode_Key);
+}
+
+void MainWindow::on_pictureModeButton_released()
+{
+  stopRepeating();
+}
+
+void MainWindow::on_soundModeButton_pressed()
+{
+  startRepeating(PictureMode_Key);
+}
+
+void MainWindow::on_soundModeButton_released()
+{
+  stopRepeating();
+}
+
 void MainWindow::on_aspectRatioButton_pressed()
 {
   startRepeating(AspectRatio_Key);
@@ -365,6 +397,7 @@ void MainWindow::on_aspectRatioButton_released()
   stopRepeating();
 }
 
+/*
 void MainWindow::on_surroundButton_pressed()
 {
   startRepeating(Surround_Key);
@@ -374,6 +407,7 @@ void MainWindow::on_surroundButton_released()
 {
   stopRepeating();
 }
+*/
 
 void MainWindow::on_audioButton_pressed()
 {
@@ -421,16 +455,6 @@ void MainWindow::on_sleepButton_pressed()
 }
 
 void MainWindow::on_sleepButton_released()
-{
-  stopRepeating();
-}
-
-void MainWindow::on_muteButton_pressed()
-{
-  startRepeating(Mute_Key);
-}
-
-void MainWindow::on_muteButton_released()
 {
   stopRepeating();
 }

@@ -1,112 +1,96 @@
-#ifndef LG_H
-#define LG_H
+#ifndef GRUNDIG_H
+#define GRUNDIG_H
 
 #include "pirkeysetmetadata.h"
 
 class QObject;
 
-class LGTV1: public PIRKeysetMetaData
+class GrundigSat1: public PIRKeysetMetaData
 {
 public:
-  LGTV1(
+  GrundigSat1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV1a: public LGTV1
+class GrundigSat2: public PIRKeysetMetaData
 {
 public:
-  LGTV1a(
+  GrundigSat2(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV1b: public LGTV1
+class GrundigAmp1: public PIRKeysetMetaData
 {
 public:
-  LGTV1b(
+  GrundigAmp1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV1c: public LGTV1
+class GrundigAudio1: public PIRKeysetMetaData
 {
 public:
-  LGTV1c(
+  GrundigAudio1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV2: public PIRKeysetMetaData
+class GrundigAudio2: public PIRKeysetMetaData
 {
 public:
-  LGTV2(
+  GrundigAudio2(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV2a: public LGTV2
+class GrundigVCR1: public PIRKeysetMetaData
 {
 public:
-  LGTV2a(
+  GrundigVCR1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGTV2b: public LGTV2
+class GrundigVCR1a: public GrundigVCR1
 {
 public:
-  LGTV2b(
+  GrundigVCR1a(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGDisc1: public PIRKeysetMetaData
+class GrundigTV1: public PIRKeysetMetaData
 {
 public:
-  LGDisc1(
+  GrundigTV1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGDisc2: public PIRKeysetMetaData
+class GrundigTV2: public PIRKeysetMetaData
 {
 public:
-  LGDisc2(
+  GrundigTV2(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGDisc2a: public LGDisc2
+class GrundigTV3: public PIRKeysetMetaData
 {
 public:
-  LGDisc2a(
+  GrundigTV3(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGVCR1: public PIRKeysetMetaData
+class GrundigDVD1: public PIRKeysetMetaData
 {
 public:
-  LGVCR1(
+  GrundigDVD1(
     QObject *guiObject,
     unsigned int index);
 };
 
-class LGVCR1a: public LGVCR1
-{
-public:
-  LGVCR1a(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-class LGVCR1b: public LGVCR1
-{
-public:
-  LGVCR1b(
-    QObject *guiObject,
-    unsigned int index);
-};
-
-#endif // LG_H
+#endif // GRUNDIG_H

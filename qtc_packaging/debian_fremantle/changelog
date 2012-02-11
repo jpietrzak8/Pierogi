@@ -1,3 +1,10 @@
+pierogi (0.6.1) unstable; urgency=low
+  * Moved Mute button to main tab, brought Picture Mode and Sound Mode back up to utility tab
+  * Added keysets for Admiral, Daewoo, Grundig, Logitech, Philco, Roku, and Topfield
+  * Added several new protocols, including one that LG uses (so LG needs more testing)
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sat, 11 Feb 2012 18:08:31 -0500
+
 pierogi (0.6.0) unstable; urgency=low
   * My first candidate for Extras-Testing, so up to version 0.6
   * Fixed some bugs in Toshiba keysets

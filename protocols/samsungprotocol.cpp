@@ -8,7 +8,7 @@ SamsungProtocol::SamsungProtocol(
       true, // extended NEC
       false) // doesn't use short repeat
 {
-  // Samsung doesn't use the normal header, don't ask mey why...
+  // Samsung doesn't use the normal header, don't ask me why...
   headerPulse = 4500;
   headerSpace = 4500;
 }

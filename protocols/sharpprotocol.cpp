@@ -125,7 +125,7 @@ int SharpProtocol::generateStandardCommand(
   duration += pushReverseBits(pkb.secondCode, rx51device);
 
   // Next, there is an "expansion" bit and a "check" bit.  Not entirely sure
-  // what these two do.  The check bit is fixed at "1".
+  // what these two do.  The check bit is fixed at "0".
   if (expansionBit)
   {
     rx51device.addPair(onePulse, oneSpace);

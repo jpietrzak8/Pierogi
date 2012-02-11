@@ -41,6 +41,8 @@ enum PIRKeyName{
   RearVolumeDown_Key,
   CenterVolumeUp_Key,
   CenterVolumeDown_Key,
+  WooferUp_Key,
+  WooferDown_Key,
 
   // Channel control:
   ChannelUp_Key,
@@ -176,6 +178,8 @@ enum PIRKeyName{
   CableInput_Key,
   SatInput_Key,
   DVRInput_Key,
+  OpticalInput_Key,
+  DigitalCoaxInput_Key,
 
   // "Program" Controls:
   Program_Key,

@@ -48,19 +48,21 @@ signals:
   void volumeDownEnabled(bool);
   void channelUpEnabled(bool);
   void channelDownEnabled(bool);
+  void muteEnabled(bool);
 
   // Utility keys:
   void redEnabled(bool);
   void greenEnabled(bool);
   void yellowEnabled(bool);
   void blueEnabled(bool);
+  void pictureModeEnabled(bool);
+  void soundModeEnabled(bool);
   void aspectRatioEnabled(bool);
-  void surroundEnabled(bool);
+//  void surroundEnabled(bool);
   void audioEnabled(bool);
   void infoEnabled(bool);
   void captionsEnabled(bool);
   void inputEnabled(bool);
-  void muteEnabled(bool);
   void sleepEnabled(bool);
 
   // Keypad
@@ -169,6 +171,8 @@ private slots:
   void on_mainVolumeUp_released();
   void on_mainVolumeDownButton_pressed();
   void on_mainVolumeDownButton_released();
+  void on_muteButton_pressed();
+  void on_muteButton_released();
 
   // Utility tab slots:
   void on_redButton_pressed();
@@ -179,10 +183,14 @@ private slots:
   void on_yellowButton_released();
   void on_blueButton_pressed();
   void on_blueButton_released();
+  void on_pictureModeButton_pressed();
+  void on_pictureModeButton_released();
+  void on_soundModeButton_pressed();
+  void on_soundModeButton_released();
   void on_aspectRatioButton_pressed();
   void on_aspectRatioButton_released();
-  void on_surroundButton_pressed();
-  void on_surroundButton_released();
+//  void on_surroundButton_pressed();
+//  void on_surroundButton_released();
   void on_audioButton_pressed();
   void on_audioButton_released();
   void on_infoButton_pressed();
@@ -193,8 +201,6 @@ private slots:
   void on_inputButton_released();
   void on_sleepButton_pressed();
   void on_sleepButton_released();
-  void on_muteButton_pressed();
-  void on_muteButton_released();
 
   // Keypad tab slots:
   void on_oneButton_pressed();

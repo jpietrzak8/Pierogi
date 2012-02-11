@@ -84,106 +84,56 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="powerButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+        <item row="0" column="1" rowspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>-1</number>
           </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
+          <property name="leftMargin">
+           <number>0</number>
           </property>
-          <property name="text">
-           <string>Power</string>
-          </property>
-          <property name="icon">
-           <iconset resource="PierogiResources.qrc">
-            <normaloff>:/icons/on-off_icon&amp;48.png</normaloff>:/icons/on-off_icon&amp;48.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="mainVolumeUp">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="text">
-           <string>Volume Up</string>
-          </property>
-          <property name="icon">
-           <iconset resource="PierogiResources.qrc">
-            <normaloff>:/icons/sound_high_icon&amp;48.png</normaloff>:/icons/sound_high_icon&amp;48.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="mainChannelDownButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Channel Down</string>
-          </property>
-          <property name="icon">
-           <iconset resource="PierogiResources.qrc">
-            <normaloff>:/icons/br_down_icon&amp;48.png</normaloff>:/icons/br_down_icon&amp;48.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QPushButton" name="mainVolumeDownButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Volume Down</string>
-          </property>
-          <property name="icon">
-           <iconset resource="PierogiResources.qrc">
-            <normaloff>:/icons/sound_low_icon&amp;48.png</normaloff>:/icons/sound_low_icon&amp;48.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QPushButton" name="powerButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Power</string>
+            </property>
+            <property name="icon">
+             <iconset resource="PierogiResources.qrc">
+              <normaloff>:/icons/on-off_icon&amp;48.png</normaloff>:/icons/on-off_icon&amp;48.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>48</width>
+              <height>48</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item>
            <widget class="QLabel" name="makeLabel">
             <property name="sizePolicy">
@@ -216,7 +166,118 @@
             </property>
            </widget>
           </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="muteButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Mute</string>
+            </property>
+            <property name="icon">
+             <iconset resource="PierogiResources.qrc">
+              <normaloff>:/icons/sound_mute_icon&amp;48.png</normaloff>:/icons/sound_mute_icon&amp;48.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>48</width>
+              <height>48</height>
+             </size>
+            </property>
+           </widget>
+          </item>
          </layout>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="mainVolumeUp">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>Volume Up</string>
+          </property>
+          <property name="icon">
+           <iconset resource="PierogiResources.qrc">
+            <normaloff>:/icons/sound_high_icon&amp;48.png</normaloff>:/icons/sound_high_icon&amp;48.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>48</width>
+            <height>48</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="mainChannelDownButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Channel Down</string>
+          </property>
+          <property name="icon">
+           <iconset resource="PierogiResources.qrc">
+            <normaloff>:/icons/br_down_icon&amp;48.png</normaloff>:/icons/br_down_icon&amp;48.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>48</width>
+            <height>48</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="mainVolumeDownButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Volume Down</string>
+          </property>
+          <property name="icon">
+           <iconset resource="PierogiResources.qrc">
+            <normaloff>:/icons/sound_low_icon&amp;48.png</normaloff>:/icons/sound_low_icon&amp;48.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>48</width>
+            <height>48</height>
+           </size>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -320,32 +381,6 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="aspectRatioButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Aspect Ratio</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QPushButton" name="surroundButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Surround</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="2">
          <widget class="QPushButton" name="audioButton">
           <property name="sizePolicy">
@@ -372,20 +407,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="captionButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>CC / Subtitle</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
+        <item row="3" column="1">
          <widget class="QPushButton" name="inputButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -398,7 +420,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="2">
+        <item row="3" column="2">
          <widget class="QPushButton" name="sleepButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -411,8 +433,8 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="3">
-         <widget class="QPushButton" name="muteButton">
+        <item row="1" column="1">
+         <widget class="QPushButton" name="aspectRatioButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -420,17 +442,46 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Mute</string>
+           <string>Aspect Ratio</string>
           </property>
-          <property name="icon">
-           <iconset resource="PierogiResources.qrc">
-            <normaloff>:/icons/sound_mute_icon&amp;48.png</normaloff>:/icons/sound_mute_icon&amp;48.png</iconset>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QPushButton" name="captionButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
+          <property name="text">
+           <string>CC / Subtitle</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="soundModeButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Sound Mode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pictureModeButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Picture Mode</string>
           </property>
          </widget>
         </item>
@@ -1405,8 +1456,8 @@
      <y>222</y>
     </hint>
     <hint type="destinationlabel">
-     <x>683</x>
-     <y>334</y>
+     <x>399</x>
+     <y>393</y>
     </hint>
    </hints>
   </connection>
@@ -1604,22 +1655,6 @@
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>powerEnabled(bool)</signal>
-   <receiver>powerButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>375</x>
-     <y>443</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>299</x>
-     <y>164</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
    <signal>zeroEnabled(bool)</signal>
    <receiver>zeroButton</receiver>
    <slot>setEnabled(bool)</slot>
@@ -1711,22 +1746,6 @@
     <hint type="destinationlabel">
      <x>45</x>
      <y>344</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>keysetNameChanged(QString)</signal>
-   <receiver>nameLabel</receiver>
-   <slot>setText(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>301</y>
     </hint>
    </hints>
   </connection>
@@ -2004,22 +2023,6 @@
   </connection>
   <connection>
    <sender>MainWindow</sender>
-   <signal>keysetMakeChanged(QString)</signal>
-   <receiver>makeLabel</receiver>
-   <slot>setText(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>283</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
    <signal>greenEnabled(bool)</signal>
    <receiver>greenButton</receiver>
    <slot>setEnabled(bool)</slot>
@@ -2031,22 +2034,6 @@
     <hint type="destinationlabel">
      <x>305</x>
      <y>153</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>MainWindow</sender>
-   <signal>surroundEnabled(bool)</signal>
-   <receiver>surroundButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>302</x>
-     <y>246</y>
     </hint>
    </hints>
   </connection>
@@ -2111,6 +2098,86 @@
     <hint type="destinationlabel">
      <x>546</x>
      <y>164</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>keysetMakeChanged(QString)</signal>
+   <receiver>makeLabel</receiver>
+   <slot>setText(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>powerEnabled(bool)</signal>
+   <receiver>powerButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>375</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>164</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>keysetNameChanged(QString)</signal>
+   <receiver>nameLabel</receiver>
+   <slot>setText(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>301</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>pictureModeEnabled(bool)</signal>
+   <receiver>pictureModeButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>103</x>
+     <y>406</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>soundModeEnabled(bool)</signal>
+   <receiver>soundModeButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>103</x>
+     <y>264</y>
     </hint>
    </hints>
   </connection>

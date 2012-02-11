@@ -9,6 +9,8 @@ MCERemote1::MCERemote1(
       Microsoft_Make,
       index)
 {
+  addControlledDevice(Any_Make, "ASRock HT330", Computer_Device);
+
   threadableProtocol = new MCEProtocol(guiObject, index, 0x800F);
 
   setPreData(0x04, 7);

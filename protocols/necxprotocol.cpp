@@ -1,4 +1,4 @@
-#include "necprotocol.h"
+#include "necxprotocol.h"
 
 #include "pirrx51hardware.h"
 
@@ -9,37 +9,37 @@
 extern bool commandInFlight;
 extern QMutex commandIFMutex;
 
-// The official NEC protocol, as I understand it, has the following attributes:
+// The NECX protocol is a slight variation of the NEC protocol.  It features
+// a slightly different header and a slightly different repeat mechanism.
+// Most of them use the "extended" address form, so I'll just assume that all
+// of them do.  (It won't hurt anything.)
+// Otherwise it is nearly identical:
 // A "zero" is encoded with a 560 usec pulse, 560 usec space.
 // A "one" is encoded with a 560 usec pulse, and 3*560 (1680) usec space.
-// The header is a 9000 usec pulse, 4500 usec space.
+// The header is a 4500 usec pulse, 4500 usec space.
 // Commands end with a trailing 560 usec pulse.
-// A repeat block (if used) is a 9000 usec pulse, 2250 usec space, then
-// trailing pulse.
+// A repeat block (if used) is a 4500 usec pulse, 4500 usec space, then a 1
+// (560 usec pulse, 1680 usec space), then the trailing pulse.
 // Each command runs for 110000 usec before another can be executed.
-// The normal carrier frequency is 38 kHz.
+// The carrier frequency is 38 kHz.
 
-NECProtocol::NECProtocol(
+NECXProtocol::NECXProtocol(
   QObject *guiObject,
   unsigned int index,
-  bool extNEC,
   bool srtRep)
   : SpaceProtocol(
       guiObject, index,
       560, 560,
       560, 1680,
-      9000, 4500,
+      4500, 4500,
       560,
       110000, true),
-    repeatPulse(9000),
-    repeatSpace(2250),
-    isExtendedNEC(extNEC),
     isShortRepeat(srtRep)
 {
 }
 
 
-void NECProtocol::startSendingCommand(
+void NECXProtocol::startSendingCommand(
   unsigned int threadableID,
   PIRKeyName command)
 {
@@ -49,13 +49,6 @@ void NECProtocol::startSendingCommand(
   {
     // First, check if we are meant to be the recipient of this command:
     if (threadableID != id) return;
-
-    // An object that helps keep track of the number of commands:
-//    PIRCommandCounter commandCounter;
-
-    // Ok, we're going to lock down this method and make sure
-    // only one guy at a time passes this point:
-//    QMutexLocker commandLocker(&commandMutex);
 
     clearRepeatFlag();
 
@@ -118,7 +111,7 @@ void NECProtocol::startSendingCommand(
 }
 
 
-int NECProtocol::generateStandardCommand(
+int NECXProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
   PIRRX51Hardware &rx51device)
 {
@@ -128,30 +121,13 @@ int NECProtocol::generateStandardCommand(
   rx51device.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
-  // Now, check the encoding format:
-  if (isExtendedNEC)
-  {
-    // In extended NEC, the address has been extended to 16 bits, and is only
-    // sent once.  The command portion stays the same.
-    // - "preData" should contain 16-bit value
-    // - "bits" should contain 8-bit value
-    duration += pushReverseBits(preData, rx51device);
-    duration += pushReverseBits(pkb.firstCode, rx51device);
-    duration += pushInvertedReverseBits(pkb.firstCode, rx51device);
-  }
-  else
-  {
-    // Standard NEC is made up of an eight-bit "address" and an eight-bit
-    // "command".  First the address bits are sent (in reverse order), then
-    // the address bits are inverted and sent again (in reverse order).
-    // Next, we do the same to the command bits.
-    // - "preData" should contain 8-bit value
-    // - "bits" should contain 8-bit value
-    duration += pushReverseBits(preData, rx51device);
-    duration += pushInvertedReverseBits(preData, rx51device);
-    duration += pushReverseBits(pkb.firstCode, rx51device);
-    duration += pushInvertedReverseBits(pkb.firstCode, rx51device);
-  }
+  // In NECX, the address is 16 bits, and is only sent once.  The command
+  // portion is 8 bits, and an inverted copy is sent.
+  // - "preData" should contain 16-bit value
+  // - "bits" should contain 8-bit value
+  duration += pushReverseBits(preData, rx51device);
+  duration += pushReverseBits(pkb.firstCode, rx51device);
+  duration += pushInvertedReverseBits(pkb.firstCode, rx51device);
 
   // Finally add the "trail":
   rx51device.addSingle(trailerPulse);
@@ -161,14 +137,18 @@ int NECProtocol::generateStandardCommand(
 }
 
 
-int NECProtocol::generateRepeatCommand(
+int NECXProtocol::generateRepeatCommand(
   PIRRX51Hardware &rx51device)
 {
   int duration = 0;
 
-  // Add the repeat pulse:
-  rx51device.addPair(repeatPulse, repeatSpace);
-  duration += (repeatPulse + repeatSpace);
+  // Start with the header:
+  rx51device.addPair(headerPulse, headerSpace);
+  duration += (headerPulse + headerSpace);
+
+  // Add a "1":
+  rx51device.addPair(onePulse, oneSpace);
+  duration += (onePulse + oneSpace);
 
   // Add the trailer:
   rx51device.addSingle(trailerPulse);

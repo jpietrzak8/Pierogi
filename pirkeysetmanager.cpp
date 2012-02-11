@@ -5,33 +5,40 @@
 #include "pirkeysetwidgetitem.h"
 
 #include "keysets/acer.h"
+#include "keysets/admiral.h"
 #include "keysets/aiwa.h"
 #include "keysets/apple.h"
 #include "keysets/bose.h"
+#include "keysets/daewoo.h"
 #include "keysets/denon.h"
 #include "keysets/ei.h"
 #include "keysets/elgato.h"
 #include "keysets/goldstar.h"
+#include "keysets/grundig.h"
 #include "keysets/hauppauge.h"
 #include "keysets/hitachi.h"
 #include "keysets/jvc.h"
 #include "keysets/lg.h"
+#include "keysets/logitech.h"
 #include "keysets/magnavox.h"
 #include "keysets/mce.h"
 #include "keysets/mitsubishi.h"
 #include "keysets/nokia.h"
 #include "keysets/panasonic.h"
+#include "keysets/philco.h"
 #include "keysets/philips.h"
 #include "keysets/pinnacle.h"
 #include "keysets/pioneer.h"
 #include "keysets/raite.h"
 #include "keysets/rca.h"
+#include "keysets/roku.h"
 #include "keysets/sagem.h"
 #include "keysets/samsung.h"
 #include "keysets/sanyo.h"
 #include "keysets/sharp.h"
 #include "keysets/sony.h"
 #include "keysets/tivo.h"
+#include "keysets/topfield.h"
 #include "keysets/toshiba.h"
 #include "keysets/westinghouse.h"
 #include "keysets/yamaha.h"
@@ -60,6 +67,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new AcerTV1(guiObject, counter++));
   populateKeyset(new AcerPC1(guiObject, counter++));
 
+  populateKeyset(new AdmiralTV1(guiObject, counter++));
+  populateKeyset(new AdmiralVCR1(guiObject, counter++));
+
   populateKeyset(new AiwaVCR1(guiObject, counter++));
   populateKeyset(new AiwaVCR2(guiObject, counter++));
   populateKeyset(new AiwaVCR3(guiObject, counter++));
@@ -81,6 +91,12 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new BoseRadio1(guiObject, counter++));
   populateKeyset(new BoseRadio2(guiObject, counter++));
   populateKeyset(new BoseRadio3(guiObject, counter++));
+
+  populateKeyset(new DaewooTV1(guiObject, counter++));
+  populateKeyset(new DaewooTV2(guiObject, counter++));
+  populateKeyset(new DaewooDVD1(guiObject, counter++));
+  populateKeyset(new DaewooVCR1(guiObject, counter++));
+  populateKeyset(new DaewooVCR2(guiObject, counter++));
 
   populateKeyset(new DenonDVD1(guiObject, counter++));
   populateKeyset(new DenonDVD2(guiObject, counter++));
@@ -115,6 +131,18 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new GoldStarVCR1b(guiObject, counter++));
   populateKeyset(new GoldStarVCR1c(guiObject, counter++));
   populateKeyset(new GoldStarCD1(guiObject, counter++));
+
+  populateKeyset(new GrundigSat1(guiObject, counter++));
+  populateKeyset(new GrundigSat2(guiObject, counter++));
+  populateKeyset(new GrundigAmp1(guiObject, counter++));
+  populateKeyset(new GrundigAudio1(guiObject, counter++));
+  populateKeyset(new GrundigAudio2(guiObject, counter++));
+  populateKeyset(new GrundigVCR1(guiObject, counter++));
+  populateKeyset(new GrundigVCR1a(guiObject, counter++));
+  populateKeyset(new GrundigTV1(guiObject, counter++));
+  populateKeyset(new GrundigTV2(guiObject, counter++));
+  populateKeyset(new GrundigTV3(guiObject, counter++));
+  populateKeyset(new GrundigDVD1(guiObject, counter++));
 
   populateKeyset(new HauppaugePCTV1(guiObject, counter++));
   populateKeyset(new HauppaugePCTV1a(guiObject, counter++));
@@ -159,12 +187,14 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new LGTV2(guiObject, counter++));
   populateKeyset(new LGTV2a(guiObject, counter++));
   populateKeyset(new LGTV2b(guiObject, counter++));
-//  populateKeyset(new LGDisc1(guiObject, counter++));
-//  populateKeyset(new LGDisc2(guiObject, counter++));
-//  populateKeyset(new LGDisc2a(guiObject, counter++));
+  populateKeyset(new LGDisc1(guiObject, counter++));
+  populateKeyset(new LGDisc2(guiObject, counter++));
+  populateKeyset(new LGDisc2a(guiObject, counter++));
   populateKeyset(new LGVCR1(guiObject, counter++));
   populateKeyset(new LGVCR1a(guiObject, counter++));
   populateKeyset(new LGVCR1b(guiObject, counter++));
+
+  populateKeyset(new LogitechSpeakers(guiObject, counter++));
 
   populateKeyset(new MagnavoxDVD1(guiObject, counter++));
   populateKeyset(new MagnavoxVCR1(guiObject, counter++));
@@ -200,6 +230,8 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new PanasonicDVD1(guiObject, counter++));
   populateKeyset(new PanasonicDVD1a(guiObject, counter++));
   populateKeyset(new PanasonicAudio1(guiObject, counter++));
+
+  populateKeyset(new PhilcoTV(guiObject, counter++));
 
   populateKeyset(new PhilipsTV1(guiObject, counter++));
   populateKeyset(new PhilipsTV1a(guiObject, counter++));
@@ -269,6 +301,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new RCASat1(guiObject, counter++));
   populateKeyset(new RCASat2(guiObject, counter++));
 
+  populateKeyset(new RokuBox1(guiObject, counter++));
+  populateKeyset(new RokuBox2(guiObject, counter++));
+
   populateKeyset(new SagemTVBox1(guiObject, counter++));
   populateKeyset(new SagemTVBox1a(guiObject, counter++));
 
@@ -334,6 +369,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new Tivo1b(guiObject, counter++));
   populateKeyset(new Tivo1c(guiObject, counter++));
   populateKeyset(new Tivo1d(guiObject, counter++));
+
+  populateKeyset(new TopfieldPVR1(guiObject, counter++));
+  populateKeyset(new TopfieldSat1(guiObject, counter++));
 
   populateKeyset(new ToshibaTV1(guiObject, counter++));
   populateKeyset(new ToshibaTV1a(guiObject, counter++));
