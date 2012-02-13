@@ -5,7 +5,7 @@ MCERemote1::MCERemote1(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "MCE Remote mode 1",
+      "Remote mode 1",
       Microsoft_Make,
       index)
 {
@@ -95,7 +95,7 @@ MCERemote1a::MCERemote1a(
   unsigned int index)
   : MCERemote1(guiObject, index)
 {
-  setKeysetName("MCE Remote mode 2");
+  setKeysetName("Remote mode 2");
 
   setPreData(0x14, 7);
 }
@@ -106,7 +106,7 @@ MCERemote1b::MCERemote1b(
   unsigned int index)
   : MCERemote1(guiObject, index)
 {
-  setKeysetName("MCE Remote mode 3");
+  setKeysetName("Remote mode 3");
 
   setPreData(0x24, 7);
 }
@@ -117,7 +117,7 @@ MCERemote1c::MCERemote1c(
   unsigned int index)
   : MCERemote1(guiObject, index)
 {
-  setKeysetName("MCE Remote mode 4");
+  setKeysetName("Remote mode 4");
 
   setPreData(0x34, 7);
 }
@@ -128,7 +128,7 @@ MCERemote1d::MCERemote1d(
   unsigned int index)
   : MCERemote1(guiObject, index)
 {
-  setKeysetName("MCE Remote mode 5");
+  setKeysetName("Remote mode 5");
 
   setPreData(0x44, 7);
 }
@@ -139,7 +139,7 @@ MCERemote1e::MCERemote1e(
   unsigned int index)
   : MCERemote1(guiObject, index)
 {
-  setKeysetName("MCE Remote mode 6");
+  setKeysetName("Remote mode 6");
 
   setPreData(0x54, 7);
 }
@@ -150,7 +150,7 @@ MCERemote1f::MCERemote1f(
   unsigned int index)
   : MCERemote1(guiObject, index)
 {
-  setKeysetName("MCE Remote mode 7");
+  setKeysetName("Remote mode 7");
 
   setPreData(0x64, 7);
 }
@@ -161,7 +161,7 @@ MCERemote1g::MCERemote1g(
   unsigned int index)
   : MCERemote1(guiObject, index)
 {
-  setKeysetName("MCE Remote mode 8");
+  setKeysetName("Remote mode 8");
 
   setPreData(0x74, 7);
 }

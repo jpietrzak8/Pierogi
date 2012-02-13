@@ -1,3 +1,10 @@
+pierogi (0.6.2) unstable; urgency=low
+  * Fixed an embarrasing bug in the LG keysets
+  * Added a few more Daewoo keysets
+  * Make a first pass at keysets for Sky, Western Digital, and Saba
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 12 Feb 2012 23:11:58 -0500
+
 pierogi (0.6.1) unstable; urgency=low
   * Moved Mute button to main tab, brought Picture Mode and Sound Mode back up to utility tab
   * Added keysets for Admiral, Daewoo, Grundig, Logitech, Philco, Roku, and Topfield

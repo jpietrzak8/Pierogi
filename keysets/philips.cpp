@@ -244,35 +244,7 @@ PhilipsTV2::PhilipsTV2(
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x00);
 
-  addKey("Power", Power_Key, 0x0C, 8);
-  addKey("TV", Unmapped_Key, 0x9F, 8);
-  addKey("SUBTITLE", Captions_Key, 0x4B, 8);
-  addKey("TELETEXT", Teletext_Key, 0x3C, 8);
-  addKey("SOURCE", Input_Key, 0x38, 8); // "inputselect", "external"
-  addKey("red", Red_Key, 0x6D, 8);
-  addKey("green", Green_Key, 0x6E, 8);
-  addKey("yellow", Yellow_Key, 0x6F, 8);
-  addKey("blue", Blue_Key, 0x70, 8);
-  addKey("Home", Menu_Key, 0x54, 8); // "Menu"
-  addKey("Guide", Guide_Key, 0xCC, 8); // "nextview", "EPG"
-  addKey("OPTIONS", Unmapped_Key, 0x40, 8);
-  addKey("up", Up_Key, 0x58, 8);
-  addKey("down", Down_Key, 0x59, 8);
-  addKey("left", Left_Key, 0x5A, 8);
-  addKey("right", Right_Key, 0x5B, 8);
-  addKey("OK", Select_Key, 0x5C, 8);
-  addKey("INFO", Info_Key, 0x0F, 8); // "i+"
-  addKey("<<", Rewind_Key, 0x2B, 8);
-  addKey("Play", Play_Key, 0x2C, 8);
-  addKey(">>", FastForward_Key, 0x28, 8);
-  addKey("Stop", Stop_Key, 0x31, 8); // "MHEG_Cancel"
-  addKey("Record", Record_Key, 0x37, 8);
-  addKey("Vol+", VolumeUp_Key, 0x10, 8);
-  addKey("Vol-", VolumeDown_Key, 0x11, 8);
-  addKey("Mute", Mute_Key, 0x0D, 8);
-  addKey("FORMAT", AspectRatio_Key, 0xF5, 8); // "Picture_Format", "displaymode"
-  addKey("P+", ChannelUp_Key, 0x20, 8);
-  addKey("P-", ChannelDown_Key, 0x21, 8);
+  addKey("0", Zero_Key, 0x00, 8);
   addKey("1", One_Key, 0x01, 8);
   addKey("2", Two_Key, 0x02, 8);
   addKey("3", Three_Key, 0x03, 8);
@@ -282,18 +254,55 @@ PhilipsTV2::PhilipsTV2(
   addKey("7", Seven_Key, 0x07, 8);
   addKey("8", Eight_Key, 0x08, 8);
   addKey("9", Nine_Key, 0x09, 8);
-  addKey("0", Zero_Key, 0x00, 8);
-  addKey("SOUND", SoundMode_Key, 0xF4, 8); // "smartsound"
-  addKey("PICTURE", PictureMode_Key, 0xF3, 8); // "smartdisplay"
+  addKey("Previous_channel", PrevChannel_Key, 0x0A, 8); // "PP", "AB"
+  addKey("Power", Power_Key, 0x0C, 8);
+  addKey("Mute", Mute_Key, 0x0D, 8);
+  addKey("INFO", Info_Key, 0x0F, 8); // "i+"
+
+  addKey("Vol+", VolumeUp_Key, 0x10, 8);
+  addKey("Vol-", VolumeDown_Key, 0x11, 8);
+
+  addKey("P+", ChannelUp_Key, 0x20, 8);
+  addKey("P-", ChannelDown_Key, 0x21, 8);
+  addKey(">>", FastForward_Key, 0x28, 8);
+  addKey("<<", Rewind_Key, 0x2B, 8);
+  addKey("Play", Play_Key, 0x2C, 8);
+
+  addKey("Stop", Stop_Key, 0x31, 8); // "MHEG_Cancel"
+  addKey("Record", Record_Key, 0x37, 8);
+  addKey("SOURCE", Input_Key, 0x38, 8); // "inputselect", "external"
+  addKey("TELETEXT", Teletext_Key, 0x3C, 8);
+
+  addKey("OPTIONS", Unmapped_Key, 0x40, 8);
   addKey("InstallMenu", Unmapped_Key, 0x45, 8);
+  addKey("SUBTITLE", Captions_Key, 0x4B, 8);
+  addKey("1st/2nd_language", Audio_Key, 0x4E, 8); // "monostereo"
+
+  addKey("Home", Menu_Key, 0x54, 8); // "Menu"
+  addKey("up", Up_Key, 0x58, 8);
+  addKey("down", Down_Key, 0x59, 8);
+  addKey("left", Left_Key, 0x5A, 8);
+  addKey("right", Right_Key, 0x5B, 8);
+  addKey("OK", Select_Key, 0x5C, 8);
+  addKey("Dual_Screen", PIP_Key, 0x5D, 8); // "splitdisplay"
+
+  addKey("freeze", Pause_Key, 0x67, 8); // "pause"
+  addKey("red", Red_Key, 0x6D, 8);
+  addKey("green", Green_Key, 0x6E, 8);
+  addKey("yellow", Yellow_Key, 0x6F, 8);
+  addKey("blue", Blue_Key, 0x70, 8);
   addKey("SurroundSound", Surround_Key, 0x71, 8);  // "soundselect"
   addKey("Time", Sleep_Key, 0x7F, 8); // "clock", "timer_programming"
+
   addKey("ActiveControl", Unmapped_Key, 0x96, 8);
-  addKey("Dual_Screen", PIP_Key, 0x5D, 8); // "splitdisplay"
-  addKey("Previous_channel", PrevChannel_Key, 0x0A, 8); // "PP", "AB"
-  addKey("1st/2nd_language", Audio_Key, 0x4E, 8); // "monostereo"
-  addKey("freeze", Pause_Key, 0x67, 8); // "pause"
+  addKey("TV", Unmapped_Key, 0x9F, 8);
+
+  addKey("Guide", Guide_Key, 0xCC, 8); // "nextview", "EPG"
+
   addKey("zoom", Zoom_Key, 0xE7, 8);
+  addKey("PICTURE", PictureMode_Key, 0xF3, 8); // "smartdisplay"
+  addKey("SOUND", SoundMode_Key, 0xF4, 8); // "smartsound"
+  addKey("FORMAT", AspectRatio_Key, 0xF5, 8); // "Picture_Format", "displaymode"
 }
 
 
@@ -306,13 +315,13 @@ PhilipsTV2a::PhilipsTV2a(
 
   addControlledDevice(Philips_Make, "29PT8607/12", TV_Device);
 
-  addKey("tv-speed+", Unmapped_Key, 0x71, 8);
-  addKey("tv-speed-", Unmapped_Key, 0x6E, 8);
-  addKey("tv-play", Play_Key, 0x70, 8);
-  addKey("tv-stop", Stop_Key, 0x6F, 8);
-  addKey("tv-recording", Record_Key, 0x6D, 8);
   addKey("tv-display", Info_Key, 0x3C, 8);
   addKey("tv-teletext_submode_(J:12)", Unmapped_Key, 0x5D, 8);
+  addKey("tv-recording", Record_Key, 0x6D, 8);
+  addKey("tv-speed-", Unmapped_Key, 0x6E, 8);
+  addKey("tv-stop", Stop_Key, 0x6F, 8);
+  addKey("tv-play", Play_Key, 0x70, 8);
+  addKey("tv-speed+", Unmapped_Key, 0x71, 8);
   addKey("tv-solarization", Unmapped_Key, 0xCC, 8);
 }
 
@@ -343,28 +352,7 @@ PhilipsTV3::PhilipsTV3(
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x28);
 
-  addKey("power", Power_Key, 0x0C, 8);
-  addKey("text", Teletext_Key, 0x3C, 8);
-  addKey("red", Red_Key, 0x6D, 8);
-  addKey("green", Green_Key, 0x6E, 8);
-  addKey("yellow", Yellow_Key, 0x6F, 8);
-  addKey("blue", Blue_Key, 0x70, 8);
-  addKey("menu", Menu_Key, 0x54, 8);
-  addKey("wide", AspectRatio_Key, 0xD8, 8);
-  addKey("subtitle", Captions_Key, 0x4B, 8);
-  addKey("info", Info_Key, 0x0F, 8);
-  addKey("guide", Guide_Key, 0xCC, 8);
-  addKey("select", Select_Key, 0x5C, 8);
-  addKey("exit", Exit_Key, 0x83, 8);
-  addKey("up", Up_Key, 0x58, 8);
-  addKey("left", Left_Key, 0x5A, 8);
-  addKey("right", Right_Key, 0x5B, 8);
-  addKey("down", Down_Key, 0x59, 8);
-  addKey("vol+", VolumeUp_Key, 0x10, 8);
-  addKey("vol-", VolumeDown_Key, 0x11, 8);
-  addKey("p+", ChannelUp_Key, 0x20, 8);
-  addKey("p-", ChannelDown_Key, 0x21, 8);
-  addKey("mute", Mute_Key, 0x0D, 8);
+  addKey("0", Zero_Key, 0x00, 8);
   addKey("1", One_Key, 0x01, 8);
   addKey("2", Two_Key, 0x02, 8);
   addKey("3", Three_Key, 0x03, 8);
@@ -374,8 +362,36 @@ PhilipsTV3::PhilipsTV3(
   addKey("7", Seven_Key, 0x07, 8);
   addKey("8", Eight_Key, 0x08, 8);
   addKey("9", Nine_Key, 0x09, 8);
-  addKey("0", Zero_Key, 0x00, 8);
+
+  addKey("power", Power_Key, 0x0C, 8);
+  addKey("mute", Mute_Key, 0x0D, 8);
+  addKey("info", Info_Key, 0x0F, 8);
+
+  addKey("vol+", VolumeUp_Key, 0x10, 8);
+  addKey("vol-", VolumeDown_Key, 0x11, 8);
+
+  addKey("p+", ChannelUp_Key, 0x20, 8);
+  addKey("p-", ChannelDown_Key, 0x21, 8);
+
+  addKey("text", Teletext_Key, 0x3C, 8);
+
   addKey("tv/dtv", Input_Key, 0x43, 8);
+  addKey("subtitle", Captions_Key, 0x4B, 8);
+  addKey("menu", Menu_Key, 0x54, 8);
+  addKey("up", Up_Key, 0x58, 8);
+  addKey("down", Down_Key, 0x59, 8);
+  addKey("left", Left_Key, 0x5A, 8);
+  addKey("right", Right_Key, 0x5B, 8);
+  addKey("select", Select_Key, 0x5C, 8);
+
+  addKey("red", Red_Key, 0x6D, 8);
+  addKey("green", Green_Key, 0x6E, 8);
+  addKey("yellow", Yellow_Key, 0x6F, 8);
+  addKey("blue", Blue_Key, 0x70, 8);
+  addKey("exit", Exit_Key, 0x83, 8);
+
+  addKey("guide", Guide_Key, 0xCC, 8);
+  addKey("wide", AspectRatio_Key, 0xD8, 8);
 }
 
 

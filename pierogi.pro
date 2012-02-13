@@ -94,7 +94,13 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/grundig.cpp \
     keysets/topfield.cpp \
     keysets/logitech.cpp \
-    protocols/necxprotocol.cpp
+    protocols/necxprotocol.cpp \
+    sideshotleftform.cpp \
+    keysets/wd.cpp \
+    keysets/saba.cpp \
+    keysets/sky.cpp \
+    protocols/rc6skyprotocol.cpp \
+    protocols/thomsonprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -165,12 +171,19 @@ HEADERS += mainwindow.h \
     keysets/grundig.h \
     keysets/topfield.h \
     keysets/logitech.h \
-    protocols/necxprotocol.h
+    protocols/necxprotocol.h \
+    sideshotleftform.h \
+    keysets/wd.h \
+    keysets/saba.h \
+    keysets/sky.h \
+    protocols/rc6skyprotocol.h \
+    protocols/thomsonprotocol.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
     pirselectkeysetform.ui \
-    pirsecondaryform.ui
+    pirsecondaryform.ui \
+    sideshotleftform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

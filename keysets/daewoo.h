@@ -21,6 +21,22 @@ public:
     unsigned int index);
 };
 
+class DaewooTV3: public PIRKeysetMetaData
+{
+public:
+  DaewooTV3(
+    QObject *guiObject,
+    unsigned int index);
+};
+
+class DaewooTV4: public PIRKeysetMetaData
+{
+public:
+  DaewooTV4(
+    QObject *guiObject,
+    unsigned int index);
+};
+
 class DaewooDVD1: public PIRKeysetMetaData
 {
 public:

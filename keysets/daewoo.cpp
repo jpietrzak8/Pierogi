@@ -116,6 +116,134 @@ DaewooTV2::DaewooTV2(
 }
 
 
+DaewooTV3::DaewooTV3(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV Keyset 3",
+      Daewoo_Make,
+      index)
+{
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  setPreData(0x14, 8);
+
+  addKey("0/10", Zero_Key, 0x00, 8);
+  addKey("1", One_Key, 0x01, 8);
+  addKey("2", Two_Key, 0x02, 8);
+  addKey("3", Three_Key, 0x03, 8);
+  addKey("4", Four_Key, 0x04, 8);
+  addKey("5", Five_Key, 0x05, 8);
+  addKey("6", Six_Key, 0x06, 8);
+  addKey("7", Seven_Key, 0x07, 8);
+  addKey("8", Eight_Key, 0x08, 8);
+  addKey("9", Nine_Key, 0x09, 8);
+  addKey("SOUND MODE", SoundMode_Key, 0x0A, 8);
+  addKey("100", PlusOneHundred_Key, 0x0B, 8);
+  addKey("TV/CATV", Input_Key, 0x0C, 8);
+  addKey("SLEEP", Sleep_Key, 0x0D, 8);
+  addKey("RECALL", Unmapped_Key, 0x11, 8);
+  addKey("MUTE", Mute_Key, 0x12, 8);
+  addKey("VOL UP", VolumeUp_Key, 0x13, 8);
+  addKey("VOL DOWN", VolumeDown_Key, 0x14, 8);
+  addKey("POWER", Power_Key, 0x15, 8);
+  addKey("AV/COMP", AuxInput_Key, 0x16, 8);
+  addKey("CH UP", ChannelUp_Key, 0x17, 8);
+  addKey("CH DOWN", ChannelDown_Key, 0x18, 8);
+  addKey("SOUND EFFECT", Unmapped_Key, 0x1B, 8);
+  addKey("PREVIOUS CH", PrevChannel_Key, 0x20, 8);
+  addKey("MENU", Menu_Key, 0x22, 8);
+  addKey("CAPTION TEXT", Captions_Key, 0x25, 8);
+  addKey("PANEL LOCK", Unmapped_Key, 0x26, 8);
+  addKey("PICTURE MODE NORMAL", PictureMode_Key, 0x27, 8);
+  addKey("PIP.ON/OFF", PIP_Key, 0x28, 8);
+  addKey("P.SWAP", PIPSwap_Key, 0x29, 8);
+  addKey("P.STILL", PIPPause_Key, 0x2A, 8);
+  addKey("P.POSITION", PIPMove_Key, 0x2B, 8);
+  addKey("P.INPUT", PIPSource_Key, 0x2C, 8);
+  addKey("P.CH UP", PIPChannelUp_Key, 0x2D, 8);
+  addKey("ADD/DEL", Unmapped_Key, 0x2E, 8);
+  addKey("P.CH DOWN", PIPChannelDown_Key, 0x2F, 8);
+  addKey("T.RED", Red_Key, 0x32, 8);
+  addKey("T.GREEN", Green_Key, 0x33, 8);
+  addKey("T.YELLOW", Yellow_Key, 0x34, 8);
+  addKey("T.CYAN", Blue_Key, 0x35, 8);
+  addKey("GUIDE", Guide_Key, 0x36, 8);
+  addKey("ENTER", Select_Key, 0x37, 8);
+  addKey("FAVORITE CH", Favorites_Key, 0x3C, 8);
+  addKey("WIDE MODE", AspectRatio_Key, 0x3D, 8);
+  addKey("SUBTITLE", Unmapped_Key, 0x3E, 8);
+  addKey("T.MIX", TeletextAndTV_Key, 0x40, 8);
+  addKey("T.INDEX", TeletextIndex_Key, 0x41, 8);
+  addKey("T.HOLD", TeletextHold_Key, 0x42, 8);
+  addKey("T.SIZE", TeletextSize_Key, 0x43, 8);
+  addKey("T.SUB CODE", Unmapped_Key, 0x44, 8); // shows a subpage?
+  addKey("T.REVEAL", TeletextReveal_Key, 0x45, 8);
+  addKey("T.CANCEL", Unmapped_Key, 0x48, 8); // turns off teletext
+  addKey("MINIOR CHANNEL UP", Unmapped_Key, 0x4E, 8); // I have no clue
+  addKey("MINIOR CHANNEL DOWN", Unmapped_Key, 0x4F, 8);
+  addKey("PROG. GUIDE", Unmapped_Key, 0x52, 8); // which guide is which?
+  addKey("DTV/PC (000218)", PCInput_Key, 0x54, 8);
+  addKey("KEY ALL SENSOR", Unmapped_Key, 0x55, 8);
+  addKey("CHILD LOCK DISPLAY", Unmapped_Key, 0x56, 8);
+  addKey("Digital/Analog", Unmapped_Key, 0x61, 8);
+  addKey("POWER ON", PowerOn_Key, 0x63, 8);
+  addKey("POWER DOWN", PowerOff_Key, 0x64, 8);
+}
+
+
+DaewooTV4::DaewooTV4(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV Keyset 4",
+      Daewoo_Make,
+      index)
+{
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  setPreData(0x1004, 16);
+
+  addKey("0", Zero_Key, 0x00, 8);
+  addKey("1", One_Key, 0x01, 8);
+  addKey("2", Two_Key, 0x02, 8);
+  addKey("3", Three_Key, 0x03, 8);
+  addKey("4", Four_Key, 0x04, 8);
+  addKey("5", Five_Key, 0x05, 8);
+  addKey("6", Six_Key, 0x06, 8);
+  addKey("7", Seven_Key, 0x07, 8);
+  addKey("8", Eight_Key, 0x08, 8);
+  addKey("9", Nine_Key, 0x09, 8);
+  addKey("channel up", ChannelUp_Key, 0x0A, 8); // "up arrow"
+  addKey("channel up", Up_Key, 0x0A, 8); // "up arrow"
+  addKey("channel down", ChannelDown_Key, 0x0B, 8);  // "down arrow"
+  addKey("channel down", Down_Key, 0x0B, 8);  // "down arrow"
+  addKey("vol up", VolumeUp_Key, 0x0C, 8); // "right arrow"
+  addKey("vol up", Right_Key, 0x0C, 8); // "right arrow"
+  addKey("vol down", VolumeDown_Key, 0x0D, 8); // "left arrow"
+  addKey("vol down", Left_Key, 0x0D, 8); // "left arrow"
+  addKey("mute", Mute_Key, 0x0E, 8);
+  addKey("power", Power_Key, 0x0F, 8);
+  addKey("tv/catv (ant/cbl)", AntennaInput_Key, 0x10, 8);
+  addKey("+100", PlusOneHundred_Key, 0x11, 8);
+  addKey("tv/vcr", Input_Key, 0x12, 8);
+  addKey("sound", SoundMode_Key, 0x13, 8);
+  addKey("scan", Scan_Key, 0x14, 8);
+  addKey("sleep", Sleep_Key, 0x15, 8);
+  addKey("picture menu", PictureMode_Key, 0x16, 8);
+  addKey("display", Info_Key, 0x17, 8);
+  addKey("menu", Menu_Key, 0x18, 8);
+  addKey("last (prev ch)", PrevChannel_Key, 0x19, 8);
+  addKey("memory", Memory_Key, 0x1A, 8);
+  addKey("fuzzy", Unmapped_Key, 0x1B, 8);  // what?
+  // these look bad:
+//  addKey("enter", Enter_Key, 0x11, 8);
+//  addKey("pip move", PIPPosition_Key, 0x14, 8);
+//  addKey("select", Select_Key, 0x18, 8);
+//  addKey("pip on/off", PIP_Key, 0x19, 8);
+}
+
+
 DaewooDVD1::DaewooDVD1(
   QObject *guiObject,
   unsigned int index)

@@ -33,14 +33,17 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Raite_Make] = "Raite";
   makes[RCA_Make] = "RCA";
   makes[Roku_Make] = "Roku";
+  makes[Saba_Make] = "Saba";
   makes[Sagem_Make] = "Sagem";
   makes[Samsung_Make] = "Samsung";
   makes[Sanyo_Make] = "Sanyo";
   makes[Sharp_Make] = "Sharp";
+  makes[Sky_Make] = "Sky";
   makes[Sony_Make] = "Sony";
   makes[Tivo_Make] = "TiVo";
   makes[Topfield_Make] = "Topfield";
   makes[Toshiba_Make] = "Toshiba";
+  makes[WD_Make] = "Western Digital";
   makes[Westinghouse_Make] = "Westinghouse";
   makes[Yamaha_Make] = "Yamaha";
   makes[Zenith_Make] = "Zenith";

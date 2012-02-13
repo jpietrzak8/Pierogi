@@ -32,14 +32,17 @@
 #include "keysets/raite.h"
 #include "keysets/rca.h"
 #include "keysets/roku.h"
+#include "keysets/saba.h"
 #include "keysets/sagem.h"
 #include "keysets/samsung.h"
 #include "keysets/sanyo.h"
 #include "keysets/sharp.h"
+#include "keysets/sky.h"
 #include "keysets/sony.h"
 #include "keysets/tivo.h"
 #include "keysets/topfield.h"
 #include "keysets/toshiba.h"
+#include "keysets/wd.h"
 #include "keysets/westinghouse.h"
 #include "keysets/yamaha.h"
 #include "keysets/zenith.h"
@@ -94,6 +97,8 @@ PIRKeysetManager::PIRKeysetManager(
 
   populateKeyset(new DaewooTV1(guiObject, counter++));
   populateKeyset(new DaewooTV2(guiObject, counter++));
+  populateKeyset(new DaewooTV3(guiObject, counter++));
+  populateKeyset(new DaewooTV4(guiObject, counter++));
   populateKeyset(new DaewooDVD1(guiObject, counter++));
   populateKeyset(new DaewooVCR1(guiObject, counter++));
   populateKeyset(new DaewooVCR2(guiObject, counter++));
@@ -304,6 +309,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new RokuBox1(guiObject, counter++));
   populateKeyset(new RokuBox2(guiObject, counter++));
 
+  populateKeyset(new SabaTV1(guiObject, counter++));
+  populateKeyset(new SabaTV2(guiObject, counter++));
+
   populateKeyset(new SagemTVBox1(guiObject, counter++));
   populateKeyset(new SagemTVBox1a(guiObject, counter++));
 
@@ -345,6 +353,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new SharpTV1e(guiObject, counter++));
   populateKeyset(new SharpVCR1(guiObject, counter++));
   populateKeyset(new SharpReceiver1(guiObject, counter++));
+
+  populateKeyset(new SkyReceiver1(guiObject, counter++));
+  populateKeyset(new SkyReceiver1a(guiObject, counter++));
 
   populateKeyset(new SonyTV1(guiObject, counter++));
   populateKeyset(new SonyTV1a(guiObject, counter++));
@@ -389,6 +400,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new ToshibaDisc1b(guiObject, counter++));
   populateKeyset(new ToshibaDisc1c(guiObject, counter++));
   populateKeyset(new ToshibaDisc1d(guiObject, counter++));
+
+  populateKeyset(new WDMediaPlayer1(guiObject, counter++));
+  populateKeyset(new WDMediaPlayer1a(guiObject, counter++));
 
   populateKeyset(new WestinghouseTV1(guiObject, counter++));
   populateKeyset(new WestinghouseTV2(guiObject, counter++));

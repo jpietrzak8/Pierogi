@@ -218,7 +218,7 @@ ToshibaVCR1::ToshibaVCR1(
 {
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
-  setPreData(0x44, 16);
+  setPreData(0x44, 8);
 
   addKey("1", One_Key, 0x01, 8);
   addKey("2", Two_Key, 0x02, 8);

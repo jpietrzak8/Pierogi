@@ -11,7 +11,7 @@ LGTV1::LGTV1(
       LG_Make,
       index)
 {
-  threadableProtocol = new NECProtocol(guiObject, index, false, false);
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x20DF, 16);
   setPreData(0x04, 8);
