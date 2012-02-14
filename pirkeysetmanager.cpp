@@ -11,8 +11,10 @@
 #include "keysets/bose.h"
 #include "keysets/daewoo.h"
 #include "keysets/denon.h"
+#include "keysets/digitalstream.h"
 #include "keysets/ei.h"
 #include "keysets/elgato.h"
+#include "keysets/emerson.h"
 #include "keysets/goldstar.h"
 #include "keysets/grundig.h"
 #include "keysets/hauppauge.h"
@@ -71,6 +73,7 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new AcerPC1(guiObject, counter++));
 
   populateKeyset(new AdmiralTV1(guiObject, counter++));
+  populateKeyset(new AdmiralTV2(guiObject, counter++));
   populateKeyset(new AdmiralVCR1(guiObject, counter++));
 
   populateKeyset(new AiwaVCR1(guiObject, counter++));
@@ -125,9 +128,14 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new DenonAudio3(guiObject, counter++));
   populateKeyset(new DenonAudio4(guiObject, counter++));
 
+  populateKeyset(new DigitalStreamReceiver(guiObject, counter++));
+
   populateKeyset(new EiTV1(guiObject, counter++));
 
   populateKeyset(new ElgatoEyeTV1(guiObject, counter++));
+
+  populateKeyset(new EmersonTV1(guiObject, counter++));
+  populateKeyset(new EmersonDVD1(guiObject, counter++));
 
   populateKeyset(new GoldStarTV1(guiObject, counter++));
   populateKeyset(new GoldStarTV2(guiObject, counter++));
@@ -256,6 +264,7 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new PhilipsDVD1d(guiObject, counter++));
   populateKeyset(new PhilipsDVD2(guiObject, counter++));
   populateKeyset(new PhilipsDVD3(guiObject, counter++));
+  populateKeyset(new PhilipsDVD3a(guiObject, counter++));
   populateKeyset(new PhilipsDVD4(guiObject, counter++));
   populateKeyset(new PhilipsVCR1(guiObject, counter++));
   populateKeyset(new PhilipsVCR1a(guiObject, counter++));

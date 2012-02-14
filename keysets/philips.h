@@ -149,6 +149,14 @@ public:
     unsigned int index);
 };
 
+class PhilipsDVD3a: public PhilipsDVD3
+{
+public:
+  PhilipsDVD3a(
+    QObject *guiObject,
+    unsigned int index);
+};
+
 class PhilipsDVD4: public PIRKeysetMetaData
 {
 public:

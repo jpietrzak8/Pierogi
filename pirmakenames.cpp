@@ -12,8 +12,10 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Bose_Make] = "Bose";
   makes[Daewoo_Make] = "Daewoo";
   makes[Denon_Make] = "Denon";
+  makes[DigitalStream_Make] = "Digital Stream";
   makes[Ei_Make] = "Ei";
   makes[Elgato_Make] = "Elgato";
+  makes[Emerson_Make] = "Emerson";
   makes[GoldStar_Make] = "GoldStar";
   makes[Grundig_Make] = "Grundig";
   makes[Hauppauge_Make] = "Hauppauge";

@@ -180,6 +180,7 @@ enum PIRKeyName{
   DVRInput_Key,
   OpticalInput_Key,
   DigitalCoaxInput_Key,
+  USBInput_Key,
 
   // "Program" Controls:
   Program_Key,

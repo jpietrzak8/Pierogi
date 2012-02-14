@@ -1,0 +1,51 @@
+#include "digitalstream.h"
+#include "protocols/necprotocol.h"
+
+
+DigitalStreamReceiver::DigitalStreamReceiver(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Receiver Keyset 1",
+      DigitalStream_Make,
+      index)
+{
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  setPreData(0x482C, 16);
+
+  addKey("Power", Power_Key, 0x00, 8);
+  addKey("Ok", Select_Key, 0x01, 8);
+  addKey("Up", Up_Key, 0x02, 8);
+  addKey("Down", Down_Key, 0x03, 8);
+  addKey("Left", Left_Key, 0x04, 8);
+  addKey("Right", Right_Key, 0x05, 8);
+  addKey("Vol+", VolumeUp_Key, 0x06, 8);
+  addKey("Vol-", VolumeDown_Key, 0x07, 8);
+  addKey("Channel+", ChannelUp_Key, 0x08, 8);
+  addKey("Channel-", ChannelDown_Key, 0x09, 8);
+
+  addKey("0", Zero_Key, 0x10, 8);
+  addKey("1", One_Key, 0x11, 8);
+  addKey("2", Two_Key, 0x12, 8);
+  addKey("3", Three_Key, 0x13, 8);
+  addKey("4", Four_Key, 0x14, 8);
+  addKey("5", Five_Key, 0x15, 8);
+  addKey("6", Six_Key, 0x16, 8);
+  addKey("7", Seven_Key, 0x17, 8);
+  addKey("8", Eight_Key, 0x18, 8);
+  addKey("9", Nine_Key, 0x19, 8);
+  addKey("-", Dash_Key, 0x1A, 8);
+  addKey("Menu", Menu_Key, 0x1B, 8);
+  addKey("Back", Exit_Key, 0x1D, 8);
+  addKey("EPG", Guide_Key, 0x1E, 8);
+  addKey("FAV", Favorites_Key, 0x1F, 8);
+
+  addKey("Prev", PrevChannel_Key, 0x20, 8); // ?
+  addKey("Mute", Mute_Key, 0x22, 8);
+  addKey("Audio", Audio_Key, 0x23, 8);
+  addKey("Zoom", Zoom_Key, 0x24, 8);
+  addKey("CC", Captions_Key, 0x25, 8);
+  addKey("Info", Info_Key, 0x28, 8);
+  addKey("Meter", Unmapped_Key, 0x2C, 8);
+}

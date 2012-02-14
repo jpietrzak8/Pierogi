@@ -41,6 +41,9 @@ public:
 
   void stopRepeating();
 
+  // This is a bit of a hack:
+  QWidget *getSecondaryWindow();
+
 signals:
   // Main keys
   void powerEnabled(bool);
@@ -158,6 +161,9 @@ signals:
 public slots:
   void receivedExternalWarning(
     const char *warning);
+
+  void selectPrevFavKeyset();
+  void selectNextFavKeyset();
 
 private slots:
   // Main tab slots:

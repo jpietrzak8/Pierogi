@@ -1,3 +1,10 @@
+pierogi (0.6.3) unstable; urgency=low
+  * Mapped the volume rocker to move between favorite keysets
+  * Added new keysets for Digital Stream and Emerson
+  * Added one new keyset to Admiral, cleaned up Philips a bit
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Mon, 13 Feb 2012 23:50:01 -0500
+
 pierogi (0.6.2) unstable; urgency=low
   * Fixed an embarrasing bug in the LG keysets
   * Added a few more Daewoo keysets

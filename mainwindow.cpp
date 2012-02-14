@@ -1059,3 +1059,41 @@ void MainWindow::stopRepeating()
   stopRepeatingFlag = true;
 }
 
+
+QWidget *MainWindow::getSecondaryWindow()
+{
+  return secondaryForm;
+}
+
+
+void MainWindow::selectPrevFavKeyset()
+{
+  int position = ui->favoriteKeysetsWidget->currentRow();
+
+  --position;
+  if (position < 0)
+  {
+    position = ui->favoriteKeysetsWidget->count() - 1;
+  }
+
+  ui->favoriteKeysetsWidget->setCurrentRow(
+    position,
+    QItemSelectionModel::ClearAndSelect);
+}
+
+
+void MainWindow::selectNextFavKeyset()
+{
+  int size = ui->favoriteKeysetsWidget->count();
+  int position = ui->favoriteKeysetsWidget->currentRow();
+
+  ++position;
+  if (position == size)
+  {
+    position = 0;
+  }
+
+  ui->favoriteKeysetsWidget->setCurrentRow(
+    position,
+    QItemSelectionModel::ClearAndSelect);
+}

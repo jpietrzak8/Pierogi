@@ -1,5 +1,6 @@
 #include "admiral.h"
 #include "protocols/sharpprotocol.h"
+#include "protocols/rc5protocol.h"
 
 AdmiralTV1::AdmiralTV1(
   QObject *guiObject,
@@ -33,6 +34,65 @@ AdmiralTV1::AdmiralTV1(
   addSharpKey("tv-display", Info_Key, 0x01, 0x1B);
 
   addSharpKey("flash", Unmapped_Key, 0x01, 0x4F);
+}
+
+
+// The following is just a guess:
+AdmiralTV2::AdmiralTV2(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV Keyset 2",
+      Admiral_Make,
+      index)
+{
+  threadableProtocol = new RC5Protocol(guiObject, index);
+
+  addKey("0", Zero_Key, 0x1000, 13);
+  addKey("1", One_Key, 0x1001, 13);
+  addKey("2", Two_Key, 0x1002, 13);
+  addKey("3", Three_Key, 0x1003, 13);
+  addKey("4", Four_Key, 0x1004, 13);
+  addKey("5", Five_Key, 0x1005, 13);
+  addKey("6", Six_Key, 0x1006, 13);
+  addKey("7", Seven_Key, 0x1007, 13);
+  addKey("8", Eight_Key, 0x1008, 13);
+  addKey("9", Nine_Key, 0x1009, 13);
+  addKey("1-", DoubleDigit_Key, 0x100A, 13); // -/--
+  addKey("100", PlusOneHundred_Key, 0x100A, 13);
+  addKey("TV-Dash", Dash_Key, 0x100A, 13);
+  addKey("CP", Unmapped_Key, 0x100B, 13); // "C/P", "Channel/program/freq"
+  addKey("ON/OFF", Power_Key, 0x100C, 13);
+  addKey("MUTE", Mute_Key, 0x100D, 13);
+  addKey("pp", PrevChannel_Key, 0x100E, 13); // "GREEN", "Personal preference"
+  addKey("INFO", Info_Key, 0x100F, 13); // "+", "OSD"
+
+  addKey("VOL+", VolumeUp_Key, 0x1010, 13);
+  addKey("VOL-", VolumeDown_Key, 0x1011, 13);
+  addKey("BRIGHTNESS_UP", BrightnessUp_Key, 0x1012, 13);
+  addKey("BRIGHTNESS_DOWN", BrightnessDown_Key, 0x1013, 13);
+  addKey("CONTRAST_UP", ContrastUp_Key, 0x1014, 13);
+  addKey("CONTRAST_DOWN", ContrastDown_Key, 0x1015, 13);
+  addKey("BASS_UP", BassUp_Key, 0x1016, 13);
+  addKey("BASS_DOWN", BassDown_Key, 0x1017, 13);
+  addKey("TREBLE_UP", TrebleUp_Key, 0x1018, 13);
+  addKey("TREBLE_DOWN", TrebleDown_Key, 0x1019, 13);
+  addKey("BALANCE_RIGHT", BalanceRight_Key, 0x101A, 13);
+  addKey("BALANCE_LEFT", BalanceLeft_Key, 0x101B, 13);
+
+  addKey("P+", ChannelUp_Key, 0x1020, 13);
+  addKey("P-", ChannelDown_Key, 0x1021, 13);
+
+  addKey("PIP on/off", PIP_Key, 0x1058, 13);
+  addKey("PIP shift", PIPMove_Key, 0x1059, 13);
+  addKey("PIP/main picture swap", PIPSwap_Key, 0x105A, 13);
+  addKey("Select PIP source", PIPSource_Key, 0x105F, 13);
+  addKey("PIP Freeze", PIPPause_Key, 0x1065, 13);
+  addKey("PIP Freeze", PIPSize_Key, 0x1068, 13);
+  addKey("red", Red_Key, 0x106B, 13);
+  addKey("green", Green_Key, 0x106C, 13);
+  addKey("yellow", Yellow_Key, 0x106D, 13);
+  addKey("cyan", Blue_Key, 0x106E, 13);
 }
 
 

@@ -100,7 +100,10 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/saba.cpp \
     keysets/sky.cpp \
     protocols/rc6skyprotocol.cpp \
-    protocols/thomsonprotocol.cpp
+    protocols/thomsonprotocol.cpp \
+    keysets/digitalstream.cpp \
+    pirapplication.cpp \
+    keysets/emerson.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -177,7 +180,10 @@ HEADERS += mainwindow.h \
     keysets/saba.h \
     keysets/sky.h \
     protocols/rc6skyprotocol.h \
-    protocols/thomsonprotocol.h
+    protocols/thomsonprotocol.h \
+    keysets/digitalstream.h \
+    pirapplication.h \
+    keysets/emerson.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
