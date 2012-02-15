@@ -83,11 +83,11 @@ signals:
   void trebleDownEnabled(bool);
   void balanceLeftEnabled(bool);
   void balanceRightEnabled(bool);
-  void soundModeEnabled(bool);
+  void surroundEnabled(bool);
   void colorUpEnabled(bool);
   void brightnessUpEnabled(bool);
   void contrastUpEnabled(bool);
-  void pictureModeEnabled(bool);
+  void zoomEnabled(bool);
   void colorDownEnabled(bool);
   void brightnessDownEnabled(bool);
   void contrastDownEnabled(bool);
@@ -204,22 +204,22 @@ private slots:
   void on_balanceLeftButton_released();
   void on_balanceRightButton_pressed();
   void on_balanceRightButton_released();
-  void on_soundModeButton_pressed();
-  void on_soundModeButton_released();
   void on_colorUpButton_pressed();
   void on_colorUpButton_released();
   void on_brightnessUpButton_pressed();
   void on_brightnessUpButton_released();
   void on_contrastUpButton_pressed();
   void on_contrastUpButton_released();
-  void on_pictureModeButton_pressed();
-  void on_pictureModeButton_released();
   void on_colorDownButton_pressed();
   void on_colorDownButton_released();
   void on_brightnessDownButton_pressed();
   void on_brightnessDownButton_released();
   void on_contrastDownButton_pressed();
   void on_contrastDownButton_released();
+  void on_surroundButton_pressed();
+  void on_surroundButton_released();
+  void on_zoomButton_pressed();
+  void on_zoomButton_released();
 
 private:
   Ui::PIRSecondaryForm *ui;

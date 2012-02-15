@@ -6,7 +6,7 @@ ZenithC32V37::ZenithC32V37(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "C32V37 TV",
+      "TV Keyset 1",
       Zenith_Make,
       index)
 {

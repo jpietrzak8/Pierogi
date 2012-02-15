@@ -206,6 +206,20 @@ void PIRKeysetMetaData::addKaseikyoKey(
 }
 
 
+void PIRKeysetMetaData::addDishKey(
+  const char *name,
+  PIRKeyName key,
+  unsigned int firstCommand,
+  unsigned int secondCommand)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+    threadableProtocol->addDishKey(key, firstCommand, secondCommand);
+  }
+}
+
+
 void PIRKeysetMetaData::setPreData(
   unsigned long data,
   unsigned int bits)

@@ -11,6 +11,8 @@ LGTV1::LGTV1(
       LG_Make,
       index)
 {
+  addControlledDevice(LG_Make, "32LH301C", TV_Device);
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x20DF, 16);

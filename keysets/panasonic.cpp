@@ -233,6 +233,7 @@ PanasonicTV1b::PanasonicTV1b(
 
   addControlledDevice(Panasonic_Make, "Viera TX-32LZD80", TV_Device);
   addControlledDevice(Panasonic_Make, "Viera 42PZ700U", TV_Device);
+  addControlledDevice(Panasonic_Make, "Viera 42PZ8ES", TV_Device);
 
   addKaseikyoKey("Info", Info_Key, 0x008, 0x39); // "OSD"
   addKaseikyoKey("OK", Select_Key, 0x008, 0x49);

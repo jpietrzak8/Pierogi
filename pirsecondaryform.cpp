@@ -83,11 +83,11 @@ void PIRSecondaryForm::enableButtons(
   emit trebleDownEnabled(keyset->hasKey(id, TrebleDown_Key));
   emit balanceLeftEnabled(keyset->hasKey(id, BalanceLeft_Key));
   emit balanceRightEnabled(keyset->hasKey(id, BalanceRight_Key));
-  emit soundModeEnabled(keyset->hasKey(id, SoundMode_Key));
+  emit surroundEnabled(keyset->hasKey(id, Surround_Key));
   emit colorUpEnabled(keyset->hasKey(id, ColorUp_Key));
   emit brightnessUpEnabled(keyset->hasKey(id, BrightnessUp_Key));
   emit contrastUpEnabled(keyset->hasKey(id, ContrastUp_Key));
-  emit pictureModeEnabled(keyset->hasKey(id, PictureMode_Key));
+  emit zoomEnabled(keyset->hasKey(id, Zoom_Key));
   emit colorDownEnabled(keyset->hasKey(id, ColorDown_Key));
   emit brightnessDownEnabled(keyset->hasKey(id, BrightnessDown_Key));
   emit contrastDownEnabled(keyset->hasKey(id, ContrastDown_Key));
@@ -624,12 +624,12 @@ void PIRSecondaryForm::on_balanceRightButton_released()
   mainWindow->stopRepeating();
 }
 
-void PIRSecondaryForm::on_soundModeButton_pressed()
+void PIRSecondaryForm::on_surroundButton_pressed()
 {
-  mainWindow->startRepeating(SoundMode_Key);
+  mainWindow->startRepeating(Surround_Key);
 }
 
-void PIRSecondaryForm::on_soundModeButton_released()
+void PIRSecondaryForm::on_surroundButton_released()
 {
   mainWindow->stopRepeating();
 }
@@ -664,12 +664,12 @@ void PIRSecondaryForm::on_contrastUpButton_released()
   mainWindow->stopRepeating();
 }
 
-void PIRSecondaryForm::on_pictureModeButton_pressed()
+void PIRSecondaryForm::on_zoomButton_pressed()
 {
-  mainWindow->startRepeating(PictureMode_Key);
+  mainWindow->startRepeating(Zoom_Key);
 }
 
-void PIRSecondaryForm::on_pictureModeButton_released()
+void PIRSecondaryForm::on_zoomButton_released()
 {
   mainWindow->stopRepeating();
 }

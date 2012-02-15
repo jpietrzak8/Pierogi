@@ -127,6 +127,12 @@ protected:
     unsigned int addressData,
     unsigned int commandData);
 
+  void addDishKey(
+    const char *name,
+    PIRKeyName key,
+    unsigned int firstCommand,
+    unsigned int secondCommand);
+
   void setPreData(
     unsigned long data,
     unsigned int bits);

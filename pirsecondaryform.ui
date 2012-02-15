@@ -827,7 +827,7 @@
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QPushButton" name="soundModeButton">
+        <widget class="QPushButton" name="surroundButton">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -835,7 +835,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>Sound Mode</string>
+          <string>Surround</string>
          </property>
         </widget>
        </item>
@@ -909,7 +909,7 @@
         </widget>
        </item>
        <item row="5" column="0">
-        <widget class="QPushButton" name="pictureModeButton">
+        <widget class="QPushButton" name="zoomButton">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -917,7 +917,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>Picture Mode</string>
+          <string>Zoom</string>
          </property>
         </widget>
        </item>
@@ -1880,8 +1880,8 @@
   </connection>
   <connection>
    <sender>PIRSecondaryForm</sender>
-   <signal>soundModeEnabled(bool)</signal>
-   <receiver>soundModeButton</receiver>
+   <signal>surroundEnabled(bool)</signal>
+   <receiver>surroundButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1944,8 +1944,8 @@
   </connection>
   <connection>
    <sender>PIRSecondaryForm</sender>
-   <signal>pictureModeEnabled(bool)</signal>
-   <receiver>pictureModeButton</receiver>
+   <signal>zoomEnabled(bool)</signal>
+   <receiver>zoomButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -2068,5 +2068,7 @@
   <signal>brightnessDownEnabled(bool)</signal>
   <signal>contrastDownEnabled(bool)</signal>
   <signal>tunerInputEnabled(bool)</signal>
+  <signal>surroundEnabled(bool)</signal>
+  <signal>zoomEnabled(bool)</signal>
  </slots>
 </ui>

@@ -25,6 +25,8 @@ DEPLOYMENTFOLDERS = loadModule
 # CONFIG += mobility
 # MOBILITY +=
 
+QT += maemo5
+
 SOURCES += main.cpp mainwindow.cpp \
     pirmakenames.cpp \
     pirdocumentationform.cpp \
@@ -103,7 +105,11 @@ SOURCES += main.cpp mainwindow.cpp \
     protocols/thomsonprotocol.cpp \
     keysets/digitalstream.cpp \
     pirapplication.cpp \
-    keysets/emerson.cpp
+    keysets/emerson.cpp \
+    keysets/dish.cpp \
+    keysets/fortec.cpp \
+    keysets/homecast.cpp \
+    protocols/dishprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -183,7 +189,11 @@ HEADERS += mainwindow.h \
     protocols/thomsonprotocol.h \
     keysets/digitalstream.h \
     pirapplication.h \
-    keysets/emerson.h
+    keysets/emerson.h \
+    keysets/dish.h \
+    keysets/fortec.h \
+    keysets/homecast.h \
+    protocols/dishprotocol.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

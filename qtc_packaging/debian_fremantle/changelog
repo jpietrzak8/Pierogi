@@ -1,3 +1,10 @@
+pierogi (0.6.4) unstable; urgency=low
+  * Added a Hildon Banner to report what the keyset has changed to when you use the volume rocker
+  * Fixed several GUI button bugs -- thanks to sixwheeledbeast for finding them
+  * Made a first pass at keysets for Dish, Fortec Star, and Homecast
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Tue, 14 Feb 2012 21:31:13 -0500
+
 pierogi (0.6.3) unstable; urgency=low
   * Mapped the volume rocker to move between favorite keysets
   * Added new keysets for Digital Stream and Emerson

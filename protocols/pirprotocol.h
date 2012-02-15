@@ -96,6 +96,11 @@ public:
     unsigned int addressData,
     unsigned int commandData);
 
+  void addDishKey(
+    PIRKeyName key,
+    unsigned int firstCommand,
+    unsigned int secondCommand);
+
   void setCarrierFrequency(
     unsigned int freq);
 

@@ -128,7 +128,7 @@ MagnavoxConverterBox1::MagnavoxConverterBox1(
       Magnavox_Make,
       index)
 {
-  addControlledDevice(Magnavox_Make, "TB100MG9", TV_Device);
+  addControlledDevice(Magnavox_Make, "TB100MG9", Other_Device);
 
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,

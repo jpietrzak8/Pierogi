@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-02-14T00:05:31. -->
+<!-- Written by Qt Creator 2.4.1, 2012-02-14T21:44:04. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -79,7 +79,7 @@
       <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">dpkg-buildpackage -sa -S -uc -us</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.Command">/Users/john/QtSDK/Maemo/4.6.2/bin/mad</value>
       <value type="bool" key="ProjectExplorer.ProcessStep.Enabled">true</value>
-      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">/Users/john/Develop/n900/pierogi-0.6.3</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">/Users/john/Develop/n900/pierogi-0.6.4</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Custom Process Step</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.ProcessStep</value>
@@ -196,6 +196,7 @@
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_6_0_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_5_2_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_6_2_armel.deb</value>
+       <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_6_4_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_1_0_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_0_1_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_1_6_armel.deb</value>
@@ -213,6 +214,7 @@
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">localhost</value>
+       <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
@@ -240,13 +242,14 @@
        <value type="QString"></value>
        <value type="QString"></value>
        <value type="QString"></value>
+       <value type="QString"></value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
        <value type="QDateTime">2012-01-19T22:18:07</value>
        <value type="QDateTime">2012-02-06T17:22:16</value>
        <value type="QDateTime">2012-02-12T23:10:44</value>
        <value type="QDateTime">2012-02-09T18:12:21</value>
-       <value type="QDateTime">2012-02-13T23:56:12</value>
+       <value type="QDateTime">2012-02-14T21:02:03</value>
        <value type="QDateTime">2012-01-17T00:15:23</value>
        <value type="QDateTime">2012-01-30T20:23:06</value>
        <value type="QDateTime">2012-01-17T13:21:05</value>
@@ -256,6 +259,7 @@
        <value type="QDateTime">2012-02-11T18:03:15</value>
        <value type="QDateTime">2012-02-08T20:29:28</value>
        <value type="QDateTime">2012-02-13T22:02:56</value>
+       <value type="QDateTime">2012-02-14T21:42:07</value>
        <value type="QDateTime">2012-01-17T00:03:13</value>
        <value type="QDateTime">2012-01-14T13:11:32</value>
        <value type="QDateTime">2012-01-25T13:42:55</value>

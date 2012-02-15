@@ -13,13 +13,16 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Daewoo_Make] = "Daewoo";
   makes[Denon_Make] = "Denon";
   makes[DigitalStream_Make] = "Digital Stream";
+  makes[Dish_Make] = "Dish";
   makes[Ei_Make] = "Ei";
   makes[Elgato_Make] = "Elgato";
   makes[Emerson_Make] = "Emerson";
+  makes[Fortec_Make] = "Fortec Star";
   makes[GoldStar_Make] = "GoldStar";
   makes[Grundig_Make] = "Grundig";
   makes[Hauppauge_Make] = "Hauppauge";
   makes[Hitachi_Make] = "Hitachi";
+  makes[Homecast_Make] = "Homecast";
   makes[JVC_Make] = "JVC";
   makes[LG_Make] = "LG";
   makes[Logitech_Make] = "Logitech";

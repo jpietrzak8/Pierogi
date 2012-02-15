@@ -266,6 +266,29 @@ void PIRProtocol::addKaseikyoKey(
 }
 
 
+void PIRProtocol::addDishKey(
+  PIRKeyName key,
+  unsigned int firstCommand,
+  unsigned int secondCommand)
+{
+  PIRKeyBits *pkb = 0;
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    pkb = &(i->second);
+    pkb->firstCode.clear();
+    pkb->secondCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
+  }
+
+  appendToBitSeq(pkb->firstCode, firstCommand, 6);
+  appendToBitSeq(pkb->secondCode, secondCommand, 5);
+}
+
+
 void PIRProtocol::setCarrierFrequency(
   unsigned int freq)
 {

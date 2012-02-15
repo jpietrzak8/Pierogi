@@ -6,7 +6,7 @@ SanyoVCR1::SanyoVCR1(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "VCR(/DVD) Keyset 1",
+      "DVD/VCR Keyset 1",
       Sanyo_Make,
       index)
 {

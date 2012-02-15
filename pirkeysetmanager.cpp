@@ -12,13 +12,16 @@
 #include "keysets/daewoo.h"
 #include "keysets/denon.h"
 #include "keysets/digitalstream.h"
+#include "keysets/dish.h"
 #include "keysets/ei.h"
 #include "keysets/elgato.h"
 #include "keysets/emerson.h"
+#include "keysets/fortec.h"
 #include "keysets/goldstar.h"
 #include "keysets/grundig.h"
 #include "keysets/hauppauge.h"
 #include "keysets/hitachi.h"
+#include "keysets/homecast.h"
 #include "keysets/jvc.h"
 #include "keysets/lg.h"
 #include "keysets/logitech.h"
@@ -130,12 +133,32 @@ PIRKeysetManager::PIRKeysetManager(
 
   populateKeyset(new DigitalStreamReceiver(guiObject, counter++));
 
+  populateKeyset(new DishReceiver1(guiObject, counter++));
+  populateKeyset(new DishReceiver1a(guiObject, counter++));
+  populateKeyset(new DishReceiver1b(guiObject, counter++));
+  populateKeyset(new DishReceiver1c(guiObject, counter++));
+  populateKeyset(new DishReceiver1d(guiObject, counter++));
+  populateKeyset(new DishReceiver1e(guiObject, counter++));
+  populateKeyset(new DishReceiver1f(guiObject, counter++));
+  populateKeyset(new DishReceiver1g(guiObject, counter++));
+  populateKeyset(new DishReceiver1h(guiObject, counter++));
+  populateKeyset(new DishReceiver1i(guiObject, counter++));
+  populateKeyset(new DishReceiver1j(guiObject, counter++));
+  populateKeyset(new DishReceiver1k(guiObject, counter++));
+  populateKeyset(new DishReceiver1l(guiObject, counter++));
+  populateKeyset(new DishReceiver1m(guiObject, counter++));
+  populateKeyset(new DishReceiver1n(guiObject, counter++));
+  populateKeyset(new DishReceiver1o(guiObject, counter++));
+
   populateKeyset(new EiTV1(guiObject, counter++));
 
   populateKeyset(new ElgatoEyeTV1(guiObject, counter++));
 
   populateKeyset(new EmersonTV1(guiObject, counter++));
   populateKeyset(new EmersonDVD1(guiObject, counter++));
+
+  populateKeyset(new FortecReceiver1(guiObject, counter++));
+  populateKeyset(new FortecReceiver2(guiObject, counter++));
 
   populateKeyset(new GoldStarTV1(guiObject, counter++));
   populateKeyset(new GoldStarTV2(guiObject, counter++));
@@ -173,6 +196,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new HitachiDVD1(guiObject, counter++));
   populateKeyset(new HitachiAudio1(guiObject, counter++));
   populateKeyset(new HitachiVCR1(guiObject, counter++));
+
+  populateKeyset(new HomecastReceiver1(guiObject, counter++));
+  populateKeyset(new HomecastReceiver2(guiObject, counter++));
 
   populateKeyset(new JVCSat1(guiObject, counter++));
   populateKeyset(new JVCSat2(guiObject, counter++));

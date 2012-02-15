@@ -206,7 +206,7 @@ GoldStarCD1::GoldStarCD1(
   QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
-      "CD Player Keyset 1",
+      "Audio Keyset 1",
       GoldStar_Make,
       index)
 {

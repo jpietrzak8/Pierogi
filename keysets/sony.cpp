@@ -10,16 +10,18 @@ SonyTV1::SonyTV1(
       Sony_Make,
       index)
 {
-  addControlledDevice(Sony_Make, "Trinitron KV-2184MT", TV_Device);
   addControlledDevice(Sony_Make, "KV-M1420D", TV_Device);
   addControlledDevice(Sony_Make, "KV-20FV10", TV_Device);
+  addControlledDevice(Sony_Make, "KV-2184MT", TV_Device);
   addControlledDevice(Sony_Make, "KV-27FX210", TV_Device);
   addControlledDevice(Sony_Make, "KV-32FS210", TV_Device);
   addControlledDevice(Sony_Make, "KV-36FS210", TV_Device);
   addControlledDevice(Sony_Make, "KV-36FS13", TV_Device);
+  addControlledDevice(Sony_Make, "KDL-23B4030", TV_Device);
   addControlledDevice(Sony_Make, "KDL-52X2000", TV_Device);
   addControlledDevice(Sony_Make, "KDL-46X2000", TV_Device);
   addControlledDevice(Sony_Make, "KDL-40X2000", TV_Device);
+  addControlledDevice(Sony_Make, "KP-46WT520", TV_Device);
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
@@ -138,7 +140,7 @@ SonyTV1a::SonyTV1a(
 {
   setKeysetName("TV Keyset 1a");
 
-  addControlledDevice(Sony_Make, "Trinitron KDW-25", TV_Device);
+  addControlledDevice(Sony_Make, "KDW-25", TV_Device);
 
   addSIRC12Key("LEFT/-/RED", Left_Key, 0x03, 0x4C);
   addSIRC12Key("UP/GREEN", Up_Key, 0x03, 0x4D);

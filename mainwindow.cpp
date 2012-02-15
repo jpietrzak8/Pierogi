@@ -5,6 +5,7 @@
 #include <QMutex>
 #include <QtGui/QMessageBox>
 #include <QSettings>
+#include <QMaemo5InformationBox>
 
 #include "pirkeysetwidgetitem.h"
 #include "pirselectkeysetform.h"
@@ -379,7 +380,7 @@ void MainWindow::on_pictureModeButton_released()
 
 void MainWindow::on_soundModeButton_pressed()
 {
-  startRepeating(PictureMode_Key);
+  startRepeating(SoundMode_Key);
 }
 
 void MainWindow::on_soundModeButton_released()
@@ -1068,23 +1069,43 @@ QWidget *MainWindow::getSecondaryWindow()
 
 void MainWindow::selectPrevFavKeyset()
 {
+  int size = ui->favoriteKeysetsWidget->count();
+
+  if (size == 0)
+  {
+    // No favorites, so nothing to do!
+    return;
+  }
+
   int position = ui->favoriteKeysetsWidget->currentRow();
 
   --position;
   if (position < 0)
   {
-    position = ui->favoriteKeysetsWidget->count() - 1;
+    position = size - 1;
   }
 
   ui->favoriteKeysetsWidget->setCurrentRow(
     position,
     QItemSelectionModel::ClearAndSelect);
+
+  // Tell the user about the change:
+  QMaemo5InformationBox::information(
+    0,
+    ui->favoriteKeysetsWidget->item(position)->text());
 }
 
 
 void MainWindow::selectNextFavKeyset()
 {
   int size = ui->favoriteKeysetsWidget->count();
+
+  if (size == 0)
+  {
+    // No favorites, so just return:
+    return;
+  }
+
   int position = ui->favoriteKeysetsWidget->currentRow();
 
   ++position;
@@ -1096,4 +1117,9 @@ void MainWindow::selectNextFavKeyset()
   ui->favoriteKeysetsWidget->setCurrentRow(
     position,
     QItemSelectionModel::ClearAndSelect);
+
+  // Tell the user about the change:
+  QMaemo5InformationBox::information(
+    0,
+    ui->favoriteKeysetsWidget->item(position)->text());
 }
