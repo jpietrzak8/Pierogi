@@ -506,6 +506,7 @@ PhilipsDVD1c::PhilipsDVD1c(
 
   addControlledDevice(Philips_Make, "HTS3544", DVD_Device);
   addControlledDevice(Philips_Make, "DVP5982", DVD_Device);
+  addControlledDevice(Philips_Make, "DVP5160", DVD_Device);
 
   addKey("play-pause", Pause_Key, 0x2C, 8);
   addKey("disc-usb", Unmapped_Key, 0x3F, 8);

@@ -12,6 +12,7 @@ SamsungTV1::SamsungTV1(
       index)
 {
   addControlledDevice(Samsung_Make, "SyncMaster 192MP", TV_Device);
+  addControlledDevice(Samsung_Make, "SyncMaster 225MW", TV_Device);
   addControlledDevice(Samsung_Make, "LN32C530F1FXZA", TV_Device);
   addControlledDevice(Samsung_Make, "UE46B6000VPXZG", TV_Device); // ?
 

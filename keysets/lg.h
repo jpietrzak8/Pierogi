@@ -109,4 +109,12 @@ public:
     unsigned int index);
 };
 
+class LGAC1: public PIRKeysetMetaData
+{
+public:
+  LGAC1(
+    QObject *guiObject,
+    unsigned int index);
+};
+
 #endif // LG_H

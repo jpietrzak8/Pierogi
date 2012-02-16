@@ -254,6 +254,7 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new LGVCR1(guiObject, counter++));
   populateKeyset(new LGVCR1a(guiObject, counter++));
   populateKeyset(new LGVCR1b(guiObject, counter++));
+  populateKeyset(new LGAC1(guiObject, counter++));
 
   populateKeyset(new LogitechSpeakers(guiObject, counter++));
 
@@ -291,6 +292,7 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new PanasonicDVD1(guiObject, counter++));
   populateKeyset(new PanasonicDVD1a(guiObject, counter++));
   populateKeyset(new PanasonicAudio1(guiObject, counter++));
+  populateKeyset(new PanasonicAC1(guiObject, counter++));
 
   populateKeyset(new PhilcoTV(guiObject, counter++));
 

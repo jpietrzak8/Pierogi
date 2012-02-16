@@ -513,3 +513,23 @@ LGVCR1b::LGVCR1b(
   addKey("menu-right", Right_Key, 0x90, 8);
 }
 
+
+LGAC1::LGAC1(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Air Conditioner 1",
+      LG_Make,
+      index)
+{
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  setPreData(0x6681, 16);
+
+  addKey("power", Power_Key, 0x81, 8);
+  addKey("temp up", Red_Key, 0x85, 8);
+  addKey("temp down", Blue_Key, 0x8A, 8);
+  addKey("timer", Sleep_Key, 0x90, 8);
+  addKey("fan speed", SoundMode_Key, 0x99, 8);
+  addKey("mode", PictureMode_Key, 0x9B, 8);
+}

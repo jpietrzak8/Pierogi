@@ -117,4 +117,12 @@ public:
     unsigned int index);
 };
 
+class PanasonicAC1: public PIRKeysetMetaData
+{
+public:
+  PanasonicAC1(
+    QObject *guiObject,
+    unsigned int index);
+};
+
 #endif // PANASONIC_H
