@@ -109,7 +109,11 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/dish.cpp \
     keysets/fortec.cpp \
     keysets/homecast.cpp \
-    protocols/dishprotocol.cpp
+    protocols/dishprotocol.cpp \
+    keysets/beko.cpp \
+    keysets/cambridge.cpp \
+    keysets/haier.cpp \
+    keysets/kenwood.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -193,7 +197,11 @@ HEADERS += mainwindow.h \
     keysets/dish.h \
     keysets/fortec.h \
     keysets/homecast.h \
-    protocols/dishprotocol.h
+    protocols/dishprotocol.h \
+    keysets/beko.h \
+    keysets/cambridge.h \
+    keysets/haier.h \
+    keysets/kenwood.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

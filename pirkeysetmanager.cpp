@@ -8,7 +8,9 @@
 #include "keysets/admiral.h"
 #include "keysets/aiwa.h"
 #include "keysets/apple.h"
+#include "keysets/beko.h"
 #include "keysets/bose.h"
+#include "keysets/cambridge.h"
 #include "keysets/daewoo.h"
 #include "keysets/denon.h"
 #include "keysets/digitalstream.h"
@@ -19,10 +21,12 @@
 #include "keysets/fortec.h"
 #include "keysets/goldstar.h"
 #include "keysets/grundig.h"
+#include "keysets/haier.h"
 #include "keysets/hauppauge.h"
 #include "keysets/hitachi.h"
 #include "keysets/homecast.h"
 #include "keysets/jvc.h"
+#include "keysets/kenwood.h"
 #include "keysets/lg.h"
 #include "keysets/logitech.h"
 #include "keysets/magnavox.h"
@@ -97,9 +101,17 @@ PIRKeysetManager::PIRKeysetManager(
 
   populateKeyset(new AppleWhiteRemote(guiObject, counter++));
 
+  populateKeyset(new BekoTV1(guiObject, counter++));
+
   populateKeyset(new BoseRadio1(guiObject, counter++));
   populateKeyset(new BoseRadio2(guiObject, counter++));
   populateKeyset(new BoseRadio3(guiObject, counter++));
+
+  populateKeyset(new CambridgeCD1(guiObject, counter++));
+  populateKeyset(new CambridgeAudio1(guiObject, counter++));
+  populateKeyset(new CambridgeAudio2(guiObject, counter++));
+  populateKeyset(new CambridgeAudio3(guiObject, counter++));
+  populateKeyset(new CambridgeDVD1(guiObject, counter++));
 
   populateKeyset(new DaewooTV1(guiObject, counter++));
   populateKeyset(new DaewooTV2(guiObject, counter++));
@@ -180,6 +192,8 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new GrundigTV3(guiObject, counter++));
   populateKeyset(new GrundigDVD1(guiObject, counter++));
 
+  populateKeyset(new HaierTV1(guiObject, counter++));
+
   populateKeyset(new HauppaugePCTV1(guiObject, counter++));
   populateKeyset(new HauppaugePCTV1a(guiObject, counter++));
   populateKeyset(new HauppaugePCTV1b(guiObject, counter++));
@@ -218,6 +232,14 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new JVCAudio1b(guiObject, counter++));
   populateKeyset(new JVCAudio2(guiObject, counter++));
   populateKeyset(new JVCDVD1(guiObject, counter++));
+
+  populateKeyset(new KenwoodAudio1(guiObject, counter++));
+  populateKeyset(new KenwoodComponent1(guiObject, counter++));
+  populateKeyset(new KenwoodComponent2(guiObject, counter++));
+  populateKeyset(new KenwoodComponent3(guiObject, counter++));
+  populateKeyset(new KenwoodCD1(guiObject, counter++));
+  populateKeyset(new KenwoodDVD1(guiObject, counter++));
+  populateKeyset(new KenwoodTV1(guiObject, counter++));
 
   populateKeyset(new LGTV1(guiObject, counter++));
   populateKeyset(new LGTV1a(guiObject, counter++));

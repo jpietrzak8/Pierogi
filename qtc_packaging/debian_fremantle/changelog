@@ -1,3 +1,8 @@
+pierogi (0.6.5) unstable; urgency=low
+  * A few more keyset added: Beko, Cambridge, Haier, and Kenwood.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Wed, 15 Feb 2012 22:36:56 -0500
+
 pierogi (0.6.4) unstable; urgency=low
   * Added a Hildon Banner to report what the keyset has changed to when you use the volume rocker
   * Fixed several GUI button bugs -- thanks to sixwheeledbeast for finding them

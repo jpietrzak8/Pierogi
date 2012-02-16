@@ -9,7 +9,9 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Admiral_Make] = "Admiral";
   makes[Aiwa_Make] = "Aiwa";
   makes[Apple_Make] = "Apple";
+  makes[Beko_Make] = "Beko";
   makes[Bose_Make] = "Bose";
+  makes[Cambridge_Make] = "Cambridge Audio";
   makes[Daewoo_Make] = "Daewoo";
   makes[Denon_Make] = "Denon";
   makes[DigitalStream_Make] = "Digital Stream";
@@ -20,10 +22,12 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Fortec_Make] = "Fortec Star";
   makes[GoldStar_Make] = "GoldStar";
   makes[Grundig_Make] = "Grundig";
+  makes[Haier_Make] = "Haier";
   makes[Hauppauge_Make] = "Hauppauge";
   makes[Hitachi_Make] = "Hitachi";
   makes[Homecast_Make] = "Homecast";
   makes[JVC_Make] = "JVC";
+  makes[Kenwood_Make] = "Kenwood";
   makes[LG_Make] = "LG";
   makes[Logitech_Make] = "Logitech";
   makes[Magnavox_Make] = "Magnavox";

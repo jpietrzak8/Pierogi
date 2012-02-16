@@ -121,6 +121,8 @@ SamsungTV1b::SamsungTV1b(
 {
   setKeysetName("TV Keyset 1b");
 
+  addControlledDevice(Samsung_Make, "LE46M51B (R)", TV_Device); // ?
+
   addKey("Red", Red_Key, 0x21, 8);
   addKey("Exit", Exit_Key, 0x2C, 8);
 }
