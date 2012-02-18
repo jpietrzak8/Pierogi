@@ -154,6 +154,10 @@ protected:
   // the time between the _first_ pulse of one command and the first pulse
   // of the next.
 
+  void setGapSize(
+    int gapSize,
+    bool iclFlag);
+
   bool isConstantLength;
   int gap;
 

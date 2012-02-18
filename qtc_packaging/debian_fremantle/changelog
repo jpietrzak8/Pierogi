@@ -1,3 +1,16 @@
+pierogi (0.6.7) unstable; urgency=low
+  * First pass at keysets for Huawei, Onida, Vestel, Virgin Media, and Vizio.
+  * Added a Sharp Air Conditioner keyset
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 17 Feb 2012 21:38:30 -0500
+
+pierogi (0.6.6) unstable; urgency=low
+  * I've finally cracked the DirecTV protocol; an initial keyset is now available!
+  * Added A/C keysets for LG and Panasonic, a Samsung SMT-1100T keyset, and a Bose 3-2-1 keyset.
+  * Added a donations link to the "About" menu, for those feeling generous. :)  Thank you in advance.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Thu, 16 Feb 2012 21:51:59 -0500
+
 pierogi (0.6.5) unstable; urgency=low
   * A few more keyset added: Beko, Cambridge, Haier, and Kenwood.
 

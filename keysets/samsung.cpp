@@ -657,3 +657,60 @@ SamsungAC1::SamsungAC1(
   addKey("SWING", Seven_Key, 0x94, 8);
   addKey("POWER", Power_Key, 0xFC, 8);
 }
+
+
+SamsungDVBT1::SamsungDVBT1(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "DVB-T Receiver Keyset 1",
+      Samsung_Make,
+      index)
+{
+  addControlledDevice(Samsung_Make, "SMT-1000T", TV_Device);
+  addControlledDevice(Samsung_Make, "SMT-1100T", TV_Device);
+
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  setPreData(0x4040, 16);
+
+  addKey("0", Zero_Key, 0x00, 8);
+  addKey("1", One_Key, 0x01, 8);
+  addKey("2", Two_Key, 0x02, 8);
+  addKey("3", Three_Key, 0x03, 8);
+  addKey("4", Four_Key, 0x04, 8);
+  addKey("5", Five_Key, 0x05, 8);
+  addKey("6", Six_Key, 0x06, 8);
+  addKey("7", Seven_Key, 0x07, 8);
+  addKey("8", Eight_Key, 0x08, 8);
+  addKey("9", Nine_Key, 0x09, 8);
+  addKey("power", Power_Key, 0x0A, 8);
+  addKey("up", Up_Key, 0x0B, 8);
+  addKey("mute", Mute_Key, 0x0C, 8);
+  addKey("ok", Select_Key, 0x0D, 8);
+  addKey("down", Down_Key, 0x0E, 8);
+  addKey("tv/stb", Input_Key, 0x0F, 8);
+
+  addKey("left", Left_Key, 0x10, 8);
+  addKey("right", Right_Key, 0x11, 8);
+  addKey("clock", Unmapped_Key, 0x12, 8);
+  addKey("vol+", VolumeUp_Key, 0x15, 8);
+  addKey("red", Red_Key, 0x16, 8);
+  addKey("green", Green_Key, 0x17, 8);
+  addKey("yellow", Yellow_Key, 0x18, 8);
+  addKey("blue", Blue_Key, 0x19, 8);
+  addKey("epg", Guide_Key, 0x1A, 8);
+  addKey("vol-", VolumeDown_Key, 0x1C, 8);
+  addKey("radio", TunerInput_Key, 0x1D, 8);
+  addKey("chan-", ChannelDown_Key, 0x1E, 8);
+  addKey("chan+", ChannelUp_Key, 0x1F, 8);
+
+  addKey("fav", Favorites_Key, 0x27, 8);
+
+  addKey("menu", Menu_Key, 0x40, 8);
+  addKey("exit", Exit_Key, 0x41, 8);
+  addKey("i", Info_Key, 0x42, 8);
+  addKey("rcl", PrevChannel_Key, 0x43, 8);
+  addKey("txt", Teletext_Key, 0x45, 8); // might be wrong
+  addKey("a-z", Unmapped_Key, 0x46, 8);
+}

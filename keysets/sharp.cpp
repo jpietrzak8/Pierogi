@@ -1,5 +1,6 @@
 #include "sharp.h"
 #include "protocols/sharpprotocol.h"
+#include "protocols/necprotocol.h"
 
 SharpTV1::SharpTV1(
   QObject *guiObject,
@@ -329,4 +330,29 @@ SharpReceiver1::SharpReceiver1(
   addSharpKey("STOP", Stop_Key, 0x14, 0x27);
   addSharpKey("REPEAT", Repeat_Key, 0x14, 0x36);
   addSharpKey("+10", DoubleDigit_Key, 0x14, 0x38);
+}
+
+
+SharpAC1::SharpAC1(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Air Conditioner 1",
+      Sharp_Make,
+      index)
+{
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  setPreData(0xF508, 16);
+
+  addKey("Fan Faster", VolumeUp_Key, 0x01, 8);
+  addKey("Energy Save", Green_Key, 0x02, 8);
+  addKey("Fan Slower", VolumeDown_Key, 0x04, 8);
+  addKey("Timer", Sleep_Key, 0x06, 8);
+  addKey("Fan", Yellow_Key, 0x07, 8);
+  addKey("Cool", Blue_Key, 0x09, 8);
+  addKey("Temp/Timer-", ChannelDown_Key, 0x0D, 8);
+  addKey("Temp/Timer+", ChannelUp_Key, 0x0E, 8);
+  addKey("Auto/Cool", Info_Key, 0x0F, 8);
+  addKey("power", Power_Key, 0x11, 8);
 }

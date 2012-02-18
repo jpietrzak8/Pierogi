@@ -167,6 +167,7 @@ PhilipsTV1d::PhilipsTV1d(
 
   addControlledDevice(Philips_Make, "47PFL7603D", TV_Device);
   addControlledDevice(Philips_Make, "14PT1562/00", TV_Device);
+  addControlledDevice(Philips_Make, "32PW9528/12", TV_Device);
 
   addKey("NOTE_BUTTON", Unmapped_Key, 0x1014, 13); // "Tune"
   addKey("RADIO_BUTTON", Unmapped_Key, 0x00F1, 13);

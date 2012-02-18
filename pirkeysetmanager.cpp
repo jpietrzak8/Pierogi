@@ -14,6 +14,7 @@
 #include "keysets/daewoo.h"
 #include "keysets/denon.h"
 #include "keysets/digitalstream.h"
+#include "keysets/directv.h"
 #include "keysets/dish.h"
 #include "keysets/ei.h"
 #include "keysets/elgato.h"
@@ -25,6 +26,7 @@
 #include "keysets/hauppauge.h"
 #include "keysets/hitachi.h"
 #include "keysets/homecast.h"
+#include "keysets/huawei.h"
 #include "keysets/jvc.h"
 #include "keysets/kenwood.h"
 #include "keysets/lg.h"
@@ -33,6 +35,7 @@
 #include "keysets/mce.h"
 #include "keysets/mitsubishi.h"
 #include "keysets/nokia.h"
+#include "keysets/onida.h"
 #include "keysets/panasonic.h"
 #include "keysets/philco.h"
 #include "keysets/philips.h"
@@ -51,6 +54,9 @@
 #include "keysets/tivo.h"
 #include "keysets/topfield.h"
 #include "keysets/toshiba.h"
+#include "keysets/vestel.h"
+#include "keysets/virgin.h"
+#include "keysets/vizio.h"
 #include "keysets/wd.h"
 #include "keysets/westinghouse.h"
 #include "keysets/yamaha.h"
@@ -106,6 +112,7 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new BoseRadio1(guiObject, counter++));
   populateKeyset(new BoseRadio2(guiObject, counter++));
   populateKeyset(new BoseRadio3(guiObject, counter++));
+  populateKeyset(new BoseHomeTheater1(guiObject, counter++));
 
   populateKeyset(new CambridgeCD1(guiObject, counter++));
   populateKeyset(new CambridgeAudio1(guiObject, counter++));
@@ -144,6 +151,8 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new DenonAudio4(guiObject, counter++));
 
   populateKeyset(new DigitalStreamReceiver(guiObject, counter++));
+
+  populateKeyset(new DirectvReceiver1(guiObject, counter++));
 
   populateKeyset(new DishReceiver1(guiObject, counter++));
   populateKeyset(new DishReceiver1a(guiObject, counter++));
@@ -214,6 +223,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new HomecastReceiver1(guiObject, counter++));
   populateKeyset(new HomecastReceiver2(guiObject, counter++));
 
+  populateKeyset(new HuaweiSTB1(guiObject, counter++));
+  populateKeyset(new HuaweiSTB2(guiObject, counter++));
+
   populateKeyset(new JVCSat1(guiObject, counter++));
   populateKeyset(new JVCSat2(guiObject, counter++));
   populateKeyset(new JVCVCR1(guiObject, counter++));
@@ -278,6 +290,9 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new MitsubishiVCR1a(guiObject, counter++));
 
   populateKeyset(new NokiaGenericVCR(guiObject, counter++));
+
+  populateKeyset(new OnidaTV1(guiObject, counter++));
+  populateKeyset(new OnidaDVD1(guiObject, counter++));
 
   populateKeyset(new PanasonicCarAudio(guiObject, counter++));
   populateKeyset(new PanasonicSat1(guiObject, counter++));
@@ -394,6 +409,7 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new SamsungDVD1b(guiObject, counter++));
   populateKeyset(new SamsungDVD2(guiObject, counter++));
   populateKeyset(new SamsungAC1(guiObject, counter++));
+  populateKeyset(new SamsungDVBT1(guiObject, counter++));
 
   populateKeyset(new SanyoVCR1(guiObject, counter++));
   populateKeyset(new SanyoDVD1(guiObject, counter++));
@@ -412,6 +428,7 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new SharpTV1e(guiObject, counter++));
   populateKeyset(new SharpVCR1(guiObject, counter++));
   populateKeyset(new SharpReceiver1(guiObject, counter++));
+  populateKeyset(new SharpAC1(guiObject, counter++));
 
   populateKeyset(new SkyReceiver1(guiObject, counter++));
   populateKeyset(new SkyReceiver1a(guiObject, counter++));
@@ -459,6 +476,13 @@ PIRKeysetManager::PIRKeysetManager(
   populateKeyset(new ToshibaDisc1b(guiObject, counter++));
   populateKeyset(new ToshibaDisc1c(guiObject, counter++));
   populateKeyset(new ToshibaDisc1d(guiObject, counter++));
+
+  populateKeyset(new VestelTV1(guiObject, counter++));
+  populateKeyset(new VestelTV2(guiObject, counter++));
+
+  populateKeyset(new VirginSTB1(guiObject, counter++));
+
+  populateKeyset(new VizioTV1(guiObject, counter++));
 
   populateKeyset(new WDMediaPlayer1(guiObject, counter++));
   populateKeyset(new WDMediaPlayer1a(guiObject, counter++));

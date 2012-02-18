@@ -29,4 +29,12 @@ public:
     unsigned int index);
 };
 
+class BoseHomeTheater1: public PIRKeysetMetaData
+{
+public:
+  BoseHomeTheater1(
+    QObject *guiObject,
+    unsigned int index);
+};
+
 #endif // BOSE_H

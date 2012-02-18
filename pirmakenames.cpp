@@ -15,6 +15,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Daewoo_Make] = "Daewoo";
   makes[Denon_Make] = "Denon";
   makes[DigitalStream_Make] = "Digital Stream";
+  makes[Directv_Make] = "DirecTV";
   makes[Dish_Make] = "Dish";
   makes[Ei_Make] = "Ei";
   makes[Elgato_Make] = "Elgato";
@@ -26,6 +27,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Hauppauge_Make] = "Hauppauge";
   makes[Hitachi_Make] = "Hitachi";
   makes[Homecast_Make] = "Homecast";
+  makes[Huawei_Make] = "Huawei";
   makes[JVC_Make] = "JVC";
   makes[Kenwood_Make] = "Kenwood";
   makes[LG_Make] = "LG";
@@ -34,6 +36,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Microsoft_Make] = "Microsoft";
   makes[Mitsubishi_Make] = "Mitsubishi";
   makes[Nokia_Make] = "Nokia";
+  makes[Onida_Make] = "Onida";
   makes[Panasonic_Make] = "Panasonic";
   makes[Philco_Make] = "Philco";
   makes[Philips_Make] = "Philips";
@@ -52,6 +55,9 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Tivo_Make] = "TiVo";
   makes[Topfield_Make] = "Topfield";
   makes[Toshiba_Make] = "Toshiba";
+  makes[Vestel_Make] = "Vestel";
+  makes[Virgin_Make] = "Virgin Media";
+  makes[Vizio_Make] = "Vizio";
   makes[WD_Make] = "Western Digital";
   makes[Westinghouse_Make] = "Westinghouse";
   makes[Yamaha_Make] = "Yamaha";

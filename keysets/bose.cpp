@@ -114,3 +114,56 @@ BoseRadio3::BoseRadio3(
 
   addKey("POWER", Power_Key, 0x4C, 8); // also "enter"?
 }
+
+
+BoseHomeTheater1::BoseHomeTheater1(
+  QObject *guiObject,
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Home Theater 1",
+      Bose_Make,
+      index)
+{
+  threadableProtocol = new NECProtocol(guiObject, index, true, false);
+
+  setPreData(0x4BBA, 16);
+
+  addKey("mute", Mute_Key, 0x01, 8);
+  addKey("vol down", VolumeDown_Key, 0x02, 8);
+  addKey("vol up", VolumeUp_Key, 0x03, 8);
+  addKey("AM", Unmapped_Key, 0x05, 8);
+  addKey("Video2", Unmapped_Key, 0x0D, 8);
+  addKey("Video1", Unmapped_Key, 0x0E, 8);
+  addKey("AUX", AuxInput_Key, 0x0F, 8);
+
+  addKey("channel down", ChannelDown_Key, 0x18, 8);
+  addKey("channel up", ChannelUp_Key, 0x19, 8);
+  addKey("stop", Stop_Key, 0x1A, 8);
+  addKey("down arrow", Down_Key, 0x20, 8);
+  addKey("pause", Pause_Key, 0x36, 8);
+
+  addKey("0", Zero_Key, 0x40, 8);
+  addKey("1", One_Key, 0x41, 8);
+  addKey("2", Two_Key, 0x42, 8);
+  addKey("3", Three_Key, 0x43, 8);
+  addKey("4", Four_Key, 0x44, 8);
+  addKey("5", Five_Key, 0x45, 8);
+  addKey("6", Six_Key, 0x46, 8);
+  addKey("7", Seven_Key, 0x47, 8);
+  addKey("8", Eight_Key, 0x48, 8);
+  addKey("9", Nine_Key, 0x49, 8);
+  addKey("power", Power_Key, 0x4C, 8);
+
+  addKey("CD/DVD", DVDInput_Key, 0x53, 8);
+  addKey("play", Play_Key, 0x55, 8);
+  addKey("rewind", Rewind_Key, 0x57, 8);
+  addKey("fast fwd", FastForward_Key, 0x58, 8);
+  addKey("FM", TunerBand_Key, 0x59, 8);
+
+  addKey("right arrow", Right_Key, 0x60, 8);
+  addKey("display/info", Info_Key, 0x80, 8);
+  addKey("menu", Menu_Key, 0x90, 8);
+  addKey("left arrow", Left_Key, 0xA0, 8);
+  addKey("up arrow", Up_Key, 0xC0, 8);
+  addKey("select", Select_Key, 0xE0, 8);
+}

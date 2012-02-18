@@ -70,4 +70,12 @@ public:
     unsigned int index);
 };
 
+class SharpAC1: public PIRKeysetMetaData
+{
+public:
+  SharpAC1(
+    QObject *guiObject,
+    unsigned int index);
+};
+
 #endif // SHARP_H

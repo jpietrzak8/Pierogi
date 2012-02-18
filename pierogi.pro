@@ -113,7 +113,14 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/beko.cpp \
     keysets/cambridge.cpp \
     keysets/haier.cpp \
-    keysets/kenwood.cpp
+    keysets/kenwood.cpp \
+    keysets/directv.cpp \
+    protocols/directvprotocol.cpp \
+    keysets/huawei.cpp \
+    keysets/onida.cpp \
+    keysets/vestel.cpp \
+    keysets/virgin.cpp \
+    keysets/vizio.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -201,7 +208,14 @@ HEADERS += mainwindow.h \
     keysets/beko.h \
     keysets/cambridge.h \
     keysets/haier.h \
-    keysets/kenwood.h
+    keysets/kenwood.h \
+    keysets/directv.h \
+    protocols/directvprotocol.h \
+    keysets/huawei.h \
+    keysets/onida.h \
+    keysets/vestel.h \
+    keysets/virgin.h \
+    keysets/vizio.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

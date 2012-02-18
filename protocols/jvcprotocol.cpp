@@ -10,7 +10,7 @@ extern bool commandInFlight;
 extern QMutex commandIFMutex;
 
 // The JVC protocol should have the following attributes:
-// A "zero" is encoded with a 526 usec pulse, 52626 usec space.
+// A "zero" is encoded with a 526 usec pulse, 526 usec space.
 // A "one" is encoded with a 526 usec pulse, and 3*526 (1578) usec space.
 // The header is a 8400 usec pulse, 4200 usec space.
 // Commands end with a trailing 526 usec pulse.

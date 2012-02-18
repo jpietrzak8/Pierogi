@@ -447,3 +447,12 @@ void PIRProtocol::sleepUntilRepeat(
     throw PIRException(ss.str());
   }
 }
+
+
+void PIRProtocol::setGapSize(
+  int gapSize,
+  bool iclFlag)
+{
+  gap = gapSize;
+  isConstantLength = iclFlag;
+}

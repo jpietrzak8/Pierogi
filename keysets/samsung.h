@@ -173,4 +173,12 @@ public:
     unsigned int index);
 };
 
+class SamsungDVBT1: public PIRKeysetMetaData
+{
+public:
+  SamsungDVBT1(
+    QObject *guiObject,
+    unsigned int index);
+};
+
 #endif // SAMSUNG_H
