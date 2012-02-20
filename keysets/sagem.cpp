@@ -2,13 +2,24 @@
 #include "protocols/necprotocol.h"
 
 SagemTVBox1::SagemTVBox1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVB-T/Cable Box Keyset 1",
       Sagem_Make,
       index)
 {
+}
+
+
+void SagemTVBox1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
 //  setPreData(0xE17A, 16);
@@ -56,11 +67,23 @@ SagemTVBox1::SagemTVBox1(
 
 
 SagemTVBox1a::SagemTVBox1a(
-  QObject *guiObject,
   unsigned int index)
-  : SagemTVBox1(guiObject, index)
+  : SagemTVBox1(index)
 {
   setKeysetName("DVB-T/Cable Box Keyset 1a");
+}
+
+
+void SagemTVBox1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SagemTVBox1::populateProtocol(guiObject);
 
   addKey("tria2", Unmapped_Key, 0x0F, 8);
   addKey("epg", Guide_Key, 0x11, 8);

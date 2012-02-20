@@ -1,58 +1,58 @@
-#ifndef HAUPPAUGE_H
-#define HAUPPAUGE_H
+#ifndef MOTOROLA_H
+#define MOTOROLA_H
 
 #include "pirkeysetmetadata.h"
 
 class QObject;
 
-class HauppaugePCTV1: public PIRKeysetMetaData
+class Motorola4DTV: public PIRKeysetMetaData
 {
 public:
-  HauppaugePCTV1(
+  Motorola4DTV(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-class HauppaugePCTV1a: public HauppaugePCTV1
+class MotorolaSTB1: public PIRKeysetMetaData
 {
 public:
-  HauppaugePCTV1a(
+  MotorolaSTB1(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-class HauppaugePCTV1b: public HauppaugePCTV1
+class MotorolaSTB1a: public MotorolaSTB1
 {
 public:
-  HauppaugePCTV1b(
+  MotorolaSTB1a(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-class HauppaugePCTV1c: public HauppaugePCTV1
+class MotorolaSTB1b: public MotorolaSTB1
 {
 public:
-  HauppaugePCTV1c(
+  MotorolaSTB1b(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-class HauppaugePCTV2: public PIRKeysetMetaData
+class MotorolaSkyDigital: public PIRKeysetMetaData
 {
 public:
-  HauppaugePCTV2(
+  MotorolaSkyDigital(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-#endif // HAUPPAUGE_H
+#endif // MOTOROLA_H

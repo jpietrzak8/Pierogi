@@ -27,6 +27,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Hauppauge_Make] = "Hauppauge";
   makes[Hitachi_Make] = "Hitachi";
   makes[Homecast_Make] = "Homecast";
+  makes[HP_Make] = "HP";
   makes[Huawei_Make] = "Huawei";
   makes[JVC_Make] = "JVC";
   makes[Kenwood_Make] = "Kenwood";
@@ -35,6 +36,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Magnavox_Make] = "Magnavox";
   makes[Microsoft_Make] = "Microsoft";
   makes[Mitsubishi_Make] = "Mitsubishi";
+  makes[Motorola_Make] = "Motorola";
   makes[Nokia_Make] = "Nokia";
   makes[Onida_Make] = "Onida";
   makes[Panasonic_Make] = "Panasonic";

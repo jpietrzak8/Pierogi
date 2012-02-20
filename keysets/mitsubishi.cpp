@@ -2,13 +2,24 @@
 #include "protocols/lircprotocol.h"
 
 MitsubishiTV1::MitsubishiTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Mitsubishi_Make,
       index)
 {
+}
+
+
+void MitsubishiTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
@@ -92,11 +103,23 @@ MitsubishiTV1::MitsubishiTV1(
 
 
 MitsubishiTV1a::MitsubishiTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : MitsubishiTV1(guiObject, index)
+  : MitsubishiTV1(index)
 {
   setKeysetName("TV Keyset 1a");
+}
+
+
+void MitsubishiTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  MitsubishiTV1::populateProtocol(guiObject);
 
   addKey("TURNLEFT", Unmapped_Key, 0xAC, 8);
   addKey("TURNRIGHT", Unmapped_Key, 0xB4, 8);
@@ -106,13 +129,25 @@ MitsubishiTV1a::MitsubishiTV1a(
 
 
 MitsubishiVCR1::MitsubishiVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Mitsubishi_Make,
       index)
 {
+}
+
+
+
+void MitsubishiVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
@@ -185,11 +220,23 @@ MitsubishiVCR1::MitsubishiVCR1(
 
 
 MitsubishiVCR1a::MitsubishiVCR1a(
-  QObject *guiObject,
   unsigned int index)
-  : MitsubishiVCR1(guiObject, index)
+  : MitsubishiVCR1(index)
 {
   setKeysetName("VCR Keyset 1a");
+}
+
+
+void MitsubishiVCR1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  MitsubishiVCR1::populateProtocol(guiObject);
 
   addKey("->", Unmapped_Key, 0xAC, 8); // Shuttle right
   addKey("<-", Unmapped_Key, 0xD0, 8);  // Shuttle left

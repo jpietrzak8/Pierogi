@@ -4,7 +4,6 @@
 #include "protocols/lircprotocol.h"
 
 GoldStarTV1::GoldStarTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "105-210A TV",
@@ -12,6 +11,17 @@ GoldStarTV1::GoldStarTV1(
       index)
 {
   addControlledDevice(GoldStar_Make, "105-210A", TV_Device);
+}
+
+
+void GoldStarTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -51,13 +61,24 @@ GoldStarTV1::GoldStarTV1(
 
 
 GoldStarTV2::GoldStarTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 2",
       GoldStar_Make,
       index)
 {
+}
+
+
+void GoldStarTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index, 0x40);
 
   addKey("0", Zero_Key, 0x00, 6);
@@ -101,7 +122,6 @@ GoldStarTV2::GoldStarTV2(
 
 
 GoldStarVCR1::GoldStarVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
@@ -110,6 +130,17 @@ GoldStarVCR1::GoldStarVCR1(
 {
   addControlledDevice(GoldStar_Make, "GSE-Q204P", VCR_Device);
   addControlledDevice(GoldStar_Make, "QUISY 500", VCR_Device);
+}
+
+
+void GoldStarVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -166,33 +197,69 @@ GoldStarVCR1::GoldStarVCR1(
 
 
 GoldStarVCR1a::GoldStarVCR1a(
-  QObject *guiObject,
   unsigned int index)
-  : GoldStarVCR1(guiObject, index)
+  : GoldStarVCR1(index)
 {
   setKeysetName("VCR Keyset 1a");
+}
+
+
+void GoldStarVCR1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  GoldStarVCR1::populateProtocol(guiObject);
 
   addKey("TU_AV", Input_Key, 0x56, 16);
 }
 
 
 GoldStarVCR1b::GoldStarVCR1b(
-  QObject *guiObject,
   unsigned int index)
-  : GoldStarVCR1(guiObject, index)
+  : GoldStarVCR1(index)
 {
   setKeysetName("VCR Keyset 1b");
+}
+
+
+void GoldStarVCR1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  GoldStarVCR1::populateProtocol(guiObject);
 
   addKey("BACK", Exit_Key, 0x4C, 8);
 }
 
 
 GoldStarVCR1c::GoldStarVCR1c(
-  QObject *guiObject,
   unsigned int index)
-  : GoldStarVCR1(guiObject, index)
+  : GoldStarVCR1(index)
 {
   setKeysetName("VCR Keyset 1c");
+}
+
+
+void GoldStarVCR1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  GoldStarVCR1::populateProtocol(guiObject);
 
   addKey("trk-", TrackingMinus_Key, 0xED, 8);
   addKey("trk+", TrackingPlus_Key, 0xEE, 8);
@@ -201,9 +268,7 @@ GoldStarVCR1c::GoldStarVCR1c(
 }
 
 
-// Based on LIRC 6710S-6000A config file
 GoldStarCD1::GoldStarCD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
@@ -211,6 +276,19 @@ GoldStarCD1::GoldStarCD1(
       index)
 {
   addControlledDevice(GoldStar_Make, "FFH-272A/L", Audio_Device);
+}
+
+
+
+// Based on LIRC 6710S-6000A config file
+void GoldStarCD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,

@@ -2,7 +2,6 @@
 #include "protocols/mceprotocol.h"
 
 MCERemote1::MCERemote1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Remote mode 1",
@@ -10,6 +9,17 @@ MCERemote1::MCERemote1(
       index)
 {
   addControlledDevice(Any_Make, "ASRock HT330", Computer_Device);
+}
+
+
+void MCERemote1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new MCEProtocol(guiObject, index, 0x800F);
 
@@ -91,77 +101,161 @@ MCERemote1::MCERemote1(
 
 
 MCERemote1a::MCERemote1a(
-  QObject *guiObject,
   unsigned int index)
-  : MCERemote1(guiObject, index)
+  : MCERemote1(index)
 {
   setKeysetName("Remote mode 2");
+}
+
+
+void MCERemote1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  MCERemote1::populateProtocol(guiObject);
 
   setPreData(0x14, 7);
 }
 
 
 MCERemote1b::MCERemote1b(
-  QObject *guiObject,
   unsigned int index)
-  : MCERemote1(guiObject, index)
+  : MCERemote1(index)
 {
   setKeysetName("Remote mode 3");
+}
+
+
+void MCERemote1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  MCERemote1::populateProtocol(guiObject);
 
   setPreData(0x24, 7);
 }
 
 
 MCERemote1c::MCERemote1c(
-  QObject *guiObject,
   unsigned int index)
-  : MCERemote1(guiObject, index)
+  : MCERemote1(index)
 {
   setKeysetName("Remote mode 4");
+}
+
+
+void MCERemote1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  MCERemote1::populateProtocol(guiObject);
 
   setPreData(0x34, 7);
 }
 
 
 MCERemote1d::MCERemote1d(
-  QObject *guiObject,
   unsigned int index)
-  : MCERemote1(guiObject, index)
+  : MCERemote1(index)
 {
   setKeysetName("Remote mode 5");
+}
+
+
+void MCERemote1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  MCERemote1::populateProtocol(guiObject);
 
   setPreData(0x44, 7);
 }
 
 
 MCERemote1e::MCERemote1e(
-  QObject *guiObject,
   unsigned int index)
-  : MCERemote1(guiObject, index)
+  : MCERemote1(index)
 {
   setKeysetName("Remote mode 6");
+}
+
+
+void MCERemote1e::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  MCERemote1::populateProtocol(guiObject);
 
   setPreData(0x54, 7);
 }
 
 
 MCERemote1f::MCERemote1f(
-  QObject *guiObject,
   unsigned int index)
-  : MCERemote1(guiObject, index)
+  : MCERemote1(index)
 {
   setKeysetName("Remote mode 7");
+}
+
+
+void MCERemote1f::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  MCERemote1::populateProtocol(guiObject);
 
   setPreData(0x64, 7);
 }
 
 
 MCERemote1g::MCERemote1g(
-  QObject *guiObject,
   unsigned int index)
-  : MCERemote1(guiObject, index)
+  : MCERemote1(index)
 {
   setKeysetName("Remote mode 8");
+}
+
+
+void MCERemote1g::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  MCERemote1::populateProtocol(guiObject);
 
   setPreData(0x74, 7);
 }

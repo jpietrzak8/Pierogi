@@ -3,13 +3,24 @@
 #include "protocols/rc5protocol.h"
 
 AdmiralTV1::AdmiralTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Admiral_Make,
       index)
 {
+}
+
+
+void AdmiralTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SharpProtocol(guiObject, index, true);
 
   addSharpKey("tv-1", One_Key, 0x01, 0x01);
@@ -37,15 +48,27 @@ AdmiralTV1::AdmiralTV1(
 }
 
 
-// The following is just a guess:
 AdmiralTV2::AdmiralTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Admiral_Make,
       index)
 {
+}
+
+
+
+// The following is just a guess:
+void AdmiralTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("0", Zero_Key, 0x1000, 13);
@@ -97,13 +120,24 @@ AdmiralTV2::AdmiralTV2(
 
 
 AdmiralVCR1::AdmiralVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Admiral_Make,
       index)
 {
+}
+
+
+void AdmiralVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SharpProtocol(guiObject, index, true);
 
   addSharpKey("vcr-1", One_Key, 0x03, 0x01);

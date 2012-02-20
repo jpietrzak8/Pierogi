@@ -9,8 +9,10 @@ class HaierTV1: public PIRKeysetMetaData
 {
 public:
   HaierTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // HAIER_H

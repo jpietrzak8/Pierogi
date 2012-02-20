@@ -4,13 +4,24 @@
 
 
 OnidaTV1::OnidaTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Onida_Make,
       index)
 {
+}
+
+
+void OnidaTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new JVCProtocol(guiObject, index);
 
   setPreData(0x03, 8);
@@ -50,13 +61,24 @@ OnidaTV1::OnidaTV1(
 
 
 OnidaDVD1::OnidaDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Onida_Make,
       index)
 {
+}
+
+
+void OnidaDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x00, 8);

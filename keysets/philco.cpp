@@ -2,13 +2,24 @@
 #include "protocols/necprotocol.h"
 
 PhilcoTV::PhilcoTV(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Philco_Make,
       index)
 {
+}
+
+
+void PhilcoTV::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x50, 8);

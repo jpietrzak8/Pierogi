@@ -9,8 +9,10 @@ class AppleWhiteRemote: public PIRKeysetMetaData
 {
 public:
   AppleWhiteRemote(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // APPLE_H

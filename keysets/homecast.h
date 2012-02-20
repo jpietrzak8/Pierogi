@@ -9,16 +9,20 @@ class HomecastReceiver1: public PIRKeysetMetaData
 {
 public:
   HomecastReceiver1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class HomecastReceiver2: public PIRKeysetMetaData
 {
 public:
   HomecastReceiver2(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // HOMECAST_H

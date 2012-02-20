@@ -9,16 +9,20 @@ class SkyReceiver1: public PIRKeysetMetaData
 {
 public:
   SkyReceiver1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class SkyReceiver1a: public SkyReceiver1
 {
 public:
   SkyReceiver1a(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // SKY_H

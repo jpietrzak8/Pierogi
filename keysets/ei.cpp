@@ -3,7 +3,6 @@
 
 // Based on LIRC Ei-TV90 config file
 EiTV1::EiTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -15,6 +14,17 @@ EiTV1::EiTV1(
   addControlledDevice(Ei_Make, "COLOR 63105", TV_Device);
   addControlledDevice(Ei_Make, "COLOR 56105", TV_Device);
   addControlledDevice(Ei_Make, "COLOR 72105", TV_Device);
+}
+
+
+void EiTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x40);
 

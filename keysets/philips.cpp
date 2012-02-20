@@ -4,7 +4,6 @@
 #include "protocols/necprotocol.h"
 
 PhilipsTV1::PhilipsTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -13,6 +12,17 @@ PhilipsTV1::PhilipsTV1(
 {
   addControlledDevice(Philips_Make, "HV92", TV_Device);
   addControlledDevice(Philips_Make, "15PF4121", TV_Device);
+}
+
+
+void PhilipsTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
@@ -114,26 +124,50 @@ PhilipsTV1::PhilipsTV1(
 
 
 PhilipsTV1a::PhilipsTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsTV1(guiObject, index)
+  : PhilipsTV1(index)
 {
   setKeysetName("TV Keyset 1a");
 
   addControlledDevice(Philips_Make, "17PT1563", TV_Device);
+}
+
+
+void PhilipsTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsTV1::populateProtocol(guiObject);
 
   addKey("TIMER", Sleep_Key, 0x002D, 13);
 }
 
 
 PhilipsTV1b::PhilipsTV1b(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsTV1(guiObject, index)
+  : PhilipsTV1(index)
 {
   setKeysetName("TV Keyset 1b");
 
   addControlledDevice(Philips_Make, "29PT5507", TV_Device);
+}
+
+
+void PhilipsTV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsTV1::populateProtocol(guiObject);
 
   addKey("radio", Unmapped_Key, 0x00F1, 13);
   addKey("sound", Unmapped_Key, 0x1014, 13);
@@ -146,11 +180,23 @@ PhilipsTV1b::PhilipsTV1b(
 
 
 PhilipsTV1c::PhilipsTV1c(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsTV1(guiObject, index)
+  : PhilipsTV1(index)
 {
   setKeysetName("TV Keyset 1c");
+}
+
+
+void PhilipsTV1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsTV1::populateProtocol(guiObject);
 
   addKey("spatial", Surround_Key, 0x1024, 13);
   addKey("stereo", Audio_Key, 0x1023, 13);
@@ -159,15 +205,27 @@ PhilipsTV1c::PhilipsTV1c(
 
 
 PhilipsTV1d::PhilipsTV1d(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsTV1(guiObject, index)
+  : PhilipsTV1(index)
 {
   setKeysetName("TV Keyset 1d");
 
   addControlledDevice(Philips_Make, "47PFL7603D", TV_Device);
   addControlledDevice(Philips_Make, "14PT1562/00", TV_Device);
   addControlledDevice(Philips_Make, "32PW9528/12", TV_Device);
+}
+
+
+void PhilipsTV1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsTV1::populateProtocol(guiObject);
 
   addKey("NOTE_BUTTON", Unmapped_Key, 0x1014, 13); // "Tune"
   addKey("RADIO_BUTTON", Unmapped_Key, 0x00F1, 13);
@@ -190,14 +248,26 @@ PhilipsTV1d::PhilipsTV1d(
 
 
 PhilipsTV1e::PhilipsTV1e(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsTV1(guiObject, index)
+  : PhilipsTV1(index)
 {
   setKeysetName("TV Keyset 1e");
 
   addControlledDevice(Philips_Make, "28PT4455", TV_Device);
   addControlledDevice(Philips_Make, "21PT2265", TV_Device);
+}
+
+
+void PhilipsTV1e::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsTV1::populateProtocol(guiObject);
 
   addKey("smart_audio", SoundMode_Key, 0x10CB, 13);
   addKey("smart_video", PictureMode_Key, 0x10CA, 13);
@@ -211,13 +281,25 @@ PhilipsTV1e::PhilipsTV1e(
 
 
 PhilipsTV1f::PhilipsTV1f(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsTV1(guiObject, index)
+  : PhilipsTV1(index)
 {
   setKeysetName("TV Keyset 1f");
 
   addControlledDevice(Philips_Make, "25PT5302", TV_Device);
+}
+
+
+void PhilipsTV1f::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsTV1::populateProtocol(guiObject);
 
   addKey("SETUP", Menu_Key, 0x003A, 13);
   addKey("VOL-", VolumeDown_Key, 0x0011, 13);
@@ -236,7 +318,6 @@ PhilipsTV1f::PhilipsTV1f(
 
 
 PhilipsTV2::PhilipsTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 2",
@@ -246,6 +327,17 @@ PhilipsTV2::PhilipsTV2(
   addControlledDevice(Philips_Make, "28PW8506/12R", TV_Device);
   addControlledDevice(Philips_Make, "26PFL5604H", TV_Device);
   addControlledDevice(Philips_Make, "32PFL5403D", TV_Device);
+}
+
+
+void PhilipsTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x00);
 
@@ -312,13 +404,25 @@ PhilipsTV2::PhilipsTV2(
 
 
 PhilipsTV2a::PhilipsTV2a(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsTV2(guiObject, index)
+  : PhilipsTV2(index)
 {
   setKeysetName("TV Keyset 2a");
 
   addControlledDevice(Philips_Make, "29PT8607/12", TV_Device);
+}
+
+
+void PhilipsTV2a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsTV2::populateProtocol(guiObject);
 
   addKey("tv-display", Info_Key, 0x3C, 8);
   addKey("tv-teletext_submode_(J:12)", Unmapped_Key, 0x5D, 8);
@@ -332,13 +436,25 @@ PhilipsTV2a::PhilipsTV2a(
 
 
 PhilipsTV2b::PhilipsTV2b(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsTV2(guiObject, index)
+  : PhilipsTV2(index)
 {
   setKeysetName("TV Keyset 2b");
 
   addControlledDevice(Philips_Make, "32PFL7532D", TV_Device);
+}
+
+
+void PhilipsTV2b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsTV2::populateProtocol(guiObject);
 
   addKey("KEY_PLAY", Play_Key, 0xC1, 8);
   addKey("KEY_FAVORITES", Favorites_Key, 0xD2, 8);
@@ -346,7 +462,6 @@ PhilipsTV2b::PhilipsTV2b(
 
 
 PhilipsTV3::PhilipsTV3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV (settop-box) keyset 3",
@@ -354,6 +469,17 @@ PhilipsTV3::PhilipsTV3(
       index)
 {
   addControlledDevice(Philips_Make, "DTX6372", TV_Device);
+}
+
+
+void PhilipsTV3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x28);
 
@@ -401,7 +527,6 @@ PhilipsTV3::PhilipsTV3(
 
 
 PhilipsDVD1::PhilipsDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
@@ -412,6 +537,17 @@ PhilipsDVD1::PhilipsDVD1(
   addControlledDevice(Philips_Make, "DVD722", DVD_Device);
   addControlledDevice(Philips_Make, "DVD-724", DVD_Device);
   addControlledDevice(Philips_Make, "DVP 3005", DVD_Device);
+}
+
+
+void PhilipsDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x04);
 
@@ -469,13 +605,25 @@ PhilipsDVD1::PhilipsDVD1(
 
 
 PhilipsDVD1a::PhilipsDVD1a(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsDVD1(guiObject, index)
+  : PhilipsDVD1(index)
 {
   setKeysetName("DVD Keyset 1a");
 
   addControlledDevice(Philips_Make, "DVP-5982", DVD_Device);
+}
+
+
+void PhilipsDVD1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsDVD1::populateProtocol(guiObject);
 
   addKey("Play_Pause", Pause_Key, 0x2C, 8);
   addKey("USB", Unmapped_Key, 0x7E, 8);
@@ -484,13 +632,25 @@ PhilipsDVD1a::PhilipsDVD1a(
 
 
 PhilipsDVD1b::PhilipsDVD1b(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsDVD1(guiObject, index)
+  : PhilipsDVD1(index)
 {
   setKeysetName("DVD Keyset 1b");
 
   addControlledDevice(Philips_Make, "DVP-642", DVD_Device);
+}
+
+
+void PhilipsDVD1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsDVD1::populateProtocol(guiObject);
 
   addKey("Forward", FastForward_Key, 0x20, 8);
   addKey("Reverse", Rewind_Key, 0x21, 8);
@@ -499,15 +659,27 @@ PhilipsDVD1b::PhilipsDVD1b(
 
 
 PhilipsDVD1c::PhilipsDVD1c(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsDVD1(guiObject, index)
+  : PhilipsDVD1(index)
 {
   setKeysetName("DVD Keyset 1c");
 
   addControlledDevice(Philips_Make, "HTS3544", DVD_Device);
   addControlledDevice(Philips_Make, "DVP5982", DVD_Device);
   addControlledDevice(Philips_Make, "DVP5160", DVD_Device);
+}
+
+
+void PhilipsDVD1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsDVD1::populateProtocol(guiObject);
 
   addKey("play-pause", Pause_Key, 0x2C, 8);
   addKey("disc-usb", Unmapped_Key, 0x3F, 8);
@@ -520,13 +692,25 @@ PhilipsDVD1c::PhilipsDVD1c(
 
 
 PhilipsDVD1d::PhilipsDVD1d(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsDVD1(guiObject, index)
+  : PhilipsDVD1(index)
 {
   setKeysetName("DVD Keyset 1d");
 
   addControlledDevice(Philips_Make, "DVD 963sa", DVD_Device);
+}
+
+
+void PhilipsDVD1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsDVD1::populateProtocol(guiObject);
 
   addKey("ff-right", FastForward_Key, 0x20, 8);
   addKey("ff-left", Rewind_Key, 0x21, 8);
@@ -535,13 +719,24 @@ PhilipsDVD1d::PhilipsDVD1d(
 
 
 PhilipsDVD2::PhilipsDVD2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD/BD Keyset 2",
       Philips_Make,
       index)
 {
+}
+
+
+void PhilipsDVD2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC6Protocol(guiObject, index, 0x46);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -593,7 +788,6 @@ PhilipsDVD2::PhilipsDVD2(
 
 
 PhilipsDVD3::PhilipsDVD3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 3",
@@ -601,6 +795,17 @@ PhilipsDVD3::PhilipsDVD3(
       index)
 {
   addControlledDevice(Philips_Make, "DVDR3570H", DVD_Device);
+}
+
+
+void PhilipsDVD3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x32);
 
@@ -671,13 +876,25 @@ PhilipsDVD3::PhilipsDVD3(
 
 
 PhilipsDVD3a::PhilipsDVD3a(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsDVD3(guiObject, index)
+  : PhilipsDVD3(index)
 {
   setKeysetName("DVD Keyset 3a");
 
   addControlledDevice(Philips_Make, "DVDR-3455H", DVD_Device);
+}
+
+
+void PhilipsDVD3a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsDVD3::populateProtocol(guiObject);
 
   addKey("CH+", ChannelUp_Key, 0x1E, 8);
   addKey("CH-", ChannelDown_Key, 0x1F, 8);
@@ -691,7 +908,6 @@ PhilipsDVD3a::PhilipsDVD3a(
 
 
 PhilipsDVD4::PhilipsDVD4(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 4",
@@ -699,6 +915,17 @@ PhilipsDVD4::PhilipsDVD4(
       index)
 {
   addControlledDevice(Philips_Make, "DVDR 1000", DVD_Device);
+}
+
+
+void PhilipsDVD4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x30);
 
@@ -758,13 +985,24 @@ PhilipsDVD4::PhilipsDVD4(
 
 
 PhilipsVCR1::PhilipsVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Philips_Make,
       index)
 {
+}
+
+
+void PhilipsVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("Standby", Power_Key, 0x114C, 13);
@@ -820,13 +1058,25 @@ PhilipsVCR1::PhilipsVCR1(
 
 
 PhilipsVCR1a::PhilipsVCR1a(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsVCR1(guiObject, index)
+  : PhilipsVCR1(index)
 {
   setKeysetName("VCR Keyset 1a");
 
   addControlledDevice(Philips_Make, "VP27/55", VCR_Device);
+}
+
+
+void PhilipsVCR1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsVCR1::populateProtocol(guiObject);
 
   addKey("menu", Menu_Key, 0x115D, 13);
   addKey("eject", Eject_Key, 0x116D, 13);
@@ -840,11 +1090,23 @@ PhilipsVCR1a::PhilipsVCR1a(
 
 
 PhilipsVCR1b::PhilipsVCR1b(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsVCR1(guiObject, index)
+  : PhilipsVCR1(index)
 {
   setKeysetName("VCR Keyset 1b");
+}
+
+
+void PhilipsVCR1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsVCR1::populateProtocol(guiObject);
 
   addKey("Cassette_Eject", Eject_Key, 0x017E, 13);
   addKey("Select", Select_Key, 0x114B, 13);
@@ -859,11 +1121,23 @@ PhilipsVCR1b::PhilipsVCR1b(
 
 
 PhilipsVCR1c::PhilipsVCR1c(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsVCR1(guiObject, index)
+  : PhilipsVCR1(index)
 {
   setKeysetName("VCR Keyset 1c");
+}
+
+
+void PhilipsVCR1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsVCR1::populateProtocol(guiObject);
 
   addKey("TIMER_REVIEW", Unmapped_Key, 0x0168, 13);
   addKey("DATE_UP", Unmapped_Key, 0x125C, 13);
@@ -894,13 +1168,24 @@ PhilipsVCR1c::PhilipsVCR1c(
 
 
 PhilipsSat1::PhilipsSat1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Philips_Make,
       index)
 {
+}
+
+
+void PhilipsSat1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("Standby", Power_Key, 0x120C, 13);
@@ -950,7 +1235,6 @@ PhilipsSat1::PhilipsSat1(
 
 
 PhilipsSat2::PhilipsSat2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Sat Keyset 2",
@@ -958,6 +1242,17 @@ PhilipsSat2::PhilipsSat2(
       index)
 {
   addControlledDevice(Philips_Make, "DSX-5500", Sat_Device);
+}
+
+
+void PhilipsSat2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x27);
 
@@ -998,13 +1293,25 @@ PhilipsSat2::PhilipsSat2(
 
 
 PhilipsSat2a::PhilipsSat2a(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsSat2(guiObject, index)
+  : PhilipsSat2(index)
 {
   setKeysetName("Sat Keyset 2a");
 
   addControlledDevice(Philips_Make, "DSX 6010/62A", Sat_Device);
+}
+
+
+void PhilipsSat2a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsSat2::populateProtocol(guiObject);
 
   addKey("ch+", ChannelUp_Key, 0x58, 8);
   addKey("ch-", ChannelDown_Key, 0x59, 8);
@@ -1020,7 +1327,6 @@ PhilipsSat2a::PhilipsSat2a(
 
 
 PhilipsSat3::PhilipsSat3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Sat Keyset 3",
@@ -1028,6 +1334,17 @@ PhilipsSat3::PhilipsSat3(
       index)
 {
   addControlledDevice(Philips_Make, "DST5816/33", Sat_Device);
+}
+
+
+void PhilipsSat3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
@@ -1065,7 +1382,6 @@ PhilipsSat3::PhilipsSat3(
 
 
 PhilipsAudio1::PhilipsAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
@@ -1080,6 +1396,17 @@ PhilipsAudio1::PhilipsAudio1(
   addControlledDevice(Philips_Make, "AZ2407", Audio_Device);
   addControlledDevice(Philips_Make, "MZ7", Audio_Device);
   addControlledDevice(Philips_Make, "AS680C", Audio_Device);
+}
+
+
+void PhilipsAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
@@ -1162,13 +1489,25 @@ PhilipsAudio1::PhilipsAudio1(
 
 
 PhilipsAudio1a::PhilipsAudio1a(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsAudio1(guiObject, index)
+  : PhilipsAudio1(index)
 {
   setKeysetName("Audio Keyset 1a");
 
   addControlledDevice(Philips_Make, "C 380", Audio_Device);
+}
+
+
+void PhilipsAudio1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsAudio1::populateProtocol(guiObject);
 
   addKey("VOL-", VolumeDown_Key, 0x1511, 13);
   addKey("VOL+", VolumeUp_Key, 0x1510, 13);
@@ -1176,13 +1515,25 @@ PhilipsAudio1a::PhilipsAudio1a(
 
 
 PhilipsAudio1b::PhilipsAudio1b(
-  QObject *guiObject,
   unsigned int index)
-  : PhilipsAudio1(guiObject, index)
+  : PhilipsAudio1(index)
 {
   setKeysetName("Audio Keyset 1b");
 
   addControlledDevice(Philips_Make, "FW 362", Audio_Device);
+}
+
+
+void PhilipsAudio1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PhilipsAudio1::populateProtocol(guiObject);
 
   addKey("tv_power", Unmapped_Key, 0x100C, 13);
   addKey("tv_vcr", VCRInput_Key, 0x103F, 13);
@@ -1200,7 +1551,6 @@ PhilipsAudio1b::PhilipsAudio1b(
 
 
 PhilipsAudio2::PhilipsAudio2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 2",
@@ -1208,6 +1558,17 @@ PhilipsAudio2::PhilipsAudio2(
       index)
 {
   addControlledDevice(Philips_Make, "FW2104", Audio_Device);
+}
+
+
+void PhilipsAudio2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
@@ -1269,7 +1630,6 @@ PhilipsAudio2::PhilipsAudio2(
 // This CD control is different enough from Audio1 that I figured I should
 // give it an entirely new keyset:
 PhilipsAudio3::PhilipsAudio3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 3",
@@ -1277,6 +1637,17 @@ PhilipsAudio3::PhilipsAudio3(
       index)
 {
   addControlledDevice(Philips_Make, "CD723", Audio_Device);
+}
+
+
+void PhilipsAudio3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
@@ -1312,13 +1683,24 @@ PhilipsAudio3::PhilipsAudio3(
 
 
 PhilipsAudio4::PhilipsAudio4(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 4",
       Philips_Make,
       index)
 {
+}
+
+
+void PhilipsAudio4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("EJECT", Eject_Key, 0x16AD, 13);

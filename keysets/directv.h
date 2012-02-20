@@ -9,8 +9,10 @@ class DirectvReceiver1: public PIRKeysetMetaData
 {
 public:
   DirectvReceiver1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // DIRECTV_H

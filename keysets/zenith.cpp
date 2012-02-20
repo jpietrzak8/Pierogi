@@ -3,7 +3,6 @@
 
 // Based solely on LIRC Zenith_C32V37 config file
 ZenithC32V37::ZenithC32V37(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -11,6 +10,17 @@ ZenithC32V37::ZenithC32V37(
       index)
 {
   addControlledDevice(Zenith_Make, "C32V37", TV_Device);
+}
+
+
+void ZenithC32V37::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 

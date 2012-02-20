@@ -3,7 +3,6 @@
 
 // Based on LIRC Apple_A1156 config file
 AppleWhiteRemote::AppleWhiteRemote(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "White Remote",
@@ -11,6 +10,17 @@ AppleWhiteRemote::AppleWhiteRemote(
       index)
 {
   addControlledDevice(Apple_Make, "Mac Mini", Computer_Device);
+}
+
+
+void AppleWhiteRemote::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   // Set up the threadable object:
   LIRCProtocol *lp = new LIRCProtocol(

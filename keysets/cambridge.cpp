@@ -5,13 +5,24 @@
 
 
 CambridgeCD1::CambridgeCD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "CD Keyset 1",
       Cambridge_Make,
       index)
 {
+}
+
+
+void CambridgeCD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x4D84, 16);
@@ -47,13 +58,24 @@ CambridgeCD1::CambridgeCD1(
 
 
 CambridgeAudio1::CambridgeAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Cambridge_Make,
       index)
 {
+}
+
+
+void CambridgeAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECXProtocol(guiObject, index, true);
 
   setPreData(0xA0A0, 16);
@@ -91,13 +113,24 @@ CambridgeAudio1::CambridgeAudio1(
 
 
 CambridgeAudio2::CambridgeAudio2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Cambridge_Make,
       index)
 {
+}
+
+
+void CambridgeAudio2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECXProtocol(guiObject, index, true);
 
   setPreData(0xC0C0, 16);
@@ -146,13 +179,24 @@ CambridgeAudio2::CambridgeAudio2(
 
 
 CambridgeAudio3::CambridgeAudio3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Cambridge_Make,
       index)
 {
+}
+
+
+void CambridgeAudio3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("Tape_Mon", TapeInput_Key, 0x1400, 13);
@@ -178,7 +222,6 @@ CambridgeAudio3::CambridgeAudio3(
 
 
 CambridgeDVD1::CambridgeDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
@@ -189,6 +232,17 @@ CambridgeDVD1::CambridgeDVD1(
   addControlledDevice(Cambridge_Make, "DVD55", DVD_Device);
   addControlledDevice(Cambridge_Make, "DVD57", DVD_Device);
   addControlledDevice(Cambridge_Make, "DVD59B", DVD_Device);
+}
+
+
+void CambridgeDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 

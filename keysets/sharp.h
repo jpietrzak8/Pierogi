@@ -9,56 +9,70 @@ class SharpTV1: public PIRKeysetMetaData
 {
 public:
   SharpTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class SharpTV1a: public SharpTV1
 {
 public:
   SharpTV1a(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class SharpTV1b: public SharpTV1
 {
 public:
   SharpTV1b(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class SharpTV1c: public SharpTV1
 {
 public:
   SharpTV1c(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class SharpTV1d: public SharpTV1
 {
 public:
   SharpTV1d(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class SharpTV1e: public SharpTV1
 {
 public:
   SharpTV1e(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class SharpVCR1: public PIRKeysetMetaData
 {
 public:
   SharpVCR1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 
@@ -66,16 +80,20 @@ class SharpReceiver1: public PIRKeysetMetaData
 {
 public:
   SharpReceiver1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class SharpAC1: public PIRKeysetMetaData
 {
 public:
   SharpAC1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // SHARP_H

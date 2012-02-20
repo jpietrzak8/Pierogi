@@ -3,13 +3,24 @@
 
 
 VestelTV1::VestelTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Vestel_Make,
       index)
 {
+}
+
+
+void VestelTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("0", Zero_Key, 0x1000, 13);
@@ -58,13 +69,24 @@ VestelTV1::VestelTV1(
 
 
 VestelTV2::VestelTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV/DVD Keyset 2",
       Vestel_Make,
       index)
 {
+}
+
+
+void VestelTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("on_off", Power_Key, 0x174D, 13);

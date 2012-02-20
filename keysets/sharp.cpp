@@ -3,13 +3,24 @@
 #include "protocols/necprotocol.h"
 
 SharpTV1::SharpTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Sharp_Make,
       index)
 {
+}
+
+
+void SharpTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SharpProtocol(guiObject, index, true);
 
   addSharpKey("1", One_Key, 0x01, 0x01);
@@ -113,11 +124,23 @@ SharpTV1::SharpTV1(
 
 
 SharpTV1a::SharpTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : SharpTV1(guiObject, index)
+  : SharpTV1(index)
 {
   setKeysetName("TV Keyset 1a");
+}
+
+
+void SharpTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SharpTV1::populateProtocol(guiObject);
 
   addSharpKey("Key", Unmapped_Key, 0x01, 0x0D);
   addSharpKey("Time", Sleep_Key, 0x01, 0x0E);
@@ -140,11 +163,23 @@ SharpTV1a::SharpTV1a(
 
 
 SharpTV1b::SharpTV1b(
-  QObject *guiObject,
   unsigned int index)
-  : SharpTV1(guiObject, index)
+  : SharpTV1(index)
 {
   setKeysetName("TV Keyset 1b");
+}
+
+
+void SharpTV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SharpTV1::populateProtocol(guiObject);
 
   addSharpKey("FINE_TUNING", Unmapped_Key, 0x01, 0x0E);
   addSharpKey("chScan", Scan_Key, 0x01, 0x1C);
@@ -162,11 +197,23 @@ SharpTV1b::SharpTV1b(
 
 
 SharpTV1c::SharpTV1c(
-  QObject *guiObject,
   unsigned int index)
-  : SharpTV1(guiObject, index)
+  : SharpTV1(index)
 {
   setKeysetName("TV Keyset 1c");
+}
+
+
+void SharpTV1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SharpTV1::populateProtocol(guiObject);
 
   addSharpKey("save_ch", Unmapped_Key, 0x01, 0x41);
   addSharpKey("del_ch", Unmapped_Key, 0x01, 0x3D);
@@ -174,11 +221,23 @@ SharpTV1c::SharpTV1c(
 
 
 SharpTV1d::SharpTV1d(
-  QObject *guiObject,
   unsigned int index)
-  : SharpTV1(guiObject, index)
+  : SharpTV1(index)
 {
   setKeysetName("TV Keyset 1d");
+}
+
+
+void SharpTV1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SharpTV1::populateProtocol(guiObject);
 
   addSharpKey("P-MODE", PictureMode_Key, 0x01, 0x4D);
   addSharpKey("S-MODE", SoundMode_Key, 0x01, 0x26);
@@ -186,11 +245,23 @@ SharpTV1d::SharpTV1d(
 
 
 SharpTV1e::SharpTV1e(
-  QObject *guiObject,
   unsigned int index)
-  : SharpTV1(guiObject, index)
+  : SharpTV1(index)
 {
   setKeysetName("TV Keyset 1e");
+}
+
+
+void SharpTV1e::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SharpTV1::populateProtocol(guiObject);
 
   addSharpKey("DOWN", Down_Key, 0x01, 0x20);
   addSharpKey("OK", Select_Key, 0x01, 0x52);
@@ -204,13 +275,24 @@ SharpTV1e::SharpTV1e(
 
 
 SharpVCR1::SharpVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Sharp_Make,
       index)
 {
+}
+
+
+void SharpVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SharpProtocol(guiObject, index, true);
 
   addSharpKey("1", One_Key, 0x03, 0x01);
@@ -282,13 +364,24 @@ SharpVCR1::SharpVCR1(
 
 
 SharpReceiver1::SharpReceiver1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
       Sharp_Make,
       index)
 {
+}
+
+
+void SharpReceiver1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SharpProtocol(guiObject, index, true);
 
   addSharpKey("PRESET+", ChannelUp_Key, 0x12, 0x11);
@@ -334,13 +427,24 @@ SharpReceiver1::SharpReceiver1(
 
 
 SharpAC1::SharpAC1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Air Conditioner 1",
       Sharp_Make,
       index)
 {
+}
+
+
+void SharpAC1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0xF508, 16);

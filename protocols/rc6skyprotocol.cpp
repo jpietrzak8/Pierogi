@@ -19,7 +19,8 @@ extern QMutex commandIFMutex;
 // The RC6 header block starts with the normal 2666 usec pulse, 888 usec space.
 // The next bit is fixed as a "1", as usual.
 // The next three bits are 110, marking this as a mode 6 protocol.
-// The trailer bit has an 888 usec biphase.  It is a toggle bit.
+// The trailer bit has an 888 usec biphase.  It is normally a toggle bit, but
+// for Sky, it appears to be fixed at "0".
 // Next comes 8 bits of address, 4 bits I don't know about (subdevice?),
 // and finally 8 bits of command.
 // A space of (at least) 2666 usec must follow any command.
@@ -89,23 +90,12 @@ void RC6SkyProtocol::startSendingCommand(
       duration += biphaseUnit;
       rx51device.addSingle(2 * biphaseUnit); // bit 2 space + bit 3 space;
       duration += 2 * biphaseUnit;
-
-      if (keypressCount % 2)
-      {
-        rx51device.addSingle(biphaseUnit); // bit 3 pulse;
-        duration += biphaseUnit;
-        rx51device.addSingle(2 * biphaseUnit); // trailer space
-        duration += 2 * biphaseUnit;
-        buffer = 2 * biphaseUnit; // trailer pulse goes into the buffer
-        bufferContainsPulse = true;
-      }
-      else
-      {
-        rx51device.addSingle(3 * biphaseUnit); // bit 3 + trailer pulses
-        duration += 3 * biphaseUnit;
-        buffer = 2 * biphaseUnit; // trailer space goes into the buffer
-        bufferContainsSpace = true;
-      }
+      rx51device.addSingle(biphaseUnit); // bit 3 pulse;
+      duration += biphaseUnit;
+      rx51device.addSingle(2 * biphaseUnit); // trailer space
+      duration += 2 * biphaseUnit;
+      buffer = 2 * biphaseUnit; // trailer pulse goes into the buffer
+      bufferContainsPulse = true;
 
       // Now, we can start the normal buffering process:
 

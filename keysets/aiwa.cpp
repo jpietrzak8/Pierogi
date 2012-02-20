@@ -4,7 +4,6 @@
 #include "protocols/necprotocol.h"
 
 AiwaVCR1::AiwaVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
@@ -12,6 +11,17 @@ AiwaVCR1::AiwaVCR1(
       index)
 {
   addControlledDevice(Aiwa_Make, "HV-CX100KER", VCR_Device);
+}
+
+
+void AiwaVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
 
@@ -96,13 +106,24 @@ AiwaVCR1::AiwaVCR1(
 
 
 AiwaVCR2::AiwaVCR2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 2",
       Aiwa_Make,
       index)
 {
+}
+
+
+void AiwaVCR2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x6E, 8);
@@ -151,13 +172,24 @@ AiwaVCR2::AiwaVCR2(
 
 
 AiwaVCR3::AiwaVCR3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 3",
       Aiwa_Make,
       index)
 {
+}
+
+
+void AiwaVCR3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
   setPreData(0x7B80, 16);
@@ -208,7 +240,6 @@ AiwaVCR3::AiwaVCR3(
 
 
 AiwaAudio1::AiwaAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
@@ -217,6 +248,17 @@ AiwaAudio1::AiwaAudio1(
 {
   addControlledDevice(Aiwa_Make, "LCX-100", Audio_Device);
   addControlledDevice(Aiwa_Make, "RC-TD3", Audio_Device);
+}
+
+
+void AiwaAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
 
@@ -276,16 +318,28 @@ AiwaAudio1::AiwaAudio1(
 }
 
 
-// Don't know why only the numbers are different for this one:
 AiwaAudio1a::AiwaAudio1a(
-  QObject *guiObject,
   unsigned int index)
-  : AiwaAudio1(guiObject, index)
+  : AiwaAudio1(index)
 {
   setKeysetName("Audio Keyset 1a");
 
   addControlledDevice(Aiwa_Make, "XR-M201", Audio_Device);
   addControlledDevice(Aiwa_Make, "CA-DW635", Audio_Device);
+}
+
+
+// Don't know why only the numbers are different for this one:
+void AiwaAudio1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  AiwaAudio1::populateProtocol(guiObject);
 
   addKey("1", One_Key, 0x01, 8);
   addKey("2", Two_Key, 0x02, 8);
@@ -304,7 +358,6 @@ AiwaAudio1a::AiwaAudio1a(
 
 
 AiwaAudio2::AiwaAudio2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 2",
@@ -324,6 +377,17 @@ AiwaAudio2::AiwaAudio2(
   addControlledDevice(Aiwa_Make, "NSX-500", Audio_Device);
   addControlledDevice(Aiwa_Make, "NSX-540", Audio_Device);
   addControlledDevice(Aiwa_Make, "NSX-DR5", Audio_Device);
+}
+
+
+void AiwaAudio2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
 
@@ -391,11 +455,23 @@ AiwaAudio2::AiwaAudio2(
 
 
 AiwaAudio2a::AiwaAudio2a(
-  QObject *guiObject,
   unsigned int index)
-  : AiwaAudio2(guiObject, index)
+  : AiwaAudio2(index)
 {
   setKeysetName("Audio Keyset 2a");
+}
+
+
+void AiwaAudio2a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  AiwaAudio2::populateProtocol(guiObject);
 
   addKey("Rec", Record_Key, 0x5F, 8);
   addKey("ChUp", ChannelUp_Key, 0x86, 8);
@@ -404,11 +480,23 @@ AiwaAudio2a::AiwaAudio2a(
 
 
 AiwaAudio2b::AiwaAudio2b(
-  QObject *guiObject,
   unsigned int index)
-  : AiwaAudio2(guiObject, index)
+  : AiwaAudio2(index)
 {
   setKeysetName("Audio Keyset 2b");
+}
+
+
+void AiwaAudio2b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  AiwaAudio2::populateProtocol(guiObject);
 
   addKey("UP", Up_Key, 0x40, 8);
   addKey("DOWN", Down_Key, 0x41, 8);
@@ -418,13 +506,25 @@ AiwaAudio2b::AiwaAudio2b(
 
 
 AiwaAudio2c::AiwaAudio2c(
-  QObject *guiObject,
   unsigned int index)
-  : AiwaAudio2(guiObject, index)
+  : AiwaAudio2(index)
 {
   setKeysetName("Audio Keyset 2c");
 
   addControlledDevice(Aiwa_Make, "XR-MD201", Audio_Device);
+}
+
+
+void AiwaAudio2c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  AiwaAudio2::populateProtocol(guiObject);
 
   addKey("display", Info_Key, 0x14, 8);
   addKey("rec", Record_Key, 0x71, 8);
@@ -437,13 +537,24 @@ AiwaAudio2c::AiwaAudio2c(
 
 // Might not be audio here:
 AiwaAudio3::AiwaAudio3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Aiwa_Make,
       index)
 {
+}
+
+
+void AiwaAudio3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new AiwaProtocol(guiObject, index);
 
   setPreData(0x007B, 13);
@@ -480,13 +591,24 @@ AiwaAudio3::AiwaAudio3(
 
 
 AiwaAudio4::AiwaAudio4(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 4",
       Aiwa_Make,
       index)
 {
+}
+
+
+void AiwaAudio4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new AiwaProtocol(guiObject, index);
 
   setPreData(0x00F6, 13);
@@ -538,13 +660,24 @@ AiwaAudio4::AiwaAudio4(
 
 
 AiwaAudio5::AiwaAudio5(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 5",
       Aiwa_Make,
       index)
 {
+}
+
+
+void AiwaAudio5::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new AiwaProtocol(guiObject, index);
 
   setPreData(0x0076, 13);
@@ -574,7 +707,6 @@ AiwaAudio5::AiwaAudio5(
 
 
 AiwaAudio6::AiwaAudio6(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 6",
@@ -583,6 +715,17 @@ AiwaAudio6::AiwaAudio6(
 {
   addControlledDevice(Aiwa_Make, "CX-770", Audio_Device);
   addControlledDevice(Aiwa_Make, "Series 70", Audio_Device);
+}
+
+
+void AiwaAudio6::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
 
@@ -610,13 +753,24 @@ AiwaAudio6::AiwaAudio6(
 
 
 AiwaCarStereo1::AiwaCarStereo1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Car Stereo Keyset 1",
       Aiwa_Make,
       index)
 {
+}
+
+
+void AiwaCarStereo1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x1386, 16);
@@ -637,13 +791,24 @@ AiwaCarStereo1::AiwaCarStereo1(
 
 
 AiwaDVD1::AiwaDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Aiwa_Make,
       index)
 {
+}
+
+
+void AiwaDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,

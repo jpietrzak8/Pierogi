@@ -3,13 +3,24 @@
 
 
 DigitalStreamReceiver::DigitalStreamReceiver(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
       DigitalStream_Make,
       index)
 {
+}
+
+
+void DigitalStreamReceiver::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x482C, 16);

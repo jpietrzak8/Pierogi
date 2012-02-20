@@ -3,13 +3,24 @@
 
 
 HitachiTV1::HitachiTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Hitachi_Make,
       index)
 {
+}
+
+
+void HitachiTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x0AF5, 16);
@@ -72,21 +83,45 @@ HitachiTV1::HitachiTV1(
 
 
 HitachiTV1a::HitachiTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : HitachiTV1(guiObject, index)
+  : HitachiTV1(index)
 {
   setKeysetName("TV Keyset 1a");
+}
+
+
+void HitachiTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  HitachiTV1::populateProtocol(guiObject);
 
   addKey("menu", Menu_Key, 0x53, 8);
 }
 
 HitachiTV1b::HitachiTV1b(
-  QObject *guiObject,
   unsigned int index)
-  : HitachiTV1a(guiObject, index)
+  : HitachiTV1a(index)
 {
   setKeysetName("TV Keyset 1b");
+}
+
+
+void HitachiTV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  HitachiTV1a::populateProtocol(guiObject);
 
   addKey("Sound+", VolumeUp_Key, 0x72, 8);
   addKey("Sound-", VolumeDown_Key, 0x73, 8);
@@ -95,13 +130,25 @@ HitachiTV1b::HitachiTV1b(
 
 
 HitachiTV1c::HitachiTV1c(
-  QObject *guiObject,
   unsigned int index)
-  : HitachiTV1(guiObject, index)
+  : HitachiTV1(index)
 {
   setKeysetName("TV Keyset 1c");
 
   addControlledDevice(Hitachi_Make, "57F510", TV_Device);
+}
+
+
+void HitachiTV1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  HitachiTV1::populateProtocol(guiObject);
 
   addKey("LastChannel", PrevChannel_Key, 0x0A, 8);
   addKey("Info", Info_Key, 0x10, 8);
@@ -150,13 +197,24 @@ HitachiTV1c::HitachiTV1c(
 
 // Taken from Hitachi 42HDM12.rmdu, a plasma HDMI monitor without a tuner
 HitachiTV2::HitachiTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV (monitor) Keyset 2",
       Hitachi_Make,
       index)
 {
+}
+
+
+void HitachiTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x50, 8); // This might be wrong...
@@ -191,12 +249,17 @@ HitachiTV2::HitachiTV2(
 
 // See: http://www.hitachi-america.us/supportingdocs/forhome/ubcg/remote_ir_codes/2009_RC_Layouts_and_IR_Codes_L19_L26.pdf
 HitachiTV3::HitachiTV3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 3",
       Hitachi_Make,
       index)
+{
+}
+
+
+void HitachiTV3::populateProtocol(
+  QObject *guiObject)
 {
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -274,13 +337,24 @@ HitachiTV3::HitachiTV3(
 
 
 HitachiProjector::HitachiProjector(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Projector Keyset",
       Hitachi_Make,
       index)
 {
+}
+
+
+void HitachiProjector::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
 //  setPreData(0xE1A2, 16);
@@ -316,13 +390,24 @@ HitachiProjector::HitachiProjector(
 
 
 HitachiDVD1::HitachiDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Hitachi_Make,
       index)
 {
+}
+
+
+void HitachiDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
 //  setPreData(0x01C4, 16);
@@ -373,7 +458,6 @@ HitachiDVD1::HitachiDVD1(
 
 
 HitachiAudio1::HitachiAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
@@ -382,6 +466,17 @@ HitachiAudio1::HitachiAudio1(
 {
   addControlledDevice(Hitachi_Make, "FX-7", Audio_Device);
   addControlledDevice(Hitachi_Make, "FX-77", Audio_Device);
+}
+
+
+void HitachiAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -421,13 +516,24 @@ HitachiAudio1::HitachiAudio1(
 
 
 HitachiVCR1::HitachiVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Hitachi_Make,
       index)
 {
+}
+
+
+void HitachiVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x06F9, 16);

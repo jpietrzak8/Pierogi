@@ -3,7 +3,6 @@
 
 
 SonyTV1::SonyTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -22,19 +21,30 @@ SonyTV1::SonyTV1(
   addControlledDevice(Sony_Make, "KDL-46X2000", TV_Device);
   addControlledDevice(Sony_Make, "KDL-40X2000", TV_Device);
   addControlledDevice(Sony_Make, "KP-46WT520", TV_Device);
+}
+
+
+void SonyTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
-  addSIRC12Key("1", One_Key, 0x01, 0x0);
-  addSIRC12Key("2", Two_Key, 0x01, 0x1);
-  addSIRC12Key("3", Three_Key, 0x01, 0x2);
-  addSIRC12Key("4", Four_Key, 0x01, 0x3);
-  addSIRC12Key("5", Five_Key, 0x01, 0x4);
-  addSIRC12Key("6", Six_Key, 0x01, 0x5);
-  addSIRC12Key("7", Seven_Key, 0x01, 0x6);
-  addSIRC12Key("8", Eight_Key, 0x01, 0x7);
-  addSIRC12Key("9", Nine_Key, 0x01, 0x8);
-  addSIRC12Key("0", Zero_Key, 0x01, 0x9);
+  addSIRC12Key("1", One_Key, 0x01, 0x00);
+  addSIRC12Key("2", Two_Key, 0x01, 0x01);
+  addSIRC12Key("3", Three_Key, 0x01, 0x02);
+  addSIRC12Key("4", Four_Key, 0x01, 0x03);
+  addSIRC12Key("5", Five_Key, 0x01, 0x04);
+  addSIRC12Key("6", Six_Key, 0x01, 0x05);
+  addSIRC12Key("7", Seven_Key, 0x01, 0x06);
+  addSIRC12Key("8", Eight_Key, 0x01, 0x07);
+  addSIRC12Key("9", Nine_Key, 0x01, 0x08);
+  addSIRC12Key("0", Zero_Key, 0x01, 0x09);
   addSIRC12Key("enter", Enter_Key, 0x01, 0x0B);
   addSIRC12Key("1-", Unmapped_Key, 0x01, 0x0C);
   addSIRC12Key("2-", Unmapped_Key, 0x01, 0x0D);
@@ -134,13 +144,25 @@ SonyTV1::SonyTV1(
 
 
 SonyTV1a::SonyTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : SonyTV1(guiObject, index)
+  : SonyTV1(index)
 {
   setKeysetName("TV Keyset 1a");
 
   addControlledDevice(Sony_Make, "KDW-25", TV_Device);
+}
+
+
+void SonyTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SonyTV1::populateProtocol(guiObject);
 
   addSIRC12Key("LEFT/-/RED", Left_Key, 0x03, 0x4C);
   addSIRC12Key("UP/GREEN", Up_Key, 0x03, 0x4D);
@@ -150,11 +172,23 @@ SonyTV1a::SonyTV1a(
 
 
 SonyTV1b::SonyTV1b(
-  QObject *guiObject,
   unsigned int index)
-  : SonyTV1a(guiObject, index)
+  : SonyTV1a(index)
 {
   setKeysetName("TV Keyset 1b");
+}
+
+
+void SonyTV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SonyTV1a::populateProtocol(guiObject);
 
   addSIRC12Key("clear", Unmapped_Key, 0x01, 0x34); // "Clock Clear"
   addSIRC12Key("level_plus", Unmapped_Key, 0x01, 0x74);
@@ -165,11 +199,23 @@ SonyTV1b::SonyTV1b(
 
 // Not sure about these codes:
 SonyTV1c::SonyTV1c(
-  QObject *guiObject,
   unsigned int index)
-  : SonyTV1(guiObject, index)
+  : SonyTV1(index)
 {
   setKeysetName("TV Keyset 1c");
+}
+
+
+void SonyTV1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SonyTV1::populateProtocol(guiObject);
 
   addSIRC12Key(">>", FastForward_Key, 0x01, 0x58);
   addSIRC12Key("<<", Rewind_Key, 0x01, 0x59);
@@ -189,13 +235,24 @@ SonyTV1c::SonyTV1c(
 // These controls don't quite match other SIRC data.  (some do, some don't)
 // This all taken from LIRC "AMPIR" config file.
 SonyAmp1::SonyAmp1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Amp Keyset 1",
       Sony_Make,
       index)
 {
+}
+
+
+void SonyAmp1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
   addSIRC12Key("1", One_Key, 0x0C, 0x00);
@@ -235,13 +292,24 @@ SonyAmp1::SonyAmp1(
 
 // These taken from LIRC config file "RM-AV2100T".
 SonyAmp2::SonyAmp2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Amp Keyset 2",
       Sony_Make,
       index)
 {
+}
+
+
+void SonyAmp2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
   addSIRC12Key("up", Up_Key, 0x0C, 0x78);
@@ -285,13 +353,24 @@ SonyAmp2::SonyAmp2(
 
 
 SonyAudio1::SonyAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Sony_Make,
       index)
 {
+}
+
+
+void SonyAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
   addSIRC12Key("tv_video", Input_Key, 0x01, 0x25);
@@ -375,11 +454,23 @@ SonyAudio1::SonyAudio1(
 
 
 SonyAudio1a::SonyAudio1a(
-  QObject *guiObject,
   unsigned int index)
-  : SonyAudio1(guiObject, index)
+  : SonyAudio1(index)
 {
   setKeysetName("Audio Keyset 1a");
+}
+
+
+void SonyAudio1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SonyAudio1::populateProtocol(guiObject);
 
   addSIRC12Key("tape", TapeInput_Key, 0x10, 0x23);
 
@@ -391,13 +482,24 @@ SonyAudio1a::SonyAudio1a(
 
 
 SonyDAT1::SonyDAT1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DAT Keyset 1",
       Sony_Make,
       index)
 {
+}
+
+
+void SonyDAT1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
   setPostData(0x07, 5);
@@ -434,13 +536,24 @@ SonyDAT1::SonyDAT1(
 
 
 SonyDVD1::SonyDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Sony_Make,
       index)
 {
+}
+
+
+void SonyDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
   addSIRC20Key("1", One_Key, 0x49, 0x1A, 0x00);
@@ -545,11 +658,23 @@ SonyDVD1::SonyDVD1(
 
 
 SonyDVD1a::SonyDVD1a(
-  QObject *guiObject,
   unsigned int index)
-  : SonyDVD1(guiObject, index)
+  : SonyDVD1(index)
 {
   setKeysetName("DVD Keyset 1a");
+}
+
+
+void SonyDVD1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SonyDVD1::populateProtocol(guiObject);
 
   addSIRC20Key("STEP_BACK", StepBack_Key, 0x49, 0x1A, 0x20);
   addSIRC20Key("STEP_FORWARD", StepForward_Key, 0x49, 0x1A, 0x21);
@@ -559,11 +684,23 @@ SonyDVD1a::SonyDVD1a(
 
 
 SonyDVD1b::SonyDVD1b(
-  QObject *guiObject,
   unsigned int index)
-  : SonyDVD1(guiObject, index)
+  : SonyDVD1(index)
 {
   setKeysetName("DVD Keyset 1b");
+}
+
+
+void SonyDVD1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SonyDVD1::populateProtocol(guiObject);
 
   addSIRC20Key("SLOW-", SlowMinus_Key, 0x49, 0x1A, 0x72);
   addSIRC20Key("SLOW+", SlowPlus_Key, 0x49, 0x1A, 0x73);
@@ -571,11 +708,23 @@ SonyDVD1b::SonyDVD1b(
 
 
 SonyDVD1c::SonyDVD1c(
-  QObject *guiObject,
   unsigned int index)
-  : SonyDVD1(guiObject, index)
+  : SonyDVD1(index)
 {
   setKeysetName("DVD Keyset 1c");
+}
+
+
+void SonyDVD1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SonyDVD1::populateProtocol(guiObject);
 
   addSIRC20Key("up", Up_Key, 0x49, 0x1A, 0x39);
   addSIRC20Key("down", Down_Key, 0x49, 0x1A, 0x38);
@@ -587,13 +736,24 @@ SonyDVD1c::SonyDVD1c(
 
 
 SonyVCR1::SonyVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Sony_Make,
       index)
 {
+}
+
+
+void SonyVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
   addSIRC12Key("VOL_UP", VolumeUp_Key, 0x01, 0x12);
@@ -644,11 +804,23 @@ SonyVCR1::SonyVCR1(
 
 
 SonyVCR1a::SonyVCR1a(
-  QObject *guiObject,
   unsigned int index)
-  : SonyVCR1(guiObject, index)
+  : SonyVCR1(index)
 {
   setKeysetName("VCR Keyset 1a");
+}
+
+
+void SonyVCR1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SonyVCR1::populateProtocol(guiObject);
 
   // These are the expected cursor keys:
   addSIRC12Key("up", Up_Key, 0x0B, 0x42);
@@ -663,11 +835,23 @@ SonyVCR1a::SonyVCR1a(
 
 // Extra codes off of hifi-remote website:
 SonyVCR1b::SonyVCR1b(
-  QObject *guiObject,
   unsigned int index)
-  : SonyVCR1a(guiObject, index)
+  : SonyVCR1a(index)
 {
   setKeysetName("VCR Keyset 1b");
+}
+
+
+void SonyVCR1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SonyVCR1a::populateProtocol(guiObject);
 
   addSIRC12Key("Volume Up", VolumeUp_Key, 0x0B, 0x12);
   addSIRC12Key("Volume Down", VolumeDown_Key, 0x0B, 0x13);
@@ -688,13 +872,24 @@ SonyVCR1b::SonyVCR1b(
 
 
 SonyReceiver1::SonyReceiver1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
       Sony_Make,
       index)
 {
+}
+
+
+void SonyReceiver1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
   addSIRC15Key("1", One_Key, 0x30, 0x00);

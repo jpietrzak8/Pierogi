@@ -2,7 +2,6 @@
 #include "protocols/aiwaprotocol.h"
 
 HaierTV1::HaierTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -10,6 +9,17 @@ HaierTV1::HaierTV1(
       index)
 {
   addControlledDevice(Haier_Make, "TN201AUV", TV_Device);
+}
+
+
+void HaierTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
 

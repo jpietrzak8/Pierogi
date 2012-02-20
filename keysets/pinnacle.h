@@ -9,24 +9,30 @@ class PinnaclePCTV1: public PIRKeysetMetaData
 {
 public:
   PinnaclePCTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PinnaclePCTV2: public PIRKeysetMetaData
 {
 public:
   PinnaclePCTV2(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PinnaclePCTV3: public PIRKeysetMetaData
 {
 public:
   PinnaclePCTV3(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // PINNACLE_H

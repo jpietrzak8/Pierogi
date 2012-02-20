@@ -9,8 +9,10 @@ class VirginSTB1: public PIRKeysetMetaData
 {
 public:
   VirginSTB1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // VIRGIN_H

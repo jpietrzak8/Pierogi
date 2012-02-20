@@ -3,13 +3,24 @@
 
 
 YamahaDVD1::YamahaDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Yamaha_Make,
       index)
 {
+}
+
+
+void YamahaDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x3EC1, 16);
@@ -51,11 +62,23 @@ YamahaDVD1::YamahaDVD1(
 
 
 YamahaDVD1a::YamahaDVD1a(
-  QObject *guiObject,
   unsigned int index)
-  : YamahaDVD1(guiObject, index)
+  : YamahaDVD1(index)
 {
   setKeysetName("DVD/LD Keyset 1a");
+}
+
+
+void YamahaDVD1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  YamahaDVD1::populateProtocol(guiObject);
 
   addKey("LD_CH_-", ChannelDown_Key, 0x02, 8);
   addKey("LD_CH_+", ChannelUp_Key, 0x03, 8);
@@ -72,13 +95,24 @@ YamahaDVD1a::YamahaDVD1a(
 
 
 YamahaAudio1::YamahaAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Device Keyset 1",
       Yamaha_Make,
       index)
 {
+}
+
+
+void YamahaAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x9E61, 16);
@@ -141,11 +175,23 @@ YamahaAudio1::YamahaAudio1(
 
 
 YamahaAudio1a::YamahaAudio1a(
-  QObject *guiObject,
   unsigned int index)
-  : YamahaAudio1(guiObject, index)
+  : YamahaAudio1(index)
 {
   setKeysetName("Audio Keyset 1a");
+}
+
+
+void YamahaAudio1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  YamahaAudio1::populateProtocol(guiObject);
 
   addKey("PAUSE/STOP", Stop_Key, 0x03, 8);
   addKey("PAUSE/STOP", Pause_Key, 0x03, 8);
@@ -153,7 +199,6 @@ YamahaAudio1a::YamahaAudio1a(
 
 
 YamahaAudio2::YamahaAudio2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 2",
@@ -163,6 +208,17 @@ YamahaAudio2::YamahaAudio2(
   addControlledDevice(Yamaha_Make, "RX-395-RDS", Audio_Device);
   addControlledDevice(Yamaha_Make, "AX-570", Audio_Device);
   addControlledDevice(Yamaha_Make, "CDX-570", Audio_Device);
+}
+
+
+void YamahaAudio2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -246,11 +302,23 @@ YamahaAudio2::YamahaAudio2(
 
 
 YamahaAudio2a::YamahaAudio2a(
-  QObject *guiObject,
   unsigned int index)
-  : YamahaAudio2(guiObject, index)
+  : YamahaAudio2(index)
 {
   setKeysetName("Audio Keyset 2a");
+}
+
+
+void YamahaAudio2a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  YamahaAudio2::populateProtocol(guiObject);
 
   addKey("Dolby/DTS", Unmapped_Key, 0x90, 8);
   addKey("6.1/5.1", Unmapped_Key, 0x97, 8);
@@ -260,22 +328,46 @@ YamahaAudio2a::YamahaAudio2a(
 
 
 YamahaAudio2b::YamahaAudio2b(
-  QObject *guiObject,
   unsigned int index)
-  : YamahaAudio2(guiObject, index)
+  : YamahaAudio2(index)
 {
   setKeysetName("Audio Keyset 2b");
+}
+
+
+void YamahaAudio2b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  YamahaAudio2::populateProtocol(guiObject);
 
   addKey("SOURCE_DIRECT", Unmapped_Key, 0x56, 8);
 }
 
 
 YamahaAudio2c::YamahaAudio2c(
-  QObject *guiObject,
   unsigned int index)
-  : YamahaAudio2(guiObject, index)
+  : YamahaAudio2(index)
 {
   setKeysetName("Audio Keyset 2c");
+}
+
+
+void YamahaAudio2c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  YamahaAudio2::populateProtocol(guiObject);
 
   addKey("parameterv", Unmapped_Key, 0xC4, 8);
   addKey("parameter^", Unmapped_Key, 0xC5, 8);
@@ -299,11 +391,23 @@ YamahaAudio2c::YamahaAudio2c(
 
 
 YamahaAudio2d::YamahaAudio2d(
-  QObject *guiObject,
   unsigned int index)
-  : YamahaAudio2(guiObject, index)
+  : YamahaAudio2(index)
 {
   setKeysetName("Audio Keyset 2d");
+}
+
+
+void YamahaAudio2d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  YamahaAudio2::populateProtocol(guiObject);
 
   addKey("LOUDNESS_+", Unmapped_Key, 0x1D, 8);
   addKey("LOUDNESS_-", Unmapped_Key, 0x1E, 8);
@@ -311,13 +415,24 @@ YamahaAudio2d::YamahaAudio2d(
 
 
 YamahaAudio3::YamahaAudio3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Yamaha_Make,
       index)
 {
+}
+
+
+void YamahaAudio3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0xFE01, 16);
@@ -359,7 +474,6 @@ YamahaAudio3::YamahaAudio3(
 
 
 YamahaAudio4::YamahaAudio4(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 4",
@@ -367,6 +481,17 @@ YamahaAudio4::YamahaAudio4(
       index)
 {
   addControlledDevice(Yamaha_Make, "GX-50", Audio_Device);
+}
+
+
+void YamahaAudio4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -422,13 +547,24 @@ YamahaAudio4::YamahaAudio4(
 
 
 YamahaTV1::YamahaTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Yamaha_Make,
       index)
 {
+}
+
+
+void YamahaTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x20DF, 16);
@@ -454,13 +590,24 @@ YamahaTV1::YamahaTV1(
 
 
 YamahaKaraoke1::YamahaKaraoke1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Karaoke Keyset 1",
       Yamaha_Make,
       index)
 {
+}
+
+
+void YamahaKaraoke1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0xDE21, 16);

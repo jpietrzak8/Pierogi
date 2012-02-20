@@ -9,16 +9,20 @@ class FortecReceiver1: public PIRKeysetMetaData
 {
 public:
   FortecReceiver1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class FortecReceiver2: public PIRKeysetMetaData
 {
 public:
   FortecReceiver2(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // FORTEC_H

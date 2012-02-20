@@ -4,13 +4,24 @@
 
 
 PanasonicCarAudio::PanasonicCarAudio(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Car Audio Keyset",
       Panasonic_Make,
       index)
 {
+}
+
+
+void PanasonicCarAudio::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
 //  setPreData(0x8156, 16);
@@ -28,13 +39,24 @@ PanasonicCarAudio::PanasonicCarAudio(
 
 
 PanasonicSat1::PanasonicSat1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Satellite Keyset 1",
       Panasonic_Make,
       index)
 {
+}
+
+
+void PanasonicSat1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new KaseikyoProtocol(guiObject, index);
 
 //  setPreData(0x40040140, 32);
@@ -81,11 +103,23 @@ PanasonicSat1::PanasonicSat1(
 
 
 PanasonicSat1a::PanasonicSat1a(
-  QObject *guiObject,
   unsigned int index)
-  : PanasonicSat1(guiObject, index)
+  : PanasonicSat1(index)
 {
   setKeysetName("Satellite Keyset 1a");
+}
+
+
+void PanasonicSat1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PanasonicSat1::populateProtocol(guiObject);
 
   addKaseikyoKey("EXIT", Exit_Key, 0x028, 0xCF);
   addKaseikyoKey("CH+", ChannelUp_Key, 0x028, 0xB2);
@@ -94,13 +128,24 @@ PanasonicSat1a::PanasonicSat1a(
 
 
 PanasonicTV1::PanasonicTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Panasonic_Make,
       index)
 {
+}
+
+
+void PanasonicTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new KaseikyoProtocol(guiObject, index);
 
 //  setPreData(0x400401, 24);
@@ -213,11 +258,24 @@ PanasonicTV1::PanasonicTV1(
 
 
 PanasonicTV1a::PanasonicTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : PanasonicTV1(guiObject, index)
+  : PanasonicTV1(index)
 {
   setKeysetName("TV Keyset 1a");
+}
+
+
+void PanasonicTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PanasonicTV1::populateProtocol(guiObject);
+
   // Overwrite some of the keys:
   addKaseikyoKey("OK", Select_Key, 0x008, 0x49);
   addKaseikyoKey("MENU", Menu_Key, 0x008, 0x06);
@@ -225,9 +283,8 @@ PanasonicTV1a::PanasonicTV1a(
 
 
 PanasonicTV1b::PanasonicTV1b(
-  QObject *guiObject,
   unsigned int index)
-  : PanasonicTV1(guiObject, index)
+  : PanasonicTV1(index)
 {
   setKeysetName("TV Keyset 1b");
 
@@ -235,6 +292,19 @@ PanasonicTV1b::PanasonicTV1b(
   addControlledDevice(Panasonic_Make, "Viera 42PZ700U", TV_Device);
   addControlledDevice(Panasonic_Make, "Viera 42PZ8ES", TV_Device);
   addControlledDevice(Panasonic_Make, "Quintrix TX-25MK1C", TV_Device);
+}
+
+
+void PanasonicTV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PanasonicTV1::populateProtocol(guiObject);
 
   addKaseikyoKey("Info", Info_Key, 0x008, 0x39); // "OSD"
   addKaseikyoKey("OK", Select_Key, 0x008, 0x49);
@@ -247,13 +317,24 @@ PanasonicTV1b::PanasonicTV1b(
 
 
 PanasonicVCR1::PanasonicVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Panasonic_Make,
       index)
 {
+}
+
+
+void PanasonicVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new KaseikyoProtocol(guiObject, index);
 
 //  setPreData(0x400409, 24);
@@ -351,11 +432,23 @@ PanasonicVCR1::PanasonicVCR1(
 
 
 PanasonicVCR1a::PanasonicVCR1a(
-  QObject *guiObject,
   unsigned int index)
-  : PanasonicVCR1(guiObject, index)
+  : PanasonicVCR1(index)
 {
   setKeysetName("VCR Keyset 1a");
+}
+
+
+void PanasonicVCR1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PanasonicVCR1::populateProtocol(guiObject);
 
   addKaseikyoKey("OSD", Info_Key, 0x009, 0x57);
   addKaseikyoKey("AV", Input_Key, 0x009, 0xC0);
@@ -364,11 +457,23 @@ PanasonicVCR1a::PanasonicVCR1a(
 
 
 PanasonicVCR1b::PanasonicVCR1b(
-  QObject *guiObject,
   unsigned int index)
-  : PanasonicVCR1(guiObject, index)
+  : PanasonicVCR1(index)
 {
   setKeysetName("VCR Keyset 1b");
+}
+
+
+void PanasonicVCR1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PanasonicVCR1::populateProtocol(guiObject);
 
   addKaseikyoKey("repeat", Repeat_Key, 0x009, 0xF9);
   addKaseikyoKey("prog", Program_Key, 0x009, 0xFF);
@@ -377,11 +482,23 @@ PanasonicVCR1b::PanasonicVCR1b(
 
 
 PanasonicVCR1c::PanasonicVCR1c(
-  QObject *guiObject,
   unsigned int index)
-  : PanasonicVCR1(guiObject, index)
+  : PanasonicVCR1(index)
 {
   setKeysetName("VCR Keyset 1c");
+}
+
+
+void PanasonicVCR1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PanasonicVCR1::populateProtocol(guiObject);
 
   addKaseikyoKey("rotate", Up_Key, 0x019, 0x02);
   addKaseikyoKey("rotatedown", Down_Key, 0x019, 0x03);
@@ -391,13 +508,24 @@ PanasonicVCR1c::PanasonicVCR1c(
 
 
 PanasonicDVD1::PanasonicDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Panasonic_Make,
       index)
 {
+}
+
+
+void PanasonicDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new KaseikyoProtocol(guiObject, index);
 
 //  setPreData(0x40040D00, 32);
@@ -480,11 +608,23 @@ PanasonicDVD1::PanasonicDVD1(
 
 
 PanasonicDVD1a::PanasonicDVD1a(
-  QObject *guiObject,
   unsigned int index)
-  : PanasonicDVD1(guiObject, index)
+  : PanasonicDVD1(index)
 {
   setKeysetName("DVD Keyset 1a");
+}
+
+
+void PanasonicDVD1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PanasonicDVD1::populateProtocol(guiObject);
 
   addKaseikyoKey("channel2up", ChannelUp_Key, 0x00B, 0x34);
   addKaseikyoKey("channel2down", ChannelDown_Key, 0x00B, 0x35);
@@ -493,7 +633,6 @@ PanasonicDVD1a::PanasonicDVD1a(
 
 
 PanasonicAudio1::PanasonicAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
@@ -502,6 +641,17 @@ PanasonicAudio1::PanasonicAudio1(
 {
   addControlledDevice(Panasonic_Make, "RX-DS25", Audio_Device);
   addControlledDevice(Panasonic_Make, "RX-e300", Audio_Device);
+}
+
+
+void PanasonicAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new KaseikyoProtocol(guiObject, index);
 
@@ -574,13 +724,24 @@ PanasonicAudio1::PanasonicAudio1(
 
 
 PanasonicAC1::PanasonicAC1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Air Conditioner 1",
       Panasonic_Make,
       index)
 {
+}
+
+
+void PanasonicAC1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x6681, 16);

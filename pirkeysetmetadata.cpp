@@ -9,9 +9,10 @@ PIRKeysetMetaData::PIRKeysetMetaData(
   const char *r,
   PIRMakeName m,
   unsigned int i)
-  : keysetName(r),
-    make(m),
-    id(i)
+  : threadableProtocol(NULL),
+    index(i),
+    keysetName(r),
+    make(m)
 {
 }
 
@@ -22,10 +23,14 @@ bool PIRKeysetMetaData::hasKey(
 }
 
 
-void PIRKeysetMetaData::moveProtocolToThread(
+void PIRKeysetMetaData::moveToThread(
   QThread *thread)
 {
-  threadableProtocol->moveToThread(thread);
+  if (threadableProtocol)
+  {
+    // Do I need some error checking here?
+    threadableProtocol->moveToThread(thread);
+  }
 }
 
 
@@ -43,7 +48,7 @@ void PIRKeysetMetaData::populateDeviceTypes(
 
 unsigned int PIRKeysetMetaData::getID() const
 {
-  return id;
+  return index;
 }
 
 
@@ -94,7 +99,6 @@ void PIRKeysetMetaData::addSIRC12Key(
   if (key != Unmapped_Key)
   {
     keys[key] = name;
-
     threadableProtocol->addSIRCKey(key, addressData, 5, commandData);
   }
 }

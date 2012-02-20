@@ -9,40 +9,50 @@ class CambridgeCD1: public PIRKeysetMetaData
 {
 public:
   CambridgeCD1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class CambridgeAudio1: public PIRKeysetMetaData
 {
 public:
   CambridgeAudio1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class CambridgeAudio2: public PIRKeysetMetaData
 {
 public:
   CambridgeAudio2(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class CambridgeAudio3: public PIRKeysetMetaData
 {
 public:
   CambridgeAudio3(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class CambridgeDVD1: public PIRKeysetMetaData
 {
 public:
   CambridgeDVD1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // CAMBRIDGE_H

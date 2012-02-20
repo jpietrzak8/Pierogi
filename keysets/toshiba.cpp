@@ -2,7 +2,6 @@
 #include "protocols/necprotocol.h"
 
 ToshibaTV1::ToshibaTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -10,6 +9,17 @@ ToshibaTV1::ToshibaTV1(
       index)
 {
   addControlledDevice(Toshiba_Make, "21S03D", TV_Device);
+}
+
+
+void ToshibaTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -81,13 +91,25 @@ ToshibaTV1::ToshibaTV1(
 
 
 ToshibaTV1a::ToshibaTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaTV1(guiObject, index)
+  : ToshibaTV1(index)
 {
   setKeysetName("TV Keyset 1a");
 
   addControlledDevice(Toshiba_Make, "27A51", TV_Device);
+}
+
+
+void ToshibaTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaTV1::populateProtocol(guiObject);
 
   addKey("menu/enter", Menu_Key, 0x80, 8);
   addKey("menu/enter", Select_Key, 0x80, 8);
@@ -95,11 +117,23 @@ ToshibaTV1a::ToshibaTV1a(
 
 
 ToshibaTV1b::ToshibaTV1b(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaTV1(guiObject, index)
+  : ToshibaTV1(index)
 {
   setKeysetName("TV Keyset 1b");
+}
+
+
+void ToshibaTV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaTV1::populateProtocol(guiObject);
 
   addKey("right", Right_Key, 0x19, 8); // "fav+"
   addKey("left", Left_Key, 0x1D, 8); // "fav-"
@@ -111,11 +145,23 @@ ToshibaTV1b::ToshibaTV1b(
 
 
 ToshibaTV1c::ToshibaTV1c(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaTV1f(guiObject, index)
+  : ToshibaTV1f(index)
 {
   setKeysetName("TV Keyset 1c");
+}
+
+
+void ToshibaTV1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaTV1f::populateProtocol(guiObject);
 
   addKey("textzoom", TeletextSize_Key, 0x0D, 8); // "Enlarge"
   addKey("texttime", TeletextTime_Key, 0x15, 8);
@@ -129,11 +175,23 @@ ToshibaTV1c::ToshibaTV1c(
 
 
 ToshibaTV1d::ToshibaTV1d(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaTV1f(guiObject, index)
+  : ToshibaTV1f(index)
 {
   setKeysetName("TV Keyset 1d");
+}
+
+
+void ToshibaTV1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaTV1f::populateProtocol(guiObject);
 
   addKey("subtitle", Captions_Key, 0x0C, 8);
   addKey("page+", PageDown_Key, 0x0D,8);
@@ -150,11 +208,23 @@ ToshibaTV1d::ToshibaTV1d(
 
 
 ToshibaTV1e::ToshibaTV1e(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaTV1(guiObject, index)
+  : ToshibaTV1(index)
 {
   setKeysetName("TV Keyset 1e");
+}
+
+
+void ToshibaTV1e::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaTV1::populateProtocol(guiObject);
 
   addKey("SKIPPREV", Previous_Key, 0x11, 8);
   addKey("FFWD", FastForward_Key, 0x2A, 8);
@@ -166,13 +236,25 @@ ToshibaTV1e::ToshibaTV1e(
 
 
 ToshibaTV1f::ToshibaTV1f(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaTV1(guiObject, index)
+  : ToshibaTV1(index)
 {
   setKeysetName("TV Keyset 1f");
 
   addControlledDevice(Toshiba_Make, "Regza AV50*", TV_Device);
+}
+
+
+void ToshibaTV1f::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaTV1::populateProtocol(guiObject);
 
   addKey("info", Info_Key, 0x16, 8);
   addKey("stillpicture", Pause_Key, 0x22, 8);
@@ -182,11 +264,23 @@ ToshibaTV1f::ToshibaTV1f(
 
 
 ToshibaTV1g::ToshibaTV1g(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaTV1(guiObject, index)
+  : ToshibaTV1(index)
 {
   setKeysetName("TV Keyset 1g");
+}
+
+
+void ToshibaTV1g::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaTV1::populateProtocol(guiObject);
 
   addKey("menu", Menu_Key, 0x80, 8);
   addKey("set+", Right_Key, 0x82, 8);
@@ -196,11 +290,23 @@ ToshibaTV1g::ToshibaTV1g(
 
 
 ToshibaTV1h::ToshibaTV1h(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaTV1b(guiObject, index)
+  : ToshibaTV1b(index)
 {
   setKeysetName("TV Keyset 1h");
+}
+
+
+void ToshibaTV1h::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaTV1b::populateProtocol(guiObject);
 
   addKey("last (prev ch)", PrevChannel_Key, 0x17, 8);
   addKey("program guide", Guide_Key, 0x1C, 8);
@@ -209,13 +315,24 @@ ToshibaTV1h::ToshibaTV1h(
 
 
 ToshibaVCR1::ToshibaVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Toshiba_Make,
       index)
 {
+}
+
+
+void ToshibaVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x44, 8);
@@ -251,11 +368,23 @@ ToshibaVCR1::ToshibaVCR1(
 
 
 ToshibaVCR1a::ToshibaVCR1a(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaVCR1(guiObject, index)
+  : ToshibaVCR1(index)
 {
   setKeysetName("VCR Keyset 1a");
+}
+
+
+void ToshibaVCR1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaVCR1::populateProtocol(guiObject);
 
   addKey("ch+", ChannelUp_Key, 0x1E, 8);
 //  addKey("ch-", ChannelDown_Key, 0x1F, 8); // Already in parent
@@ -263,13 +392,24 @@ ToshibaVCR1a::ToshibaVCR1a(
 
 
 ToshibaDisc1::ToshibaDisc1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Disc Keyset 1",
       Toshiba_Make,
       index)
 {
+}
+
+
+void ToshibaDisc1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0xA25D, 16);
@@ -328,11 +468,23 @@ ToshibaDisc1::ToshibaDisc1(
 
 
 ToshibaDisc1a::ToshibaDisc1a(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaDisc1(guiObject, index)
+  : ToshibaDisc1(index)
 {
   setKeysetName("Disc Keyset 1a");
+}
+
+
+void ToshibaDisc1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaDisc1::populateProtocol(guiObject);
 
   addKey("setup", Menu_Key, 0x20, 8);
   addKey("audio", Audio_Key, 0x27, 8);
@@ -342,11 +494,23 @@ ToshibaDisc1a::ToshibaDisc1a(
 
 
 ToshibaDisc1b::ToshibaDisc1b(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaDisc1(guiObject, index)
+  : ToshibaDisc1(index)
 {
   setKeysetName("Disc Keyset 1b");
+}
+
+
+void ToshibaDisc1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaDisc1::populateProtocol(guiObject);
 
   addKey("enter", Select_Key, 0x84, 8);
   addKey("mark", Unmapped_Key, 0x21, 8);
@@ -354,11 +518,23 @@ ToshibaDisc1b::ToshibaDisc1b(
 
 
 ToshibaDisc1c::ToshibaDisc1c(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaDisc1a(guiObject, index)
+  : ToshibaDisc1a(index)
 {
   setKeysetName("Disc Keyset 1c");
+}
+
+
+void ToshibaDisc1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaDisc1a::populateProtocol(guiObject);
 
   addKey("KEY_DVD", Unmapped_Key, 0x22, 8);
   addKey("KEY_SLOW", Slow_Key, 0x26, 8);
@@ -368,11 +544,23 @@ ToshibaDisc1c::ToshibaDisc1c(
 
 
 ToshibaDisc1d::ToshibaDisc1d(
-  QObject *guiObject,
   unsigned int index)
-  : ToshibaDisc1a(guiObject, index)
+  : ToshibaDisc1a(index)
 {
   setKeysetName("Disc Keyset 1d");
+}
+
+
+void ToshibaDisc1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  ToshibaDisc1a::populateProtocol(guiObject);
 
   addKey("recall", PrevChannel_Key, 0x16, 8);
 }

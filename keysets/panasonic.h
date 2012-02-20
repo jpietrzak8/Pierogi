@@ -9,120 +9,150 @@ class PanasonicCarAudio: public PIRKeysetMetaData
 {
 public:
   PanasonicCarAudio(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicSat1: public PIRKeysetMetaData
 {
 public:
   PanasonicSat1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicSat1a: public PanasonicSat1
 {
 public:
   PanasonicSat1a(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicTV1: public PIRKeysetMetaData
 {
 public:
   PanasonicTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicTV1a: public PanasonicTV1
 {
 public:
   PanasonicTV1a(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicTV1b: public PanasonicTV1
 {
 public:
   PanasonicTV1b(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicVCR1: public PIRKeysetMetaData
 {
 public:
   PanasonicVCR1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicVCR1a: public PanasonicVCR1
 {
 public:
   PanasonicVCR1a(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicVCR1b: public PanasonicVCR1
 {
 public:
   PanasonicVCR1b(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicVCR1c: public PanasonicVCR1
 {
 public:
   PanasonicVCR1c(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicDVD1: public PIRKeysetMetaData
 {
 public:
   PanasonicDVD1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicDVD1a: public PanasonicDVD1
 {
 public:
   PanasonicDVD1a(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicAudio1: public PIRKeysetMetaData
 {
 public:
   PanasonicAudio1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicAudio1a: public PanasonicAudio1
 {
 public:
   PanasonicAudio1a(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class PanasonicAC1: public PIRKeysetMetaData
 {
 public:
   PanasonicAC1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // PANASONIC_H

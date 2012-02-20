@@ -9,6 +9,7 @@
 #include <list>
 
 class QThread;
+class QObject;
 
 class PIRKeysetWidgetItem;
 class PIRProtocol;
@@ -51,7 +52,10 @@ public:
 
   const char *getKeysetName() const;
 
-  void moveProtocolToThread(
+  virtual void populateProtocol(
+    QObject *guiObject) = 0;
+
+  void moveToThread(
     QThread *thread);
 
   void populateDeviceTypes(
@@ -141,21 +145,20 @@ protected:
     unsigned long data,
     unsigned int bits);
 
+  void setKeysetName(
+    const char *name);
+
   KeyCollection keys;
 
   DeviceCollection controlledDevices;
 
   PIRProtocol *threadableProtocol;
-
-  void setKeysetName(
-    const char *name);
+  unsigned int index;
 
 private:
   const char *keysetName;
   PIRMakeName make;
   PIRDeviceTypeCollection deviceTypes;
-
-  unsigned int id;
 };
 
 

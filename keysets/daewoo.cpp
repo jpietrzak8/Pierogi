@@ -4,7 +4,6 @@
 #include "protocols/necprotocol.h"
 
 DaewooTV1::DaewooTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -12,6 +11,17 @@ DaewooTV1::DaewooTV1(
       index)
 {
   addControlledDevice(Daewoo_Make, "21T5T", TV_Device);
+}
+
+
+void DaewooTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
@@ -61,7 +71,6 @@ DaewooTV1::DaewooTV1(
 
 
 DaewooTV2::DaewooTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -69,6 +78,17 @@ DaewooTV2::DaewooTV2(
       index)
 {
   addControlledDevice(Daewoo_Make, "DMQ-2141", TV_Device);
+}
+
+
+void DaewooTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new DaewooProtocol(guiObject, index);
 
@@ -117,13 +137,24 @@ DaewooTV2::DaewooTV2(
 
 
 DaewooTV3::DaewooTV3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 3",
       Daewoo_Make,
       index)
 {
+}
+
+
+void DaewooTV3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x14, 8);
@@ -193,13 +224,24 @@ DaewooTV3::DaewooTV3(
 
 
 DaewooTV4::DaewooTV4(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 4",
       Daewoo_Make,
       index)
 {
+}
+
+
+void DaewooTV4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x1004, 16);
@@ -245,13 +287,24 @@ DaewooTV4::DaewooTV4(
 
 
 DaewooDVD1::DaewooDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Daewoo_Make,
       index)
 {
+}
+
+
+void DaewooDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new DaewooProtocol(guiObject, index);
 
   setPreData(0x15, 8);
@@ -305,7 +358,6 @@ DaewooDVD1::DaewooDVD1(
 
 
 DaewooVCR1::DaewooVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
@@ -313,6 +365,17 @@ DaewooVCR1::DaewooVCR1(
       index)
 {
   addControlledDevice(Daewoo_Make, "PV-200", VCR_Device);
+}
+
+
+void DaewooVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -358,7 +421,6 @@ DaewooVCR1::DaewooVCR1(
 
 
 DaewooVCR2::DaewooVCR2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 2",
@@ -366,6 +428,17 @@ DaewooVCR2::DaewooVCR2(
       index)
 {
   addControlledDevice(Daewoo_Make, "VQ857S", VCR_Device);
+}
+
+
+void DaewooVCR2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new DaewooProtocol(guiObject, index);
 

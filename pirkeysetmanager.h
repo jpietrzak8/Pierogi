@@ -23,8 +23,7 @@ typedef std::map<QString, PIRKeysetNameIndex> PIRKeysetMakeIndex;
 class PIRKeysetManager
 {
 public:
-  PIRKeysetManager(
-    QObject *guiObject);
+  PIRKeysetManager();
 
   ~PIRKeysetManager();
 
@@ -57,9 +56,12 @@ public:
     PIRKeysetWidgetItem *kwi,
     unsigned int keysetID) const;
 
-private:
-  // This needs to be improved:
   void populateKeyset(
+    QObject *guiObject,
+    unsigned int keysetID);
+
+private:
+  void setupKeyset(
     PIRKeysetMetaData *keyset);
 
   PIRKeysetCollection keysetsInfo;

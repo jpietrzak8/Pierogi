@@ -9,16 +9,20 @@ class WDMediaPlayer1: public PIRKeysetMetaData
 {
 public:
   WDMediaPlayer1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class WDMediaPlayer1a: public WDMediaPlayer1
 {
 public:
   WDMediaPlayer1a(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // WD_H

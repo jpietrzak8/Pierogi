@@ -4,7 +4,6 @@
 #include "protocols/rc5protocol.h"
 
 SamsungTV1::SamsungTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -15,6 +14,17 @@ SamsungTV1::SamsungTV1(
   addControlledDevice(Samsung_Make, "SyncMaster 225MW", TV_Device);
   addControlledDevice(Samsung_Make, "LN32C530F1FXZA", TV_Device);
   addControlledDevice(Samsung_Make, "UE46B6000VPXZG", TV_Device); // ?
+}
+
+
+void SamsungTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new SamsungProtocol(guiObject, index);
 
@@ -102,11 +112,23 @@ SamsungTV1::SamsungTV1(
 
 
 SamsungTV1a::SamsungTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungTV1(guiObject, index)
+  : SamsungTV1(index)
 {
   setKeysetName("TV Keyset 1a");
+}
+
+
+void SamsungTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungTV1::populateProtocol(guiObject);
 
   addKey("turbo", Unmapped_Key, 0x13, 8);
   addKey("s.menu", SoundMode_Key, 0x14, 8);
@@ -116,13 +138,25 @@ SamsungTV1a::SamsungTV1a(
 
 
 SamsungTV1b::SamsungTV1b(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungTV1(guiObject, index)
+  : SamsungTV1(index)
 {
   setKeysetName("TV Keyset 1b");
 
   addControlledDevice(Samsung_Make, "LE46M51B (R)", TV_Device); // ?
+}
+
+
+void SamsungTV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungTV1::populateProtocol(guiObject);
 
   addKey("Red", Red_Key, 0x21, 8);
   addKey("Exit", Exit_Key, 0x2C, 8);
@@ -130,11 +164,23 @@ SamsungTV1b::SamsungTV1b(
 
 
 SamsungTV1c::SamsungTV1c(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungTV1(guiObject, index)
+  : SamsungTV1(index)
 {
   setKeysetName("TV Keyset 1c");
+}
+
+
+void SamsungTV1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungTV1::populateProtocol(guiObject);
 
   // Some remotes apparently use channel and volume keys for navigation:
   addKey("right", Right_Key, 0x07, 8);
@@ -146,22 +192,46 @@ SamsungTV1c::SamsungTV1c(
 
 
 SamsungTV1d::SamsungTV1d(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungTV1(guiObject, index)
+  : SamsungTV1(index)
 {
   setKeysetName("TV Keyset 1d");
+}
+
+
+void SamsungTV1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungTV1::populateProtocol(guiObject);
 
   addKey("turbo", Unmapped_Key, 0x64, 8);
 }
 
 
 SamsungTV1e::SamsungTV1e(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungTV1(guiObject, index)
+  : SamsungTV1(index)
 {
   setKeysetName("TV Keyset 1e");
+}
+
+
+void SamsungTV1e::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungTV1::populateProtocol(guiObject);
 
   addKey("p.mode", PictureMode_Key, 0x16, 8);
 }
@@ -169,11 +239,23 @@ SamsungTV1e::SamsungTV1e(
 
 // This one overrides the color keys:
 SamsungTV1f::SamsungTV1f(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungTV1(guiObject, index)
+  : SamsungTV1(index)
 {
   setKeysetName("TV Keyset 1f");
+}
+
+
+void SamsungTV1f::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungTV1::populateProtocol(guiObject);
 
   addKey("p-mode", PictureMode_Key, 0x6C, 8);
   addKey("s-mode", SoundMode_Key, 0x14, 8);
@@ -184,13 +266,24 @@ SamsungTV1f::SamsungTV1f(
 
 // Not sure that this even is a Samsung TV...
 SamsungTV2::SamsungTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Samsung_Make,
       index)
 {
+}
+
+
+void SamsungTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("1", One_Key, 0x1001, 13);
@@ -233,11 +326,23 @@ SamsungTV2::SamsungTV2(
 
 
 SamsungTV2a::SamsungTV2a(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungTV2(guiObject, index)
+  : SamsungTV2(index)
 {
   setKeysetName("TV Keyset 2a");
+}
+
+
+void SamsungTV2a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungTV2::populateProtocol(guiObject);
 
   addKey("volume+", VolumeUp_Key, 0x1010, 13);
   addKey("volume-", VolumeDown_Key, 0x1011, 13);
@@ -247,13 +352,24 @@ SamsungTV2a::SamsungTV2a(
 
 
 SamsungVCR1::SamsungVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR(DVD) Keyset 1",
       Samsung_Make,
       index)
 {
+}
+
+
+void SamsungVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SamsungProtocol(guiObject, index);
 
 //  setPreData(0xA0A0, 16);
@@ -322,11 +438,23 @@ SamsungVCR1::SamsungVCR1(
 
 
 SamsungVCR1a::SamsungVCR1a(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungVCR1(guiObject, index)
+  : SamsungVCR1(index)
 {
   setKeysetName("VCR(DVD) Keyset 1a");
+}
+
+
+void SamsungVCR1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungVCR1::populateProtocol(guiObject);
 
   addKey("right", Right_Key, 0x13, 8);
   addKey("left", Left_Key, 0x17, 8);
@@ -347,11 +475,23 @@ SamsungVCR1a::SamsungVCR1a(
 
 
 SamsungVCR1b::SamsungVCR1b(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungVCR1(guiObject, index)
+  : SamsungVCR1(index)
 {
   setKeysetName("VCR(DVD) Keyset 1b");
+}
+
+
+void SamsungVCR1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungVCR1::populateProtocol(guiObject);
 
   addKey("audio", Audio_Key, 0x22, 8); // "output"
   addKey("+", Unmapped_Key, 0x26, 8);
@@ -368,13 +508,25 @@ SamsungVCR1b::SamsungVCR1b(
 
 
 SamsungVCR1c::SamsungVCR1c(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungVCR1a(guiObject, index)
+  : SamsungVCR1a(index)
 {
-  addControlledDevice(Samsung_Make, "DVD-V1000", DVD_Device);
-
   setKeysetName("VCR(DVD) Keyset 1c");
+
+  addControlledDevice(Samsung_Make, "DVD-V1000", DVD_Device);
+}
+
+
+void SamsungVCR1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungVCR1a::populateProtocol(guiObject);
 
   addKey("right", Right_Key, 0x00, 8);
   addKey("up", Up_Key, 0x1E, 8);
@@ -391,15 +543,27 @@ SamsungVCR1c::SamsungVCR1c(
 
 
 SamsungVCR1d::SamsungVCR1d(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungVCR1(guiObject, index)
+  : SamsungVCR1(index)
 {
   // Combo VCR/TV:
   addControlledDevice(Samsung_Make, "CXD1342", TV_Device);
   addControlledDevice(Samsung_Make, "CXD1342", VCR_Device);
 
   setKeysetName("VCR/TV Combo Keyset 1d");
+}
+
+
+void SamsungVCR1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungVCR1::populateProtocol(guiObject);
 
   addKey("VOL+", VolumeUp_Key, 0x07, 8);
   addKey("VOL-", VolumeDown_Key, 0x0B, 8);
@@ -413,11 +577,23 @@ SamsungVCR1d::SamsungVCR1d(
 
 
 SamsungVCR1e::SamsungVCR1e(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungVCR1(guiObject, index)
+  : SamsungVCR1(index)
 {
   setKeysetName("VCR(DVD) Keyset 1e");
+}
+
+
+void SamsungVCR1e::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungVCR1::populateProtocol(guiObject);
 
   addKey("DIGEST", Unmapped_Key, 0x00, 8);
   addKey("RIGHT", Right_Key, 0x13, 8);
@@ -445,13 +621,24 @@ SamsungVCR1e::SamsungVCR1e(
 
 
 SamsungDVD1::SamsungDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Samsung_Make,
       index)
 {
+}
+
+
+void SamsungDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
@@ -525,22 +712,46 @@ SamsungDVD1::SamsungDVD1(
 
 
 SamsungDVD1a::SamsungDVD1a(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungDVD1(guiObject, index)
+  : SamsungDVD1(index)
 {
   setKeysetName("DVD Keyset 1a");
+}
+
+
+void SamsungDVD1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungDVD1::populateProtocol(guiObject);
 
   addKey("hdmi_sel", Unmapped_Key, 0x15EA, 16);
 }
 
 
 SamsungDVD1b::SamsungDVD1b(
-  QObject *guiObject,
   unsigned int index)
-  : SamsungDVD1(guiObject, index)
+  : SamsungDVD1(index)
 {
   setKeysetName("DVD Keyset 1b");
+}
+
+
+void SamsungDVD1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SamsungDVD1::populateProtocol(guiObject);
 
   addKey("Zoom", Zoom_Key, 0x55AA, 16);
   addKey("i.replay", Replay_Key, 0xB54A, 16);
@@ -549,7 +760,6 @@ SamsungDVD1b::SamsungDVD1b(
 
 
 SamsungDVD2::SamsungDVD2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 2",
@@ -557,6 +767,17 @@ SamsungDVD2::SamsungDVD2(
       index)
 {
   addControlledDevice(Samsung_Make, "HT-P1200", DVD_Device);
+}
+
+
+void SamsungDVD2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol= new SamsungProtocol(guiObject, index);
 
@@ -621,13 +842,24 @@ SamsungDVD2::SamsungDVD2(
 
 
 SamsungAC1::SamsungAC1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Air Conditioner Keyset 1",
       Samsung_Make,
       index)
 {
+}
+
+
+void SamsungAC1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
@@ -660,7 +892,6 @@ SamsungAC1::SamsungAC1(
 
 
 SamsungDVBT1::SamsungDVBT1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVB-T Receiver Keyset 1",
@@ -669,6 +900,17 @@ SamsungDVBT1::SamsungDVBT1(
 {
   addControlledDevice(Samsung_Make, "SMT-1000T", TV_Device);
   addControlledDevice(Samsung_Make, "SMT-1100T", TV_Device);
+}
+
+
+void SamsungDVBT1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 

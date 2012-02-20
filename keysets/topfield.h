@@ -9,16 +9,20 @@ class TopfieldPVR1: public PIRKeysetMetaData
 {
 public:
   TopfieldPVR1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class TopfieldSat1: public PIRKeysetMetaData
 {
 public:
   TopfieldSat1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // TOPFIELD_H

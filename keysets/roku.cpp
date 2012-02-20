@@ -2,13 +2,24 @@
 #include "protocols/necprotocol.h"
 
 RokuBox1::RokuBox1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Settop Box Keyset 1",
       Roku_Make,
       index)
 {
+}
+
+
+void RokuBox1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
   setPreData(0xEFBE, 16);
@@ -27,13 +38,24 @@ RokuBox1::RokuBox1(
 
 
 RokuBox2::RokuBox2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Soundbridge Keyset 1",
       Roku_Make,
       index)
 {
+}
+
+
+void RokuBox2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x6F, 8);

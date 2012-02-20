@@ -9,16 +9,20 @@ class HuaweiSTB1: public PIRKeysetMetaData
 {
 public:
   HuaweiSTB1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class HuaweiSTB2: public PIRKeysetMetaData
 {
 public:
   HuaweiSTB2(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // HUAWEI_H

@@ -2,13 +2,23 @@
 #include "protocols/necprotocol.h"
 
 AcerTV1::AcerTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Acer_Make,
       index)
 {
+}
+
+void AcerTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x6361, 16);
@@ -74,7 +84,6 @@ AcerTV1::AcerTV1(
 
 
 AcerPC1::AcerPC1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "PC Keyset 1",
@@ -83,6 +92,17 @@ AcerPC1::AcerPC1(
 {
   addControlledDevice(Acer_Make, "Aspire 9500", Computer_Device);
   addControlledDevice(Acer_Make, "Aspire 9800", Computer_Device);
+}
+
+
+void AcerPC1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 

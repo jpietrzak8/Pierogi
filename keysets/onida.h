@@ -9,16 +9,20 @@ class OnidaTV1: public PIRKeysetMetaData
 {
 public:
   OnidaTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class OnidaDVD1: public PIRKeysetMetaData
 {
 public:
   OnidaDVD1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // ONIDA_H

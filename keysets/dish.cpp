@@ -2,13 +2,24 @@
 #include "protocols/dishprotocol.h"
 
 DishReceiver1::DishReceiver1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Dish_Make,
       index)
 {
+}
+
+
+void DishReceiver1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new DishProtocol(guiObject, index);
 
   setPreData(0x00, 5);
@@ -85,150 +96,345 @@ DishReceiver1::DishReceiver1(
 
 
 DishReceiver1a::DishReceiver1a(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 2");
+}
+
+
+void DishReceiver1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x01, 5);
 }
 
 
 DishReceiver1b::DishReceiver1b(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 3");
+}
+
+
+void DishReceiver1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x02, 5);
 }
 
 
 DishReceiver1c::DishReceiver1c(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 4");
+}
+
+
+void DishReceiver1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x03, 5);
 }
 
 
 DishReceiver1d::DishReceiver1d(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 5");
+}
+
+
+void DishReceiver1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x04, 5);
 }
 
 
 DishReceiver1e::DishReceiver1e(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 6");
+}
+
+
+void DishReceiver1e::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x05, 5);
 }
 
 
 DishReceiver1f::DishReceiver1f(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 7");
+}
+
+
+void DishReceiver1f::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x06, 5);
 }
 
 
 DishReceiver1g::DishReceiver1g(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 8");
+}
+
+
+void DishReceiver1g::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x07, 5);
 }
 
 
 DishReceiver1h::DishReceiver1h(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 9");
+}
+
+
+void DishReceiver1h::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x08, 5);
 }
 
 
 DishReceiver1i::DishReceiver1i(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 10");
+}
+
+
+void DishReceiver1i::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x09, 5);
 }
 
 
 DishReceiver1j::DishReceiver1j(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 11");
+}
+
+
+void DishReceiver1j::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x0A, 5);
 }
 
 
 DishReceiver1k::DishReceiver1k(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 12");
+}
+
+
+void DishReceiver1k::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x0B, 5);
 }
 
 
 DishReceiver1l::DishReceiver1l(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 13");
+}
+
+
+void DishReceiver1l::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x0C, 5);
 }
 
 
 DishReceiver1m::DishReceiver1m(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 14");
+}
+
+
+void DishReceiver1m::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x0D, 5);
 }
 
 
 DishReceiver1n::DishReceiver1n(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 15");
+}
+
+
+void DishReceiver1n::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x0E, 5);
 }
 
 
 DishReceiver1o::DishReceiver1o(
-  QObject *guiObject,
   unsigned int index)
-  : DishReceiver1(guiObject, index)
+  : DishReceiver1(index)
 {
   setKeysetName("Sat Keyset 1 mode 16");
+}
+
+
+void DishReceiver1o::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DishReceiver1::populateProtocol(guiObject);
+
   setPreData(0x0F, 5);
 }

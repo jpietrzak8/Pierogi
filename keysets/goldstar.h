@@ -9,8 +9,10 @@ class GoldStarTV1: public PIRKeysetMetaData
 {
 public:
   GoldStarTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 
@@ -18,8 +20,10 @@ class GoldStarTV2: public PIRKeysetMetaData
 {
 public:
   GoldStarTV2(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 
@@ -27,8 +31,10 @@ class GoldStarVCR1: public PIRKeysetMetaData
 {
 public:
   GoldStarVCR1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 
@@ -36,8 +42,10 @@ class GoldStarVCR1a: public GoldStarVCR1
 {
 public:
   GoldStarVCR1a(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 
@@ -45,8 +53,10 @@ class GoldStarVCR1b: public GoldStarVCR1
 {
 public:
   GoldStarVCR1b(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 
@@ -54,8 +64,10 @@ class GoldStarVCR1c: public GoldStarVCR1
 {
 public:
   GoldStarVCR1c(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 
@@ -63,8 +75,10 @@ class GoldStarCD1: public PIRKeysetMetaData
 {
 public:
   GoldStarCD1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // GOLDSTAR_H

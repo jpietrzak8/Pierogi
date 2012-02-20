@@ -3,13 +3,24 @@
 #include "protocols/sircprotocol.h"
 
 WestinghouseTV1::WestinghouseTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Westinghouse_Make,
       index)
 {
+}
+
+
+void WestinghouseTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, false);
 
 //  setPreData(0x807F, 16);
@@ -49,7 +60,6 @@ WestinghouseTV1::WestinghouseTV1(
 
 
 WestinghouseTV2::WestinghouseTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 2",
@@ -57,6 +67,17 @@ WestinghouseTV2::WestinghouseTV2(
       index)
 {
   addControlledDevice(Westinghouse_Make, "LVM-42W2", TV_Device);
+}
+
+
+void WestinghouseTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
 

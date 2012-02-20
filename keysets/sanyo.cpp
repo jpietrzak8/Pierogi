@@ -3,7 +3,6 @@
 #include "protocols/necprotocol.h"
 
 SanyoVCR1::SanyoVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD/VCR Keyset 1",
@@ -12,6 +11,17 @@ SanyoVCR1::SanyoVCR1(
 {
   addControlledDevice(Sanyo_Make, "DVW-5000", VCR_Device);
   addControlledDevice(Sanyo_Make, "DVW-5000", DVD_Device);
+}
+
+
+void SanyoVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -67,7 +77,6 @@ SanyoVCR1::SanyoVCR1(
 
 
 SanyoDVD1::SanyoDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
@@ -75,6 +84,17 @@ SanyoDVD1::SanyoDVD1(
       index)
 {
   addControlledDevice(Sanyo_Make, "DVD-SL25", DVD_Device);
+}
+
+
+void SanyoDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
@@ -129,13 +149,24 @@ SanyoDVD1::SanyoDVD1(
 
 
 SanyoTV1::SanyoTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Sanyo_Make,
       index)
 {
+}
+
+
+void SanyoTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x1CE3, 16);
@@ -208,9 +239,8 @@ SanyoTV1::SanyoTV1(
 
 
 SanyoTV1a::SanyoTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : SanyoTV1(guiObject, index)
+  : SanyoTV1(index)
 {
   setKeysetName("TV Keyset 1a");
 
@@ -222,6 +252,19 @@ SanyoTV1a::SanyoTV1a(
 //  addControlledDevice(Sanyo_Make, "CED3011PV", TV_Device);
 //  addControlledDevice(Sanyo_Make, "CEM6011PV", TV_Device);
 //  addControlledDevice(Sanyo_Make, "DP32746", TV_Device);
+}
+
+
+void SanyoTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SanyoTV1::populateProtocol(guiObject);
 
   addKey("-/--", DoubleDigit_Key, 0x0A, 8);
   addKey("CS", Unmapped_Key, 0x0B, 8); // 2-
@@ -255,11 +298,23 @@ SanyoTV1a::SanyoTV1a(
 
 
 SanyoTV1b::SanyoTV1b(
-  QObject *guiObject,
   unsigned int index)
-  : SanyoTV1(guiObject, index)
+  : SanyoTV1(index)
 {
   setKeysetName("TV Keyset 1b");
+}
+
+
+void SanyoTV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SanyoTV1::populateProtocol(guiObject);
 
   addKey("image", PictureMode_Key, 0x11, 8);
   addKey("TV", Unmapped_Key, 0x14, 8); // "tv/video"?
@@ -268,11 +323,23 @@ SanyoTV1b::SanyoTV1b(
 
 
 SanyoTV1c::SanyoTV1c(
-  QObject *guiObject,
   unsigned int index)
-  : SanyoTV1a(guiObject, index)
+  : SanyoTV1a(index)
 {
   setKeysetName("TV Keyset 1c");
+}
+
+
+void SanyoTV1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SanyoTV1a::populateProtocol(guiObject);
 
   addKey("contrast_>", ContrastUp_Key, 0x0E, 8);
   addKey("contrast_<", ContrastDown_Key, 0x0F, 8);
@@ -288,13 +355,25 @@ SanyoTV1c::SanyoTV1c(
 
 
 SanyoTV1d::SanyoTV1d(
-  QObject *guiObject,
   unsigned int index)
-  : SanyoTV1(guiObject, index)
+  : SanyoTV1(index)
 {
   setKeysetName("TV Keyset 1d");
 
   addControlledDevice(Sanyo_Make, "CTP-6791P", TV_Device);
+}
+
+
+void SanyoTV1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SanyoTV1::populateProtocol(guiObject);
 
   addKey("audio_mode", SoundMode_Key, 0x1C, 8); // "auto"
   addKey("Digicon", PictureMode_Key, 0x1D, 8);
@@ -304,7 +383,6 @@ SanyoTV1d::SanyoTV1d(
 
 
 SanyoProjector::SanyoProjector(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Projector Keyset 1",
@@ -312,6 +390,17 @@ SanyoProjector::SanyoProjector(
       index)
 {
   addControlledDevice(Sanyo_Make, "PLV-Z1", Other_Device);
+}
+
+
+void SanyoProjector::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 

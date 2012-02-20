@@ -2,13 +2,24 @@
 #include "protocols/lircprotocol.h"
 
 NokiaGenericVCR::NokiaGenericVCR(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Generic VCR",
       Nokia_Make,
       index)
 {
+}
+
+
+void NokiaGenericVCR::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,

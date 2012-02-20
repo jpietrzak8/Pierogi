@@ -9,16 +9,20 @@ class WestinghouseTV1: public PIRKeysetMetaData
 {
 public:
   WestinghouseTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class WestinghouseTV2: public PIRKeysetMetaData
 {
 public:
   WestinghouseTV2(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // WESTINGHOUSE_H

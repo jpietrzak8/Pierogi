@@ -2,7 +2,6 @@
 #include "protocols/rc5protocol.h"
 
 PinnaclePCTV1::PinnaclePCTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "PCTV Keyset 1",
@@ -10,6 +9,17 @@ PinnaclePCTV1::PinnaclePCTV1(
       index)
 {
   addControlledDevice(Pinnacle_Make, "800i", Computer_Device);
+}
+
+
+void PinnaclePCTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x47);
 
@@ -43,7 +53,6 @@ PinnaclePCTV1::PinnaclePCTV1(
 
 
 PinnaclePCTV2::PinnaclePCTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "PCTV Keyset 2",
@@ -51,6 +60,17 @@ PinnaclePCTV2::PinnaclePCTV2(
       index)
 {
   addControlledDevice(Pinnacle_Make, "USB Stick", Computer_Device);
+}
+
+
+void PinnaclePCTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x47);
 
@@ -83,7 +103,6 @@ PinnaclePCTV2::PinnaclePCTV2(
 
 
 PinnaclePCTV3::PinnaclePCTV3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "PCTV Keyset 3",
@@ -91,6 +110,17 @@ PinnaclePCTV3::PinnaclePCTV3(
       index)
 {
   addControlledDevice(Pinnacle_Make, "110i", Computer_Device);
+}
+
+
+void PinnaclePCTV3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x47);
 

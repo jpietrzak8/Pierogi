@@ -4,7 +4,6 @@
 #include "protocols/lircprotocol.h"
 
 MagnavoxDVD1::MagnavoxDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
@@ -12,6 +11,17 @@ MagnavoxDVD1::MagnavoxDVD1(
       index)
 {
   addControlledDevice(Magnavox_Make, "MDV450", DVD_Device);
+}
+
+
+void MagnavoxDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x04);
 
@@ -52,13 +62,24 @@ MagnavoxDVD1::MagnavoxDVD1(
 
 
 MagnavoxVCR1::MagnavoxVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Magnavox_Make,
       index)
 {
+}
+
+
+void MagnavoxVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("Power", Power_Key, 0x114C, 13);
@@ -121,7 +142,6 @@ MagnavoxVCR1::MagnavoxVCR1(
 
 
 MagnavoxConverterBox1::MagnavoxConverterBox1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Settop Box Keyset 1",
@@ -129,6 +149,17 @@ MagnavoxConverterBox1::MagnavoxConverterBox1(
       index)
 {
   addControlledDevice(Magnavox_Make, "TB100MG9", Other_Device);
+}
+
+
+void MagnavoxConverterBox1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
@@ -172,13 +203,24 @@ MagnavoxConverterBox1::MagnavoxConverterBox1(
 
 
 MagnavoxTV1::MagnavoxTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV(?) Keyset 1",
       Magnavox_Make,
       index)
 {
+}
+
+
+void MagnavoxTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index, 0x40);
 
   addKey("Zero", Zero_Key, 0x00, 6);

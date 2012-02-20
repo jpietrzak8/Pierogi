@@ -2,13 +2,24 @@
 #include "protocols/necprotocol.h"
 
 EmersonTV1::EmersonTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Emerson_Make,
       index)
 {
+}
+
+
+void EmersonTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
   setPreData(0x0586, 16);
@@ -44,13 +55,24 @@ EmersonTV1::EmersonTV1(
 
 
 EmersonDVD1::EmersonDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Emerson_Make,
       index)
 {
+}
+
+
+void EmersonDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x2287, 16);

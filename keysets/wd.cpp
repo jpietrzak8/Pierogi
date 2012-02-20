@@ -2,13 +2,24 @@
 #include "protocols/necprotocol.h"
 
 WDMediaPlayer1::WDMediaPlayer1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Media Player Keyset 1",
       WD_Make,
       index)
 {
+}
+
+
+void WDMediaPlayer1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x7984, 16);
@@ -38,11 +49,23 @@ WDMediaPlayer1::WDMediaPlayer1(
 
 
 WDMediaPlayer1a::WDMediaPlayer1a(
-  QObject *guiObject,
   unsigned int index)
-  : WDMediaPlayer1(guiObject, index)
+  : WDMediaPlayer1(index)
 {
   setKeysetName("Media Player Keyset 1a");
+}
+
+
+void WDMediaPlayer1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  WDMediaPlayer1::populateProtocol(guiObject);
 
   addKey("next page", PageDown_Key, 0x03, 8);
   addKey("subtitle", Captions_Key, 0x0C, 8);

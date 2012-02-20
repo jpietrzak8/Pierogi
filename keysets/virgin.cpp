@@ -3,13 +3,24 @@
 
 
 VirginSTB1::VirginSTB1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Virgin_Make,
       index)
 {
+}
+
+
+void VirginSTB1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("menu", Menu_Key, 0x028F, 13);

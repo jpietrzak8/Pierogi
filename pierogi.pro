@@ -120,7 +120,10 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/onida.cpp \
     keysets/vestel.cpp \
     keysets/virgin.cpp \
-    keysets/vizio.cpp
+    keysets/vizio.cpp \
+    keysets/hp.cpp \
+    keysets/motorola.cpp \
+    protocols/giprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -215,7 +218,10 @@ HEADERS += mainwindow.h \
     keysets/onida.h \
     keysets/vestel.h \
     keysets/virgin.h \
-    keysets/vizio.h
+    keysets/vizio.h \
+    keysets/hp.h \
+    keysets/motorola.h \
+    protocols/giprotocol.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

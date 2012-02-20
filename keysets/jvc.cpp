@@ -3,13 +3,24 @@
 #include "protocols/lircprotocol.h"
 
 JVCSat1::JVCSat1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Sat (Dish) Keyset 1",
       JVC_Make,
       index)
 {
+}
+
+
+void JVCSat1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   LIRCProtocol *lp = new LIRCProtocol(
    guiObject,
    index,
@@ -70,13 +81,24 @@ JVCSat1::JVCSat1(
 
 
 JVCSat2::JVCSat2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Sat (Dish) Keyset 2",
       JVC_Make,
       index)
 {
+}
+
+
+void JVCSat2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,
@@ -136,13 +158,24 @@ JVCSat2::JVCSat2(
 
 
 JVCVCR1::JVCVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       JVC_Make,
       index)
 {
+}
+
+
+void JVCVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new JVCProtocol(guiObject, index);
 
 //  setPreData(0xC2, 8);
@@ -228,11 +261,23 @@ JVCVCR1::JVCVCR1(
 
 
 JVCVCR1a::JVCVCR1a(
-  QObject *guiObject,
   unsigned int index)
-  : JVCVCR1(guiObject, index)
+  : JVCVCR1(index)
 {
   setKeysetName("VCR Keyset 1a");
+}
+
+
+void JVCVCR1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  JVCVCR1::populateProtocol(guiObject);
 
   addKey("red", Red_Key, 0x07, 8);
   addKey("green", Green_Key, 0x51, 8);
@@ -246,35 +291,70 @@ JVCVCR1a::JVCVCR1a(
 
 // Setup keysets for use in B-mode:
 JVCVCRBmode1::JVCVCRBmode1(
-  QObject *guiObject,
   unsigned int index)
-  : JVCVCR1(guiObject, index)
+  : JVCVCR1(index)
 {
   setKeysetName("VCR (B Mode) keyset 1");
+}
+
+
+void JVCVCRBmode1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  JVCVCR1::populateProtocol(guiObject);
 
   setPreData(0x53, 8);
 }
 
 
 JVCVCRBmode1a::JVCVCRBmode1a(
-  QObject *guiObject,
   unsigned int index)
-  : JVCVCR1a(guiObject, index)
+  : JVCVCR1a(index)
 {
   setKeysetName("VCR (B Mode) keyset 1a");
+}
+
+
+void JVCVCRBmode1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  JVCVCR1a::populateProtocol(guiObject);
 
   setPreData(0x53, 8);
 }
 
 
 JVCTV1::JVCTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       JVC_Make,
       index)
 {
+}
+
+
+void JVCTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new JVCProtocol(guiObject, index);
 
   setPreData(0x03, 8);
@@ -355,33 +435,69 @@ JVCTV1::JVCTV1(
 
 
 JVCTV1a::JVCTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : JVCTV1(guiObject, index)
+  : JVCTV1(index)
 {
   setKeysetName("TV Keyset 1a");
+}
+
+
+void JVCTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  JVCTV1::populateProtocol(guiObject);
 
   addKey("+10", DoubleDigit_Key, 0x71, 8);
 }
 
 
 JVCTV1b::JVCTV1b(
-  QObject *guiObject,
   unsigned int index)
-  : JVCTV1(guiObject, index)
+  : JVCTV1(index)
 {
   setKeysetName("TV Keyset 1b");
+}
+
+
+void JVCTV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  JVCTV1::populateProtocol(guiObject);
 
   addKey("sleep_timer", Sleep_Key, 0x03, 8);
 }
 
 
 JVCTV1c::JVCTV1c(
-  QObject *guiObject,
   unsigned int index)
-  : JVCTV1(guiObject, index)
+  : JVCTV1(index)
 {
   setKeysetName("TV Keyset 1c");
+}
+
+
+void JVCTV1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  JVCTV1::populateProtocol(guiObject);
 
   addKey("STOP", Stop_Key, 0x00, 8);
   addKey("REC", Record_Key, 0x04, 8);
@@ -394,11 +510,23 @@ JVCTV1c::JVCTV1c(
 
 // TVs where "volume" and "channel" keys are used to navigate menus:
 JVCTV1d::JVCTV1d(
-  QObject *guiObject,
   unsigned int index)
-  : JVCTV1(guiObject, index)
+  : JVCTV1(index)
 {
   setKeysetName("TV Keyset 1d");
+}
+
+
+void JVCTV1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  JVCTV1::populateProtocol(guiObject);
 
   addKey("down", Down_Key, 0x18, 8);
   addKey("up", Up_Key, 0x19, 8);
@@ -408,13 +536,24 @@ JVCTV1d::JVCTV1d(
 
 
 JVCDAT1::JVCDAT1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DAT Keyset 1",
       JVC_Make,
       index)
 {
+}
+
+
+void JVCDAT1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new JVCProtocol(guiObject, index);
 
 //  setPreData(0xC9, 8);
@@ -455,13 +594,24 @@ JVCDAT1::JVCDAT1(
 
 
 JVCCarDeck1::JVCCarDeck1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Car Deck Keyset 1",
       JVC_Make,
       index)
 {
+}
+
+
+void JVCCarDeck1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new JVCProtocol(guiObject, index);
 
 //  setPreData(0xF1, 8);
@@ -488,13 +638,24 @@ JVCCarDeck1::JVCCarDeck1(
 // together, they might as well all be a single command anyway...
 
 JVCAudio1::JVCAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       JVC_Make,
       index)
 {
+}
+
+
+void JVCAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new JVCProtocol(guiObject, index);
 
   addKey("SLEEP", Sleep_Key, 0x03A3, 16);
@@ -549,11 +710,23 @@ JVCAudio1::JVCAudio1(
 
 
 JVCAudio1a::JVCAudio1a(
-  QObject *guiObject,
   unsigned int index)
-  : JVCAudio1(guiObject, index)
+  : JVCAudio1(index)
 {
   setKeysetName("Audio Keyset 1a");
+}
+
+
+void JVCAudio1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  JVCAudio1::populateProtocol(guiObject);
 
   addKey("CD-PLAY-PAUSE", Play_Key, 0x3DA3, 16);
   addKey("MD-PLAY-PAUSE", Unmapped_Key, 0x30AF, 16);
@@ -561,11 +734,23 @@ JVCAudio1a::JVCAudio1a(
 
 
 JVCAudio1b::JVCAudio1b(
-  QObject *guiObject,
   unsigned int index)
-  : JVCAudio1(guiObject, index)
+  : JVCAudio1(index)
 {
   setKeysetName("Audio Keyset 1b");
+}
+
+
+void JVCAudio1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  JVCAudio1::populateProtocol(guiObject);
 
   addKey("VCR", VCRInput_Key, 0x2443, 16);
 
@@ -623,13 +808,24 @@ JVCAudio1b::JVCAudio1b(
 
 
 JVCAudio2::JVCAudio2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       JVC_Make,
       index)
 {
+}
+
+
+void JVCAudio2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new JVCProtocol(guiObject, index);
 
 //  setPreData(0xF9, 8);
@@ -714,13 +910,24 @@ JVCAudio2::JVCAudio2(
 
 
 JVCDVD1::JVCDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       JVC_Make,
       index)
 {
+}
+
+
+void JVCDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new JVCProtocol(guiObject, index);
 
 //  setPreData(0xF7, 8);

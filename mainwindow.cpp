@@ -45,7 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
   setAttribute(Qt::WA_Maemo5StackedWindow);
 
   // Collect the keysets:
-  myKeysets = new PIRKeysetManager(this);
+  myKeysets = new PIRKeysetManager();
 
   // Set up the keyset selection window:
   selectKeysetForm = new PIRSelectKeysetForm(this);
@@ -69,7 +69,6 @@ MainWindow::MainWindow(QWidget *parent)
   }
 
   enableButtons();
-  secondaryForm->enableButtons(myKeysets, currentKeyset);
 
   connect(
     ui->favoriteKeysetsWidget,
@@ -179,6 +178,9 @@ void MainWindow::showExpanded()
 
 void MainWindow::enableButtons()
 {
+  // Just to be sure, check to see if the keyset has been populated:
+  myKeysets->populateKeyset(this, currentKeyset);
+
   // This is going to be a little painful...
   // Main keys
   emit powerEnabled(myKeysets->hasKey(currentKeyset, Power_Key));
@@ -250,6 +252,9 @@ void MainWindow::enableButtons()
   emit pauseEnabled(myKeysets->hasKey(currentKeyset, Pause_Key));
   emit stopEnabled(myKeysets->hasKey(currentKeyset, Stop_Key));
   emit ejectEnabled(myKeysets->hasKey(currentKeyset, Eject_Key));
+
+  // Also enable the buttons on the secondary form:
+  secondaryForm->enableButtons(myKeysets, currentKeyset);
 }
 
 
@@ -883,7 +888,7 @@ void MainWindow::on_actionDocumentation_triggered()
 void MainWindow::keysetSelectionChanged(
   QListWidgetItem *item)
 {
-  if (!item) return;  // Should probably say something here!
+  if (!item) return;  // Should probably display error message here!
 
   PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *>(item);
 
@@ -903,7 +908,6 @@ void MainWindow::keysetSelectionChanged(
     myKeysets->getDisplayName(currentKeyset));
 
   enableButtons();
-  secondaryForm->enableButtons(myKeysets, currentKeyset);
 }
 
 

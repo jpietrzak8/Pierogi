@@ -5,13 +5,24 @@
 
 // This one is iffy, might be another brand:
 GrundigSat1::GrundigSat1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Satellite Keyset 1",
       Grundig_Make,
       index)
 {
+}
+
+
+void GrundigSat1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("Mute", Mute_Key, 0x0286, 13);
@@ -49,7 +60,6 @@ GrundigSat1::GrundigSat1(
 
 
 GrundigSat2::GrundigSat2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Satellite Keyset 2",
@@ -57,6 +67,17 @@ GrundigSat2::GrundigSat2(
       index)
 {
   addControlledDevice(Grundig_Make, "STR 7100", Sat_Device);
+}
+
+
+void GrundigSat2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
@@ -96,7 +117,6 @@ GrundigSat2::GrundigSat2(
 
 
 GrundigAmp1::GrundigAmp1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Amp Keyset 1",
@@ -104,6 +124,17 @@ GrundigAmp1::GrundigAmp1(
       index)
 {
   addControlledDevice(Grundig_Make, "FineArts Amplifier V1", Audio_Device);
+}
+
+
+void GrundigAmp1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
@@ -159,7 +190,6 @@ GrundigAmp1::GrundigAmp1(
 
 
 GrundigAudio1::GrundigAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio(CD) Keyset 1",
@@ -167,6 +197,17 @@ GrundigAudio1::GrundigAudio1(
       index)
 {
   addControlledDevice(Grundig_Make, "CD 8400", Audio_Device);
+}
+
+
+void GrundigAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
@@ -201,7 +242,6 @@ GrundigAudio1::GrundigAudio1(
 
 
 GrundigAudio2::GrundigAudio2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 2",
@@ -210,6 +250,17 @@ GrundigAudio2::GrundigAudio2(
 {
   addControlledDevice(Grundig_Make, "CDM 700", Audio_Device);
   addControlledDevice(Grundig_Make, "UMS-9V", Audio_Device);
+}
+
+
+void GrundigAudio2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
 
@@ -254,7 +305,6 @@ GrundigAudio2::GrundigAudio2(
 
 
 GrundigVCR1::GrundigVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
@@ -262,6 +312,17 @@ GrundigVCR1::GrundigVCR1(
       index)
 {
   addControlledDevice(Grundig_Make, "GV 437", VCR_Device);
+}
+
+
+void GrundigVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
@@ -305,11 +366,23 @@ GrundigVCR1::GrundigVCR1(
 
 
 GrundigVCR1a::GrundigVCR1a(
-  QObject *guiObject,
   unsigned int index)
-  : GrundigVCR1(guiObject, index)
+  : GrundigVCR1(index)
 {
   setKeysetName("VCR Keyset 1a");
+}
+
+
+void GrundigVCR1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  GrundigVCR1::populateProtocol(guiObject);
 
   addKey("INDEX", Unmapped_Key, 0x0170, 13);
   addKey("PAUSE", Pause_Key, 0x1169, 13);
@@ -317,7 +390,6 @@ GrundigVCR1a::GrundigVCR1a(
 
 
 GrundigTV1::GrundigTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -325,6 +397,17 @@ GrundigTV1::GrundigTV1(
       index)
 {
   addControlledDevice(Grundig_Make, "ST 55-908", TV_Device);
+}
+
+
+void GrundigTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
@@ -366,13 +449,24 @@ GrundigTV1::GrundigTV1(
 
 
 GrundigTV2::GrundigTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Grundig_Make,
       index)
 {
+}
+
+
+void GrundigTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("P+", ChannelUp_Key, 0x0010, 13);
@@ -420,13 +514,24 @@ GrundigTV2::GrundigTV2(
 
 
 GrundigTV3::GrundigTV3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV/VDR Keyset 3",
       Grundig_Make,
       index)
 {
+}
+
+
+void GrundigTV3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("USR4", Unmapped_Key, 0x0205, 13);
@@ -477,7 +582,6 @@ GrundigTV3::GrundigTV3(
 
 
 GrundigDVD1::GrundigDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
@@ -485,6 +589,17 @@ GrundigDVD1::GrundigDVD1(
       index)
 {
   addControlledDevice(Grundig_Make, "GDV 130", DVD_Device);
+}
+
+
+void GrundigDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 

@@ -1,3 +1,10 @@
+pierogi (0.6.8) unstable; urgency=low
+  * Finally, some work to improve memory management, although much remains to be done.
+  * Fixed a subtle bug in the Sky protocol.
+  * Made a first pass at keysets for HP and Motorola.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 19 Feb 2012 11:56:18 -0500
+
 pierogi (0.6.7) unstable; urgency=low
   * First pass at keysets for Huawei, Onida, Vestel, Virgin Media, and Vizio.
   * Added a Sharp Air Conditioner keyset

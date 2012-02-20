@@ -9,8 +9,10 @@ class ZenithC32V37: public PIRKeysetMetaData
 {
 public:
   ZenithC32V37(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // ZENITH_H

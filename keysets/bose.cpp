@@ -3,13 +3,24 @@
 #include "protocols/necprotocol.h"
 
 BoseRadio1::BoseRadio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Wave Radio Keyset 1",
       Bose_Make,
       index)
 {
+}
+
+
+void BoseRadio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new BoseProtocol(guiObject, index);
 
   addKey("Mute", Mute_Key, 0x01, 8);
@@ -47,13 +58,24 @@ BoseRadio1::BoseRadio1(
 
 
 BoseRadio2::BoseRadio2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Wave Radio Keyset 2",
       Bose_Make,
       index)
 {
+}
+
+
+void BoseRadio2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new BoseProtocol(guiObject, index);
 
   addKey("on/off", Power_Key, 0x00, 8);
@@ -81,13 +103,24 @@ BoseRadio2::BoseRadio2(
 
 
 BoseRadio3::BoseRadio3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Wave Radio Keyset 3",
       Bose_Make,
       index)
 {
+}
+
+
+void BoseRadio3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, false);
 
   setPreData(0xBA, 8);
@@ -117,13 +150,24 @@ BoseRadio3::BoseRadio3(
 
 
 BoseHomeTheater1::BoseHomeTheater1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Home Theater 1",
       Bose_Make,
       index)
 {
+}
+
+
+void BoseHomeTheater1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
   setPreData(0x4BBA, 16);

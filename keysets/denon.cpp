@@ -6,7 +6,6 @@
 // This whole set of Denon keysets is a mess.  Need to clean it up!!!
 
 DenonDVD1::DenonDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
@@ -14,6 +13,17 @@ DenonDVD1::DenonDVD1(
       index)
 {
   addControlledDevice(Denon_Make, "DVD-1930", DVD_Device);
+}
+
+
+void DenonDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new SharpProtocol(guiObject, index, false);
 
@@ -68,7 +78,6 @@ DenonDVD1::DenonDVD1(
 
 
 DenonDVD2::DenonDVD2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 2",
@@ -76,6 +85,17 @@ DenonDVD2::DenonDVD2(
       index)
 {
   addControlledDevice(Denon_Make, "DVD-2500", DVD_Device);
+}
+
+
+void DenonDVD2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
@@ -134,7 +154,6 @@ DenonDVD2::DenonDVD2(
 
 
 DenonDVD3::DenonDVD3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 3",
@@ -142,6 +161,17 @@ DenonDVD3::DenonDVD3(
       index)
 {
   addControlledDevice(Denon_Make, "dvd-1000", DVD_Device);
+}
+
+
+void DenonDVD3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new SharpProtocol(guiObject, index, false);
 
@@ -189,7 +219,6 @@ DenonDVD3::DenonDVD3(
 
 
 DenonReceiver1::DenonReceiver1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
@@ -197,6 +226,17 @@ DenonReceiver1::DenonReceiver1(
       index)
 {
   addControlledDevice(Denon_Make, "avr-1708", Audio_Device);
+}
+
+
+void DenonReceiver1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new SharpProtocol(guiObject, index, false);
 
@@ -261,13 +301,25 @@ DenonReceiver1::DenonReceiver1(
 
 
 DenonReceiver1a::DenonReceiver1a(
-  QObject *guiObject,
   unsigned int index)
-  : DenonReceiver1(guiObject, index)
+  : DenonReceiver1(index)
 {
   setKeysetName("Receiver Keyset 1a");
 
   addControlledDevice(Denon_Make, "AVR-1610", Audio_Device);
+}
+
+
+void DenonReceiver1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DenonReceiver1::populateProtocol(guiObject);
 
   addSharpKey("BTN_SKIP", Unmapped_Key, 0x0C, 0xCC);
   addSharpKey("BTN_PAUSE", Pause_Key, 0x0C, 0xCD);
@@ -283,13 +335,25 @@ DenonReceiver1a::DenonReceiver1a(
 
 
 DenonReceiver1b::DenonReceiver1b(
-  QObject *guiObject,
   unsigned int index)
-  : DenonReceiver1(guiObject, index)
+  : DenonReceiver1(index)
 {
   setKeysetName("Receiver Keyset 1b");
 
   addControlledDevice(Denon_Make, "avr-3300", Audio_Device);
+}
+
+
+void DenonReceiver1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DenonReceiver1::populateProtocol(guiObject);
 
   addSharpKey("setup", Menu_Key, 0x0C, 0x50);
   addSharpKey("params", Unmapped_Key, 0x0C, 0x51);
@@ -297,15 +361,27 @@ DenonReceiver1b::DenonReceiver1b(
 
 
 DenonReceiver1c::DenonReceiver1c(
-  QObject *guiObject,
   unsigned int index)
-  : DenonReceiver1(guiObject, index)
+  : DenonReceiver1(index)
 {
   setKeysetName("Receiver Keyset 1c");
 
   addControlledDevice(Denon_Make, "AVR-1602", Audio_Device);
   addControlledDevice(Denon_Make, "AVR-1802", Audio_Device);
   addControlledDevice(Denon_Make, "AVR-1803", Audio_Device);
+}
+
+
+void DenonReceiver1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DenonReceiver1::populateProtocol(guiObject);
 
   addSharpKey("ONE", One_Key, 0x02, 0xC3);
   addSharpKey("TWO", Two_Key, 0x02, 0xC4);
@@ -344,13 +420,25 @@ DenonReceiver1c::DenonReceiver1c(
 
 
 DenonReceiver1d::DenonReceiver1d(
-  QObject *guiObject,
   unsigned int index)
-  : DenonReceiver1c(guiObject, index)
+  : DenonReceiver1c(index)
 {
   setKeysetName("Receiver Keyset 1d");
 
   addControlledDevice(Denon_Make, "PMA-480R", Audio_Device);
+}
+
+
+void DenonReceiver1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DenonReceiver1c::populateProtocol(guiObject);
 
   addSharpKey("AMP_PHONO", PhonoInput_Key, 0x02, 0x81);
   addSharpKey("AMP_TUNER", TunerInput_Key, 0x02, 0x83);
@@ -374,13 +462,25 @@ DenonReceiver1d::DenonReceiver1d(
 
 
 DenonReceiver1e::DenonReceiver1e(
-  QObject *guiObject,
   unsigned int index)
-  : DenonReceiver1d(guiObject, index)
+  : DenonReceiver1d(index)
 {
   setKeysetName("Receiver Keyset 1e");
 
   addControlledDevice(Denon_Make, "DRA-385RD", Audio_Device);
+}
+
+
+void DenonReceiver1e::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DenonReceiver1d::populateProtocol(guiObject);
 
   addSharpKey("voldwn", VolumeDown_Key, 0x0C, 0x4C);
   addSharpKey("volup", VolumeUp_Key, 0x0C, 0x4D);
@@ -395,15 +495,28 @@ DenonReceiver1e::DenonReceiver1e(
   addSharpKey("tape2", Unmapped_Key, 0x0C, 0x5E);
 }
 
+
 DenonReceiver1f::DenonReceiver1f(
-  QObject *guiObject,
   unsigned int index)
-  : DenonReceiver1c(guiObject, index)
+  : DenonReceiver1c(index)
 {
   setKeysetName("Receiver Keyset 1f");
 
   addControlledDevice(Denon_Make, "AVR-700RD", Audio_Device);
   addControlledDevice(Denon_Make, "RC-841", Audio_Device);
+}
+
+
+void DenonReceiver1f::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DenonReceiver1c::populateProtocol(guiObject);
 
   addSharpKey("Power", Power_Key, 0x02, 0xC1);
 
@@ -416,13 +529,24 @@ DenonReceiver1f::DenonReceiver1f(
 
 
 DenonReceiver2::DenonReceiver2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Receiver Keyset 2",
       Denon_Make,
       index)
 {
+}
+
+
+void DenonReceiver2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new SharpProtocol(guiObject, index, false);
 
   addSharpKey("tun_1", One_Key, 0x13, 0x42);
@@ -468,13 +592,25 @@ DenonReceiver2::DenonReceiver2(
 
 
 DenonReceiver2a::DenonReceiver2a(
-  QObject *guiObject,
   unsigned int index)
-  : DenonReceiver2(guiObject, index)
+  : DenonReceiver2(index)
 {
   setKeysetName("Receiver Keyset 2a");
 
   addControlledDevice(Denon_Make, "PMA-425R", Audio_Device);
+}
+
+
+void DenonReceiver2a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DenonReceiver2::populateProtocol(guiObject);
 
   addSharpKey("AMP_TAPE2", Unmapped_Key, 0x1D, 0x9A);
   addSharpKey("AMP_TAPE1", TapeInput_Key, 0x1D, 0x99);
@@ -490,7 +626,6 @@ DenonReceiver2a::DenonReceiver2a(
 
 
 DenonReceiver3::DenonReceiver3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Receiver Keyset 3",
@@ -498,6 +633,17 @@ DenonReceiver3::DenonReceiver3(
       index)
 {
   addControlledDevice(Denon_Make, "AVR-600 RD", Audio_Device);
+}
+
+
+void DenonReceiver3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
@@ -535,7 +681,6 @@ DenonReceiver3::DenonReceiver3(
 
 
 DenonAudio1::DenonAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
@@ -547,6 +692,17 @@ DenonAudio1::DenonAudio1(
   addControlledDevice(Denon_Make, "DCD-335", Audio_Device);
   addControlledDevice(Denon_Make, "DRA-275RD", Audio_Device);
   addControlledDevice(Denon_Make, "UD-M30", Audio_Device);
+}
+
+
+void DenonAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new SharpProtocol(guiObject, index, false);
 
@@ -634,15 +790,27 @@ DenonAudio1::DenonAudio1(
 
 
 DenonAudio1a::DenonAudio1a(
-  QObject *guiObject,
   unsigned int index)
-  : DenonAudio1(guiObject, index)
+  : DenonAudio1(index)
 {
   setKeysetName("Audio Keyset 1a");
 
   addControlledDevice(Denon_Make, "UCD-F07", Audio_Device);
   addControlledDevice(Denon_Make, "UDR-F07", Audio_Device);
   addControlledDevice(Denon_Make, "UDRA-F07", Audio_Device);
+}
+
+
+void DenonAudio1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DenonAudio1::populateProtocol(guiObject);
 
   addSharpKey("rec", Record_Key, 0x04, 0x5F);
   addSharpKey("side_a/b", Unmapped_Key, 0x08, 0x53);
@@ -650,14 +818,26 @@ DenonAudio1a::DenonAudio1a(
 
 
 DenonAudio1b::DenonAudio1b(
-  QObject *guiObject,
   unsigned int index)
-  : DenonAudio1(guiObject, index)
+  : DenonAudio1(index)
 {
   setKeysetName("Audio Keyset 1b");
 
   addControlledDevice(Denon_Make, "DCD-1015", Audio_Device);
   addControlledDevice(Denon_Make, "DCD-655", Audio_Device);
+}
+
+
+void DenonAudio1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DenonAudio1::populateProtocol(guiObject);
 
   addSharpKey("vol_up", VolumeUp_Key, 0x08, 0x4E);
   addSharpKey("vol_down", VolumeDown_Key, 0x08, 0x4F);
@@ -666,22 +846,33 @@ DenonAudio1b::DenonAudio1b(
 
 
 DenonAudio1c::DenonAudio1c(
-  QObject *guiObject,
   unsigned int index)
-  : DenonAudio1b(guiObject, index)
+  : DenonAudio1b(index)
 {
   setKeysetName("Audio Keyset 1c");
 
   addControlledDevice(Denon_Make, "DCM-260", Audio_Device);
+}
+
+
+void DenonAudio1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DenonAudio1b::populateProtocol(guiObject);
 
   addSharpKey("DISC_SELECT", NextDisc_Key, 0x08, 0x62);
 }
 
 
 DenonAudio1d::DenonAudio1d(
-  QObject *guiObject,
   unsigned int index)
-  : DenonAudio1(guiObject, index)
+  : DenonAudio1(index)
 {
   setKeysetName("Audio Keyset 1d");
 
@@ -691,6 +882,19 @@ DenonAudio1d::DenonAudio1d(
   addControlledDevice(Denon_Make, "UDR-F88", Audio_Device);
   addControlledDevice(Denon_Make, "UTU-F88", Audio_Device);
   addControlledDevice(Denon_Make, "RC-846", Audio_Device);
+}
+
+
+void DenonAudio1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  DenonAudio1::populateProtocol(guiObject);
 
   addSharpKey("TAPE_REC", Record_Key, 0x04, 0x5F);
 
@@ -703,7 +907,6 @@ DenonAudio1d::DenonAudio1d(
 
 
 DenonAudio2::DenonAudio2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 2",
@@ -711,6 +914,17 @@ DenonAudio2::DenonAudio2(
       index)
 {
   addControlledDevice(Denon_Make, "D-C30", Audio_Device);
+}
+
+
+void DenonAudio2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -757,7 +971,6 @@ DenonAudio2::DenonAudio2(
 
 
 DenonAudio3::DenonAudio3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 3",
@@ -765,6 +978,17 @@ DenonAudio3::DenonAudio3(
       index)
 {
   addControlledDevice(Denon_Make, "DMD-800", Audio_Device);
+}
+
+
+void DenonAudio3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new SharpProtocol(guiObject, index, false);
 
@@ -803,7 +1027,6 @@ DenonAudio3::DenonAudio3(
 
 
 DenonAudio4::DenonAudio4(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 4",
@@ -811,6 +1034,17 @@ DenonAudio4::DenonAudio4(
       index)
 {
   addControlledDevice(Denon_Make, "D-G1MD", Audio_Device);
+}
+
+
+void DenonAudio4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 

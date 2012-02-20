@@ -3,13 +3,24 @@
 
 
 HomecastReceiver1::HomecastReceiver1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Homecast_Make,
       index)
 {
+}
+
+
+void HomecastReceiver1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x2020, 16);
@@ -52,13 +63,24 @@ HomecastReceiver1::HomecastReceiver1(
 
 
 HomecastReceiver2::HomecastReceiver2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVB-T Keyset 1",
       Homecast_Make,
       index)
 {
+}
+
+
+void HomecastReceiver2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x4040, 16);

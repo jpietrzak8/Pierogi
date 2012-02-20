@@ -2,13 +2,24 @@
 #include "protocols/lircprotocol.h"
 
 Tivo1::Tivo1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Tivo Keyset 1",
       Tivo_Make,
       index)
 {
+}
+
+
+void Tivo1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject, index,
     560, 560,
@@ -65,11 +76,23 @@ Tivo1::Tivo1(
 
 
 Tivo1a::Tivo1a(
-  QObject *guiObject,
   unsigned int index)
-  : Tivo1(guiObject, index)
+  : Tivo1(index)
 {
   setKeysetName("Tivo Keyset 1a");
+}
+
+
+void Tivo1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  Tivo1::populateProtocol(guiObject);
 
   addKey("TIVO", Power_Key, 0xE00F, 16);
   addKey("TVPOWER", Unmapped_Key, 0x0807, 16);
@@ -80,11 +103,23 @@ Tivo1a::Tivo1a(
 
 
 Tivo1b::Tivo1b(
-  QObject *guiObject,
   unsigned int index)
-  : Tivo1(guiObject, index)
+  : Tivo1(index)
 {
   setKeysetName("Tivo Keyset 1b");
+}
+
+
+void Tivo1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  Tivo1::populateProtocol(guiObject);
 
   addKey("tivo", Power_Key, 0xF00F, 16);
   addKey("tvpower", Unmapped_Key, 0x48B7, 16);
@@ -97,11 +132,23 @@ Tivo1b::Tivo1b(
 
 
 Tivo1c::Tivo1c(
-  QObject *guiObject,
   unsigned int index)
-  : Tivo1(guiObject, index)
+  : Tivo1(index)
 {
   setKeysetName("Tivo Keyset 1c");
+}
+
+
+void Tivo1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  Tivo1::populateProtocol(guiObject);
 
   addKey("TIVO", Power_Key, 0x500F, 16);
   addKey("TV_POWER", Unmapped_Key, 0x0807, 16);
@@ -112,11 +159,23 @@ Tivo1c::Tivo1c(
 
 
 Tivo1d::Tivo1d(
-  QObject *guiObject,
   unsigned int index)
-  : Tivo1(guiObject, index)
+  : Tivo1(index)
 {
   setKeysetName("Tivo Keyset 1d");
+}
+
+
+void Tivo1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  Tivo1::populateProtocol(guiObject);
 
   addKey("TIVO", Power_Key, 0x400F, 16);
   addKey("TVPWR", Unmapped_Key, 0x0807, 16);

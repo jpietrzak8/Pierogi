@@ -26,6 +26,7 @@
 #include "keysets/hauppauge.h"
 #include "keysets/hitachi.h"
 #include "keysets/homecast.h"
+#include "keysets/hp.h"
 #include "keysets/huawei.h"
 #include "keysets/jvc.h"
 #include "keysets/kenwood.h"
@@ -34,6 +35,7 @@
 #include "keysets/magnavox.h"
 #include "keysets/mce.h"
 #include "keysets/mitsubishi.h"
+#include "keysets/motorola.h"
 #include "keysets/nokia.h"
 #include "keysets/onida.h"
 #include "keysets/panasonic.h"
@@ -77,434 +79,439 @@ PIRDeviceTypeMgr deviceManager;
 
 // Now, on to the actual method definitions:
 
-PIRKeysetManager::PIRKeysetManager(
-  QObject *guiObject)
+PIRKeysetManager::PIRKeysetManager()
   : counter(0)
 {
   // Create the keysets.  Ugly!  This needs to be worked on!
-  populateKeyset(new AcerTV1(guiObject, counter++));
-  populateKeyset(new AcerPC1(guiObject, counter++));
+  setupKeyset(new AcerTV1(counter++));
+  setupKeyset(new AcerPC1(counter++));
 
-  populateKeyset(new AdmiralTV1(guiObject, counter++));
-  populateKeyset(new AdmiralTV2(guiObject, counter++));
-  populateKeyset(new AdmiralVCR1(guiObject, counter++));
+  setupKeyset(new AdmiralTV1(counter++));
+  setupKeyset(new AdmiralTV2(counter++));
+  setupKeyset(new AdmiralVCR1(counter++));
 
-  populateKeyset(new AiwaVCR1(guiObject, counter++));
-  populateKeyset(new AiwaVCR2(guiObject, counter++));
-  populateKeyset(new AiwaVCR3(guiObject, counter++));
-  populateKeyset(new AiwaAudio1(guiObject, counter++));
-  populateKeyset(new AiwaAudio1a(guiObject, counter++));
-  populateKeyset(new AiwaAudio2(guiObject, counter++));
-  populateKeyset(new AiwaAudio2a(guiObject, counter++));
-  populateKeyset(new AiwaAudio2b(guiObject, counter++));
-  populateKeyset(new AiwaAudio2c(guiObject, counter++));
-  populateKeyset(new AiwaAudio3(guiObject, counter++));
-  populateKeyset(new AiwaAudio4(guiObject, counter++));
-  populateKeyset(new AiwaAudio5(guiObject, counter++));
-  populateKeyset(new AiwaAudio6(guiObject, counter++));
-  populateKeyset(new AiwaCarStereo1(guiObject, counter++));
-  populateKeyset(new AiwaDVD1(guiObject, counter++));
+  setupKeyset(new AiwaVCR1(counter++));
+  setupKeyset(new AiwaVCR2(counter++));
+  setupKeyset(new AiwaVCR3(counter++));
+  setupKeyset(new AiwaAudio1(counter++));
+  setupKeyset(new AiwaAudio1a(counter++));
+  setupKeyset(new AiwaAudio2(counter++));
+  setupKeyset(new AiwaAudio2a(counter++));
+  setupKeyset(new AiwaAudio2b(counter++));
+  setupKeyset(new AiwaAudio2c(counter++));
+  setupKeyset(new AiwaAudio3(counter++));
+  setupKeyset(new AiwaAudio4(counter++));
+  setupKeyset(new AiwaAudio5(counter++));
+  setupKeyset(new AiwaAudio6(counter++));
+  setupKeyset(new AiwaCarStereo1(counter++));
+  setupKeyset(new AiwaDVD1(counter++));
 
-  populateKeyset(new AppleWhiteRemote(guiObject, counter++));
+  setupKeyset(new AppleWhiteRemote(counter++));
 
-  populateKeyset(new BekoTV1(guiObject, counter++));
+  setupKeyset(new BekoTV1(counter++));
 
-  populateKeyset(new BoseRadio1(guiObject, counter++));
-  populateKeyset(new BoseRadio2(guiObject, counter++));
-  populateKeyset(new BoseRadio3(guiObject, counter++));
-  populateKeyset(new BoseHomeTheater1(guiObject, counter++));
+  setupKeyset(new BoseRadio1(counter++));
+  setupKeyset(new BoseRadio2(counter++));
+  setupKeyset(new BoseRadio3(counter++));
+  setupKeyset(new BoseHomeTheater1(counter++));
 
-  populateKeyset(new CambridgeCD1(guiObject, counter++));
-  populateKeyset(new CambridgeAudio1(guiObject, counter++));
-  populateKeyset(new CambridgeAudio2(guiObject, counter++));
-  populateKeyset(new CambridgeAudio3(guiObject, counter++));
-  populateKeyset(new CambridgeDVD1(guiObject, counter++));
+  setupKeyset(new CambridgeCD1(counter++));
+  setupKeyset(new CambridgeAudio1(counter++));
+  setupKeyset(new CambridgeAudio2(counter++));
+  setupKeyset(new CambridgeAudio3(counter++));
+  setupKeyset(new CambridgeDVD1(counter++));
 
-  populateKeyset(new DaewooTV1(guiObject, counter++));
-  populateKeyset(new DaewooTV2(guiObject, counter++));
-  populateKeyset(new DaewooTV3(guiObject, counter++));
-  populateKeyset(new DaewooTV4(guiObject, counter++));
-  populateKeyset(new DaewooDVD1(guiObject, counter++));
-  populateKeyset(new DaewooVCR1(guiObject, counter++));
-  populateKeyset(new DaewooVCR2(guiObject, counter++));
+  setupKeyset(new DaewooTV1(counter++));
+  setupKeyset(new DaewooTV2(counter++));
+  setupKeyset(new DaewooTV3(counter++));
+  setupKeyset(new DaewooTV4(counter++));
+  setupKeyset(new DaewooDVD1(counter++));
+  setupKeyset(new DaewooVCR1(counter++));
+  setupKeyset(new DaewooVCR2(counter++));
 
-  populateKeyset(new DenonDVD1(guiObject, counter++));
-  populateKeyset(new DenonDVD2(guiObject, counter++));
-  populateKeyset(new DenonDVD3(guiObject, counter++));
-  populateKeyset(new DenonReceiver1(guiObject, counter++));
-  populateKeyset(new DenonReceiver1a(guiObject, counter++));
-  populateKeyset(new DenonReceiver1b(guiObject, counter++));
-  populateKeyset(new DenonReceiver1c(guiObject, counter++));
-  populateKeyset(new DenonReceiver1d(guiObject, counter++));
-  populateKeyset(new DenonReceiver1e(guiObject, counter++));
-  populateKeyset(new DenonReceiver1f(guiObject, counter++));
-  populateKeyset(new DenonReceiver2(guiObject, counter++));
-  populateKeyset(new DenonReceiver2a(guiObject, counter++));
-  populateKeyset(new DenonReceiver3(guiObject, counter++));
-  populateKeyset(new DenonAudio1(guiObject, counter++));
-  populateKeyset(new DenonAudio1a(guiObject, counter++));
-  populateKeyset(new DenonAudio1b(guiObject, counter++));
-  populateKeyset(new DenonAudio1c(guiObject, counter++));
-  populateKeyset(new DenonAudio1d(guiObject, counter++));
-  populateKeyset(new DenonAudio2(guiObject, counter++));
-  populateKeyset(new DenonAudio3(guiObject, counter++));
-  populateKeyset(new DenonAudio4(guiObject, counter++));
+  setupKeyset(new DenonDVD1(counter++));
+  setupKeyset(new DenonDVD2(counter++));
+  setupKeyset(new DenonDVD3(counter++));
+  setupKeyset(new DenonReceiver1(counter++));
+  setupKeyset(new DenonReceiver1a(counter++));
+  setupKeyset(new DenonReceiver1b(counter++));
+  setupKeyset(new DenonReceiver1c(counter++));
+  setupKeyset(new DenonReceiver1d(counter++));
+  setupKeyset(new DenonReceiver1e(counter++));
+  setupKeyset(new DenonReceiver1f(counter++));
+  setupKeyset(new DenonReceiver2(counter++));
+  setupKeyset(new DenonReceiver2a(counter++));
+  setupKeyset(new DenonReceiver3(counter++));
+  setupKeyset(new DenonAudio1(counter++));
+  setupKeyset(new DenonAudio1a(counter++));
+  setupKeyset(new DenonAudio1b(counter++));
+  setupKeyset(new DenonAudio1c(counter++));
+  setupKeyset(new DenonAudio1d(counter++));
+  setupKeyset(new DenonAudio2(counter++));
+  setupKeyset(new DenonAudio3(counter++));
+  setupKeyset(new DenonAudio4(counter++));
 
-  populateKeyset(new DigitalStreamReceiver(guiObject, counter++));
+  setupKeyset(new DigitalStreamReceiver(counter++));
 
-  populateKeyset(new DirectvReceiver1(guiObject, counter++));
+  setupKeyset(new DirectvReceiver1(counter++));
 
-  populateKeyset(new DishReceiver1(guiObject, counter++));
-  populateKeyset(new DishReceiver1a(guiObject, counter++));
-  populateKeyset(new DishReceiver1b(guiObject, counter++));
-  populateKeyset(new DishReceiver1c(guiObject, counter++));
-  populateKeyset(new DishReceiver1d(guiObject, counter++));
-  populateKeyset(new DishReceiver1e(guiObject, counter++));
-  populateKeyset(new DishReceiver1f(guiObject, counter++));
-  populateKeyset(new DishReceiver1g(guiObject, counter++));
-  populateKeyset(new DishReceiver1h(guiObject, counter++));
-  populateKeyset(new DishReceiver1i(guiObject, counter++));
-  populateKeyset(new DishReceiver1j(guiObject, counter++));
-  populateKeyset(new DishReceiver1k(guiObject, counter++));
-  populateKeyset(new DishReceiver1l(guiObject, counter++));
-  populateKeyset(new DishReceiver1m(guiObject, counter++));
-  populateKeyset(new DishReceiver1n(guiObject, counter++));
-  populateKeyset(new DishReceiver1o(guiObject, counter++));
+  setupKeyset(new DishReceiver1(counter++));
+  setupKeyset(new DishReceiver1a(counter++));
+  setupKeyset(new DishReceiver1b(counter++));
+  setupKeyset(new DishReceiver1c(counter++));
+  setupKeyset(new DishReceiver1d(counter++));
+  setupKeyset(new DishReceiver1e(counter++));
+  setupKeyset(new DishReceiver1f(counter++));
+  setupKeyset(new DishReceiver1g(counter++));
+  setupKeyset(new DishReceiver1h(counter++));
+  setupKeyset(new DishReceiver1i(counter++));
+  setupKeyset(new DishReceiver1j(counter++));
+  setupKeyset(new DishReceiver1k(counter++));
+  setupKeyset(new DishReceiver1l(counter++));
+  setupKeyset(new DishReceiver1m(counter++));
+  setupKeyset(new DishReceiver1n(counter++));
+  setupKeyset(new DishReceiver1o(counter++));
 
-  populateKeyset(new EiTV1(guiObject, counter++));
+  setupKeyset(new EiTV1(counter++));
 
-  populateKeyset(new ElgatoEyeTV1(guiObject, counter++));
+  setupKeyset(new ElgatoEyeTV1(counter++));
 
-  populateKeyset(new EmersonTV1(guiObject, counter++));
-  populateKeyset(new EmersonDVD1(guiObject, counter++));
+  setupKeyset(new EmersonTV1(counter++));
+  setupKeyset(new EmersonDVD1(counter++));
 
-  populateKeyset(new FortecReceiver1(guiObject, counter++));
-  populateKeyset(new FortecReceiver2(guiObject, counter++));
+  setupKeyset(new FortecReceiver1(counter++));
+  setupKeyset(new FortecReceiver2(counter++));
 
-  populateKeyset(new GoldStarTV1(guiObject, counter++));
-  populateKeyset(new GoldStarTV2(guiObject, counter++));
-  populateKeyset(new GoldStarVCR1(guiObject, counter++));
-  populateKeyset(new GoldStarVCR1a(guiObject, counter++));
-  populateKeyset(new GoldStarVCR1b(guiObject, counter++));
-  populateKeyset(new GoldStarVCR1c(guiObject, counter++));
-  populateKeyset(new GoldStarCD1(guiObject, counter++));
+  setupKeyset(new GoldStarTV1(counter++));
+  setupKeyset(new GoldStarTV2(counter++));
+  setupKeyset(new GoldStarVCR1(counter++));
+  setupKeyset(new GoldStarVCR1a(counter++));
+  setupKeyset(new GoldStarVCR1b(counter++));
+  setupKeyset(new GoldStarVCR1c(counter++));
+  setupKeyset(new GoldStarCD1(counter++));
 
-  populateKeyset(new GrundigSat1(guiObject, counter++));
-  populateKeyset(new GrundigSat2(guiObject, counter++));
-  populateKeyset(new GrundigAmp1(guiObject, counter++));
-  populateKeyset(new GrundigAudio1(guiObject, counter++));
-  populateKeyset(new GrundigAudio2(guiObject, counter++));
-  populateKeyset(new GrundigVCR1(guiObject, counter++));
-  populateKeyset(new GrundigVCR1a(guiObject, counter++));
-  populateKeyset(new GrundigTV1(guiObject, counter++));
-  populateKeyset(new GrundigTV2(guiObject, counter++));
-  populateKeyset(new GrundigTV3(guiObject, counter++));
-  populateKeyset(new GrundigDVD1(guiObject, counter++));
+  setupKeyset(new GrundigSat1(counter++));
+  setupKeyset(new GrundigSat2(counter++));
+  setupKeyset(new GrundigAmp1(counter++));
+  setupKeyset(new GrundigAudio1(counter++));
+  setupKeyset(new GrundigAudio2(counter++));
+  setupKeyset(new GrundigVCR1(counter++));
+  setupKeyset(new GrundigVCR1a(counter++));
+  setupKeyset(new GrundigTV1(counter++));
+  setupKeyset(new GrundigTV2(counter++));
+  setupKeyset(new GrundigTV3(counter++));
+  setupKeyset(new GrundigDVD1(counter++));
 
-  populateKeyset(new HaierTV1(guiObject, counter++));
+  setupKeyset(new HaierTV1(counter++));
 
-  populateKeyset(new HauppaugePCTV1(guiObject, counter++));
-  populateKeyset(new HauppaugePCTV1a(guiObject, counter++));
-  populateKeyset(new HauppaugePCTV1b(guiObject, counter++));
-  populateKeyset(new HauppaugePCTV1c(guiObject, counter++));
-  populateKeyset(new HauppaugePCTV2(guiObject, counter++));
+  setupKeyset(new HauppaugePCTV1(counter++));
+  setupKeyset(new HauppaugePCTV1a(counter++));
+  setupKeyset(new HauppaugePCTV1b(counter++));
+  setupKeyset(new HauppaugePCTV1c(counter++));
+  setupKeyset(new HauppaugePCTV2(counter++));
 
-  populateKeyset(new HitachiTV1(guiObject, counter++));
-  populateKeyset(new HitachiTV1a(guiObject, counter++));
-  populateKeyset(new HitachiTV1b(guiObject, counter++));
-  populateKeyset(new HitachiTV1c(guiObject, counter++));
-  populateKeyset(new HitachiTV2(guiObject, counter++));
-  populateKeyset(new HitachiTV3(guiObject, counter++));
-  populateKeyset(new HitachiProjector(guiObject, counter++));
-  populateKeyset(new HitachiDVD1(guiObject, counter++));
-  populateKeyset(new HitachiAudio1(guiObject, counter++));
-  populateKeyset(new HitachiVCR1(guiObject, counter++));
+  setupKeyset(new HitachiTV1(counter++));
+  setupKeyset(new HitachiTV1a(counter++));
+  setupKeyset(new HitachiTV1b(counter++));
+  setupKeyset(new HitachiTV1c(counter++));
+  setupKeyset(new HitachiTV2(counter++));
+  setupKeyset(new HitachiTV3(counter++));
+  setupKeyset(new HitachiProjector(counter++));
+  setupKeyset(new HitachiDVD1(counter++));
+  setupKeyset(new HitachiAudio1(counter++));
+  setupKeyset(new HitachiVCR1(counter++));
 
-  populateKeyset(new HomecastReceiver1(guiObject, counter++));
-  populateKeyset(new HomecastReceiver2(guiObject, counter++));
+  setupKeyset(new HomecastReceiver1(counter++));
+  setupKeyset(new HomecastReceiver2(counter++));
 
-  populateKeyset(new HuaweiSTB1(guiObject, counter++));
-  populateKeyset(new HuaweiSTB2(guiObject, counter++));
+  setupKeyset(new HPRemote1(counter++));
 
-  populateKeyset(new JVCSat1(guiObject, counter++));
-  populateKeyset(new JVCSat2(guiObject, counter++));
-  populateKeyset(new JVCVCR1(guiObject, counter++));
-  populateKeyset(new JVCVCR1a(guiObject, counter++));
-  populateKeyset(new JVCVCRBmode1(guiObject, counter++));
-  populateKeyset(new JVCVCRBmode1a(guiObject, counter++));
-  populateKeyset(new JVCTV1(guiObject, counter++));
-  populateKeyset(new JVCTV1a(guiObject, counter++));
-  populateKeyset(new JVCTV1b(guiObject, counter++));
-  populateKeyset(new JVCTV1c(guiObject, counter++));
-  populateKeyset(new JVCTV1d(guiObject, counter++));
-  populateKeyset(new JVCDAT1(guiObject, counter++));
-  populateKeyset(new JVCCarDeck1(guiObject, counter++));
-  populateKeyset(new JVCAudio1(guiObject, counter++));
-  populateKeyset(new JVCAudio1a(guiObject, counter++));
-  populateKeyset(new JVCAudio1b(guiObject, counter++));
-  populateKeyset(new JVCAudio2(guiObject, counter++));
-  populateKeyset(new JVCDVD1(guiObject, counter++));
+  setupKeyset(new HuaweiSTB1(counter++));
+  setupKeyset(new HuaweiSTB2(counter++));
 
-  populateKeyset(new KenwoodAudio1(guiObject, counter++));
-  populateKeyset(new KenwoodComponent1(guiObject, counter++));
-  populateKeyset(new KenwoodComponent2(guiObject, counter++));
-  populateKeyset(new KenwoodComponent3(guiObject, counter++));
-  populateKeyset(new KenwoodCD1(guiObject, counter++));
-  populateKeyset(new KenwoodDVD1(guiObject, counter++));
-  populateKeyset(new KenwoodTV1(guiObject, counter++));
+  setupKeyset(new JVCSat1(counter++));
+  setupKeyset(new JVCSat2(counter++));
+  setupKeyset(new JVCVCR1(counter++));
+  setupKeyset(new JVCVCR1a(counter++));
+  setupKeyset(new JVCVCRBmode1(counter++));
+  setupKeyset(new JVCVCRBmode1a(counter++));
+  setupKeyset(new JVCTV1(counter++));
+  setupKeyset(new JVCTV1a(counter++));
+  setupKeyset(new JVCTV1b(counter++));
+  setupKeyset(new JVCTV1c(counter++));
+  setupKeyset(new JVCTV1d(counter++));
+  setupKeyset(new JVCDAT1(counter++));
+  setupKeyset(new JVCCarDeck1(counter++));
+  setupKeyset(new JVCAudio1(counter++));
+  setupKeyset(new JVCAudio1a(counter++));
+  setupKeyset(new JVCAudio1b(counter++));
+  setupKeyset(new JVCAudio2(counter++));
+  setupKeyset(new JVCDVD1(counter++));
 
-  populateKeyset(new LGTV1(guiObject, counter++));
-  populateKeyset(new LGTV1a(guiObject, counter++));
-  populateKeyset(new LGTV1b(guiObject, counter++));
-  populateKeyset(new LGTV1c(guiObject, counter++));
-  populateKeyset(new LGTV2(guiObject, counter++));
-  populateKeyset(new LGTV2a(guiObject, counter++));
-  populateKeyset(new LGTV2b(guiObject, counter++));
-  populateKeyset(new LGDisc1(guiObject, counter++));
-  populateKeyset(new LGDisc2(guiObject, counter++));
-  populateKeyset(new LGDisc2a(guiObject, counter++));
-  populateKeyset(new LGVCR1(guiObject, counter++));
-  populateKeyset(new LGVCR1a(guiObject, counter++));
-  populateKeyset(new LGVCR1b(guiObject, counter++));
-  populateKeyset(new LGAC1(guiObject, counter++));
+  setupKeyset(new KenwoodAudio1(counter++));
+  setupKeyset(new KenwoodComponent1(counter++));
+  setupKeyset(new KenwoodComponent2(counter++));
+  setupKeyset(new KenwoodComponent3(counter++));
+  setupKeyset(new KenwoodCD1(counter++));
+  setupKeyset(new KenwoodDVD1(counter++));
+  setupKeyset(new KenwoodTV1(counter++));
 
-  populateKeyset(new LogitechSpeakers(guiObject, counter++));
+  setupKeyset(new LGTV1(counter++));
+  setupKeyset(new LGTV1a(counter++));
+  setupKeyset(new LGTV1b(counter++));
+  setupKeyset(new LGTV1c(counter++));
+  setupKeyset(new LGTV2(counter++));
+  setupKeyset(new LGTV2a(counter++));
+  setupKeyset(new LGTV2b(counter++));
+  setupKeyset(new LGDisc1(counter++));
+  setupKeyset(new LGDisc2(counter++));
+  setupKeyset(new LGDisc2a(counter++));
+  setupKeyset(new LGVCR1(counter++));
+  setupKeyset(new LGVCR1a(counter++));
+  setupKeyset(new LGVCR1b(counter++));
+  setupKeyset(new LGAC1(counter++));
 
-  populateKeyset(new MagnavoxDVD1(guiObject, counter++));
-  populateKeyset(new MagnavoxVCR1(guiObject, counter++));
-  populateKeyset(new MagnavoxConverterBox1(guiObject, counter++));
-  populateKeyset(new MagnavoxTV1(guiObject, counter++));
+  setupKeyset(new LogitechSpeakers(counter++));
 
-  populateKeyset(new MCERemote1(guiObject, counter++));
-  populateKeyset(new MCERemote1a(guiObject, counter++));
-  populateKeyset(new MCERemote1b(guiObject, counter++));
-  populateKeyset(new MCERemote1c(guiObject, counter++));
-  populateKeyset(new MCERemote1d(guiObject, counter++));
-  populateKeyset(new MCERemote1e(guiObject, counter++));
-  populateKeyset(new MCERemote1f(guiObject, counter++));
-  populateKeyset(new MCERemote1g(guiObject, counter++));
+  setupKeyset(new MagnavoxDVD1(counter++));
+  setupKeyset(new MagnavoxVCR1(counter++));
+  setupKeyset(new MagnavoxConverterBox1(counter++));
+  setupKeyset(new MagnavoxTV1(counter++));
 
-  populateKeyset(new MitsubishiTV1(guiObject, counter++));
-  populateKeyset(new MitsubishiTV1a(guiObject, counter++));
-  populateKeyset(new MitsubishiVCR1(guiObject, counter++));
-  populateKeyset(new MitsubishiVCR1a(guiObject, counter++));
+  setupKeyset(new MCERemote1(counter++));
+  setupKeyset(new MCERemote1a(counter++));
+  setupKeyset(new MCERemote1b(counter++));
+  setupKeyset(new MCERemote1c(counter++));
+  setupKeyset(new MCERemote1d(counter++));
+  setupKeyset(new MCERemote1e(counter++));
+  setupKeyset(new MCERemote1f(counter++));
+  setupKeyset(new MCERemote1g(counter++));
 
-  populateKeyset(new NokiaGenericVCR(guiObject, counter++));
+  setupKeyset(new MitsubishiTV1(counter++));
+  setupKeyset(new MitsubishiTV1a(counter++));
+  setupKeyset(new MitsubishiVCR1(counter++));
+  setupKeyset(new MitsubishiVCR1a(counter++));
 
-  populateKeyset(new OnidaTV1(guiObject, counter++));
-  populateKeyset(new OnidaDVD1(guiObject, counter++));
+  setupKeyset(new Motorola4DTV(counter++));
+  setupKeyset(new MotorolaSTB1(counter++));
+  setupKeyset(new MotorolaSTB1a(counter++));
+  setupKeyset(new MotorolaSTB1b(counter++));
+  setupKeyset(new MotorolaSkyDigital(counter++));
 
-  populateKeyset(new PanasonicCarAudio(guiObject, counter++));
-  populateKeyset(new PanasonicSat1(guiObject, counter++));
-  populateKeyset(new PanasonicSat1a(guiObject, counter++));
-  populateKeyset(new PanasonicTV1(guiObject, counter++));
-  populateKeyset(new PanasonicTV1a(guiObject, counter++));
-  populateKeyset(new PanasonicTV1b(guiObject, counter++));
-  populateKeyset(new PanasonicVCR1(guiObject, counter++));
-  populateKeyset(new PanasonicVCR1a(guiObject, counter++));
-  populateKeyset(new PanasonicVCR1b(guiObject, counter++));
-  populateKeyset(new PanasonicVCR1c(guiObject, counter++));
-  populateKeyset(new PanasonicDVD1(guiObject, counter++));
-  populateKeyset(new PanasonicDVD1a(guiObject, counter++));
-  populateKeyset(new PanasonicAudio1(guiObject, counter++));
-  populateKeyset(new PanasonicAC1(guiObject, counter++));
+  setupKeyset(new NokiaGenericVCR(counter++));
 
-  populateKeyset(new PhilcoTV(guiObject, counter++));
+  setupKeyset(new OnidaTV1(counter++));
+  setupKeyset(new OnidaDVD1(counter++));
 
-  populateKeyset(new PhilipsTV1(guiObject, counter++));
-  populateKeyset(new PhilipsTV1a(guiObject, counter++));
-  populateKeyset(new PhilipsTV1b(guiObject, counter++));
-  populateKeyset(new PhilipsTV1c(guiObject, counter++));
-  populateKeyset(new PhilipsTV1d(guiObject, counter++));
-  populateKeyset(new PhilipsTV1e(guiObject, counter++));
-  populateKeyset(new PhilipsTV1f(guiObject, counter++));
-  populateKeyset(new PhilipsTV2(guiObject, counter++));
-  populateKeyset(new PhilipsTV2a(guiObject, counter++));
-  populateKeyset(new PhilipsTV2b(guiObject, counter++));
-  populateKeyset(new PhilipsTV3(guiObject, counter++));
-  populateKeyset(new PhilipsDVD1(guiObject, counter++));
-  populateKeyset(new PhilipsDVD1a(guiObject, counter++));
-  populateKeyset(new PhilipsDVD1b(guiObject, counter++));
-  populateKeyset(new PhilipsDVD1c(guiObject, counter++));
-  populateKeyset(new PhilipsDVD1d(guiObject, counter++));
-  populateKeyset(new PhilipsDVD2(guiObject, counter++));
-  populateKeyset(new PhilipsDVD3(guiObject, counter++));
-  populateKeyset(new PhilipsDVD3a(guiObject, counter++));
-  populateKeyset(new PhilipsDVD4(guiObject, counter++));
-  populateKeyset(new PhilipsVCR1(guiObject, counter++));
-  populateKeyset(new PhilipsVCR1a(guiObject, counter++));
-  populateKeyset(new PhilipsVCR1b(guiObject, counter++));
-  populateKeyset(new PhilipsVCR1c(guiObject, counter++));
-  populateKeyset(new PhilipsSat1(guiObject, counter++));
-  populateKeyset(new PhilipsSat2(guiObject, counter++));
-  populateKeyset(new PhilipsSat2a(guiObject, counter++));
-  populateKeyset(new PhilipsSat3(guiObject, counter++));
-  populateKeyset(new PhilipsAudio1(guiObject, counter++));
-  populateKeyset(new PhilipsAudio1a(guiObject, counter++));
-  populateKeyset(new PhilipsAudio1b(guiObject, counter++));
-  populateKeyset(new PhilipsAudio2(guiObject, counter++));
-  populateKeyset(new PhilipsAudio3(guiObject, counter++));
-  populateKeyset(new PhilipsAudio4(guiObject, counter++));
+  setupKeyset(new PanasonicCarAudio(counter++));
+  setupKeyset(new PanasonicSat1(counter++));
+  setupKeyset(new PanasonicSat1a(counter++));
+  setupKeyset(new PanasonicTV1(counter++));
+  setupKeyset(new PanasonicTV1a(counter++));
+  setupKeyset(new PanasonicTV1b(counter++));
+  setupKeyset(new PanasonicVCR1(counter++));
+  setupKeyset(new PanasonicVCR1a(counter++));
+  setupKeyset(new PanasonicVCR1b(counter++));
+  setupKeyset(new PanasonicVCR1c(counter++));
+  setupKeyset(new PanasonicDVD1(counter++));
+  setupKeyset(new PanasonicDVD1a(counter++));
+  setupKeyset(new PanasonicAudio1(counter++));
+  setupKeyset(new PanasonicAC1(counter++));
 
-  populateKeyset(new PinnaclePCTV1(guiObject, counter++));
-  populateKeyset(new PinnaclePCTV2(guiObject, counter++));
-  populateKeyset(new PinnaclePCTV3(guiObject, counter++));
+  setupKeyset(new PhilcoTV(counter++));
 
-  populateKeyset(new PioneerTV1(guiObject, counter++));
-  populateKeyset(new PioneerTV2(guiObject, counter++));
-  populateKeyset(new PioneerTV3(guiObject, counter++));
-  populateKeyset(new PioneerAudio1(guiObject, counter++));
-  populateKeyset(new PioneerAudio1a(guiObject, counter++));
-  populateKeyset(new PioneerAudio2(guiObject, counter++));
-  populateKeyset(new PioneerAudio3(guiObject, counter++));
-  populateKeyset(new PioneerAudio4(guiObject, counter++));
-  populateKeyset(new PioneerAudio5(guiObject, counter++));
-  populateKeyset(new PioneerCD1(guiObject, counter++));
-  populateKeyset(new PioneerLaserDisc1(guiObject, counter++));
-  populateKeyset(new PioneerDVD1(guiObject, counter++));
+  setupKeyset(new PhilipsTV1(counter++));
+  setupKeyset(new PhilipsTV1a(counter++));
+  setupKeyset(new PhilipsTV1b(counter++));
+  setupKeyset(new PhilipsTV1c(counter++));
+  setupKeyset(new PhilipsTV1d(counter++));
+  setupKeyset(new PhilipsTV1e(counter++));
+  setupKeyset(new PhilipsTV1f(counter++));
+  setupKeyset(new PhilipsTV2(counter++));
+  setupKeyset(new PhilipsTV2a(counter++));
+  setupKeyset(new PhilipsTV2b(counter++));
+  setupKeyset(new PhilipsTV3(counter++));
+  setupKeyset(new PhilipsDVD1(counter++));
+  setupKeyset(new PhilipsDVD1a(counter++));
+  setupKeyset(new PhilipsDVD1b(counter++));
+  setupKeyset(new PhilipsDVD1c(counter++));
+  setupKeyset(new PhilipsDVD1d(counter++));
+  setupKeyset(new PhilipsDVD2(counter++));
+  setupKeyset(new PhilipsDVD3(counter++));
+  setupKeyset(new PhilipsDVD3a(counter++));
+  setupKeyset(new PhilipsDVD4(counter++));
+  setupKeyset(new PhilipsVCR1(counter++));
+  setupKeyset(new PhilipsVCR1a(counter++));
+  setupKeyset(new PhilipsVCR1b(counter++));
+  setupKeyset(new PhilipsVCR1c(counter++));
+  setupKeyset(new PhilipsSat1(counter++));
+  setupKeyset(new PhilipsSat2(counter++));
+  setupKeyset(new PhilipsSat2a(counter++));
+  setupKeyset(new PhilipsSat3(counter++));
+  setupKeyset(new PhilipsAudio1(counter++));
+  setupKeyset(new PhilipsAudio1a(counter++));
+  setupKeyset(new PhilipsAudio1b(counter++));
+  setupKeyset(new PhilipsAudio2(counter++));
+  setupKeyset(new PhilipsAudio3(counter++));
+  setupKeyset(new PhilipsAudio4(counter++));
 
-  populateKeyset(new RaiteDVD1(guiObject, counter++));
+  setupKeyset(new PinnaclePCTV1(counter++));
+  setupKeyset(new PinnaclePCTV2(counter++));
+  setupKeyset(new PinnaclePCTV3(counter++));
 
-  populateKeyset(new RCATV1(guiObject, counter++));
-  populateKeyset(new RCATV1a(guiObject, counter++));
-  populateKeyset(new RCATV1b(guiObject, counter++));
-/*
-  populateKeyset(new RCAAux1(guiObject, counter++));
-  populateKeyset(new RCAAux2(guiObject, counter++));
-  populateKeyset(new RCAAux2a(guiObject, counter++));
-*/
-  populateKeyset(new RCAVCR1(guiObject, counter++));
-  populateKeyset(new RCAVCR1a(guiObject, counter++));
-  populateKeyset(new RCADVD1(guiObject, counter++));
-  populateKeyset(new RCADVD1a(guiObject, counter++));
-  populateKeyset(new RCASat1(guiObject, counter++));
-  populateKeyset(new RCASat2(guiObject, counter++));
+  setupKeyset(new PioneerTV1(counter++));
+  setupKeyset(new PioneerTV2(counter++));
+  setupKeyset(new PioneerTV3(counter++));
+  setupKeyset(new PioneerAudio1(counter++));
+  setupKeyset(new PioneerAudio1a(counter++));
+  setupKeyset(new PioneerAudio2(counter++));
+  setupKeyset(new PioneerAudio3(counter++));
+  setupKeyset(new PioneerAudio4(counter++));
+  setupKeyset(new PioneerAudio5(counter++));
+  setupKeyset(new PioneerCD1(counter++));
+  setupKeyset(new PioneerLaserDisc1(counter++));
+  setupKeyset(new PioneerDVD1(counter++));
 
-  populateKeyset(new RokuBox1(guiObject, counter++));
-  populateKeyset(new RokuBox2(guiObject, counter++));
+  setupKeyset(new RaiteDVD1(counter++));
 
-  populateKeyset(new SabaTV1(guiObject, counter++));
-  populateKeyset(new SabaTV2(guiObject, counter++));
+  setupKeyset(new RCATV1(counter++));
+  setupKeyset(new RCATV1a(counter++));
+  setupKeyset(new RCATV1b(counter++));
+//  setupKeyset(new RCAAux1(counter++));
+//  setupKeyset(new RCAAux2(counter++));
+//  setupKeyset(new RCAAux2a(counter++));
+  setupKeyset(new RCAVCR1(counter++));
+  setupKeyset(new RCAVCR1a(counter++));
+  setupKeyset(new RCADVD1(counter++));
+  setupKeyset(new RCADVD1a(counter++));
+  setupKeyset(new RCASat1(counter++));
+  setupKeyset(new RCASat2(counter++));
 
-  populateKeyset(new SagemTVBox1(guiObject, counter++));
-  populateKeyset(new SagemTVBox1a(guiObject, counter++));
+  setupKeyset(new RokuBox1(counter++));
+  setupKeyset(new RokuBox2(counter++));
 
-  populateKeyset(new SamsungTV1(guiObject, counter++));
-  populateKeyset(new SamsungTV1a(guiObject, counter++));
-  populateKeyset(new SamsungTV1b(guiObject, counter++));
-  populateKeyset(new SamsungTV1c(guiObject, counter++));
-  populateKeyset(new SamsungTV1d(guiObject, counter++));
-  populateKeyset(new SamsungTV1e(guiObject, counter++));
-  populateKeyset(new SamsungTV1f(guiObject, counter++));
-  populateKeyset(new SamsungTV2(guiObject, counter++));
-  populateKeyset(new SamsungTV2a(guiObject, counter++));
-  populateKeyset(new SamsungVCR1(guiObject, counter++));
-  populateKeyset(new SamsungVCR1a(guiObject, counter++));
-  populateKeyset(new SamsungVCR1b(guiObject, counter++));
-  populateKeyset(new SamsungVCR1c(guiObject, counter++));
-  populateKeyset(new SamsungVCR1d(guiObject, counter++));
-  populateKeyset(new SamsungVCR1e(guiObject, counter++));
-  populateKeyset(new SamsungDVD1(guiObject, counter++));
-  populateKeyset(new SamsungDVD1a(guiObject, counter++));
-  populateKeyset(new SamsungDVD1b(guiObject, counter++));
-  populateKeyset(new SamsungDVD2(guiObject, counter++));
-  populateKeyset(new SamsungAC1(guiObject, counter++));
-  populateKeyset(new SamsungDVBT1(guiObject, counter++));
+  setupKeyset(new SabaTV1(counter++));
+  setupKeyset(new SabaTV2(counter++));
 
-  populateKeyset(new SanyoVCR1(guiObject, counter++));
-  populateKeyset(new SanyoDVD1(guiObject, counter++));
-  populateKeyset(new SanyoTV1(guiObject, counter++));
-  populateKeyset(new SanyoTV1a(guiObject, counter++));
-  populateKeyset(new SanyoTV1b(guiObject, counter++));
-  populateKeyset(new SanyoTV1c(guiObject, counter++));
-  populateKeyset(new SanyoTV1d(guiObject, counter++));
-  populateKeyset(new SanyoProjector(guiObject, counter++));
+  setupKeyset(new SagemTVBox1(counter++));
+  setupKeyset(new SagemTVBox1a(counter++));
 
-  populateKeyset(new SharpTV1(guiObject, counter++));
-  populateKeyset(new SharpTV1a(guiObject, counter++));
-  populateKeyset(new SharpTV1b(guiObject, counter++));
-  populateKeyset(new SharpTV1c(guiObject, counter++));
-  populateKeyset(new SharpTV1d(guiObject, counter++));
-  populateKeyset(new SharpTV1e(guiObject, counter++));
-  populateKeyset(new SharpVCR1(guiObject, counter++));
-  populateKeyset(new SharpReceiver1(guiObject, counter++));
-  populateKeyset(new SharpAC1(guiObject, counter++));
+  setupKeyset(new SamsungTV1(counter++));
+  setupKeyset(new SamsungTV1a(counter++));
+  setupKeyset(new SamsungTV1b(counter++));
+  setupKeyset(new SamsungTV1c(counter++));
+  setupKeyset(new SamsungTV1d(counter++));
+  setupKeyset(new SamsungTV1e(counter++));
+  setupKeyset(new SamsungTV1f(counter++));
+  setupKeyset(new SamsungTV2(counter++));
+  setupKeyset(new SamsungTV2a(counter++));
+  setupKeyset(new SamsungVCR1(counter++));
+  setupKeyset(new SamsungVCR1a(counter++));
+  setupKeyset(new SamsungVCR1b(counter++));
+  setupKeyset(new SamsungVCR1c(counter++));
+  setupKeyset(new SamsungVCR1d(counter++));
+  setupKeyset(new SamsungVCR1e(counter++));
+  setupKeyset(new SamsungDVD1(counter++));
+  setupKeyset(new SamsungDVD1a(counter++));
+  setupKeyset(new SamsungDVD1b(counter++));
+  setupKeyset(new SamsungDVD2(counter++));
+  setupKeyset(new SamsungAC1(counter++));
+  setupKeyset(new SamsungDVBT1(counter++));
 
-  populateKeyset(new SkyReceiver1(guiObject, counter++));
-  populateKeyset(new SkyReceiver1a(guiObject, counter++));
+  setupKeyset(new SanyoVCR1(counter++));
+  setupKeyset(new SanyoDVD1(counter++));
+  setupKeyset(new SanyoTV1(counter++));
+  setupKeyset(new SanyoTV1a(counter++));
+  setupKeyset(new SanyoTV1b(counter++));
+  setupKeyset(new SanyoTV1c(counter++));
+  setupKeyset(new SanyoTV1d(counter++));
+  setupKeyset(new SanyoProjector(counter++));
 
-  populateKeyset(new SonyTV1(guiObject, counter++));
-  populateKeyset(new SonyTV1a(guiObject, counter++));
-  populateKeyset(new SonyTV1b(guiObject, counter++));
-  populateKeyset(new SonyTV1c(guiObject, counter++));
-  populateKeyset(new SonyAmp1(guiObject, counter++));
-  populateKeyset(new SonyAmp2(guiObject, counter++));
-  populateKeyset(new SonyAudio1(guiObject, counter++));
-  populateKeyset(new SonyAudio1a(guiObject, counter++));
-  populateKeyset(new SonyDAT1(guiObject, counter++));
-  populateKeyset(new SonyDVD1(guiObject, counter++));
-  populateKeyset(new SonyDVD1a(guiObject, counter++));
-  populateKeyset(new SonyDVD1b(guiObject, counter++));
-  populateKeyset(new SonyDVD1c(guiObject, counter++));
-  populateKeyset(new SonyVCR1(guiObject, counter++));
-  populateKeyset(new SonyVCR1a(guiObject, counter++));
-  populateKeyset(new SonyVCR1b(guiObject, counter++));
-  populateKeyset(new SonyReceiver1(guiObject, counter++));
+  setupKeyset(new SharpTV1(counter++));
+  setupKeyset(new SharpTV1a(counter++));
+  setupKeyset(new SharpTV1b(counter++));
+  setupKeyset(new SharpTV1c(counter++));
+  setupKeyset(new SharpTV1d(counter++));
+  setupKeyset(new SharpTV1e(counter++));
+  setupKeyset(new SharpVCR1(counter++));
+  setupKeyset(new SharpReceiver1(counter++));
+  setupKeyset(new SharpAC1(counter++));
 
-  populateKeyset(new Tivo1(guiObject, counter++));
-  populateKeyset(new Tivo1a(guiObject, counter++));
-  populateKeyset(new Tivo1b(guiObject, counter++));
-  populateKeyset(new Tivo1c(guiObject, counter++));
-  populateKeyset(new Tivo1d(guiObject, counter++));
+  setupKeyset(new SkyReceiver1(counter++));
+  setupKeyset(new SkyReceiver1a(counter++));
 
-  populateKeyset(new TopfieldPVR1(guiObject, counter++));
-  populateKeyset(new TopfieldSat1(guiObject, counter++));
+  setupKeyset(new SonyTV1(counter++));
+  setupKeyset(new SonyTV1a(counter++));
+  setupKeyset(new SonyTV1b(counter++));
+  setupKeyset(new SonyTV1c(counter++));
+  setupKeyset(new SonyAmp1(counter++));
+  setupKeyset(new SonyAmp2(counter++));
+  setupKeyset(new SonyAudio1(counter++));
+  setupKeyset(new SonyAudio1a(counter++));
+  setupKeyset(new SonyDAT1(counter++));
+  setupKeyset(new SonyDVD1(counter++));
+  setupKeyset(new SonyDVD1a(counter++));
+  setupKeyset(new SonyDVD1b(counter++));
+  setupKeyset(new SonyDVD1c(counter++));
+  setupKeyset(new SonyVCR1(counter++));
+  setupKeyset(new SonyVCR1a(counter++));
+  setupKeyset(new SonyVCR1b(counter++));
+  setupKeyset(new SonyReceiver1(counter++));
 
-  populateKeyset(new ToshibaTV1(guiObject, counter++));
-  populateKeyset(new ToshibaTV1a(guiObject, counter++));
-  populateKeyset(new ToshibaTV1b(guiObject, counter++));
-  populateKeyset(new ToshibaTV1c(guiObject, counter++));
-  populateKeyset(new ToshibaTV1d(guiObject, counter++));
-  populateKeyset(new ToshibaTV1e(guiObject, counter++));
-  populateKeyset(new ToshibaTV1f(guiObject, counter++));
-  populateKeyset(new ToshibaTV1g(guiObject, counter++));
-  populateKeyset(new ToshibaTV1h(guiObject, counter++));
-  populateKeyset(new ToshibaVCR1(guiObject, counter++));
-  populateKeyset(new ToshibaVCR1a(guiObject, counter++));
-  populateKeyset(new ToshibaDisc1(guiObject, counter++));
-  populateKeyset(new ToshibaDisc1a(guiObject, counter++));
-  populateKeyset(new ToshibaDisc1b(guiObject, counter++));
-  populateKeyset(new ToshibaDisc1c(guiObject, counter++));
-  populateKeyset(new ToshibaDisc1d(guiObject, counter++));
+  setupKeyset(new Tivo1(counter++));
+  setupKeyset(new Tivo1a(counter++));
+  setupKeyset(new Tivo1b(counter++));
+  setupKeyset(new Tivo1c(counter++));
+  setupKeyset(new Tivo1d(counter++));
 
-  populateKeyset(new VestelTV1(guiObject, counter++));
-  populateKeyset(new VestelTV2(guiObject, counter++));
+  setupKeyset(new TopfieldPVR1(counter++));
+  setupKeyset(new TopfieldSat1(counter++));
 
-  populateKeyset(new VirginSTB1(guiObject, counter++));
+  setupKeyset(new ToshibaTV1(counter++));
+  setupKeyset(new ToshibaTV1a(counter++));
+  setupKeyset(new ToshibaTV1b(counter++));
+  setupKeyset(new ToshibaTV1c(counter++));
+  setupKeyset(new ToshibaTV1d(counter++));
+  setupKeyset(new ToshibaTV1e(counter++));
+  setupKeyset(new ToshibaTV1f(counter++));
+  setupKeyset(new ToshibaTV1g(counter++));
+  setupKeyset(new ToshibaTV1h(counter++));
+  setupKeyset(new ToshibaVCR1(counter++));
+  setupKeyset(new ToshibaVCR1a(counter++));
+  setupKeyset(new ToshibaDisc1(counter++));
+  setupKeyset(new ToshibaDisc1a(counter++));
+  setupKeyset(new ToshibaDisc1b(counter++));
+  setupKeyset(new ToshibaDisc1c(counter++));
+  setupKeyset(new ToshibaDisc1d(counter++));
 
-  populateKeyset(new VizioTV1(guiObject, counter++));
+  setupKeyset(new VestelTV1(counter++));
+  setupKeyset(new VestelTV2(counter++));
 
-  populateKeyset(new WDMediaPlayer1(guiObject, counter++));
-  populateKeyset(new WDMediaPlayer1a(guiObject, counter++));
+  setupKeyset(new VirginSTB1(counter++));
 
-  populateKeyset(new WestinghouseTV1(guiObject, counter++));
-  populateKeyset(new WestinghouseTV2(guiObject, counter++));
+  setupKeyset(new VizioTV1(counter++));
 
-  populateKeyset(new YamahaDVD1(guiObject, counter++));
-  populateKeyset(new YamahaDVD1a(guiObject, counter++));
-  populateKeyset(new YamahaAudio1(guiObject, counter++));
-  populateKeyset(new YamahaAudio1a(guiObject, counter++));
-  populateKeyset(new YamahaAudio2(guiObject, counter++));
-  populateKeyset(new YamahaAudio2a(guiObject, counter++));
-  populateKeyset(new YamahaAudio2b(guiObject, counter++));
-  populateKeyset(new YamahaAudio2c(guiObject, counter++));
-  populateKeyset(new YamahaAudio2d(guiObject, counter++));
-  populateKeyset(new YamahaAudio3(guiObject, counter++));
-  populateKeyset(new YamahaAudio4(guiObject, counter++));
-  populateKeyset(new YamahaTV1(guiObject, counter++));
-  populateKeyset(new YamahaKaraoke1(guiObject, counter++));
+  setupKeyset(new WDMediaPlayer1(counter++));
+  setupKeyset(new WDMediaPlayer1a(counter++));
 
-  populateKeyset(new ZenithC32V37(guiObject, counter++));
+  setupKeyset(new WestinghouseTV1(counter++));
+  setupKeyset(new WestinghouseTV2(counter++));
+
+  setupKeyset(new YamahaDVD1(counter++));
+  setupKeyset(new YamahaDVD1a(counter++));
+  setupKeyset(new YamahaAudio1(counter++));
+  setupKeyset(new YamahaAudio1a(counter++));
+  setupKeyset(new YamahaAudio2(counter++));
+  setupKeyset(new YamahaAudio2a(counter++));
+  setupKeyset(new YamahaAudio2b(counter++));
+  setupKeyset(new YamahaAudio2c(counter++));
+  setupKeyset(new YamahaAudio2d(counter++));
+  setupKeyset(new YamahaAudio3(counter++));
+  setupKeyset(new YamahaAudio4(counter++));
+  setupKeyset(new YamahaTV1(counter++));
+  setupKeyset(new YamahaKaraoke1(counter++));
+
+  setupKeyset(new ZenithC32V37(counter++));
 
   // Start the thread running:
   commandThread.start();
@@ -624,14 +631,29 @@ QString PIRKeysetManager::getDisplayName(
 
 
 void PIRKeysetManager::populateKeyset(
+  QObject *guiObject,
+  unsigned int keysetID)
+{
+  PIRKeysetCollection::iterator i = keysetsInfo.find(keysetID);
+
+  if (i == keysetsInfo.end())
+  {
+    // Should have some sort of error message here!
+    return;
+  }
+
+  i->second->populateProtocol(guiObject);
+  i->second->moveToThread(&commandThread);
+}
+
+
+void PIRKeysetManager::setupKeyset(
   PIRKeysetMetaData *keyset)
 {
   // Set up the keyset collection:
   keysetsInfo[keyset->getID()] = keyset;
 
-  keyset->moveProtocolToThread(&commandThread);
-
-  // Also, set up a name-based index into the collection:
+  // Set up a name-based index into the collection:
   makeIndex
     [QString(makeManager.getMakeString(keyset->getMake()))]
     [QString(keyset->getKeysetName())]

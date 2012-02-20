@@ -1,18 +1,18 @@
-#ifndef BEKO_H
-#define BEKO_H
+#ifndef HP_H
+#define HP_H
 
 #include "pirkeysetmetadata.h"
 
 class QObject;
 
-class BekoTV1: public PIRKeysetMetaData
+class HPRemote1: public PIRKeysetMetaData
 {
 public:
-  BekoTV1(
+  HPRemote1(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-#endif // BEKO_H
+#endif // HP_H

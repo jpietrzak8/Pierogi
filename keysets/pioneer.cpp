@@ -3,13 +3,24 @@
 #include "protocols/lircprotocol.h"
 
 PioneerTV1::PioneerTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Pioneer_Make,
       index)
 {
+}
+
+
+void PioneerTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
   addNECKey("0", Zero_Key, 0xAA, 0x00);
@@ -70,13 +81,24 @@ PioneerTV1::PioneerTV1(
 
 
 PioneerTV2::PioneerTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV (STB) Keyset 2",
       Pioneer_Make,
       index)
 {
+}
+
+
+void PioneerTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
   // I'm not sure this keyset even needs the "0xAA" keys at all...
@@ -130,13 +152,24 @@ PioneerTV2::PioneerTV2(
 
 
 PioneerTV3::PioneerTV3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV (STB) Keyset 3",
       Pioneer_Make,
       index)
 {
+}
+
+
+void PioneerTV3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
   addNECKey("KEY_VOLUMEUP", VolumeUp_Key, 0xAA, 0x0A);
@@ -190,7 +223,6 @@ PioneerTV3::PioneerTV3(
 
 
 PioneerAudio1::PioneerAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
@@ -201,6 +233,17 @@ PioneerAudio1::PioneerAudio1(
   addControlledDevice(Pioneer_Make, "Hi-Fi DU-L7", Audio_Device);
   addControlledDevice(Pioneer_Make, "CU-XR015", Audio_Device);
   addControlledDevice(Pioneer_Make, "A880", Audio_Device);
+}
+
+
+void PioneerAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
@@ -285,11 +328,23 @@ PioneerAudio1::PioneerAudio1(
 
 
 PioneerAudio1a::PioneerAudio1a(
-  QObject *guiObject,
   unsigned int index)
-  : PioneerAudio1(guiObject, index)
+  : PioneerAudio1(index)
 {
   setKeysetName("Audio Keyset 1a");
+}
+
+
+void PioneerAudio1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  PioneerAudio1::populateProtocol(guiObject);
 
   addNECKey("cd", CDInput_Key, 0xA6, 0x0E);
   addNECKey("tape", TapeInput_Key, 0xA6, 0x0F);
@@ -297,13 +352,24 @@ PioneerAudio1a::PioneerAudio1a(
 
 
 PioneerAudio2::PioneerAudio2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Pioneer_Make,
       index)
 {
+}
+
+
+void PioneerAudio2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
   addNECKey("VOL+", VolumeUp_Key, 0xA5, 0x0A);
@@ -354,7 +420,6 @@ PioneerAudio2::PioneerAudio2(
 
 
 PioneerAudio3::PioneerAudio3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 3",
@@ -364,6 +429,17 @@ PioneerAudio3::PioneerAudio3(
   addControlledDevice(Pioneer_Make, "A-207R", Audio_Device);
   addControlledDevice(Pioneer_Make, "SX-302", Audio_Device);
   addControlledDevice(Pioneer_Make, "VSX-9300", Audio_Device);
+}
+
+
+void PioneerAudio3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
@@ -508,13 +584,24 @@ PioneerAudio3::PioneerAudio3(
 
 
 PioneerAudio4::PioneerAudio4(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 4",
       Pioneer_Make,
       index)
 {
+}
+
+
+void PioneerAudio4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
   addNECKey("tapesel", Unmapped_Key, 0xA1, 0x4C);
@@ -544,7 +631,6 @@ PioneerAudio4::PioneerAudio4(
 
 
 PioneerAudio5::PioneerAudio5(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 5",
@@ -552,6 +638,17 @@ PioneerAudio5::PioneerAudio5(
       index)
 {
   addControlledDevice(Pioneer_Make, "XR-P240C", Audio_Device);
+}
+
+
+void PioneerAudio5::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
@@ -604,7 +701,6 @@ PioneerAudio5::PioneerAudio5(
 
 
 PioneerCD1::PioneerCD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "CD Keyset 1",
@@ -618,6 +714,17 @@ PioneerCD1::PioneerCD1(
   addControlledDevice(Pioneer_Make, "PD-M107", Audio_Device);
   addControlledDevice(Pioneer_Make, "PD-S503", Audio_Device);
   addControlledDevice(Pioneer_Make, "PD-F1007", Audio_Device);
+}
+
+
+void PioneerCD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
@@ -697,7 +804,6 @@ PioneerCD1::PioneerCD1(
 
 
 PioneerLaserDisc1::PioneerLaserDisc1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "LD Keyset 1",
@@ -705,6 +811,17 @@ PioneerLaserDisc1::PioneerLaserDisc1(
       index)
 {
   addControlledDevice(Pioneer_Make, "CLD-D925", Other_Device);
+}
+
+
+void PioneerLaserDisc1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
@@ -757,7 +874,6 @@ PioneerLaserDisc1::PioneerLaserDisc1(
 
 
 PioneerDVD1::PioneerDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
@@ -766,6 +882,17 @@ PioneerDVD1::PioneerDVD1(
 {
   addControlledDevice(Pioneer_Make, "VXX2702", DVD_Device);
   addControlledDevice(Pioneer_Make, "VXX2801", DVD_Device);
+}
+
+
+void PioneerDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
 

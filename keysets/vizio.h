@@ -9,8 +9,10 @@ class VizioTV1: public PIRKeysetMetaData
 {
 public:
   VizioTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // VIZIO_H

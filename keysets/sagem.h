@@ -9,16 +9,20 @@ class SagemTVBox1: public PIRKeysetMetaData
 {
 public:
   SagemTVBox1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class SagemTVBox1a: public SagemTVBox1
 {
 public:
   SagemTVBox1a(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // SAGEM_H

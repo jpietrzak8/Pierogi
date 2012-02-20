@@ -9,8 +9,10 @@ class LogitechSpeakers: public PIRKeysetMetaData
 {
 public:
   LogitechSpeakers(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // LOGITECH_H

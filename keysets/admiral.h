@@ -9,24 +9,30 @@ class AdmiralTV1: public PIRKeysetMetaData
 {
 public:
   AdmiralTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class AdmiralTV2: public PIRKeysetMetaData
 {
 public:
   AdmiralTV2(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class AdmiralVCR1: public PIRKeysetMetaData
 {
 public:
   AdmiralVCR1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // ADMIRAL_H

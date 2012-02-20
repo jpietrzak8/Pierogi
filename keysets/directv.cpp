@@ -4,13 +4,24 @@
 
 // Note: volume keys are tricky!
 DirectvReceiver1::DirectvReceiver1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Directv_Make,
       index)
 {
+}
+
+
+void DirectvReceiver1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new DirectvProtocol(guiObject, index, LowFreq, true);
 
   setPreData(0xC, 4);

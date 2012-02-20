@@ -4,7 +4,6 @@
 #include "protocols/rc5protocol.h"
 
 LGTV1::LGTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -12,6 +11,17 @@ LGTV1::LGTV1(
       index)
 {
   addControlledDevice(LG_Make, "32LH301C", TV_Device);
+}
+
+
+void LGTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -117,11 +127,23 @@ LGTV1::LGTV1(
 
 
 LGTV1a::LGTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : LGTV1(guiObject, index)
+  : LGTV1(index)
 {
   setKeysetName("TV Keyset 1a");
+}
+
+
+void LGTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  LGTV1::populateProtocol(guiObject);
 
   addKey("*", Unmapped_Key, 0x39, 8);
   addKey("exit", Exit_Key, 0x5B, 8);
@@ -138,11 +160,23 @@ LGTV1a::LGTV1a(
 
 
 LGTV1b::LGTV1b(
-  QObject *guiObject,
   unsigned int index)
-  : LGTV1(guiObject, index)
+  : LGTV1(index)
 {
   setKeysetName("TV Keyset 1b");
+}
+
+
+void LGTV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  LGTV1::populateProtocol(guiObject);
 
   addKey("PR+/Up_Arrow", Up_Key, 0x00, 8);
   addKey("PR-/Down_Arrow", Down_Key, 0x01, 8);
@@ -156,15 +190,27 @@ LGTV1b::LGTV1b(
 
 
 LGTV1c::LGTV1c(
-  QObject *guiObject,
   unsigned int index)
-  : LGTV1(guiObject, index)
+  : LGTV1(index)
 {
   setKeysetName("TV Keyset 1c");
 
   addControlledDevice(LG_Make, "60px950", TV_Device);
   addControlledDevice(LG_Make, "60pg60", TV_Device);
   addControlledDevice(LG_Make, "55lw9500", TV_Device);
+}
+
+
+void LGTV1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  LGTV1::populateProtocol(guiObject);
 
 //  addKey("Mark", Unmapped_Key, 0x1E, 8); // This is probably an error
 //  addKey("3DOption", Unmapped_Key, 0x45, 8); // also probably error
@@ -185,13 +231,24 @@ LGTV1c::LGTV1c(
 
 
 LGTV2::LGTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 2",
       LG_Make,
       index)
 {
+}
+
+
+void LGTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index, 0x40);
 
   addKey("0", Zero_Key, 0x00, 6);
@@ -241,11 +298,23 @@ LGTV2::LGTV2(
 
 
 LGTV2a::LGTV2a(
-  QObject *guiObject,
   unsigned int index)
-  : LGTV2(guiObject, index)
+  : LGTV2(index)
 {
   setKeysetName("TV Keyset 2a");
+}
+
+
+void LGTV2a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  LGTV2::populateProtocol(guiObject);
 
   addKey("KEY_YELLOW", Yellow_Key, 0x32, 6);
   addKey("KEY_BLUE", Blue_Key, 0x34, 6);
@@ -255,11 +324,23 @@ LGTV2a::LGTV2a(
 
 
 LGTV2b::LGTV2b(
-  QObject *guiObject,
   unsigned int index)
-  : LGTV2(guiObject, index)
+  : LGTV2(index)
 {
   setKeysetName("TV Keyset 2b");
+}
+
+
+void LGTV2b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  LGTV2::populateProtocol(guiObject);
 
   addKey("sleep", Sleep_Key, 0x26, 6); // might need separate class
   addKey("Q.VIEW", Unmapped_Key, 0x32, 6);
@@ -270,13 +351,24 @@ LGTV2b::LGTV2b(
 
 
 LGDisc1::LGDisc1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD/BD Keyset 1",
       LG_Make,
       index)
 {
+}
+
+
+void LGDisc1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECXProtocol(guiObject, index, true);
 
 //  setPreData(0x3434, 16);
@@ -346,13 +438,24 @@ LGDisc1::LGDisc1(
 
 
 LGDisc2::LGDisc2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD/BD Keyset 2",
       LG_Make,
       index)
 {
+}
+
+
+void LGDisc2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECXProtocol(guiObject, index, true);
 
 //  setPreData(0xB4B4, 16);
@@ -408,11 +511,23 @@ LGDisc2::LGDisc2(
 
 
 LGDisc2a::LGDisc2a(
-  QObject *guiObject,
   unsigned int index)
-  : LGDisc2(guiObject, index)
+  : LGDisc2(index)
 {
   setKeysetName("DVD/BD Keyset 2a");
+}
+
+
+void LGDisc2a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  LGDisc2::populateProtocol(guiObject);
 
   addKey("KEY_HOME", Menu_Key, 0x67, 8);
   addKey("KEY_CLEAR", Clear_Key, 0x7C, 8);
@@ -424,13 +539,24 @@ LGDisc2a::LGDisc2a(
 
 
 LGVCR1::LGVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       LG_Make,
       index)
 {
+}
+
+
+void LGVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
 //  setPreData(0x7689, 16);
@@ -489,22 +615,46 @@ LGVCR1::LGVCR1(
 
 
 LGVCR1a::LGVCR1a(
-  QObject *guiObject,
   unsigned int index)
-  : LGVCR1(guiObject, index)
+  : LGVCR1(index)
 {
   setKeysetName("VCR Keyset 1a");
+}
+
+
+void LGVCR1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  LGVCR1::populateProtocol(guiObject);
 
   addKey("power", Power_Key, 0x7D, 8);
 }
 
 
 LGVCR1b::LGVCR1b(
-  QObject *guiObject,
   unsigned int index)
-  : LGVCR1(guiObject, index)
+  : LGVCR1(index)
 {
   setKeysetName("VCR Keyset 1b");
+}
+
+
+void LGVCR1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  LGVCR1::populateProtocol(guiObject);
 
   addKey("menu-up", Up_Key, 0x82, 8);
   addKey("menu-left", Left_Key, 0x83, 8);
@@ -515,13 +665,24 @@ LGVCR1b::LGVCR1b(
 
 
 LGAC1::LGAC1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Air Conditioner 1",
       LG_Make,
       index)
 {
+}
+
+
+void LGAC1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x6681, 16);

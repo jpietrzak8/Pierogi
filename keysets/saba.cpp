@@ -2,13 +2,24 @@
 #include "protocols/thomsonprotocol.h"
 
 SabaTV1::SabaTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV/VCR Keyset 1",
       Saba_Make,
       index)
 {
+}
+
+
+void SabaTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new ThomsonProtocol(guiObject, index);
 
   setPreData(0x0, 4);
@@ -54,13 +65,24 @@ SabaTV1::SabaTV1(
 
 
 SabaTV2::SabaTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Saba_Make,
       index)
 {
+}
+
+
+void SabaTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new ThomsonProtocol(guiObject, index);
 
   setPreData(0x3, 4);

@@ -9,8 +9,10 @@ class NokiaGenericVCR: public PIRKeysetMetaData
 {
 public:
   NokiaGenericVCR(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // NOKIA_H

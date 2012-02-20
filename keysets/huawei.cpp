@@ -4,7 +4,6 @@
 
 
 HuaweiSTB1::HuaweiSTB1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "STB Keyset 1",
@@ -12,6 +11,17 @@ HuaweiSTB1::HuaweiSTB1(
       index)
 {
   addControlledDevice(Huawei_Make, "EX2108", Other_Device);
+}
+
+
+void HuaweiSTB1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECXProtocol(guiObject, index, false);
 
@@ -56,7 +66,6 @@ HuaweiSTB1::HuaweiSTB1(
 
 
 HuaweiSTB2::HuaweiSTB2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "STB Keyset 2",
@@ -64,6 +73,17 @@ HuaweiSTB2::HuaweiSTB2(
       index)
 {
   addControlledDevice(Huawei_Make, "EC2108", Other_Device);
+}
+
+
+void HuaweiSTB2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 

@@ -3,13 +3,24 @@
 #include "protocols/rcaprotocol.h"
 
 RCATV1::RCATV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       RCA_Make,
       index)
 {
+}
+
+
+void RCATV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RCAProtocol(guiObject, index);
 
   setPreData(0xF, 4);
@@ -73,22 +84,46 @@ RCATV1::RCATV1(
 
 
 RCATV1a::RCATV1a(
-  QObject *guiObject,
   unsigned int index)
-  : RCATV1(guiObject, index)
+  : RCATV1(index)
 {
   setKeysetName("TV Keyset 1a");
+}
+
+
+void RCATV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  RCATV1::populateProtocol(guiObject);
 
   addKey("repeat", Repeat_Key, 0x05, 8);
 }
 
 
 RCATV1b::RCATV1b(
-  QObject *guiObject,
   unsigned int index)
-  : RCATV1(guiObject, index)
+  : RCATV1(index)
 {
   setKeysetName("TV Keyset 1b");
+}
+
+
+void RCATV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  RCATV1::populateProtocol(guiObject);
 
   addKey("reset", Reset_Key, 0x12, 8);
 }
@@ -237,13 +272,24 @@ RCAAux2a::RCAAux2a(
 
 
 RCAVCR1::RCAVCR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       RCA_Make,
       index)
 {
+}
+
+
+void RCAVCR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RCAProtocol(guiObject, index);
 
   setPreData(0xE, 4);
@@ -291,24 +337,47 @@ RCAVCR1::RCAVCR1(
 
 
 RCAVCR1a::RCAVCR1a(
-  QObject *guiObject,
   unsigned int index)
-  : RCAVCR1(guiObject, index)
+  : RCAVCR1(index)
 {
   setKeysetName("VCR(alt) Keyset 1a");
+}
+
+
+void RCAVCR1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  RCAVCR1::populateProtocol(guiObject);
 
   setPreData(0xD, 4);
 }
 
 
 RCADVD1::RCADVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       RCA_Make,
       index)
 {
+}
+
+
+void RCADVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RCAProtocol(guiObject, index);
 
   setPreData(0x5, 4);
@@ -357,11 +426,23 @@ RCADVD1::RCADVD1(
 
 
 RCADVD1a::RCADVD1a(
-  QObject *guiObject,
   unsigned int index)
-  : RCADVD1(guiObject, index)
+  : RCADVD1(index)
 {
   setKeysetName("DVD Keyset 1a");
+}
+
+
+void RCADVD1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  RCADVD1::populateProtocol(guiObject);
 
   addKey("dvd_ch+", ChannelUp_Key, 0x20, 8);
   addKey("dvd_ch-", ChannelDown_Key, 0x22, 8);
@@ -369,13 +450,24 @@ RCADVD1a::RCADVD1a(
 
 
 RCASat1::RCASat1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Satellite(DirecTV) Keyset 1",
       RCA_Make,
       index)
 {
+}
+
+
+void RCASat1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RCAProtocol(guiObject, index);
 
   setPreData(0x7, 4);
@@ -424,13 +516,24 @@ RCASat1::RCASat1(
 
 
 RCASat2::RCASat2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Satellite (Dish Network) Keyset 2",
       RCA_Make,
       index)
 {
+}
+
+
+void RCASat2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
     index,

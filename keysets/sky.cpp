@@ -2,13 +2,24 @@
 #include "protocols/rc6skyprotocol.h"
 
 SkyReceiver1::SkyReceiver1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
       Sky_Make,
       index)
 {
+}
+
+
+void SkyReceiver1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC6SkyProtocol(guiObject, index);
 
   setPreData(0x000, 12);
@@ -53,7 +64,7 @@ SkyReceiver1::SkyReceiver1(
   addKey("SKY", Unmapped_Key, 0x80, 8);
   addKey("HELP", Unmapped_Key, 0x81, 8); // menu?
   addKey("BACK", Exit_Key, 0x83, 8);
-  addKey("TV", Unmapped_Key, 0x84, 8);
+  addKey("TV", Input_Key, 0x84, 8);
 
   addKey("INFO", Info_Key, 0xCB, 8);
   addKey("TV_GUIDE", Guide_Key, 0xCC, 8);
@@ -63,11 +74,23 @@ SkyReceiver1::SkyReceiver1(
 
 
 SkyReceiver1a::SkyReceiver1a(
-  QObject *guiObject,
   unsigned int index)
-  : SkyReceiver1(guiObject, index)
+  : SkyReceiver1(index)
 {
   setKeysetName("Receiver Keyset 1a");
+}
+
+
+void SkyReceiver1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  SkyReceiver1::populateProtocol(guiObject);
 
   setPreData(0x00C, 12);
 }

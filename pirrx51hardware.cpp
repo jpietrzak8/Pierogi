@@ -8,11 +8,9 @@
 #include <iostream>
 #include <sys/time.h>
 timeval previousTime;
-#else
-//#ifndef DEBUGGING
+#endif // DEBUGGING
 #include <linux/types.h>
 #include <linux/ioctl.h>
-#endif // DEBUGGING
 #include <fcntl.h>
 
 // Includes I'm using for error handling stuff:
@@ -64,8 +62,7 @@ void PIRRX51Hardware::openLircDevice()
 #ifdef DEBUGGING
   // check the current time:
   gettimeofday(&previousTime, NULL);
-#else
-//#ifndef DEBUGGING
+#endif // DEBUGGING
   fileDescriptor = open(PATH_TO_LIRC_DEVICE, O_WRONLY);
 
   if (fileDescriptor == -1)
@@ -75,7 +72,6 @@ void PIRRX51Hardware::openLircDevice()
     ss << "Error is " << strerror(errno) << "\n";
     throw PIRException(ss.str());
   }
-#endif // DEBUGGING
 }
 
 
@@ -144,7 +140,7 @@ void PIRRX51Hardware::sendCommandToDevice()
     ++blah;
   }
   std::cout << std::endl;
-#else
+#endif // DEBUGGING
   if (write(fileDescriptor, buffer, index * sizeof(int)) == -1)
   {
     std::stringstream ss;
@@ -152,7 +148,6 @@ void PIRRX51Hardware::sendCommandToDevice()
     ss << "IR device returned error: " << strerror(errno) << "\n";
     throw PIRException(ss.str());
   }
-#endif // DEBUGGING
 
   // Reset the index:
   index = 0;
@@ -166,7 +161,7 @@ void PIRRX51Hardware::setCarrierFrequency(
 
 #ifdef DEBUGGING
   std::cout << "Setting frequency to " << frequency << "\n";
-#else
+#endif // DEBUGGING
   if (ioctl(fileDescriptor, _IOW('i', 0x13, __u32), &frequency) == -1)
   {
     std::stringstream ss;
@@ -174,7 +169,6 @@ void PIRRX51Hardware::setCarrierFrequency(
     ss << "IR device returned error: " << strerror(errno) << "\n";
     throw PIRException(ss.str());
   }
-#endif // DEBUGGING
 }
 
 
@@ -185,7 +179,7 @@ void PIRRX51Hardware::setDutyCycle(
 
 #ifdef DEBUGGING
   std::cout << "Setting duty cycle to " << dutyCycle << "\n";
-#else
+#endif // DEBUGGING
   if (ioctl(fileDescriptor, _IOW('i', 0x15, __u32), &dutyCycle) == -1)
   {
     std::stringstream ss;
@@ -193,5 +187,4 @@ void PIRRX51Hardware::setDutyCycle(
     ss << "IR device returned error: " << strerror(errno) << "\n";
     throw PIRException(ss.str());
   }
-#endif // DEBUGGING
 }

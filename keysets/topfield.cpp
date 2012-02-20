@@ -2,7 +2,6 @@
 #include "protocols/necprotocol.h"
 
 TopfieldPVR1::TopfieldPVR1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "PVR Keyset 1",
@@ -11,6 +10,17 @@ TopfieldPVR1::TopfieldPVR1(
 {
   addControlledDevice(Topfield_Make, "PVR 4000", Other_Device);
   addControlledDevice(Topfield_Make, "PVR 5000", Other_Device);
+}
+
+
+void TopfieldPVR1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
@@ -73,7 +83,6 @@ TopfieldPVR1::TopfieldPVR1(
 
 
 TopfieldSat1::TopfieldSat1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Sat Keyset 1",
@@ -81,6 +90,17 @@ TopfieldSat1::TopfieldSat1(
       index)
 {
   addControlledDevice(Topfield_Make, "TF4000Fi", Sat_Device);
+}
+
+
+void TopfieldSat1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 

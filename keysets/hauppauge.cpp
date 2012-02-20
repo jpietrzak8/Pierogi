@@ -2,7 +2,6 @@
 #include "protocols/rc5protocol.h"
 
 HauppaugePCTV1::HauppaugePCTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "PCTV Keyset 1",
@@ -10,6 +9,18 @@ HauppaugePCTV1::HauppaugePCTV1(
       index)
 {
   addControlledDevice(Hauppauge_Make, "PVR 350", Computer_Device);
+}
+
+
+void HauppaugePCTV1::populateProtocol(
+  QObject *guiObject)
+{
+
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x5E);
 
@@ -63,26 +74,50 @@ HauppaugePCTV1::HauppaugePCTV1(
 
 
 HauppaugePCTV1a::HauppaugePCTV1a(
-  QObject *guiObject,
   unsigned int index)
-  : HauppaugePCTV1(guiObject, index)
+  : HauppaugePCTV1(index)
 {
   setKeysetName("PCTV Keyset 1a");
 
   addControlledDevice(Hauppauge_Make, "WinTV-HVR-950Q", Computer_Device);
+}
+
+
+void HauppaugePCTV1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  HauppaugePCTV1::populateProtocol(guiObject);
 
   setPreData(0x5D, 7);
 }
 
 
 HauppaugePCTV1b::HauppaugePCTV1b(
-  QObject *guiObject,
   unsigned int index)
-  : HauppaugePCTV1(guiObject, index)
+  : HauppaugePCTV1(index)
 {
   setKeysetName("PCTV Keyset 1b");
 
   addControlledDevice(Hauppauge_Make, "MVP", Computer_Device);
+}
+
+
+void HauppaugePCTV1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  HauppaugePCTV1::populateProtocol(guiObject);
 
   setPreData(0x43, 7);
 
@@ -92,14 +127,26 @@ HauppaugePCTV1b::HauppaugePCTV1b(
 
 
 HauppaugePCTV1c::HauppaugePCTV1c(
-  QObject *guiObject,
   unsigned int index)
-  : HauppaugePCTV1(guiObject, index)
+  : HauppaugePCTV1(index)
 {
   setKeysetName("PCTV Keyset 1c");
 
   addControlledDevice(Hauppauge_Make, "PVR 250", Computer_Device);
 //  addControlledDevice(Hauppauge_Make, "PVR 350", Computer_Device);
+}
+
+
+void HauppaugePCTV1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  HauppaugePCTV1::populateProtocol(guiObject);
 
   setPreData(0x5F, 7);
 
@@ -108,9 +155,7 @@ HauppaugePCTV1c::HauppaugePCTV1c(
 }
 
 
-// Based on LIRC Sony_RM-V302-DVD010 config file
 HauppaugePCTV2::HauppaugePCTV2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "PCTV Keyset 2",
@@ -118,6 +163,18 @@ HauppaugePCTV2::HauppaugePCTV2(
       index)
 {
   addControlledDevice(Hauppauge_Make, "PVR-250", Computer_Device);
+}
+
+
+// Based on LIRC Sony_RM-V302-DVD010 config file
+void HauppaugePCTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 

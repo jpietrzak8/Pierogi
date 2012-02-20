@@ -3,13 +3,24 @@
 
 
 KenwoodAudio1::KenwoodAudio1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Kenwood_Make,
       index)
 {
+}
+
+
+void KenwoodAudio1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0xB8, 8);
@@ -108,13 +119,24 @@ KenwoodAudio2::KenwoodAudio2(
 
 
 KenwoodComponent1::KenwoodComponent1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Component Keyset 1",
       Kenwood_Make,
       index)
 {
+}
+
+
+void KenwoodComponent1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x00B8, 16);
@@ -196,13 +218,24 @@ KenwoodComponent1::KenwoodComponent1(
 
 
 KenwoodComponent2::KenwoodComponent2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Component Keyset 2",
       Kenwood_Make,
       index)
 {
+}
+
+
+void KenwoodComponent2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x01B8, 16);
@@ -245,13 +278,24 @@ KenwoodComponent2::KenwoodComponent2(
 
 
 KenwoodComponent3::KenwoodComponent3(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Component Keyset 3",
       Kenwood_Make,
       index)
 {
+}
+
+
+void KenwoodComponent3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0x02B8, 16);
@@ -322,13 +366,24 @@ KenwoodAudio5::KenwoodAudio5(
 
 
 KenwoodCD1::KenwoodCD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "CD Keyset 1",
       Kenwood_Make,
       index)
 {
+}
+
+
+void KenwoodCD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0xB6, 8);
@@ -405,7 +460,6 @@ KenwoodCD1::KenwoodCD1(
 
 
 KenwoodDVD1::KenwoodDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
@@ -413,6 +467,17 @@ KenwoodDVD1::KenwoodDVD1(
       index)
 {
   addControlledDevice(Kenwood_Make, "DVF-9010", Audio_Device);
+}
+
+
+void KenwoodDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
@@ -472,13 +537,24 @@ KenwoodDVD1::KenwoodDVD1(
 
 
 KenwoodTV1::KenwoodTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Kenwood_Make,
       index)
 {
+}
+
+
+void KenwoodTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x04, 8);

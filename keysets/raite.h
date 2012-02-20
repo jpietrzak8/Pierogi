@@ -9,8 +9,10 @@ class RaiteDVD1: public PIRKeysetMetaData
 {
 public:
   RaiteDVD1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // RAITE_H

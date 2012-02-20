@@ -9,16 +9,20 @@ class VestelTV1: public PIRKeysetMetaData
 {
 public:
   VestelTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class VestelTV2: public PIRKeysetMetaData
 {
 public:
   VestelTV2(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // VESTEL_H

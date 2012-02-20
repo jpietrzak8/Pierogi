@@ -9,8 +9,10 @@ class PhilcoTV: public PIRKeysetMetaData
 {
 public:
   PhilcoTV(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // PHILCO_H

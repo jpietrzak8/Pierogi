@@ -9,16 +9,20 @@ class EmersonTV1: public PIRKeysetMetaData
 {
 public:
   EmersonTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class EmersonDVD1: public PIRKeysetMetaData
 {
 public:
   EmersonDVD1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // EMERSON_H

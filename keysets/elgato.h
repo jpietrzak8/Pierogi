@@ -9,8 +9,10 @@ class ElgatoEyeTV1: public PIRKeysetMetaData
 {
 public:
   ElgatoEyeTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // ELGATO_H

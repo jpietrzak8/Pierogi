@@ -2,7 +2,6 @@
 #include "protocols/necprotocol.h"
 
 RaiteDVD1::RaiteDVD1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "DVD Keyset 1",
@@ -10,6 +9,17 @@ RaiteDVD1::RaiteDVD1(
       index)
 {
   addControlledDevice(Raite_Make, "DVD-703", DVD_Device);
+}
+
+
+void RaiteDVD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 

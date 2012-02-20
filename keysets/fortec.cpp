@@ -3,13 +3,24 @@
 
 
 FortecReceiver1::FortecReceiver1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Fortec_Make,
       index)
 {
+}
+
+
+void FortecReceiver1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x20, 8);
@@ -51,13 +62,24 @@ FortecReceiver1::FortecReceiver1(
 
 
 FortecReceiver2::FortecReceiver2(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "Sat Keyset 2",
       Fortec_Make,
       index)
 {
+}
+
+
+void FortecReceiver2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
   setPreData(0xFD01, 8);

@@ -9,16 +9,20 @@ class AcerTV1: public PIRKeysetMetaData
 {
 public:
   AcerTV1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 class AcerPC1: public PIRKeysetMetaData
 {
 public:
   AcerPC1(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // ACER_H

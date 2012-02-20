@@ -2,13 +2,24 @@
 #include "protocols/necprotocol.h"
 
 ElgatoEyeTV1::ElgatoEyeTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "EyeTV Keyset 1",
       Elgato_Make,
       index)
 {
+}
+
+
+void ElgatoEyeTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
   setPreData(0x45, 8);

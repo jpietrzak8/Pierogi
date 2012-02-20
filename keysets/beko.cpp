@@ -3,13 +3,24 @@
 
 
 BekoTV1::BekoTV1(
-  QObject *guiObject,
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Beko_Make,
       index)
 {
+}
+
+
+void BekoTV1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
   threadableProtocol = new RC5Protocol(guiObject, index);
 
   addKey("MIX", TeletextAndTV_Key, 0x1004, 13);

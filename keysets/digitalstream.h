@@ -9,8 +9,10 @@ class DigitalStreamReceiver: public PIRKeysetMetaData
 {
 public:
   DigitalStreamReceiver(
-    QObject *guiObject,
     unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
 };
 
 #endif // DIGITALSTREAM_H
