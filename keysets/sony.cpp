@@ -542,6 +542,7 @@ SonyDVD1::SonyDVD1(
       Sony_Make,
       index)
 {
+  addControlledDevice(Sony_Make, "DVP-CX985V", DVD_Device);
 }
 
 

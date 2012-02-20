@@ -20,6 +20,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Ei_Make] = "Ei";
   makes[Elgato_Make] = "Elgato";
   makes[Emerson_Make] = "Emerson";
+  makes[Epson_Make] = "Epson";
   makes[Fortec_Make] = "Fortec Star";
   makes[GoldStar_Make] = "GoldStar";
   makes[Grundig_Make] = "Grundig";
@@ -29,6 +30,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Homecast_Make] = "Homecast";
   makes[HP_Make] = "HP";
   makes[Huawei_Make] = "Huawei";
+  makes[Humax_Make] = "Humax";
   makes[JVC_Make] = "JVC";
   makes[Kenwood_Make] = "Kenwood";
   makes[LG_Make] = "LG";

@@ -32,8 +32,11 @@ void LogitechSpeakers::populateProtocol(
   addKey("test", Unmapped_Key, 0x05, 8);
   addKey("center-", CenterVolumeDown_Key, 0x06, 8);
   addKey("direct", PCInput_Key, 0x0A, 8);
+  addKey("direct", One_Key, 0x0A, 8);
   addKey("optical", OpticalInput_Key, 0x0B, 8);
+  addKey("optical", Two_Key, 0x0B, 8);
   addKey("coax", DigitalCoaxInput_Key, 0x0C, 8);
+  addKey("coax", Three_Key, 0x0C, 8);
   addKey("vol-", VolumeDown_Key, 0x0E, 8);
   addKey("power", Power_Key, 0x10, 8);
   addKey("mute", Mute_Key, 0x16, 8);

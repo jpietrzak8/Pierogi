@@ -112,9 +112,9 @@ int KaseikyoProtocol::generateStandardCommand(
   // manufacturer ID codes) and a second half (containing address and command
   // data).  The first half is 16 bits long plus a 4 bit checksum, and the
   // second half is 24 bits long plus a 4 bit checksum.  Of that second half,
-  // the first 12 bits are probably the device, and the last 12 bits are split
+  // the first 12 bits are probably the address, and the last 12 bits are split
   // into 8 bits of command followed by 4 bits that turn out to be the last
-  // four bits of the command xored with the middle 4 bits of the device.
+  // four bits of the command xored with the middle 4 bits of the address.
   // (At least for Panasonic.)  Very strange.
   // For now, I'm going with this game plan:
   // -- The "preData" will contain the 16 bits of manufacturer data as a

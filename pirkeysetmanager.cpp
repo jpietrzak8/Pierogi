@@ -19,6 +19,7 @@
 #include "keysets/ei.h"
 #include "keysets/elgato.h"
 #include "keysets/emerson.h"
+#include "keysets/epson.h"
 #include "keysets/fortec.h"
 #include "keysets/goldstar.h"
 #include "keysets/grundig.h"
@@ -28,6 +29,7 @@
 #include "keysets/homecast.h"
 #include "keysets/hp.h"
 #include "keysets/huawei.h"
+#include "keysets/humax.h"
 #include "keysets/jvc.h"
 #include "keysets/kenwood.h"
 #include "keysets/lg.h"
@@ -179,6 +181,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new EmersonTV1(counter++));
   setupKeyset(new EmersonDVD1(counter++));
 
+  setupKeyset(new EpsonProjector1(counter++));
+  setupKeyset(new EpsonProjector2(counter++));
+
   setupKeyset(new FortecReceiver1(counter++));
   setupKeyset(new FortecReceiver2(counter++));
 
@@ -228,6 +233,10 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new HuaweiSTB1(counter++));
   setupKeyset(new HuaweiSTB2(counter++));
+
+  setupKeyset(new HumaxReceiver1(counter++));
+  setupKeyset(new HumaxReceiver2(counter++));
+  setupKeyset(new HumaxReceiver3(counter++));
 
   setupKeyset(new JVCSat1(counter++));
   setupKeyset(new JVCSat2(counter++));
