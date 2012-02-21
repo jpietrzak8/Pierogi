@@ -123,7 +123,13 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/vizio.cpp \
     keysets/hp.cpp \
     keysets/motorola.cpp \
-    protocols/giprotocol.cpp
+    protocols/giprotocol.cpp \
+    keysets/bush.cpp \
+    keysets/canon.cpp \
+    keysets/epson.cpp \
+    keysets/humax.cpp \
+    keysets/technics.cpp \
+    keysets/united.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -221,7 +227,13 @@ HEADERS += mainwindow.h \
     keysets/vizio.h \
     keysets/hp.h \
     keysets/motorola.h \
-    protocols/giprotocol.h
+    protocols/giprotocol.h \
+    keysets/bush.h \
+    keysets/canon.h \
+    keysets/epson.h \
+    keysets/humax.h \
+    keysets/technics.h \
+    keysets/united.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

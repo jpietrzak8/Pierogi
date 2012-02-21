@@ -10,7 +10,9 @@
 #include "keysets/apple.h"
 #include "keysets/beko.h"
 #include "keysets/bose.h"
+#include "keysets/bush.h"
 #include "keysets/cambridge.h"
+#include "keysets/canon.h"
 #include "keysets/daewoo.h"
 #include "keysets/denon.h"
 #include "keysets/digitalstream.h"
@@ -55,9 +57,11 @@
 #include "keysets/sharp.h"
 #include "keysets/sky.h"
 #include "keysets/sony.h"
+#include "keysets/technics.h"
 #include "keysets/tivo.h"
 #include "keysets/topfield.h"
 #include "keysets/toshiba.h"
+#include "keysets/united.h"
 #include "keysets/vestel.h"
 #include "keysets/virgin.h"
 #include "keysets/vizio.h"
@@ -117,11 +121,19 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new BoseRadio3(counter++));
   setupKeyset(new BoseHomeTheater1(counter++));
 
+  setupKeyset(new BushTV1(counter++));
+  setupKeyset(new BushTV2(counter++));
+  setupKeyset(new BushSTB1(counter++));
+
   setupKeyset(new CambridgeCD1(counter++));
   setupKeyset(new CambridgeAudio1(counter++));
   setupKeyset(new CambridgeAudio2(counter++));
   setupKeyset(new CambridgeAudio3(counter++));
   setupKeyset(new CambridgeDVD1(counter++));
+
+  setupKeyset(new CanonDSLR1(counter++));
+  setupKeyset(new CanonCamcorder1(counter++));
+  setupKeyset(new CanonPowershot1(counter++));
 
   setupKeyset(new DaewooTV1(counter++));
   setupKeyset(new DaewooTV2(counter++));
@@ -325,6 +337,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new PanasonicDVD1(counter++));
   setupKeyset(new PanasonicDVD1a(counter++));
   setupKeyset(new PanasonicAudio1(counter++));
+  setupKeyset(new PanasonicAudio2(counter++));
   setupKeyset(new PanasonicAC1(counter++));
 
   setupKeyset(new PhilcoTV(counter++));
@@ -467,6 +480,13 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SonyVCR1b(counter++));
   setupKeyset(new SonyReceiver1(counter++));
 
+  setupKeyset(new TechnicsAudio1(counter++));
+  setupKeyset(new TechnicsAudio1a(counter++));
+  setupKeyset(new TechnicsAudio2(counter++));
+  setupKeyset(new TechnicsAudio3(counter++));
+  setupKeyset(new TechnicsAudio3a(counter++));
+  setupKeyset(new TechnicsDVD1(counter++));
+
   setupKeyset(new Tivo1(counter++));
   setupKeyset(new Tivo1a(counter++));
   setupKeyset(new Tivo1b(counter++));
@@ -492,6 +512,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ToshibaDisc1b(counter++));
   setupKeyset(new ToshibaDisc1c(counter++));
   setupKeyset(new ToshibaDisc1d(counter++));
+
+  setupKeyset(new UnitedDVD1(counter++));
+  setupKeyset(new UnitedDVBT1(counter++));
 
   setupKeyset(new VestelTV1(counter++));
   setupKeyset(new VestelTV2(counter++));

@@ -11,7 +11,9 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Apple_Make] = "Apple";
   makes[Beko_Make] = "Beko";
   makes[Bose_Make] = "Bose";
+  makes[Bush_Make] = "Bush";
   makes[Cambridge_Make] = "Cambridge Audio";
+  makes[Canon_Make] = "Canon";
   makes[Daewoo_Make] = "Daewoo";
   makes[Denon_Make] = "Denon";
   makes[DigitalStream_Make] = "Digital Stream";
@@ -56,9 +58,11 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Sharp_Make] = "Sharp";
   makes[Sky_Make] = "Sky";
   makes[Sony_Make] = "Sony";
+  makes[Technics_Make] = "Technics";
   makes[Tivo_Make] = "TiVo";
   makes[Topfield_Make] = "Topfield";
   makes[Toshiba_Make] = "Toshiba";
+  makes[United_Make] = "United";
   makes[Vestel_Make] = "Vestel";
   makes[Virgin_Make] = "Virgin Media";
   makes[Vizio_Make] = "Vizio";

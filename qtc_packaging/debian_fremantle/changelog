@@ -1,3 +1,9 @@
+pierogi (0.6.9) unstable; urgency=low
+  * Added Panasonic "SA-AK25" as Audio Keyset 2
+  * Made a first pass at keysets for Bush, Canon, Epson, Humax, Technics, and United
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Tue, 21 Feb 2012 11:36:15 -0500
+
 pierogi (0.6.8) unstable; urgency=low
   * Finally, some work to improve memory management, although much remains to be done.
   * Fixed a subtle bug in the Sky protocol.

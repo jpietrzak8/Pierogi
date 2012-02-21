@@ -723,6 +723,65 @@ void PanasonicAudio1::populateProtocol(
 }
 
 
+PanasonicAudio2::PanasonicAudio2(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Audio Keyset 2",
+      Panasonic_Make,
+      index)
+{
+}
+
+
+void PanasonicAudio2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new KaseikyoProtocol(guiObject, index);
+
+  setPreData(0x2002, 16);
+
+  addKaseikyoKey("Play/Pause", Play_Key, 0x1CA, 0x0A);
+  addKaseikyoKey("Play/Pause", Pause_Key, 0x1CA, 0x0A);
+  addKaseikyoKey("Stop", Stop_Key, 0x1CA, 0x0A);
+  addKaseikyoKey("Play_Reverse", Unmapped_Key, 0x1CA, 0x06);
+  addKaseikyoKey("Back", Previous_Key, 0x1CA, 0x49);
+  addKaseikyoKey("Forward", Next_Key, 0x1CA, 0x4A);
+  addKaseikyoKey("Mute", Mute_Key, 0x00A, 0x32);
+  addKaseikyoKey("Volume_Down", VolumeDown_Key, 0x00A, 0x21);
+  addKaseikyoKey("Volume_Up", VolumeUp_Key, 0x00A, 0x20);
+  addKaseikyoKey("Power", Power_Key, 0x1CA, 0x3D);
+  addKaseikyoKey("Sleep", Sleep_Key, 0x1CA, 0x96);
+  addKaseikyoKey("Eq", Unmapped_Key, 0x10A, 0x83);
+  addKaseikyoKey("Super_Woofer", Unmapped_Key, 0x00A, 0xC2);
+  addKaseikyoKey("1", One_Key, 0x1CA, 0x10);
+  addKaseikyoKey("2", Two_Key, 0x1CA, 0x11);
+  addKaseikyoKey("3", Three_Key, 0x1CA, 0x12);
+  addKaseikyoKey("Disc", NextDisc_Key, 0x0AA, 0xA4);
+  addKaseikyoKey("4", Four_Key, 0x1CA, 0x13);
+  addKaseikyoKey("5", Five_Key, 0x1CA, 0x14);
+  addKaseikyoKey("6", Six_Key, 0x1CA, 0x15);
+  addKaseikyoKey(">10", DoubleDigit_Key, 0x1CA, 0x84);
+  addKaseikyoKey("7", Seven_Key, 0x1CA, 0x16);
+  addKaseikyoKey("8", Eight_Key, 0x1CA, 0x17);
+  addKaseikyoKey("9", Nine_Key, 0x1CA, 0x18);
+  addKaseikyoKey("0", Zero_Key, 0x1CA, 0x19);
+  addKaseikyoKey("program", Program_Key, 0x0AA, 0x8A);
+  addKaseikyoKey("cancel", Clear_Key, 0x0AA, 0xA3);
+  addKaseikyoKey("repeat", Repeat_Key, 0x0AA, 0x47);
+  addKaseikyoKey("random", Random_Key, 0x0AA, 0x4D);
+  addKaseikyoKey("aux", AuxInput_Key, 0x00A, 0x9A);
+  addKaseikyoKey("tape", TapeInput_Key, 0x08A, 0x96);
+  addKaseikyoKey("cd", CDInput_Key, 0x00A, 0x94);
+  addKaseikyoKey("tuner", TunerInput_Key, 0x04A, 0xA4);
+}
+
+
 PanasonicAC1::PanasonicAC1(
   unsigned int index)
   : PIRKeysetMetaData(
