@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # just in case, clean up any existing pierogi.sudoers file:
-rm /etc/sudoers.d/pierogi.sudoers
+#rm /etc/sudoers.d/pierogi.sudoers
 
 # now, create the file:
 echo "user ALL = NOPASSWD: /opt/pierogi/bin/loadRX51Module

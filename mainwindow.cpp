@@ -72,8 +72,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   connect(
     ui->favoriteKeysetsWidget,
-//    SIGNAL(itemActivated(QListWidgetItem *)),
-    SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
+    SIGNAL(itemActivated(QListWidgetItem *)),
     this,
     SLOT(keysetSelectionChanged(QListWidgetItem *)),
     Qt::QueuedConnection);
@@ -893,6 +892,12 @@ void MainWindow::keysetSelectionChanged(
   PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *>(item);
 
   if (!kwi) return; // Also need to say something here
+
+  if (currentKeyset == kwi->getID())
+  {
+    // We're already on that keyset, so nothing to do:
+    return;
+  }
   
   currentKeyset = kwi->getID();
 
@@ -1093,6 +1098,8 @@ void MainWindow::selectPrevFavKeyset()
     position,
     QItemSelectionModel::ClearAndSelect);
 
+  keysetSelectionChanged(ui->favoriteKeysetsWidget->currentItem());
+
   // Tell the user about the change:
   QMaemo5InformationBox::information(
     0,
@@ -1121,6 +1128,8 @@ void MainWindow::selectNextFavKeyset()
   ui->favoriteKeysetsWidget->setCurrentRow(
     position,
     QItemSelectionModel::ClearAndSelect);
+
+  keysetSelectionChanged(ui->favoriteKeysetsWidget->currentItem());
 
   // Tell the user about the change:
   QMaemo5InformationBox::information(

@@ -10,10 +10,11 @@ int main(int argc, char *argv[])
   MainWindow mainWindow;
   mainWindow.setOrientation(MainWindow::ScreenOrientationLockLandscape);
 //  mainWindow.setOrientation(MainWindow::ScreenOrientationAuto);
-  mainWindow.showExpanded();
 
   // Take control over the volume rocker switch:
   app.setupRockerSwitch(&mainWindow);
+
+  mainWindow.showExpanded();
   app.setupRockerSwitch(mainWindow.getSecondaryWindow());
 
   app.connect(

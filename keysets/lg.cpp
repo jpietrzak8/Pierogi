@@ -10,7 +10,11 @@ LGTV1::LGTV1(
       LG_Make,
       index)
 {
+  addControlledDevice(LG_Make, "32LC56", TV_Device);
   addControlledDevice(LG_Make, "32LH301C", TV_Device);
+  addControlledDevice(LG_Make, "50PS3000", TV_Device);
+  addControlledDevice(LG_Make, "FLATRON M227WDP", TV_Device);
+  addControlledDevice(LG_Make, "FLATRON M2280DF", TV_Device);
 }
 
 
@@ -195,9 +199,9 @@ LGTV1c::LGTV1c(
 {
   setKeysetName("TV Keyset 1c");
 
+  addControlledDevice(LG_Make, "55lw9500", TV_Device);
   addControlledDevice(LG_Make, "60px950", TV_Device);
   addControlledDevice(LG_Make, "60pg60", TV_Device);
-  addControlledDevice(LG_Make, "55lw9500", TV_Device);
 }
 
 

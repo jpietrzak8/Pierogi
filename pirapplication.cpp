@@ -40,7 +40,8 @@ bool PIRApplication::x11EventFilter(
 
   if (event->type == KeyPress)
   {
-    // Check for function key 7 (keycode 73) or for "Zoom Out" button:
+    // Function key 7 (keycode 73) or "Zoom Out" button will go up.
+    // Function key 8 (keycode 74) or "Zoom In" button will go down.
     if (
       event->xkey.keycode == 73 ||
       event->xkey.keycode == QKeySequence::ZoomOut)

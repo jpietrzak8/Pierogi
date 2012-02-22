@@ -338,6 +338,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new PanasonicDVD1a(counter++));
   setupKeyset(new PanasonicAudio1(counter++));
   setupKeyset(new PanasonicAudio2(counter++));
+  setupKeyset(new PanasonicAudio2a(counter++));
   setupKeyset(new PanasonicAC1(counter++));
 
   setupKeyset(new PhilcoTV(counter++));

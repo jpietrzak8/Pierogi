@@ -9,6 +9,8 @@ VirginSTB1::VirginSTB1(
       Virgin_Make,
       index)
 {
+  addControlledDevice(Virgin_Make, "V BoxHD (Cisco 4585)", Sat_Device);
+  addControlledDevice(Virgin_Make, "Virgin Media Tivo (Cisco)", Sat_Device);
 }
 
 

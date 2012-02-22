@@ -1,3 +1,8 @@
+pierogi (0.6.10) unstable; urgency=low
+  * Fixed several GUI issues (thanks to sombragris and sixwheeledbeast for discovering them)
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Wed, 22 Feb 2012 09:26:10 -0500
+
 pierogi (0.6.9) unstable; urgency=low
   * Added Panasonic "SA-AK25" as Audio Keyset 2
   * Made a first pass at keysets for Bush, Canon, Epson, Humax, Technics, and United

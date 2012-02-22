@@ -145,6 +145,16 @@ public:
     QObject *guiObject);
 };
 
+class PanasonicAudio2a: public PanasonicAudio2
+{
+public:
+  PanasonicAudio2a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 class PanasonicAC1: public PIRKeysetMetaData
 {
 public:

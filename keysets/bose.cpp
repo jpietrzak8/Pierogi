@@ -176,8 +176,8 @@ void BoseHomeTheater1::populateProtocol(
   addKey("vol down", VolumeDown_Key, 0x02, 8);
   addKey("vol up", VolumeUp_Key, 0x03, 8);
   addKey("AM", Unmapped_Key, 0x05, 8);
-  addKey("Video2", Unmapped_Key, 0x0D, 8);
-  addKey("Video1", Unmapped_Key, 0x0E, 8);
+  addKey("Video2", CableInput_Key, 0x0D, 8);
+  addKey("Video1", AntennaInput_Key, 0x0E, 8);
   addKey("AUX", AuxInput_Key, 0x0F, 8);
 
   addKey("channel down", ChannelDown_Key, 0x18, 8);
