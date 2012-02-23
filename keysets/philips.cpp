@@ -57,8 +57,8 @@ void PhilipsTV1::populateProtocol(
   addKey("1-", DoubleDigit_Key, 0x100A, 13); // -/--
   addKey("100", PlusOneHundred_Key, 0x100A, 13);
   addKey("TV-Dash", Dash_Key, 0x100A, 13);
-  addKey("ON/OFF", Power_Key, 0x100C, 13);
   addKey("CP", Unmapped_Key, 0x100B, 13); // "C/P"
+  addKey("ON/OFF", Power_Key, 0x100C, 13);
   addKey("MUTE", Mute_Key, 0x100D, 13);
   addKey("pp", PrevChannel_Key, 0x100E, 13); // "GREEN"
   addKey("INFO", Info_Key, 0x100F, 13); // "+", "OSD"

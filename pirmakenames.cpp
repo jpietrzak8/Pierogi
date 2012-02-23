@@ -24,6 +24,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Emerson_Make] = "Emerson";
   makes[Epson_Make] = "Epson";
   makes[Fortec_Make] = "Fortec Star";
+  makes[Foxtel_Make] = "Foxtel";
   makes[GoldStar_Make] = "GoldStar";
   makes[Grundig_Make] = "Grundig";
   makes[Haier_Make] = "Haier";
@@ -41,6 +42,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Microsoft_Make] = "Microsoft";
   makes[Mitsubishi_Make] = "Mitsubishi";
   makes[Motorola_Make] = "Motorola";
+  makes[NAD_Make] = "NAD";
   makes[Nokia_Make] = "Nokia";
   makes[Onida_Make] = "Onida";
   makes[Panasonic_Make] = "Panasonic";
@@ -63,6 +65,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Topfield_Make] = "Topfield";
   makes[Toshiba_Make] = "Toshiba";
   makes[United_Make] = "United";
+  makes[Universum_Make] = "Universum";
   makes[Vestel_Make] = "Vestel";
   makes[Virgin_Make] = "Virgin Media";
   makes[Vizio_Make] = "Vizio";

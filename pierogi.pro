@@ -129,7 +129,10 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/epson.cpp \
     keysets/humax.cpp \
     keysets/technics.cpp \
-    keysets/united.cpp
+    keysets/united.cpp \
+    keysets/foxtel.cpp \
+    keysets/nad.cpp \
+    keysets/universum.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -233,7 +236,10 @@ HEADERS += mainwindow.h \
     keysets/epson.h \
     keysets/humax.h \
     keysets/technics.h \
-    keysets/united.h
+    keysets/united.h \
+    keysets/foxtel.h \
+    keysets/nad.h \
+    keysets/universum.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

@@ -23,6 +23,7 @@
 #include "keysets/emerson.h"
 #include "keysets/epson.h"
 #include "keysets/fortec.h"
+#include "keysets/foxtel.h"
 #include "keysets/goldstar.h"
 #include "keysets/grundig.h"
 #include "keysets/haier.h"
@@ -40,6 +41,7 @@
 #include "keysets/mce.h"
 #include "keysets/mitsubishi.h"
 #include "keysets/motorola.h"
+#include "keysets/nad.h"
 #include "keysets/nokia.h"
 #include "keysets/onida.h"
 #include "keysets/panasonic.h"
@@ -62,6 +64,7 @@
 #include "keysets/topfield.h"
 #include "keysets/toshiba.h"
 #include "keysets/united.h"
+#include "keysets/universum.h"
 #include "keysets/vestel.h"
 #include "keysets/virgin.h"
 #include "keysets/vizio.h"
@@ -199,6 +202,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new FortecReceiver1(counter++));
   setupKeyset(new FortecReceiver2(counter++));
 
+  setupKeyset(new FoxtelSTB1(counter++));
+
   setupKeyset(new GoldStarTV1(counter++));
   setupKeyset(new GoldStarTV2(counter++));
   setupKeyset(new GoldStarVCR1(counter++));
@@ -318,6 +323,13 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new MotorolaSTB1a(counter++));
   setupKeyset(new MotorolaSTB1b(counter++));
   setupKeyset(new MotorolaSkyDigital(counter++));
+
+  setupKeyset(new NADAudio1(counter++));
+  setupKeyset(new NADTuner1(counter++));
+  setupKeyset(new NADDVD1(counter++));
+  setupKeyset(new NADCD1(counter++));
+  setupKeyset(new NADCD2(counter++));
+  setupKeyset(new NADTape1(counter++));
 
   setupKeyset(new NokiaGenericVCR(counter++));
 
@@ -516,6 +528,14 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new UnitedDVD1(counter++));
   setupKeyset(new UnitedDVBT1(counter++));
+
+  setupKeyset(new UniversumVCR1(counter++));
+  setupKeyset(new UniversumVCR2(counter++));
+  setupKeyset(new UniversumVCR3(counter++));
+  setupKeyset(new UniversumTV1(counter++));
+  setupKeyset(new UniversumTV1a(counter++));
+  setupKeyset(new UniversumSat1(counter++));
+  setupKeyset(new UniversumAudio1(counter++));
 
   setupKeyset(new VestelTV1(counter++));
   setupKeyset(new VestelTV2(counter++));

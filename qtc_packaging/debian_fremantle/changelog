@@ -1,3 +1,9 @@
+pierogi (0.6.11) unstable; urgency=low
+  * Fix for a nasty bug with the volume-rocker keys (thanks sixwheeledbeast!).
+  * First pass at keysets for Foxtel, NAD, and Universum.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Thu, 23 Feb 2012 11:46:22 -0500
+
 pierogi (0.6.10) unstable; urgency=low
   * Fixed several GUI issues (thanks to sombragris and sixwheeledbeast for discovering them)
 

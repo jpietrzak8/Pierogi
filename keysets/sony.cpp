@@ -11,6 +11,7 @@ SonyTV1::SonyTV1(
 {
   addControlledDevice(Sony_Make, "KV-M1420D", TV_Device);
   addControlledDevice(Sony_Make, "KV-20FV10", TV_Device);
+  addControlledDevice(Sony_Make, "KV-2167MT", TV_Device);
   addControlledDevice(Sony_Make, "KV-2184MT", TV_Device);
   addControlledDevice(Sony_Make, "KV-27FX210", TV_Device);
   addControlledDevice(Sony_Make, "KV-32FS210", TV_Device);
@@ -544,6 +545,7 @@ SonyDVD1::SonyDVD1(
       index)
 {
   addControlledDevice(Sony_Make, "DVP-CX985V", DVD_Device);
+  addControlledDevice(Sony_Make, "DVP-NS608P", DVD_Device);
 }
 
 

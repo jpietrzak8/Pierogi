@@ -139,7 +139,9 @@ void MotorolaSTB1::populateProtocol(
   addKey("play", Play_Key, 0x5038, 16);
   addKey("stop", Stop_Key, 0x4039, 16);
   addKey("page+", PageUp_Key, 0x303A, 16);
+  addKey("page+", StepForward_Key, 0x303A, 16); // for convenience
   addKey("page-", PageDown_Key, 0x203B, 16);
+  addKey("page-", StepBack_Key, 0x203B, 16); // Also for convenience
   addKey("skipback", Replay_Key, 0x103C, 16);
   addKey("mydvr", HDDInput_Key, 0x003D, 16);
   addKey("live", LiveTV_Key, 0xF03E, 16);

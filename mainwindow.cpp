@@ -27,6 +27,7 @@ QMutex commandIFMutex;
 bool stopRepeatingFlag = false;
 QMutex stopRepeatingMutex;
 
+
 extern PIRMakeMgr makeManager;
 
 

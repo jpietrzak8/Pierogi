@@ -22,6 +22,12 @@ public:
 signals:
   void increaseRockerPressed();
   void decreaseRockerPressed();
+
+private slots:
+  void finishChangingKeyset();
+
+private:
+  bool changingKeyset;
 };
 
 #endif // PIRAPPLICATION_H

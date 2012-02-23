@@ -4,11 +4,14 @@
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <QX11Info>
+#include <QTimer>
+
 
 PIRApplication::PIRApplication(
   int &argc,
   char **argv)
-  : QApplication(argc, argv)
+  : QApplication(argc, argv),
+    changingKeyset(false)
 {
 }
 
@@ -46,17 +49,33 @@ bool PIRApplication::x11EventFilter(
       event->xkey.keycode == 73 ||
       event->xkey.keycode == QKeySequence::ZoomOut)
     {
-      emit decreaseRockerPressed();
+      if (!changingKeyset)
+      {
+        changingKeyset = true;
+        QTimer::singleShot(500, this, SLOT(finishChangingKeyset()));
+        emit decreaseRockerPressed();
+      }
       return true;
     }
     else if (
       event->xkey.keycode == 74 ||
       event->xkey.keycode == QKeySequence::ZoomIn)
     {
-      emit increaseRockerPressed();
+      if (!changingKeyset)
+      {
+        changingKeyset = true;
+        QTimer::singleShot(500, this, SLOT(finishChangingKeyset()));
+        emit increaseRockerPressed();
+      }
       return true;
     }
   }
 
   return false;
+}
+
+
+void PIRApplication::finishChangingKeyset()
+{
+  changingKeyset = false;
 }
