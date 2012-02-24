@@ -33,6 +33,7 @@
 #include "keysets/hp.h"
 #include "keysets/huawei.h"
 #include "keysets/humax.h"
+#include "keysets/hyundai.h"
 #include "keysets/jvc.h"
 #include "keysets/kenwood.h"
 #include "keysets/lg.h"
@@ -254,6 +255,10 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new HumaxReceiver1(counter++));
   setupKeyset(new HumaxReceiver2(counter++));
   setupKeyset(new HumaxReceiver3(counter++));
+
+  setupKeyset(new HyundaiDVD1(counter++));
+  setupKeyset(new HyundaiAudio1(counter++));
+  setupKeyset(new HyundaiTV1(counter++));
 
   setupKeyset(new JVCSat1(counter++));
   setupKeyset(new JVCSat2(counter++));

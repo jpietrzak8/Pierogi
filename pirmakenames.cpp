@@ -34,6 +34,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[HP_Make] = "HP";
   makes[Huawei_Make] = "Huawei";
   makes[Humax_Make] = "Humax";
+  makes[Hyundai_Make] = "Hyundai";
   makes[JVC_Make] = "JVC";
   makes[Kenwood_Make] = "Kenwood";
   makes[LG_Make] = "LG";

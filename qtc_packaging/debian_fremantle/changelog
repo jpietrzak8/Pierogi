@@ -1,3 +1,9 @@
+pierogi (1.0.0) unstable; urgency=low
+  * Pierogi appears fairly stable and useful at this point.  So, I will declare it to have now reached version "1.0", before starting any radical changes to the gui.  (I'm labeling the 1.0 version "A Fistful of Pierogis". :) )
+  * First pass at a keyset for Hyundai.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 24 Feb 2012 09:11:55 -0500
+
 pierogi (0.6.11) unstable; urgency=low
   * Fix for a nasty bug with the volume-rocker keys (thanks sixwheeledbeast!).
   * First pass at keysets for Foxtel, NAD, and Universum.

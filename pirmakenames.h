@@ -35,6 +35,7 @@ enum PIRMakeName{
   HP_Make,
   Huawei_Make,
   Humax_Make,
+  Hyundai_Make,
   JVC_Make,
   Kenwood_Make,
   LG_Make,
