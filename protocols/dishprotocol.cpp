@@ -34,7 +34,7 @@ DishProtocol::DishProtocol(
       6000, false)
 {
   setCarrierFrequency(57600);
-  setDutyCycle(33);
+//  setDutyCycle(33);
 }
 
 

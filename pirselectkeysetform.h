@@ -5,7 +5,6 @@
 #include <QString>
 
 #include "pirmakenames.h"
-#include "pirdevicetypenames.h"
 
 class QListWidget;
 class PIRKeysetWidgetItem;
@@ -37,8 +36,10 @@ private slots:
   void filterListByMake(
     int make);
 
+/*
   void filterListByDeviceType(
     int deviceType);
+*/
   
 private:
   void refilterList();
@@ -46,7 +47,6 @@ private:
   Ui::PIRSelectKeysetForm *ui;
 
   PIRMakeName currentMake;
-  PIRDeviceTypeName currentDevice;
 };
 
 #endif // PIRSELECTKEYSETFORM_H

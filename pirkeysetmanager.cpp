@@ -7,17 +7,22 @@
 #include "keysets/acer.h"
 #include "keysets/admiral.h"
 #include "keysets/aiwa.h"
+#include "keysets/aoc.h"
 #include "keysets/apple.h"
+#include "keysets/arcam.h"
 #include "keysets/beko.h"
 #include "keysets/bose.h"
 #include "keysets/bush.h"
 #include "keysets/cambridge.h"
 #include "keysets/canon.h"
 #include "keysets/daewoo.h"
+#include "keysets/dell.h"
 #include "keysets/denon.h"
 #include "keysets/digitalstream.h"
 #include "keysets/directv.h"
 #include "keysets/dish.h"
+#include "keysets/dse.h"
+#include "keysets/dynex.h"
 #include "keysets/ei.h"
 #include "keysets/elgato.h"
 #include "keysets/emerson.h"
@@ -27,6 +32,7 @@
 #include "keysets/goldstar.h"
 #include "keysets/grundig.h"
 #include "keysets/haier.h"
+#include "keysets/harmankardon.h"
 #include "keysets/hauppauge.h"
 #include "keysets/hitachi.h"
 #include "keysets/homecast.h"
@@ -35,6 +41,7 @@
 #include "keysets/humax.h"
 #include "keysets/hyundai.h"
 #include "keysets/jvc.h"
+#include "keysets/kathrein.h"
 #include "keysets/kenwood.h"
 #include "keysets/lg.h"
 #include "keysets/logitech.h"
@@ -60,6 +67,7 @@
 #include "keysets/sharp.h"
 #include "keysets/sky.h"
 #include "keysets/sony.h"
+#include "keysets/starsat.h"
 #include "keysets/technics.h"
 #include "keysets/tivo.h"
 #include "keysets/topfield.h"
@@ -67,6 +75,7 @@
 #include "keysets/united.h"
 #include "keysets/universum.h"
 #include "keysets/vestel.h"
+#include "keysets/viewsat.h"
 #include "keysets/virgin.h"
 #include "keysets/vizio.h"
 #include "keysets/wd.h"
@@ -116,7 +125,11 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new AiwaCarStereo1(counter++));
   setupKeyset(new AiwaDVD1(counter++));
 
+  setupKeyset(new AOCTV1(counter++));
+
   setupKeyset(new AppleWhiteRemote(counter++));
+
+  setupKeyset(new ArcamReceiver1(counter++));
 
   setupKeyset(new BekoTV1(counter++));
 
@@ -169,6 +182,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new DenonAudio3(counter++));
   setupKeyset(new DenonAudio4(counter++));
 
+  setupKeyset(new DellRemote1(counter++));
+
   setupKeyset(new DigitalStreamReceiver(counter++));
 
   setupKeyset(new DirectvReceiver1(counter++));
@@ -190,6 +205,11 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new DishReceiver1n(counter++));
   setupKeyset(new DishReceiver1o(counter++));
 
+  setupKeyset(new DSEDVD1(counter++));
+  setupKeyset(new DSESat1(counter++));
+
+  setupKeyset(new DynexTV1(counter++));
+
   setupKeyset(new EiTV1(counter++));
 
   setupKeyset(new ElgatoEyeTV1(counter++));
@@ -204,6 +224,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new FortecReceiver2(counter++));
 
   setupKeyset(new FoxtelSTB1(counter++));
+  setupKeyset(new FoxtelSTB2(counter++));
 
   setupKeyset(new GoldStarTV1(counter++));
   setupKeyset(new GoldStarTV2(counter++));
@@ -226,6 +247,15 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new GrundigDVD1(counter++));
 
   setupKeyset(new HaierTV1(counter++));
+
+  setupKeyset(new HarmanKardonAmp1(counter++));
+  setupKeyset(new HarmanKardonAmp2(counter++));
+  setupKeyset(new HarmanKardonReceiver2(counter++));
+  setupKeyset(new HarmanKardonTape1(counter++));
+  setupKeyset(new HarmanKardonDVD1(counter++));
+  setupKeyset(new HarmanKardonDVD1a(counter++));
+  setupKeyset(new HarmanKardonCD1(counter++));
+  setupKeyset(new HarmanKardonCD2(counter++));
 
   setupKeyset(new HauppaugePCTV1(counter++));
   setupKeyset(new HauppaugePCTV1a(counter++));
@@ -279,6 +309,10 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new JVCAudio2(counter++));
   setupKeyset(new JVCDVD1(counter++));
 
+  setupKeyset(new KathreinSat1(counter++));
+  setupKeyset(new KathreinSat2(counter++));
+  setupKeyset(new KathreinSat3(counter++));
+
   setupKeyset(new KenwoodAudio1(counter++));
   setupKeyset(new KenwoodComponent1(counter++));
   setupKeyset(new KenwoodComponent2(counter++));
@@ -303,6 +337,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new LGAC1(counter++));
 
   setupKeyset(new LogitechSpeakers(counter++));
+  setupKeyset(new LogitechSqueezebox(counter++));
 
   setupKeyset(new MagnavoxDVD1(counter++));
   setupKeyset(new MagnavoxVCR1(counter++));
@@ -497,6 +532,11 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SonyVCR1a(counter++));
   setupKeyset(new SonyVCR1b(counter++));
   setupKeyset(new SonyReceiver1(counter++));
+  setupKeyset(new SonyCD1(counter++));
+  setupKeyset(new SonyCD1a(counter++));
+  setupKeyset(new SonyCD1b(counter++));
+
+  setupKeyset(new StarsatSat1(counter++));
 
   setupKeyset(new TechnicsAudio1(counter++));
   setupKeyset(new TechnicsAudio1a(counter++));
@@ -545,12 +585,16 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new VestelTV1(counter++));
   setupKeyset(new VestelTV2(counter++));
 
+  setupKeyset(new ViewsatSat1(counter++));
+  setupKeyset(new ViewsatSat1a(counter++));
+
   setupKeyset(new VirginSTB1(counter++));
 
   setupKeyset(new VizioTV1(counter++));
 
   setupKeyset(new WDMediaPlayer1(counter++));
   setupKeyset(new WDMediaPlayer1a(counter++));
+  setupKeyset(new WDMediaPlayer1b(counter++));
 
   setupKeyset(new WestinghouseTV1(counter++));
   setupKeyset(new WestinghouseTV2(counter++));
@@ -719,8 +763,9 @@ void PIRKeysetManager::setupKeyset(
 }
 
 
-void PIRKeysetManager::populateGuiWidget(
-  PIRSelectKeysetForm *skf) const
+void PIRKeysetManager::populateSelectionWidgets(
+  PIRSelectKeysetForm *skf,
+  PIRSelectDeviceForm *sdf) const
 {
   PIRMakeName make;
   PIRKeysetWidgetItem *kwi;
@@ -729,18 +774,23 @@ void PIRKeysetManager::populateGuiWidget(
 
   while (i != keysetsInfo.end())
   {
+    // Create a widget for the keyset:
     make = i->second->getMake();
     QString tempString = makeManager.getMakeString(make);
     tempString.append(" ");
     tempString.append(i->second->getKeysetName());
     kwi = new PIRKeysetWidgetItem(tempString, i->first, make);
-    i->second->populateDeviceTypes(kwi);
     skf->addWidgetItem(kwi);
+
+    // Create widgets for the devices:
+    i->second->populateDevices(i->first, sdf);
+
     ++i;
   }
 }
 
 
+/*
 void PIRKeysetManager::populateDeviceTypes(
   PIRKeysetWidgetItem *kwi,
   unsigned int keysetID) const
@@ -751,3 +801,4 @@ void PIRKeysetManager::populateDeviceTypes(
     i->second->populateDeviceTypes(kwi);
   }
 }
+*/

@@ -9,6 +9,7 @@
 
 class QObject;
 class PIRSelectKeysetForm;
+class PIRSelectDeviceForm;
 class PIRKeysetWidgetItem;
 
 #include <map>
@@ -27,8 +28,9 @@ public:
 
   ~PIRKeysetManager();
 
-  void populateGuiWidget(
-    PIRSelectKeysetForm *widget) const;
+  void populateSelectionWidgets(
+    PIRSelectKeysetForm *skf,
+    PIRSelectDeviceForm *sdf) const;
 
   bool keysetExists(
     unsigned int keysetID) const;
@@ -52,9 +54,11 @@ public:
   QString getDisplayName(
     unsigned int keysetID) const;
 
+/*
   void populateDeviceTypes(
     PIRKeysetWidgetItem *kwi,
     unsigned int keysetID) const;
+*/
 
   void populateKeyset(
     QObject *guiObject,

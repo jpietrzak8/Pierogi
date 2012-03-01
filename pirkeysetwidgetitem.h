@@ -14,20 +14,22 @@ public:
     unsigned int id,
     PIRMakeName make);
 
-  void addDeviceType(
+  PIRKeysetWidgetItem(
+    QString name,
+    unsigned int id,
+    PIRMakeName make,
     PIRDeviceTypeName dt);
 
   unsigned int getID();
 
   PIRMakeName getMake();
 
-  bool supportsDeviceType(
-    PIRDeviceTypeName dt);
+  PIRDeviceTypeName getDeviceType();
 
 private:
   unsigned int id;
   PIRMakeName make;
-  PIRDeviceTypeCollection devices;
+  PIRDeviceTypeName deviceType;
 };
 
 #endif // PIRKEYSETWIDGETITEM_H

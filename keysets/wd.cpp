@@ -89,3 +89,30 @@ void WDMediaPlayer1a::populateProtocol(
   addKey("5", Five_Key, 0xED, 8);
   addKey("0", Zero_Key, 0xEE, 8);
 }
+
+
+WDMediaPlayer1b::WDMediaPlayer1b(
+  unsigned int index)
+  : WDMediaPlayer1a(index)
+{
+  setKeysetName("Media Player Keyset 1b");
+}
+
+
+void WDMediaPlayer1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  WDMediaPlayer1a::populateProtocol(guiObject);
+
+  addKey("0", Zero_Key, 0x11, 8);
+  addKey("1", One_Key, 0x18, 8);
+  addKey("2", Two_Key, 0x19, 8);
+  addKey("4", Four_Key, 0x1C, 8);
+  addKey("5", Five_Key, 0x1D, 8);
+}

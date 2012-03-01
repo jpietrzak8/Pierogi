@@ -36,7 +36,7 @@ SharpProtocol::SharpProtocol(
     expansionBit(expBit)
 {
   setCarrierFrequency(38000);
-  setDutyCycle(33);
+//  setDutyCycle(33);
 }
 
 

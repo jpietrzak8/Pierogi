@@ -1,3 +1,14 @@
+pierogi (1.1.0) unstable; urgency=low
+  * GUI changed - "panels" instead of "tabs", new navigation controls.
+  * New window added for selecting keysets by device. "Device" filter removed from select keyset by name window.
+  * New Air Conditioner control panel added.
+  * New keysets added to Foxtel, Logitech, Sony, Western Digital.
+  * First pass at keysets for AOC, Arcam, Dell, Dick Smith Electronics, Dynex, Harman Kardon, Kathrein, Starsat, Viewsat.
+  * With the hope of extending the N900's range a bit, I'm setting all protocols to use a duty cycle of 50%, regardless of what the documentation says they should use.  I hope this won't cause any problems.
+  * New versioning scheme -- new version name comes at the start of new work, rather than at the end. :)  Pierogi 1.1 is labeled "For a Few Pierogis More".
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Wed, 29 Feb 2012 10:52:05 -0500
+
 pierogi (1.0.0) unstable; urgency=low
   * Pierogi appears fairly stable and useful at this point.  So, I will declare it to have now reached version "1.0", before starting any radical changes to the gui.  (I'm labeling the 1.0 version "A Fistful of Pierogis". :) )
   * First pass at a keyset for Hyundai.

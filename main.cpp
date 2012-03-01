@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
   app.setupRockerSwitch(&mainWindow);
 
   mainWindow.showExpanded();
-  app.setupRockerSwitch(mainWindow.getSecondaryWindow());
 
   app.connect(
     &app,

@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PIRAdjustForm</class>
+ <widget class="QWidget" name="PIRAdjustForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>8</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>8</number>
+   </property>
+   <property name="bottomMargin">
+    <number>8</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QPushButton" name="bassUpButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Bass</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_top_icon&amp;48.png</normaloff>:/icons/arrow_top_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="trebleUpButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Treble</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_top_icon&amp;48.png</normaloff>:/icons/arrow_top_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="enhancedBassButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Enhanced Bass</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QPushButton" name="noiseReductionButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Noise Reduction</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="bassDownButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Bass</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_bottom_icon&amp;48.png</normaloff>:/icons/arrow_bottom_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="trebleDownButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Treble</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_bottom_icon&amp;48.png</normaloff>:/icons/arrow_bottom_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="balanceLeftButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Balance</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_left_icon&amp;48.png</normaloff>:/icons/arrow_left_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QPushButton" name="balanceRightButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Balance</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_right_icon&amp;48.png</normaloff>:/icons/arrow_right_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="surroundButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Surround</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="colorUpButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Color</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_top_icon&amp;48.png</normaloff>:/icons/arrow_top_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="brightnessUpButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Brightness</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_top_icon&amp;48.png</normaloff>:/icons/arrow_top_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QPushButton" name="contrastUpButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Contrast</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_top_icon&amp;48.png</normaloff>:/icons/arrow_top_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="zoomButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Zoom</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="colorDownButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Color</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_bottom_icon&amp;48.png</normaloff>:/icons/arrow_bottom_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="brightnessDownButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Brightness</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_bottom_icon&amp;48.png</normaloff>:/icons/arrow_bottom_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QPushButton" name="contrastDownButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Contrast</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/arrow_bottom_icon&amp;48.png</normaloff>:/icons/arrow_bottom_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../PierogiResources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>bassUpEnabled(bool)</signal>
+   <receiver>bassUpButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>102</x>
+     <y>64</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>trebleUpEnabled(bool)</signal>
+   <receiver>trebleUpButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>300</x>
+     <y>64</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>enhancedBassEnabled(bool)</signal>
+   <receiver>enhancedBassButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>64</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>noiseReductionEnabled(bool)</signal>
+   <receiver>noiseReductionButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>697</x>
+     <y>64</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>bassDownEnabled(bool)</signal>
+   <receiver>bassDownButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>102</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>trebleDownEnabled(bool)</signal>
+   <receiver>trebleDownButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>300</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>balanceLeftEnabled(bool)</signal>
+   <receiver>balanceLeftButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>balanceRightEnabled(bool)</signal>
+   <receiver>balanceRightButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>697</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>surroundEnabled(bool)</signal>
+   <receiver>surroundButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>102</x>
+     <y>301</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>colorUpEnabled(bool)</signal>
+   <receiver>colorUpButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>300</x>
+     <y>301</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>brightnessUpEnabled(bool)</signal>
+   <receiver>brightnessUpButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>301</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>contrastUpEnabled(bool)</signal>
+   <receiver>contrastUpButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>697</x>
+     <y>301</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>zoomEnabled(bool)</signal>
+   <receiver>zoomButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>102</x>
+     <y>419</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>colorDownEnabled(bool)</signal>
+   <receiver>colorDownButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>300</x>
+     <y>419</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>brightnessDownEnabled(bool)</signal>
+   <receiver>brightnessDownButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>419</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRAdjustForm</sender>
+   <signal>contrastDownEnabled(bool)</signal>
+   <receiver>contrastDownButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>697</x>
+     <y>419</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>bassUpEnabled(bool)</signal>
+  <signal>trebleUpEnabled(bool)</signal>
+  <signal>enhancedBassEnabled(bool)</signal>
+  <signal>noiseReductionEnabled(bool)</signal>
+  <signal>bassDownEnabled(bool)</signal>
+  <signal>trebleDownEnabled(bool)</signal>
+  <signal>balanceLeftEnabled(bool)</signal>
+  <signal>balanceRightEnabled(bool)</signal>
+  <signal>surroundEnabled(bool)</signal>
+  <signal>colorUpEnabled(bool)</signal>
+  <signal>brightnessUpEnabled(bool)</signal>
+  <signal>contrastUpEnabled(bool)</signal>
+  <signal>zoomEnabled(bool)</signal>
+  <signal>colorDownEnabled(bool)</signal>
+  <signal>brightnessDownEnabled(bool)</signal>
+  <signal>contrastDownEnabled(bool)</signal>
+ </slots>
+</ui>

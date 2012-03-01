@@ -844,7 +844,7 @@ void SamsungDVD2::populateProtocol(
 SamsungAC1::SamsungAC1(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Air Conditioner Keyset 1",
+      "Air Conditioner 1",
       Samsung_Make,
       index)
 {
@@ -878,15 +878,15 @@ void SamsungAC1::populateProtocol(
 
   addKey("TIMER", Timer_Key, 0xA4, 8);
   addKey("SLEEP", Sleep_Key, 0xE4, 8);
-  addKey("TEMP+", VolumeUp_Key, 0x4C, 8);
-  addKey("TEMP-", VolumeDown_Key, 0x8C, 8);
-  addKey("FAN", One_Key, 0x9C, 8);
-  addKey("COOL", Two_Key, 0x3C, 8);
-  addKey("HEAT", Three_Key, 0x5C, 8);
-  addKey("FAN_HIGH", Four_Key, 0xEC, 8);
-  addKey("FAN_MED", Five_Key, 0x6C, 8);
-  addKey("FAN_LOW", Six_Key, 0xAC, 8);
-  addKey("SWING", Seven_Key, 0x94, 8);
+  addKey("TEMP+", TempUp_Key, 0x4C, 8);
+  addKey("TEMP-", TempDown_Key, 0x8C, 8);
+  addKey("FAN", Fan_Key, 0x9C, 8);
+  addKey("COOL", Cool_Key, 0x3C, 8);
+  addKey("HEAT", Heat_Key, 0x5C, 8);
+  addKey("FAN_HIGH", FanFaster_Key, 0xEC, 8);
+  addKey("FAN_MED", Unmapped_Key, 0x6C, 8);
+  addKey("FAN_LOW", FanSlower_Key, 0xAC, 8);
+  addKey("SWING", Oscillate_Key, 0x94, 8);
   addKey("POWER", Power_Key, 0xFC, 8);
 }
 

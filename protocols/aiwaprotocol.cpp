@@ -33,7 +33,7 @@ AiwaProtocol::AiwaProtocol(
     repeatSpace(2250)
 {
   setCarrierFrequency(38000);
-  setDutyCycle(50);
+//  setDutyCycle(50);
 }
 
 

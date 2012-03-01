@@ -189,6 +189,17 @@ enum PIRKeyName{
   NextPreset_Key,
   PrevPreset_Key,
 
+  // Air Conditioner controls:
+  TempUp_Key,
+  TempDown_Key,
+  Fan_Key,
+  Cool_Key,
+  Heat_Key,
+  Oscillate_Key,
+  FanFaster_Key,
+  FanSlower_Key,
+  EnergySave_Key,
+
   // Other keys:
   Captions_Key,
   Info_Key,

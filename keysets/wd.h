@@ -25,4 +25,14 @@ public:
     QObject *guiObject);
 };
 
+class WDMediaPlayer1b: public WDMediaPlayer1a
+{
+public:
+  WDMediaPlayer1b(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // WD_H

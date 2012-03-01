@@ -30,7 +30,7 @@ JVCProtocol::JVCProtocol(
       60000, true)
 {
   setCarrierFrequency(38000);
-  setDutyCycle(33);
+//  setDutyCycle(33);
 }
 
 

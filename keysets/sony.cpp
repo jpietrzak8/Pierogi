@@ -933,3 +933,133 @@ void SonyReceiver1::populateProtocol(
   addSIRC15Key("LEFT", Left_Key, 0xB0, 0x7A);
   addSIRC15Key("RIGHT", Right_Key, 0xB0, 0x7B);
 }
+
+
+SonyCD1::SonyCD1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "CD Keyset 1",
+      Sony_Make,
+      index)
+{
+}
+
+
+void SonyCD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  addSIRC12Key("1", One_Key, 0x11, 0x00);
+  addSIRC12Key("2", Two_Key, 0x11, 0x01);
+  addSIRC12Key("3", Three_Key, 0x11, 0x02);
+  addSIRC12Key("4", Four_Key, 0x11, 0x03);
+  addSIRC12Key("5", Five_Key, 0x11, 0x04);
+  addSIRC12Key("6", Six_Key, 0x11, 0x05);
+  addSIRC12Key("7", Seven_Key, 0x11, 0x06);
+  addSIRC12Key("8", Eight_Key, 0x11, 0x07);
+  addSIRC12Key("9", Nine_Key, 0x11, 0x08);
+  addSIRC12Key("ENTER", Enter_Key, 0x11, 0x0B);
+  addSIRC12Key("check", Unmapped_Key, 0x11, 0x0D);
+  addSIRC12Key("clear", Clear_Key, 0x11, 0x0F);
+
+  addSIRC12Key("vol+", VolumeUp_Key, 0x11, 0x12);
+  addSIRC12Key("vol-", VolumeDown_Key, 0x11, 0x13);
+  addSIRC12Key("mute", Mute_Key, 0x11, 0x14);
+  addSIRC12Key("power", Power_Key, 0x11, 0x15);
+  addSIRC12Key("eject", Eject_Key, 0x11, 0x16);
+  addSIRC12Key("C.INDEX", Unmapped_Key, 0x11, 0x18);
+  addSIRC12Key("FILE", Memory_Key, 0x11, 0x19);
+  addSIRC12Key("BANK", Call_Key, 0x11, 0x1A); // "file recall"
+  addSIRC12Key("continue", Unmapped_Key, 0x11, 0x1D);
+  addSIRC12Key("single", Unmapped_Key, 0x11, 0x1E);
+  addSIRC12Key("pgm", Program_Key, 0x11, 0x1F);
+
+  addSIRC12Key("10", Zero_Key, 0x11, 0x20); // "0"
+  addSIRC12Key(">10", DoubleDigit_Key, 0x11, 0x27);
+  addSIRC12Key("DISPLAY", Info_Key, 0x11, 0x28); // "time"
+  addSIRC12Key("a-b", RepeatAB_Key, 0x11, 0x2A);
+  addSIRC12Key("repeat", Repeat_Key, 0x11, 0x2C);
+  addSIRC12Key("POWER_ON", PowerOn_Key, 0x11, 0x2E);
+  addSIRC12Key("POWER_OFF", PowerOff_Key, 0x11, 0x2F);
+
+  addSIRC12Key("|<<", Previous_Key, 0x11, 0x30);
+  addSIRC12Key(">>|", Next_Key, 0x11, 0x31);
+  addSIRC12Key("play", Play_Key, 0x11, 0x32);
+  addSIRC12Key("<<", Rewind_Key, 0x11, 0x33);
+  addSIRC12Key(">>", FastForward_Key, 0x11, 0x34);
+  addSIRC12Key("shuffle", Random_Key, 0x11, 0x35);
+  addSIRC12Key("cd_ind_dec", Unmapped_Key, 0x11, 0x36);
+  addSIRC12Key("cd_ind_inc", Unmapped_Key, 0x11, 0x37);
+  addSIRC12Key("stop", Stop_Key, 0x11, 0x38);
+  addSIRC12Key("PAUSE", Pause_Key, 0x11, 0x39);
+  addSIRC12Key("SLOW--", SlowMinus_Key, 0x11, 0x3A);
+  addSIRC12Key("SLOW++", SlowPlus_Key, 0x11, 0x3B);
+  addSIRC12Key("musicscan", Unmapped_Key, 0x11, 0x3C); // "intro"
+  addSIRC12Key("prevDisc", PrevDisc_Key, 0x11, 0x3D);
+  addSIRC12Key("disc_skip", NextDisc_Key, 0x11, 0x3E);
+
+  addSIRC12Key("disc_1", Unmapped_Key, 0x11, 0x40);
+  addSIRC12Key("disc_2", Unmapped_Key, 0x11, 0x41);
+  addSIRC12Key("disc_3", Unmapped_Key, 0x11, 0x42);
+  addSIRC12Key("disc_4", Unmapped_Key, 0x11, 0x43);
+  addSIRC12Key("disc_5", Unmapped_Key, 0x11, 0x44);
+  addSIRC12Key("DISC", Unmapped_Key, 0x11, 0x4A);
+  addSIRC12Key("AUTO_SPACE", Unmapped_Key, 0x11, 0x4E);
+
+  addSIRC12Key("fader", Unmapped_Key, 0x11, 0x5F); // "mute"
+
+  addSIRC12Key("LEVEL_FILE", Unmapped_Key, 0x11, 0x68);
+}
+
+
+SonyCD1a::SonyCD1a(
+  unsigned int index)
+  : SonyCD1(index)
+{
+  setKeysetName("CD Keyset 1a");
+}
+
+
+void SonyCD1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  SonyCD1::populateProtocol(guiObject);
+
+  addSIRC12Key("a-b", RepeatAB_Key, 0x11, 0x2D);
+}
+
+
+SonyCD1b::SonyCD1b(
+  unsigned int index)
+  : SonyCD1(index)
+{
+  setKeysetName("CD Keyset 1b");
+}
+
+
+void SonyCD1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  SonyCD1::populateProtocol(guiObject);
+
+  addSIRC12Key("display", Info_Key, 0x11, 0x56);
+}

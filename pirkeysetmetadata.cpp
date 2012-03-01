@@ -1,9 +1,13 @@
 #include "pirkeysetmetadata.h"
+#include "pirselectdeviceform.h"
 #include "pirkeysetwidgetitem.h"
 #include "protocols/pirprotocol.h"
 
 #include <iostream>
 
+// Global helper objects:
+extern PIRMakeMgr makeManager;
+//extern PIRDeviceTypeMgr deviceManager;
 
 PIRKeysetMetaData::PIRKeysetMetaData(
   const char *r,
@@ -34,13 +38,23 @@ void PIRKeysetMetaData::moveToThread(
 }
 
 
-void PIRKeysetMetaData::populateDeviceTypes(
-  PIRKeysetWidgetItem *kwi) const
+void PIRKeysetMetaData::populateDevices(
+  unsigned int id,
+  PIRSelectDeviceForm *sdf) const
 {
-  PIRDeviceTypeCollection::const_iterator i = deviceTypes.begin();
-  while (i != deviceTypes.end())
+  PIRKeysetWidgetItem *kwi;
+
+  PIRDeviceCollection::const_iterator i = controlledDevices.begin();
+
+  while (i != controlledDevices.end())
   {
-    kwi->addDeviceType(*i);
+    // Create a widget for the keyset:
+    QString tempString = makeManager.getMakeString(i->make);
+    tempString.append(" ");
+    tempString.append(i->model);
+    kwi = new PIRKeysetWidgetItem(tempString, id, i->make, i->type);
+    sdf->addWidgetItem(kwi);
+
     ++i;
   }
 }

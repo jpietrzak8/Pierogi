@@ -191,4 +191,35 @@ public:
     QObject *guiObject);
 };
 
+
+class SonyCD1: public PIRKeysetMetaData
+{
+public:
+  SonyCD1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SonyCD1a: public SonyCD1
+{
+public:
+  SonyCD1a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SonyCD1b: public SonyCD1
+{
+public:
+  SonyCD1b(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // SONY_H

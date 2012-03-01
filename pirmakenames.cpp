@@ -8,17 +8,22 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Acer_Make] = "Acer";
   makes[Admiral_Make] = "Admiral";
   makes[Aiwa_Make] = "Aiwa";
+  makes[AOC_Make] = "AOC";
   makes[Apple_Make] = "Apple";
+  makes[Arcam_Make] = "Arcam";
   makes[Beko_Make] = "Beko";
   makes[Bose_Make] = "Bose";
   makes[Bush_Make] = "Bush";
   makes[Cambridge_Make] = "Cambridge Audio";
   makes[Canon_Make] = "Canon";
   makes[Daewoo_Make] = "Daewoo";
+  makes[Dell_Make] = "Dell";
   makes[Denon_Make] = "Denon";
   makes[DigitalStream_Make] = "Digital Stream";
   makes[Directv_Make] = "DirecTV";
   makes[Dish_Make] = "Dish";
+  makes[DSE_Make] = "DSE (Dick Smith)";
+  makes[Dynex_Make] = "Dynex";
   makes[Ei_Make] = "Ei";
   makes[Elgato_Make] = "Elgato";
   makes[Emerson_Make] = "Emerson";
@@ -28,6 +33,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[GoldStar_Make] = "GoldStar";
   makes[Grundig_Make] = "Grundig";
   makes[Haier_Make] = "Haier";
+  makes[HarmanKardon_Make] = "Harman/Kardon";
   makes[Hauppauge_Make] = "Hauppauge";
   makes[Hitachi_Make] = "Hitachi";
   makes[Homecast_Make] = "Homecast";
@@ -36,6 +42,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Humax_Make] = "Humax";
   makes[Hyundai_Make] = "Hyundai";
   makes[JVC_Make] = "JVC";
+  makes[Kathrein_Make] = "Kathrein";
   makes[Kenwood_Make] = "Kenwood";
   makes[LG_Make] = "LG";
   makes[Logitech_Make] = "Logitech";
@@ -61,6 +68,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Sharp_Make] = "Sharp";
   makes[Sky_Make] = "Sky";
   makes[Sony_Make] = "Sony";
+  makes[Starsat_Make] = "Starsat";
   makes[Technics_Make] = "Technics";
   makes[Tivo_Make] = "TiVo";
   makes[Topfield_Make] = "Topfield";
@@ -68,6 +76,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[United_Make] = "United";
   makes[Universum_Make] = "Universum";
   makes[Vestel_Make] = "Vestel";
+  makes[Viewsat_Make] = "Viewsat";
   makes[Virgin_Make] = "Virgin Media";
   makes[Vizio_Make] = "Vizio";
   makes[WD_Make] = "Western Digital";

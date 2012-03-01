@@ -30,7 +30,7 @@ SIRCProtocol::SIRCProtocol(
       45000, true)
 {
   setCarrierFrequency(40000);
-  setDutyCycle(33);
+//  setDutyCycle(33);
 }
 
 

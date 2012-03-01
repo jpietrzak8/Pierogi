@@ -847,11 +847,11 @@ void PanasonicAC1::populateProtocol(
   setPreData(0x6681, 16);
 
   addKey("Operation", Power_Key, 0x81, 8);
-  addKey("Air Swing", Yellow_Key, 0x83, 8);
-  addKey("Temp Up", Red_Key, 0x85, 8);
-  addKey("Temp Down", Blue_Key, 0x8A, 8);
-  addKey("Economy", Green_Key, 0x8D, 8);
-  addKey("Timer", Sleep_Key, 0x90, 8);
-  addKey("Fan Speed", SoundMode_Key, 0x99, 8);
-  addKey("Mode", PictureMode_Key, 0x9B, 8);
+  addKey("Air Swing", Oscillate_Key, 0x83, 8);
+  addKey("Temp Up", TempUp_Key, 0x85, 8);
+  addKey("Temp Down", TempDown_Key, 0x8A, 8);
+  addKey("Economy", EnergySave_Key, 0x8D, 8);
+  addKey("Timer", Timer_Key, 0x90, 8);
+  addKey("Fan Speed", FanFaster_Key, 0x99, 8);
+  addKey("Mode", Mode_Key, 0x9B, 8);
 }

@@ -11,7 +11,7 @@
 class QThread;
 class QObject;
 
-class PIRKeysetWidgetItem;
+class PIRSelectDeviceForm;
 class PIRProtocol;
 
 typedef std::map<PIRKeyName, const char *> KeyCollection;
@@ -33,7 +33,7 @@ public:
   PIRDeviceTypeName type;
 };
 
-typedef std::list<DeviceInfo> DeviceCollection;
+typedef std::list<DeviceInfo> PIRDeviceCollection;
 
 class PIRKeysetMetaData
 {
@@ -58,8 +58,9 @@ public:
   void moveToThread(
     QThread *thread);
 
-  void populateDeviceTypes(
-    PIRKeysetWidgetItem *kwi) const;
+  void populateDevices(
+    unsigned int id,
+    PIRSelectDeviceForm *sdf) const;
 
 protected:
   void addControlledDevice(
@@ -150,7 +151,7 @@ protected:
 
   KeyCollection keys;
 
-  DeviceCollection controlledDevices;
+  PIRDeviceCollection controlledDevices;
 
   PIRProtocol *threadableProtocol;
   unsigned int index;

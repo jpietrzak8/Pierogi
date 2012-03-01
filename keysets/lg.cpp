@@ -692,9 +692,9 @@ void LGAC1::populateProtocol(
   setPreData(0x6681, 16);
 
   addKey("power", Power_Key, 0x81, 8);
-  addKey("temp up", Red_Key, 0x85, 8);
-  addKey("temp down", Blue_Key, 0x8A, 8);
-  addKey("timer", Sleep_Key, 0x90, 8);
-  addKey("fan speed", SoundMode_Key, 0x99, 8);
-  addKey("mode", PictureMode_Key, 0x9B, 8);
+  addKey("temp up", TempUp_Key, 0x85, 8);
+  addKey("temp down", TempDown_Key, 0x8A, 8);
+  addKey("timer", Timer_Key, 0x90, 8);
+  addKey("fan speed", FanFaster_Key, 0x99, 8);
+  addKey("mode", Mode_Key, 0x9B, 8);
 }

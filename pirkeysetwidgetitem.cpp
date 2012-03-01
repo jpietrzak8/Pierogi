@@ -11,10 +11,16 @@ PIRKeysetWidgetItem::PIRKeysetWidgetItem(
 }
 
 
-void PIRKeysetWidgetItem::addDeviceType(
-  PIRDeviceTypeName dt)
+PIRKeysetWidgetItem::PIRKeysetWidgetItem(
+  QString name,
+  unsigned int i,
+  PIRMakeName m,
+  PIRDeviceTypeName t)
+  : QListWidgetItem(name),
+    id(i),
+    make(m),
+    deviceType(t)
 {
-  devices.insert(dt);
 }
 
 
@@ -30,8 +36,7 @@ PIRMakeName PIRKeysetWidgetItem::getMake()
 }
 
 
-bool PIRKeysetWidgetItem::supportsDeviceType(
-  PIRDeviceTypeName dt)
+PIRDeviceTypeName PIRKeysetWidgetItem::getDeviceType()
 {
-  return (devices.find(dt) != devices.end());
+  return deviceType;
 }

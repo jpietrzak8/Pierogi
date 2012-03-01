@@ -449,14 +449,14 @@ void SharpAC1::populateProtocol(
 
   setPreData(0xF508, 16);
 
-  addKey("Fan Faster", VolumeUp_Key, 0x01, 8);
-  addKey("Energy Save", Green_Key, 0x02, 8);
-  addKey("Fan Slower", VolumeDown_Key, 0x04, 8);
-  addKey("Timer", Sleep_Key, 0x06, 8);
-  addKey("Fan", Yellow_Key, 0x07, 8);
-  addKey("Cool", Blue_Key, 0x09, 8);
-  addKey("Temp/Timer-", ChannelDown_Key, 0x0D, 8);
-  addKey("Temp/Timer+", ChannelUp_Key, 0x0E, 8);
-  addKey("Auto/Cool", Info_Key, 0x0F, 8);
+  addKey("Fan Faster", FanFaster_Key, 0x01, 8);
+  addKey("Energy Save", EnergySave_Key, 0x02, 8);
+  addKey("Fan Slower", FanSlower_Key, 0x04, 8);
+  addKey("Timer", Timer_Key, 0x06, 8);
+  addKey("Fan", Fan_Key, 0x07, 8);
+  addKey("Cool", Cool_Key, 0x09, 8);
+  addKey("Temp/Timer-", TempDown_Key, 0x0D, 8);
+  addKey("Temp/Timer+", TempUp_Key, 0x0E, 8);
+  addKey("Auto/Cool", Mode_Key, 0x0F, 8);
   addKey("power", Power_Key, 0x11, 8);
 }

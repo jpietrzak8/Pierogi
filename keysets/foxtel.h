@@ -15,4 +15,14 @@ public:
     QObject *guiObject);
 };
 
+class FoxtelSTB2: public PIRKeysetMetaData
+{
+public:
+  FoxtelSTB2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // FOXTEL_H

@@ -4,14 +4,12 @@
 #include <QListWidget>
 
 extern PIRMakeMgr makeManager;
-extern PIRDeviceTypeMgr deviceManager;
 
 PIRSelectKeysetForm::PIRSelectKeysetForm(
   QWidget *parent)
   : QWidget(parent),
     ui(new Ui::PIRSelectKeysetForm),
-    currentMake(Any_Make),
-    currentDevice(Any_Device)
+    currentMake(Any_Make)
 {
   ui->setupUi(this);
 
@@ -20,7 +18,6 @@ PIRSelectKeysetForm::PIRSelectKeysetForm(
 
   // push the list of makers into the make combo box:
   makeManager.populateComboBox(ui->makeComboBox);
-  deviceManager.populateComboBox(ui->deviceComboBox);
 
   // Connection telling main window that keyset has been selected:
   connect(
@@ -36,13 +33,6 @@ PIRSelectKeysetForm::PIRSelectKeysetForm(
     SIGNAL(currentIndexChanged(int)),
     this,
     SLOT(filterListByMake(int)),
-    Qt::QueuedConnection);
-
-  connect(
-    ui->deviceComboBox,
-    SIGNAL(currentIndexChanged(int)),
-    this,
-    SLOT(filterListByDeviceType(int)),
     Qt::QueuedConnection);
 }
 
@@ -77,13 +67,6 @@ void PIRSelectKeysetForm::filterListByMake(
   refilterList();
 }
 
-void PIRSelectKeysetForm::filterListByDeviceType(
-  int deviceType)
-{
-  currentDevice = (PIRDeviceTypeName) deviceType;
-  refilterList();
-}
-
 void PIRSelectKeysetForm::refilterList()
 {
   int index = 0;
@@ -97,17 +80,8 @@ void PIRSelectKeysetForm::refilterList()
     // Does the keylist have the required make?
     if ((currentMake == Any_Make) || (item->getMake() == currentMake))
     {
-      // And, does the keylist have the required device type?
-      if ((currentDevice == Any_Device)
-          || (item->supportsDeviceType(currentDevice)))
-      {
-        // Yes, we can show this keylist:
-        item->setHidden(false);
-      }
-      else
-      {
-        item->setHidden(true);
-      }
+      // Yes, we can show this keylist:
+      item->setHidden(false);
     }
     else
     {

@@ -78,7 +78,6 @@ SOURCES += main.cpp mainwindow.cpp \
     protocols/samsungprotocol.cpp \
     keysets/pioneer.cpp \
     protocols/spaceprotocol.cpp \
-    pirsecondaryform.cpp \
     protocols/rcaprotocol.cpp \
     keysets/acer.cpp \
     keysets/aiwa.cpp \
@@ -133,7 +132,32 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/foxtel.cpp \
     keysets/nad.cpp \
     keysets/universum.cpp \
-    keysets/hyundai.cpp
+    keysets/hyundai.cpp \
+    pirselectdeviceform.cpp \
+    keysets/harmankardon.cpp \
+    forms/piradjustform.cpp \
+    forms/pirairconditionerform.cpp \
+    forms/pirinputform.cpp \
+    forms/pirmedia2form.cpp \
+    forms/pirtvform.cpp \
+    forms/pirmainform.cpp \
+    forms/pirutilityform.cpp \
+    forms/pirkeypadform.cpp \
+    forms/pirmenuform.cpp \
+    forms/pirmediaform.cpp \
+    forms/pirfavoritesform.cpp \
+    pirpanelselectionform.cpp \
+    pirpanelmanager.cpp \
+    protocols/nokia32protocol.cpp \
+    protocols/kathreinprotocol.cpp \
+    keysets/aoc.cpp \
+    keysets/arcam.cpp \
+    keysets/dell.cpp \
+    keysets/dse.cpp \
+    keysets/dynex.cpp \
+    keysets/kathrein.cpp \
+    keysets/starsat.cpp \
+    keysets/viewsat.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -185,7 +209,6 @@ HEADERS += mainwindow.h \
     protocols/samsungprotocol.h \
     keysets/pioneer.h \
     protocols/spaceprotocol.h \
-    pirsecondaryform.h \
     keysets/yamaha.h \
     protocols/rcaprotocol.h \
     keysets/acer.h \
@@ -241,13 +264,51 @@ HEADERS += mainwindow.h \
     keysets/foxtel.h \
     keysets/nad.h \
     keysets/universum.h \
-    keysets/hyundai.h
+    keysets/hyundai.h \
+    pirselectdeviceform.h \
+    keysets/harmankardon.h \
+    forms/piradjustform.h \
+    forms/pirairconditionerform.h \
+    forms/pirinputform.h \
+    forms/pirmedia2form.h \
+    forms/pirtvform.h \
+    forms/pirmainform.h \
+    forms/pirutilityform.h \
+    forms/pirkeypadform.h \
+    forms/pirmenuform.h \
+    forms/pirmediaform.h \
+    forms/pirfavoritesform.h \
+    pirpanelnames.h \
+    pirpanelmanager.h \
+    pirpanelselectionform.h \
+    protocols/nokia32protocol.h \
+    protocols/kathreinprotocol.h \
+    keysets/aoc.h \
+    keysets/arcam.h \
+    keysets/dell.h \
+    keysets/dse.h \
+    keysets/dynex.h \
+    keysets/kathrein.h \
+    keysets/starsat.h \
+    keysets/viewsat.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
     pirselectkeysetform.ui \
-    pirsecondaryform.ui \
-    sideshotleftform.ui
+    sideshotleftform.ui \
+    pirselectdeviceform.ui \
+    forms/piradjustform.ui \
+    forms/pirairconditionerform.ui \
+    forms/pirinputform.ui \
+    forms/pirmedia2form.ui \
+    forms/pirtvform.ui \
+    forms/pirmainform.ui \
+    forms/pirutilityform.ui \
+    forms/pirkeypadform.ui \
+    forms/pirmenuform.ui \
+    forms/pirmediaform.ui \
+    forms/pirfavoritesform.ui \
+    pirpanelselectionform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
