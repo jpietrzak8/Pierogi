@@ -5,9 +5,11 @@
 
 #include <iostream>
 
-// Global helper objects:
+// Global helper object:
 extern PIRMakeMgr makeManager;
-//extern PIRDeviceTypeMgr deviceManager;
+
+// Static member definition:
+PIRDeviceCollection PIRKeysetMetaData::controlledDevices;
 
 PIRKeysetMetaData::PIRKeysetMetaData(
   const char *r,
@@ -39,8 +41,7 @@ void PIRKeysetMetaData::moveToThread(
 
 
 void PIRKeysetMetaData::populateDevices(
-  unsigned int id,
-  PIRSelectDeviceForm *sdf) const
+  PIRSelectDeviceForm *sdf)
 {
   PIRKeysetWidgetItem *kwi;
 
@@ -49,10 +50,13 @@ void PIRKeysetMetaData::populateDevices(
   while (i != controlledDevices.end())
   {
     // Create a widget for the keyset:
-    QString tempString = makeManager.getMakeString(i->make);
+    QString tempString = makeManager.getMakeString(i->first.make);
     tempString.append(" ");
-    tempString.append(i->model);
-    kwi = new PIRKeysetWidgetItem(tempString, id, i->make, i->type);
+    tempString.append(i->first.model);
+
+    kwi = new PIRKeysetWidgetItem(
+      tempString, i->second, i->first.make, i->first.type);
+
     sdf->addWidgetItem(kwi);
 
     ++i;
@@ -82,9 +86,10 @@ void PIRKeysetMetaData::addControlledDevice(
   const char *model,
   PIRDeviceTypeName type)
 {
-  controlledDevices.push_back(DeviceInfo(make, model, type));
-
-  deviceTypes.insert(type);
+  controlledDevices.insert(
+    PIRDCPair(
+      DeviceInfo(make, model, type),
+      index));
 }
 
 

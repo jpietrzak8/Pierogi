@@ -21,10 +21,12 @@ public:
   explicit PIRSelectKeysetForm(QWidget *parent = 0);
   ~PIRSelectKeysetForm();
 
+/*
   void addNameToList(
     QString name,
     unsigned int index,
     PIRMakeName make);
+*/
 
   void addWidgetItem(
     PIRKeysetWidgetItem *kwi);

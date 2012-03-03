@@ -28,9 +28,8 @@ public:
 
   ~PIRKeysetManager();
 
-  void populateSelectionWidgets(
-    PIRSelectKeysetForm *skf,
-    PIRSelectDeviceForm *sdf) const;
+  void populateSelectionWidget(
+    PIRSelectKeysetForm *skf) const;
 
   bool keysetExists(
     unsigned int keysetID) const;

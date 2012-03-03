@@ -1,3 +1,10 @@
+pierogi (1.1.1) unstable; urgency=low
+  * The Record button returns to Pierogi via a new "Program/Record" panel
+  * Several fixes for Select Keyset by Device window (thanks sixwheeledbeast!)
+  * First pass at keysets for Compro, Kaon, and QNAP
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 02 Mar 2012 08:42:07 -0500
+
 pierogi (1.1.0) unstable; urgency=low
   * GUI changed - "panels" instead of "tabs", new navigation controls.
   * New window added for selecting keysets by device. "Device" filter removed from select keyset by name window.

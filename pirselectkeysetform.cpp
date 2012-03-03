@@ -41,6 +41,7 @@ PIRSelectKeysetForm::~PIRSelectKeysetForm()
   delete ui;
 }
 
+/*
 void PIRSelectKeysetForm::addNameToList(
   QString name,
   unsigned int index,
@@ -48,6 +49,7 @@ void PIRSelectKeysetForm::addNameToList(
 {
   ui->keysetListWidget->addItem(new PIRKeysetWidgetItem(name, index, make));
 }
+*/
 
 void PIRSelectKeysetForm::addWidgetItem(
   PIRKeysetWidgetItem *kwi)

@@ -15,6 +15,7 @@
 #include "keysets/bush.h"
 #include "keysets/cambridge.h"
 #include "keysets/canon.h"
+#include "keysets/compro.h"
 #include "keysets/daewoo.h"
 #include "keysets/dell.h"
 #include "keysets/denon.h"
@@ -41,6 +42,7 @@
 #include "keysets/humax.h"
 #include "keysets/hyundai.h"
 #include "keysets/jvc.h"
+#include "keysets/kaon.h"
 #include "keysets/kathrein.h"
 #include "keysets/kenwood.h"
 #include "keysets/lg.h"
@@ -57,6 +59,7 @@
 #include "keysets/philips.h"
 #include "keysets/pinnacle.h"
 #include "keysets/pioneer.h"
+#include "keysets/qnap.h"
 #include "keysets/raite.h"
 #include "keysets/rca.h"
 #include "keysets/roku.h"
@@ -94,7 +97,6 @@ extern QMutex stopRepeatingMutex;
 
 // Global helper objects:
 PIRMakeMgr makeManager;
-PIRDeviceTypeMgr deviceManager;
 
 // Now, on to the actual method definitions:
 
@@ -151,6 +153,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new CanonDSLR1(counter++));
   setupKeyset(new CanonCamcorder1(counter++));
   setupKeyset(new CanonPowershot1(counter++));
+
+  setupKeyset(new ComproTVCard1(counter++));
 
   setupKeyset(new DaewooTV1(counter++));
   setupKeyset(new DaewooTV2(counter++));
@@ -309,6 +313,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new JVCAudio2(counter++));
   setupKeyset(new JVCDVD1(counter++));
 
+  setupKeyset(new KaonSat1(counter++));
+
   setupKeyset(new KathreinSat1(counter++));
   setupKeyset(new KathreinSat2(counter++));
   setupKeyset(new KathreinSat3(counter++));
@@ -446,6 +452,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new PioneerCD1(counter++));
   setupKeyset(new PioneerLaserDisc1(counter++));
   setupKeyset(new PioneerDVD1(counter++));
+
+  setupKeyset(new QNAPPlayer1(counter++));
 
   setupKeyset(new RaiteDVD1(counter++));
 
@@ -763,9 +771,8 @@ void PIRKeysetManager::setupKeyset(
 }
 
 
-void PIRKeysetManager::populateSelectionWidgets(
-  PIRSelectKeysetForm *skf,
-  PIRSelectDeviceForm *sdf) const
+void PIRKeysetManager::populateSelectionWidget(
+  PIRSelectKeysetForm *skf) const
 {
   PIRMakeName make;
   PIRKeysetWidgetItem *kwi;
@@ -781,9 +788,6 @@ void PIRKeysetManager::populateSelectionWidgets(
     tempString.append(i->second->getKeysetName());
     kwi = new PIRKeysetWidgetItem(tempString, i->first, make);
     skf->addWidgetItem(kwi);
-
-    // Create widgets for the devices:
-    i->second->populateDevices(i->first, sdf);
 
     ++i;
   }

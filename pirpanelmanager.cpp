@@ -5,12 +5,13 @@
 #include "forms/pirkeypadform.h"
 #include "forms/pirmenuform.h"
 #include "forms/pirmediaform.h"
-#include "forms/pirfavoritesform.h"
-#include "forms/pirtvform.h"
 #include "forms/pirmedia2form.h"
+#include "forms/pirrecordform.h"
+#include "forms/pirtvform.h"
 #include "forms/pirinputform.h"
 #include "forms/piradjustform.h"
 #include "forms/pirairconditionerform.h"
+#include "forms/pirfavoritesform.h"
 
 #include "mainwindow.h"
 
@@ -21,6 +22,7 @@ PIRPanelManager::PIRPanelManager(MainWindow *mw)
     menuForm(0),
     mediaForm(0),
     media2Form(0),
+    recordForm(0),
     tvForm(0),
     inputForm(0),
     adjustForm(0),
@@ -34,6 +36,7 @@ PIRPanelManager::PIRPanelManager(MainWindow *mw)
   panelList.push_back(PIRPanelPair(Menu_Panel, false));
   panelList.push_back(PIRPanelPair(Media_Panel, false));
   panelList.push_back(PIRPanelPair(Media2_Panel, false));
+  panelList.push_back(PIRPanelPair(Record_Panel, false));
   panelList.push_back(PIRPanelPair(TV_Panel, false));
   panelList.push_back(PIRPanelPair(Input_Panel, false));
   panelList.push_back(PIRPanelPair(Adjust_Panel, false));
@@ -70,6 +73,7 @@ void PIRPanelManager::enableButtons(
   if (menuForm) menuForm->enableButtons(keyset, id);
   if (mediaForm) mediaForm->enableButtons(keyset, id);
   if (media2Form) media2Form->enableButtons(keyset, id);
+  if (recordForm) recordForm->enableButtons(keyset, id);
   if (tvForm) tvForm->enableButtons(keyset, id);
   if (inputForm) inputForm->enableButtons(keyset, id);
   if (adjustForm) adjustForm->enableButtons(keyset, id);
@@ -142,12 +146,16 @@ void PIRPanelManager::hidePanel(
       if (mediaForm) mainWindow->removePanel(index, mediaForm);
       break;
 
-    case TV_Panel:
-      if (tvForm) mainWindow->removePanel(index, tvForm);
-      break;
-
     case Media2_Panel:
       if (media2Form) mainWindow->removePanel(index, media2Form);
+      break;
+
+    case Record_Panel:
+      if (recordForm) mainWindow->removePanel(index, recordForm);
+      break;
+
+    case TV_Panel:
+      if (tvForm) mainWindow->removePanel(index, tvForm);
       break;
 
     case Input_Panel:
@@ -260,6 +268,20 @@ void PIRPanelManager::showPanel(
         index,
         media2Form,
         QString("Media2 Panel - additonal media controls"));
+
+      break;
+
+    case Record_Panel:
+      if (!recordForm)
+      {
+        recordForm = new PIRRecordForm(mainWindow);
+        mainWindow->enableButtons();
+      }
+
+      mainWindow->insertPanel(
+        index,
+        recordForm,
+        QString("Program/Record Panel - control over memory and storage"));
 
       break;
 

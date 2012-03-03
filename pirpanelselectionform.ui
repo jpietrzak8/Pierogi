@@ -78,6 +78,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="recordCheckBox">
+         <property name="text">
+          <string>Program/Record Panel - control over memory and storage</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QCheckBox" name="tvCheckBox">
          <property name="text">
           <string>TV Panel - Teletext and Picture-in-Picture</string>

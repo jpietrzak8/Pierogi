@@ -5,6 +5,7 @@
 
 #include "pirmakenames.h"
 #include "pirdevicetypenames.h"
+#include "pirdeviceinfo.h"
 
 class PIRKeysetWidgetItem;
 class QListWidget;
@@ -18,13 +19,17 @@ class PIRSelectDeviceForm : public QWidget
   Q_OBJECT
   
 public:
-  explicit PIRSelectDeviceForm(QWidget *parent = 0);
+  explicit PIRSelectDeviceForm(
+    QWidget *parent = 0);
+
   ~PIRSelectDeviceForm();
 
+/*
   void addNameToList(
     QString name,
     unsigned int index,
     PIRMakeName make);
+*/
 
   void addWidgetItem(
     PIRKeysetWidgetItem *kwi);

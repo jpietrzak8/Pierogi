@@ -46,6 +46,7 @@ void SkyReceiver1::populateProtocol(
   addKey("PLAY", Play_Key, 0x3E, 8);
   addKey("STOP", Stop_Key, 0x3F, 8);
   addKey("REC", Record_Key, 0x40, 8);
+  addKey("Remote Battery Message", Unmapped_Key, 0x48, 8);
 
   addKey("UP", Up_Key, 0x58, 8);
   addKey("DOWN", Down_Key, 0x59, 8);
@@ -59,7 +60,7 @@ void SkyReceiver1::populateProtocol(
   addKey("BLUE", Blue_Key, 0x70, 8);
 
   addKey("BOX_OFFICE", Unmapped_Key, 0x7D, 8);
-  addKey("SERVICES", Menu_Key, 0x7E, 8); // ?
+  addKey("SERVICES", Unmapped_Key, 0x7E, 8); // ?
 
   addKey("SKY", Unmapped_Key, 0x80, 8);
   addKey("HELP", Unmapped_Key, 0x81, 8); // menu?
@@ -69,7 +70,7 @@ void SkyReceiver1::populateProtocol(
   addKey("INFO", Info_Key, 0xCB, 8);
   addKey("TV_GUIDE", Guide_Key, 0xCC, 8);
 
-  addKey("INTERACTIVE", Unmapped_Key, 0xF5, 8);
+  addKey("INTERACTIVE", Menu_Key, 0xF5, 8);
 }
 
 

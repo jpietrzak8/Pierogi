@@ -448,6 +448,7 @@ LGDisc2::LGDisc2(
       LG_Make,
       index)
 {
+  addControlledDevice(LG_Make, "DV552", DVD_Device);
 }
 
 

@@ -8,12 +8,13 @@ class PIRUtilityForm;
 class PIRKeypadForm;
 class PIRMenuForm;
 class PIRMediaForm;
-class PIRFavoritesForm;
-class PIRTVForm;
 class PIRMedia2Form;
+class PIRRecordForm;
+class PIRTVForm;
 class PIRInputForm;
 class PIRAdjustForm;
 class PIRAirConditionerForm;
+class PIRFavoritesForm;
 
 class PIRKeysetWidgetItem;
 class PIRPanelSelectionForm;
@@ -84,6 +85,7 @@ private:
   PIRMenuForm *menuForm;
   PIRMediaForm *mediaForm;
   PIRMedia2Form *media2Form;
+  PIRRecordForm *recordForm;
   PIRTVForm *tvForm;
   PIRInputForm *inputForm;
   PIRAdjustForm *adjustForm;

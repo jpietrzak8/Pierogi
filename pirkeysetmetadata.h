@@ -3,10 +3,12 @@
 
 #include "pirkeynames.h"
 #include "pirmakenames.h"
-#include "pirdevicetypenames.h"
+//#include "pirdevicetypenames.h"
+
+#include "pirdeviceinfo.h"
 
 #include <map>
-#include <list>
+//#include <list>
 
 class QThread;
 class QObject;
@@ -16,24 +18,6 @@ class PIRProtocol;
 
 typedef std::map<PIRKeyName, const char *> KeyCollection;
 
-class DeviceInfo
-{
-public:
-  DeviceInfo(
-    PIRMakeName ma,
-    const char *mo,
-    PIRDeviceTypeName t)
-  : make(ma),
-    model(mo),
-    type(t)
-  {}
-
-  PIRMakeName make;
-  const char *model;
-  PIRDeviceTypeName type;
-};
-
-typedef std::list<DeviceInfo> PIRDeviceCollection;
 
 class PIRKeysetMetaData
 {
@@ -58,9 +42,8 @@ public:
   void moveToThread(
     QThread *thread);
 
-  void populateDevices(
-    unsigned int id,
-    PIRSelectDeviceForm *sdf) const;
+  static void populateDevices(
+    PIRSelectDeviceForm *sdf);
 
 protected:
   void addControlledDevice(
@@ -151,15 +134,14 @@ protected:
 
   KeyCollection keys;
 
-  PIRDeviceCollection controlledDevices;
-
   PIRProtocol *threadableProtocol;
   unsigned int index;
 
 private:
   const char *keysetName;
   PIRMakeName make;
-  PIRDeviceTypeCollection deviceTypes;
+  static PIRDeviceCollection controlledDevices;
+//  PIRDeviceTypeCollection deviceTypes;
 };
 
 

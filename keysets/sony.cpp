@@ -19,6 +19,7 @@ SonyTV1::SonyTV1(
   addControlledDevice(Sony_Make, "KV-36FS13", TV_Device);
   addControlledDevice(Sony_Make, "KDL-23B4030", TV_Device);
   addControlledDevice(Sony_Make, "KDL-40EX403", TV_Device);
+  addControlledDevice(Sony_Make, "KDL-40EX520", TV_Device);
   addControlledDevice(Sony_Make, "KDL-40X2000", TV_Device);
   addControlledDevice(Sony_Make, "KDL-52X2000", TV_Device);
   addControlledDevice(Sony_Make, "KDL-46X2000", TV_Device);

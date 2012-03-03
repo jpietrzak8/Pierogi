@@ -16,6 +16,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Bush_Make] = "Bush";
   makes[Cambridge_Make] = "Cambridge Audio";
   makes[Canon_Make] = "Canon";
+  makes[Compro_Make] = "Compro";
   makes[Daewoo_Make] = "Daewoo";
   makes[Dell_Make] = "Dell";
   makes[Denon_Make] = "Denon";
@@ -42,6 +43,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Humax_Make] = "Humax";
   makes[Hyundai_Make] = "Hyundai";
   makes[JVC_Make] = "JVC";
+  makes[Kaon_Make] = "Kaon";
   makes[Kathrein_Make] = "Kathrein";
   makes[Kenwood_Make] = "Kenwood";
   makes[LG_Make] = "LG";
@@ -58,6 +60,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Philips_Make] = "Philips";
   makes[Pinnacle_Make] = "Pinnacle Systems";
   makes[Pioneer_Make] = "Pioneer";
+  makes[QNAP_Make] = "QNAP";
   makes[Raite_Make] = "Raite";
   makes[RCA_Make] = "RCA";
   makes[Roku_Make] = "Roku";

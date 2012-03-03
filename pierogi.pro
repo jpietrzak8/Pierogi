@@ -157,7 +157,12 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/dynex.cpp \
     keysets/kathrein.cpp \
     keysets/starsat.cpp \
-    keysets/viewsat.cpp
+    keysets/viewsat.cpp \
+    pirdeviceinfo.cpp \
+    keysets/kaon.cpp \
+    forms/pirrecordform.cpp \
+    keysets/qnap.cpp \
+    keysets/compro.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -290,7 +295,12 @@ HEADERS += mainwindow.h \
     keysets/dynex.h \
     keysets/kathrein.h \
     keysets/starsat.h \
-    keysets/viewsat.h
+    keysets/viewsat.h \
+    keysets/kaon.h \
+    pirdeviceinfo.h \
+    forms/pirrecordform.h \
+    keysets/qnap.h \
+    keysets/compro.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -308,7 +318,8 @@ FORMS += mainwindow.ui \
     forms/pirmenuform.ui \
     forms/pirmediaform.ui \
     forms/pirfavoritesform.ui \
-    pirpanelselectionform.ui
+    pirpanelselectionform.ui \
+    forms/pirrecordform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
@@ -374,7 +385,8 @@ OTHER_FILES += \
     www/PierogiIcon.png \
     www/AdjustTab.png \
     www/InputTab.png \
-    qtc_packaging/debian_fremantle/postrm
+    qtc_packaging/debian_fremantle/postrm \
+    icons/red_pause.png
 
 RESOURCES += \
     PierogiResources.qrc

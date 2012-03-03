@@ -2,8 +2,9 @@
 #include "ui_pirselectdeviceform.h"
 #include "pirkeysetwidgetitem.h"
 
+PIRDeviceTypeMgr deviceTypeManager;
+
 extern PIRMakeMgr makeManager;
-extern PIRDeviceTypeMgr deviceManager;
 
 PIRSelectDeviceForm::PIRSelectDeviceForm(
   QWidget *parent)
@@ -19,7 +20,7 @@ PIRSelectDeviceForm::PIRSelectDeviceForm(
 
   // push the list of makers into the make combo box:
   makeManager.populateComboBox(ui->makeComboBox);
-  deviceManager.populateComboBox(ui->deviceComboBox);
+  deviceTypeManager.populateComboBox(ui->deviceComboBox);
 
   // Connection telling main window that keyset has been selected:
   connect(
@@ -50,6 +51,7 @@ PIRSelectDeviceForm::~PIRSelectDeviceForm()
   delete ui;
 }
 
+/*
 void PIRSelectDeviceForm::addNameToList(
   QString name,
   unsigned int index,
@@ -57,6 +59,7 @@ void PIRSelectDeviceForm::addNameToList(
 {
   ui->deviceListWidget->addItem(new PIRKeysetWidgetItem(name, index, make));
 }
+*/
 
 void PIRSelectDeviceForm::addWidgetItem(
   PIRKeysetWidgetItem *kwi)

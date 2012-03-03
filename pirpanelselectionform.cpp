@@ -53,14 +53,19 @@ void PIRPanelSelectionForm::on_mediaCheckBox_stateChanged(int arg1)
   mainWindow->managePanel(Media_Panel, arg1);
 }
 
-void PIRPanelSelectionForm::on_tvCheckBox_stateChanged(int arg1)
-{
-  mainWindow->managePanel(TV_Panel, arg1);
-}
-
 void PIRPanelSelectionForm::on_media2CheckBox_stateChanged(int arg1)
 {
   mainWindow->managePanel(Media2_Panel, arg1);
+}
+
+void PIRPanelSelectionForm::on_recordCheckBox_stateChanged(int arg1)
+{
+  mainWindow->managePanel(Record_Panel, arg1);
+}
+
+void PIRPanelSelectionForm::on_tvCheckBox_stateChanged(int arg1)
+{
+  mainWindow->managePanel(TV_Panel, arg1);
 }
 
 void PIRPanelSelectionForm::on_inputCheckBox_stateChanged(int arg1)

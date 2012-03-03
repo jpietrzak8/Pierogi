@@ -73,6 +73,7 @@ void RC6SkyProtocol::startSendingCommand(
       // b) a "start bit", value 1 (so 444 us pulse, 444 us space)
       // c) three control bits, set to "110" (i.e., mode "6")
       // d) the double-sized "trailer" bit, set based on the keypress count:
+      // d2) I'm trying out setting the toggle bit to always be 0.
 
       rx51device.addSingle(HEADER_PULSE); // lead pulse
       duration += HEADER_PULSE;

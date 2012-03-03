@@ -25,8 +25,9 @@ private slots:
   void on_keypadCheckBox_stateChanged(int arg1);
   void on_menuCheckBox_stateChanged(int arg1);
   void on_mediaCheckBox_stateChanged(int arg1);
-  void on_tvCheckBox_stateChanged(int arg1);
   void on_media2CheckBox_stateChanged(int arg1);
+  void on_recordCheckBox_stateChanged(int arg1);
+  void on_tvCheckBox_stateChanged(int arg1);
   void on_inputCheckBox_stateChanged(int arg1);
   void on_adjustCheckBox_stateChanged(int arg1);
   void on_acCheckBox_stateChanged(int arg1);

@@ -8,6 +8,8 @@ WDMediaPlayer1::WDMediaPlayer1(
       WD_Make,
       index)
 {
+  addControlledDevice(WD_Make, "WDTV", Other_Device);
+  addControlledDevice(WD_Make, "WDTV Live PLUS", Other_Device);
 }
 
 

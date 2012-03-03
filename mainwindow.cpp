@@ -7,6 +7,7 @@
 //#include <QtGui>
 #include <QSettings>
 
+#include "pirkeysetmetadata.h"
 #include "pirkeysetwidgetitem.h"
 #include "pirselectkeysetform.h"
 #include "pirselectdeviceform.h"
@@ -54,14 +55,15 @@ MainWindow::MainWindow(QWidget *parent)
 
   // Set up the keyset selection window:
   selectKeysetForm = new PIRSelectKeysetForm(this);
+  myKeysets->populateSelectionWidget(selectKeysetForm);
 
   // Set up the device selection window:
   selectDeviceForm = new PIRSelectDeviceForm(this);
+  PIRKeysetMetaData::populateDevices(selectDeviceForm);
 
   // Set up the panel selection window:
   panelSelectionForm = new PIRPanelSelectionForm(this);
 
-  myKeysets->populateSelectionWidgets(selectKeysetForm, selectDeviceForm);
 //  myPanels->setupPanels(panelSelectionForm);
 
   // Remember any favorites the user has already set:
