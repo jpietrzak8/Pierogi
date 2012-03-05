@@ -162,7 +162,13 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/kaon.cpp \
     forms/pirrecordform.cpp \
     keysets/qnap.cpp \
-    keysets/compro.cpp
+    keysets/compro.cpp \
+    protocols/xmpprotocol.cpp \
+    keysets/dreambox.cpp \
+    keysets/magnum.cpp \
+    keysets/telenet.cpp \
+    keysets/thomson.cpp \
+    keysets/genius.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -300,7 +306,13 @@ HEADERS += mainwindow.h \
     pirdeviceinfo.h \
     forms/pirrecordform.h \
     keysets/qnap.h \
-    keysets/compro.h
+    keysets/compro.h \
+    protocols/xmpprotocol.h \
+    keysets/dreambox.h \
+    keysets/magnum.h \
+    keysets/telenet.h \
+    keysets/thomson.h \
+    keysets/genius.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

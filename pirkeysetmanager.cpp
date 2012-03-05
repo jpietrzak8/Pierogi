@@ -22,6 +22,7 @@
 #include "keysets/digitalstream.h"
 #include "keysets/directv.h"
 #include "keysets/dish.h"
+#include "keysets/dreambox.h"
 #include "keysets/dse.h"
 #include "keysets/dynex.h"
 #include "keysets/ei.h"
@@ -30,6 +31,7 @@
 #include "keysets/epson.h"
 #include "keysets/fortec.h"
 #include "keysets/foxtel.h"
+#include "keysets/genius.h"
 #include "keysets/goldstar.h"
 #include "keysets/grundig.h"
 #include "keysets/haier.h"
@@ -48,6 +50,7 @@
 #include "keysets/lg.h"
 #include "keysets/logitech.h"
 #include "keysets/magnavox.h"
+#include "keysets/magnum.h"
 #include "keysets/mce.h"
 #include "keysets/mitsubishi.h"
 #include "keysets/motorola.h"
@@ -72,6 +75,8 @@
 #include "keysets/sony.h"
 #include "keysets/starsat.h"
 #include "keysets/technics.h"
+#include "keysets/telenet.h"
+#include "keysets/thomson.h"
 #include "keysets/tivo.h"
 #include "keysets/topfield.h"
 #include "keysets/toshiba.h"
@@ -209,6 +214,15 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new DishReceiver1n(counter++));
   setupKeyset(new DishReceiver1o(counter++));
 
+  setupKeyset(new DreamboxSat1(counter++));
+  setupKeyset(new DreamboxSat1a(counter++));
+  setupKeyset(new DreamboxSat1b(counter++));
+  setupKeyset(new DreamboxSat1c(counter++));
+  setupKeyset(new DreamboxSat2(counter++));
+  setupKeyset(new DreamboxSat3(counter++));
+  setupKeyset(new DreamboxSat4(counter++));
+  setupKeyset(new DreamboxSat5(counter++));
+
   setupKeyset(new DSEDVD1(counter++));
   setupKeyset(new DSESat1(counter++));
 
@@ -229,6 +243,8 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new FoxtelSTB1(counter++));
   setupKeyset(new FoxtelSTB2(counter++));
+
+  setupKeyset(new GeniusSpeakers1(counter++));
 
   setupKeyset(new GoldStarTV1(counter++));
   setupKeyset(new GoldStarTV2(counter++));
@@ -349,6 +365,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new MagnavoxVCR1(counter++));
   setupKeyset(new MagnavoxConverterBox1(counter++));
   setupKeyset(new MagnavoxTV1(counter++));
+
+  setupKeyset(new MagnumTV1(counter++));
 
   setupKeyset(new MCERemote1(counter++));
   setupKeyset(new MCERemote1a(counter++));
@@ -552,6 +570,16 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new TechnicsAudio3(counter++));
   setupKeyset(new TechnicsAudio3a(counter++));
   setupKeyset(new TechnicsDVD1(counter++));
+
+  setupKeyset(new TelenetSTB1(counter++));
+
+  setupKeyset(new ThomsonConverter1(counter++));
+  setupKeyset(new ThomsonTV1(counter++));
+  setupKeyset(new ThomsonVCR1(counter++));
+  setupKeyset(new ThomsonVCR1a(counter++));
+  setupKeyset(new ThomsonDVD1(counter++));
+  setupKeyset(new ThomsonSat1(counter++));
+  setupKeyset(new ThomsonAudio1(counter++));
 
   setupKeyset(new Tivo1(counter++));
   setupKeyset(new Tivo1a(counter++));

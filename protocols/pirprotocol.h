@@ -101,6 +101,11 @@ public:
     unsigned int firstCommand,
     unsigned int secondCommand);
 
+  void addXMPKey(
+    PIRKeyName key,
+    unsigned int firstCommand,
+    unsigned int secondCommand);
+
   void setCarrierFrequency(
     unsigned int freq);
 

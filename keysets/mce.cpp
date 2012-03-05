@@ -8,7 +8,7 @@ MCERemote1::MCERemote1(
       Microsoft_Make,
       index)
 {
-  addControlledDevice(Any_Make, "ASRock HT330", Computer_Device);
+  addControlledDevice(Microsoft_Make, "Windows PC ASRock HT330", Computer_Device);
 }
 
 

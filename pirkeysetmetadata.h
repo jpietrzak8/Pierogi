@@ -121,6 +121,12 @@ protected:
     unsigned int firstCommand,
     unsigned int secondCommand);
 
+  void addXMPKey(
+    const char *name,
+    PIRKeyName key,
+    unsigned int firstCommand,
+    unsigned int secondCommand);
+
   void setPreData(
     unsigned long data,
     unsigned int bits);

@@ -243,6 +243,20 @@ void PIRKeysetMetaData::addDishKey(
 }
 
 
+void PIRKeysetMetaData::addXMPKey(
+  const char *name,
+  PIRKeyName key,
+  unsigned int firstCommand,
+  unsigned int secondCommand)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+    threadableProtocol->addXMPKey(key, firstCommand, secondCommand);
+  }
+}
+
+
 void PIRKeysetMetaData::setPreData(
   unsigned long data,
   unsigned int bits)

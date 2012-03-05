@@ -289,6 +289,29 @@ void PIRProtocol::addDishKey(
 }
 
 
+void PIRProtocol::addXMPKey(
+  PIRKeyName key,
+  unsigned int firstCommand,
+  unsigned int secondCommand)
+{
+  PIRKeyBits *pkb = 0;
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    pkb = &(i->second);
+    pkb->firstCode.clear();
+    pkb->secondCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
+  }
+
+  appendToBitSeq(pkb->firstCode, firstCommand, 8);
+  appendToBitSeq(pkb->secondCode, secondCommand, 8);
+}
+
+
 void PIRProtocol::setCarrierFrequency(
   unsigned int freq)
 {

@@ -1,3 +1,8 @@
+pierogi (1.1.2) unstable; urgency=low
+  * First pass at keysets for Dream Multimedia, Genius, Magnum, Telenet, and Thomson.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 04 Mar 2012 10:57:07 -0500
+
 pierogi (1.1.1) unstable; urgency=low
   * The Record button returns to Pierogi via a new "Program/Record" panel
   * Several fixes for Select Keyset by Device window (thanks sixwheeledbeast!)

@@ -23,6 +23,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[DigitalStream_Make] = "Digital Stream";
   makes[Directv_Make] = "DirecTV";
   makes[Dish_Make] = "Dish";
+  makes[Dreambox_Make] = "Dream Multimedia";
   makes[DSE_Make] = "DSE (Dick Smith)";
   makes[Dynex_Make] = "Dynex";
   makes[Ei_Make] = "Ei";
@@ -31,6 +32,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Epson_Make] = "Epson";
   makes[Fortec_Make] = "Fortec Star";
   makes[Foxtel_Make] = "Foxtel";
+  makes[Genius_Make] = "Genius";
   makes[GoldStar_Make] = "GoldStar";
   makes[Grundig_Make] = "Grundig";
   makes[Haier_Make] = "Haier";
@@ -49,6 +51,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[LG_Make] = "LG";
   makes[Logitech_Make] = "Logitech";
   makes[Magnavox_Make] = "Magnavox";
+  makes[Magnum_Make] = "Magnum";
   makes[Microsoft_Make] = "Microsoft";
   makes[Mitsubishi_Make] = "Mitsubishi";
   makes[Motorola_Make] = "Motorola";
@@ -73,6 +76,8 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Sony_Make] = "Sony";
   makes[Starsat_Make] = "Starsat";
   makes[Technics_Make] = "Technics";
+  makes[Telenet_Make] = "Telenet";
+  makes[Thomson_Make] = "Thomson";
   makes[Tivo_Make] = "TiVo";
   makes[Topfield_Make] = "Topfield";
   makes[Toshiba_Make] = "Toshiba";
