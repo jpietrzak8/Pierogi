@@ -1,6 +1,9 @@
 #include "pirpanelmanager.h"
 
+#include "pirpanelselectionform.h"
+
 #include "forms/pirmainform.h"
+#include "forms/piraltmainform.h"
 #include "forms/pirutilityform.h"
 #include "forms/pirkeypadform.h"
 #include "forms/pirmenuform.h"
@@ -15,8 +18,15 @@
 
 #include "mainwindow.h"
 
+#include <QSettings>
+
+// Debugging:
+//#include <QMaemo5InformationBox>
+#include <iostream>
+
 PIRPanelManager::PIRPanelManager(MainWindow *mw)
   : mainForm(0),
+    altMainForm(0),
     utilityForm(0),
     keypadForm(0),
     menuForm(0),
@@ -28,20 +38,59 @@ PIRPanelManager::PIRPanelManager(MainWindow *mw)
     adjustForm(0),
     acForm(0),
     favoritesForm(0),
+    altMainPanelFlag(false),
     mainWindow(mw)
 {
-  panelList.push_back(PIRPanelPair(Main_Panel, false));
-  panelList.push_back(PIRPanelPair(Utility_Panel, false));
-  panelList.push_back(PIRPanelPair(Keypad_Panel, false));
-  panelList.push_back(PIRPanelPair(Menu_Panel, false));
-  panelList.push_back(PIRPanelPair(Media_Panel, false));
-  panelList.push_back(PIRPanelPair(Media2_Panel, false));
-  panelList.push_back(PIRPanelPair(Record_Panel, false));
-  panelList.push_back(PIRPanelPair(TV_Panel, false));
-  panelList.push_back(PIRPanelPair(Input_Panel, false));
-  panelList.push_back(PIRPanelPair(Adjust_Panel, false));
-  panelList.push_back(PIRPanelPair(AC_Panel, false));
-  panelList.push_back(PIRPanelPair(Favorites_Panel, false));
+  // Set up the panel names:
+  shortPanelNames[Main_Panel] = "Main";
+  longPanelNames[Main_Panel] =
+    "Main Panel - power, volume, and channel controls";
+  shortPanelNames[Utility_Panel] = "Utility";
+  longPanelNames[Utility_Panel] = 
+    "Utility Panel - commonly used controls";
+  shortPanelNames[Keypad_Panel] = "Keypad";
+  longPanelNames[Keypad_Panel] =
+    "Keypad Panel - numeric value entry";
+  shortPanelNames[Menu_Panel] = "Menu";
+  longPanelNames[Menu_Panel] =
+    "Menu Panel - enter, exit, and navigate menus";
+  shortPanelNames[Media_Panel] = "Media";
+  longPanelNames[Media_Panel] =
+    "Media Panel - control over recorded data";
+  shortPanelNames[Media2_Panel] = "Media2";
+  longPanelNames[Media2_Panel] =
+    "Media2 Panel - additonal media controls";
+  shortPanelNames[Record_Panel] = "Record";
+  longPanelNames[Record_Panel] =
+    "Program/Record Panel - control over memory and storage";
+  shortPanelNames[TV_Panel] = "TV";
+  longPanelNames[TV_Panel] =
+    "TV Panel - teletext and picture-in-picture";
+  shortPanelNames[Input_Panel] = "Input";
+  longPanelNames[Input_Panel] =
+    "Input Panel - manage data sources";
+  shortPanelNames[Adjust_Panel] = "Adjust";
+  longPanelNames[Adjust_Panel] =
+    "Adjust Panel - modify audio and video";
+  shortPanelNames[AC_Panel] = "AC";
+  longPanelNames[AC_Panel] =
+    "A/C Panel - air conditioner controls";
+  shortPanelNames[Favorites_Panel] = "Favorites";
+  longPanelNames[Favorites_Panel] =
+    "Favorites Panel - memorized keysets";
+
+  activePanels[Main_Panel] = false;
+  activePanels[Utility_Panel]= false;
+  activePanels[Keypad_Panel]= false;
+  activePanels[Menu_Panel]= false;
+  activePanels[Media_Panel]= false;
+  activePanels[Media2_Panel]= false;
+  activePanels[Record_Panel]= false;
+  activePanels[TV_Panel]= false;
+  activePanels[Input_Panel]= false;
+  activePanels[Adjust_Panel]= false;
+  activePanels[AC_Panel]= false;
+  activePanels[Favorites_Panel]= false;
 }
 
 
@@ -55,19 +104,124 @@ PIRPanelManager::~PIRPanelManager()
 }
 
 
-/*
 void PIRPanelManager::setupPanels(
   PIRPanelSelectionForm *psf)
 {
+  QSettings settings("pietrzak.org", "Pierogi");
+
+  settings.beginGroup("Panels");
+
+  // Do the panel settings exist? (We'll check for "Main_Panel".)
+  if (!settings.contains(shortPanelNames[Main_Panel]))
+  {
+    // A default set of panels:
+    psf->setCheckBox(Main_Panel, true);
+    psf->setCheckBox(Utility_Panel, true);
+    psf->setCheckBox(Keypad_Panel, true);
+    psf->setCheckBox(Menu_Panel, true);
+    psf->setCheckBox(Media_Panel, true);
+    psf->setCheckBox(Favorites_Panel, true);
+  }
+  else
+  {
+    psf->setCheckBox(
+      Main_Panel,
+      settings.value(shortPanelNames[Main_Panel]).toBool());
+
+    if (settings.contains(shortPanelNames[Utility_Panel]))
+    {
+      psf->setCheckBox(
+        Utility_Panel,
+        settings.value(shortPanelNames[Utility_Panel]).toBool());
+    }
+
+    if (settings.contains(shortPanelNames[Keypad_Panel]))
+    {
+      psf->setCheckBox(
+        Keypad_Panel,
+        settings.value(shortPanelNames[Keypad_Panel]).toBool());
+    }
+
+    if (settings.contains(shortPanelNames[Menu_Panel]))
+    {
+      psf->setCheckBox(
+        Menu_Panel,
+        settings.value(shortPanelNames[Menu_Panel]).toBool());
+    }
+
+    if (settings.contains(shortPanelNames[Media_Panel]))
+    {
+      psf->setCheckBox(
+        Media_Panel,
+        settings.value(shortPanelNames[Media_Panel]).toBool());
+    }
+
+    if (settings.contains(shortPanelNames[Media2_Panel]))
+    {
+      psf->setCheckBox(
+        Media2_Panel,
+        settings.value(shortPanelNames[Media2_Panel]).toBool());
+    }
+
+    if (settings.contains(shortPanelNames[Record_Panel]))
+    {
+      psf->setCheckBox(
+        Record_Panel,
+        settings.value(shortPanelNames[Record_Panel]).toBool());
+    }
+
+    if (settings.contains(shortPanelNames[TV_Panel]))
+    {
+      psf->setCheckBox(
+        TV_Panel,
+        settings.value(shortPanelNames[TV_Panel]).toBool());
+    }
+
+    if (settings.contains(shortPanelNames[Input_Panel]))
+    {
+      psf->setCheckBox(
+        Input_Panel,
+        settings.value(shortPanelNames[Input_Panel]).toBool());
+    }
+
+    if (settings.contains(shortPanelNames[Adjust_Panel]))
+    {
+      psf->setCheckBox(
+        Adjust_Panel,
+        settings.value(shortPanelNames[Adjust_Panel]).toBool());
+    }
+
+    if (settings.contains(shortPanelNames[AC_Panel]))
+    {
+      psf->setCheckBox(
+        AC_Panel,
+        settings.value(shortPanelNames[AC_Panel]).toBool());
+    }
+
+    if (settings.contains(shortPanelNames[Favorites_Panel]))
+    {
+      psf->setCheckBox(
+        Favorites_Panel,
+        settings.value(shortPanelNames[Favorites_Panel]).toBool());
+    }
+  }
+
+  settings.endGroup();
 }
-*/
 
 
 void PIRPanelManager::enableButtons(
   const PIRKeysetManager *keyset,
   unsigned int id)
 {
-  if (mainForm) mainForm->enableButtons(keyset, id);
+  if (altMainPanelFlag)
+  {
+    if (altMainForm) altMainForm->enableButtons(keyset, id);
+  }
+  else
+  {
+    if (mainForm) mainForm->enableButtons(keyset, id);
+  }
   if (utilityForm) utilityForm->enableButtons(keyset, id);
   if (keypadForm) keypadForm->enableButtons(keyset, id);
   if (menuForm) menuForm->enableButtons(keyset, id);
@@ -85,38 +239,102 @@ void PIRPanelManager::managePanel(
   PIRPanelName name,
   int state)
 {
-  int index = 0;
+  int currentPanel = 0;
+  int displayCount = 0;
 
-  PIRPanelList::iterator i = panelList.begin();
-  while (i != panelList.end())
+//  PIRPanelList::iterator i = panelList.begin();
+  while (currentPanel < Last_Panel_Marker)
   {
-    if (i->name == name)
+    if (currentPanel == name)
     {
       break;
     }
-    else if (i->displayed)
+    else if (activePanels[PIRPanelName(currentPanel)])
     {
-      ++index;
+      ++displayCount;
     }
-    ++i;
+
+    ++currentPanel;
   }
 
-  if (i == panelList.end())
+  if (currentPanel == Last_Panel_Marker)
   {
     // should throw an error message here!!!
     return;
   }
 
-  if (state == Qt::Unchecked && i->displayed)
+  QSettings settings("pietrzak.org", "Pierogi");
+
+  settings.beginGroup("Panels");
+
+  if (state == Qt::Unchecked && activePanels[PIRPanelName(currentPanel)])
   {
-    hidePanel(name, index);
-    i->displayed = false;
+    hidePanel(name, displayCount);
+    activePanels[PIRPanelName(currentPanel)] = false;
+    settings.setValue(shortPanelNames[PIRPanelName(currentPanel)], false);
   }
-  else if (state == Qt::Checked && !i->displayed)
+  else if (state == Qt::Checked && !activePanels[PIRPanelName(currentPanel)])
   {
-    showPanel(name, index);
-    i->displayed = true;
+    showPanel(name, displayCount);
+    activePanels[PIRPanelName(currentPanel)] = true;
+    settings.setValue(shortPanelNames[PIRPanelName(currentPanel)], true);
   }
+
+  settings.endGroup();
+}
+
+
+void PIRPanelManager::useMainPanel()
+{
+  if (!altMainPanelFlag)
+  {
+    // Already set correctly, nothing to do:
+    return;
+  }
+
+  altMainPanelFlag = false;
+
+  // Is the main panel currently active?
+  if (activePanels[Main_Panel])
+  {
+    mainWindow->removePanel(0, altMainForm);
+    if (!mainForm)
+    {
+      mainForm = new PIRMainForm(mainWindow);
+    }
+
+    mainWindow->insertPanel(0, mainForm, longPanelNames[Main_Panel]);
+    mainWindow->selectPanel(0);
+  }
+
+  mainWindow->enableButtons();
+}
+
+
+void PIRPanelManager::useAltMainPanel()
+{
+  if (altMainPanelFlag)
+  {
+    // Already set correctly, nothing to do:
+    return;
+  }
+
+  altMainPanelFlag = true;
+
+  // Is the main panel currently active?
+  if (activePanels[Main_Panel])
+  {
+    mainWindow->removePanel(0, mainForm);
+    if (!altMainForm)
+    {
+      altMainForm = new PIRAltMainForm(mainWindow);
+    }
+
+    mainWindow->insertPanel(0, altMainForm, longPanelNames[Main_Panel]);
+    mainWindow->selectPanel(0);
+  }
+
+  mainWindow->enableButtons();
 }
 
 
@@ -127,7 +345,14 @@ void PIRPanelManager::hidePanel(
   switch (name)
   {
     case Main_Panel:
-      if (mainForm) mainWindow->removePanel(index, mainForm);
+      if (altMainPanelFlag)
+      {
+        if (altMainForm) mainWindow->removePanel(index, altMainForm);
+      }
+      else
+      {
+        if (mainForm) mainWindow->removePanel(index, mainForm);
+      }
       break;
 
     case Utility_Panel:
@@ -188,16 +413,32 @@ void PIRPanelManager::showPanel(
   switch (name)
   {
     case Main_Panel:
-      if (!mainForm)
+      if (altMainPanelFlag)
       {
-        mainForm = new PIRMainForm(mainWindow);
-        mainWindow->enableButtons();
-      }
+        if (!altMainForm)
+        {
+          altMainForm = new PIRAltMainForm(mainWindow);
+          mainWindow->enableButtons();
+        }
 
-      mainWindow->insertPanel(
-        index,
-        mainForm,
-        QString("Main Panel - power, volume, and channel controls"));
+        mainWindow->insertPanel(
+          index,
+          altMainForm,
+          longPanelNames[Main_Panel]);
+      }
+      else
+      {
+        if (!mainForm)
+        {
+          mainForm = new PIRMainForm(mainWindow);
+          mainWindow->enableButtons();
+        }
+
+        mainWindow->insertPanel(
+          index,
+          mainForm,
+          longPanelNames[Main_Panel]);
+      }
 
       break;
 
@@ -211,7 +452,7 @@ void PIRPanelManager::showPanel(
       mainWindow->insertPanel(
         index,
         utilityForm,
-        QString("Utility Panel - commonly used controls"));
+        longPanelNames[Utility_Panel]);
 
       break;
 
@@ -225,7 +466,7 @@ void PIRPanelManager::showPanel(
       mainWindow->insertPanel(
         index,
         keypadForm,
-        QString("Keypad Panel - numeric value entry"));
+        longPanelNames[Keypad_Panel]);
 
       break;
 
@@ -239,7 +480,7 @@ void PIRPanelManager::showPanel(
       mainWindow->insertPanel(
         index,
         menuForm,
-        QString("Menu Panel - enter, exit, and navigate menus"));
+        longPanelNames[Menu_Panel]);
 
       break;
 
@@ -253,7 +494,7 @@ void PIRPanelManager::showPanel(
       mainWindow->insertPanel(
         index,
         mediaForm,
-        QString("Media Panel - control over recorded data"));
+        longPanelNames[Media_Panel]);
 
       break;
 
@@ -267,7 +508,7 @@ void PIRPanelManager::showPanel(
       mainWindow->insertPanel(
         index,
         media2Form,
-        QString("Media2 Panel - additonal media controls"));
+        longPanelNames[Media2_Panel]);
 
       break;
 
@@ -281,7 +522,7 @@ void PIRPanelManager::showPanel(
       mainWindow->insertPanel(
         index,
         recordForm,
-        QString("Program/Record Panel - control over memory and storage"));
+        longPanelNames[Record_Panel]);
 
       break;
 
@@ -295,7 +536,7 @@ void PIRPanelManager::showPanel(
       mainWindow->insertPanel(
         index,
         tvForm,
-        QString("TV Panel - teletext and picture-in-picture"));
+        longPanelNames[TV_Panel]);
 
       break;
 
@@ -309,7 +550,7 @@ void PIRPanelManager::showPanel(
       mainWindow->insertPanel(
         index,
         inputForm,
-        QString("Input Panel - manage data sources"));
+        longPanelNames[Input_Panel]);
 
       break;
 
@@ -323,7 +564,7 @@ void PIRPanelManager::showPanel(
       mainWindow->insertPanel(
         index,
         adjustForm,
-        QString("Adjust Panel - modify audio and video"));
+        longPanelNames[Adjust_Panel]);
 
       break;
 
@@ -337,7 +578,7 @@ void PIRPanelManager::showPanel(
       mainWindow->insertPanel(
         index,
         acForm,
-        QString("A/C Panel - air conditioner controls"));
+        longPanelNames[AC_Panel]);
 
       break;
 
@@ -351,7 +592,7 @@ void PIRPanelManager::showPanel(
       mainWindow->insertPanel(
         index,
         favoritesForm,
-        QString("Favorites Panel - memorized keysets"));
+        longPanelNames[Favorites_Panel]);
 
       break;
 

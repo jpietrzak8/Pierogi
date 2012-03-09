@@ -12,6 +12,7 @@
 #include "pirselectkeysetform.h"
 #include "pirselectdeviceform.h"
 #include "pirpanelselectionform.h"
+#include "pirpreferencesform.h"
 #include "pirdocumentationform.h"
 #include "piraboutform.h"
 #include "pirkeysetmanager.h"
@@ -40,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
     selectKeysetForm(0),
     selectDeviceForm(0),
     panelSelectionForm(0),
+    preferencesForm(0),
     documentationForm(0),
     aboutForm(0),
     currentKeyset(0)
@@ -63,13 +65,15 @@ MainWindow::MainWindow(QWidget *parent)
 
   // Set up the panel selection window:
   panelSelectionForm = new PIRPanelSelectionForm(this);
+  myPanels->setupPanels(panelSelectionForm);
 
-//  myPanels->setupPanels(panelSelectionForm);
+  // Set up the preferences window:
+  preferencesForm = new PIRPreferencesForm(this);
 
   // Remember any favorites the user has already set:
   populateFavorites();
 
-  // Retrieve the user's most recent keyset (if any):
+  // Retrieve the user's preferences:
   QSettings settings("pietrzak.org", "Pierogi");
   if (settings.contains("currentKeysetName"))
   {
@@ -77,7 +81,6 @@ MainWindow::MainWindow(QWidget *parent)
       settings.value("currentKeysetMake").toString(),
       settings.value("currentKeysetName").toString(),
       currentKeyset);
-//    currentKeyset = settings.value("currentKeyset").toInt();
   }
 
   enableButtons();
@@ -236,6 +239,18 @@ void MainWindow::enableButtons()
 }
 
 
+void MainWindow::useMainPanel()
+{
+  myPanels->useMainPanel();
+}
+
+
+void MainWindow::useAltMainPanel()
+{
+  myPanels->useAltMainPanel();
+}
+
+
 void MainWindow::receivedExternalWarning(
   const char *warning)
 {
@@ -261,6 +276,11 @@ void MainWindow::on_actionSelect_Device_By_Name_triggered()
 void MainWindow::on_actionArrange_Button_Panels_triggered()
 {
   panelSelectionForm->show();
+}
+
+void MainWindow::on_actionPreferences_triggered()
+{
+  preferencesForm->show();
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -485,6 +505,13 @@ void MainWindow::selectNextFavKeyset()
 }
 
 
+void MainWindow::selectPanel(
+  int index)
+{
+  ui->selectPanelComboBox->setCurrentIndex(index);
+}
+
+
 void MainWindow::managePanel(
   PIRPanelName name,
   int state)
@@ -498,8 +525,8 @@ void MainWindow::insertPanel(
   QWidget *panel,
   const QString &displayName)
 {
-  ui->stackedButtonsWidget->insertWidget(index, panel);
   ui->selectPanelComboBox->insertItem(index, displayName);
+  ui->stackedButtonsWidget->insertWidget(index, panel);
 }
 
 

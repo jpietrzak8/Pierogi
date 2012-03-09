@@ -1,5 +1,4 @@
 #include "directv.h"
-#include "protocols/directvprotocol.h"
 
 
 // Note: volume keys are tricky!
@@ -22,7 +21,20 @@ void DirectvReceiver1::populateProtocol(
     return;
   }
 
-  threadableProtocol = new DirectvProtocol(guiObject, index, LowFreq, true);
+  dtvPopulateProtocol(guiObject, LongGap_Directv, LowFreq_Directv);
+}
+
+
+void DirectvReceiver1::dtvPopulateProtocol(
+  QObject *guiObject,
+  DirectvGapSize gap,
+  DirectvFreq freq)
+{
+  DirectvProtocol *dp = new DirectvProtocol(guiObject, index);
+
+  threadableProtocol = dp;
+
+  dp->setProtocolParms(gap, freq);
 
   setPreData(0xC, 4);
 
@@ -94,4 +106,109 @@ void DirectvReceiver1::populateProtocol(
 
   addKey("On", PowerOn_Key, 0x80, 8);
   addKey("Off", PowerOff_Key, 0x81, 8);
+}
+
+
+DirectvReceiver1a::DirectvReceiver1a(
+  unsigned int index)
+  : DirectvReceiver1(index)
+{
+  setKeysetName("Sat Keyset 1a");
+}
+
+
+void DirectvReceiver1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  dtvPopulateProtocol(guiObject, ShortGap_Directv, LowFreq_Directv);
+}
+
+
+DirectvReceiver1b::DirectvReceiver1b(
+  unsigned int index)
+  : DirectvReceiver1(index)
+{
+  setKeysetName("Sat Keyset 1b");
+}
+
+
+void DirectvReceiver1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  dtvPopulateProtocol(guiObject, ShortGap_Directv, MediumFreq_Directv);
+}
+
+
+DirectvReceiver1c::DirectvReceiver1c(
+  unsigned int index)
+  : DirectvReceiver1(index)
+{
+  setKeysetName("Sat Keyset 1c");
+}
+
+
+void DirectvReceiver1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  dtvPopulateProtocol(guiObject, LongGap_Directv, MediumFreq_Directv);
+}
+
+
+DirectvReceiver1d::DirectvReceiver1d(
+  unsigned int index)
+  : DirectvReceiver1(index)
+{
+  setKeysetName("Sat Keyset 1d");
+}
+
+
+void DirectvReceiver1d::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  dtvPopulateProtocol(guiObject, ShortGap_Directv, HighFreq_Directv);
+}
+
+
+DirectvReceiver1e::DirectvReceiver1e(
+  unsigned int index)
+  : DirectvReceiver1(index)
+{
+  setKeysetName("Sat Keyset 1e");
+}
+
+
+void DirectvReceiver1e::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  dtvPopulateProtocol(guiObject, LongGap_Directv, HighFreq_Directv);
 }

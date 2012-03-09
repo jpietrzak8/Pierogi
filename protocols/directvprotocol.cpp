@@ -25,27 +25,36 @@ extern QMutex commandIFMutex;
 
 DirectvProtocol::DirectvProtocol(
   QObject *guiObject,
-  unsigned int index,
-  DirectvFreq freq,
-  bool longGapFlag)
+  unsigned int index)
   : PIRProtocol(guiObject, index, 9000, false)
 {
-  if (longGapFlag)
+}
+
+
+void DirectvProtocol::setProtocolParms(
+  DirectvGapSize gap,
+  DirectvFreq freq)
+{
+  if (gap == ShortGap_Directv)
+  {
+    setGapSize(9000, false);
+  }
+  else
   {
     setGapSize(30000, false);
   }
 
   switch (freq)
   {
-  case LowFreq:
+  case LowFreq_Directv:
     setCarrierFrequency(38000);
     break;
 
-  case MediumFreq:
+  case MediumFreq_Directv:
     setCarrierFrequency(40000);
     break;
 
-  case HighFreq: default:
+  case HighFreq_Directv: default:
     setCarrierFrequency(57000);
     break;
   }

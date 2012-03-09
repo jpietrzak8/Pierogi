@@ -13,19 +13,70 @@ PIRPanelSelectionForm::PIRPanelSelectionForm(QWidget *parent) :
 
   setAttribute(Qt::WA_Maemo5StackedWindow);
   setWindowFlags(windowFlags() | Qt::Window);
-
-  // Start by setting up a few initial panels:
-  ui->mainCheckBox->setChecked(true);
-  ui->utilityCheckBox->setChecked(true);
-  ui->keypadCheckBox->setChecked(true);
-  ui->menuCheckBox->setChecked(true);
-  ui->mediaCheckBox->setChecked(true);
-  ui->favoritesCheckBox->setChecked(true);
 }
 
 PIRPanelSelectionForm::~PIRPanelSelectionForm()
 {
   delete ui;
+}
+
+void PIRPanelSelectionForm::setCheckBox(
+  PIRPanelName name,
+  bool setting)
+{
+  switch (name)
+  {
+  case Main_Panel:
+    ui->mainCheckBox->setChecked(setting);
+    break;
+
+  case Utility_Panel:
+    ui->utilityCheckBox->setChecked(setting);
+    break;
+
+  case Keypad_Panel:
+    ui->keypadCheckBox->setChecked(setting);
+    break;
+
+  case Menu_Panel:
+    ui->menuCheckBox->setChecked(setting);
+    break;
+
+  case Media_Panel:
+    ui->mediaCheckBox->setChecked(setting);
+    break;
+
+  case Media2_Panel:
+    ui->media2CheckBox->setChecked(setting);
+    break;
+
+  case Record_Panel:
+    ui->recordCheckBox->setChecked(setting);
+    break;
+
+  case TV_Panel:
+    ui->tvCheckBox->setChecked(setting);
+    break;
+
+  case Input_Panel:
+    ui->inputCheckBox->setChecked(setting);
+    break;
+
+  case Adjust_Panel:
+    ui->adjustCheckBox->setChecked(setting);
+    break;
+
+  case AC_Panel:
+    ui->acCheckBox->setChecked(setting);
+    break;
+
+  case Favorites_Panel:
+    ui->favoritesCheckBox->setChecked(setting);
+    break;
+
+  default:
+    break;
+  }
 }
 
 void PIRPanelSelectionForm::on_mainCheckBox_stateChanged(int arg1)

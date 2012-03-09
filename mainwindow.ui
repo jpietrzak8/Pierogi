@@ -99,6 +99,7 @@
     <addaction name="actionSelectKeyset"/>
     <addaction name="actionSelect_Device_By_Name"/>
     <addaction name="actionArrange_Button_Panels"/>
+    <addaction name="actionPreferences"/>
     <addaction name="actionDocumentation"/>
     <addaction name="actionAbout"/>
    </widget>
@@ -127,6 +128,11 @@
   <action name="actionArrange_Button_Panels">
    <property name="text">
     <string>Manage Panels</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
    </property>
   </action>
  </widget>

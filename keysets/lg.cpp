@@ -199,9 +199,9 @@ LGTV1c::LGTV1c(
 {
   setKeysetName("TV Keyset 1c");
 
-  addControlledDevice(LG_Make, "55lw9500", TV_Device);
-  addControlledDevice(LG_Make, "60px950", TV_Device);
-  addControlledDevice(LG_Make, "60pg60", TV_Device);
+  addControlledDevice(LG_Make, "55LW9500", TV_Device);
+  addControlledDevice(LG_Make, "60PX950", TV_Device);
+  addControlledDevice(LG_Make, "60PG60", TV_Device);
 }
 
 

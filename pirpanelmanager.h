@@ -4,6 +4,7 @@
 #include "pirpanelnames.h"
 
 class PIRMainForm;
+class PIRAltMainForm;
 class PIRUtilityForm;
 class PIRKeypadForm;
 class PIRMenuForm;
@@ -22,23 +23,11 @@ class PIRKeysetManager;
 class QListWidget;
 class MainWindow;
 
-#include <list>
-
-class PIRPanelPair
-{
-public:
-  PIRPanelPair(
-    PIRPanelName n,
-    bool d)
-    : name(n),
-      displayed(d)
-  {}
-
-  PIRPanelName name;
-  bool displayed;
-};
-
-typedef std::list<PIRPanelPair> PIRPanelList;
+#include <map>
+#include <QString>
+typedef std::map<PIRPanelName, const char *> PIRPanelDisplayNameCollection;
+typedef std::map<PIRPanelName, bool> PIRActivePanelCollection;
+typedef std::map<QString, PIRPanelName> PIRReversePanelIndex;
 
 class PIRPanelManager
 {
@@ -48,10 +37,8 @@ public:
 
   ~PIRPanelManager();
 
-/*
   void setupPanels(
     PIRPanelSelectionForm *psf);
-*/
 
   void enableButtons(
     const PIRKeysetManager *keyset,
@@ -60,6 +47,9 @@ public:
   void managePanel(
     PIRPanelName name,
     int state);
+
+  void useMainPanel();
+  void useAltMainPanel();
 
   void selectPrevFavKeyset();
   void selectNextFavKeyset();
@@ -80,6 +70,7 @@ private:
     int index);
   
   PIRMainForm *mainForm;
+  PIRAltMainForm *altMainForm;
   PIRUtilityForm *utilityForm;
   PIRKeypadForm *keypadForm;
   PIRMenuForm *menuForm;
@@ -92,7 +83,12 @@ private:
   PIRAirConditionerForm *acForm;
   PIRFavoritesForm *favoritesForm;
 
-  PIRPanelList panelList;
+  PIRPanelDisplayNameCollection shortPanelNames;
+  PIRPanelDisplayNameCollection longPanelNames;
+  PIRActivePanelCollection activePanels;
+//  PIRReversePanelIndex reverseIndex;
+
+  bool altMainPanelFlag;
 
   MainWindow *mainWindow;
 };

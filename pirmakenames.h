@@ -13,6 +13,7 @@ enum PIRMakeName{
   Apple_Make,
   Arcam_Make,
   Beko_Make,
+  BenQ_Make,
   Bose_Make,
   Bush_Make,
   Cambridge_Make,
@@ -58,6 +59,7 @@ enum PIRMakeName{
   Motorola_Make,
   NAD_Make,
   Nokia_Make,
+  Octagon_Make,
   Onida_Make,
   Panasonic_Make,
   Philco_Make,
@@ -90,6 +92,7 @@ enum PIRMakeName{
   Vizio_Make,
   WD_Make,
   Westinghouse_Make,
+  Xcruiser_Make,
   Yamaha_Make,
   Zenith_Make
 };

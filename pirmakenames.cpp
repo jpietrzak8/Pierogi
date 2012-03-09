@@ -12,6 +12,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Apple_Make] = "Apple";
   makes[Arcam_Make] = "Arcam";
   makes[Beko_Make] = "Beko";
+  makes[BenQ_Make] = "BenQ";
   makes[Bose_Make] = "Bose";
   makes[Bush_Make] = "Bush";
   makes[Cambridge_Make] = "Cambridge Audio";
@@ -57,6 +58,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Motorola_Make] = "Motorola";
   makes[NAD_Make] = "NAD";
   makes[Nokia_Make] = "Nokia";
+  makes[Octagon_Make] = "Octagon";
   makes[Onida_Make] = "Onida";
   makes[Panasonic_Make] = "Panasonic";
   makes[Philco_Make] = "Philco";
@@ -89,6 +91,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Vizio_Make] = "Vizio";
   makes[WD_Make] = "Western Digital";
   makes[Westinghouse_Make] = "Westinghouse";
+  makes[Xcruiser_Make] = "Xcruiser";
   makes[Yamaha_Make] = "Yamaha";
   makes[Zenith_Make] = "Zenith";
 }

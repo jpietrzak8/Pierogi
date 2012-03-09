@@ -168,7 +168,12 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/magnum.cpp \
     keysets/telenet.cpp \
     keysets/thomson.cpp \
-    keysets/genius.cpp
+    keysets/genius.cpp \
+    forms/piraltmainform.cpp \
+    pirpreferencesform.cpp \
+    keysets/xcruiser.cpp \
+    keysets/benq.cpp \
+    keysets/octagon.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -312,7 +317,12 @@ HEADERS += mainwindow.h \
     keysets/magnum.h \
     keysets/telenet.h \
     keysets/thomson.h \
-    keysets/genius.h
+    keysets/genius.h \
+    forms/piraltmainform.h \
+    pirpreferencesform.h \
+    keysets/xcruiser.h \
+    keysets/benq.h \
+    keysets/octagon.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -331,7 +341,9 @@ FORMS += mainwindow.ui \
     forms/pirmediaform.ui \
     forms/pirfavoritesform.ui \
     pirpanelselectionform.ui \
-    forms/pirrecordform.ui
+    forms/pirrecordform.ui \
+    forms/piraltmainform.ui \
+    pirpreferencesform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

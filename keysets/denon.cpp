@@ -160,7 +160,7 @@ DenonDVD3::DenonDVD3(
       Denon_Make,
       index)
 {
-  addControlledDevice(Denon_Make, "dvd-1000", DVD_Device);
+  addControlledDevice(Denon_Make, "DVD-1000", DVD_Device);
 }
 
 
@@ -225,7 +225,7 @@ DenonReceiver1::DenonReceiver1(
       Denon_Make,
       index)
 {
-  addControlledDevice(Denon_Make, "avr-1708", Audio_Device);
+  addControlledDevice(Denon_Make, "AVR-1708", Audio_Device);
 }
 
 
@@ -340,7 +340,7 @@ DenonReceiver1b::DenonReceiver1b(
 {
   setKeysetName("Receiver Keyset 1b");
 
-  addControlledDevice(Denon_Make, "avr-3300", Audio_Device);
+  addControlledDevice(Denon_Make, "AVR-3300", Audio_Device);
 }
 
 

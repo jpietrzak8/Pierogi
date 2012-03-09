@@ -14,7 +14,9 @@ enum PIRPanelName
   Input_Panel,
   Adjust_Panel,
   AC_Panel,
-  Favorites_Panel
+  Favorites_Panel,
+  Last_Panel_Marker // Used when traversing this enumeration.
 };
+
 
 #endif // PIRPANELNAMES_H

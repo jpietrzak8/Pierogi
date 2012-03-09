@@ -916,6 +916,7 @@ JVCDVD1::JVCDVD1(
       JVC_Make,
       index)
 {
+  addControlledDevice(JVC_Make, "JVC XV-N5SL", DVD_Device);
 }
 
 

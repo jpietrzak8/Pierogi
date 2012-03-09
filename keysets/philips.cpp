@@ -697,7 +697,7 @@ PhilipsDVD1d::PhilipsDVD1d(
 {
   setKeysetName("DVD Keyset 1d");
 
-  addControlledDevice(Philips_Make, "DVD 963sa", DVD_Device);
+  addControlledDevice(Philips_Make, "DVD 963SA", DVD_Device);
 }
 
 
@@ -1348,13 +1348,24 @@ void PhilipsSat3::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
-  addKey("INFO", Info_Key, 0x128F, 13); // "pilot"
+  addKey("SOUNDOFF", Mute_Key, 0x0286, 13); // "mute"
   addKey("EPG", Guide_Key, 0x028F, 13); // "prog"
   addKey("UP", Up_Key, 0x0290, 13);
   addKey("DOWN", Down_Key, 0x0291, 13);
+  addKey("SERV", Unmapped_Key, 0x0292, 13);
+  addKey("BACK", Unmapped_Key, 0x0293, 13); // "av"
   addKey("LEFT", Left_Key, 0x0295, 13);
   addKey("RIGHT", Right_Key, 0x0296, 13);
   addKey("OK", Select_Key, 0x0297, 13);
+  addKey("FRONT", Unmapped_Key, 0x02A1, 13); // "twoje"
+  addKey("MENU", Menu_Key, 0x02AA, 13); // "perso"
+  addKey("A", Unmapped_Key, 0x02AB, 13);
+  addKey("B", Unmapped_Key, 0x02AC, 13);
+  addKey("C", Unmapped_Key, 0x02AD, 13);
+  addKey("D", Unmapped_Key, 0x02AE, 13);
+  addKey("E", Unmapped_Key, 0x02AF, 13);
+
+  addKey("0", Zero_Key, 0x1280, 13);
   addKey("1", One_Key, 0x1281, 13);
   addKey("2", Two_Key, 0x1282, 13);
   addKey("3", Three_Key, 0x1283, 13);
@@ -1364,20 +1375,10 @@ void PhilipsSat3::populateProtocol(
   addKey("7", Seven_Key, 0x1287, 13);
   addKey("8", Eight_Key, 0x1288, 13);
   addKey("9", Nine_Key, 0x1289, 13);
-  addKey("0", Zero_Key, 0x1280, 13);
-  addKey("FRONT", Unmapped_Key, 0x02A1, 13); // "twoje"
-  addKey("BACK", Unmapped_Key, 0x0293, 13); // "av"
-  addKey("SERV", Unmapped_Key, 0x0292, 13);
-  addKey("+", Unmapped_Key, 0x12AF, 13);
-  addKey("MENU", Menu_Key, 0x02AA, 13); // "perso"
-  addKey("A", Unmapped_Key, 0x02AB, 13);
-  addKey("B", Unmapped_Key, 0x02AC, 13);
-  addKey("C", Unmapped_Key, 0x02AD, 13);
-  addKey("D", Unmapped_Key, 0x02AE, 13);
-  addKey("E", Unmapped_Key, 0x02AF, 13);
-  addKey("SOUNDOFF", Mute_Key, 0x0286, 13); // "mute"
-  addKey("TV/SAT", Input_Key, 0x12A8, 13);
   addKey("STANDBY", Power_Key, 0x128C, 13);
+  addKey("INFO", Info_Key, 0x128F, 13); // "pilot"
+  addKey("TV/SAT", Input_Key, 0x12A8, 13);
+  addKey("+", Unmapped_Key, 0x12AF, 13);
 }
 
 

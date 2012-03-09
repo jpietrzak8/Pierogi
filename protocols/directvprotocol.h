@@ -5,11 +5,17 @@
 
 class PIRRX51Hardware;
 
+enum DirectvGapSize
+{
+  ShortGap_Directv,
+  LongGap_Directv
+};
+
 enum DirectvFreq
 {
-  LowFreq,
-  MediumFreq,
-  HighFreq
+  LowFreq_Directv,
+  MediumFreq_Directv,
+  HighFreq_Directv
 };
 
 class DirectvProtocol: public PIRProtocol
@@ -17,9 +23,11 @@ class DirectvProtocol: public PIRProtocol
 public:
   DirectvProtocol(
     QObject *guiObject,
-    unsigned int index,
-    DirectvFreq freq,
-    bool longGapFlag);
+    unsigned int index);
+
+  void setProtocolParms(
+    DirectvGapSize gap,
+    DirectvFreq freq);
 
 private:
   void startSendingCommand(

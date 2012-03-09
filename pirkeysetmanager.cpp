@@ -11,6 +11,7 @@
 #include "keysets/apple.h"
 #include "keysets/arcam.h"
 #include "keysets/beko.h"
+#include "keysets/benq.h"
 #include "keysets/bose.h"
 #include "keysets/bush.h"
 #include "keysets/cambridge.h"
@@ -56,6 +57,7 @@
 #include "keysets/motorola.h"
 #include "keysets/nad.h"
 #include "keysets/nokia.h"
+#include "keysets/octagon.h"
 #include "keysets/onida.h"
 #include "keysets/panasonic.h"
 #include "keysets/philco.h"
@@ -88,6 +90,7 @@
 #include "keysets/vizio.h"
 #include "keysets/wd.h"
 #include "keysets/westinghouse.h"
+#include "keysets/xcruiser.h"
 #include "keysets/yamaha.h"
 #include "keysets/zenith.h"
 
@@ -139,6 +142,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ArcamReceiver1(counter++));
 
   setupKeyset(new BekoTV1(counter++));
+
+  setupKeyset(new BenQTV1(counter++));
 
   setupKeyset(new BoseRadio1(counter++));
   setupKeyset(new BoseRadio2(counter++));
@@ -196,6 +201,11 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new DigitalStreamReceiver(counter++));
 
   setupKeyset(new DirectvReceiver1(counter++));
+  setupKeyset(new DirectvReceiver1a(counter++));
+  setupKeyset(new DirectvReceiver1b(counter++));
+  setupKeyset(new DirectvReceiver1c(counter++));
+  setupKeyset(new DirectvReceiver1d(counter++));
+  setupKeyset(new DirectvReceiver1e(counter++));
 
   setupKeyset(new DishReceiver1(counter++));
   setupKeyset(new DishReceiver1a(counter++));
@@ -396,6 +406,10 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new NADTape1(counter++));
 
   setupKeyset(new NokiaGenericVCR(counter++));
+
+  setupKeyset(new OctagonSat1(counter++));
+  setupKeyset(new OctagonSat1a(counter++));
+  setupKeyset(new OctagonSat2(counter++));
 
   setupKeyset(new OnidaTV1(counter++));
   setupKeyset(new OnidaDVD1(counter++));
@@ -634,6 +648,8 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new WestinghouseTV1(counter++));
   setupKeyset(new WestinghouseTV2(counter++));
+
+  setupKeyset(new XcruiserSat1(counter++));
 
   setupKeyset(new YamahaDVD1(counter++));
   setupKeyset(new YamahaDVD1a(counter++));

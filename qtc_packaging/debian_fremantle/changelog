@@ -1,3 +1,11 @@
+pierogi (1.1.3) unstable; urgency=low
+  * Started work on an actual preferences window!
+  * Pierogi now remembers your panel selections from your previous session.
+  * All six permutations of the Directv protocol now supported.
+  * First pass at keysets for BenQ, Octagon, Xcruiser
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Thu, 08 Mar 2012 11:07:08 -0500
+
 pierogi (1.1.2) unstable; urgency=low
   * First pass at keysets for Dream Multimedia, Genius, Magnum, Telenet, and Thomson.
 

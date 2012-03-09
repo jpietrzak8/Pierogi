@@ -18,6 +18,10 @@ public:
   explicit PIRPanelSelectionForm(QWidget *parent = 0);
 //  PIRPanelSelectionForm(MainWindow *mw);
   ~PIRPanelSelectionForm();
+
+  void setCheckBox(
+    PIRPanelName name,
+    bool setting);
   
 private slots:
   void on_mainCheckBox_stateChanged(int arg1);
