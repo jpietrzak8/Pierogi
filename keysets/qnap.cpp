@@ -9,6 +9,8 @@ QNAPPlayer1::QNAPPlayer1(
       QNAP_Make,
       index)
 {
+  addControlledDevice(QNAP_Make, "NMP-1000", Other_Device);
+  addControlledDevice(QNAP_Make, "NMP-1000P", Other_Device);
 }
 
 

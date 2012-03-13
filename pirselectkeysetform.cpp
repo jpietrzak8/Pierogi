@@ -1,7 +1,8 @@
 #include "pirselectkeysetform.h"
 #include "ui_pirselectkeysetform.h"
 #include "pirkeysetwidgetitem.h"
-#include <QListWidget>
+//#include <QListWidget>
+#include <QKeyEvent>
 
 extern PIRMakeMgr makeManager;
 
@@ -13,6 +14,12 @@ PIRSelectKeysetForm::PIRSelectKeysetForm(
 {
   ui->setupUi(this);
 
+  // Don't want to start with the line editor visible:
+  ui->searchStringLineEdit->hide();
+  ui->searchStringLineEdit->lower();
+  ui->ssClosePushButton->hide();
+
+  // Set some initial flags:
   setAttribute(Qt::WA_Maemo5StackedWindow);
   setWindowFlags(windowFlags() | Qt::Window);
 
@@ -36,10 +43,12 @@ PIRSelectKeysetForm::PIRSelectKeysetForm(
     Qt::QueuedConnection);
 }
 
+
 PIRSelectKeysetForm::~PIRSelectKeysetForm()
 {
   delete ui;
 }
+
 
 /*
 void PIRSelectKeysetForm::addNameToList(
@@ -51,16 +60,47 @@ void PIRSelectKeysetForm::addNameToList(
 }
 */
 
+
 void PIRSelectKeysetForm::addWidgetItem(
   PIRKeysetWidgetItem *kwi)
 {
   ui->keysetListWidget->addItem(kwi);
 }
 
+
 QListWidget *PIRSelectKeysetForm::getKeysetListWidget()
 {
   return ui->keysetListWidget;
 }
+
+
+void PIRSelectKeysetForm::keyPressEvent(
+  QKeyEvent *event)
+{
+  ui->searchStringLineEdit->show();
+  ui->searchStringLineEdit->raise();
+  ui->ssClosePushButton->show();
+
+  ui->searchStringLineEdit->setText(event->text());
+  ui->searchStringLineEdit->setFocus();
+}
+
+
+void PIRSelectKeysetForm::on_searchStringLineEdit_textChanged(
+  const QString &arg1)
+{
+  filterListByString(arg1);
+}
+
+
+void PIRSelectKeysetForm::on_ssClosePushButton_clicked()
+{
+  ui->searchStringLineEdit->hide();
+  ui->searchStringLineEdit->lower();
+  ui->ssClosePushButton->hide();
+  ui->searchStringLineEdit->clear();
+}
+
 
 void PIRSelectKeysetForm::filterListByMake(
   int make)
@@ -68,6 +108,15 @@ void PIRSelectKeysetForm::filterListByMake(
   currentMake = (PIRMakeName) make;
   refilterList();
 }
+
+
+void PIRSelectKeysetForm::filterListByString(
+  QString string)
+{
+  searchString = string;
+  refilterList();
+}
+
 
 void PIRSelectKeysetForm::refilterList()
 {
@@ -82,8 +131,17 @@ void PIRSelectKeysetForm::refilterList()
     // Does the keylist have the required make?
     if ((currentMake == Any_Make) || (item->getMake() == currentMake))
     {
-      // Yes, we can show this keylist:
-      item->setHidden(false);
+      // Does this keylist match the search string?
+      if ( searchString.isEmpty()
+        || item->text().contains(searchString, Qt::CaseInsensitive))
+      {
+        // Yes, we can show this keylist:
+        item->setHidden(false);
+      }
+      else
+      {
+        item->setHidden(true);
+      }
     }
     else
     {

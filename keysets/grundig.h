@@ -25,6 +25,16 @@ public:
     QObject *guiObject);
 };
 
+class GrundigSat3: public PIRKeysetMetaData
+{
+public:
+  GrundigSat3(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 class GrundigAmp1: public PIRKeysetMetaData
 {
 public:

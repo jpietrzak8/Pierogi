@@ -45,6 +45,16 @@ public:
     QObject *guiObject);
 };
 
+class DaewooTV5: public PIRKeysetMetaData
+{
+public:
+  DaewooTV5(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 class DaewooDVD1: public PIRKeysetMetaData
 {
 public:

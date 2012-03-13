@@ -19,6 +19,7 @@
 #include "pirpanelmanager.h"
 
 //#define DEBUGGING
+//#include <iostream>
 
 // Some ugly globals used for thread communications:
 
@@ -44,7 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
     preferencesForm(0),
     documentationForm(0),
     aboutForm(0),
-    currentKeyset(0)
+    currentKeyset(1) // Zero is not a valid keyset any more
 {
   ui->setupUi(this);
 
@@ -55,20 +56,17 @@ MainWindow::MainWindow(QWidget *parent)
   myKeysets = new PIRKeysetManager();
   myPanels = new PIRPanelManager(this);
 
-  // Set up the keyset selection window:
-  selectKeysetForm = new PIRSelectKeysetForm(this);
-  myKeysets->populateSelectionWidget(selectKeysetForm);
-
-  // Set up the device selection window:
-  selectDeviceForm = new PIRSelectDeviceForm(this);
-  PIRKeysetMetaData::populateDevices(selectDeviceForm);
-
-  // Set up the panel selection window:
+  // Construct the forms:
   panelSelectionForm = new PIRPanelSelectionForm(this);
   myPanels->setupPanels(panelSelectionForm);
 
-  // Set up the preferences window:
-  preferencesForm = new PIRPreferencesForm(this);
+  selectKeysetForm = new PIRSelectKeysetForm(this);
+  myKeysets->populateSelectionWidget(selectKeysetForm);
+
+  selectDeviceForm = new PIRSelectDeviceForm(this);
+  PIRKeysetMetaData::populateDevices(selectDeviceForm);
+
+  preferencesForm = new PIRPreferencesForm(this, myKeysets);
 
   // Remember any favorites the user has already set:
   populateFavorites();
@@ -235,7 +233,23 @@ void MainWindow::enableButtons()
   // Just to be sure, check to see if the keyset has been populated:
   myKeysets->populateKeyset(this, currentKeyset);
 
-  myPanels->enableButtons(myKeysets, currentKeyset);
+  if (preferencesForm)
+  {
+    unsigned int dk = preferencesForm->getDefaultKeyset();
+    if (preferencesForm->defaultControlsVolume() && dk)
+    {
+      myKeysets->populateKeyset(this, dk);
+      myPanels->enableButtons(myKeysets, currentKeyset, dk);
+    }
+    else
+    {
+      myPanels->enableButtons(myKeysets, currentKeyset);
+    }
+  }
+  else
+  {
+    myPanels->enableButtons(myKeysets, currentKeyset);
+  }
 }
 
 
@@ -248,6 +262,18 @@ void MainWindow::useMainPanel()
 void MainWindow::useAltMainPanel()
 {
   myPanels->useAltMainPanel();
+}
+
+
+QString MainWindow::getCurrentMake()
+{
+  return makeManager.getMakeString(myKeysets->getMake(currentKeyset));
+}
+
+
+QString MainWindow::getCurrentName()
+{
+  return myKeysets->getDisplayName(currentKeyset);
 }
 
 
@@ -482,6 +508,19 @@ void MainWindow::startRepeating(
   {
     commandInFlight = true;
     emit buttonPressed(currentKeyset, name);
+  }
+}
+
+
+void MainWindow::startRepeating(
+  PIRKeyName name,
+  unsigned int keysetID)
+{
+  QMutexLocker locker(&commandIFMutex);
+  if (!commandInFlight)
+  {
+    commandInFlight = true;
+    emit buttonPressed(keysetID, name);
   }
 }
 

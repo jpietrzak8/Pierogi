@@ -33,5 +33,6 @@
         <file>doc/documentation.html</file>
         <file>icons/PierogiIcon.png</file>
         <file>icons/red_pause.png</file>
+        <file>icons/delete_icon&amp;48.png</file>
     </qresource>
 </RCC>

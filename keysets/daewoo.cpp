@@ -2,6 +2,7 @@
 #include "protocols/rc5protocol.h"
 #include "protocols/daewooprotocol.h"
 #include "protocols/necprotocol.h"
+#include "protocols/protonprotocol.h"
 
 DaewooTV1::DaewooTV1(
   unsigned int index)
@@ -283,6 +284,59 @@ void DaewooTV4::populateProtocol(
 //  addKey("pip move", PIPPosition_Key, 0x14, 8);
 //  addKey("select", Select_Key, 0x18, 8);
 //  addKey("pip on/off", PIP_Key, 0x19, 8);
+}
+
+
+DaewooTV5::DaewooTV5(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV Keyset 5",
+      Daewoo_Make,
+      index)
+{
+}
+
+
+void DaewooTV5::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new ProtonProtocol(guiObject, index);
+
+  setPreData(0x14, 8);
+
+  addKey("0", Zero_Key, 0x00, 8);
+  addKey("1", One_Key, 0x01, 8);
+  addKey("2", Two_Key, 0x02, 8);
+  addKey("3", Three_Key, 0x03, 8);
+  addKey("4", Four_Key, 0x04, 8);
+  addKey("5", Five_Key, 0x05, 8);
+  addKey("6", Six_Key, 0x06, 8);
+  addKey("7", Seven_Key, 0x07, 8);
+  addKey("8", Eight_Key, 0x08, 8);
+  addKey("9", Nine_Key, 0x09, 8);
+  addKey("Sleep", Sleep_Key, 0x0D, 8);
+  addKey("INFO", Info_Key, 0x11, 8);
+  addKey("MUTE", Mute_Key, 0x12, 8);
+  addKey("VOL+", VolumeUp_Key, 0x13, 8);
+  addKey("right", Right_Key, 0x13, 8);
+  addKey("VOL-", VolumeDown_Key, 0x14, 8);
+  addKey("left", Left_Key, 0x14, 8);
+  addKey("POWER", Power_Key, 0x15, 8);
+  addKey("INPUT", Input_Key, 0x16, 8);
+  addKey("CH+", ChannelUp_Key, 0x17, 8);
+  addKey("up", Up_Key, 0x17, 8);
+  addKey("CH-", ChannelDown_Key, 0x18, 8);
+  addKey("down", Down_Key, 0x18, 8);
+  addKey("Picture", PictureMode_Key, 0x1A, 8);
+  addKey("PREV", PrevChannel_Key, 0x20, 8);
+  addKey("MENU", Menu_Key, 0x22, 8);
+  addKey("CC", Captions_Key, 0x25, 8);
 }
 
 

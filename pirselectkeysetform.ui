@@ -10,6 +10,9 @@
     <height>480</height>
    </rect>
   </property>
+  <property name="focusPolicy">
+   <enum>Qt::WheelFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>Select Keyset</string>
   </property>
@@ -17,6 +20,13 @@
    <property name="margin">
     <number>8</number>
    </property>
+   <item row="1" column="0" colspan="2">
+    <widget class="QListWidget" name="keysetListWidget">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="makeHorizontalLayout">
      <item>
@@ -40,15 +50,35 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QListWidget" name="keysetListWidget"/>
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="searchStringLineEdit"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="ssClosePushButton">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="PierogiResources.qrc">
+         <normaloff>:/icons/delete_icon&amp;48.png</normaloff>:/icons/delete_icon&amp;48.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="PierogiResources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -44,6 +44,10 @@ public:
   void startRepeating(
     PIRKeyName name);
 
+  void startRepeating(
+    PIRKeyName name,
+    unsigned int keysetID);
+
   void stopRepeating();
 
   void selectPanel(
@@ -74,6 +78,14 @@ public:
   // Preferences actions:
   void useMainPanel();
   void useAltMainPanel();
+
+  QString getCurrentMake();
+  QString getCurrentName();
+
+  unsigned int getCurrentKeyset()
+  {
+    return currentKeyset;
+  }
 
 signals:
   void buttonPressed(

@@ -23,7 +23,8 @@ void DigitalStreamReceiver::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
-  setPreData(0x482C, 16);
+//  setPreData(0x482C, 16);
+  setPreData(0x3412, 16);
 
   addKey("Power", Power_Key, 0x00, 8);
   addKey("Ok", Select_Key, 0x01, 8);
@@ -52,11 +53,11 @@ void DigitalStreamReceiver::populateProtocol(
   addKey("EPG", Guide_Key, 0x1E, 8);
   addKey("FAV", Favorites_Key, 0x1F, 8);
 
-  addKey("Prev", PrevChannel_Key, 0x20, 8); // ?
+  addKey("Prev", PrevChannel_Key, 0x20, 8);
   addKey("Mute", Mute_Key, 0x22, 8);
   addKey("Audio", Audio_Key, 0x23, 8);
   addKey("Zoom", Zoom_Key, 0x24, 8);
   addKey("CC", Captions_Key, 0x25, 8);
-  addKey("Info", Info_Key, 0x28, 8);
+  addKey("Info", Info_Key, 0x28, 8);  // "A/D"
   addKey("Meter", Unmapped_Key, 0x2C, 8);
 }

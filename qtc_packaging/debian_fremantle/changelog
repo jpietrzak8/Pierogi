@@ -1,3 +1,12 @@
+pierogi (1.1.4) unstable; urgency=low
+  * Finally added the ability to search the keyset and device lists using the keyboard.
+  * Added a "default keyset" to the preferences page; so far, the only thing you can do with the default is use it for the volume control keys.
+  * Fixed a bug in the Digital Stream keyset.
+  * Added a Grundig satellite receiver keyset and a Daewoo TV keyset.
+  * First pass at keyset for Lexuz.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 09 Mar 2012 19:38:14 -0500
+
 pierogi (1.1.3) unstable; urgency=low
   * Started work on an actual preferences window!
   * Pierogi now remembers your panel selections from your previous session.

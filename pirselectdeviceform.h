@@ -9,6 +9,7 @@
 
 class PIRKeysetWidgetItem;
 class QListWidget;
+class QKeyEvent;
 
 namespace Ui {
 class PIRSelectDeviceForm;
@@ -37,13 +38,23 @@ public:
   // This is a bit of a hack, but not sure how to create a connection otherwise.
   QListWidget *getDeviceListWidget();
 
+protected:
+  void keyPressEvent(
+    QKeyEvent *event);
+
 private slots:
   void filterListByMake(
     int make);
 
   void filterListByDeviceType(
     int deviceType);
- 
+
+  void filterListByString(
+    QString string);
+
+  void on_searchStringLineEdit_textChanged(const QString &arg1);
+  void on_ssClosePushButton_clicked();
+
 private:
   void refilterList();
 
@@ -51,6 +62,7 @@ private:
 
   PIRMakeName currentMake;
   PIRDeviceTypeName currentDevice;
+  QString searchString;
 };
 
 #endif // PIRSELECTDEVICEFORM_H

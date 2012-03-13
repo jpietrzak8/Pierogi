@@ -1,6 +1,7 @@
 #include "pirselectdeviceform.h"
 #include "ui_pirselectdeviceform.h"
 #include "pirkeysetwidgetitem.h"
+#include <QKeyEvent>
 
 PIRDeviceTypeMgr deviceTypeManager;
 
@@ -15,6 +16,12 @@ PIRSelectDeviceForm::PIRSelectDeviceForm(
 {
   ui->setupUi(this);
 
+  // Don't want to start with the line editor visible:
+  ui->searchStringLineEdit->hide();
+  ui->searchStringLineEdit->lower();
+  ui->ssClosePushButton->hide();
+
+  // Set some initial flags:
   setAttribute(Qt::WA_Maemo5StackedWindow);
   setWindowFlags(windowFlags() | Qt::Window);
 
@@ -61,16 +68,46 @@ void PIRSelectDeviceForm::addNameToList(
 }
 */
 
+
 void PIRSelectDeviceForm::addWidgetItem(
   PIRKeysetWidgetItem *kwi)
 {
   ui->deviceListWidget->addItem(kwi);
 }
 
+
 QListWidget *PIRSelectDeviceForm::getDeviceListWidget()
 {
   return ui->deviceListWidget;
 }
+
+
+void PIRSelectDeviceForm::keyPressEvent(
+  QKeyEvent *event)
+{
+  ui->searchStringLineEdit->show();
+  ui->searchStringLineEdit->raise();
+  ui->ssClosePushButton->show();
+
+  ui->searchStringLineEdit->setText(event->text());
+  ui->searchStringLineEdit->setFocus();
+}
+
+
+void PIRSelectDeviceForm::on_searchStringLineEdit_textChanged(const QString &arg1)
+{
+  filterListByString(arg1);
+}
+
+
+void PIRSelectDeviceForm::on_ssClosePushButton_clicked()
+{
+  ui->searchStringLineEdit->hide();
+  ui->searchStringLineEdit->lower();
+  ui->ssClosePushButton->hide();
+  ui->searchStringLineEdit->clear();
+}
+
 
 void PIRSelectDeviceForm::filterListByMake(
   int make)
@@ -79,12 +116,22 @@ void PIRSelectDeviceForm::filterListByMake(
   refilterList();
 }
 
+
 void PIRSelectDeviceForm::filterListByDeviceType(
   int deviceType)
 {
   currentDevice = (PIRDeviceTypeName) deviceType;
   refilterList();
 }
+
+
+void PIRSelectDeviceForm::filterListByString(
+  QString string)
+{
+  searchString = string;
+  refilterList();
+}
+
 
 void PIRSelectDeviceForm::refilterList()
 {
@@ -103,8 +150,17 @@ void PIRSelectDeviceForm::refilterList()
       if ( (currentDevice == Any_Device)
         || (item->getDeviceType() == currentDevice))
      {
-        // Yes, we can show this keylist:
-        item->setHidden(false);
+        // Does it match the search string?
+        if ( searchString.isEmpty()
+          || item->text().contains(searchString, Qt::CaseInsensitive))
+        {
+          // Yes, we can show this keylist:
+          item->setHidden(false);
+        }
+        else
+        {
+          item->setHidden(true);
+        }
       }
       else
       {

@@ -50,6 +50,7 @@ enum PIRMakeName{
   Kaon_Make,
   Kathrein_Make,
   Kenwood_Make,
+  Lexuz_Make,
   LG_Make,
   Logitech_Make,
   Magnavox_Make,

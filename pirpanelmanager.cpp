@@ -222,6 +222,33 @@ void PIRPanelManager::enableButtons(
   {
     if (mainForm) mainForm->enableButtons(keyset, id);
   }
+
+  commonEnableButtons(keyset, id);
+}
+
+
+void PIRPanelManager::enableButtons(
+  const PIRKeysetManager *keyset,
+  unsigned int currentID,
+  unsigned int defaultID)
+{
+  if (altMainPanelFlag)
+  {
+    if (altMainForm) altMainForm->enableButtons(keyset, currentID, defaultID);
+  }
+  else
+  {
+    if (mainForm) mainForm->enableButtons(keyset, currentID, defaultID);
+  }
+
+  commonEnableButtons(keyset, currentID);
+}
+
+
+void PIRPanelManager::commonEnableButtons(
+  const PIRKeysetManager *keyset,
+  unsigned int id)
+{
   if (utilityForm) utilityForm->enableButtons(keyset, id);
   if (keypadForm) keypadForm->enableButtons(keyset, id);
   if (menuForm) menuForm->enableButtons(keyset, id);

@@ -44,6 +44,11 @@ public:
     const PIRKeysetManager *keyset,
     unsigned int id);
 
+  void enableButtons(
+    const PIRKeysetManager *keyset,
+    unsigned int currentID,
+    unsigned int defaultID);
+
   void managePanel(
     PIRPanelName name,
     int state);
@@ -61,6 +66,10 @@ public:
   QListWidget *getFavoritesListWidget();
 
 private:
+  void commonEnableButtons(
+    const PIRKeysetManager *keyset,
+    unsigned int id);
+
   void hidePanel(
     PIRPanelName name,
     int index);

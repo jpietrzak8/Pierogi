@@ -25,6 +25,11 @@ public:
     const PIRKeysetManager *keyset,
     unsigned int id);
 
+  void enableButtons(
+    const PIRKeysetManager *keyset,
+    unsigned int currentID,
+    unsigned int defaultID);
+
 signals:
   void powerEnabled(bool);
   void volumeUpEnabled(bool);
@@ -54,6 +59,7 @@ private:
   Ui::PIRAltMainForm *ui;
 
   MainWindow *mainWindow;
+  unsigned int defaultID;
 };
 
 #endif // PIRALTMAINFORM_H

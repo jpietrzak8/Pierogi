@@ -49,6 +49,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Kaon_Make] = "Kaon";
   makes[Kathrein_Make] = "Kathrein";
   makes[Kenwood_Make] = "Kenwood";
+  makes[Lexuz_Make] = "Lexuz";
   makes[LG_Make] = "LG";
   makes[Logitech_Make] = "Logitech";
   makes[Magnavox_Make] = "Magnavox";

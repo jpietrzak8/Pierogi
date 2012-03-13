@@ -644,6 +644,7 @@ JVCAudio1::JVCAudio1(
       JVC_Make,
       index)
 {
+  addControlledDevice(JVC_Make, "RX-5062", Audio_Device);
 }
 
 

@@ -53,6 +53,8 @@ LogitechSqueezebox::LogitechSqueezebox(
       Logitech_Make,
       index)
 {
+  addControlledDevice(Logitech_Make, "Squeezebox 2", Audio_Device);
+  addControlledDevice(Logitech_Make, "Squeezebox Radio", Audio_Device);
 }
 
 

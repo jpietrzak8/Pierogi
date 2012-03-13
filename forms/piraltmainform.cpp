@@ -12,10 +12,12 @@ PIRAltMainForm::PIRAltMainForm(
   MainWindow *mw)
   : QWidget(0),
     ui(new Ui::PIRAltMainForm),
-    mainWindow(mw)
+    mainWindow(mw),
+    defaultID(0)
 {
   ui->setupUi(this);
 }
+
 
 PIRAltMainForm::~PIRAltMainForm()
 {
@@ -27,6 +29,9 @@ void PIRAltMainForm::enableButtons(
   const PIRKeysetManager *keyset,
   unsigned int id)
 {
+  // No default id:
+  defaultID = 0;
+
   emit powerEnabled(keyset->hasKey(id, Power_Key));
   emit volumeUpEnabled(keyset->hasKey(id, VolumeUp_Key));
   emit volumeDownEnabled(keyset->hasKey(id, VolumeDown_Key));
@@ -39,9 +44,34 @@ void PIRAltMainForm::enableButtons(
 }
 
 
+void PIRAltMainForm::enableButtons(
+  const PIRKeysetManager *keyset,
+  unsigned int cID,
+  unsigned int dID)
+{
+  defaultID = dID;
+  emit powerEnabled(keyset->hasKey(cID, Power_Key));
+  emit volumeUpEnabled(keyset->hasKey(dID, VolumeUp_Key));
+  emit volumeDownEnabled(keyset->hasKey(dID, VolumeDown_Key));
+  emit channelUpEnabled(keyset->hasKey(cID, ChannelUp_Key));
+  emit channelDownEnabled(keyset->hasKey(cID, ChannelDown_Key));
+  emit muteEnabled(keyset->hasKey(dID, Mute_Key));
+
+  emit keysetMakeChanged(makeManager.getMakeString(keyset->getMake(cID)));
+  emit keysetNameChanged(keyset->getDisplayName(cID));
+}
+
+
 void PIRAltMainForm::on_volumeUpButton_pressed()
 {
-  mainWindow->startRepeating(VolumeUp_Key);
+  if (defaultID)
+  {
+    mainWindow->startRepeating(VolumeUp_Key, defaultID);
+  }
+  else
+  {
+    mainWindow->startRepeating(VolumeUp_Key);
+  }
 }
 
 void PIRAltMainForm::on_volumeUpButton_released()
@@ -51,7 +81,14 @@ void PIRAltMainForm::on_volumeUpButton_released()
 
 void PIRAltMainForm::on_volumeDownButton_pressed()
 {
-  mainWindow->startRepeating(VolumeDown_Key);
+  if (defaultID)
+  {
+    mainWindow->startRepeating(VolumeDown_Key, defaultID);
+  }
+  else
+  {
+    mainWindow->startRepeating(VolumeDown_Key);
+  }
 }
 
 void PIRAltMainForm::on_volumeDownButton_released()
@@ -61,7 +98,14 @@ void PIRAltMainForm::on_volumeDownButton_released()
 
 void PIRAltMainForm::on_muteButton_pressed()
 {
-  mainWindow->startRepeating(Mute_Key);
+  if (defaultID)
+  {
+    mainWindow->startRepeating(Mute_Key, defaultID);
+  }
+  else
+  {
+    mainWindow->startRepeating(Mute_Key);
+  }
 }
 
 void PIRAltMainForm::on_muteButton_released()

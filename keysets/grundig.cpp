@@ -116,6 +116,69 @@ void GrundigSat2::populateProtocol(
 }
 
 
+GrundigSat3::GrundigSat3(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Satellite Keyset 3",
+      Grundig_Make,
+      index)
+{
+}
+
+
+void GrundigSat3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  setPreData(0x80, 8);
+
+  addKey("menu", Menu_Key, 0x12, 8);
+  addKey("Ch-", ChannelDown_Key, 0x16, 8);
+  addKey("3", Three_Key, 0x40, 8);
+  addKey("2", Two_Key, 0x41, 8);
+  addKey("1", One_Key, 0x42, 8);
+  addKey("6", Six_Key, 0x44, 8);
+  addKey("5", Five_Key, 0x45, 8);
+  addKey("4", Four_Key, 0x46, 8);
+  addKey("0", Zero_Key, 0x47, 8);
+  addKey("9", Nine_Key, 0x48, 8);
+  addKey("8", Eight_Key, 0x49, 8);
+  addKey("7", Seven_Key, 0x4A, 8);
+  addKey("mute", Mute_Key, 0x4C, 8);
+  addKey("up", Up_Key, 0x4E, 8);
+  addKey("sub", Captions_Key, 0x73, 8);
+  addKey("OK", Select_Key, 0x75, 8);
+  addKey("Yellow", Yellow_Key, 0x78, 8);
+  addKey("text", Teletext_Key, 0x7B, 8);
+  addKey("Vol-", VolumeDown_Key, 0x7D, 8);
+  addKey("exit", Exit_Key, 0x7E, 8);
+  addKey("AD", Unmapped_Key, 0x7F, 8);
+  addKey("power", Power_Key, 0xB2, 8);
+  addKey("TV/DTV", TunerInput_Key, 0xB7, 8);
+  addKey("Guide", Guide_Key, 0xB8, 8);
+  addKey("Info", Info_Key, 0xB9, 8);
+  addKey("Green", Green_Key, 0xBA, 8);
+  addKey("Red", Red_Key, 0xBB, 8);
+  addKey("down", Down_Key, 0xBE, 8);
+  addKey("right", Right_Key, 0xC4, 8);
+  addKey("left", Left_Key, 0xC8, 8);
+  addKey("Blue", Blue_Key, 0xCC, 8);
+  addKey("wide", AspectRatio_Key, 0xCF, 8);
+  addKey("back", PrevChannel_Key, 0xD2, 8);
+  addKey("Vol+", VolumeUp_Key, 0xD4, 8);
+  addKey("Ch List", Unmapped_Key, 0xD5, 8);
+  addKey("Ch+", ChannelUp_Key, 0xD6, 8);
+  addKey("Swap", Unmapped_Key, 0xD8, 8);
+}
+
+
 GrundigAmp1::GrundigAmp1(
   unsigned int index)
   : PIRKeysetMetaData(
