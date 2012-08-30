@@ -148,6 +148,28 @@ public:
 };
 
 
+class SonyDVD2: public PIRKeysetMetaData
+{
+public:
+  SonyDVD2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+
+class SonyDVD2a: public SonyDVD2
+{
+public:
+  SonyDVD2a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+
 class SonyVCR1: public PIRKeysetMetaData
 {
 public:
@@ -216,6 +238,26 @@ class SonyCD1b: public SonyCD1
 {
 public:
   SonyCD1b(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SonyProjector1: public PIRKeysetMetaData
+{
+public:
+  SonyProjector1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SonyProjector1a: public SonyProjector1
+{
+public:
+  SonyProjector1a(
     unsigned int index);
 
   virtual void populateProtocol(

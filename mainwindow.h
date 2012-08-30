@@ -9,12 +9,14 @@
 
 class QListWidget;
 class QListWidgetItem;
+class QDialog;
+
 class PIRSelectKeysetForm;
 class PIRSelectDeviceForm;
-class PIRPanelSelectionForm;
 class PIRPreferencesForm;
 class PIRDocumentationForm;
 class PIRAboutForm;
+
 class PIRKeysetManager;
 class PIRPanelManager;
 
@@ -50,22 +52,6 @@ public:
 
   void stopRepeating();
 
-  void selectPanel(
-    int index);
-
-  void managePanel(
-    PIRPanelName name,
-    int state);
-
-  void insertPanel(
-    int index,
-    QWidget *panel,
-    const QString &displayName);
-
-  void removePanel(
-    int index,
-    QWidget *panel);
-
   // Favorites panel actions:
   void addCurrentKeyset(
     QListWidget *qlw);
@@ -87,6 +73,15 @@ public:
     return currentKeyset;
   }
 
+  void insertCornerButton();
+  void disableUpdates();
+  void enableUpdates();
+  void clearTabs();
+  void addTab(
+    QWidget *page,
+    QString label);
+  void setupTabs(PIRTabBarName name);
+
 signals:
   void buttonPressed(
     unsigned int keysetID,
@@ -107,27 +102,20 @@ public slots:
 private slots:
   void on_actionSelectKeyset_triggered();
   void on_actionSelect_Device_By_Name_triggered();
-  void on_actionArrange_Button_Panels_triggered();
   void on_actionPreferences_triggered();
   void on_actionAbout_triggered();
   void on_actionDocumentation_triggered();
-
-  void on_prevPanelButton_clicked();
-  void on_nextPanelButton_clicked();
-  void on_selectPanelComboBox_currentIndexChanged(int index);
 
   // Internal actions:
   void finalCleanup();
 
 private:
   void populateFavorites();
-//  void setupTabs();
 
   Ui::MainWindow *ui;
 
   PIRSelectKeysetForm *selectKeysetForm;
   PIRSelectDeviceForm *selectDeviceForm;
-  PIRPanelSelectionForm *panelSelectionForm;
   PIRPreferencesForm *preferencesForm;
   PIRDocumentationForm *documentationForm;
   PIRAboutForm *aboutForm;

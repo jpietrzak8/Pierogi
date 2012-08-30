@@ -6,7 +6,7 @@
 
 #include <QSettings>
 
-#include <iostream>
+//#include <iostream>
 
 PIRPreferencesForm::PIRPreferencesForm(
   QWidget *parent,

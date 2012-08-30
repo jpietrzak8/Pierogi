@@ -16,6 +16,7 @@
 #include "keysets/bush.h"
 #include "keysets/cambridge.h"
 #include "keysets/canon.h"
+#include "keysets/cisco.h"
 #include "keysets/compro.h"
 #include "keysets/daewoo.h"
 #include "keysets/dell.h"
@@ -32,6 +33,7 @@
 #include "keysets/epson.h"
 #include "keysets/fortec.h"
 #include "keysets/foxtel.h"
+#include "keysets/gadmei.h"
 #include "keysets/genius.h"
 #include "keysets/goldstar.h"
 #include "keysets/grundig.h"
@@ -50,6 +52,7 @@
 #include "keysets/kenwood.h"
 #include "keysets/lexuz.h"
 #include "keysets/lg.h"
+#include "keysets/loewe.h"
 #include "keysets/logitech.h"
 #include "keysets/magnavox.h"
 #include "keysets/magnum.h"
@@ -60,11 +63,14 @@
 #include "keysets/nokia.h"
 #include "keysets/octagon.h"
 #include "keysets/onida.h"
+#include "keysets/onkyo.h"
+#include "keysets/orion.h"
 #include "keysets/panasonic.h"
 #include "keysets/philco.h"
 #include "keysets/philips.h"
 #include "keysets/pinnacle.h"
 #include "keysets/pioneer.h"
+#include "keysets/proview.h"
 #include "keysets/qnap.h"
 #include "keysets/raite.h"
 #include "keysets/rca.h"
@@ -77,7 +83,10 @@
 #include "keysets/sky.h"
 #include "keysets/sony.h"
 #include "keysets/starsat.h"
+#include "keysets/strong.h"
 #include "keysets/technics.h"
+#include "keysets/technisat.h"
+#include "keysets/telefunken.h"
 #include "keysets/telenet.h"
 #include "keysets/thomson.h"
 #include "keysets/tivo.h"
@@ -164,6 +173,10 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new CanonDSLR1(++counter));
   setupKeyset(new CanonCamcorder1(++counter));
   setupKeyset(new CanonPowershot1(++counter));
+
+  setupKeyset(new CiscoSTB1(++counter));
+  setupKeyset(new CiscoSTB2(++counter));
+  setupKeyset(new CiscoSTB3(++counter));
 
   setupKeyset(new ComproTVCard1(++counter));
 
@@ -255,6 +268,8 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new FoxtelSTB1(++counter));
   setupKeyset(new FoxtelSTB2(++counter));
+
+  setupKeyset(new GadmeiTuner1(++counter));
 
   setupKeyset(new GeniusSpeakers1(++counter));
 
@@ -373,6 +388,10 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new LGVCR1b(++counter));
   setupKeyset(new LGAC1(++counter));
 
+  setupKeyset(new LoeweTV1(++counter));
+  setupKeyset(new LoeweVCR1(++counter));
+  setupKeyset(new LoeweDVD1(++counter));
+
   setupKeyset(new LogitechSpeakers(++counter));
   setupKeyset(new LogitechSqueezebox(++counter));
 
@@ -418,6 +437,22 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new OnidaTV1(++counter));
   setupKeyset(new OnidaDVD1(++counter));
+
+  setupKeyset(new OnkyoAudio1(++counter));
+  setupKeyset(new OnkyoAudio2(++counter));
+  setupKeyset(new OnkyoAudio2a(++counter));
+  setupKeyset(new OnkyoAudio3(++counter));
+  setupKeyset(new OnkyoAudio4(++counter));
+  setupKeyset(new OnkyoAudio5(++counter));
+  setupKeyset(new OnkyoDVD1(++counter));
+  setupKeyset(new OnkyoDVD2(++counter));
+
+  setupKeyset(new OrionTV1(++counter));
+  setupKeyset(new OrionTV2(++counter));
+  setupKeyset(new OrionTV3(++counter));
+  setupKeyset(new OrionVCR1(++counter));
+  setupKeyset(new OrionVCR2(++counter));
+  setupKeyset(new OrionDVD1(++counter));
 
   setupKeyset(new PanasonicCarAudio(++counter));
   setupKeyset(new PanasonicSat1(++counter));
@@ -489,6 +524,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new PioneerCD1(++counter));
   setupKeyset(new PioneerLaserDisc1(++counter));
   setupKeyset(new PioneerDVD1(++counter));
+
+  setupKeyset(new ProviewDVD1(++counter));
 
   setupKeyset(new QNAPPlayer1(++counter));
 
@@ -573,6 +610,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SonyDVD1a(++counter));
   setupKeyset(new SonyDVD1b(++counter));
   setupKeyset(new SonyDVD1c(++counter));
+  setupKeyset(new SonyDVD2(++counter));
+  setupKeyset(new SonyDVD2a(++counter));
   setupKeyset(new SonyVCR1(++counter));
   setupKeyset(new SonyVCR1a(++counter));
   setupKeyset(new SonyVCR1b(++counter));
@@ -580,8 +619,15 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SonyCD1(++counter));
   setupKeyset(new SonyCD1a(++counter));
   setupKeyset(new SonyCD1b(++counter));
+  setupKeyset(new SonyProjector1(++counter));
+  setupKeyset(new SonyProjector1a(++counter));
 
   setupKeyset(new StarsatSat1(++counter));
+
+  setupKeyset(new StrongSat1(++counter));
+  setupKeyset(new StrongSat2(++counter));
+  setupKeyset(new StrongSat3(++counter));
+  setupKeyset(new StrongSat4(++counter));
 
   setupKeyset(new TechnicsAudio1(++counter));
   setupKeyset(new TechnicsAudio1a(++counter));
@@ -589,6 +635,16 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new TechnicsAudio3(++counter));
   setupKeyset(new TechnicsAudio3a(++counter));
   setupKeyset(new TechnicsDVD1(++counter));
+
+  setupKeyset(new TechnisatSTB1(++counter));
+  setupKeyset(new TechnisatSTB1a(++counter));
+  setupKeyset(new TechnisatSTB2(++counter));
+  setupKeyset(new TechnisatSTB2a(++counter));
+  setupKeyset(new TechnisatSTB3(++counter));
+  setupKeyset(new TechnisatSTB3a(++counter));
+
+  setupKeyset(new TelefunkenTV1(++counter));
+  setupKeyset(new TelefunkenTV1a(++counter));
 
   setupKeyset(new TelenetSTB1(++counter));
 
@@ -618,6 +674,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ToshibaTV1f(++counter));
   setupKeyset(new ToshibaTV1g(++counter));
   setupKeyset(new ToshibaTV1h(++counter));
+  setupKeyset(new ToshibaTV1i(++counter));
   setupKeyset(new ToshibaVCR1(++counter));
   setupKeyset(new ToshibaVCR1a(++counter));
   setupKeyset(new ToshibaDisc1(++counter));
@@ -670,7 +727,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new YamahaTV1(++counter));
   setupKeyset(new YamahaKaraoke1(++counter));
 
-  setupKeyset(new ZenithC32V37(++counter));
+  setupKeyset(new ZenithTV1(++counter));
+  setupKeyset(new ZenithConverterBox1(++counter));
 
   // Start the thread running:
   commandThread.start();

@@ -95,6 +95,16 @@ public:
     QObject *guiObject);
 };
 
+class ToshibaTV1i: public ToshibaTV1h
+{
+public:
+  ToshibaTV1i(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 class ToshibaVCR1: public PIRKeysetMetaData
 {
 public:

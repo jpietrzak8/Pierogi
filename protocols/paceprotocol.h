@@ -1,20 +1,17 @@
-#ifndef THOMSONPROTOCOL_H
-#define THOMSONPROTOCOL_H
+#ifndef PACEPROTOCOL_H
+#define PACEPROTOCOL_H
 
 #include "spaceprotocol.h"
 
 class PIRRX51Hardware;
 
-//
-// Thomson protocol is a nice little protocol, taking space-encoded values
-// from the NEC protocol family and adding a toggle bit from the Philips
-// family...
-//
+// The "Pace" protocol seems to be a very simple space-encoded protocol
+// with little more than the command code and a toggle bit.
 
-class ThomsonProtocol: public SpaceProtocol
+class PaceProtocol: public SpaceProtocol
 {
 public:
-  ThomsonProtocol(
+  PaceProtocol(
     QObject *guiObject,
     unsigned int index);
 
@@ -31,4 +28,4 @@ private:
     PIRRX51Hardware &device);
 };
 
-#endif // THOMSONPROTOCOL_H
+#endif // PACEPROTOCOL_H

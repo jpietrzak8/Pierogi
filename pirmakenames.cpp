@@ -17,6 +17,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Bush_Make] = "Bush";
   makes[Cambridge_Make] = "Cambridge Audio";
   makes[Canon_Make] = "Canon";
+  makes[Cisco_Make] = "Cisco";
   makes[Compro_Make] = "Compro";
   makes[Daewoo_Make] = "Daewoo";
   makes[Dell_Make] = "Dell";
@@ -33,6 +34,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Epson_Make] = "Epson";
   makes[Fortec_Make] = "Fortec Star";
   makes[Foxtel_Make] = "Foxtel";
+  makes[Gadmei_Make] = "Gadmei";
   makes[Genius_Make] = "Genius";
   makes[GoldStar_Make] = "GoldStar";
   makes[Grundig_Make] = "Grundig";
@@ -51,6 +53,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Kenwood_Make] = "Kenwood";
   makes[Lexuz_Make] = "Lexuz";
   makes[LG_Make] = "LG";
+  makes[Loewe_Make] = "Loewe";
   makes[Logitech_Make] = "Logitech";
   makes[Magnavox_Make] = "Magnavox";
   makes[Magnum_Make] = "Magnum";
@@ -61,11 +64,14 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Nokia_Make] = "Nokia";
   makes[Octagon_Make] = "Octagon";
   makes[Onida_Make] = "Onida";
+  makes[Onkyo_Make] = "Onkyo";
+  makes[Orion_Make] = "Orion";
   makes[Panasonic_Make] = "Panasonic";
   makes[Philco_Make] = "Philco";
   makes[Philips_Make] = "Philips";
   makes[Pinnacle_Make] = "Pinnacle Systems";
   makes[Pioneer_Make] = "Pioneer";
+  makes[Proview_Make] = "Proview";
   makes[QNAP_Make] = "QNAP";
   makes[Raite_Make] = "Raite";
   makes[RCA_Make] = "RCA";
@@ -78,7 +84,10 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Sky_Make] = "Sky";
   makes[Sony_Make] = "Sony";
   makes[Starsat_Make] = "Starsat";
+  makes[Strong_Make] = "Strong";
   makes[Technics_Make] = "Technics";
+  makes[Technisat_Make] = "Technisat";
+  makes[Telefunken_Make] = "Telefunken";
   makes[Telenet_Make] = "Telenet";
   makes[Thomson_Make] = "Thomson";
   makes[Tivo_Make] = "TiVo";

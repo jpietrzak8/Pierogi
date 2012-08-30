@@ -1,3 +1,15 @@
+pierogi (1.1.6) unstable; urgency=low
+  * Hey, I'm back!  The big change in this update is a move back to real tabbed windows.  I've finally figured out how to quickly customize the tab bar.
+  * First pass at keysets for Cisco, Loewe, Orion, Proview, Strong, Technisat, and Telefunken.
+  * New keysets added for Panasonic, Sony, Toshiba, and Zenith.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Thu, 30 Aug 2012 16:16:21 -0400
+
+pierogi (1.1.5) unstable; urgency=low
+  * First pass at keysets for Gadmei, Onkyo.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Thu, 15 Mar 2012 15:11:11 -0400
+
 pierogi (1.1.4) unstable; urgency=low
   * Finally added the ability to search the keyset and device lists using the keyboard.
   * Added a "default keyset" to the preferences page; so far, the only thing you can do with the default is use it for the volume control keys.

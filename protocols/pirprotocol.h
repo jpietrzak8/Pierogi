@@ -77,6 +77,11 @@ public:
     unsigned int addressData,
     unsigned int commandData);
 
+  void addPanOldKey(
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
+
   void addPioneerKey(
     PIRKeyName key,
     unsigned int firstAddress,

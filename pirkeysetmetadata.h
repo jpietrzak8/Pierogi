@@ -93,6 +93,12 @@ protected:
     unsigned int addressData,
     unsigned int commandData);
 
+  void addPanOldKey(
+    const char *name,
+    PIRKeyName key,
+    unsigned int addressData,
+    unsigned int commandData);
+
   void addPioneerKey(
     const char *name,
     PIRKeyName key,

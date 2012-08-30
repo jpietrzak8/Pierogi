@@ -82,7 +82,7 @@ void FortecReceiver2::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
-  setPreData(0xFD01, 8);
+  setPreData(0xFD01, 16);
 
   addKey("channel up", ChannelUp_Key, 0x00, 8); // "up arrow"
   addKey("channel up", Up_Key, 0x00, 8); // "up arrow"

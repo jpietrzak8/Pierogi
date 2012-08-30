@@ -314,6 +314,33 @@ void ToshibaTV1h::populateProtocol(
 }
 
 
+ToshibaTV1i::ToshibaTV1i(
+  unsigned int index)
+  : ToshibaTV1h(index)
+{
+  setKeysetName("TV Keyset 1i");
+
+  addControlledDevice(Toshiba_Make, "MW-27H62", TV_Device);
+}
+
+
+void ToshibaTV1i::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  ToshibaTV1h::populateProtocol(guiObject);
+
+  addKey("Menu", Menu_Key, 0x0E, 8);
+  addKey("DvdMenu", DiscMenu_Key, 0x19, 8);
+  addKey("ChapterNext", Next_Key, 0x57, 8);
+}
+
+
 ToshibaVCR1::ToshibaVCR1(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -359,10 +386,24 @@ void ToshibaVCR1::populateProtocol(
   addKey("rew", Rewind_Key, 0x19, 8);
   addKey("ch+", ChannelUp_Key, 0x1B, 8);
   addKey("ch-", ChannelDown_Key, 0x1F, 8);
+  addKey("InputDVD", DVDInput_Key, 0x20, 8);
+  addKey("DirectionRight", Right_Key, 0x4D, 8);
+  addKey("Select/Ok", Select_Key, 0x4E, 8);
+  addKey("DirectionLeft", Left_Key, 0x51, 8);
+  addKey("Audio", Audio_Key, 0x53, 8);
+  addKey("Program", Program_Key, 0x5C, 8);
+  addKey("SP/SLP", VHSSpeed_Key, 0x5D, 8);
   addKey("input", Input_Key, 0x5F, 8);
+  addKey("DirectionUp", Up_Key, 0x80, 8);
+  addKey("DirectionDown", Down_Key, 0x81, 8);
   addKey("recall", PrevChannel_Key, 0x83, 8);
+  addKey("Subtitle", Captions_Key, 0x87, 8);
+  addKey("Angle", Angle_Key, 0x96, 8);
+  addKey("Greater100", PlusOneHundred_Key, 0x9B, 8);
   addKey("skip", Next_Key, 0x9E, 8);
   addKey("previous", Previous_Key, 0x9F, 8);
+  addKey("TopMenu", DiscTitle_Key, 0xDF, 8);
+  addKey("Cancel", Clear_Key, 0xEF, 8);
   addKey("eject", Eject_Key, 0xF5, 8);
 }
 

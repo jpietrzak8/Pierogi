@@ -65,6 +65,26 @@ public:
     QObject *guiObject);
 };
 
+class PanasonicTV2: public PIRKeysetMetaData
+{
+public:
+  PanasonicTV2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class PanasonicTV2a: public PanasonicTV2
+{
+public:
+  PanasonicTV2a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 class PanasonicVCR1: public PIRKeysetMetaData
 {
 public:
@@ -99,6 +119,16 @@ class PanasonicVCR1c: public PanasonicVCR1
 {
 public:
   PanasonicVCR1c(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class PanasonicVCR2: public PIRKeysetMetaData
+{
+public:
+  PanasonicVCR2(
     unsigned int index);
 
   virtual void populateProtocol(
@@ -149,6 +179,16 @@ class PanasonicAudio2a: public PanasonicAudio2
 {
 public:
   PanasonicAudio2a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class PanasonicAudio3: public PIRKeysetMetaData
+{
+public:
+  PanasonicAudio3(
     unsigned int index);
 
   virtual void populateProtocol(

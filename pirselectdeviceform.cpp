@@ -94,7 +94,8 @@ void PIRSelectDeviceForm::keyPressEvent(
 }
 
 
-void PIRSelectDeviceForm::on_searchStringLineEdit_textChanged(const QString &arg1)
+void PIRSelectDeviceForm::on_searchStringLineEdit_textChanged(
+  const QString &arg1)
 {
   filterListByString(arg1);
 }

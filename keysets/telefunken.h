@@ -1,28 +1,28 @@
-#ifndef ZENITH_H
-#define ZENITH_H
+#ifndef TELEFUNKEN_H
+#define TELEFUNKEN_H
 
 #include "pirkeysetmetadata.h"
 
 class QObject;
 
-class ZenithTV1: public PIRKeysetMetaData
+class TelefunkenTV1: public PIRKeysetMetaData
 {
 public:
-  ZenithTV1(
+  TelefunkenTV1(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-class ZenithConverterBox1: public PIRKeysetMetaData
+class TelefunkenTV1a: public TelefunkenTV1
 {
 public:
-  ZenithConverterBox1(
+  TelefunkenTV1a(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-#endif // ZENITH_H
+#endif // TELEFUNKEN_H

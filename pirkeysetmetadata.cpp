@@ -181,6 +181,20 @@ void PIRKeysetMetaData::addNECKey(
 }
 
 
+void PIRKeysetMetaData::addPanOldKey(
+  const char *name,
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+    threadableProtocol->addPanOldKey(key, addressData, commandData);
+  }
+}
+
+
 void PIRKeysetMetaData::addPioneerKey(
   const char *name,
   PIRKeyName key,

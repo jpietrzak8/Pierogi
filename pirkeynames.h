@@ -163,6 +163,8 @@ enum PIRKeyName{
   PCInput_Key,
   CompositeInput_Key,
   Composite2Input_Key,
+  SVideoInput_Key,
+  SVideo2Input_Key,
   ComponentInput_Key,
   Component2Input_Key,
   HDMIInput_Key,

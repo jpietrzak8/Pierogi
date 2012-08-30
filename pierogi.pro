@@ -146,7 +146,6 @@ SOURCES += main.cpp mainwindow.cpp \
     forms/pirmenuform.cpp \
     forms/pirmediaform.cpp \
     forms/pirfavoritesform.cpp \
-    pirpanelselectionform.cpp \
     pirpanelmanager.cpp \
     protocols/nokia32protocol.cpp \
     protocols/kathreinprotocol.cpp \
@@ -177,7 +176,20 @@ SOURCES += main.cpp mainwindow.cpp \
     forms/pirmacroform.cpp \
     dialogs/pirtextentrydialog.cpp \
     keysets/lexuz.cpp \
-    protocols/protonprotocol.cpp
+    protocols/protonprotocol.cpp \
+    keysets/gadmei.cpp \
+    keysets/onkyo.cpp \
+    protocols/panasonicoldprotocol.cpp \
+    keysets/orion.cpp \
+    keysets/cisco.cpp \
+    keysets/loewe.cpp \
+    keysets/telefunken.cpp \
+    protocols/paceprotocol.cpp \
+    dialogs/pirtabschoicedialog.cpp \
+    dialogs/pirtabswidgetitem.cpp \
+    keysets/technisat.cpp \
+    keysets/strong.cpp \
+    keysets/proview.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -300,7 +312,6 @@ HEADERS += mainwindow.h \
     forms/pirfavoritesform.h \
     pirpanelnames.h \
     pirpanelmanager.h \
-    pirpanelselectionform.h \
     protocols/nokia32protocol.h \
     protocols/kathreinprotocol.h \
     keysets/aoc.h \
@@ -330,7 +341,20 @@ HEADERS += mainwindow.h \
     forms/pirmacroform.h \
     dialogs/pirtextentrydialog.h \
     keysets/lexuz.h \
-    protocols/protonprotocol.h
+    protocols/protonprotocol.h \
+    keysets/gadmei.h \
+    keysets/onkyo.h \
+    protocols/panasonicoldprotocol.h \
+    keysets/orion.h \
+    keysets/cisco.h \
+    keysets/loewe.h \
+    keysets/telefunken.h \
+    protocols/paceprotocol.h \
+    dialogs/pirtabschoicedialog.h \
+    dialogs/pirtabswidgetitem.h \
+    keysets/technisat.h \
+    keysets/strong.h \
+    keysets/proview.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -348,12 +372,12 @@ FORMS += mainwindow.ui \
     forms/pirmenuform.ui \
     forms/pirmediaform.ui \
     forms/pirfavoritesform.ui \
-    pirpanelselectionform.ui \
     forms/pirrecordform.ui \
     forms/piraltmainform.ui \
     pirpreferencesform.ui \
     forms/pirmacroform.ui \
-    dialogs/pirtextentrydialog.ui
+    dialogs/pirtextentrydialog.ui \
+    dialogs/pirtabschoicedialog.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
@@ -421,7 +445,8 @@ OTHER_FILES += \
     www/InputTab.png \
     qtc_packaging/debian_fremantle/postrm \
     icons/red_pause.png \
-    icons/delete_icon&48.png
+    icons/delete_icon&48.png \
+    icons/align_just_icon&32.png
 
 RESOURCES += \
     PierogiResources.qrc

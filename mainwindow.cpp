@@ -4,17 +4,22 @@
 #include <QtCore/QCoreApplication>
 #include <QMutex>
 #include <QtGui/QMessageBox>
-//#include <QtGui>
+#include <QPushButton>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QScrollArea>
 #include <QSettings>
 
 #include "pirkeysetmetadata.h"
+
 #include "pirkeysetwidgetitem.h"
 #include "pirselectkeysetform.h"
 #include "pirselectdeviceform.h"
-#include "pirpanelselectionform.h"
 #include "pirpreferencesform.h"
 #include "pirdocumentationform.h"
 #include "piraboutform.h"
+#include "dialogs/pirtabschoicedialog.h"
+
 #include "pirkeysetmanager.h"
 #include "pirpanelmanager.h"
 
@@ -41,10 +46,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui(new Ui::MainWindow),
     selectKeysetForm(0),
     selectDeviceForm(0),
-    panelSelectionForm(0),
     preferencesForm(0),
     documentationForm(0),
     aboutForm(0),
+    myKeysets(0),
+    myPanels(0),
     currentKeyset(1) // Zero is not a valid keyset any more
 {
   ui->setupUi(this);
@@ -56,10 +62,13 @@ MainWindow::MainWindow(QWidget *parent)
   myKeysets = new PIRKeysetManager();
   myPanels = new PIRPanelManager(this);
 
-  // Construct the forms:
-  panelSelectionForm = new PIRPanelSelectionForm(this);
-  myPanels->setupPanels(panelSelectionForm);
+  // Display the panels:
+  myPanels->updateTabSet();
 
+  // Add the corner button:
+  insertCornerButton();
+
+  // Construct the rest of the forms:
   selectKeysetForm = new PIRSelectKeysetForm(this);
   myKeysets->populateSelectionWidget(selectKeysetForm);
 
@@ -166,7 +175,7 @@ MainWindow::~MainWindow()
   delete myKeysets;
   if (selectKeysetForm) delete selectKeysetForm;
   if (selectDeviceForm) delete selectDeviceForm;
-  if (panelSelectionForm) delete panelSelectionForm;
+//  if (panelSelectionForm) delete panelSelectionForm;
   if (documentationForm) delete documentationForm;
   if (aboutForm) delete aboutForm;
   delete ui;
@@ -299,11 +308,6 @@ void MainWindow::on_actionSelect_Device_By_Name_triggered()
   selectDeviceForm->show();
 }
 
-void MainWindow::on_actionArrange_Button_Panels_triggered()
-{
-  panelSelectionForm->show();
-}
-
 void MainWindow::on_actionPreferences_triggered()
 {
   preferencesForm->show();
@@ -350,7 +354,6 @@ void MainWindow::keysetSelectionChanged(
   currentKeyset = kwi->getID();
 
   QSettings settings("pietrzak.org", "Pierogi");
-//  settings.setValue("currentKeyset", currentKeyset);
 
   settings.setValue(
     "currentKeysetMake",
@@ -410,7 +413,6 @@ void MainWindow::addCurrentKeyset(
 
   settings.beginWriteArray("favorites");
   settings.setArrayIndex(favSettingsSize);
-//  settings.setValue("keysetID", currentKeyset);
 
   settings.setValue(
     "keysetMake",
@@ -453,7 +455,6 @@ void MainWindow::removeFavoriteKeyset(
     kwi = dynamic_cast<PIRKeysetWidgetItem *>(qlw->item(index));
 
     settings.setArrayIndex(index);
-//    settings.setValue("keysetID", kwi->getID());
     id = kwi->getID();
 
     settings.setValue(
@@ -544,83 +545,55 @@ void MainWindow::selectNextFavKeyset()
 }
 
 
-void MainWindow::selectPanel(
-  int index)
+void MainWindow::insertCornerButton()
 {
-  ui->selectPanelComboBox->setCurrentIndex(index);
+  // Set up the dialog box:
+  PIRTabsChoiceDialog *tcd = new PIRTabsChoiceDialog(this);
+
+  // Next, set up the corner button itself:
+  QPushButton *button =
+    new QPushButton(QIcon(":/icons/align_just_icon&32.png"), "");
+
+  button->setFlat(true);
+
+  connect(
+    button,
+    SIGNAL(clicked()),
+    tcd,
+    SLOT(exec()),
+    Qt::QueuedConnection);
+
+  ui->mainTabWidget->setCornerWidget(button);
 }
 
 
-void MainWindow::managePanel(
-  PIRPanelName name,
-  int state)
+void MainWindow::disableUpdates()
 {
-  myPanels->managePanel(name, state);
+  ui->mainTabWidget->setUpdatesEnabled(false);
 }
 
 
-void MainWindow::insertPanel(
-  int index,
-  QWidget *panel,
-  const QString &displayName)
+void MainWindow::enableUpdates()
 {
-  ui->selectPanelComboBox->insertItem(index, displayName);
-  ui->stackedButtonsWidget->insertWidget(index, panel);
+  ui->mainTabWidget->setUpdatesEnabled(true);
 }
 
 
-void MainWindow::removePanel(
-  int index,
-  QWidget *panel)
+void MainWindow::clearTabs()
 {
-  ui->stackedButtonsWidget->removeWidget(panel);
-  ui->selectPanelComboBox->removeItem(index);
+  ui->mainTabWidget->clear();
 }
 
 
-void MainWindow::on_prevPanelButton_clicked()
+void MainWindow::addTab(
+  QWidget *page,
+  QString label)
 {
-  int count = ui->selectPanelComboBox->count();
-
-  // No need to do anything if there are less than two panels available:
-  if (count < 2) return;
-
-  int index = ui->selectPanelComboBox->currentIndex();
-  if (index == 0)
-  {
-    index = count - 1;
-  }
-  else
-  {
-    --index;
-  }
-
-  ui->selectPanelComboBox->setCurrentIndex(index);
+  ui->mainTabWidget->addTab(page, label);
 }
 
-
-void MainWindow::on_nextPanelButton_clicked()
+void MainWindow::setupTabs(
+  PIRTabBarName name)
 {
-  int count = ui->selectPanelComboBox->count();
-
-  // No need to do anything if there are less than two panels available:
-  if (count < 2) return;
-
-  int index = ui->selectPanelComboBox->currentIndex();
-  if (index == count - 1)
-  {
-    index = 0;
-  }
-  else
-  {
-    ++index;
-  }
-
-  ui->selectPanelComboBox->setCurrentIndex(index);
-}
-
-
-void MainWindow::on_selectPanelComboBox_currentIndexChanged(int index)
-{
-  ui->stackedButtonsWidget->setCurrentIndex(index);
+  myPanels->setupTabs(name);
 }

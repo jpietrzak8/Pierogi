@@ -4,6 +4,7 @@
 enum PIRPanelName
 {
   Main_Panel,
+  Alt_Main_Panel,
   Utility_Panel,
   Keypad_Panel,
   Menu_Panel,
@@ -18,5 +19,14 @@ enum PIRPanelName
   Last_Panel_Marker // Used when traversing this enumeration.
 };
 
+
+enum PIRTabBarName
+{
+  Universal_Tabs,
+  TV_Tabs,
+  VideoMedia_Tabs,
+  AC_Tabs,
+  Record_Tabs
+};
 
 #endif // PIRPANELNAMES_H

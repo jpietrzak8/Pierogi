@@ -31,55 +31,7 @@
      <number>8</number>
     </property>
     <item row="0" column="0">
-     <widget class="QPushButton" name="prevPanelButton">
-      <property name="icon">
-       <iconset resource="PierogiResources.qrc">
-        <normaloff>:/icons/arrow_left_icon&amp;48.png</normaloff>:/icons/arrow_left_icon&amp;48.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>36</width>
-        <height>36</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QComboBox" name="selectPanelComboBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QPushButton" name="nextPanelButton">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset resource="PierogiResources.qrc">
-        <normaloff>:/icons/arrow_right_icon&amp;48.png</normaloff>:/icons/arrow_right_icon&amp;48.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>36</width>
-        <height>36</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="3">
-     <widget class="QStackedWidget" name="stackedButtonsWidget">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
+     <widget class="QTabWidget" name="mainTabWidget"/>
     </item>
    </layout>
   </widget>
@@ -98,7 +50,6 @@
     </property>
     <addaction name="actionSelectKeyset"/>
     <addaction name="actionSelect_Device_By_Name"/>
-    <addaction name="actionArrange_Button_Panels"/>
     <addaction name="actionPreferences"/>
     <addaction name="actionDocumentation"/>
     <addaction name="actionAbout"/>
@@ -125,11 +76,6 @@
     <string>Select Keyset by Device</string>
    </property>
   </action>
-  <action name="actionArrange_Button_Panels">
-   <property name="text">
-    <string>Manage Panels</string>
-   </property>
-  </action>
   <action name="actionPreferences">
    <property name="text">
     <string>Preferences</string>
@@ -137,9 +83,7 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="PierogiResources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
  <slots>
   <signal>zeroEnabled(bool)</signal>

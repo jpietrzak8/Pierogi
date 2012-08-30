@@ -97,7 +97,7 @@
           <item row="2" column="0" colspan="2">
            <widget class="QCheckBox" name="useDefaultCheckBox">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="text">
              <string>Always use default keyset for volume controls</string>

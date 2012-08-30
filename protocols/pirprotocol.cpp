@@ -185,6 +185,32 @@ void PIRProtocol::addNECKey(
 }
 
 
+void PIRProtocol::addPanOldKey(
+  PIRKeyName key,
+  unsigned int addressData,
+  unsigned int commandData)
+{
+  PIRKeyBits *pkb = 0;
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    pkb = &(i->second);
+    pkb->firstCode.clear();
+    pkb->secondCode.clear();
+    pkb->thirdCode.clear();
+    pkb->fourthCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
+  }
+
+  // The "Old Panasonic" commands have 5 bits address, 6 bits command:
+  appendToBitSeq(pkb->firstCode, addressData, 5);
+  appendToBitSeq(pkb->secondCode, commandData, 6);
+}
+
+
 // Most Pioneer keys use the NEC key format, but some are pairs of
 // NEC keys sent together:
 void PIRProtocol::addPioneerKey(

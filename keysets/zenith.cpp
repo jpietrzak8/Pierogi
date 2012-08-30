@@ -1,8 +1,8 @@
 #include "zenith.h"
 #include "protocols/necprotocol.h"
 
-// Based solely on LIRC Zenith_C32V37 config file
-ZenithC32V37::ZenithC32V37(
+// Based on LIRC Zenith_C32V37 config file
+ZenithTV1::ZenithTV1(
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
@@ -13,7 +13,7 @@ ZenithC32V37::ZenithC32V37(
 }
 
 
-void ZenithC32V37::populateProtocol(
+void ZenithTV1::populateProtocol(
   QObject *guiObject)
 {
   if (threadableProtocol)
@@ -68,4 +68,71 @@ void ZenithC32V37::populateProtocol(
   addKey("signal", Unmapped_Key, 0x96, 8);
   addKey("comp/dvi", Unmapped_Key, 0x98, 8);
   addKey("info", Info_Key, 0xAA, 8);
+}
+
+
+ZenithConverterBox1::ZenithConverterBox1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Digital Converter Box 1",
+      Zenith_Make,
+      index)
+{
+  addControlledDevice(Zenith_Make, "AKB36157102", Other_Device);
+}
+
+
+void ZenithConverterBox1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  setPreData(0x10, 8);
+
+  addKey("CHUP", ChannelUp_Key, 0x00, 8);
+  addKey("CHDOWN", ChannelDown_Key, 0x01, 8);
+  addKey("VOLUP", VolumeUp_Key, 0x02, 8);
+  addKey("VOLDOWN", VolumeDown_Key, 0x03, 8);
+  addKey("UP", Up_Key, 0x04, 8);
+  addKey("DOWN", Down_Key, 0x05, 8);
+  addKey("RIGHT", Right_Key, 0x06, 8);
+  addKey("LEFT", Left_Key, 0x07, 8);
+  addKey("POWER", Power_Key, 0x08, 8);
+  addKey("MUTE", Mute_Key, 0x09, 8);
+  addKey("SAP", Audio_Key, 0x0A, 8);
+  addKey("SLEEP", Sleep_Key, 0x0E, 8);
+  addKey("0", Zero_Key, 0x10, 8);
+  addKey("1", One_Key, 0x11, 8);
+  addKey("2", Two_Key, 0x12, 8);
+  addKey("3", Three_Key, 0x13, 8);
+  addKey("4", Four_Key, 0x14, 8);
+  addKey("5", Five_Key, 0x15, 8);
+  addKey("6", Six_Key, 0x16, 8);
+  addKey("7", Seven_Key, 0x17, 8);
+  addKey("8", Eight_Key, 0x18, 8);
+  addKey("9", Nine_Key, 0x19, 8);
+  addKey("RECALL", PrevChannel_Key, 0x1A, 8);
+  addKey("FAV", Favorites_Key, 0x1E, 8);
+  addKey("CCD", Captions_Key, 0x39, 8);
+  addKey("MENU", Menu_Key, 0x43, 8);
+  addKey("OK", Select_Key, 0x44, 8);
+  addKey("-", Dash_Key, 0x4C, 8);
+  addKey("EXIT", Exit_Key, 0x5B, 8);
+  addKey("ZOOM", Zoom_Key, 0x79, 8);
+  addKey("SIGNAL", Unmapped_Key, 0x96, 8);
+  addKey("GUIDE", Guide_Key, 0xA9, 8);
+  addKey("DISPLAY", Info_Key, 0xAA, 8);
+  addKey("CHUP2", Unmapped_Key, 0x20, 8);
+  addKey("CHDOWN2", Unmapped_Key, 0x21, 8);
+  addKey("OK2", Unmapped_Key, 0x78, 8);
+  addKey("MENU2", Unmapped_Key, 0x7E, 8);
+  addKey("POWER_OFF", PowerOff_Key, 0x5C, 8);
+  addKey("FACTORY_MENU", Unmapped_Key, 0xEA, 8);
+  addKey("FACTORY_RESET", Unmapped_Key, 0xEB, 8);
 }

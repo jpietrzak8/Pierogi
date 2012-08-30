@@ -740,6 +740,124 @@ void SonyDVD1c::populateProtocol(
 }
 
 
+SonyDVD2::SonyDVD2(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "DVD Keyset 1",
+      Sony_Make,
+      index)
+{
+  addControlledDevice(Sony_Make, "RDR-GX360", DVD_Device);
+}
+
+
+void SonyDVD2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  addSIRC20Key("Title List", Unmapped_Key, 0x0B, 0x1A, 0x10);
+  addSIRC20Key("Original playlist", Unmapped_Key, 0x0B, 0x1A, 0x11);
+  addSIRC20Key("Thumbnail", Unmapped_Key, 0x0B, 0x1A, 0x12);
+  addSIRC20Key("Chapter Mark", Unmapped_Key, 0x0B, 0x1A, 0x13);
+  addSIRC20Key("Instant Advance", Advance_Key, 0x0B, 0x1A, 0x14);
+  addSIRC20Key("Tools", Unmapped_Key, 0x0B, 0x1A, 0x17);
+  addSIRC20Key("Cursor Mode", Unmapped_Key, 0x0B, 0x1A, 0x18);
+  addSIRC20Key("Zoom -", Unmapped_Key, 0x0B, 0x1A, 0x19);
+  addSIRC20Key("Mark Erase", Unmapped_Key, 0x0B, 0x1A, 0x1A);
+  addSIRC20Key("Timer", Timer_Key, 0x0B, 0x1A, 0x1C);
+  addSIRC20Key("Timer List", Unmapped_Key, 0x0B, 0x1A, 0x37);
+  addSIRC20Key("Synchro Rec", Unmapped_Key, 0x0B, 0x1A, 0x77);
+  addSIRC20Key("Zoom", Zoom_Key, 0x0B, 0x1A, 0x79); // "Zoom +"
+
+  addSIRC20Key("1", One_Key, 0xFA, 0x1A, 0x00);
+  addSIRC20Key("2", Two_Key, 0xFA, 0x1A, 0x01);
+  addSIRC20Key("3", Three_Key, 0xFA, 0x1A, 0x02);
+  addSIRC20Key("4", Four_Key, 0xFA, 0x1A, 0x03);
+  addSIRC20Key("5", Five_Key, 0xFA, 0x1A, 0x04);
+  addSIRC20Key("6", Six_Key, 0xFA, 0x1A, 0x05);
+  addSIRC20Key("7", Seven_Key, 0xFA, 0x1A, 0x06);
+  addSIRC20Key("8", Eight_Key, 0xFA, 0x1A, 0x07);
+  addSIRC20Key("9", Nine_Key, 0xFA, 0x1A, 0x08);
+  addSIRC20Key("0", Zero_Key, 0xFA, 0x1A, 0x09);
+  addSIRC20Key("Select", Select_Key, 0xFA, 0x1A, 0x0B);
+  addSIRC20Key("Set", Unmapped_Key, 0xFA, 0x1A, 0x0D);
+  addSIRC20Key("Return", Exit_Key, 0xFA, 0x1A, 0x0E);
+  addSIRC20Key("Clear", Clear_Key, 0xFA, 0x1A, 0x0F);
+  addSIRC20Key("Input Select", Input_Key, 0xFA, 0x1A, 0x12);
+  addSIRC20Key("Channel +", ChannelUp_Key, 0xFA, 0x1A, 0x13);
+  addSIRC20Key("Channel -", ChannelDown_Key, 0xFA, 0x1A, 0x14);
+  addSIRC20Key("Power", Power_Key, 0xFA, 0x1A, 0x15);
+  addSIRC20Key("Eject", Eject_Key, 0xFA, 0x1A, 0x16);
+  addSIRC20Key("Record", Record_Key, 0xFA, 0x1A, 0x19);
+  addSIRC20Key("Top Menu", DiscTitle_Key, 0xFA, 0x1A, 0x1A);
+  addSIRC20Key("menu", DiscMenu_Key, 0xFA, 0x1A, 0x1B);
+  addSIRC20Key("Rec Mode", Unmapped_Key, 0xFA, 0x1A, 0x1E);
+  addSIRC20Key("Step Reverse", StepBack_Key, 0xFA, 0x1A, 0x20);
+  addSIRC20Key("Step Fwd", StepForward_Key, 0xFA, 0x1A, 0x21);
+  addSIRC20Key("Slow Forward", SlowPlus_Key, 0xFA, 0x1A, 0x23);
+  addSIRC20Key("Time/Text", Unmapped_Key, 0xFA, 0x1A, 0x28);
+  addSIRC20Key("Power On", PowerOn_Key, 0xFA, 0x1A, 0x2E);
+  addSIRC20Key("Power Off", PowerOff_Key, 0xFA, 0x1A, 0x2F);
+  addSIRC20Key("Track - (prev)", Previous_Key, 0xFA, 0x1A, 0x30);
+  addSIRC20Key("Track + (next)", Next_Key, 0xFA, 0x1A, 0x31);
+  addSIRC20Key("Play", Play_Key, 0xFA, 0x1A, 0x32);
+  addSIRC20Key("rewind", Rewind_Key, 0xFA, 0x1A, 0x33);
+  addSIRC20Key("Fast Forward", FastForward_Key, 0xFA, 0x1A, 0x34);
+  addSIRC20Key("stop", Stop_Key, 0xFA, 0x1A, 0x38);
+  addSIRC20Key("Pause", Pause_Key, 0xFA, 0x1A, 0x39);
+  addSIRC20Key("Record Stop", RecordStop_Key, 0xFA, 0x1A, 0x3D);
+  addSIRC20Key("Record Pause", RecordPause_Key, 0xFA, 0x1A, 0x3E);
+  addSIRC20Key("System Menu", Menu_Key, 0xFA, 0x1A, 0x53);
+  addSIRC20Key("Display", Info_Key, 0xFA, 0x1A, 0x54);
+  addSIRC20Key("Surround", Surround_Key, 0xFA, 0x1A, 0x5A);
+  addSIRC20Key("Instant Replay", Replay_Key, 0xFA, 0x1A, 0x5C);
+  addSIRC20Key("Subtitle", Captions_Key, 0xFA, 0x1A, 0x63);
+  addSIRC20Key("Audio", Audio_Key, 0xFA, 0x1A, 0x64);
+  addSIRC20Key("angle", Angle_Key, 0xFA, 0x1A, 0x65);
+  addSIRC20Key("Up", Up_Key, 0xFA, 0x1A, 0x79);
+  addSIRC20Key("Down", Down_Key, 0xFA, 0x1A, 0x7A);
+  addSIRC20Key("Left", Left_Key, 0xFA, 0x1A, 0x7B);
+  addSIRC20Key("Right", Right_Key, 0xFA, 0x1A, 0x7C);
+}
+
+
+SonyDVD2a::SonyDVD2a(
+  unsigned int index)
+  : SonyDVD2(index)
+{
+  setKeysetName("DVD Keyset 2a");
+
+  addControlledDevice(Sony_Make, "RDR-GX257", DVD_Device);
+}
+
+
+void SonyDVD2a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  SonyDVD2::populateProtocol(guiObject);
+
+  addSIRC20Key("top menu / title List", DiscTitle_Key, 0x0B, 0x1A, 0x10);
+  addSIRC20Key("marker", Unmapped_Key, 0x0B, 0x1A, 0x34);
+  addSIRC20Key("search", Unmapped_Key, 0x0B, 0x1A, 0x35);
+
+  addSIRC20Key("discrete off", PowerOff_Key, 0xFA, 0x1A, 0x29);
+  addSIRC20Key("play mode", Unmapped_Key, 0xFA, 0x1A, 0x31);
+}
+
+
 SonyVCR1::SonyVCR1(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -1063,4 +1181,156 @@ void SonyCD1b::populateProtocol(
   SonyCD1::populateProtocol(guiObject);
 
   addSIRC12Key("display", Info_Key, 0x11, 0x56);
+}
+
+
+SonyProjector1::SonyProjector1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Projector Keyset 1",
+      Sony_Make,
+      index)
+{
+  addControlledDevice(Sony_Make, "RM-1271", Other_Device);
+  addControlledDevice(Sony_Make, "VPL-SC50", Other_Device);
+  addControlledDevice(Sony_Make, "VPL-HS10", Other_Device);
+  addControlledDevice(Sony_Make, "VPL-HS20", Other_Device);
+  addControlledDevice(Sony_Make, "VH11HT", Other_Device);
+}
+
+
+void SonyProjector1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  addSIRC15Key("Switcher 1", Unmapped_Key, 0x54, 0x0A);
+  addSIRC15Key("Switcher 2", Unmapped_Key, 0x54, 0x0B);
+  addSIRC15Key("Switcher 3", Unmapped_Key, 0x54, 0x0C);
+  addSIRC15Key("Switcher 4", Unmapped_Key, 0x54, 0x0D);
+  addSIRC15Key("Switcher 5", Unmapped_Key, 0x54, 0x0E);
+  addSIRC15Key("Switcher 6", Unmapped_Key, 0x54, 0x0F);
+  addSIRC15Key("Switcher 7", Unmapped_Key, 0x54, 0x10);
+  addSIRC15Key("Switcher 8", Unmapped_Key, 0x54, 0x11);
+  addSIRC15Key("vol up", VolumeUp_Key, 0x54, 0x12);
+  addSIRC15Key("vol down", VolumeDown_Key, 0x54, 0x13);
+  addSIRC15Key("mute", Mute_Key, 0x54, 0x14);
+  addSIRC15Key("power", Power_Key, 0x54, 0x15);
+  addSIRC15Key("Contrast+", ContrastUp_Key, 0x54, 0x18);
+  addSIRC15Key("Contrast-", ContrastDown_Key, 0x54, 0x19);
+  addSIRC15Key("Color+", ColorUp_Key, 0x54, 0x1A);
+  addSIRC15Key("Color-", ColorDown_Key, 0x54, 0x1B);
+  addSIRC15Key("Brightness+", BrightnessUp_Key, 0x54, 0x1E);
+  addSIRC15Key("Brightness-", BrightnessDown_Key, 0x54, 0x1F);
+  addSIRC15Key("Hue+", Unmapped_Key, 0x54, 0x20);
+  addSIRC15Key("Hue-", Unmapped_Key, 0x54, 0x21);
+  addSIRC15Key("Sharpness+", Unmapped_Key, 0x54, 0x22);
+  addSIRC15Key("Sharpness-", Unmapped_Key, 0x54, 0x23);
+  addSIRC15Key("Pic Mute", Unmapped_Key, 0x54, 0x24);
+  addSIRC15Key("Status ON", Unmapped_Key, 0x54, 0x25);
+  addSIRC15Key("Status OFF", Unmapped_Key, 0x54, 0x26);
+  addSIRC15Key("Secam", Unmapped_Key, 0x54, 0x27);
+  addSIRC15Key("Clear Blue", Unmapped_Key, 0x54, 0x28);
+  addSIRC15Key("menu", Menu_Key, 0x54, 0x29);
+  addSIRC15Key("video 1 input", CompositeInput_Key, 0x54, 0x2A);
+  addSIRC15Key("Input A", AuxInput_Key, 0x54, 0x2B);
+  addSIRC15Key("video 2 input", Composite2Input_Key, 0x54, 0x2C);
+  addSIRC15Key("power on", PowerOn_Key, 0x54, 0x2E);
+  addSIRC15Key("power off", PowerOff_Key, 0x54, 0x2F);
+  addSIRC15Key("Position +", Unmapped_Key, 0x54, 0x31);
+  addSIRC15Key("Position -", Unmapped_Key, 0x54, 0x32);
+  addSIRC15Key("right arrow", Right_Key, 0x54, 0x33);
+  addSIRC15Key("left arrow", Left_Key, 0x54, 0x34);
+  addSIRC15Key("up arrow", Up_Key, 0x54, 0x35);
+  addSIRC15Key("down arrow", Down_Key, 0x54, 0x36);
+  addSIRC15Key("Adjust Red", Unmapped_Key, 0x54, 0x41);
+  addSIRC15Key("Adjust Green", Unmapped_Key, 0x54, 0x42);
+  addSIRC15Key("Adjust Blue", Unmapped_Key, 0x54, 0x43);
+  addSIRC15Key("Cutoff Red", Unmapped_Key, 0x54, 0x44);
+  addSIRC15Key("Cutoff Green", Unmapped_Key, 0x54, 0x45);
+  addSIRC15Key("Cutoff Blue", Unmapped_Key, 0x54, 0x46);
+  addSIRC15Key("H Size", Unmapped_Key, 0x54, 0x47);
+  addSIRC15Key("Shift", Unmapped_Key, 0x54, 0x48);
+  addSIRC15Key("Center Red", Unmapped_Key, 0x54, 0x49);
+  addSIRC15Key("Center Green", Unmapped_Key, 0x54, 0x4A);
+  addSIRC15Key("Center Blue", Unmapped_Key, 0x54, 0x4B);
+  addSIRC15Key("Size", Unmapped_Key, 0x54, 0x4C);
+  addSIRC15Key("Linearity", Unmapped_Key, 0x54, 0x4D);
+  addSIRC15Key("Skew", Unmapped_Key, 0x54, 0x4E);
+  addSIRC15Key("Bow", Unmapped_Key, 0x54, 0x4F);
+  addSIRC15Key("Keystone", Unmapped_Key, 0x54, 0x50);
+  addSIRC15Key("Pin Cushion", Unmapped_Key, 0x54, 0x51);
+  addSIRC15Key("Gain", Unmapped_Key, 0x54, 0x52);
+  addSIRC15Key("Bias", Unmapped_Key, 0x54, 0x53);
+  addSIRC15Key("Zone", Unmapped_Key, 0x54, 0x56);
+  addSIRC15Key("tv/vcr", Input_Key, 0x54, 0x57);
+  addSIRC15Key("Blanking", Unmapped_Key, 0x54, 0x58);
+  addSIRC15Key("select", Select_Key, 0x54, 0x5A);
+  addSIRC15Key("Enter", Unmapped_Key, 0x54, 0x5E);
+  addSIRC15Key("Svideo 1", SVideoInput_Key, 0x54, 0x5F);
+  addSIRC15Key("Index Second / 0 (All)", Unmapped_Key, 0x54, 0x60);
+  addSIRC15Key("Index 1", Unmapped_Key, 0x54, 0x61);
+  addSIRC15Key("Index 2", Unmapped_Key, 0x54, 0x62);
+  addSIRC15Key("Index 3", Unmapped_Key, 0x54, 0x63);
+  addSIRC15Key("Index 4", Unmapped_Key, 0x54, 0x64);
+  addSIRC15Key("Index 5", Unmapped_Key, 0x54, 0x65);
+  addSIRC15Key("Index 6", Unmapped_Key, 0x54, 0x66);
+  addSIRC15Key("Index 7", Unmapped_Key, 0x54, 0x67);
+  addSIRC15Key("Index 8", Unmapped_Key, 0x54, 0x68);
+  addSIRC15Key("Index 9", Unmapped_Key, 0x54, 0x69);
+  addSIRC15Key("Svideo 2", SVideo2Input_Key, 0x54, 0x6F);
+  addSIRC15Key("Component Input", ComponentInput_Key, 0x54, 0x70);
+  addSIRC15Key("Focus+", Unmapped_Key, 0x54, 0x74);
+  addSIRC15Key("Focus-", Unmapped_Key, 0x54, 0x75);
+  addSIRC15Key("Zoom+", Unmapped_Key, 0x54, 0x77);
+  addSIRC15Key("Zoom-", Unmapped_Key, 0x54, 0x78);
+  addSIRC15Key("reset", Reset_Key, 0x54, 0x7B);
+  addSIRC15Key("Right and Left Arrows", Unmapped_Key, 0x54, 0x7C);
+  addSIRC15Key("Normal", Unmapped_Key, 0x54, 0x7D);
+  addSIRC15Key("Test", Unmapped_Key, 0x54, 0x7E);
+
+  addSIRC20Key("ms slide", Unmapped_Key, 0x2A, 0x1A, 0x3C);
+  addSIRC20Key("side shot +", Unmapped_Key, 0x2A, 0x1A, 0x3E); //"Keystone+"
+  addSIRC20Key("side shot -", Unmapped_Key, 0x2A, 0x1A, 0x3F); //"Keystone-"
+  addSIRC20Key("dynamic", One_Key, 0x2A, 0x1A, 0x51);
+  addSIRC20Key("standard", Two_Key, 0x2A, 0x1A, 0x52);
+  addSIRC20Key("cinema", Three_Key, 0x2A, 0x1A, 0x53);
+  addSIRC20Key("user 1", Four_Key, 0x2A, 0x1A, 0x54);
+  addSIRC20Key("user 2", Five_Key, 0x2A, 0x1A, 0x55);
+  addSIRC20Key("user 3", Six_Key, 0x2A, 0x1A, 0x56);
+  addSIRC20Key("apa", Unmapped_Key, 0x2A, 0x1A, 0x60);
+  addSIRC20Key("wide mode", AspectRatio_Key, 0x2A, 0x1A, 0x6E);
+  addSIRC20Key("lens", Unmapped_Key, 0x2A, 0x1A, 0x78);
+}
+
+
+SonyProjector1a::SonyProjector1a(
+  unsigned int index)
+  : SonyProjector1(index)
+{
+  setKeysetName("Projector Keyset 1a");
+
+  addControlledDevice(Sony_Make, "VPL-VH11HT", Other_Device);
+}
+
+
+void SonyProjector1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  SonyProjector1::populateProtocol(guiObject);
+
+  addSIRC15Key("input toggle", Input_Key, 0x54, 0x2C);
+  addSIRC15Key("shift-left", Unmapped_Key, 0x54, 0x2F);
 }

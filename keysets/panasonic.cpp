@@ -1,6 +1,7 @@
 #include "panasonic.h"
 #include "protocols/necprotocol.h"
 #include "protocols/kaseikyoprotocol.h"
+#include "protocols/panasonicoldprotocol.h"
 
 
 PanasonicCarAudio::PanasonicCarAudio(
@@ -134,6 +135,7 @@ PanasonicTV1::PanasonicTV1(
       Panasonic_Make,
       index)
 {
+  addControlledDevice(Panasonic_Make, "TX-32PD50", TV_Device);
 }
 
 
@@ -313,6 +315,87 @@ void PanasonicTV1b::populateProtocol(
 
   addKaseikyoKey("Guide", Guide_Key, 0x098, 0x87);
   addKaseikyoKey("Exit", Exit_Key, 0x098, 0x9A);
+}
+
+
+PanasonicTV2::PanasonicTV2(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV Keyset 2",
+      Panasonic_Make,
+      index)
+{
+}
+
+
+void PanasonicTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new PanasonicOldProtocol(guiObject, index);
+
+  addPanOldKey("Mute", Mute_Key, 0x00, 0x00);
+  addPanOldKey("R-Tune", Unmapped_Key, 0x00, 0x0A);
+  addPanOldKey("Sleep", Sleep_Key, 0x00, 0x0B);
+  addPanOldKey("TV/Video", Input_Key, 0x00, 0x0D);
+  addPanOldKey("Recall", PrevChannel_Key, 0x00, 0x0F);
+
+  addPanOldKey("ONE", One_Key, 0x00, 0x10);
+  addPanOldKey("TWO", Two_Key, 0x00, 0x11);
+  addPanOldKey("THREE", Three_Key, 0x00, 0x12);
+  addPanOldKey("FOUR", Four_Key, 0x00, 0x13);
+  addPanOldKey("FIVE", Five_Key, 0x00, 0x14);
+  addPanOldKey("SIX", Six_Key, 0x00, 0x15);
+  addPanOldKey("SEVEN", Seven_Key, 0x00, 0x16);
+  addPanOldKey("EIGHT", Eight_Key, 0x00, 0x17);
+  addPanOldKey("NINE", Nine_Key, 0x00, 0x18);
+  addPanOldKey("ZERO", Zero_Key, 0x00, 0x19);
+
+  addPanOldKey("POWER", Power_Key, 0x00, 0x20);
+  addPanOldKey("CHANNEL_UP", ChannelUp_Key, 0x00, 0x22); // "NEXT"
+  addPanOldKey("CHANNEL_DOWN", ChannelDown_Key, 0x00, 0x23); // "PREV"
+  addPanOldKey("VOLUME_UP", VolumeUp_Key, 0x00, 0x24);
+  addPanOldKey("VOLUME_DOWN", VolumeDown_Key, 0x00, 0x25);
+}
+
+
+PanasonicTV2a::PanasonicTV2a(
+  unsigned int index)
+  : PanasonicTV2(index)
+{
+  setKeysetName("TV Keyset 2a");
+}
+
+
+void PanasonicTV2a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  PanasonicTV2::populateProtocol(guiObject);
+
+  addPanOldKey("BAL_LEFT", BalanceLeft_Key, 0x00, 0x24);
+  addPanOldKey("BAL_RIGHT", BalanceRight_Key, 0x00, 0x25);
+  addPanOldKey("VOL_UP", VolumeUp_Key, 0x00, 0x01);
+  addPanOldKey("VOL_DOWN", VolumeDown_Key, 0x00, 0x0D);
+  addPanOldKey("BWD", Rewind_Key, 0x00, 0x3B);
+  addPanOldKey("FWD", FastForward_Key, 0x00, 0x3C);
+  addPanOldKey("STOP", Stop_Key, 0x00, 0x1B);
+  addPanOldKey("PAUSE", Pause_Key, 0x00, 0x2A);
+  addPanOldKey("PLAYLIST_CLEAR", Unmapped_Key, 0x00, 0x1A);
+  addPanOldKey("PLAYLIST_ADD", Unmapped_Key, 0x00, 0x36);
+  addPanOldKey("PLAY", Play_Key, 0x00, 0x3A);
+  addPanOldKey("MUTE", Mute_Key, 0x00, 0x0B);
+  addPanOldKey("QUIT", Unmapped_Key, 0x00, 0x20);
 }
 
 
@@ -504,6 +587,73 @@ void PanasonicVCR1c::populateProtocol(
   addKaseikyoKey("rotatedown", Down_Key, 0x019, 0x03);
   addKaseikyoKey("set", Select_Key, 0x019, 0x04);
   addKaseikyoKey("clear", Exit_Key, 0x019, 0x05);
+}
+
+
+PanasonicVCR2::PanasonicVCR2(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "VCR Keyset 2",
+      Panasonic_Make,
+      index)
+{
+}
+
+
+void PanasonicVCR2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new PanasonicOldProtocol(guiObject, index);
+
+  addPanOldKey("STOP", Stop_Key, 0x02, 0x00);
+  addPanOldKey("REW", Rewind_Key, 0x02, 0x02);
+  addPanOldKey("FF", FastForward_Key, 0x02, 0x03);
+  addPanOldKey("PAUSE", Pause_Key, 0x02, 0x06);
+  addPanOldKey("REC", Record_Key, 0x02, 0x08);
+  addPanOldKey("PLAY", Play_Key, 0x02, 0x0A);
+  addPanOldKey("REV_PLAY", Unmapped_Key, 0x02, 0x0B);
+  addPanOldKey("F.ADV", StepForward_Key, 0x02, 0x0C);
+  addPanOldKey("x2", Unmapped_Key, 0x02, 0x0E);
+  addPanOldKey("SLOW", Slow_Key, 0x02, 0x0F);
+  addPanOldKey("1", One_Key, 0x02, 0x10);
+  addPanOldKey("2", Two_Key, 0x02, 0x11);
+  addPanOldKey("3", Three_Key, 0x02, 0x12);
+  addPanOldKey("4", Four_Key, 0x02, 0x13);
+  addPanOldKey("5", Five_Key, 0x02, 0x14);
+  addPanOldKey("6", Six_Key, 0x02, 0x15);
+  addPanOldKey("7", Seven_Key, 0x02, 0x16);
+  addPanOldKey("8", Eight_Key, 0x02, 0x17);
+  addPanOldKey("9", Nine_Key, 0x02, 0x18);
+  addPanOldKey("0", Zero_Key, 0x02, 0x19);
+  addPanOldKey("POWER", Power_Key, 0x02, 0x20); // "vtr"
+  addPanOldKey("VOL+", VolumeUp_Key, 0x02, 0x22);
+  addPanOldKey("VOL-", VolumeDown_Key, 0x02, 0x23);
+  addPanOldKey("-/--", DoubleDigit_Key, 0x02, 0x24);
+  addPanOldKey("VTR/TV", Input_Key, 0x02, 0x2A);
+  addPanOldKey("slow+", SlowPlus_Key, 0x02, 0x2E);
+  addPanOldKey("slow-", SlowMinus_Key, 0x02, 0x2F);
+  addPanOldKey("MEMORY_SEARCH", Memory_Key, 0x02, 0x32);
+  addPanOldKey("RESET_INDEX", Reset_Key, 0x02, 0x33);
+  addPanOldKey("INTRO_SCAN", Unmapped_Key, 0x02, 0x34);
+  addPanOldKey("timer_rec", Timer_Key, 0x02, 0x36);
+  addPanOldKey("AUDIO-SELECT", Audio_Key, 0x02, 0x3D);
+
+  addPanOldKey("VPS", VHSSpeed_Key, 0x03, 0x06); // Might be wrong
+  addPanOldKey("prog", Program_Key, 0x03, 0x2C);
+  addPanOldKey("next", Next_Key, 0x03, 0x3A);
+
+  addPanOldKey("FSTORE", Unmapped_Key, 0x19, 0x10);
+  addPanOldKey("STROBE", Unmapped_Key, 0x19, 0x11);
+  addPanOldKey("CLEAR", Unmapped_Key, 0x19, 0x12);
+  addPanOldKey("GEFFECT", Unmapped_Key, 0x19, 0x17);
+  addPanOldKey("MINUS", ChannelDown_Key, 0x19, 0x19); //?
+  addPanOldKey("PLUS", ChannelUp_Key, 0x19, 0x24); //?
 }
 
 
@@ -820,6 +970,57 @@ void PanasonicAudio2a::populateProtocol(
   addKaseikyoKey("INPUT: CD play/pause", CDInput_Key, 0x0AA, 0x0A);
   addKaseikyoKey("INPUT: CD play/pause", Play_Key, 0x0AA, 0x0A);
   addKaseikyoKey("INPUT: CD play/pause", Pause_Key, 0x0AA, 0x0A);
+}
+
+
+PanasonicAudio3::PanasonicAudio3(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Audio Keyset 3",
+      Panasonic_Make,
+      index)
+{
+}
+
+
+void PanasonicAudio3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new PanasonicOldProtocol(guiObject, index);
+
+  addPanOldKey("audio_power", Power_Key, 0x09, 0x20);
+  addPanOldKey("audio_phono", PhonoInput_Key, 0x09, 0x0C);
+  addPanOldKey("vol-", VolumeDown_Key, 0x09, 0x25);
+  addPanOldKey("vol+", VolumeUp_Key, 0x09, 0x24);
+  addPanOldKey("audio_video", Input_Key, 0x09, 0x2E);
+  addPanOldKey("audio_tape", TapeInput_Key, 0x09, 0x0A);
+  addPanOldKey("tuner-", ChannelDown_Key, 0x09, 0x23);
+  addPanOldKey("tuner+", ChannelUp_Key, 0x09, 0x22);
+  addPanOldKey("cd_skip-", Previous_Key, 0x0C, 0x02);
+  addPanOldKey("cd_skip+", Next_Key, 0x0C, 0x03);
+  addPanOldKey("cd_stop", Stop_Key, 0x0C, 0x00);
+  addPanOldKey("cd_play", Play_Key, 0x0C, 0x0A);
+  addPanOldKey("vcr_power", Unmapped_Key, 0x02, 0x20);
+  addPanOldKey("vcr_stop", Unmapped_Key, 0x02, 0x00);
+  addPanOldKey("vcr_ch-", Unmapped_Key, 0x02, 0x23);
+  addPanOldKey("vcr_ch+", Unmapped_Key, 0x02, 0x22);
+  addPanOldKey("tv_vcr", Unmapped_Key, 0x02, 0x2A);
+  addPanOldKey("vcr_pause", Unmapped_Key, 0x02, 0x06);
+  addPanOldKey("vcr_rec", Unmapped_Key, 0x02, 0x08);
+  addPanOldKey("tv_power", Unmapped_Key, 0x00, 0x20);
+  addPanOldKey("vcr_play", Unmapped_Key, 0x02, 0x0A);
+  addPanOldKey("vcr_rew", Unmapped_Key, 0x02, 0x02);
+  addPanOldKey("vcr_ff", Unmapped_Key, 0x02, 0x03);
+  addPanOldKey("tv_video", Unmapped_Key, 0x00, 0x0D);
+  addPanOldKey("tv_ant", Unmapped_Key, 0x00, 0x2A);
+  addPanOldKey("tv_ch-", Unmapped_Key, 0x00, 0x23);
+  addPanOldKey("tv_ch+", Unmapped_Key, 0x00, 0x22);
 }
 
 

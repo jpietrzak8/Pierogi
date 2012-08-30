@@ -4,7 +4,7 @@
 MCERemote1::MCERemote1(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Remote mode 1",
+      "Windows MCE Remote 1",
       Microsoft_Make,
       index)
 {
@@ -104,7 +104,7 @@ MCERemote1a::MCERemote1a(
   unsigned int index)
   : MCERemote1(index)
 {
-  setKeysetName("Remote mode 2");
+  setKeysetName("Windows MCE Remote 2");
 }
 
 
@@ -127,7 +127,7 @@ MCERemote1b::MCERemote1b(
   unsigned int index)
   : MCERemote1(index)
 {
-  setKeysetName("Remote mode 3");
+  setKeysetName("Windows MCE Remote 3");
 }
 
 
@@ -150,7 +150,7 @@ MCERemote1c::MCERemote1c(
   unsigned int index)
   : MCERemote1(index)
 {
-  setKeysetName("Remote mode 4");
+  setKeysetName("Windows MCE Remote 4");
 }
 
 
@@ -173,7 +173,7 @@ MCERemote1d::MCERemote1d(
   unsigned int index)
   : MCERemote1(index)
 {
-  setKeysetName("Remote mode 5");
+  setKeysetName("Windows MCE Remote 5");
 }
 
 
@@ -196,7 +196,7 @@ MCERemote1e::MCERemote1e(
   unsigned int index)
   : MCERemote1(index)
 {
-  setKeysetName("Remote mode 6");
+  setKeysetName("Windows MCE Remote 6");
 }
 
 
@@ -219,7 +219,7 @@ MCERemote1f::MCERemote1f(
   unsigned int index)
   : MCERemote1(index)
 {
-  setKeysetName("Remote mode 7");
+  setKeysetName("Windows MCE Remote 7");
 }
 
 
@@ -242,7 +242,7 @@ MCERemote1g::MCERemote1g(
   unsigned int index)
   : MCERemote1(index)
 {
-  setKeysetName("Remote mode 8");
+  setKeysetName("Windows MCE Remote 8");
 }
 
 

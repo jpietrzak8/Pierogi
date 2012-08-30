@@ -18,15 +18,20 @@ class PIRAirConditionerForm;
 class PIRFavoritesForm;
 
 class PIRKeysetWidgetItem;
-class PIRPanelSelectionForm;
 class PIRKeysetManager;
 class QListWidget;
 class MainWindow;
 
+#include <list>
 #include <map>
 #include <QString>
+#include <QWidget>
+
+typedef std::list<PIRPanelName> PIRPanelNameList;
+typedef std::map<PIRTabBarName, PIRPanelNameList> PIRTabsCollection;
+
+typedef std::map<PIRPanelName, QWidget *> PIRPanelCollection;
 typedef std::map<PIRPanelName, const char *> PIRPanelDisplayNameCollection;
-typedef std::map<PIRPanelName, bool> PIRActivePanelCollection;
 typedef std::map<QString, PIRPanelName> PIRReversePanelIndex;
 
 class PIRPanelManager
@@ -37,8 +42,7 @@ public:
 
   ~PIRPanelManager();
 
-  void setupPanels(
-    PIRPanelSelectionForm *psf);
+  void updateTabSet();
 
   void enableButtons(
     const PIRKeysetManager *keyset,
@@ -48,10 +52,6 @@ public:
     const PIRKeysetManager *keyset,
     unsigned int currentID,
     unsigned int defaultID);
-
-  void managePanel(
-    PIRPanelName name,
-    int state);
 
   void useMainPanel();
   void useAltMainPanel();
@@ -65,19 +65,18 @@ public:
   // This is a hack:
   QListWidget *getFavoritesListWidget();
 
+  void setupUniversalTabs();
+  void setupTVTabs();
+  void setupVideoTabs();
+  void setupACTabs();
+  void setupRecordTabs();
+  void setupTabs(PIRTabBarName name);
+
 private:
   void commonEnableButtons(
     const PIRKeysetManager *keyset,
     unsigned int id);
 
-  void hidePanel(
-    PIRPanelName name,
-    int index);
-
-  void showPanel(
-    PIRPanelName name,
-    int index);
-  
   PIRMainForm *mainForm;
   PIRAltMainForm *altMainForm;
   PIRUtilityForm *utilityForm;
@@ -94,10 +93,13 @@ private:
 
   PIRPanelDisplayNameCollection shortPanelNames;
   PIRPanelDisplayNameCollection longPanelNames;
-  PIRActivePanelCollection activePanels;
 //  PIRReversePanelIndex reverseIndex;
+  PIRTabsCollection tabLists;
+  PIRPanelCollection panels;
 
   bool altMainPanelFlag;
+
+  PIRTabBarName currentTabsName;
 
   MainWindow *mainWindow;
 };
