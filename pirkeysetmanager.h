@@ -10,6 +10,7 @@
 class QObject;
 class PIRSelectKeysetForm;
 class PIRSelectDeviceForm;
+class PIRFavoritesDialog;
 class PIRKeysetWidgetItem;
 
 #include <map>
@@ -28,8 +29,9 @@ public:
 
   ~PIRKeysetManager();
 
-  void populateSelectionWidget(
-    PIRSelectKeysetForm *skf) const;
+  void populateListWidgets(
+    PIRSelectKeysetForm *skf,
+    PIRFavoritesDialog *fd) const;
 
   bool keysetExists(
     unsigned int keysetID) const;
@@ -62,6 +64,10 @@ public:
   void populateKeyset(
     QObject *guiObject,
     unsigned int keysetID);
+
+  void populateFavorites(
+    PIRFavoritesDialog *favoritesDialog,
+    PIRSelectKeysetForm *keysetForm);
 
 private:
   void setupKeyset(

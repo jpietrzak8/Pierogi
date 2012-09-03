@@ -51,8 +51,8 @@ void KenwoodAudio1::populateProtocol(
   addKey("8", Eight_Key, 0x88, 8);
   addKey("9", Nine_Key, 0x89, 8);
   addKey("TUNER_DOWN", ChannelDown_Key, 0x8C, 8);
-  addKey("TUNER_AM", Unmapped_Key, 0x8E, 8);
-  addKey("TUNER_BAND", TunerBand_Key, 0x8F, 8); // "Tuner_FM"
+  addKey("TUNER_AM", AM_Key, 0x8E, 8);
+  addKey("TUNER_BAND", FM_Key, 0x8F, 8); // "Tuner_FM"
 
   addKey("PHONO", PhonoInput_Key, 0x90, 8);
   addKey("SELECT_TUNER", TunerInput_Key, 0x91, 8);
@@ -168,7 +168,8 @@ void KenwoodComponent1::populateProtocol(
   addKey("7", Seven_Key, 0x87, 8);
   addKey("8", Eight_Key, 0x88, 8);
   addKey("9", Nine_Key, 0x89, 8);
-  addKey("BAND", TunerBand_Key, 0x8F, 8);
+  addKey("BAND", AM_Key, 0x8F, 8);  // This is a hack
+  addKey("BAND", FM_Key, 0x8F, 8);  // This too
 
   addKey("Phono-play", Unmapped_Key, 0x90, 8);
   addKey("TUNER", TunerInput_Key, 0x91, 8);
@@ -308,7 +309,7 @@ void KenwoodComponent3::populateProtocol(
   addKey("tuning>>", FastForward_Key, 0x03, 8); // "SEARCH_FWD"
   addKey("stop", Stop_Key, 0x04, 8);
   addKey("</>", TapeInput_Key, 0x05, 8); // "TAPE"
-  addKey("tuner/band", TunerBand_Key, 0x06, 8); // "TUNER"
+  addKey("tuner/band", TunerInput_Key, 0x06, 8); // "TUNER"
   addKey("cd_play_pause", Play_Key, 0x07, 8); // "CD"
   addKey("cd_play_pause", Pause_Key, 0x07, 8);
   addKey("A/B", RepeatAB_Key, 0x08, 8); // "A_B"

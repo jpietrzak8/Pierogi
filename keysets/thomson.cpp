@@ -189,7 +189,7 @@ void ThomsonVCR1::populateProtocol(
   addKey("RED", Red_Key, 0x39, 7); // "vcr_Lock"
   addKey("GREEN", Green_Key, 0x3B, 7);
   addKey("vcr_timer", Timer_Key, 0x3B, 7);
-  addKey("INDEX_MARK", Unmapped_Key, 0x3C, 7); // "vcr_zoom"?
+  addKey("INDEX_MARK", IndexSearch_Key, 0x3C, 7);
   addKey("Reset_counter", Reset_Key, 0x3D, 7);
   addKey("EXIT", Exit_Key, 0x3E, 7); // "vcr_clear" -- need child keyset?
 }
@@ -394,7 +394,7 @@ void ThomsonAudio1::populateProtocol(
   addKey("trackBack", Previous_Key, 0x90, 8);
   addKey("volUp", VolumeUp_Key, 0x91, 8);
   addKey("soundEffect", Unmapped_Key, 0x93, 8);
-  addKey("band", TunerBand_Key, 0x94, 8);
+  addKey("band", TunerInput_Key, 0x94, 8);
   addKey("mode", Mode_Key, 0x95, 8);
   addKey("select", Select_Key, 0x99, 8); // ?
   addKey("presUp", ChannelUp_Key, 0x9C, 8);

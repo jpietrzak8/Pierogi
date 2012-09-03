@@ -225,13 +225,13 @@ void OrionVCR1::populateProtocol(
   addKey("CH9", Nine_Key, 0x09, 8);
   addKey("CHUP", Up_Key, 0x0A, 8);
   addKey("CHDN", Down_Key, 0x0B, 8);
-  addKey("TIMER_REC", Timer_Key, 0x0D, 8);
+  addKey("TIMER_REC", RecordTimed_Key, 0x0D, 8);
   addKey("AUDIOSELECT", Audio_Key, 0x0E, 8);
   addKey("CH10+", DoubleDigit_Key, 0x0F, 8);
 
   addKey("TVVCR", Input_Key, 0x12, 8);
   addKey("POWER", Power_Key, 0x13, 8);
-  addKey("INDEX", Unmapped_Key, 0x14, 8);
+  addKey("INDEX", IndexSearch_Key, 0x14, 8);
   addKey("RECOTR", Record_Key, 0x15, 8);
   addKey("PLAY", Play_Key, 0x16, 8);
   addKey("STOP", Stop_Key, 0x17, 8);
@@ -239,7 +239,7 @@ void OrionVCR1::populateProtocol(
   addKey("REW", Rewind_Key, 0x19, 8);
   addKey("PAUSESTILL", Pause_Key, 0x1A, 8);
   addKey("CLOCKSET", Unmapped_Key, 0x1C, 8);
-  addKey("SHOWVIEW", Unmapped_Key, 0x1D, 8);
+  addKey("SHOWVIEW", Unmapped_Key, 0x1D, 8); // vhsplus+, etc.
   addKey("SPEEDSPLP", VHSSpeed_Key, 0x1E, 8);
 
   addKey("PRESET", Unmapped_Key, 0x40, 8);

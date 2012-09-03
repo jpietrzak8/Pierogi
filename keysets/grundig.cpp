@@ -341,7 +341,8 @@ void GrundigAudio2::populateProtocol(
   addKey("0", Zero_Key, 0x0B, 8);
   addKey("tuning_up", ChannelUp_Key, 0x0C, 8);
   addKey("random", Random_Key, 0x0D, 8);
-  addKey("band", TunerBand_Key, 0x0E, 8);
+  addKey("band", FM_Key, 0x0E, 8);  // This is a hack
+  addKey("band", AM_Key, 0x0E, 8);  // This too
   addKey("cd", CDInput_Key, 0x0F, 8);
 
   addKey("3", Three_Key, 0x11, 8);
@@ -447,7 +448,7 @@ void GrundigVCR1a::populateProtocol(
 
   GrundigVCR1::populateProtocol(guiObject);
 
-  addKey("INDEX", Unmapped_Key, 0x0170, 13);
+  addKey("INDEX", IndexSearch_Key, 0x0170, 13);
   addKey("PAUSE", Pause_Key, 0x1169, 13);
 }
 

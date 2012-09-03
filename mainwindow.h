@@ -16,6 +16,8 @@ class PIRSelectDeviceForm;
 class PIRPreferencesForm;
 class PIRDocumentationForm;
 class PIRAboutForm;
+class PIRFavoritesDialog;
+class PIRKeysetWidgetItem;
 
 class PIRKeysetManager;
 class PIRPanelManager;
@@ -53,11 +55,11 @@ public:
   void stopRepeating();
 
   // Favorites panel actions:
-  void addCurrentKeyset(
-    QListWidget *qlw);
+  void addToFavorites(
+    PIRKeysetWidgetItem *kwi);
 
-  void removeFavoriteKeyset(
-    QListWidget *qlw);
+  void removeFromFavorites(
+    unsigned int keysetID);
 
   void enableButtons();
 
@@ -73,7 +75,7 @@ public:
     return currentKeyset;
   }
 
-  void insertCornerButton();
+  void insertCornerButtons();
   void disableUpdates();
   void enableUpdates();
   void clearTabs();
@@ -119,6 +121,7 @@ private:
   PIRPreferencesForm *preferencesForm;
   PIRDocumentationForm *documentationForm;
   PIRAboutForm *aboutForm;
+  PIRFavoritesDialog *favoritesDialog;
 
   PIRKeysetManager *myKeysets;
   PIRPanelManager *myPanels;

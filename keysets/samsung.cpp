@@ -409,12 +409,12 @@ void SamsungVCR1::populateProtocol(
   addKey("Eject", Eject_Key, 0x20, 8);
   addKey("auto_track", AutoTracking_Key, 0x21, 8); // "A.TRK"
   addKey("Captions", Captions_Key, 0x22, 8);
-  addKey("BAND", TunerBand_Key, 0x23, 8);
+  addKey("BAND", TunerInput_Key, 0x23, 8);
   addKey("input", Unmapped_Key, 0x24, 8);
   addKey("shift", Unmapped_Key, 0x25, 8);
   addKey("100+", PlusOneHundred_Key, 0x26, 8);
   addKey("Down", Down_Key, 0x29, 8); // "erase"
-  addKey("mark/search", Unmapped_Key, 0x2B, 8); // "index"
+  addKey("mark/search", IndexSearch_Key, 0x2B, 8); // "index"
   addKey("trk_up", TrackingPlus_Key, 0x2C, 8); // "FINE_UP"
   addKey("trk_down", TrackingMinus_Key, 0x2D, 8); // "FINE_DOWN"
   addKey("dub", Unmapped_Key, 0x2E, 8);
@@ -425,7 +425,7 @@ void SamsungVCR1::populateProtocol(
   addKey("SYSTEM", Unmapped_Key, 0x32, 8);
   addKey("CLK_COUNT", Unmapped_Key, 0x33, 8); // "clk/cnt"
   addKey("PRESET", Unmapped_Key, 0x35, 8);
-  addKey("VPS", Unmapped_Key, 0x38, 8);
+  addKey("VPS", RecordPDC_Key, 0x38, 8);
   addKey("progressive/speed", VHSSpeed_Key, 0x3A, 8); // "SP-LP"
   addKey("Q_PRO", Unmapped_Key, 0x3D, 8);
 

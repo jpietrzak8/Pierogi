@@ -1,42 +1,58 @@
 #include "pirkeysetwidgetitem.h"
 
 PIRKeysetWidgetItem::PIRKeysetWidgetItem(
-  QString name,
+  QString displayName,
+  QString in,
   unsigned int i,
   PIRMakeName m)
-  : QListWidgetItem(name),
+  : QListWidgetItem(displayName),
     id(i),
-    make(m)
+    make(m),
+    favorite(false),
+    nicknameNotEmpty(false),
+    internalName(in)
 {
 }
 
 
 PIRKeysetWidgetItem::PIRKeysetWidgetItem(
-  QString name,
+  QString displayName,
+  QString in,
   unsigned int i,
   PIRMakeName m,
   PIRDeviceTypeName t)
-  : QListWidgetItem(name),
+  : QListWidgetItem(displayName),
     id(i),
     make(m),
-    deviceType(t)
+    deviceType(t),
+    favorite(false),
+    nicknameNotEmpty(false),
+    internalName(in)
 {
 }
 
 
-unsigned int PIRKeysetWidgetItem::getID()
+PIRKeysetWidgetItem::PIRKeysetWidgetItem(
+  PIRKeysetWidgetItem *original)
+  : QListWidgetItem(original->text()),
+    id(original->getID()),
+    make(original->getMake()),
+    deviceType(original->getDeviceType()),
+    favorite(original->isFavorite()),
+    nicknameNotEmpty(original->hasNickname()),
+    internalName(original->getInternalName())
 {
-  return id;
+  if (nicknameNotEmpty)
+  {
+    nickname = original->getNickname();
+  }
 }
 
 
-PIRMakeName PIRKeysetWidgetItem::getMake()
+void PIRKeysetWidgetItem::setNickname(
+  QString nn)
 {
-  return make;
-}
+  nickname = nn;
 
-
-PIRDeviceTypeName PIRKeysetWidgetItem::getDeviceType()
-{
-  return deviceType;
+  nicknameNotEmpty = !nn.isEmpty();
 }

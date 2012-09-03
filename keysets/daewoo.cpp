@@ -464,11 +464,11 @@ void DaewooVCR1::populateProtocol(
   addKey("CLEAR", Clear_Key, 0x4A, 8);
   addKey("OK", Select_Key, 0x4B, 8); // enter key?
   addKey("DISPLAY", Info_Key, 0x4C, 8);
-  addKey("VPS/PDC", Unmapped_Key, 0x4F, 8);
+  addKey("VPS/PDC", RecordPDC_Key, 0x4F, 8);
 
   addKey("POWER", Power_Key, 0x5B, 8);
 
-  addKey("ShowView", Unmapped_Key, 0x8C, 8);
+  addKey("ShowView", Unmapped_Key, 0x8C, 8); // vhsplus+, etc.
   addKey("PRESET", Unmapped_Key, 0x9E, 8);
   addKey("MENU/TV", Menu_Key, 0xCA, 8);
 }
@@ -533,9 +533,9 @@ void DaewooVCR2::populateProtocol(
   addKey("qs", Unmapped_Key, 0x27, 8);
   addKey("ok", Select_Key, 0x29, 8);
   addKey("left", Left_Key, 0x31, 8);
-  addKey("indexup", Unmapped_Key, 0x33, 8);
+  addKey("indexup", Next_Key, 0x33, 8);
   addKey("right", Right_Key, 0x35, 8);
   addKey("av", AuxInput_Key, 0x36, 8);
   addKey("sv/v+", Unmapped_Key, 0x39, 8);
-  addKey("indexdown", Unmapped_Key, 0x3F, 8);
+  addKey("indexdown", Previous_Key, 0x3F, 8);
 }

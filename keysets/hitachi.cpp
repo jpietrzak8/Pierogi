@@ -486,7 +486,7 @@ void HitachiAudio1::populateProtocol(
   addKey("POWER", Power_Key, 0x00, 8);
   addKey("VOLUME_UP", VolumeUp_Key, 0x01, 8);
   addKey("VOLUME_DOWN", VolumeDown_Key, 0x02, 8);
-  addKey("TUNER_BAND", TunerBand_Key, 0x07, 8);
+  addKey("TUNER_BAND", TunerInput_Key, 0x07, 8);
   addKey("CASSETTE_TAPE_1/2", Unmapped_Key, 0x09, 8);
   addKey("CD_PLAY/PAUSE", Play_Key, 0x12, 8);
   addKey("CD_PLAY/PAUSE", Pause_Key, 0x12, 8);
@@ -576,7 +576,7 @@ void HitachiVCR1::populateProtocol(
   addKey("CLEAR", Reset_Key, 0x41, 8); // "reset", "0000"
   addKey("Disp", Info_Key, 0x42, 8);
   addKey("Enter", Select_Key, 0x44, 8);
-  addKey("Index", Unmapped_Key, 0x45, 8);
+  addKey("Index", IndexSearch_Key, 0x45, 8);
   addKey("Count/Clock", Clock_Key, 0x46, 8);
   addKey("SpinRight", Right_Key, 0x7F, 8);
   addKey("SpinLeft", Left_Key, 0x7E, 8);

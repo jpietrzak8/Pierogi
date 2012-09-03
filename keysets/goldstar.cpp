@@ -176,12 +176,12 @@ void GoldStarVCR1::populateProtocol(
   addKey("display", Info_Key, 0x1E, 8);
   addKey("clear", Clear_Key, 0x1F, 8);
   addKey("child_lock", Unmapped_Key, 0x3F, 8);
-  addKey("viss", Unmapped_Key, 0x41, 8);
+  addKey("viss", IndexSearch_Key, 0x41, 8);
   addKey("tracking+", TrackingPlus_Key, 0x44, 8);
   addKey("tracking-", TrackingMinus_Key, 0x45, 8);
-  addKey("show_view", Unmapped_Key, 0x47, 8);
+  addKey("show_view", Unmapped_Key, 0x47, 8); // vhsplus+, etc.
   addKey("sp/lp", VHSSpeed_Key, 0x48, 8);
-  addKey("vps", Unmapped_Key, 0x49, 8);
+  addKey("vps", RecordPDC_Key, 0x49, 8);
   addKey("start", Unmapped_Key, 0x4A, 8);
   addKey("length", Unmapped_Key, 0x4B, 8);
   addKey("clock_count", Clock_Key, 0x4C, 8); // "memory"

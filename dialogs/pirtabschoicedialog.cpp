@@ -22,6 +22,9 @@ PIRTabsChoiceDialog::PIRTabsChoiceDialog(
     new PIRTabsWidgetItem("Video Media Panels", VideoMedia_Tabs));
 
   ui->tabsChoiceListWidget->addItem(
+    new PIRTabsWidgetItem("Audio Device Panels", Audio_Tabs));
+
+  ui->tabsChoiceListWidget->addItem(
     new PIRTabsWidgetItem("Recording Panels", Record_Tabs));
 
   ui->tabsChoiceListWidget->addItem(

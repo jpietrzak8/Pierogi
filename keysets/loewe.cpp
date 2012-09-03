@@ -115,9 +115,9 @@ void LoeweVCR1::populateProtocol(
   addKey("TV", Input_Key, 0x15, 8);
   addKey("LP", VHSSpeed_Key, 0x48, 8);
   addKey("REST", Clock_Key, 0x4C, 8);
-  addKey("VISS", Unmapped_Key, 0x41, 8);
-  addKey("MARK", Unmapped_Key, 0x50, 8);
-  addKey("ERASE", Unmapped_Key, 0x42, 8);
+  addKey("VISS", IndexSearch_Key, 0x41, 8);
+  addKey("MARK", IndexMark_Key, 0x50, 8);
+  addKey("ERASE", IndexErase_Key, 0x42, 8);
   addKey("0000", Reset_Key, 0x4D, 8);
 }
 

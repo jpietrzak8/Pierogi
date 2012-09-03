@@ -7,9 +7,11 @@
 #include "pirmakenames.h"
 
 class QListWidget;
+class QListWidgetItem;
 class PIRKeysetWidgetItem;
 class QKeyEvent;
-//class PIRSearchStringDialog;
+class PIREditKeysetDialog;
+class MainWindow;
 
 namespace Ui {
 class PIRSelectKeysetForm;
@@ -20,7 +22,11 @@ class PIRSelectKeysetForm : public QWidget
   Q_OBJECT
   
 public:
-  explicit PIRSelectKeysetForm(QWidget *parent = 0);
+//  explicit PIRSelectKeysetForm(QWidget *parent = 0);
+
+  PIRSelectKeysetForm(
+    MainWindow *mw);
+
   ~PIRSelectKeysetForm();
 
 /*
@@ -46,6 +52,9 @@ private slots:
 
   void filterListByString(
     QString string);
+
+  void openKeysetDialog(
+    QListWidgetItem *);
   
   void on_searchStringLineEdit_textChanged(const QString &arg1);
   void on_ssClosePushButton_clicked();
@@ -54,6 +63,9 @@ private:
   void refilterList();
 
   Ui::PIRSelectKeysetForm *ui;
+
+  MainWindow *mainWindow;
+  PIREditKeysetDialog *editDialog;
 
   PIRMakeName currentMake;
   QString searchString;

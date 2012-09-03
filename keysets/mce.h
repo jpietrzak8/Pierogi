@@ -85,4 +85,14 @@ public:
     QObject *guiObject);
 };
 
+class MCEXboxRemote1: public MCERemote1g
+{
+public:
+  MCEXboxRemote1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // MCE_H

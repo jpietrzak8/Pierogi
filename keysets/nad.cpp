@@ -55,8 +55,8 @@ void NADAudio1::populateProtocol(
   addKey("TapeA-Rewind", Unmapped_Key, 0x57, 8);
 
   addKey("Standby", Power_Key, 0x80, 8);  // "RCVR_POWER"
-  addKey("Input-TunerFM", Unmapped_Key, 0x81, 8);
-  addKey("Input-TunerAM", Unmapped_Key, 0x82, 8);
+  addKey("Input-TunerFM", FM_Key, 0x81, 8);
+  addKey("Input-TunerAM", AM_Key, 0x82, 8);
   addKey("Input-CD", CDInput_Key, 0x85, 8);
   addKey("VolumeUp", VolumeUp_Key, 0x88, 8);
   addKey("Input-Disc", PhonoInput_Key, 0x89, 8);
@@ -93,7 +93,6 @@ void NADAudio1::populateProtocol(
 
   addKey("Tuner-PresetLeft", ChannelDown_Key, 0xD1, 8);
   addKey("Tuner-PresetRight", ChannelUp_Key, 0xD2, 8);
-  addKey("FM/AM", TunerBand_Key, 0xDD, 8); // "tuner"
   addKey("FM/AM", TunerInput_Key, 0xDD, 8); // "tuner"
   addKey("TapeB-Rev", Unmapped_Key, 0xDE, 8);
 }
@@ -149,7 +148,7 @@ void NADTuner1::populateProtocol(
 
   addKey("tuner-fm-mute", Unmapped_Key, 0x37, 8);
   addKey("tuner-blend", Unmapped_Key, 0x35, 8);
-  addKey("tuner-am-fm-dab", TunerBand_Key, 0xDD, 8);
+  addKey("tuner-am-fm-dab", TunerInput_Key, 0xDD, 8);
 
   addKey("Standby", Power_Key, 0x80, 8);  // "RCVR_POWER"
   addKey("VolumeUp", VolumeUp_Key, 0x88, 8);

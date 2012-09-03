@@ -295,7 +295,7 @@ void PioneerAudio1::populateProtocol(
   addNECKey("12/CLR", Clear_Key, 0xA6, 0x41);
   addNECKey("cd", CDInput_Key, 0xA6, 0x44); // "CD_PLAY"
   addNECKey("scan", Scan_Key, 0xA6, 0x48);
-  addNECKey("FM/AM", TunerBand_Key, 0xA6, 0x49); // "BAND"
+  addNECKey("FM/AM", TunerInput_Key, 0xA6, 0x49); // "BAND"
   addNECKey("aux", AuxInput_Key, 0xA6, 0x4C);
   addNECKey("TAPE1_PLAY", Unmapped_Key, 0xA6, 0x5A);
   addNECKey("KARAOKE", Unmapped_Key, 0xA6, 0x69);
@@ -489,7 +489,8 @@ void PioneerAudio3::populateProtocol(
   addNECKey("am", Unmapped_Key, 0xA4, 0x0E);
   addNECKey("tuner_station+", NextPreset_Key, 0xA4, 0x10);
   addNECKey("tuner_station-", PrevPreset_Key, 0xA4, 0x11);
-  addNECKey("tuner_band", TunerBand_Key, 0xA4, 0x13);
+  addNECKey("tuner_band", AM_Key, 0xA4, 0x13); // This is a hack
+  addNECKey("tuner_band", FM_Key, 0xA4, 0x13); // This too
   addNECKey("tuner_power", Unmapped_Key, 0xA4, 0x1C);
   addNECKey("mpx", Unmapped_Key, 0xA4, 0x1E); // Toggle mono FM
   addNECKey("tunerclass", Unmapped_Key, 0xA4, 0x40); // class A, B, C
@@ -668,7 +669,8 @@ void PioneerAudio5::populateProtocol(
   addKey("POWER", Power_Key, 0x9867, 16);
   addKey("MONO", FMMode_Key, 0x48B7, 16);
   addKey("MEM_SCAN", Unmapped_Key, 0x8877, 16);
-  addKey("TUNER_BAND", TunerBand_Key, 0x18E7, 16);
+  addKey("TUNER_BAND", AM_Key, 0x18E7, 16);  // This is a hack
+  addKey("TUNER_BAND", FM_Key, 0x18E7, 16);  // This too
   addKey("1", One_Key, 0x00FF, 16);
   addKey("2", Two_Key, 0x807F, 16);
   addKey("3", Three_Key, 0x40BF, 16);

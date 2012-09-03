@@ -111,7 +111,7 @@ void AdmiralTV2::populateProtocol(
   addKey("PIP/main picture swap", PIPSwap_Key, 0x105A, 13);
   addKey("Select PIP source", PIPSource_Key, 0x105F, 13);
   addKey("PIP Freeze", PIPPause_Key, 0x1065, 13);
-  addKey("PIP Freeze", PIPSize_Key, 0x1068, 13);
+  addKey("PIP Size", PIPSize_Key, 0x1068, 13);
   addKey("red", Red_Key, 0x106B, 13);
   addKey("green", Green_Key, 0x106C, 13);
   addKey("yellow", Yellow_Key, 0x106D, 13);
@@ -166,9 +166,9 @@ void AdmiralVCR1::populateProtocol(
   addSharpKey("stop", Stop_Key, 0x03, 0x27);
   addSharpKey("rec", Record_Key, 0x03, 0x28);
   addSharpKey("slow", Slow_Key, 0x03, 0x29);
-  addSharpKey("dpss+", Unmapped_Key, 0x03, 0x2F);
+  addSharpKey("dpss+", Next_Key, 0x03, 0x2F);
 
-  addSharpKey("dpss-", Unmapped_Key, 0x03, 0x30);
+  addSharpKey("dpss-", Previous_Key, 0x03, 0x30);
   addSharpKey("eject", Eject_Key, 0x03, 0x33);
   addSharpKey("vcr-input", Input_Key, 0x03, 0x34);
 
@@ -178,5 +178,5 @@ void AdmiralVCR1::populateProtocol(
   addSharpKey("vcr-display", Info_Key, 0x03, 0x8C);
   addSharpKey("on_screen", Unmapped_Key, 0x03, 0x8D);
 
-  addSharpKey("add/erase", Unmapped_Key, 0x03, 0xB5);
+  addSharpKey("add/erase", IndexMark_Key, 0x03, 0xB5);
 }

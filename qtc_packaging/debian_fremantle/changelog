@@ -1,14 +1,17 @@
 pierogi (1.1.6) unstable; urgency=low
+  * A big change this time: the move to support true per-keyset editable config data.  All favorites data has been moved into the keyset configs, and nicknames have been added.  The favorites are now accessed with a pop-up menu.
+  * A new "audio" panel has been added.
+  * First pass at keysets for ADB (I-Can), Anitech, Blaupunkt, Lifetec, Medion, Sylvania, Triax, and Viewsonic.
+  * Many updates to existing keysets, too numerous to mention; mostly to support new audio panel buttons.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 02 Sep 2012 20:54:03 -0400
+
+pierogi (1.1.5) unstable; urgency=low
   * Hey, I'm back!  The big change in this update is a move back to real tabbed windows.  I've finally figured out how to quickly customize the tab bar.
-  * First pass at keysets for Cisco, Loewe, Orion, Proview, Strong, Technisat, and Telefunken.
+  * First pass at keysets for Cisco, Gadmei, Loewe, Onkyo, Orion, Proview, Strong, Technisat, and Telefunken.
   * New keysets added for Panasonic, Sony, Toshiba, and Zenith.
 
  -- John Pietrzak <jpietrzak8@gmail.com>  Thu, 30 Aug 2012 16:16:21 -0400
-
-pierogi (1.1.5) unstable; urgency=low
-  * First pass at keysets for Gadmei, Onkyo.
-
- -- John Pietrzak <jpietrzak8@gmail.com>  Thu, 15 Mar 2012 15:11:11 -0400
 
 pierogi (1.1.4) unstable; urgency=low
   * Finally added the ability to search the keyset and device lists using the keyboard.

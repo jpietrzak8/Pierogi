@@ -6,13 +6,16 @@ PIRMakeMgr::PIRMakeMgr()
 {
   makes[Any_Make] = "Any";
   makes[Acer_Make] = "Acer";
+  makes[ADB_Make] = "ADB";
   makes[Admiral_Make] = "Admiral";
   makes[Aiwa_Make] = "Aiwa";
+  makes[Anitech_Make] = "Anitech";
   makes[AOC_Make] = "AOC";
   makes[Apple_Make] = "Apple";
   makes[Arcam_Make] = "Arcam";
   makes[Beko_Make] = "Beko";
   makes[BenQ_Make] = "BenQ";
+  makes[Blaupunkt_Make] = "Blaupunkt";
   makes[Bose_Make] = "Bose";
   makes[Bush_Make] = "Bush";
   makes[Cambridge_Make] = "Cambridge Audio";
@@ -53,10 +56,12 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Kenwood_Make] = "Kenwood";
   makes[Lexuz_Make] = "Lexuz";
   makes[LG_Make] = "LG";
+  makes[Lifetec_Make] = "Lifetec";
   makes[Loewe_Make] = "Loewe";
   makes[Logitech_Make] = "Logitech";
   makes[Magnavox_Make] = "Magnavox";
   makes[Magnum_Make] = "Magnum";
+  makes[Medion_Make] = "Medion";
   makes[Microsoft_Make] = "Microsoft";
   makes[Mitsubishi_Make] = "Mitsubishi";
   makes[Motorola_Make] = "Motorola";
@@ -85,6 +90,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Sony_Make] = "Sony";
   makes[Starsat_Make] = "Starsat";
   makes[Strong_Make] = "Strong";
+  makes[Sylvania_Make] = "Sylvania";
   makes[Technics_Make] = "Technics";
   makes[Technisat_Make] = "Technisat";
   makes[Telefunken_Make] = "Telefunken";
@@ -93,10 +99,12 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Tivo_Make] = "TiVo";
   makes[Topfield_Make] = "Topfield";
   makes[Toshiba_Make] = "Toshiba";
+  makes[Triax_Make] = "Triax";
   makes[United_Make] = "United";
   makes[Universum_Make] = "Universum";
   makes[Vestel_Make] = "Vestel";
   makes[Viewsat_Make] = "Viewsat";
+  makes[Viewsonic_Make] = "Viewsonic";
   makes[Virgin_Make] = "Virgin Media";
   makes[Vizio_Make] = "Vizio";
   makes[WD_Make] = "Western Digital";
@@ -104,12 +112,26 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Xcruiser_Make] = "Xcruiser";
   makes[Yamaha_Make] = "Yamaha";
   makes[Zenith_Make] = "Zenith";
+
+  MakeCollection::const_iterator i = makes.begin();
+  while (i != makes.end())
+  {
+    makeIDs[i->second] = i->first;
+    ++i;
+  }
 }
 
 const char *PIRMakeMgr::getMakeString(
   PIRMakeName n)
 {
   return makes[n];
+}
+
+
+PIRMakeName PIRMakeMgr::getMakeID(
+  QString name)
+{
+  return makeIDs[name];
 }
 
 

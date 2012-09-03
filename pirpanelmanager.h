@@ -15,7 +15,7 @@ class PIRTVForm;
 class PIRInputForm;
 class PIRAdjustForm;
 class PIRAirConditionerForm;
-class PIRFavoritesForm;
+class PIRAudioDeviceForm;
 
 class PIRKeysetWidgetItem;
 class PIRKeysetManager;
@@ -56,20 +56,13 @@ public:
   void useMainPanel();
   void useAltMainPanel();
 
-  void selectPrevFavKeyset();
-  void selectNextFavKeyset();
- 
-  void addFavoritesItem(
-    PIRKeysetWidgetItem *item);
-
-  // This is a hack:
-  QListWidget *getFavoritesListWidget();
-
+/*
   void setupUniversalTabs();
   void setupTVTabs();
   void setupVideoTabs();
   void setupACTabs();
   void setupRecordTabs();
+*/
   void setupTabs(PIRTabBarName name);
 
 private:
@@ -89,7 +82,7 @@ private:
   PIRInputForm *inputForm;
   PIRAdjustForm *adjustForm;
   PIRAirConditionerForm *acForm;
-  PIRFavoritesForm *favoritesForm;
+  PIRAudioDeviceForm *audioDeviceForm;
 
   PIRPanelDisplayNameCollection shortPanelNames;
   PIRPanelDisplayNameCollection longPanelNames;

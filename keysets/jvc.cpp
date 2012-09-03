@@ -666,7 +666,7 @@ void JVCAudio1::populateProtocol(
   addKey("MD-AUX", AuxInput_Key, 0x3EA3, 16); // "TAPE-AUX"
   addKey("TAPE", TapeInput_Key, 0x3FA3, 16);
   addKey("FM-MODE", FMMode_Key, 0x5AA3, 16);
-  addKey("TUNER-BAND", TunerBand_Key, 0x5BA3, 16);
+  addKey("TUNER-BAND", TunerInput_Key, 0x5BA3, 16);
   addKey("AHB-PRO", Unmapped_Key, 0x75A3, 16);
   addKey("AUTO-PRESET", Unmapped_Key, 0x77A3, 16);
 
@@ -836,7 +836,7 @@ void JVCAudio2::populateProtocol(
   addKey("vol+", VolumeUp_Key, 0x01, 8);
   addKey("vol-", VolumeDown_Key, 0x02, 8);
   addKey("ACTIVE_HYPER_BASS", EnhancedBass_Key, 0x04, 8); // "bass"
-  addKey("band", TunerBand_Key, 0x0B, 8);  // "TUNER_BAND"
+  addKey("band", TunerInput_Key, 0x0B, 8);  // "TUNER_BAND"
   addKey("aux", AuxInput_Key, 0x0D, 8);
 
   addKey("enter", Enter_Key, 0x11, 8);

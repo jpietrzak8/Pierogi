@@ -448,10 +448,10 @@ void PanasonicVCR1::populateProtocol(
   addKaseikyoKey("INFO", Info_Key, 0x009, 0x39);
   addKaseikyoKey("-/--", DoubleDigit_Key, 0x009, 0x3B);
   addKaseikyoKey("POWER", Power_Key, 0x009, 0x3D);
-  addKaseikyoKey("INDEX", Unmapped_Key, 0x009, 0x40);
+  addKaseikyoKey("INDEX", IndexSearch_Key, 0x009, 0x40);
   addKaseikyoKey("time_search", Unmapped_Key, 0x009, 0x44);
-  addKaseikyoKey("INDEXL", Unmapped_Key, 0x009, 0x49);
-  addKaseikyoKey("INDEXR", Unmapped_Key, 0x009, 0x4A);
+  addKaseikyoKey("INDEXL", Previous_Key, 0x009, 0x49);
+  addKaseikyoKey("INDEXR", Next_Key, 0x009, 0x4A);
   addKaseikyoKey("mem_rep", Unmapped_Key, 0x009, 0x53);
   addKaseikyoKey("COUNTER_RESET", Unmapped_Key, 0x009, 0x54);
   addKaseikyoKey("TAPE_REMAIN", Unmapped_Key, 0x009, 0x55);
@@ -462,7 +462,7 @@ void PanasonicVCR1::populateProtocol(
   addKaseikyoKey("TRACKING_AUTO", AutoTracking_Key, 0x009, 0xB0);
   addKaseikyoKey("TRACKING_PLUS", TrackingPlus_Key, 0x009, 0xB1);
   addKaseikyoKey("TRACKING_MINUS", TrackingMinus_Key, 0x009, 0xB2);
-  addKaseikyoKey("TIMERREC", Timer_Key, 0x009, 0xB4);
+  addKaseikyoKey("TIMERREC", RecordTimed_Key, 0x009, 0xB4);
   addKaseikyoKey("AV", Unmapped_Key, 0x009, 0xC0);
   addKaseikyoKey("DIRECT_TV_REC", Unmapped_Key, 0x009, 0xC2);
   addKaseikyoKey("mesecam", Unmapped_Key, 0x009, 0xC9);
@@ -481,7 +481,7 @@ void PanasonicVCR1::populateProtocol(
   addKaseikyoKey("rotatedown", Unmapped_Key, 0x019, 0x03);
   addKaseikyoKey("set", Unmapped_Key, 0x019, 0x04);
   addKaseikyoKey("clear", Unmapped_Key, 0x019, 0x05);
-  addKaseikyoKey("VPS/PDC", Unmapped_Key, 0x019, 0x06);
+  addKaseikyoKey("VPS/PDC", RecordPDC_Key, 0x019, 0x06);
   addKaseikyoKey("OffTimer", Sleep_Key, 0x019, 0x08);
   addKaseikyoKey("CANCEL", Clear_Key, 0x019, 0x09);
   addKaseikyoKey("SPEED", VHSSpeed_Key, 0x019, 0x0A);
@@ -489,7 +489,7 @@ void PanasonicVCR1::populateProtocol(
   addKaseikyoKey("RADIO_TUNE", Unmapped_Key, 0x019, 0x38);
   addKaseikyoKey("MENU", Menu_Key, 0x019, 0x56);
   addKaseikyoKey("OK", Select_Key, 0x019, 0x58);
-  addKaseikyoKey("SHOWVIEW", Unmapped_Key, 0x019, 0x5D);
+  addKaseikyoKey("SHOWVIEW", Unmapped_Key, 0x019, 0x5D); // vhsplus+, etc.
   addKaseikyoKey("DISPLAY", Unmapped_Key, 0x019, 0x5F);
   addKaseikyoKey("EXIT", Exit_Key, 0x019, 0x66);
   addKaseikyoKey("CHECK+", Unmapped_Key, 0x019, 0x90);
@@ -535,7 +535,7 @@ void PanasonicVCR1a::populateProtocol(
 
   addKaseikyoKey("OSD", Info_Key, 0x009, 0x57);
   addKaseikyoKey("AV", Input_Key, 0x009, 0xC0);
-  addKaseikyoKey("DISPLAY", Info_Key, 0x019, 0x5F);
+  addKaseikyoKey("DISPLAY", Unmapped_Key, 0x019, 0x5F);
 }
 
 
@@ -619,7 +619,7 @@ void PanasonicVCR2::populateProtocol(
   addPanOldKey("PLAY", Play_Key, 0x02, 0x0A);
   addPanOldKey("REV_PLAY", Unmapped_Key, 0x02, 0x0B);
   addPanOldKey("F.ADV", StepForward_Key, 0x02, 0x0C);
-  addPanOldKey("x2", Unmapped_Key, 0x02, 0x0E);
+  addPanOldKey("x2", PlayX2_Key, 0x02, 0x0E);
   addPanOldKey("SLOW", Slow_Key, 0x02, 0x0F);
   addPanOldKey("1", One_Key, 0x02, 0x10);
   addPanOldKey("2", Two_Key, 0x02, 0x11);
@@ -641,10 +641,10 @@ void PanasonicVCR2::populateProtocol(
   addPanOldKey("MEMORY_SEARCH", Memory_Key, 0x02, 0x32);
   addPanOldKey("RESET_INDEX", Reset_Key, 0x02, 0x33);
   addPanOldKey("INTRO_SCAN", Unmapped_Key, 0x02, 0x34);
-  addPanOldKey("timer_rec", Timer_Key, 0x02, 0x36);
+  addPanOldKey("timer_rec", RecordTimed_Key, 0x02, 0x36);
   addPanOldKey("AUDIO-SELECT", Audio_Key, 0x02, 0x3D);
 
-  addPanOldKey("VPS", VHSSpeed_Key, 0x03, 0x06); // Might be wrong
+  addPanOldKey("VPS", RecordPDC_Key, 0x03, 0x06);
   addPanOldKey("prog", Program_Key, 0x03, 0x2C);
   addPanOldKey("next", Next_Key, 0x03, 0x3A);
 
@@ -848,7 +848,7 @@ void PanasonicAudio1::populateProtocol(
   addKaseikyoKey("vol+", VolumeUp_Key, 0xC2A, 0xB0);
   addKaseikyoKey("vol-", VolumeDown_Key, 0xC2A, 0xB1);
   addKaseikyoKey("cd", CDInput_Key, 0xC2A, 0xB6);
-  addKaseikyoKey("tuner-band", TunerBand_Key, 0xC2A, 0xB8);
+  addKaseikyoKey("tuner-band", TunerInput_Key, 0xC2A, 0xB8);
   addKaseikyoKey("sleep", Sleep_Key, 0xC2A, 0xBC);
   addKaseikyoKey("power", Power_Key, 0xC2A, 0xBF);
 

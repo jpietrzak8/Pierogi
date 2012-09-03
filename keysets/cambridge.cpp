@@ -158,7 +158,7 @@ void CambridgeAudio2::populateProtocol(
   addKey("DDEX_DTSES", Unmapped_Key, 0x17, 8);
   addKey("STEREO", Unmapped_Key, 0x1A, 8);
   addKey("APS", Unmapped_Key, 0x1B, 8);
-  addKey("TUNER_AM_FM", TunerBand_Key, 0x1C, 8);
+  addKey("TUNER_AM_FM", TunerInput_Key, 0x1C, 8);
   addKey("STORE", Memory_Key, 0x1D, 8);
   addKey("MODE", Mode_Key, 0x1E, 8);
   addKey("VOLUME_DOWN", VolumeDown_Key, 0x1F, 8);

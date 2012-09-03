@@ -46,8 +46,8 @@ void ArcamReceiver1::populateProtocol(
   addKey("trim", Unmapped_Key, 0x1425, 13);
   addKey("sleep", Sleep_Key, 0x142A, 13);
 
-  addKey("am", TunerBand_Key, 0x1434, 13); // Also wrong!
-  addKey("fm", TunerInput_Key, 0x1435, 13); // Not right!
+  addKey("am", AM_Key, 0x1434, 13);
+  addKey("fm", FM_Key, 0x1435, 13);
   addKey("tmode", FMMode_Key, 0x1436, 13); // ?
   addKey("info", Info_Key, 0x1437, 13);
   addKey("p+", ChannelUp_Key, 0x1438, 13);

@@ -53,12 +53,9 @@ enum PIRKeyName{
   Play_Key,
   Pause_Key,
   Stop_Key,
-  Record_Key,
-  RecordPause_Key,
-  RecordStop_Key,
-  RecordMute_Key,
   FastForward_Key,
   Rewind_Key,
+  PlayX2_Key,
   Next_Key,
   Previous_Key,
   StepForward_Key,
@@ -74,8 +71,12 @@ enum PIRKeyName{
   SlowMinus_Key,
   Timer_Key,
   Clock_Key,
-  NextDisc_Key,
-  PrevDisc_Key,
+  Record_Key,
+  RecordPause_Key,
+  RecordStop_Key,
+  RecordMute_Key,
+  RecordTimed_Key,
+  RecordPDC_Key,
 
   // Menu control:
   Menu_Key,
@@ -123,8 +124,13 @@ enum PIRKeyName{
   PIPScan_Key,
 
   // DVD / Blue-ray / etc. keys:
+  NextDisc_Key,
+  PrevDisc_Key,
   DiscTitle_Key,
   DiscMenu_Key,
+  DiscOne_Key,
+  DiscTwo_Key,
+  DiscThree_Key,
   Angle_Key,
 
   // VHS / Beta / etc. keys:
@@ -132,6 +138,10 @@ enum PIRKeyName{
   TrackingPlus_Key,
   TrackingMinus_Key,
   AutoTracking_Key,
+  IndexSearch_Key, // also known as VISS
+  IndexMark_Key,
+  IndexErase_Key,
+  OneTouchPlayBack_Key,
 
   // Audio/Video Adjustment Controls:
   PictureMode_Key,
@@ -191,6 +201,13 @@ enum PIRKeyName{
   NextPreset_Key,
   PrevPreset_Key,
 
+  // Audio controls:
+//  TunerBand_Key,
+  FMMode_Key,
+  FM_Key,
+  AM_Key, // also "MW"
+  LW_Key,
+
   // Air Conditioner controls:
   TempUp_Key,
   TempDown_Key,
@@ -213,8 +230,6 @@ enum PIRKeyName{
   Scan_Key,
   Zoom_Key,
   LiveTV_Key,
-  TunerBand_Key,
-  FMMode_Key,
   Mode_Key
 };
 

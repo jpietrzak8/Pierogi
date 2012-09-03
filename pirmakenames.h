@@ -7,13 +7,16 @@ class QComboBox;
 enum PIRMakeName{
   Any_Make,
   Acer_Make,
+  ADB_Make,
   Admiral_Make,
   Aiwa_Make,
+  Anitech_Make,
   AOC_Make,
   Apple_Make,
   Arcam_Make,
   Beko_Make,
   BenQ_Make,
+  Blaupunkt_Make,
   Bose_Make,
   Bush_Make,
   Cambridge_Make,
@@ -54,10 +57,12 @@ enum PIRMakeName{
   Kenwood_Make,
   Lexuz_Make,
   LG_Make,
+  Lifetec_Make,
   Loewe_Make,
   Logitech_Make,
   Magnavox_Make,
   Magnum_Make,
+  Medion_Make,
   Microsoft_Make,
   Mitsubishi_Make,
   Motorola_Make,
@@ -86,6 +91,7 @@ enum PIRMakeName{
   Sony_Make,
   Starsat_Make,
   Strong_Make,
+  Sylvania_Make,
   Technics_Make,
   Technisat_Make,
   Telefunken_Make,
@@ -94,10 +100,12 @@ enum PIRMakeName{
   Tivo_Make,
   Topfield_Make,
   Toshiba_Make,
+  Triax_Make,
   United_Make,
   Universum_Make,
   Vestel_Make,
   Viewsat_Make,
+  Viewsonic_Make,
   Virgin_Make,
   Vizio_Make,
   WD_Make,
@@ -111,7 +119,9 @@ enum PIRMakeName{
 // An object of convenience:
 
 #include <map>
+#include <QString>
 typedef std::map<PIRMakeName, const char *> MakeCollection;
+typedef std::map<QString, PIRMakeName> ReverseMakeCollection;
 
 class PIRMakeMgr
 {
@@ -121,11 +131,15 @@ public:
   const char *getMakeString(
     PIRMakeName n);
 
+  PIRMakeName getMakeID(
+    QString name);
+
   void populateComboBox(
     QComboBox *cb);
 
 private:
   MakeCollection makes;
+  ReverseMakeCollection makeIDs;
 };
 
 #endif // PIRMAKENAMES_H

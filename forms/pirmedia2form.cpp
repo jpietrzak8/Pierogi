@@ -22,7 +22,7 @@ void PIRMedia2Form::enableButtons(
   const PIRKeysetManager *km,
   unsigned int id)
 {
-  emit tunerBandEnabled(km->hasKey(id, TunerBand_Key));
+  emit tunerBandEnabled(km->hasKey(id, TunerInput_Key));
   emit programEnabled(km->hasKey(id, Program_Key));
   emit memoryEnabled(km->hasKey(id, Memory_Key));
   emit callEnabled(km->hasKey(id, Call_Key));
@@ -43,7 +43,7 @@ void PIRMedia2Form::enableButtons(
 
 void PIRMedia2Form::on_tunerBandButton_pressed()
 {
-  mainWindow->startRepeating(TunerBand_Key);
+  mainWindow->startRepeating(TunerInput_Key);
 }
 
 void PIRMedia2Form::on_tunerBandButton_released()

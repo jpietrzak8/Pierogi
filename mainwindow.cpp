@@ -19,6 +19,7 @@
 #include "pirdocumentationform.h"
 #include "piraboutform.h"
 #include "dialogs/pirtabschoicedialog.h"
+#include "dialogs/pirfavoritesdialog.h"
 
 #include "pirkeysetmanager.h"
 #include "pirpanelmanager.h"
@@ -65,20 +66,15 @@ MainWindow::MainWindow(QWidget *parent)
   // Display the panels:
   myPanels->updateTabSet();
 
-  // Add the corner button:
-  insertCornerButton();
-
   // Construct the rest of the forms:
   selectKeysetForm = new PIRSelectKeysetForm(this);
-  myKeysets->populateSelectionWidget(selectKeysetForm);
+  favoritesDialog = new PIRFavoritesDialog(this);
+  myKeysets->populateListWidgets(selectKeysetForm, favoritesDialog);
 
   selectDeviceForm = new PIRSelectDeviceForm(this);
   PIRKeysetMetaData::populateDevices(selectDeviceForm);
 
   preferencesForm = new PIRPreferencesForm(this, myKeysets);
-
-  // Remember any favorites the user has already set:
-  populateFavorites();
 
   // Retrieve the user's preferences:
   QSettings settings("pietrzak.org", "Pierogi");
@@ -90,9 +86,12 @@ MainWindow::MainWindow(QWidget *parent)
       currentKeyset);
   }
 
+  // Add the corner buttons:
+  insertCornerButtons();
+
   enableButtons();
 
-  QListWidget *fkw = myPanels->getFavoritesListWidget();
+  QListWidget *fkw = favoritesDialog->getFavoritesListWidget();
 
   connect(
     fkw,
@@ -376,34 +375,11 @@ void MainWindow::finalCleanup()
 }
 
 
-void MainWindow::addCurrentKeyset(
-  QListWidget *qlw)
+void MainWindow::addToFavorites(
+  PIRKeysetWidgetItem *kwi)
 {
-  // Is the current keyset already a favorite?
-  int count = qlw->count();
-  int index = 0;
-  PIRKeysetWidgetItem *kwi = NULL;
-  while (index < count)
-  {
-    kwi = dynamic_cast<PIRKeysetWidgetItem *>(
-      qlw->item(index));
-
-    if (kwi && (kwi->getID() == currentKeyset))
-    {
-      // Current keyset already in list!  No need to continue.
-      return;
-    }
-    ++index;
-  }
-
-  // Ok, add the current keyset to the favorites:
-  PIRMakeName make = myKeysets->getMake(currentKeyset);
-
-  QString name = makeManager.getMakeString(make);
-  name.append(" ");
-  name.append(myKeysets->getDisplayName(currentKeyset));
-
-  qlw->addItem(new PIRKeysetWidgetItem(name, currentKeyset, make));
+  //Add keyset to the favorites:
+  favoritesDialog->addItem(new PIRKeysetWidgetItem(kwi));
 
   // And, add the keyset id to the persistent list:
   QSettings settings("pietrzak.org", "Pierogi");
@@ -416,22 +392,18 @@ void MainWindow::addCurrentKeyset(
 
   settings.setValue(
     "keysetMake",
-    makeManager.getMakeString(myKeysets->getMake(currentKeyset)));
+    makeManager.getMakeString(kwi->getMake()));
 
-  settings.setValue("keysetName", myKeysets->getDisplayName(currentKeyset));
+  settings.setValue("keysetName", kwi->getInternalName());
 
   settings.endArray();
 }
 
 
-void MainWindow::removeFavoriteKeyset(
-  QListWidget *qlw)
+void MainWindow::removeFromFavorites(
+  unsigned int keysetID)
 {
-  // Deleting an item removes it from the list, so just grab the currently
-  // selected item and delete it:
-  QListWidgetItem *item = qlw->currentItem();
-
-  if (item) delete item;
+  favoritesDialog->removeItem(keysetID);
 
   // Remove this item from the persistent list.  Well, actually, it seems a
   // little more convenient to just blow away the existing list of favorites
@@ -441,7 +413,7 @@ void MainWindow::removeFavoriteKeyset(
 
   settings.remove("favorites");
 
-  int count = qlw->count();
+  int count = favoritesDialog->getCount();
 
   // If the count is empty, we can stop right here:
   if (count == 0) return;
@@ -452,7 +424,7 @@ void MainWindow::removeFavoriteKeyset(
   settings.beginWriteArray("favorites");
   while (index < count)
   {
-    kwi = dynamic_cast<PIRKeysetWidgetItem *>(qlw->item(index));
+    kwi = favoritesDialog->getItem(index);
 
     settings.setArrayIndex(index);
     id = kwi->getID();
@@ -469,6 +441,7 @@ void MainWindow::removeFavoriteKeyset(
 }
 
 
+/*
 void MainWindow::populateFavorites()
 {
   QSettings settings("pietrzak.org", "Pierogi");
@@ -491,7 +464,7 @@ void MainWindow::populateFavorites()
     if (kwi)
     {
       // Keyset does exist, so continue:
-      myPanels->addFavoritesItem(kwi);
+      favoritesDialog->addItem(kwi);
     }
 
     ++index;
@@ -499,6 +472,7 @@ void MainWindow::populateFavorites()
 
   settings.endArray();
 }
+*/
 
 
 void MainWindow::startRepeating(
@@ -535,24 +509,25 @@ void MainWindow::stopRepeating()
 
 void MainWindow::selectPrevFavKeyset()
 {
-  myPanels->selectPrevFavKeyset();
+  favoritesDialog->selectPrevFavKeyset();
 }
 
 
 void MainWindow::selectNextFavKeyset()
 {
-  myPanels->selectNextFavKeyset();
+  favoritesDialog->selectNextFavKeyset();
 }
 
 
-void MainWindow::insertCornerButton()
+void MainWindow::insertCornerButtons()
 {
-  // Set up the dialog box:
+  // Set up the dialog boxes:
   PIRTabsChoiceDialog *tcd = new PIRTabsChoiceDialog(this);
+//  favoritesDialog = new PIRFavoritesDialog(this);
 
-  // Next, set up the corner button itself:
+  // Next, set up the corner buttons:
   QPushButton *button =
-    new QPushButton(QIcon(":/icons/align_just_icon&32.png"), "");
+    new QPushButton(QIcon(":/icons/folder_plus_icon&32.png"), "");
 
   button->setFlat(true);
 
@@ -563,7 +538,21 @@ void MainWindow::insertCornerButton()
     SLOT(exec()),
     Qt::QueuedConnection);
 
-  ui->mainTabWidget->setCornerWidget(button);
+  ui->mainTabWidget->setCornerWidget(button, Qt::TopRightCorner);
+
+  button =
+    new QPushButton(QIcon(":/icons/align_just_icon&32.png"), "");
+
+  button->setFlat(true);
+
+  connect(
+    button,
+    SIGNAL(clicked()),
+    favoritesDialog,
+    SLOT(exec()),
+    Qt::QueuedConnection);
+
+  ui->mainTabWidget->setCornerWidget(button, Qt::TopLeftCorner);
 }
 
 

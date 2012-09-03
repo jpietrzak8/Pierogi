@@ -29,7 +29,6 @@ void LGTV1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
-//  setPreData(0x20DF, 16);
   setPreData(0x04, 8);
 
   addKey("p+", ChannelUp_Key, 0x00, 8);
@@ -375,7 +374,6 @@ void LGDisc1::populateProtocol(
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
 
-//  setPreData(0x3434, 16);
   setPreData(0x2C2C, 16);
 
   addKey("cd-dvd", Unmapped_Key, 0x03, 8);
@@ -404,7 +402,8 @@ void LGDisc1::populateProtocol(
   addKey("program", Program_Key, 0x4D, 8);
   addKey("repeat", Repeat_Key, 0x4E, 8);
   addKey("pause", Pause_Key, 0x4F, 8);
-  addKey("band", TunerBand_Key, 0x59, 8);
+  addKey("band", FM_Key, 0x59, 8); // This is a hack
+  addKey("band", AM_Key, 0x59, 8); // This too
   addKey("dimmer", Unmapped_Key, 0x5E, 8);
   addKey("rds", Unmapped_Key, 0x60, 8);
   addKey("exit_cancel", Unmapped_Key, 0x69, 8);
@@ -413,7 +412,7 @@ void LGDisc1::populateProtocol(
   addKey("pty", Unmapped_Key, 0x71, 8);
   addKey("i_ii", Unmapped_Key, 0x7A, 8);
   addKey("text", Unmapped_Key, 0x7B, 8);
-  addKey("tv_radio", Unmapped_Key, 0x82, 8);
+  addKey("tv_radio", TunerInput_Key, 0x82, 8);
 //  addKey("aux", Unmapped_Key, 0x8A, 8);
   addKey("open-close", Eject_Key, 0x9A, 8);
   addKey("audio", Audio_Key, 0xA0, 8);
@@ -463,7 +462,6 @@ void LGDisc2::populateProtocol(
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
 
-//  setPreData(0xB4B4, 16);
   setPreData(0x2D2D, 16);
 
   addKey("POWER", Power_Key, 0x30, 8);
@@ -564,7 +562,6 @@ void LGVCR1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
-//  setPreData(0x7689, 16);
   setPreData(0x6E, 8);
 
   addKey("eject", Eject_Key, 0x00, 8);
@@ -594,7 +591,7 @@ void LGVCR1::populateProtocol(
   addKey("ok", Select_Key, 0x1E, 8);
   addKey("clear/reset", Clear_Key, 0x1F, 8);  // might be wrong
   addKey("timer-prog", Program_Key, 0x3A, 8);
-  addKey("viss", Unmapped_Key, 0x41, 8); // "marker-search"
+  addKey("viss", IndexSearch_Key, 0x41, 8); // "marker-search"
   addKey("trk-", TrackingMinus_Key, 0x44, 8);
   addKey("trk+", TrackingPlus_Key, 0x45, 8);
   addKey("*", Unmapped_Key, 0x47, 8);

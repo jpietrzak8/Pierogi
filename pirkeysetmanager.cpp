@@ -1,17 +1,23 @@
 #include "pirkeysetmanager.h"
 
+#include <QSettings>
+
 #include "pirkeysetmetadata.h"
 #include "pirselectkeysetform.h"
 #include "pirkeysetwidgetitem.h"
+#include "dialogs/pirfavoritesdialog.h"
 
 #include "keysets/acer.h"
+#include "keysets/adb.h"
 #include "keysets/admiral.h"
 #include "keysets/aiwa.h"
+#include "keysets/anitech.h"
 #include "keysets/aoc.h"
 #include "keysets/apple.h"
 #include "keysets/arcam.h"
 #include "keysets/beko.h"
 #include "keysets/benq.h"
+#include "keysets/blaupunkt.h"
 #include "keysets/bose.h"
 #include "keysets/bush.h"
 #include "keysets/cambridge.h"
@@ -52,11 +58,13 @@
 #include "keysets/kenwood.h"
 #include "keysets/lexuz.h"
 #include "keysets/lg.h"
+#include "keysets/lifetec.h"
 #include "keysets/loewe.h"
 #include "keysets/logitech.h"
 #include "keysets/magnavox.h"
 #include "keysets/magnum.h"
 #include "keysets/mce.h"
+#include "keysets/medion.h"
 #include "keysets/mitsubishi.h"
 #include "keysets/motorola.h"
 #include "keysets/nad.h"
@@ -84,6 +92,7 @@
 #include "keysets/sony.h"
 #include "keysets/starsat.h"
 #include "keysets/strong.h"
+#include "keysets/sylvania.h"
 #include "keysets/technics.h"
 #include "keysets/technisat.h"
 #include "keysets/telefunken.h"
@@ -92,10 +101,12 @@
 #include "keysets/tivo.h"
 #include "keysets/topfield.h"
 #include "keysets/toshiba.h"
+#include "keysets/triax.h"
 #include "keysets/united.h"
 #include "keysets/universum.h"
 #include "keysets/vestel.h"
 #include "keysets/viewsat.h"
+#include "keysets/viewsonic.h"
 #include "keysets/virgin.h"
 #include "keysets/vizio.h"
 #include "keysets/wd.h"
@@ -108,6 +119,9 @@
 
 // I'll be handling the threading of the keyset commands in this object:
 #include <QMutex>
+
+// Debugging includes:
+//#include <iostream>
 
 // Global communications mechanism:
 extern bool stopRepeatingFlag;
@@ -124,6 +138,11 @@ PIRKeysetManager::PIRKeysetManager()
   // Create the keysets.  Ugly!  This needs to be worked on!
   setupKeyset(new AcerTV1(++counter));
   setupKeyset(new AcerPC1(++counter));
+
+  setupKeyset(new ADBSTB1(++counter));
+  setupKeyset(new ADBSTB2(++counter));
+  setupKeyset(new ADBSTB3(++counter));
+  setupKeyset(new ADBSTB4(++counter));
 
   setupKeyset(new AdmiralTV1(++counter));
   setupKeyset(new AdmiralTV2(++counter));
@@ -145,6 +164,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new AiwaCarStereo1(++counter));
   setupKeyset(new AiwaDVD1(++counter));
 
+  setupKeyset(new AnitechTV1(++counter));
+  setupKeyset(new AnitechVCR1(++counter));
+
   setupKeyset(new AOCTV1(++counter));
 
   setupKeyset(new AppleWhiteRemote(++counter));
@@ -154,6 +176,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new BekoTV1(++counter));
 
   setupKeyset(new BenQTV1(++counter));
+
+  setupKeyset(new BlaupunktVCR1(++counter));
 
   setupKeyset(new BoseRadio1(++counter));
   setupKeyset(new BoseRadio2(++counter));
@@ -388,6 +412,11 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new LGVCR1b(++counter));
   setupKeyset(new LGAC1(++counter));
 
+  setupKeyset(new LifetecTV1(++counter));
+  setupKeyset(new LifetecTV2(++counter));
+  setupKeyset(new LifetecVCR1(++counter));
+  setupKeyset(new LifetecAudio1(++counter));
+
   setupKeyset(new LoeweTV1(++counter));
   setupKeyset(new LoeweVCR1(++counter));
   setupKeyset(new LoeweDVD1(++counter));
@@ -410,6 +439,11 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new MCERemote1e(++counter));
   setupKeyset(new MCERemote1f(++counter));
   setupKeyset(new MCERemote1g(++counter));
+
+  setupKeyset(new MedionSTB1(++counter));
+  setupKeyset(new MedionDVD1(++counter));
+  setupKeyset(new MedionDVD2(++counter));
+  setupKeyset(new MedionVCR1(++counter));
 
   setupKeyset(new MitsubishiTV1(++counter));
   setupKeyset(new MitsubishiTV1a(++counter));
@@ -629,6 +663,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new StrongSat3(++counter));
   setupKeyset(new StrongSat4(++counter));
 
+  setupKeyset(new SylvaniaTV1(++counter));
+
   setupKeyset(new TechnicsAudio1(++counter));
   setupKeyset(new TechnicsAudio1a(++counter));
   setupKeyset(new TechnicsAudio2(++counter));
@@ -683,6 +719,10 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ToshibaDisc1c(++counter));
   setupKeyset(new ToshibaDisc1d(++counter));
 
+  setupKeyset(new TriaxSTB1(++counter));
+  setupKeyset(new TriaxSTB2(++counter));
+  setupKeyset(new TriaxSTB2a(++counter));
+
   setupKeyset(new UnitedDVD1(++counter));
   setupKeyset(new UnitedDVBT1(++counter));
 
@@ -699,6 +739,9 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new ViewsatSat1(++counter));
   setupKeyset(new ViewsatSat1a(++counter));
+
+  setupKeyset(new ViewsonicProjector1(++counter));
+  setupKeyset(new ViewsonicProjector2(++counter));
 
   setupKeyset(new VirginSTB1(++counter));
 
@@ -808,7 +851,7 @@ PIRKeysetWidgetItem *PIRKeysetManager::makeKeysetItem(
   fullname.append(" ");
   fullname.append(name);
 
-  return new PIRKeysetWidgetItem(fullname, id, getMake(id));
+  return new PIRKeysetWidgetItem(fullname, name, id, getMake(id));
 }
 
 
@@ -878,22 +921,111 @@ void PIRKeysetManager::setupKeyset(
 }
 
 
-void PIRKeysetManager::populateSelectionWidget(
-  PIRSelectKeysetForm *skf) const
+struct PIRUserData
 {
-  PIRMakeName make;
+  bool favorite;
+  QString nickname;
+};
+typedef std::map<QString, PIRUserData> PIRUDInnerMap;
+typedef std::map<int, PIRUDInnerMap> PIRUDOuterMap;
+
+void PIRKeysetManager::populateListWidgets(
+  PIRSelectKeysetForm *skf,
+  PIRFavoritesDialog *fd) const
+{
+  // First, pull out the user's keyset metadata:
+  QSettings settings("pietrzak.org", "Pierogi");
+
+  // Part 1 - The user's keyset nicknames:
+  int size = settings.beginReadArray("userNames");
+  int index = 0;
+  QString makeStr;
+  QString name;
+  PIRMakeName makeID;
+  QString userName;
+  PIRUDOuterMap userData;
+
+  while (index < size)
+  {
+    settings.setArrayIndex(index);
+    name = settings.value("keysetName").toString();
+    makeStr = settings.value("keysetMake").toString();
+    makeID = makeManager.getMakeID(makeStr);
+    userName = settings.value("keysetNickname").toString();
+
+    // Insert an entry into the map.  We initialize the favorites bool to
+    // false here, it'll be changed to true below if needed:
+    userData[makeID][name].nickname = userName;
+    userData[makeID][name].favorite = false;
+    ++index;
+  }
+  settings.endArray();
+
+  // Part 2 - The user's favorites:
+  size = settings.beginReadArray("favorites");
+  index = 0;
+
+  while (index < size)
+  {
+    settings.setArrayIndex(index);
+    name = settings.value("keysetName").toString();
+    makeStr = settings.value("keysetMake").toString();
+    makeID = makeManager.getMakeID(makeStr);
+
+    // Insert an entry into the map:
+    userData[makeID][name].favorite = true;
+
+    ++index;
+  }
+  settings.endArray();
+
+  // Now, we load the data into their respective QLists.
   PIRKeysetWidgetItem *kwi;
+  QString displayString;
+  PIRUDOuterMap::const_iterator outerIter;
+  PIRUDInnerMap::const_iterator innerIter;
 
   PIRKeysetCollection::const_iterator i = keysetsInfo.begin();
 
   while (i != keysetsInfo.end())
   {
     // Create a widget for the keyset:
-    make = i->second->getMake();
-    QString tempString = makeManager.getMakeString(make);
-    tempString.append(" ");
-    tempString.append(i->second->getKeysetName());
-    kwi = new PIRKeysetWidgetItem(tempString, i->first, make);
+    makeID = i->second->getMake();
+    name = i->second->getKeysetName();
+    displayString = makeManager.getMakeString(makeID);
+    displayString.append(" ");
+    displayString.append(name);
+
+    kwi = new PIRKeysetWidgetItem(displayString, name, i->first, makeID);
+
+    outerIter = userData.find(makeID);
+    if (outerIter != userData.end())
+    {
+      innerIter = outerIter->second.find(name);
+      if (innerIter != outerIter->second.end())
+      {
+        // We have user data for this keyset!
+        QString nick = innerIter->second.nickname;
+        if (!nick.isEmpty())
+        {
+          kwi->setNickname(nick);
+
+          displayString = nick;
+          displayString.append(" (");
+          displayString.append(kwi->text());
+          displayString.append(")");
+          kwi->setText(displayString);
+        }
+
+        // If this is a favorite, add it to favorites list:
+        if (innerIter->second.favorite)
+        {
+          kwi->setFavorite(true);
+          fd->addItem(kwi);
+        }
+      }
+    }
+
     skf->addWidgetItem(kwi);
 
     ++i;
@@ -913,3 +1045,4 @@ void PIRKeysetManager::populateDeviceTypes(
   }
 }
 */
+

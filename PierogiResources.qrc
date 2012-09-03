@@ -35,5 +35,6 @@
         <file>icons/red_pause.png</file>
         <file>icons/delete_icon&amp;48.png</file>
         <file>icons/align_just_icon&amp;32.png</file>
+        <file>icons/folder_plus_icon&amp;32.png</file>
     </qresource>
 </RCC>

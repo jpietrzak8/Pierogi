@@ -138,7 +138,7 @@ void TechnicsAudio2::populateProtocol(
   addKaseikyoKey("CD", CDInput_Key, 0x005, 0x94);
 
   addKaseikyoKey("AUTO/MONO", FMMode_Key, 0x045, 0x33);
-  addKaseikyoKey("TUNER/BAND", TunerBand_Key, 0x045, 0xA4);
+  addKaseikyoKey("TUNER/BAND", TunerInput_Key, 0x045, 0xA4);
 
   addKaseikyoKey("DECKSTOP", Unmapped_Key, 0x085, 0x00);
   addKaseikyoKey("DECK<<", Unmapped_Key, 0x085, 0x02);
@@ -207,7 +207,7 @@ void TechnicsAudio3::populateProtocol(
   addKaseikyoKey("muting", Mute_Key, 0x00A, 0x32);
   addKaseikyoKey("VCR/VDP", VCRInput_Key, 0x00A, 0x86);
   addKaseikyoKey("phono", PhonoInput_Key, 0x00A, 0x90);
-  addKaseikyoKey("Amp.Tuner", TunerInput_Key, 0x00A, 0x92);
+  addKaseikyoKey("Amp.Tuner", Unmapped_Key, 0x00A, 0x92);
   addKaseikyoKey("cd", CDInput_Key, 0x00A, 0x94);
   addKaseikyoKey("tape", TapeInput_Key, 0x00A, 0x96);
   addKaseikyoKey("TAPE2", Unmapped_Key, 0x00A, 0x97);
@@ -224,7 +224,7 @@ void TechnicsAudio3::populateProtocol(
   addKaseikyoKey("auto/mono", FMMode_Key, 0x04A, 0x33);
   addKaseikyoKey("Tuner.Preset.up", ChannelUp_Key, 0x04A, 0x34);
   addKaseikyoKey("Tuner.Preset.down", ChannelDown_Key, 0x04A, 0x35);
-  addKaseikyoKey("tuner/band", TunerBand_Key, 0x04A, 0xA4);
+  addKaseikyoKey("tuner/band", TunerInput_Key, 0x04A, 0xA4);
 
   addKaseikyoKey("tape_stop", Unmapped_Key, 0x08A, 0x00);
   addKaseikyoKey("tape_open/close", Unmapped_Key, 0x08A, 0x01);

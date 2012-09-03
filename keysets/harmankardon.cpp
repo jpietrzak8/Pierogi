@@ -37,8 +37,8 @@ void HarmanKardonAmp1::populateProtocol(
 
   addKey("CD_DISC", NextDisc_Key, 0x50, 8);
 
-  addKey("FM", TunerBand_Key, 0x81, 8); // "am/fm"
-  addKey("AM", Unmapped_Key, 0x82, 8);
+  addKey("FM", FM_Key, 0x81, 8); // "am/fm"
+  addKey("AM", AM_Key, 0x82, 8);
   addKey("TUNEUP", ChannelUp_Key, 0x84, 8);
   addKey("TUNEDN", ChannelDown_Key, 0x85, 8);
   addKey("mem", Memory_Key, 0x86, 8);

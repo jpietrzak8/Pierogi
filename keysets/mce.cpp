@@ -53,8 +53,8 @@ void MCERemote1::populateProtocol(
   addKey("Record", Record_Key, 0x17, 8);
   addKey("Pause", Pause_Key, 0x18, 8);
   addKey("Stop", Stop_Key, 0x19, 8);
-  addKey("Skip", Advance_Key, 0x1A, 8);
-  addKey("Replay", Replay_Key, 0x1B, 8);
+  addKey("Skip", Advance_Key, 0x1A, 8); // next?
+  addKey("Replay", Replay_Key, 0x1B, 8); // previous?
 
   addKey("Hash", Unmapped_Key, 0x1C, 8); // "Caps Lock"
   addKey("Star", Unmapped_Key, 0x1D, 8); // "Mouse"
@@ -83,10 +83,10 @@ void MCERemote1::populateProtocol(
   addKey("DVD angle", Angle_Key, 0x4B, 8);
   addKey("DVD audio", Audio_Key, 0x4C, 8);
   addKey("DVD subtitle", Captions_Key, 0x4D, 8);
-
   addKey("Print", Unmapped_Key, 0x4E, 8);
-  addKey("Radio", TunerInput_Key, 0x50, 8);
 
+  addKey("Radio", TunerInput_Key, 0x50, 8);
+  addKey("title", DiscTitle_Key, 0x51, 8);
   addKey("Teletext", Teletext_Key, 0x5A, 8);
   addKey("Red", Red_Key, 0x5B, 8);
   addKey("Green", Green_Key, 0x5C, 8);
@@ -258,4 +258,30 @@ void MCERemote1g::populateProtocol(
   MCERemote1::populateProtocol(guiObject);
 
   setPreData(0x74, 7);
+}
+
+
+MCEXboxRemote1::MCEXboxRemote1(
+  unsigned int index)
+  : MCERemote1g(index)
+{
+  setKeysetName("XBox 360 Remote 1");
+}
+
+
+void MCEXboxRemote1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  MCERemote1g::populateProtocol(guiObject);
+
+  addKey("A", Green_Key, 0x12, 8);
+  addKey("X", Blue_Key, 0x13, 8);
+  addKey("B", Red_Key, 0x25, 8);
+  addKey("Y", Yellow_Key, 0x26, 8);
 }

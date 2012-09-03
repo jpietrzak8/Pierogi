@@ -145,7 +145,6 @@ SOURCES += main.cpp mainwindow.cpp \
     forms/pirkeypadform.cpp \
     forms/pirmenuform.cpp \
     forms/pirmediaform.cpp \
-    forms/pirfavoritesform.cpp \
     pirpanelmanager.cpp \
     protocols/nokia32protocol.cpp \
     protocols/kathreinprotocol.cpp \
@@ -189,7 +188,20 @@ SOURCES += main.cpp mainwindow.cpp \
     dialogs/pirtabswidgetitem.cpp \
     keysets/technisat.cpp \
     keysets/strong.cpp \
-    keysets/proview.cpp
+    keysets/proview.cpp \
+    dialogs/pireditkeysetdialog.cpp \
+    keysets/adb.cpp \
+    keysets/triax.cpp \
+    keysets/sylvania.cpp \
+    keysets/anitech.cpp \
+    keysets/viewsonic.cpp \
+    forms/pirvcrform.cpp \
+    forms/pirvideodiscform.cpp \
+    forms/piraudiodeviceform.cpp \
+    dialogs/pirfavoritesdialog.cpp \
+    keysets/medion.cpp \
+    keysets/blaupunkt.cpp \
+    keysets/lifetec.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -309,7 +321,6 @@ HEADERS += mainwindow.h \
     forms/pirkeypadform.h \
     forms/pirmenuform.h \
     forms/pirmediaform.h \
-    forms/pirfavoritesform.h \
     pirpanelnames.h \
     pirpanelmanager.h \
     protocols/nokia32protocol.h \
@@ -354,7 +365,20 @@ HEADERS += mainwindow.h \
     dialogs/pirtabswidgetitem.h \
     keysets/technisat.h \
     keysets/strong.h \
-    keysets/proview.h
+    keysets/proview.h \
+    dialogs/pireditkeysetdialog.h \
+    keysets/adb.h \
+    keysets/sylvania.h \
+    keysets/triax.h \
+    keysets/anitech.h \
+    keysets/viewsonic.h \
+    forms/pirvcrform.h \
+    forms/pirvideodiscform.h \
+    forms/piraudiodeviceform.h \
+    dialogs/pirfavoritesdialog.h \
+    keysets/medion.h \
+    keysets/blaupunkt.h \
+    keysets/lifetec.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -371,13 +395,17 @@ FORMS += mainwindow.ui \
     forms/pirkeypadform.ui \
     forms/pirmenuform.ui \
     forms/pirmediaform.ui \
-    forms/pirfavoritesform.ui \
     forms/pirrecordform.ui \
     forms/piraltmainform.ui \
     pirpreferencesform.ui \
     forms/pirmacroform.ui \
     dialogs/pirtextentrydialog.ui \
-    dialogs/pirtabschoicedialog.ui
+    dialogs/pirtabschoicedialog.ui \
+    dialogs/pireditkeysetdialog.ui \
+    forms/pirvcrform.ui \
+    forms/pirvideodiscform.ui \
+    forms/piraudiodeviceform.ui \
+    dialogs/pirfavoritesdialog.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
@@ -446,7 +474,8 @@ OTHER_FILES += \
     qtc_packaging/debian_fremantle/postrm \
     icons/red_pause.png \
     icons/delete_icon&48.png \
-    icons/align_just_icon&32.png
+    icons/align_just_icon&32.png \
+    icons/folder_plus_icon&32.png
 
 RESOURCES += \
     PierogiResources.qrc

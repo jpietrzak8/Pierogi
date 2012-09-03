@@ -1,15 +1,22 @@
 #include "pirselectkeysetform.h"
 #include "ui_pirselectkeysetform.h"
-#include "pirkeysetwidgetitem.h"
+
 //#include <QListWidget>
+//#include <QListWidgetItem>
 #include <QKeyEvent>
+
+#include "mainwindow.h"
+#include "pirkeysetwidgetitem.h"
+#include "dialogs/pireditkeysetdialog.h"
 
 extern PIRMakeMgr makeManager;
 
 PIRSelectKeysetForm::PIRSelectKeysetForm(
-  QWidget *parent)
-  : QWidget(parent),
+  MainWindow *mw)
+  : QWidget(mw), // is this right?
     ui(new Ui::PIRSelectKeysetForm),
+    mainWindow(mw),
+    editDialog(0),
     currentMake(Any_Make)
 {
   ui->setupUi(this);
@@ -30,7 +37,7 @@ PIRSelectKeysetForm::PIRSelectKeysetForm(
   connect(
     ui->keysetListWidget,
     SIGNAL(itemActivated(QListWidgetItem *)),
-    parent,
+    mainWindow,
     SLOT(keysetSelectionChanged(QListWidgetItem *)),
     Qt::QueuedConnection);
 
@@ -41,6 +48,17 @@ PIRSelectKeysetForm::PIRSelectKeysetForm(
     this,
     SLOT(filterListByMake(int)),
     Qt::QueuedConnection);
+
+  // Open editor dialog for indivual keysets:
+  connect(
+    ui->keysetListWidget,
+    SIGNAL(itemClicked(QListWidgetItem *)),
+    this,
+    SLOT(openKeysetDialog(QListWidgetItem *)),
+    Qt::QueuedConnection);
+
+  // Go ahead and construct the dialog window right now:
+  editDialog = new PIREditKeysetDialog(mainWindow);
 }
 
 
@@ -150,4 +168,15 @@ void PIRSelectKeysetForm::refilterList()
 
     ++index;
   }
+}
+
+
+void PIRSelectKeysetForm::openKeysetDialog(
+  QListWidgetItem *item)
+{
+  PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *>(item);
+
+  editDialog->setupDialog(kwi);
+
+  editDialog->exec();
 }

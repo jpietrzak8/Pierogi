@@ -293,7 +293,7 @@ void DenonReceiver1::populateProtocol(
   addSharpKey("BTN_HDMI_CONTROL", Unmapped_Key, 0x0C, 0xAF);
   addSharpKey("ext.in", Unmapped_Key, 0x0C, 0xB5);
   addSharpKey("input-mode", Unmapped_Key, 0x0C, 0xB6);
-  addSharpKey("Shift", TunerBand_Key, 0x0C, 0xCD);
+  addSharpKey("Shift", Unmapped_Key, 0x0C, 0xCD);
   addSharpKey("channel-", ChannelDown_Key, 0x0C, 0xD5);
   addSharpKey("channel+", ChannelUp_Key, 0x0C, 0xD6);
   addSharpKey("Dimmer", Unmapped_Key, 0x0C, 0xDF);
@@ -457,7 +457,7 @@ void DenonReceiver1d::populateProtocol(
   addSharpKey("DECK", Unmapped_Key, 0x04, 0x75);
 
   addSharpKey("panel", Info_Key, 0x0C, 0x7E);
-  addSharpKey("TUNER", TunerInput_Key, 0x0C, 0xDD);
+  addSharpKey("TUNER", Unmapped_Key, 0x0C, 0xDD);
 }
 
 
@@ -557,7 +557,7 @@ void DenonReceiver2::populateProtocol(
   addSharpKey("tun_6", Six_Key, 0x13, 0x47);
   addSharpKey("tun_7", Seven_Key, 0x13, 0x48);
   addSharpKey("tun_8", Eight_Key, 0x13, 0x49);
-  addSharpKey("tun_shift", TunerBand_Key, 0x13, 0x4A);
+  addSharpKey("tun_shift", Unmapped_Key, 0x13, 0x4A);
   addSharpKey("amp_vol-down", VolumeDown_Key, 0x13, 0x4C);
   addSharpKey("amp_vol-up", VolumeUp_Key, 0x13, 0x4D);
   addSharpKey("amp_power", Power_Key, 0x13, 0x50);
@@ -781,7 +781,8 @@ void DenonAudio1::populateProtocol(
   addSharpKey("RDS", Unmapped_Key, 0x0C, 0xD2); // "TUNER_RDS"
   addSharpKey("CT", Unmapped_Key, 0x0C, 0xD3); // "TUNER_CT"
   addSharpKey("pty", Unmapped_Key, 0x0C, 0xD4); // "TUNER_PTY"
-  addSharpKey("TUNER BAND", TunerBand_Key, 0x0C, 0xD7);
+  addSharpKey("TUNER BAND", FM_Key, 0x0C, 0xD7); // this is a hack
+  addSharpKey("TUNER BAND", AM_Key, 0x0C, 0xD7); // this too
   addSharpKey("TUNER KEY_UP", ChannelUp_Key, 0x0C, 0xD9);
   addSharpKey("TUNER KEY_DOWN", ChannelDown_Key, 0x0C, 0xDA);
   addSharpKey("panel", Info_Key, 0x0C, 0xDE);
@@ -936,7 +937,7 @@ void DenonAudio2::populateProtocol(
   addKey("Volume_Down", VolumeDown_Key, 0x02, 8);
   addKey("Remain", Unmapped_Key, 0x03, 8);
   addKey("A.Edit", Unmapped_Key, 0x04, 8);
-  addKey("Tuner_Band", TunerBand_Key, 0x07, 8);
+  addKey("Tuner_Band", TunerInput_Key, 0x07, 8);
   addKey("Tape_1/2", Unmapped_Key, 0x09, 8);
   addKey("P.Mode", Unmapped_Key, 0x0B, 8);
   addKey("EQ_Pattern", Unmapped_Key, 0x11, 8);
@@ -1051,7 +1052,7 @@ void DenonAudio4::populateProtocol(
 //  setPreData(0x4040, 16);
   setPreData(0x0202, 16);
 
-  addKey("fm/am", TunerBand_Key, 0x00, 8);
+  addKey("fm/am", TunerInput_Key, 0x00, 8);
   addKey("rds", Unmapped_Key, 0x01, 8);
   addKey("1", One_Key, 0x02, 8);
   addKey("6", Six_Key, 0x03, 8);

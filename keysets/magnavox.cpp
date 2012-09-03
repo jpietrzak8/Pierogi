@@ -120,7 +120,7 @@ void MagnavoxVCR1::populateProtocol(
   addKey("TvVolumeDn", Unmapped_Key, 0x1011, 13);
   addKey("TvChUp", Unmapped_Key, 0x1020, 13);
   addKey("TvChDn", Unmapped_Key, 0x1021, 13);
-  addKey("SkipSrch", Unmapped_Key, 0x016A, 13);
+  addKey("SkipSrch", IndexSearch_Key, 0x016A, 13); // Might be wrong
   addKey("FrameAdvance", StepForward_Key, 0x016B, 13);
   addKey("VcrChUp", Unmapped_Key, 0x1160, 13);
   addKey("VcrChDn", Unmapped_Key, 0x1161, 13);
@@ -137,7 +137,7 @@ void MagnavoxVCR1::populateProtocol(
   addKey("Memo", Unmapped_Key, 0x117B, 13);
   addKey("Speed", VHSSpeed_Key, 0x117A, 13);
   addKey("VcrTv", Unmapped_Key, 0x117E, 13);
-  addKey("2xPlay", Unmapped_Key, 0x116A, 13);
+  addKey("2xPlay", PlayX2_Key, 0x116A, 13);
 }
 
 

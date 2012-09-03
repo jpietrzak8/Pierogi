@@ -381,7 +381,7 @@ void SonyAudio1::populateProtocol(
   addSIRC12Key("DSG", Unmapped_Key, 0x0C, 0x31);
 
   addSIRC12Key("MEMORY", Program_Key, 0x0D, 0x0E);
-  addSIRC12Key("TUNER-BAND", TunerBand_Key, 0x0D, 0x0F);
+  addSIRC12Key("TUNER-BAND", TunerInput_Key, 0x0D, 0x0F);
   addSIRC12Key("TUNING_MODE", Unmapped_Key, 0x0D, 0x17);
   addSIRC12Key("STEREO-MONO", FMMode_Key, 0x0D, 0x21);
 
@@ -389,7 +389,7 @@ void SonyAudio1::populateProtocol(
   addSIRC12Key("REC", Record_Key, 0x0E, 0x1E);
   addSIRC12Key("TAPE", TapeInput_Key, 0x0E, 0x34);
 
-  addSIRC12Key("tuner", TunerInput_Key, 0x10, 0x0F); // "Tune Up"
+  addSIRC12Key("tuner", ChannelUp_Key, 0x10, 0x0F); // "Tune Up"
   addSIRC12Key("VOL+", VolumeUp_Key, 0x10, 0x12);
   addSIRC12Key("VOL-", VolumeDown_Key, 0x10, 0x13);
   addSIRC12Key("ON-OFF", Power_Key, 0x10, 0x15);
@@ -743,7 +743,7 @@ void SonyDVD1c::populateProtocol(
 SonyDVD2::SonyDVD2(
   unsigned int index)
   : PIRKeysetMetaData(
-      "DVD Keyset 1",
+      "DVD Keyset 2",
       Sony_Make,
       index)
 {

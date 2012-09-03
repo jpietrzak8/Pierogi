@@ -15,7 +15,7 @@ enum PIRPanelName
   Input_Panel,
   Adjust_Panel,
   AC_Panel,
-  Favorites_Panel,
+  Audio_Panel,
   Last_Panel_Marker // Used when traversing this enumeration.
 };
 
@@ -25,6 +25,9 @@ enum PIRTabBarName
   Universal_Tabs,
   TV_Tabs,
   VideoMedia_Tabs,
+//  VideoDisc_Tabs,
+//  VideoTape_Tabs,
+  Audio_Tabs,
   AC_Tabs,
   Record_Tabs
 };

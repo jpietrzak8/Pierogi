@@ -26,7 +26,7 @@ void BoseRadio1::populateProtocol(
   addKey("Mute", Mute_Key, 0x01, 8);
   addKey("Volume_Down", VolumeDown_Key, 0x02, 8);
   addKey("Volume_Up", VolumeUp_Key, 0x03, 8);
-  addKey("FM_AM", TunerBand_Key, 0x06, 8);
+  addKey("FM_AM", TunerInput_Key, 0x06, 8);
   addKey("1", One_Key, 0x07, 8);
   addKey("2", Two_Key, 0x08, 8);
   addKey("3", Three_Key, 0x09, 8);
@@ -80,13 +80,13 @@ void BoseRadio2::populateProtocol(
 
   addKey("on/off", Power_Key, 0x00, 8);
   addKey("4", Four_Key, 0x08, 8);
-  addKey("am", Red_Key, 0x10, 8); // sort of a hack to get AM in
+  addKey("am", AM_Key, 0x10, 8);
   addKey("6", Six_Key, 0x20, 8);
   addKey("trackprev", Previous_Key, 0x30, 8);
   addKey("trackprev", ChannelDown_Key, 0x30, 8);
   addKey("volup", VolumeUp_Key, 0x40,8);
   addKey("cdstop", Stop_Key, 0x50, 8);
-  addKey("fm", Green_Key, 0x60, 8); // also hack
+  addKey("fm", FM_Key, 0x60, 8);
   addKey("2", Two_Key, 0x70, 8);
   addKey("mute", Mute_Key, 0x80, 8);
   addKey("5", Five_Key, 0x88, 8);
@@ -129,7 +129,7 @@ void BoseRadio3::populateProtocol(
   addKey("VOL-", VolumeDown_Key, 0x02, 8);
   addKey("VOL+", VolumeUp_Key, 0x03, 8);
   addKey("STATION", Unmapped_Key, 0x04, 8);
-  addKey("AM/FM", TunerBand_Key, 0x05, 8);
+  addKey("AM/FM", TunerInput_Key, 0x05, 8);
   addKey("1", One_Key, 0x07, 8);
   addKey("2", Two_Key, 0x08, 8);
   addKey("3", Three_Key, 0x09, 8);
@@ -175,7 +175,7 @@ void BoseHomeTheater1::populateProtocol(
   addKey("mute", Mute_Key, 0x01, 8);
   addKey("vol down", VolumeDown_Key, 0x02, 8);
   addKey("vol up", VolumeUp_Key, 0x03, 8);
-  addKey("AM", Unmapped_Key, 0x05, 8);
+  addKey("AM", AM_Key, 0x05, 8);
   addKey("Video2", CableInput_Key, 0x0D, 8);
   addKey("Video1", AntennaInput_Key, 0x0E, 8);
   addKey("AUX", AuxInput_Key, 0x0F, 8);
@@ -202,7 +202,7 @@ void BoseHomeTheater1::populateProtocol(
   addKey("play", Play_Key, 0x55, 8);
   addKey("rewind", Rewind_Key, 0x57, 8);
   addKey("fast fwd", FastForward_Key, 0x58, 8);
-  addKey("FM", TunerBand_Key, 0x59, 8);
+  addKey("FM", FM_Key, 0x59, 8);
 
   addKey("right arrow", Right_Key, 0x60, 8);
   addKey("display/info", Info_Key, 0x80, 8);

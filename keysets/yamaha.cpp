@@ -244,7 +244,7 @@ void YamahaAudio2::populateProtocol(
   addKey("vcr", Unmapped_Key, 0x0F, 8);
   addKey("ch+", ChannelUp_Key, 0x10, 8);
   addKey("ch-", ChannelDown_Key, 0x11, 8);
-  addKey("abcde", TunerBand_Key, 0x12, 8); // "A/B/C/D/E" "tuner-toggle"
+  addKey("abcde", Unmapped_Key, 0x12, 8); // "A/B/C/D/E" "tuner-toggle"
   addKey("GO_VCR2", Unmapped_Key, 0x13, 8);
   addKey("phono", PhonoInput_Key, 0x14, 8);
   addKey("cd", CDInput_Key, 0x15, 8);
@@ -531,7 +531,7 @@ void YamahaAudio4::populateProtocol(
   addKey("tape_back", Unmapped_Key, 0x45, 8);
   addKey("rec", Record_Key, 0x46, 8);
   addKey("tape1/2", Unmapped_Key, 0x47, 8);
-  addKey("tuner", TunerBand_Key, 0x4B, 8);
+  addKey("tuner", TunerInput_Key, 0x4B, 8);
   addKey("sleep", Sleep_Key, 0x4F, 8);
   addKey("up_arrow", Up_Key, 0x55, 8);
   addKey("down_arrow", Down_Key, 0x56, 8);

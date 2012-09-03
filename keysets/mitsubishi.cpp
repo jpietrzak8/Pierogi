@@ -95,7 +95,7 @@ void MitsubishiTV1::populateProtocol(
   addKey("DEGAUSS", Unmapped_Key, 0xCE, 8);
   addKey("DEMO", Unmapped_Key, 0x62, 8);
   addKey("PRESET", Unmapped_Key, 0xA2, 8);
-  addKey("BAND", TunerBand_Key, 0xAE, 8);
+  addKey("BAND", TunerInput_Key, 0xAE, 8);
   addKey("AFT", Unmapped_Key, 0xA6, 8);
   addKey("SKIP", Unmapped_Key, 0xB6, 8);
   addKey("REALNAME", Unmapped_Key, 0xDA, 8);
@@ -208,7 +208,7 @@ void MitsubishiVCR1::populateProtocol(
   addKey("DAILY/WEEKLY", Unmapped_Key, 0xF2, 8);
   addKey("COUNT_RES", Unmapped_Key, 0xDC, 8);
   addKey("display", Info_Key, 0xE4, 8); // "DATA_SCRN"
-  addKey("x2", Unmapped_Key, 0x5C, 8);
+  addKey("x2", PlayX2_Key, 0x5C, 8);
   addKey("audio/video", Unmapped_Key, 0x02, 8);
   addKey("adjust+", Right_Key, 0x82, 8);
   addKey("cancel", Exit_Key, 0xD0, 8);

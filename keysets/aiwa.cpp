@@ -55,7 +55,7 @@ void AiwaVCR1::populateProtocol(
 //  addKey("ONETOUCH", Unmapped_Key, 0x19, 8); // need sub-keyset for this
   addKey("STOP", Stop_Key, 0x1A, 8);
   addKey("TIMER/PRG", Timer_Key, 0x1C, 8);
-  addKey("T-REC", Unmapped_Key, 0x1E, 8);
+  addKey("T-REC", RecordTimed_Key, 0x1E, 8);
   addKey("CLEAR", Clear_Key, 0x1F, 8); // "CANCEL"
 
   addKey("CHAN_UP", ChannelUp_Key, 0x40, 8);
@@ -69,7 +69,7 @@ void AiwaVCR1::populateProtocol(
   addKey("AD-Skip", Advance_Key, 0x49, 8);
   addKey("SUPER_CLEAR", Unmapped_Key, 0x4B, 8);
   addKey("RESET", Reset_Key, 0x4C, 8); // "Counter_Reset"
-  addKey("INDEXSRCH", Unmapped_Key, 0x4D, 8);
+  addKey("INDEXSRCH", IndexSearch_Key, 0x4D, 8);
   addKey("SP/LP", VHSSpeed_Key, 0x50, 8);
   addKey("MEMORY", Memory_Key, 0x51, 8);
   addKey("AUTO", Unmapped_Key, 0x53, 8);
@@ -82,11 +82,11 @@ void AiwaVCR1::populateProtocol(
   addKey("Rev(Jog)", StepBack_Key, 0x74, 8);
 
   addKey("MENU", Menu_Key, 0x81, 8);
-  addKey("VPS/PDC", Unmapped_Key, 0x82, 8);
+  addKey("VPS/PDC", RecordPDC_Key, 0x82, 8);
 //  addKey("NEXT", Next_Key, 0x83, 8);
   addKey("MENURIGHT", Right_Key, 0x83, 8);
   addKey("MENULEFT", Left_Key, 0x84, 8);
-  addKey("OTPB", Unmapped_Key, 0x89, 8);
+  addKey("OTPB", OneTouchPlayBack_Key, 0x89, 8);
   addKey("MENUUP", Up_Key, 0x8D, 8);
   addKey("MENUDOWN", Down_Key, 0x8E, 8);
 
@@ -152,7 +152,7 @@ void AiwaVCR2::populateProtocol(
   addKey("clear", Clear_Key, 0x1F, 8);
 
   addKey("child-lock", Unmapped_Key, 0x3F, 8);
-  addKey("viss", Unmapped_Key, 0x41, 8);
+  addKey("viss", IndexSearch_Key, 0x41, 8);
   addKey("showview", Unmapped_Key, 0x47, 8);
   addKey("speed", VHSSpeed_Key, 0x48, 8);
   addKey("av", Unmapped_Key, 0x56, 8);
@@ -166,7 +166,7 @@ void AiwaVCR2::populateProtocol(
 
   addKey("fav.program", Unmapped_Key, 0xB3, 8);
   addKey("rec-end-search", Next_Key, 0xB5, 8); // might be wrong
-  addKey("otpb", Unmapped_Key, 0xBF, 8);
+  addKey("otpb", OneTouchPlayBack_Key, 0xBF, 8);
   addKey("ad-skip", Advance_Key, 0xDD, 8);
 }
 
@@ -206,7 +206,7 @@ void AiwaVCR3::populateProtocol(
   addKey("9", Nine_Key, 0x09, 8);
   addKey("ch+", ChannelUp_Key, 0x0A, 8);
   addKey("ch-", ChannelDown_Key, 0x0B, 8);
-  addKey("t-rec", Unmapped_Key, 0x0D, 8);
+  addKey("t-rec", RecordTimed_Key, 0x0D, 8);
   addKey("audio", Audio_Key, 0x0E, 8);
   addKey("-/--", DoubleDigit_Key, 0x0F, 8);
   addKey("tv/vcr", Input_Key, 0x12, 8);
@@ -218,7 +218,7 @@ void AiwaVCR3::populateProtocol(
   addKey("ff", FastForward_Key, 0x18, 8);
   addKey("rew", Rewind_Key, 0x19, 8);
   addKey("pause", Pause_Key, 0x1A, 8);
-  addKey("otpb", Unmapped_Key, 0x1B, 8);
+  addKey("otpb", OneTouchPlayBack_Key, 0x1B, 8);
   addKey("vidplus", Unmapped_Key, 0x1D, 8);
   addKey("speed", VHSSpeed_Key, 0x1E, 8);
   addKey("slow", Slow_Key, 0x1F, 8);
@@ -271,7 +271,8 @@ void AiwaAudio1::populateProtocol(
 
   addKey("volume_up", VolumeUp_Key, 0x11, 8);
   addKey("volume_down", VolumeDown_Key, 0x12, 8);
-  addKey("tuner_band", TunerBand_Key, 0x13, 8);
+  addKey("tuner_band", AM_Key, 0x13, 8);  // This is a hack
+  addKey("tuner_band", FM_Key, 0x13, 8);  // This too
   addKey("tape_play", Unmapped_Key, 0x14, 8);
   addKey("tape_stop", Unmapped_Key, 0x15, 8);
   addKey("tape_next", Unmapped_Key, 0x16, 8);
@@ -417,7 +418,7 @@ void AiwaAudio2::populateProtocol(
   addKey("shift1", Unmapped_Key, 0x17, 8); // "edit/check"
   addKey("shift2", Program_Key, 0x19, 8); // "prgm"
   addKey("TAPE", TapeInput_Key, 0x1B, 8); // "Deck"
-  addKey("shiftplus10", TunerBand_Key, 0x1C, 8); // "band"
+  addKey("shiftplus10", Unmapped_Key, 0x1C, 8); // "band"
   addKey("VIDEO", AuxInput_Key, 0x1D, 8); // "aux"
   addKey("function", Unmapped_Key, 0x1E, 8);
   addKey("CD", CDInput_Key, 0x1F, 8);
@@ -441,9 +442,9 @@ void AiwaAudio2::populateProtocol(
   addKey("voldown", VolumeDown_Key, 0x4E, 8);
 
   addKey("vocal_fader", Unmapped_Key, 0x50, 8); // "KARAOKE"
-  addKey("cd1", Unmapped_Key, 0x51, 8); // "DDP_1"
-  addKey("cd2", Unmapped_Key, 0x52, 8); // "DDP_2"
-  addKey("cd3", Unmapped_Key, 0x53, 8); // "DDP_3"
+  addKey("cd1", DiscOne_Key, 0x51, 8); // "DDP_1"
+  addKey("cd2", DiscTwo_Key, 0x52, 8); // "DDP_2"
+  addKey("cd3", DiscThree_Key, 0x53, 8); // "DDP_3"
   addKey("DISCSKIP", NextDisc_Key, 0x56, 8);
   addKey("Treble", Unmapped_Key, 0x57, 8);
   addKey("MANUAL", Unmapped_Key, 0x58, 8);
@@ -731,9 +732,9 @@ void AiwaAudio6::populateProtocol(
 
   setPreData(0x0048, 13);
 
-  addKey("fm", Unmapped_Key, 0x00, 8);
-  addKey("am", Unmapped_Key, 0x01, 8); // "MW"
-  addKey("LW", Unmapped_Key, 0x02, 8);
+  addKey("fm", FM_Key, 0x00, 8);
+  addKey("am", AM_Key, 0x01, 8); // "MW"
+  addKey("LW", LW_Key, 0x02, 8);
   addKey("t_up", ChannelUp_Key, 0x03, 8);
   addKey("power", Power_Key, 0x04, 8);
   addKey("t_down", ChannelDown_Key, 0x05, 8);
@@ -780,7 +781,7 @@ void AiwaCarStereo1::populateProtocol(
   addKey("vol-", VolumeDown_Key, 0x10, 8);
   addKey("disc_tune+", ChannelUp_Key, 0x11, 8);
   addKey("disc_tune-", ChannelDown_Key, 0x12, 8);
-  addKey("radio_band", TunerBand_Key, 0x13, 8);
+  addKey("radio_band", TunerInput_Key, 0x13, 8);
   addKey("tape", TapeInput_Key, 0x14, 8);
   addKey("ff_next", FastForward_Key, 0x16, 8);
   addKey("rew_prev", Rewind_Key, 0x17, 8);

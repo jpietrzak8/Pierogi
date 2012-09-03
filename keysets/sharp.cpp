@@ -153,9 +153,11 @@ void SharpTV1a::populateProtocol(
   addSharpKey("Stop", Stop_Key, 0x01, 0x27);
   addSharpKey("REC", Record_Key, 0x01, 0x28);
   addSharpKey("Slow", Slow_Key, 0x01, 0x29);
-  addSharpKey("DPSS+", Unmapped_Key, 0x01, 0x2F);
+  addSharpKey("DPSS+", SlowPlus_Key, 0x01, 0x2F);
+  addSharpKey("DPSS+", Next_Key, 0x01, 0x2F);
 
-  addSharpKey("DPSS-", Unmapped_Key, 0x01, 0x30);
+  addSharpKey("DPSS-", SlowMinus_Key, 0x01, 0x30);
+  addSharpKey("DPSS-", Previous_Key, 0x01, 0x30);
   addSharpKey("Input", Input_Key, 0x01, 0x34);
   addSharpKey("ZeroBack", Unmapped_Key, 0x01, 0x83);
   addSharpKey("SkipSearch", Advance_Key, 0x01, 0x90);
@@ -332,11 +334,13 @@ void SharpVCR1::populateProtocol(
   addSharpKey("Slow", Slow_Key, 0x03, 0x29);
   addSharpKey("CLOCK", Clock_Key, 0x03, 0x2C);
   addSharpKey("DPSS+", SlowPlus_Key, 0x03, 0x2F); // "slow+"
+  addSharpKey("DPSS+", Next_Key, 0x03, 0x2F);
   addSharpKey("DPSS-", SlowMinus_Key, 0x03, 0x30); // "slow-"
-  addSharpKey("x2", Unmapped_Key, 0x03, 0x31);
+  addSharpKey("DPSS-", Previous_Key, 0x03, 0x30); // "slow-"
+  addSharpKey("x2", PlayX2_Key, 0x03, 0x31);
   addSharpKey("EJECT", Eject_Key, 0x03, 0x33);
   addSharpKey("InputSelect", Input_Key, 0x03, 0x34); // "simul"
-  addSharpKey("SEARCH", Unmapped_Key, 0x03, 0x37);
+  addSharpKey("SEARCH", IndexSearch_Key, 0x03, 0x37);
   addSharpKey("ZeroBack", Unmapped_Key, 0x03, 0x83);  // "MEMORY"
   addSharpKey("cancel", Unmapped_Key, 0x03, 0x84);  // could be exit key
   addSharpKey("TRACKING_UP", TrackingPlus_Key, 0x03, 0x85);

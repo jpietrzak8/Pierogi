@@ -1037,10 +1037,10 @@ void PhilipsVCR1::populateProtocol(
   addKey("-/--", DoubleDigit_Key, 0x114A, 13);
   addKey("100", PlusOneHundred_Key, 0x114A, 13);
   addKey("VCR-Dash", Dash_Key, 0x114A, 13);
-  addKey("Index", Unmapped_Key, 0x0170, 13);
+  addKey("Index", IndexSearch_Key, 0x0170, 13);
   addKey("reset", Reset_Key, 0x1171, 13); // "clear"
   addKey("play<", Unmapped_Key, 0x116F, 13);
-  addKey("x>", Unmapped_Key, 0x116A, 13); // "X2_PLAY"
+  addKey("x>", PlayX2_Key, 0x116A, 13); // "X2_PLAY"
   addKey("speed", VHSSpeed_Key, 0x117A, 13); // "SP/LP"
   addKey("Childlock", Unmapped_Key, 0x017F, 13);
   addKey("System", Unmapped_Key, 0x094A, 13);
@@ -1153,14 +1153,14 @@ void PhilipsVCR1c::populateProtocol(
   addKey("Previous", Previous_Key, 0x0171, 13);
   addKey("Next", Next_Key, 0x0170, 13);
   addKey("SET_CLOCK", Unmapped_Key, 0x1164, 13);
-  addKey("VPS", Unmapped_Key, 0x114B, 13);
+  addKey("VPS", RecordPDC_Key, 0x114B, 13);
   addKey("Cassette", Eject_Key, 0x017E, 13);
   addKey("DECODER", Unmapped_Key, 0x0169, 13);
   addKey("Tuner", TunerInput_Key, 0x017D, 13);
   addKey("Monitor", Unmapped_Key, 0x017A, 13);
   addKey("SYSTEM", Unmapped_Key, 0x014A, 13);
   addKey("REC_MODE", Unmapped_Key, 0x115E, 13);
-  addKey("SHOWVIEW", Unmapped_Key, 0x0145, 13);
+  addKey("SHOWVIEW", Unmapped_Key, 0x0145, 13); // vhsplus+, etc.
   addKey("DW", Unmapped_Key, 0x0144, 13); // "D/W"
   addKey("SPEED-", SlowMinus_Key, 0x1165, 13);
   addKey("SPEED+", SlowPlus_Key, 0x1166, 13);
@@ -1422,7 +1422,7 @@ void PhilipsAudio1::populateProtocol(
   addKey("tuner_next", Next_Key, 0x1460, 13); // "presetUp"
   addKey("tuner_previous", Previous_Key, 0x1461, 13); // "presetDown"
   addKey("tuner_program", Program_Key, 0x047A, 13); // Create Preset
-  addKey("tuner", TunerBand_Key, 0x147F, 13);
+  addKey("tuner", TunerInput_Key, 0x147F, 13);
   addKey("tape_power", Unmapped_Key, 0x148C, 13);
   addKey("tape_next", Unmapped_Key, 0x14A0, 13);
   addKey("tape_previous", Unmapped_Key, 0x14A1, 13);

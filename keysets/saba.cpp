@@ -59,8 +59,8 @@ void SabaTV1::populateProtocol(
   addKey("Clock", Unmapped_Key, 0x38, 7); // "C"
   addKey("Menu", Menu_Key, 0x39, 7); // "Install"
   addKey("Ch.setup", Unmapped_Key, 0x3B, 7); // "B"
-  addKey("Mark", Unmapped_Key, 0x3C, 7);
-  addKey("Scan/Erase", Unmapped_Key, 0x3D, 7); // "Index"
+  addKey("Mark", IndexMark_Key, 0x3C, 7);
+  addKey("Scan/Erase", IndexSearch_Key, 0x3D, 7); // "Index"
 }
 
 

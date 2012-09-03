@@ -48,7 +48,7 @@ void UniversumVCR1::populateProtocol(
   addKey("play", Play_Key, 0x14, 8);
   addKey("rec", Record_Key, 0x15, 8);
   addKey("type", Unmapped_Key, 0x18, 8);
-  addKey("index", Unmapped_Key, 0x19, 8);
+  addKey("index", IndexSearch_Key, 0x19, 8);
   addKey("slow", Slow_Key, 0x1A, 8);
   addKey("9", Nine_Key, 0x1C, 8);
   addKey("0", Zero_Key, 0x1D, 8);
@@ -61,12 +61,12 @@ void UniversumVCR1::populateProtocol(
   addKey("clear", Clear_Key, 0x4A, 8);
   addKey("ok", Select_Key, 0x4B, 8);
   addKey("display", Info_Key, 0x4C, 8);
-  addKey("dpc_plus/vps/pdc", Unmapped_Key, 0x4F, 8);
+  addKey("dpc_plus/vps/pdc", RecordPDC_Key, 0x4F, 8);
   addKey("Surround", Surround_Key, 0x50, 8);
   addKey("remain", Unmapped_Key, 0x57, 8);
   addKey("power", Power_Key, 0x5B, 8);
   addKey("sp/lp", VHSSpeed_Key, 0x5E, 8);
-  addKey("showview", Unmapped_Key, 0x8C, 8);
+  addKey("showview", Unmapped_Key, 0x8C, 8); // vhsplus+, etc.
   addKey("pip", PIP_Key, 0x8D, 8);
   addKey("strobe", Unmapped_Key, 0x9A, 8);
   addKey("preset", Unmapped_Key, 0x9E, 8);
@@ -113,7 +113,7 @@ void UniversumVCR2::populateProtocol(
   addKey("0", Zero_Key, 0x1140, 13);
   addKey("+", ChannelUp_Key, 0x1160, 13);
   addKey("-", ChannelDown_Key, 0x1161, 13);
-  addKey("SEL/VPS", Unmapped_Key, 0x114B, 13);
+  addKey("SEL/VPS", RecordPDC_Key, 0x114B, 13);
   addKey("CLEAR", Clear_Key, 0x1171, 13);
   addKey("RECORD", Record_Key, 0x1177, 13);
   addKey("STILL", Pause_Key, 0x1169, 13);
@@ -174,9 +174,9 @@ void UniversumVCR3::populateProtocol(
   addKey("once", Unmapped_Key, 0x58, 8);
   addKey("daily", Unmapped_Key, 0x49, 8);
   addKey("weekly", Unmapped_Key, 0x4D, 8);
-  addKey("timer_rec", Unmapped_Key, 0x0D, 8);
+  addKey("timer_rec", RecordTimed_Key, 0x0D, 8);
   addKey("clock_counter", Unmapped_Key, 0x51, 8);
-  addKey("aft_vps", Unmapped_Key, 0x46, 8);
+  addKey("aft_vps", RecordPDC_Key, 0x46, 8);
   addKey("preset", Unmapped_Key, 0x40, 8);
   addKey("memory", Memory_Key, 0x4B, 8);
   addKey("reset", Reset_Key, 0x4C, 8);
@@ -398,9 +398,9 @@ void UniversumAudio1::populateProtocol(
 
   setPreData(0x1010, 16);
 
-  addKey("FM", TunerBand_Key, 0x00, 8);
-  addKey("MW", Unmapped_Key, 0x01, 8);
-  addKey("LW", Unmapped_Key, 0x02, 8);
+  addKey("FM", FM_Key, 0x00, 8);
+  addKey("MW", AM_Key, 0x01, 8);
+  addKey("LW", LW_Key, 0x02, 8);
   addKey("CDP", CDInput_Key, 0x03, 8);
   addKey("CD_PLAY", Play_Key, 0x04, 8);
   addKey("CD_STOP", Stop_Key, 0x05, 8);

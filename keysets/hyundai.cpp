@@ -131,7 +131,7 @@ void HyundaiAudio1::populateProtocol(
   addKey("Down", Down_Key, 0x11, 8);
   addKey("Setup", Menu_Key, 0x19, 8);
   addKey("Pause", Pause_Key, 0x1A, 8);
-  addKey("Band", TunerBand_Key, 0x1B, 8);
+  addKey("Band", TunerInput_Key, 0x1B, 8);
   addKey("Play", Play_Key, 0x44, 8);
   addKey("Stop", Stop_Key, 0x45, 8);
   addKey(">>", FastForward_Key, 0x40, 8);

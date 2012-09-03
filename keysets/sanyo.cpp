@@ -36,7 +36,7 @@ void SanyoVCR1::populateProtocol(
   addKey("3", Three_Key, 0x06, 8);
   addKey("4", Four_Key, 0x07, 8);
   addKey("TV/VCR", Input_Key, 0x08, 8);
-  addKey("x2", Unmapped_Key, 0x0B, 8);
+  addKey("x2", PlayX2_Key, 0x0B, 8);
   addKey("5", Five_Key, 0x0C, 8);
   addKey("6", Six_Key, 0x0D, 8);
   addKey("7", Seven_Key, 0x0E, 8);
@@ -47,25 +47,25 @@ void SanyoVCR1::populateProtocol(
   addKey("FF", FastForward_Key, 0x13, 8);
   addKey("Play", Play_Key, 0x14, 8);
   addKey("Rec", Record_Key, 0x15, 8);
-  addKey("Index", Unmapped_Key, 0x19, 8);
+  addKey("Index", IndexSearch_Key, 0x19, 8);
   addKey("Slow", Slow_Key, 0x1A, 8);
   addKey("+100", PlusOneHundred_Key, 0x1B, 8);
   addKey("9", Nine_Key, 0x1C, 8);
   addKey("0", Zero_Key, 0x1D, 8);
   addKey("Input", Unmapped_Key, 0x1E, 8);  // need a subclass for this?
-  addKey("ATR", Unmapped_Key, 0x1F, 8);
+  addKey("ATR", AutoTracking_Key, 0x1F, 8);
   addKey("Memory", Memory_Key, 0x43, 8); // "->0<-"
   addKey("Reset", Reset_Key, 0x44, 8);
   addKey("PROG", Program_Key, 0x46, 8);
   addKey("Cancel", Clear_Key, 0x4A, 8);
   addKey("Ok", Select_Key, 0x4B, 8);
   addKey("Display", Info_Key, 0x4C, 8);
-  addKey("VPS", Unmapped_Key, 0x4F, 8); // "vps/pdc", "dpc"
+  addKey("VPS", RecordPDC_Key, 0x4F, 8); // "vps/pdc", "dpc"
   addKey("Monitor", Unmapped_Key, 0x51, 8);
   addKey("Clock", Clock_Key, 0x56, 8);
   addKey("Power", Power_Key, 0x5B, 8);
   addKey("SP/LP", VHSSpeed_Key, 0x5E, 8);
-  addKey("ShowView", Unmapped_Key, 0x8C, 8);
+  addKey("ShowView", Unmapped_Key, 0x8C, 8); // vhsplus+, etc.
   addKey("Right", Right_Key, 0x94, 8);
   addKey("Left", Left_Key, 0x95, 8);
   addKey("Down", Down_Key, 0x96, 8);

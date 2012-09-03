@@ -12,7 +12,7 @@
 #include "forms/pirinputform.h"
 #include "forms/piradjustform.h"
 #include "forms/pirairconditionerform.h"
-#include "forms/pirfavoritesform.h"
+#include "forms/piraudiodeviceform.h"
 
 #include "mainwindow.h"
 
@@ -38,7 +38,7 @@ PIRPanelManager::PIRPanelManager(
     inputForm(0),
     adjustForm(0),
     acForm(0),
-    favoritesForm(0),
+    audioDeviceForm(0),
     altMainPanelFlag(false),
     currentTabsName(Universal_Tabs),
     mainWindow(mw)
@@ -83,9 +83,9 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[AC_Panel] = "AC";
   longPanelNames[AC_Panel] =
     "A/C Panel - air conditioner controls";
-  shortPanelNames[Favorites_Panel] = "Favorites";
-  longPanelNames[Favorites_Panel] =
-    "Favorites Panel - memorized keysets";
+  shortPanelNames[Audio_Panel] = "Audio";
+  longPanelNames[Audio_Panel] =
+    "Audio Device Panel - various audio related buttons";
 
   mainForm = new PIRMainForm(mainWindow);
   panels[Main_Panel] = mainForm;
@@ -123,8 +123,8 @@ PIRPanelManager::PIRPanelManager(
   acForm = new PIRAirConditionerForm(mainWindow);
   panels[AC_Panel] = acForm;
 
-  favoritesForm = new PIRFavoritesForm(mainWindow);
-  panels[Favorites_Panel] = favoritesForm;
+  audioDeviceForm = new PIRAudioDeviceForm(mainWindow);
+  panels[Audio_Panel] = audioDeviceForm;
 
   // Set up the panel collections:
   PIRPanelNameList pset;
@@ -135,17 +135,17 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Keypad_Panel);
   pset.push_back(Menu_Panel);
   pset.push_back(Media_Panel);
-  pset.push_back(Favorites_Panel);
+  pset.push_back(Input_Panel);
   tabLists[Universal_Tabs] = pset;
 
   // The TV collection:
   pset.clear();
   pset.push_back(Main_Panel);
+  pset.push_back(Utility_Panel);
   pset.push_back(Keypad_Panel);
   pset.push_back(Menu_Panel);
   pset.push_back(TV_Panel);
   pset.push_back(Adjust_Panel);
-  pset.push_back(Favorites_Panel);
   tabLists[TV_Tabs] = pset;
 
   // The video media collection:
@@ -155,20 +155,25 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Media_Panel);
   pset.push_back(Media2_Panel);
   pset.push_back(Input_Panel);
-  pset.push_back(Favorites_Panel);
   tabLists[VideoMedia_Tabs] = pset;
+
+  // Audio panel collection:
+  pset.clear();
+  pset.push_back(Main_Panel);
+  pset.push_back(Keypad_Panel);
+  pset.push_back(Media_Panel);
+  pset.push_back(Audio_Panel);
+  tabLists[Audio_Tabs] = pset;
 
   // The air conditioner collection:
   pset.clear();
   pset.push_back(AC_Panel);
-  pset.push_back(Favorites_Panel);
   tabLists[AC_Tabs] = pset;
 
   // The recording collection:
   pset.clear();
   pset.push_back(Record_Panel);
   pset.push_back(Keypad_Panel);
-  pset.push_back(Favorites_Panel);
   tabLists[Record_Tabs] = pset;
 }
 
@@ -246,6 +251,7 @@ void PIRPanelManager::commonEnableButtons(
   inputForm->enableButtons(keyset, id);
   adjustForm->enableButtons(keyset, id);
   acForm->enableButtons(keyset, id);
+  audioDeviceForm->enableButtons(keyset, id);
 }
 
 
@@ -277,31 +283,7 @@ void PIRPanelManager::useAltMainPanel()
 }
 
 
-void PIRPanelManager::selectPrevFavKeyset()
-{
-  favoritesForm->selectPrevFavKeyset();
-}
-
-
-void PIRPanelManager::selectNextFavKeyset()
-{
-  favoritesForm->selectNextFavKeyset();
-}
-
-
-void PIRPanelManager::addFavoritesItem(
-  PIRKeysetWidgetItem *item)
-{
-  favoritesForm->addItem(item);
-}
-
-
-QListWidget *PIRPanelManager::getFavoritesListWidget()
-{
-  return favoritesForm->getFavoritesListWidget();
-}
-
-
+/*
 void PIRPanelManager::setupUniversalTabs()
 {
   if (currentTabsName == Universal_Tabs) return;
@@ -345,6 +327,7 @@ void PIRPanelManager::setupRecordTabs()
   currentTabsName = Record_Tabs;
   updateTabSet();
 }
+*/
 
 
 void PIRPanelManager::setupTabs(

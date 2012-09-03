@@ -55,7 +55,7 @@ void PIRKeysetMetaData::populateDevices(
     tempString.append(i->first.model);
 
     kwi = new PIRKeysetWidgetItem(
-      tempString, i->second, i->first.make, i->first.type);
+      tempString, i->first.model, i->second, i->first.make, i->first.type);
 
     sdf->addWidgetItem(kwi);
 
