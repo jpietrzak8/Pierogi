@@ -51,6 +51,7 @@ enum PIRMakeName{
   Huawei_Make,
   Humax_Make,
   Hyundai_Make,
+  IRobot_Make,
   JVC_Make,
   Kaon_Make,
   Kathrein_Make,

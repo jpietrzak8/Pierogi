@@ -201,7 +201,10 @@ SOURCES += main.cpp mainwindow.cpp \
     dialogs/pirfavoritesdialog.cpp \
     keysets/medion.cpp \
     keysets/blaupunkt.cpp \
-    keysets/lifetec.cpp
+    keysets/lifetec.cpp \
+    keysets/irobot.cpp \
+    protocols/irobotprotocol.cpp \
+    forms/pirroombaform.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -378,7 +381,10 @@ HEADERS += mainwindow.h \
     dialogs/pirfavoritesdialog.h \
     keysets/medion.h \
     keysets/blaupunkt.h \
-    keysets/lifetec.h
+    keysets/lifetec.h \
+    keysets/irobot.h \
+    protocols/irobotprotocol.h \
+    forms/pirroombaform.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -405,7 +411,8 @@ FORMS += mainwindow.ui \
     forms/pirvcrform.ui \
     forms/pirvideodiscform.ui \
     forms/piraudiodeviceform.ui \
-    dialogs/pirfavoritesdialog.ui
+    dialogs/pirfavoritesdialog.ui \
+    forms/pirroombaform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

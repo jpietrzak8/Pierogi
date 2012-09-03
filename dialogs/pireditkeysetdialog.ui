@@ -48,7 +48,7 @@
      <item>
       <widget class="QCheckBox" name="addToFavoritesCheckBox">
        <property name="text">
-        <string>Add keyset to favorites list</string>
+        <string>Favorite Keyset</string>
        </property>
       </widget>
      </item>

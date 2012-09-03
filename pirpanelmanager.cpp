@@ -13,6 +13,7 @@
 #include "forms/piradjustform.h"
 #include "forms/pirairconditionerform.h"
 #include "forms/piraudiodeviceform.h"
+#include "forms/pirroombaform.h"
 
 #include "mainwindow.h"
 
@@ -39,6 +40,7 @@ PIRPanelManager::PIRPanelManager(
     adjustForm(0),
     acForm(0),
     audioDeviceForm(0),
+    roombaForm(0),
     altMainPanelFlag(false),
     currentTabsName(Universal_Tabs),
     mainWindow(mw)
@@ -86,6 +88,9 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[Audio_Panel] = "Audio";
   longPanelNames[Audio_Panel] =
     "Audio Device Panel - various audio related buttons";
+  shortPanelNames[Roomba_Panel] = "Roomba";
+  longPanelNames[Roomba_Panel] =
+    "Roomba Panel - robotic vacuum cleaner controls";
 
   mainForm = new PIRMainForm(mainWindow);
   panels[Main_Panel] = mainForm;
@@ -126,6 +131,9 @@ PIRPanelManager::PIRPanelManager(
   audioDeviceForm = new PIRAudioDeviceForm(mainWindow);
   panels[Audio_Panel] = audioDeviceForm;
 
+  roombaForm = new PIRRoombaForm(mainWindow);
+  panels[Roomba_Panel] = roombaForm;
+
   // Set up the panel collections:
   PIRPanelNameList pset;
 
@@ -135,7 +143,7 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Keypad_Panel);
   pset.push_back(Menu_Panel);
   pset.push_back(Media_Panel);
-  pset.push_back(Input_Panel);
+//  pset.push_back(Input_Panel);
   tabLists[Universal_Tabs] = pset;
 
   // The TV collection:
@@ -175,6 +183,11 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Record_Panel);
   pset.push_back(Keypad_Panel);
   tabLists[Record_Tabs] = pset;
+
+  // The Roomba collection:
+  pset.clear();
+  pset.push_back(Roomba_Panel);
+  tabLists[Roomba_Tabs] = pset;
 }
 
 
@@ -252,6 +265,7 @@ void PIRPanelManager::commonEnableButtons(
   adjustForm->enableButtons(keyset, id);
   acForm->enableButtons(keyset, id);
   audioDeviceForm->enableButtons(keyset, id);
+  roombaForm->enableButtons(keyset, id);
 }
 
 

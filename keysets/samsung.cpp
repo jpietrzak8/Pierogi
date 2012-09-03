@@ -892,6 +892,43 @@ void SamsungAC1::populateProtocol(
 }
 
 
+/*
+SamsungAC2::SamsungAC2(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "AC Keyset 2",
+      Samsung_Make,
+      index)
+{
+}
+
+
+void SamsungAC2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new ACProtocol(guiObject, index);
+
+  addKey("Power Off", PowerOff_Subkey, 0xC, 4);
+  addKey("Power On", PowerOn_Subkey, 0x0, 4);
+
+  addKey("Cool Mode - Normal", CoolModeNormal_Subkey, 0x7, 3);
+  addKey("Cool Mode - Turbo", CoolModeTurbo_Subkey, 0x1, 3);
+  addKey("Cool Mode - Far", CoolModeFar_Subkey, 0x2, 3);
+
+  addKey("Deflector L/R Off", DeflectorLROff_Subkey, 0x0, 1);
+  addKey("Deflector L/R On", DeflectorLROn_Subkey, 0x1, 1);
+  addKey("Deflector U/D Off", DeflectorUDOff_Subkey, 0x0, 1);
+  addKey("Deflector U/D On", DeflectorUDOn_Subkey, 0x1, 1);
+}
+*/
+
+
 SamsungDVBT1::SamsungDVBT1(
   unsigned int index)
   : PIRKeysetMetaData(

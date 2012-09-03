@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Choose Favorite Keyset</string>
+   <string>Choose Keyset from Favorites</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="margin">

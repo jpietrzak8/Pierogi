@@ -29,6 +29,9 @@ PIRTabsChoiceDialog::PIRTabsChoiceDialog(
 
   ui->tabsChoiceListWidget->addItem(
     new PIRTabsWidgetItem("Air Conditioner Panels", AC_Tabs));
+
+  ui->tabsChoiceListWidget->addItem(
+    new PIRTabsWidgetItem("Roomba Panels", Roomba_Tabs));
 }
 
 

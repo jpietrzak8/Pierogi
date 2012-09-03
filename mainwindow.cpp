@@ -302,7 +302,7 @@ void MainWindow::on_actionSelectKeyset_triggered()
   selectKeysetForm->show();
 }
 
-void MainWindow::on_actionSelect_Device_By_Name_triggered()
+void MainWindow::on_actionBrowse_Device_List_triggered()
 {
   selectDeviceForm->show();
 }

@@ -49,7 +49,7 @@
      <string>Pierogi</string>
     </property>
     <addaction name="actionSelectKeyset"/>
-    <addaction name="actionSelect_Device_By_Name"/>
+    <addaction name="actionBrowse_Device_List"/>
     <addaction name="actionPreferences"/>
     <addaction name="actionDocumentation"/>
     <addaction name="actionAbout"/>
@@ -58,7 +58,7 @@
   </widget>
   <action name="actionSelectKeyset">
    <property name="text">
-    <string>Select Keyset by Name</string>
+    <string>Select Keyset</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -71,14 +71,14 @@
     <string>Documentation</string>
    </property>
   </action>
-  <action name="actionSelect_Device_By_Name">
-   <property name="text">
-    <string>Select Keyset by Device</string>
-   </property>
-  </action>
   <action name="actionPreferences">
    <property name="text">
     <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionBrowse_Device_List">
+   <property name="text">
+    <string>Browse Device List</string>
    </property>
   </action>
  </widget>

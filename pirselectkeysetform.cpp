@@ -9,6 +9,9 @@
 #include "pirkeysetwidgetitem.h"
 #include "dialogs/pireditkeysetdialog.h"
 
+// Debugging include:
+//#include <iostream>
+
 extern PIRMakeMgr makeManager;
 
 PIRSelectKeysetForm::PIRSelectKeysetForm(
@@ -17,6 +20,7 @@ PIRSelectKeysetForm::PIRSelectKeysetForm(
     ui(new Ui::PIRSelectKeysetForm),
     mainWindow(mw),
     editDialog(0),
+    showOnlyFavorites(false),
     currentMake(Any_Make)
 {
   ui->setupUi(this);
@@ -149,12 +153,20 @@ void PIRSelectKeysetForm::refilterList()
     // Does the keylist have the required make?
     if ((currentMake == Any_Make) || (item->getMake() == currentMake))
     {
-      // Does this keylist match the search string?
-      if ( searchString.isEmpty()
-        || item->text().contains(searchString, Qt::CaseInsensitive))
+      // If required, is the keyset a favorite?
+      if (!showOnlyFavorites || (item->isFavorite()))
       {
-        // Yes, we can show this keylist:
-        item->setHidden(false);
+        // Does this keylist match the search string?
+        if ( searchString.isEmpty()
+          || item->text().contains(searchString, Qt::CaseInsensitive))
+        {
+          // Yes, we can show this keylist:
+          item->setHidden(false);
+        }
+        else
+        {
+          item->setHidden(true);
+        }
       }
       else
       {
@@ -179,4 +191,11 @@ void PIRSelectKeysetForm::openKeysetDialog(
   editDialog->setupDialog(kwi);
 
   editDialog->exec();
+}
+
+
+void PIRSelectKeysetForm::on_showFavoritesCheckBox_toggled(bool checked)
+{
+  showOnlyFavorites = checked;
+  refilterList();
 }

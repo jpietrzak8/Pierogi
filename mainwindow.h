@@ -103,7 +103,7 @@ public slots:
 
 private slots:
   void on_actionSelectKeyset_triggered();
-  void on_actionSelect_Device_By_Name_triggered();
+  void on_actionBrowse_Device_List_triggered();
   void on_actionPreferences_triggered();
   void on_actionAbout_triggered();
   void on_actionDocumentation_triggered();

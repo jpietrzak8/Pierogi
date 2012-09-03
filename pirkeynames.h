@@ -219,6 +219,14 @@ enum PIRKeyName{
   FanSlower_Key,
   EnergySave_Key,
 
+  // iRobot controls:
+  RobotForward_Key,
+  RobotCW_Key,
+  RobotCCW_Key,
+  RobotSpot_Key,
+  RobotMax_Key,
+  RobotClean_Key,
+
   // Other keys:
   Captions_Key,
   Info_Key,

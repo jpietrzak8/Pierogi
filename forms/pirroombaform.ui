@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PIRRoombaForm</class>
+ <widget class="QWidget" name="PIRRoombaForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>8</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QPushButton" name="spotButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Spot</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="forwardButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Forward</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="cleanButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Clean</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="ccwButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Counterclockwise</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="pauseButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Pause</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/playback_pause_icon&amp;48.png</normaloff>:/icons/playback_pause_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="cwButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Clockwise</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="maxButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Max</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="powerButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Power</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/on-off_icon&amp;48.png</normaloff>:/icons/on-off_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../PierogiResources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>PIRRoombaForm</sender>
+   <signal>spotEnabled(bool)</signal>
+   <receiver>spotButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>136</x>
+     <y>85</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRRoombaForm</sender>
+   <signal>forwardEnabled(bool)</signal>
+   <receiver>forwardButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>85</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRRoombaForm</sender>
+   <signal>cleanEnabled(bool)</signal>
+   <receiver>cleanButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>663</x>
+     <y>85</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRRoombaForm</sender>
+   <signal>ccwEnabled(bool)</signal>
+   <receiver>ccwButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>136</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRRoombaForm</sender>
+   <signal>pauseEnabled(bool)</signal>
+   <receiver>pauseButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRRoombaForm</sender>
+   <signal>cwEnabled(bool)</signal>
+   <receiver>cwButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>663</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRRoombaForm</sender>
+   <signal>maxEnabled(bool)</signal>
+   <receiver>maxButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>136</x>
+     <y>398</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRRoombaForm</sender>
+   <signal>powerEnabled(bool)</signal>
+   <receiver>powerButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>398</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>spotEnabled(bool)</signal>
+  <signal>forwardEnabled(bool)</signal>
+  <signal>cleanEnabled(bool)</signal>
+  <signal>ccwEnabled(bool)</signal>
+  <signal>pauseEnabled(bool)</signal>
+  <signal>cwEnabled(bool)</signal>
+  <signal>maxEnabled(bool)</signal>
+  <signal>powerEnabled(bool)</signal>
+ </slots>
+</ui>

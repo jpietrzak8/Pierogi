@@ -52,6 +52,7 @@
 #include "keysets/huawei.h"
 #include "keysets/humax.h"
 #include "keysets/hyundai.h"
+#include "keysets/irobot.h"
 #include "keysets/jvc.h"
 #include "keysets/kaon.h"
 #include "keysets/kathrein.h"
@@ -361,6 +362,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new HyundaiDVD1(++counter));
   setupKeyset(new HyundaiAudio1(++counter));
   setupKeyset(new HyundaiTV1(++counter));
+
+  setupKeyset(new IRobotRoomba1(++counter));
 
   setupKeyset(new JVCSat1(++counter));
   setupKeyset(new JVCSat2(++counter));

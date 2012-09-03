@@ -58,6 +58,7 @@ private slots:
   
   void on_searchStringLineEdit_textChanged(const QString &arg1);
   void on_ssClosePushButton_clicked();
+  void on_showFavoritesCheckBox_toggled(bool checked);
 
 private:
   void refilterList();
@@ -67,6 +68,7 @@ private:
   MainWindow *mainWindow;
   PIREditKeysetDialog *editDialog;
 
+  bool showOnlyFavorites;
   PIRMakeName currentMake;
   QString searchString;
 };
