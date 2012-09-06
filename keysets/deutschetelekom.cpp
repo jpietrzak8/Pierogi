@@ -1,5 +1,5 @@
 #include "deutschetelekom.h"
-#include "protocols/tcdprotocol.h"
+#include "protocols/tdcprotocol.h"
 
 DeutscheTelekomSTB1::DeutscheTelekomSTB1(
   unsigned int index)
