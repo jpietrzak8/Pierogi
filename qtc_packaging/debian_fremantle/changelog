@@ -1,3 +1,17 @@
+pierogi (1.1.8) unstable; urgency=low
+  * A first attempt at the long-asked-for "search for power button" function.  Getting this in required more work on the memory management side of Pierogi, so beware of possible new subtle bugs...
+  * A new Camera Shutter panel has been added, for remote controls used with DSLR cameras.
+  * First pass at keysets for Deutsche Telekom, Emtec, Goodmans, Nikon, Olympus,and Pentax.
+  * Updated Canon keyset to use the new camera panel.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Thu, 06 Sep 2012 16:35:00 -0400
+
+pierogi (1.1.7) unstable; urgency=low
+  * A quick update to add a "show only favorites" button to the Select Keyset window.  Hopefully this will make managing favorites easier.  Also, renamed a variety of phrases to make them less misleading.
+  * Added a keyset and a panel for the iRobot Roomba vacuum cleaner.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Mon, 03 Sep 2012 18:28:23 -0400
+
 pierogi (1.1.6) unstable; urgency=low
   * A big change this time: the move to support true per-keyset editable config data.  All favorites data has been moved into the keyset configs, and nicknames have been added.  The favorites are now accessed with a pop-up menu.
   * A new "audio" panel has been added.

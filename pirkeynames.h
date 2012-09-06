@@ -227,6 +227,10 @@ enum PIRKeyName{
   RobotMax_Key,
   RobotClean_Key,
 
+  // Camera controls:
+  OpenShutter_Key,
+  DelayedOpenShutter_Key,
+
   // Other keys:
   Captions_Key,
   Info_Key,

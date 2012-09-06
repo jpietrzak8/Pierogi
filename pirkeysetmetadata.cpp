@@ -292,3 +292,13 @@ void PIRKeysetMetaData::setKeysetName(
 {
   keysetName = n;
 }
+
+
+void PIRKeysetMetaData::clearProtocol()
+{
+  if (threadableProtocol)
+  {
+    delete threadableProtocol;
+    threadableProtocol = 0;
+  }
+}

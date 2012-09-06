@@ -56,8 +56,11 @@ void DishProtocol::startSendingCommand(
     // Do we even have this key defined?
     if (i == keycodes.end())
     {
-      std::string s = "Tried to send a non-existent command.\n";
-      throw PIRException(s);
+      QMutexLocker cifLocker(&commandIFMutex);
+      commandInFlight = false;
+      return;
+//      std::string s = "Tried to send a non-existent command.\n";
+//      throw PIRException(s);
     }
 
     // construct the device:
@@ -89,23 +92,26 @@ void DishProtocol::startSendingCommand(
         // Check whether we've been asked to stop:
         if (checkRepeatFlag())
         {
+          break;
+/*
           QMutexLocker cifLocker(&commandIFMutex);
           commandInFlight = false;
           return;
+*/
         }
       }
 
       ++repeatCount;
     }
+
+    QMutexLocker cifLocker(&commandIFMutex);
+    commandInFlight = false;
   }
   catch (PIRException e)
   {
     // inform the gui:
     emit commandFailed(e.getError().c_str());
   }
-
-  QMutexLocker cifLocker(&commandIFMutex);
-  commandInFlight = false;
 }
 
 

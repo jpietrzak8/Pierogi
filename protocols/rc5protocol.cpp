@@ -52,8 +52,11 @@ void RC5Protocol::startSendingCommand(
     // Sanity check, make sure command exists first:
     if (i == keycodes.end())
     {
-      std::string s = "Tried to send a non-existent command.\n";
-      throw PIRException(s);
+      QMutexLocker cifLocker(&commandIFMutex);
+      commandInFlight = false;
+      return;
+//      std::string s = "Tried to send a non-existent command.\n";
+//      throw PIRException(s);
     }
 
     // Construct the object that communicates with the device driver:
@@ -104,24 +107,27 @@ void RC5Protocol::startSendingCommand(
       // Have we been told to stop yet?
       if (checkRepeatFlag())
       {
+        break;
+/*
         // Ok, then we can quit now:
         ++keypressCount;
         QMutexLocker cifLocker(&commandIFMutex);
         commandInFlight = false;
         return;
+*/
       }
 
       ++repeatCount;
     }
+
+    ++keypressCount;
+    QMutexLocker cifLocker(&commandIFMutex);
+    commandInFlight = false;
   }
   catch (PIRException e)
   {
     emit commandFailed(e.getError().c_str());
   }
-
-  ++keypressCount;
-  QMutexLocker cifLocker(&commandIFMutex);
-  commandInFlight = false;
 }
 
 
@@ -162,7 +168,7 @@ int RC5Protocol::pushControlBits(
   // Simply push the rest of the bits:
   while (i != preData.end())
   {
-    pushBit(*i, rx51device);
+    duration += pushBit(*i, rx51device);
     ++i;
   }
 
@@ -226,7 +232,7 @@ int RC5Protocol::pushNonStandardRC5(
   // Simply push the rest of the bits:
   while (i != pkb.firstCode.end())
   {
-    pushBit(*i, rx51device);
+    duration += pushBit(*i, rx51device);
     ++i;
   }
 

@@ -39,6 +39,8 @@ public:
   virtual void populateProtocol(
     QObject *guiObject) = 0;
 
+  void clearProtocol();
+
   void moveToThread(
     QThread *thread);
 

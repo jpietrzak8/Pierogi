@@ -914,17 +914,46 @@ void SamsungAC2::populateProtocol(
 
   threadableProtocol = new ACProtocol(guiObject, index);
 
-  addKey("Power Off", PowerOff_Subkey, 0xC, 4);
-  addKey("Power On", PowerOn_Subkey, 0x0, 4);
+  addKey("Power Off", PowerOff_Subkey, 0x0, 4);
+  addKey("Power On", PowerOn_Subkey, 0xC, 4);
 
-  addKey("Cool Mode - Normal", CoolModeNormal_Subkey, 0x7, 3);
-  addKey("Cool Mode - Turbo", CoolModeTurbo_Subkey, 0x1, 3);
-  addKey("Cool Mode - Far", CoolModeFar_Subkey, 0x2, 3);
+  addKey("Cool Mode - Normal", CoolModeNormal_Subkey, 0x0, 3);
+  addKey("Cool Mode - Turbo", CoolModeTurbo_Subkey, 0x3, 3);
+  addKey("Cool Mode - Far", CoolModeFar_Subkey, 0x6, 3);
 
-  addKey("Deflector L/R Off", DeflectorLROff_Subkey, 0x0, 1);
-  addKey("Deflector L/R On", DeflectorLROn_Subkey, 0x1, 1);
-  addKey("Deflector U/D Off", DeflectorUDOff_Subkey, 0x0, 1);
-  addKey("Deflector U/D On", DeflectorUDOn_Subkey, 0x1, 1);
+  addKey("Deflector L/R Off", DeflectorLROff_Subkey, 0x1, 1);
+  addKey("Deflector L/R On", DeflectorLROn_Subkey, 0x0, 1);
+  addKey("Deflector U/D Off", DeflectorUDOff_Subkey, 0x1, 1);
+  addKey("Deflector U/D On", DeflectorUDOn_Subkey, 0x0, 1);
+
+  // Sixteen temperature settings; make this a straight-up variable?
+  // It may be that only 18-30 are supported.
+//  addKey("Temperature 16", Temp16_Subkey, 0x0, 8);
+//  addKey("Temperature 17", Temp16_Subkey, 0x1, 8);
+  addKey("Temperature 18", Temp16_Subkey, 0x2, 8);
+  addKey("Temperature 19", Temp16_Subkey, 0x3, 8);
+  addKey("Temperature 20", Temp16_Subkey, 0x4, 8);
+  addKey("Temperature 21", Temp16_Subkey, 0x5, 8);
+  addKey("Temperature 22", Temp16_Subkey, 0x6, 8);
+  addKey("Temperature 23", Temp16_Subkey, 0x7, 8);
+  addKey("Temperature 24", Temp16_Subkey, 0x8, 8);
+  addKey("Temperature 25", Temp16_Subkey, 0x9, 8);
+  addKey("Temperature 26", Temp16_Subkey, 0xA, 8);
+  addKey("Temperature 27", Temp16_Subkey, 0xB, 8);
+  addKey("Temperature 28", Temp16_Subkey, 0xC, 8);
+  addKey("Temperature 29", Temp16_Subkey, 0xD, 8);
+  addKey("Temperature 30", Temp16_Subkey, 0xE, 8);
+//  addKey("Temperature 31", Temp31_Subkey, 0xF, 8);
+
+  addKey("Fan - Auto", FanSpeedAuto_Subkey, 0x0, 3);
+  addKey("Fan - Low", FanSpeedLow_Subkey, 0x2, 3);
+  addKey("Fan - Medium", FanSpeedMed_Subkey, 0x4, 3);
+  addKey("Fan - High", FanSpeedHigh_Subkey, 0x6, 3);
+
+  addKey("Mode - auto", ModeAuto_Subkey, 0x0, 4);
+  addKey("Mode - cool", ModeCool_Subkey, 0x1, 4);
+  addKey("Mode - DeHumidify", ModeDehumidify_Subkey, 0x2, 4);
+  addKey("Mode - fan", ModeFan_Subkey, 0x03, 4);
 }
 */
 

@@ -46,8 +46,11 @@ void RC6Protocol::startSendingCommand(
     // Sanity check:
     if (i == keycodes.end())
     {
-      std::string s = "Tried to send a non-existent command.\n";
-      throw PIRException(s);
+      QMutexLocker cifLocker(&commandIFMutex);
+      commandInFlight = false;
+      return;
+//      std::string s = "Tried to send a non-existent command.\n";
+//      throw PIRException(s);
     }
 
     PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
@@ -138,22 +141,25 @@ void RC6Protocol::startSendingCommand(
       // Have we been told to stop yet?
       if (checkRepeatFlag())
       {
+        break;
+/*
         // Yes, we can now quit repeating:
         ++keypressCount;
         QMutexLocker ciflocker(&commandIFMutex);
         commandInFlight = false;
         return;
+*/
       }
     }
+
+    ++keypressCount;
+    QMutexLocker cifLocker(&commandIFMutex);
+    commandInFlight = false;
   }
   catch (PIRException e)
   {
     emit commandFailed(e.getError().c_str());
   }
-
-  ++keypressCount;
-  QMutexLocker cifLocker(&commandIFMutex);
-  commandInFlight = false;
 }
 
 

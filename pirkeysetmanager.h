@@ -65,6 +65,9 @@ public:
     QObject *guiObject,
     unsigned int keysetID);
 
+  void clearKeyset(
+    unsigned int keysetID);
+
   void populateFavorites(
     PIRFavoritesDialog *favoritesDialog,
     PIRSelectKeysetForm *keysetForm);

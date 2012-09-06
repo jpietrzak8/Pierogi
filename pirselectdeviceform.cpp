@@ -16,6 +16,10 @@ PIRSelectDeviceForm::PIRSelectDeviceForm(
 {
   ui->setupUi(this);
 
+  // Make sure the user can only select one device at a time:
+  ui->deviceListWidget->setSelectionMode(
+    QAbstractItemView::SingleSelection);
+
   // Don't want to start with the line editor visible:
   ui->searchStringLineEdit->hide();
   ui->searchStringLineEdit->lower();

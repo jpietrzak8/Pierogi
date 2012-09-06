@@ -204,7 +204,17 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/lifetec.cpp \
     keysets/irobot.cpp \
     protocols/irobotprotocol.cpp \
-    forms/pirroombaform.cpp
+    forms/pirroombaform.cpp \
+    forms/pirstatefulacform.cpp \
+    forms/pircameraform.cpp \
+    keysets/nikon.cpp \
+    keysets/olympus.cpp \
+    keysets/pentax.cpp \
+    forms/pirpowersearchform.cpp \
+    keysets/deutschetelekom.cpp \
+    keysets/goodmans.cpp \
+    keysets/emtec.cpp \
+    protocols/tdcprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -384,7 +394,17 @@ HEADERS += mainwindow.h \
     keysets/lifetec.h \
     keysets/irobot.h \
     protocols/irobotprotocol.h \
-    forms/pirroombaform.h
+    forms/pirroombaform.h \
+    forms/pirstatefulacform.h \
+    forms/pircameraform.h \
+    keysets/nikon.h \
+    keysets/olympus.h \
+    keysets/pentax.h \
+    forms/pirpowersearchform.h \
+    keysets/deutschetelekom.h \
+    keysets/goodmans.h \
+    keysets/emtec.h \
+    protocols/tdcprotocol.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -412,7 +432,10 @@ FORMS += mainwindow.ui \
     forms/pirvideodiscform.ui \
     forms/piraudiodeviceform.ui \
     dialogs/pirfavoritesdialog.ui \
-    forms/pirroombaform.ui
+    forms/pirroombaform.ui \
+    forms/pirstatefulacform.ui \
+    forms/pircameraform.ui \
+    forms/pirpowersearchform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

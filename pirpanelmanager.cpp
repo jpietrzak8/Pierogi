@@ -13,7 +13,9 @@
 #include "forms/piradjustform.h"
 #include "forms/pirairconditionerform.h"
 #include "forms/piraudiodeviceform.h"
+#include "forms/pircameraform.h"
 #include "forms/pirroombaform.h"
+#include "forms/pirpowersearchform.h"
 
 #include "mainwindow.h"
 
@@ -40,7 +42,9 @@ PIRPanelManager::PIRPanelManager(
     adjustForm(0),
     acForm(0),
     audioDeviceForm(0),
+    cameraForm(0),
     roombaForm(0),
+    powerSearchForm(0),
     altMainPanelFlag(false),
     currentTabsName(Universal_Tabs),
     mainWindow(mw)
@@ -88,9 +92,15 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[Audio_Panel] = "Audio";
   longPanelNames[Audio_Panel] =
     "Audio Device Panel - various audio related buttons";
+  shortPanelNames[Camera_Panel] = "Camera";
+  longPanelNames[Camera_Panel] =
+    "Camera Panel - simple shutter controls";
   shortPanelNames[Roomba_Panel] = "Roomba";
   longPanelNames[Roomba_Panel] =
     "Roomba Panel - robotic vacuum cleaner controls";
+  shortPanelNames[PowerSearch_Panel] = "Keyset Search";
+  longPanelNames[PowerSearch_Panel] =
+    "Keyset Search Panel - execute power button in each keyset";
 
   mainForm = new PIRMainForm(mainWindow);
   panels[Main_Panel] = mainForm;
@@ -131,8 +141,14 @@ PIRPanelManager::PIRPanelManager(
   audioDeviceForm = new PIRAudioDeviceForm(mainWindow);
   panels[Audio_Panel] = audioDeviceForm;
 
+  cameraForm = new PIRCameraForm(mainWindow);
+  panels[Camera_Panel] = cameraForm;
+
   roombaForm = new PIRRoombaForm(mainWindow);
   panels[Roomba_Panel] = roombaForm;
+
+  powerSearchForm = new PIRPowerSearchForm(mainWindow);
+  panels[PowerSearch_Panel] = powerSearchForm;
 
   // Set up the panel collections:
   PIRPanelNameList pset;
@@ -184,10 +200,20 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Keypad_Panel);
   tabLists[Record_Tabs] = pset;
 
+  // The camera control collection:
+  pset.clear();
+  pset.push_back(Camera_Panel);
+  tabLists[Camera_Tabs] = pset;
+
   // The Roomba collection:
   pset.clear();
   pset.push_back(Roomba_Panel);
   tabLists[Roomba_Tabs] = pset;
+
+  // The Power Search collection:
+  pset.clear();
+  pset.push_back(PowerSearch_Panel);
+  tabLists[PowerSearch_Tabs] = pset;
 }
 
 
@@ -265,7 +291,11 @@ void PIRPanelManager::commonEnableButtons(
   adjustForm->enableButtons(keyset, id);
   acForm->enableButtons(keyset, id);
   audioDeviceForm->enableButtons(keyset, id);
+  cameraForm->enableButtons(keyset, id);
   roombaForm->enableButtons(keyset, id);
+
+  // Also, set the label in the power search form:
+  powerSearchForm->setKeysetName(mainWindow->getCurrentFullName());
 }
 
 

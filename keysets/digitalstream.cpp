@@ -9,6 +9,7 @@ DigitalStreamReceiver::DigitalStreamReceiver(
       DigitalStream_Make,
       index)
 {
+  addControlledDevice(DigitalStream_Make, "DTX9900", Other_Device);
 }
 
 

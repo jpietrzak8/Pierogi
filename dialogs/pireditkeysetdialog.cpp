@@ -52,6 +52,10 @@ void PIREditKeysetDialog::setupDialog(
   {
     ui->nicknameLineEdit->setText(kwi->getNickname());
   }
+  else
+  {
+    ui->nicknameLineEdit->clear();
+  }
 
   keysetItem = kwi;
 }
@@ -121,9 +125,6 @@ void PIREditKeysetDialog::enactChanges()
       mainWindow->addToFavorites(keysetItem);
     }
   }
-
-  // Finally, clean up the dialog box for the next user:
-  ui->nicknameLineEdit->clear();
 }
 
 

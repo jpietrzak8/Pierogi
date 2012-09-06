@@ -285,6 +285,12 @@ QString MainWindow::getCurrentName()
 }
 
 
+QString MainWindow::getCurrentFullName()
+{
+  return selectKeysetForm->getKeysetName();
+}
+
+
 void MainWindow::receivedExternalWarning(
   const char *warning)
 {
@@ -349,6 +355,9 @@ void MainWindow::keysetSelectionChanged(
     // We're already on that keyset, so nothing to do:
     return;
   }
+
+  // Clean up and remove the current keyset:
+  myKeysets->clearKeyset(currentKeyset);
   
   currentKeyset = kwi->getID();
 
@@ -585,4 +594,16 @@ void MainWindow::setupTabs(
   PIRTabBarName name)
 {
   myPanels->setupTabs(name);
+}
+
+
+bool MainWindow::selectNextKeyset()
+{
+  return selectKeysetForm->selectNextKeyset();
+}
+
+
+bool MainWindow::selectPrevKeyset()
+{
+  return selectKeysetForm->selectPrevKeyset();
 }

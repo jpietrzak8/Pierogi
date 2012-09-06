@@ -30,9 +30,10 @@ void CanonDSLR1::populateProtocol(
 
   threadableProtocol = lp;
   lp->setTrailerPulse(550);
+  lp->setCarrierFrequency(32000); // hope this is right
 
-  addKey("S", VolumeDown_Key, 0x1, 1); // Open shutter immediately (?)
-  addKey("2S", VolumeUp_Key, 0x0, 1); // Two second delay (?)
+  addKey("S", OpenShutter_Key, 0x1, 1); // Open shutter immediately (?)
+  addKey("2S", DelayedOpenShutter_Key, 0x0, 1); // Two second delay (?)
 }
 
 

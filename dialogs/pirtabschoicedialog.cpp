@@ -31,7 +31,13 @@ PIRTabsChoiceDialog::PIRTabsChoiceDialog(
     new PIRTabsWidgetItem("Air Conditioner Panels", AC_Tabs));
 
   ui->tabsChoiceListWidget->addItem(
+    new PIRTabsWidgetItem("Camera Panels", Camera_Tabs));
+
+  ui->tabsChoiceListWidget->addItem(
     new PIRTabsWidgetItem("Roomba Panels", Roomba_Tabs));
+
+  ui->tabsChoiceListWidget->addItem(
+    new PIRTabsWidgetItem("Keyset Search Panels", PowerSearch_Tabs));
 }
 
 

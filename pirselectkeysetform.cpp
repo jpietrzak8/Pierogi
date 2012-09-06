@@ -25,6 +25,10 @@ PIRSelectKeysetForm::PIRSelectKeysetForm(
 {
   ui->setupUi(this);
 
+  // Make sure the user can only select one keyset at a time:
+  ui->keysetListWidget->setSelectionMode(
+    QAbstractItemView::SingleSelection);
+
   // Don't want to start with the line editor visible:
   ui->searchStringLineEdit->hide();
   ui->searchStringLineEdit->lower();
@@ -93,6 +97,63 @@ void PIRSelectKeysetForm::addWidgetItem(
 QListWidget *PIRSelectKeysetForm::getKeysetListWidget()
 {
   return ui->keysetListWidget;
+}
+
+
+bool PIRSelectKeysetForm::selectNextKeyset()
+{
+  int currentRow = ui->keysetListWidget->currentRow();
+
+  // If we're at the end of the list, give up:
+  if (currentRow >= (ui->keysetListWidget->count() -1))
+  {
+    return false;
+  }
+
+  ui->keysetListWidget->setCurrentRow(
+    currentRow + 1,
+    QItemSelectionModel::ClearAndSelect);
+
+  mainWindow->keysetSelectionChanged(
+    ui->keysetListWidget->currentItem());
+
+  return true;
+}
+
+
+bool PIRSelectKeysetForm::selectPrevKeyset()
+{
+  int currentRow = ui->keysetListWidget->currentRow();
+
+  // If we're at the beginning of the list, give up:
+  if (currentRow <= 0)
+  {
+    return false;
+  }
+
+  ui->keysetListWidget->setCurrentRow(
+    currentRow - 1,
+    QItemSelectionModel::ClearAndSelect);
+
+  mainWindow->keysetSelectionChanged(
+    ui->keysetListWidget->currentItem());
+
+  return true;
+}
+
+
+QString PIRSelectKeysetForm::getKeysetName()
+{
+  QListWidgetItem *item = ui->keysetListWidget->currentItem();
+
+  if (item)
+  {
+    return item->text();
+  }
+  else
+  {
+    return "";
+  }
 }
 
 

@@ -42,6 +42,11 @@ public:
   // This is a bit of a hack, but not sure how to create a connection otherwise.
   QListWidget *getKeysetListWidget();
 
+  bool selectNextKeyset();
+  bool selectPrevKeyset();
+
+  QString getKeysetName();
+
 protected:
   void keyPressEvent(
     QKeyEvent *event);

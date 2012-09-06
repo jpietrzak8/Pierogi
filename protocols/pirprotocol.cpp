@@ -12,9 +12,9 @@
 extern bool stopRepeatingFlag;
 extern QMutex stopRepeatingMutex;
 
-// Total of all running commands
-extern bool commandInFlight;
-extern QMutex commandIFMutex;
+// Check if a command is running:
+//extern bool commandInFlight;
+//extern QMutex commandIFMutex;
 
 // From what I understand (mostly from reading LIRC config files), NEC
 // protocol based remotes mostly use a frequency of 38000 units and a

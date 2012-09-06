@@ -69,6 +69,7 @@ public:
 
   QString getCurrentMake();
   QString getCurrentName();
+  QString getCurrentFullName();
 
   unsigned int getCurrentKeyset()
   {
@@ -83,6 +84,9 @@ public:
     QWidget *page,
     QString label);
   void setupTabs(PIRTabBarName name);
+
+  bool selectNextKeyset();
+  bool selectPrevKeyset();
 
 signals:
   void buttonPressed(

@@ -27,6 +27,7 @@
 #include "keysets/daewoo.h"
 #include "keysets/dell.h"
 #include "keysets/denon.h"
+#include "keysets/deutschetelekom.h"
 #include "keysets/digitalstream.h"
 #include "keysets/directv.h"
 #include "keysets/dish.h"
@@ -36,12 +37,14 @@
 #include "keysets/ei.h"
 #include "keysets/elgato.h"
 #include "keysets/emerson.h"
+#include "keysets/emtec.h"
 #include "keysets/epson.h"
 #include "keysets/fortec.h"
 #include "keysets/foxtel.h"
 #include "keysets/gadmei.h"
 #include "keysets/genius.h"
 #include "keysets/goldstar.h"
+#include "keysets/goodmans.h"
 #include "keysets/grundig.h"
 #include "keysets/haier.h"
 #include "keysets/harmankardon.h"
@@ -69,12 +72,15 @@
 #include "keysets/mitsubishi.h"
 #include "keysets/motorola.h"
 #include "keysets/nad.h"
+#include "keysets/nikon.h"
 #include "keysets/nokia.h"
 #include "keysets/octagon.h"
+#include "keysets/olympus.h"
 #include "keysets/onida.h"
 #include "keysets/onkyo.h"
 #include "keysets/orion.h"
 #include "keysets/panasonic.h"
+#include "keysets/pentax.h"
 #include "keysets/philco.h"
 #include "keysets/philips.h"
 #include "keysets/pinnacle.h"
@@ -238,6 +244,8 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new DellRemote1(++counter));
 
+  setupKeyset(new DeutscheTelekomSTB1(++counter));
+
   setupKeyset(new DigitalStreamReceiver(++counter));
 
   setupKeyset(new DirectvReceiver1(++counter));
@@ -285,6 +293,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new EmersonTV1(++counter));
   setupKeyset(new EmersonDVD1(++counter));
 
+  setupKeyset(new EmtecSTB1(++counter));
+  setupKeyset(new EmtecSTB2(++counter));
+
   setupKeyset(new EpsonProjector1(++counter));
   setupKeyset(new EpsonProjector2(++counter));
 
@@ -305,6 +316,11 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new GoldStarVCR1b(++counter));
   setupKeyset(new GoldStarVCR1c(++counter));
   setupKeyset(new GoldStarCD1(++counter));
+
+  setupKeyset(new GoodmansSTB1(++counter));
+  setupKeyset(new GoodmansVCR1(++counter));
+  setupKeyset(new GoodmansDVD1(++counter));
+  setupKeyset(new GoodmansAudio1(++counter));
 
   setupKeyset(new GrundigSat1(++counter));
   setupKeyset(new GrundigSat2(++counter));
@@ -466,11 +482,15 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new NADCD2(++counter));
   setupKeyset(new NADTape1(++counter));
 
+  setupKeyset(new NikonDSLR1(++counter));
+
   setupKeyset(new NokiaGenericVCR(++counter));
 
   setupKeyset(new OctagonSat1(++counter));
   setupKeyset(new OctagonSat1a(++counter));
   setupKeyset(new OctagonSat2(++counter));
+
+  setupKeyset(new OlympusCamera1(++counter));
 
   setupKeyset(new OnidaTV1(++counter));
   setupKeyset(new OnidaDVD1(++counter));
@@ -507,6 +527,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new PanasonicAudio2(++counter));
   setupKeyset(new PanasonicAudio2a(++counter));
   setupKeyset(new PanasonicAC1(++counter));
+
+  setupKeyset(new PentaxCamera1(++counter));
 
   setupKeyset(new PhilcoTV(++counter));
 
@@ -907,6 +929,20 @@ void PIRKeysetManager::populateKeyset(
 
   i->second->populateProtocol(guiObject);
   i->second->moveToThread(&commandThread);
+}
+
+
+void PIRKeysetManager::clearKeyset(
+  unsigned int keysetID)
+{
+  PIRKeysetCollection::iterator i = keysetsInfo.find(keysetID);
+
+  if (i == keysetsInfo.end())
+  {
+    return; // should throw error or something
+  }
+
+  i->second->clearProtocol();
 }
 
 
