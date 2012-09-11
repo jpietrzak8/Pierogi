@@ -36,6 +36,9 @@ private slots:
   void on_fastBackwardButton_released();
   void on_fastForwardButton_pressed();
   void on_fastForwardButton_released();
+  void on_autoSearchButton_pressed();
+  void on_pauseSearchButton_pressed();
+  void on_editKeysetButton_clicked();
 
   void gotoPrevKeyset();
   void gotoNextKeyset();

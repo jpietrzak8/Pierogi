@@ -14,7 +14,7 @@
    <enum>Qt::WheelFocus</enum>
   </property>
   <property name="windowTitle">
-   <string>Select Device</string>
+   <string>Browse Known Devices</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="margin">

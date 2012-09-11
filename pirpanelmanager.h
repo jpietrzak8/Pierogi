@@ -18,6 +18,7 @@ class PIRAirConditionerForm;
 class PIRAudioDeviceForm;
 class PIRCameraForm;
 class PIRRoombaForm;
+class PIRMacroForm;
 class PIRPowerSearchForm;
 
 class PIRKeysetWidgetItem;
@@ -88,6 +89,7 @@ private:
   PIRAudioDeviceForm *audioDeviceForm;
   PIRCameraForm *cameraForm;
   PIRRoombaForm *roombaForm;
+  PIRMacroForm *macroForm;
   PIRPowerSearchForm *powerSearchForm;
 
   PIRPanelDisplayNameCollection shortPanelNames;

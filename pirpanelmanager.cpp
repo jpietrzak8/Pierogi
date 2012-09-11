@@ -15,6 +15,7 @@
 #include "forms/piraudiodeviceform.h"
 #include "forms/pircameraform.h"
 #include "forms/pirroombaform.h"
+#include "forms/pirmacroform.h"
 #include "forms/pirpowersearchform.h"
 
 #include "mainwindow.h"
@@ -44,6 +45,7 @@ PIRPanelManager::PIRPanelManager(
     audioDeviceForm(0),
     cameraForm(0),
     roombaForm(0),
+    macroForm(0),
     powerSearchForm(0),
     altMainPanelFlag(false),
     currentTabsName(Universal_Tabs),
@@ -52,7 +54,16 @@ PIRPanelManager::PIRPanelManager(
   QSettings settings("pietrzak.org", "Pierogi");
   if (settings.contains("currentTabsName"))
   {
-    currentTabsName = PIRTabBarName(settings.value("currentTabsName").toInt());
+    int tabVal = settings.value("currentTabsName").toInt();
+
+    if (tabVal >= Last_Tabs_Marker)
+    {
+      currentTabsName = Universal_Tabs;
+    }
+    else
+    {
+      currentTabsName = PIRTabBarName(tabVal);
+    }
   }
 
   // Set up the panel names:
@@ -98,6 +109,9 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[Roomba_Panel] = "Roomba";
   longPanelNames[Roomba_Panel] =
     "Roomba Panel - robotic vacuum cleaner controls";
+  shortPanelNames[Macro_Panel] = "Edit Macros";
+  longPanelNames[Macro_Panel] =
+    "Edit Macros Panel - create, delete, edit, and manage macros";
   shortPanelNames[PowerSearch_Panel] = "Keyset Search";
   longPanelNames[PowerSearch_Panel] =
     "Keyset Search Panel - execute power button in each keyset";
@@ -146,6 +160,9 @@ PIRPanelManager::PIRPanelManager(
 
   roombaForm = new PIRRoombaForm(mainWindow);
   panels[Roomba_Panel] = roombaForm;
+
+  macroForm = new PIRMacroForm(mainWindow);
+  panels[Macro_Panel] = macroForm;
 
   powerSearchForm = new PIRPowerSearchForm(mainWindow);
   panels[PowerSearch_Panel] = powerSearchForm;
@@ -209,6 +226,11 @@ PIRPanelManager::PIRPanelManager(
   pset.clear();
   pset.push_back(Roomba_Panel);
   tabLists[Roomba_Tabs] = pset;
+
+  // The Macro Management collection:
+  pset.clear();
+  pset.push_back(Macro_Panel);
+  tabLists[Macro_Tabs] = pset;
 
   // The Power Search collection:
   pset.clear();

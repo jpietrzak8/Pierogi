@@ -142,6 +142,26 @@ bool PIRSelectKeysetForm::selectPrevKeyset()
 }
 
 
+bool PIRSelectKeysetForm::selectFirstKeyset()
+{
+  if (ui->keysetListWidget->count() == 0)
+  {
+    return false;
+  }
+
+  if (ui->keysetListWidget->currentRow() != 0)
+  {
+    ui->keysetListWidget->setCurrentRow(
+      0, QItemSelectionModel::ClearAndSelect);
+
+    mainWindow->keysetSelectionChanged(
+      ui->keysetListWidget->currentItem());
+  }
+
+  return true;
+}
+
+
 QString PIRSelectKeysetForm::getKeysetName()
 {
   QListWidgetItem *item = ui->keysetListWidget->currentItem();
@@ -255,8 +275,58 @@ void PIRSelectKeysetForm::openKeysetDialog(
 }
 
 
+void PIRSelectKeysetForm::openCurrentKeysetDialog()
+{
+  PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *> (
+    ui->keysetListWidget->currentItem());
+
+  editDialog->setupDialog(kwi);
+
+  editDialog->exec();
+}
+
+
 void PIRSelectKeysetForm::on_showFavoritesCheckBox_toggled(bool checked)
 {
   showOnlyFavorites = checked;
   refilterList();
+}
+
+
+void PIRSelectKeysetForm::selectKeyset(
+  unsigned int targetID)
+{
+  int count = ui->keysetListWidget->count();
+
+  if (count == 0)
+  {
+    return;
+  }
+
+  QListWidgetItem *localItem;
+  PIRKeysetWidgetItem *kwi;
+  int row = 0;
+
+  while (row < count)
+  {
+    localItem = ui->keysetListWidget->item(row);
+
+    if (localItem)
+    {
+      kwi = dynamic_cast<PIRKeysetWidgetItem *> (localItem);
+
+      if (kwi->getID() == targetID)
+      {
+        ui->keysetListWidget->setCurrentRow(
+          row, QItemSelectionModel::ClearAndSelect);
+
+        mainWindow->keysetSelectionChanged(
+          ui->keysetListWidget->currentItem());
+
+        return;
+      }
+    }
+
+    ++row;
+  }
 }

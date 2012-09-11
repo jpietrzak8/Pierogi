@@ -22,6 +22,8 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Canon_Make] = "Canon";
   makes[Cisco_Make] = "Cisco";
   makes[Compro_Make] = "Compro";
+  makes[Creative_Make] = "Creative";
+  makes[Crown_Make] = "Crown";
   makes[Daewoo_Make] = "Daewoo";
   makes[Dell_Make] = "Dell";
   makes[Denon_Make] = "Denon";

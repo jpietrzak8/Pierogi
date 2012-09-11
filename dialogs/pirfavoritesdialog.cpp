@@ -55,13 +55,13 @@ void PIRFavoritesDialog::selectPrevFavKeyset()
     position,
     QItemSelectionModel::ClearAndSelect);
 
-  mainWindow->keysetSelectionChanged(
-    ui->favoritesListWidget->currentItem());
+  PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *> (
+      ui->favoritesListWidget->currentItem());
+
+  mainWindow->updateKeysetSelection(kwi->getID());
 
   // Tell the user about the change:
-  QMaemo5InformationBox::information(
-    0,
-    ui->favoritesListWidget->item(position)->text());
+  QMaemo5InformationBox::information(0, kwi->text());
 }
 
 
@@ -87,13 +87,13 @@ void PIRFavoritesDialog::selectNextFavKeyset()
     position,
     QItemSelectionModel::ClearAndSelect);
 
-  mainWindow->keysetSelectionChanged(
-    ui->favoritesListWidget->currentItem());
+  PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *> (
+      ui->favoritesListWidget->currentItem());
+
+  mainWindow->updateKeysetSelection(kwi->getID());
 
   // Tell the user about the change:
-  QMaemo5InformationBox::information(
-    0,
-    ui->favoritesListWidget->item(position)->text());
+  QMaemo5InformationBox::information(0, kwi->text());
 }
 
 
@@ -151,8 +151,16 @@ QListWidget *PIRFavoritesDialog::getFavoritesListWidget()
 }
 
 
-void PIRFavoritesDialog::on_favoritesListWidget_itemClicked()
+void PIRFavoritesDialog::on_favoritesListWidget_itemClicked(
+  QListWidgetItem *item)
 {
+  if (item)
+  {
+    PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *> (item);
+
+    mainWindow->updateKeysetSelection(kwi->getID());
+  }
+
   // Exit from the dialog:
   accept();
 }

@@ -245,4 +245,32 @@ enum PIRKeyName{
   Mode_Key
 };
 
+
+// Need to make the key names visible to users now:
+#include <map>
+#include <QString>
+typedef std::map<PIRKeyName, QString> KeynameCollection;
+typedef std::map<QString, PIRKeyName> ReverseKeynameCollection;
+
+class QComboBox;
+
+class PIRKeynameMgr
+{
+public:
+  PIRKeynameMgr();
+
+  QString getKeynameString(
+    PIRKeyName keyname);
+
+  PIRKeyName getKeynameID(
+    QString keynameString);
+
+  void populateComboBox(
+    QComboBox *cb);
+
+private:
+  KeynameCollection keynameStrings;
+  ReverseKeynameCollection keynameIDs;
+};
+
 #endif // PIRKEYNAMES_H

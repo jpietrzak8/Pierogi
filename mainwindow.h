@@ -45,10 +45,10 @@ public:
 
   void showExpanded();
 
-  void startRepeating(
+  bool startRepeating(
     PIRKeyName name);
 
-  void startRepeating(
+  bool startRepeating(
     PIRKeyName name,
     unsigned int keysetID);
 
@@ -87,6 +87,11 @@ public:
 
   bool selectNextKeyset();
   bool selectPrevKeyset();
+  bool selectFirstKeyset();
+  void openCurrentKeysetDialog();
+
+  void updateKeysetSelection(
+    unsigned int targetID);
 
 signals:
   void buttonPressed(

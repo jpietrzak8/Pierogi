@@ -23,6 +23,8 @@ enum PIRMakeName{
   Canon_Make,
   Cisco_Make,
   Compro_Make,
+  Creative_Make,
+  Crown_Make,
   Daewoo_Make,
   Dell_Make,
   Denon_Make,

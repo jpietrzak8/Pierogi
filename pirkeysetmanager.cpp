@@ -24,6 +24,8 @@
 #include "keysets/canon.h"
 #include "keysets/cisco.h"
 #include "keysets/compro.h"
+#include "keysets/creative.h"
+#include "keysets/crown.h"
 #include "keysets/daewoo.h"
 #include "keysets/dell.h"
 #include "keysets/denon.h"
@@ -124,7 +126,7 @@
 
 #include "pirexception.h"
 
-// I'll be handling the threading of the keyset commands in this object:
+// Need mutex for thread support:
 #include <QMutex>
 
 // Debugging includes:
@@ -211,6 +213,13 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new ComproTVCard1(++counter));
 
+  setupKeyset(new CreativeAudio1(++counter));
+  setupKeyset(new CreativeAudio2(++counter));
+  setupKeyset(new CreativeMisc1(++counter));
+
+  setupKeyset(new CrownTV1(++counter));
+  setupKeyset(new CrownAudio1(++counter));
+
   setupKeyset(new DaewooTV1(++counter));
   setupKeyset(new DaewooTV2(++counter));
   setupKeyset(new DaewooTV3(++counter));
@@ -244,7 +253,7 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new DellRemote1(++counter));
 
-  setupKeyset(new DeutscheTelekomSTB1(++counter));
+//  setupKeyset(new DeutscheTelekomSTB1(++counter));
 
   setupKeyset(new DigitalStreamReceiver(++counter));
 
@@ -747,6 +756,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new TriaxSTB1(++counter));
   setupKeyset(new TriaxSTB2(++counter));
   setupKeyset(new TriaxSTB2a(++counter));
+//  setupKeyset(new TriaxSTB2b(++counter));
 
   setupKeyset(new UnitedDVD1(++counter));
   setupKeyset(new UnitedDVBT1(++counter));

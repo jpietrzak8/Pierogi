@@ -49,7 +49,13 @@ void PIRPowerSearchForm::setKeysetName(
 
 void PIRPowerSearchForm::on_stepBackwardButton_pressed()
 {
-  if (mainWindow->selectPrevKeyset())
+  if (advanceTimer)
+  {
+    delete advanceTimer;
+    advanceTimer = 0;
+    mainWindow->stopRepeating();
+  }
+  else if (mainWindow->selectPrevKeyset())
   {
     mainWindow->startRepeating(Power_Key);
   }
@@ -62,7 +68,13 @@ void PIRPowerSearchForm::on_stepBackwardButton_released()
 
 void PIRPowerSearchForm::on_stepForwardKey_pressed()
 {
-  if (mainWindow->selectNextKeyset())
+  if (advanceTimer)
+  {
+    delete advanceTimer;
+    advanceTimer = 0;
+    mainWindow->stopRepeating();
+  }
+  else if (mainWindow->selectNextKeyset())
   {
     mainWindow->startRepeating(Power_Key);
   }
@@ -75,6 +87,14 @@ void PIRPowerSearchForm::on_stepForwardKey_released()
 
 void PIRPowerSearchForm::on_fastBackwardButton_pressed()
 {
+  if (advanceTimer)
+  {
+    delete advanceTimer;
+    advanceTimer = 0;
+    mainWindow->stopRepeating();
+    return;
+  }
+
   if (!mainWindow->selectPrevKeyset())
   {
     return;
@@ -84,7 +104,7 @@ void PIRPowerSearchForm::on_fastBackwardButton_pressed()
 
   advanceTimer = new QTimer();
   connect(advanceTimer, SIGNAL(timeout()), this, SLOT(gotoPrevKeyset()));
-  advanceTimer->start(100);
+  advanceTimer->start(50);
 }
 
 void PIRPowerSearchForm::on_fastBackwardButton_released()
@@ -96,6 +116,14 @@ void PIRPowerSearchForm::on_fastBackwardButton_released()
 
 void PIRPowerSearchForm::on_fastForwardButton_pressed()
 {
+  if (advanceTimer)
+  {
+    delete advanceTimer;
+    advanceTimer = 0;
+    mainWindow->stopRepeating();
+    return;
+  }
+
   if (!mainWindow->selectNextKeyset())
   {
     return;
@@ -122,18 +150,17 @@ void PIRPowerSearchForm::gotoPrevKeyset()
   if (checkMutex())
   {
     mainWindow->stopRepeating();
+    return;
+  }
+
+  if (mainWindow->selectPrevKeyset())
+  {
+    mainWindow->startRepeating(Power_Key);
   }
   else
   {
-    if (mainWindow->selectPrevKeyset())
-    {
-      mainWindow->startRepeating(Power_Key);
-    }
-    else
-    {
-      delete advanceTimer;
-      advanceTimer = 0;
-    }
+    if (advanceTimer) delete advanceTimer;
+    advanceTimer = 0;
   }
 }
 
@@ -143,18 +170,17 @@ void PIRPowerSearchForm::gotoNextKeyset()
   if (checkMutex())
   {
     mainWindow->stopRepeating();
+    return;
+  }
+
+  if (mainWindow->selectNextKeyset())
+  {
+    mainWindow->startRepeating(Power_Key);
   }
   else
   {
-    if (mainWindow->selectNextKeyset())
-    {
-      mainWindow->startRepeating(Power_Key);
-    }
-    else
-    {
-      delete advanceTimer;
-      advanceTimer = 0;
-    }
+    if (advanceTimer) delete advanceTimer;
+    advanceTimer = 0;
   }
 }
 
@@ -163,4 +189,52 @@ bool PIRPowerSearchForm::checkMutex()
 {
   QMutexLocker locker(&commandIFMutex);
   return commandInFlight;
+}
+
+
+void PIRPowerSearchForm::on_autoSearchButton_pressed()
+{
+  if (advanceTimer)
+  {
+    delete advanceTimer;
+    advanceTimer = 0;
+    mainWindow->stopRepeating();
+    return;
+  }
+
+  if (mainWindow->selectFirstKeyset())
+  {
+    advanceTimer = new QTimer();
+    connect(advanceTimer, SIGNAL(timeout()), this, SLOT(gotoNextKeyset()));
+    advanceTimer->start(50);
+  }
+}
+
+
+void PIRPowerSearchForm::on_pauseSearchButton_pressed()
+{
+  if (advanceTimer)
+  {
+    delete advanceTimer;
+    advanceTimer = 0;
+    mainWindow->stopRepeating();
+    return;
+  }
+
+  advanceTimer = new QTimer();
+  connect(advanceTimer, SIGNAL(timeout()), this, SLOT(gotoNextKeyset()));
+  advanceTimer->start(50);
+}
+
+
+void PIRPowerSearchForm::on_editKeysetButton_clicked()
+{
+  if (advanceTimer)
+  {
+    delete advanceTimer;
+    advanceTimer = 0;
+    mainWindow->stopRepeating();
+  }
+
+  mainWindow->openCurrentKeysetDialog();
 }

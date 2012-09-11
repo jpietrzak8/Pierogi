@@ -41,7 +41,8 @@ public:
   void selectNextFavKeyset();
 
 private slots:
-  void on_favoritesListWidget_itemClicked();
+  void on_favoritesListWidget_itemClicked(
+    QListWidgetItem *item);
   
 private:
   Ui::PIRFavoritesDialog *ui;

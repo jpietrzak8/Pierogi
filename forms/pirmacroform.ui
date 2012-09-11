@@ -13,163 +13,36 @@
   <property name="windowTitle">
    <string>Macro Processor</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout_2">
+  <layout class="QGridLayout" name="gridLayout">
    <property name="margin">
     <number>8</number>
    </property>
-   <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
-        <widget class="QLabel" name="macroPackLabel">
-         <property name="text">
-          <string>Macro Pack:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="macroPackComboBox"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QPushButton" name="newMacroPackButton">
-       <property name="text">
-        <string>New Macro Pack</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="editMacroPackButton">
-       <property name="text">
-        <string>Edit / Delete Macro Pack</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="macroEditGroupBox">
-       <property name="title">
-        <string>Macro Editing Commands</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <property name="margin">
-         <number>8</number>
-        </property>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QLabel" name="nameLabel">
-            <property name="text">
-             <string>Macro:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="macroComboBox"/>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="prevMacroButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Prev Macro</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../PierogiResources.qrc">
-            <normaloff>:/icons/br_up_icon&amp;48.png</normaloff>:/icons/br_up_icon&amp;48.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="nextMacroButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Next Macro</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../PierogiResources.qrc">
-            <normaloff>:/icons/br_down_icon&amp;48.png</normaloff>:/icons/br_down_icon&amp;48.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>48</width>
-            <height>48</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="newMacroButton">
-          <property name="text">
-           <string>New Macro</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="editMacroButton">
-          <property name="text">
-           <string>Edit / Delete Macro</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-    </layout>
+   <item row="0" column="0">
+    <widget class="QPushButton" name="chooseMacroButton">
+     <property name="text">
+      <string>Select Macro</string>
+     </property>
+    </widget>
    </item>
-   <item>
-    <layout class="QVBoxLayout" name="verticalLayout_3">
-     <item>
-      <widget class="QLabel" name="commandListLabel">
-       <property name="text">
-        <string>Command List</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QListWidget" name="macroListWidget"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="newCommandButton">
-       <property name="text">
-        <string>New Command</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="editCommandButton">
-       <property name="text">
-        <string>Edit / Delete Command</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+   <item row="1" column="0" colspan="3">
+    <widget class="QListWidget" name="macroListWidget"/>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="runButton">
+     <property name="text">
+      <string>Run Macro</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="addButton">
+     <property name="text">
+      <string>Add Command</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../PierogiResources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

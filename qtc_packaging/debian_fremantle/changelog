@@ -1,3 +1,14 @@
+pierogi (1.1.10) unstable; urgency=low
+  * Adding one more Triax keyset for testing. :)
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 07 Sep 2012 18:43:26 -0400
+
+pierogi (1.1.9) unstable; urgency=low
+  * Removing the buggy Deutche Telekom keyset/protocol!
+  * Added an automatic scan / pause feature to the "search for power button" panel.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 07 Sep 2012 17:34:09 -0400
+
 pierogi (1.1.8) unstable; urgency=low
   * A first attempt at the long-asked-for "search for power button" function.  Getting this in required more work on the memory management side of Pierogi, so beware of possible new subtle bugs...
   * A new Camera Shutter panel has been added, for remote controls used with DSLR cameras.

@@ -214,7 +214,16 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/deutschetelekom.cpp \
     keysets/goodmans.cpp \
     keysets/emtec.cpp \
-    protocols/tdcprotocol.cpp
+    protocols/tdcprotocol.cpp \
+    dialogs/pirselectmacrodialog.cpp \
+    macros/pirmacro.cpp \
+    macros/pirmacrocommanditem.cpp \
+    macros/pirmacropack.cpp \
+    macros/pirreversemultitap.cpp \
+    pirkeynames.cpp \
+    dialogs/pircreatecommanddialog.cpp \
+    keysets/creative.cpp \
+    keysets/crown.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -404,7 +413,15 @@ HEADERS += mainwindow.h \
     keysets/deutschetelekom.h \
     keysets/goodmans.h \
     keysets/emtec.h \
-    protocols/tdcprotocol.h
+    protocols/tdcprotocol.h \
+    dialogs/pirselectmacrodialog.h \
+    macros/pirmacro.h \
+    macros/pirmacrocommanditem.h \
+    macros/pirmacropack.h \
+    macros/pirreversemultitap.h \
+    dialogs/pircreatecommanddialog.h \
+    keysets/creative.h \
+    keysets/crown.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -435,7 +452,9 @@ FORMS += mainwindow.ui \
     forms/pirroombaform.ui \
     forms/pirstatefulacform.ui \
     forms/pircameraform.ui \
-    forms/pirpowersearchform.ui
+    forms/pirpowersearchform.ui \
+    dialogs/pirselectmacrodialog.ui \
+    dialogs/pircreatecommanddialog.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

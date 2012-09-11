@@ -89,8 +89,8 @@ void PioneerProtocol::startSendingCommand(
 
       // Check whether we've reached the minimum required number of repetitons:
 //      if (repeatCount >= minimumRepetitions)
-      if (repeatCount >= 3)
-      {
+//      if (repeatCount >= 3)
+//      {
         // Check whether we've been asked to stop:
         if (checkRepeatFlag())
         {
@@ -101,7 +101,7 @@ void PioneerProtocol::startSendingCommand(
           return;
 */
         }
-      }
+//      }
 
       ++repeatCount;
     }

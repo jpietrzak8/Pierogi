@@ -44,8 +44,14 @@ public:
 
   bool selectNextKeyset();
   bool selectPrevKeyset();
+  bool selectFirstKeyset();
 
   QString getKeysetName();
+
+  void openCurrentKeysetDialog();
+
+  void selectKeyset(
+    unsigned int targetID);
 
 protected:
   void keyPressEvent(

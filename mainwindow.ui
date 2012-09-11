@@ -78,7 +78,7 @@
   </action>
   <action name="actionBrowse_Device_List">
    <property name="text">
-    <string>Browse Device List</string>
+    <string>Browse Partial Device List</string>
    </property>
   </action>
  </widget>

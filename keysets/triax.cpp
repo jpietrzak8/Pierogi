@@ -138,3 +138,28 @@ void TriaxSTB2a::populateProtocol(
 
   setPreData(0x6681, 16);
 }
+
+
+/*
+TriaxSTB2b::TriaxSTB2b(
+  unsigned int index)
+  : TriaxSTB2(index)
+{
+  setKeysetName("Satellite Receiver 2b (experimental)");
+}
+
+
+void TriaxSTB2b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  TriaxSTB2::populateProtocol(guiObject);
+
+  setPreData(0xFE01, 16);
+}
+*/

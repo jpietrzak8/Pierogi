@@ -86,55 +86,16 @@ MainWindow::MainWindow(QWidget *parent)
       currentKeyset);
   }
 
+  selectKeysetForm->selectKeyset(currentKeyset);
+
   // Add the corner buttons:
   insertCornerButtons();
 
   enableButtons();
 
-  QListWidget *fkw = favoritesDialog->getFavoritesListWidget();
-
-  connect(
-    fkw,
-    SIGNAL(itemActivated(QListWidgetItem *)),
-    this,
-    SLOT(keysetSelectionChanged(QListWidgetItem *)),
-    Qt::QueuedConnection);
-
   // Make sure the three selection lists don't show different selections:
   QListWidget *klw = selectKeysetForm->getKeysetListWidget();
   QListWidget *dlw = selectDeviceForm->getDeviceListWidget();
-
-  // favorites -> keyset name
-  connect(
-    fkw,
-    SIGNAL(itemActivated(QListWidgetItem *)),
-    klw,
-    SLOT(clearSelection()),
-    Qt::QueuedConnection);
-
-  // favorites -> device name
-  connect(
-    fkw,
-    SIGNAL(itemActivated(QListWidgetItem *)),
-    dlw,
-    SLOT(clearSelection()),
-    Qt::QueuedConnection);
-
-  // keyset name -> favorites
-  connect(
-    klw,
-    SIGNAL(itemActivated(QListWidgetItem *)),
-    fkw,
-    SLOT(clearSelection()),
-    Qt::QueuedConnection);
-
-  // device name -> favorites
-  connect(
-    dlw,
-    SIGNAL(itemActivated(QListWidgetItem *)),
-    fkw,
-    SLOT(clearSelection()),
-    Qt::QueuedConnection);
 
   // keyset name -> device name
   connect(
@@ -484,7 +445,7 @@ void MainWindow::populateFavorites()
 */
 
 
-void MainWindow::startRepeating(
+bool MainWindow::startRepeating(
   PIRKeyName name)
 {
   QMutexLocker locker(&commandIFMutex);
@@ -492,11 +453,16 @@ void MainWindow::startRepeating(
   {
     commandInFlight = true;
     emit buttonPressed(currentKeyset, name);
+    return true;
+  }
+  else
+  {
+    return false;
   }
 }
 
 
-void MainWindow::startRepeating(
+bool MainWindow::startRepeating(
   PIRKeyName name,
   unsigned int keysetID)
 {
@@ -505,6 +471,11 @@ void MainWindow::startRepeating(
   {
     commandInFlight = true;
     emit buttonPressed(keysetID, name);
+    return true;
+  }
+  else
+  {
+    return false;
   }
 }
 
@@ -606,4 +577,23 @@ bool MainWindow::selectNextKeyset()
 bool MainWindow::selectPrevKeyset()
 {
   return selectKeysetForm->selectPrevKeyset();
+}
+
+
+bool MainWindow::selectFirstKeyset()
+{
+  return selectKeysetForm->selectFirstKeyset();
+}
+
+
+void MainWindow::openCurrentKeysetDialog()
+{
+  selectKeysetForm->openCurrentKeysetDialog();
+}
+
+
+void MainWindow::updateKeysetSelection(
+  unsigned int targetID)
+{
+  selectKeysetForm->selectKeyset(targetID);
 }

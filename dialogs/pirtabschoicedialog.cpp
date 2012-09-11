@@ -36,6 +36,11 @@ PIRTabsChoiceDialog::PIRTabsChoiceDialog(
   ui->tabsChoiceListWidget->addItem(
     new PIRTabsWidgetItem("Roomba Panels", Roomba_Tabs));
 
+/*
+  ui->tabsChoiceListWidget->addItem(
+    new PIRTabsWidgetItem("Macro Panels", Macro_Tabs));
+*/
+
   ui->tabsChoiceListWidget->addItem(
     new PIRTabsWidgetItem("Keyset Search Panels", PowerSearch_Tabs));
 }

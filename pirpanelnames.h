@@ -18,6 +18,7 @@ enum PIRPanelName
   Audio_Panel,
   Camera_Panel,
   Roomba_Panel,
+  Macro_Panel,
   PowerSearch_Panel,
   Last_Panel_Marker // Used when traversing this enumeration.
 };
@@ -35,7 +36,9 @@ enum PIRTabBarName
   Record_Tabs,
   Camera_Tabs,
   Roomba_Tabs,
-  PowerSearch_Tabs
+  Macro_Tabs,
+  PowerSearch_Tabs,
+  Last_Tabs_Marker
 };
 
 #endif // PIRPANELNAMES_H

@@ -35,4 +35,16 @@ public:
     QObject *guiObject);
 };
 
+/*
+class TriaxSTB2b: public TriaxSTB2
+{
+public:
+  TriaxSTB2b(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+*/
+
 #endif // TRIAX_H
