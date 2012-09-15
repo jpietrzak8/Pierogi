@@ -114,6 +114,34 @@
          </property>
         </widget>
        </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="macroKbdLabel">
+           <property name="text">
+            <string>Macro Pack with Keyboard Focus</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="macroKbdComboBox"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="macroBtnLabel">
+           <property name="text">
+            <string>Macro Pack for User Buttons</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="macroBtnComboBox"/>
+         </item>
+        </layout>
+       </item>
       </layout>
      </widget>
     </widget>

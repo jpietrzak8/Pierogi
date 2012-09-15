@@ -10,7 +10,7 @@ extern QMutex commandIFMutex;
 
 // I've found no official data on the RCA protocol yet, but from available
 // notes and guesswork I'm using the following:
-// A "zero" is encoded with a 500 usec pulse, 500 usec space.
+// A "zero" is encoded with a 500 usec pulse, 1000 usec space.
 // A "one" is encoded with a 500 usec pulse, and 2000 usec space.
 // The header is a 4000 usec pulse, 4000 usec space.
 // Commands end with a trailing 500 usec pulse.
@@ -28,7 +28,7 @@ RCAProtocol::RCAProtocol(
   unsigned int index)
   : SpaceProtocol(
       guiObject, index,
-      500, 500,
+      500, 1000,
       500, 2000,
       4000, 4000,
       500,

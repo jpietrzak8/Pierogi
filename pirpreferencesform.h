@@ -5,6 +5,7 @@
 
 class MainWindow;
 class PIRKeysetManager;
+class QComboBox;
 
 namespace Ui {
 class PIRPreferencesForm;
@@ -36,8 +37,13 @@ private slots:
   void on_clearDefaultButton_clicked();
   void on_useDefaultCheckBox_stateChanged(int arg1);
   void on_altMainCheckBox_stateChanged(int arg1);
+  void on_macroKbdComboBox_activated(int index);
+  void on_macroBtnComboBox_activated(int index);
 
 private:
+  void setupMacroComboBox(
+    QComboBox *cb);
+
   Ui::PIRPreferencesForm *ui;
 
   MainWindow *mainWindow;

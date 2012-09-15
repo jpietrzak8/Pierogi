@@ -2,6 +2,7 @@
 #include "protocols/rc5protocol.h"
 #include "protocols/necxprotocol.h"
 #include "protocols/necprotocol.h"
+#include "protocols/protonprotocol.h"
 
 // This one is iffy, might be another brand:
 GrundigSat1::GrundigSat1(
@@ -642,6 +643,56 @@ void GrundigTV3::populateProtocol(
   addKey("PLAY", Play_Key, 0x1235, 13);
   addKey("STOP", Stop_Key, 0x1236, 13);
   addKey("MENU", Menu_Key, 0x123C, 13);
+}
+
+
+GrundigTV4::GrundigTV4(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV Keyset 4",
+      Grundig_Make,
+      index)
+{
+}
+
+
+void GrundigTV4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new ProtonProtocol(guiObject, index);
+
+  setPreData(0x1B, 8);
+
+  addKey("vol-", VolumeDown_Key, 0x00, 8);
+  addKey("vol+", VolumeUp_Key, 0x04, 8);
+  addKey("exp", Unmapped_Key, 0x05, 8);
+  addKey("tune", Unmapped_Key, 0x07, 8);
+  addKey("mute", Mute_Key, 0x08, 8);
+  addKey("text/mix", TeletextMix_Key, 0x09, 8);
+  addKey("hold", TeletextHold_Key, 0x0A, 8);
+  addKey("menu", Menu_Key, 0x0C, 8);
+  addKey("0", Zero_Key, 0x0D, 8);
+  addKey("tv", Input_Key, 0x0E, 8); // not sure
+  addKey("7", Seven_Key, 0x10, 8);
+  addKey("8", Eight_Key, 0x11, 8);
+  addKey("9", Nine_Key, 0x12, 8);
+  addKey("ch-", ChannelDown_Key, 0x13, 8);
+  addKey("4", Four_Key, 0x14, 8);
+  addKey("5", Five_Key, 0x15, 8);
+  addKey("6", Six_Key, 0x16, 8);
+  addKey("ch+", ChannelUp_Key, 0x17, 8);
+  addKey("1", One_Key, 0x18, 8);
+  addKey("2", Two_Key, 0x19, 8);
+  addKey("3", Three_Key, 0x1A, 8);
+  addKey("info", Info_Key, 0x1C, 8);
+  addKey("store", Unmapped_Key, 0x1D, 8);
+  addKey("power", Power_Key, 0x1F, 8);
 }
 
 

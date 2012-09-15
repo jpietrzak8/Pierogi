@@ -130,7 +130,7 @@
 #include <QMutex>
 
 // Debugging includes:
-//#include <iostream>
+#include <iostream>
 
 // Global communications mechanism:
 extern bool stopRepeatingFlag;
@@ -215,7 +215,8 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new CreativeAudio1(++counter));
   setupKeyset(new CreativeAudio2(++counter));
-  setupKeyset(new CreativeMisc1(++counter));
+  setupKeyset(new CreativeAudio3(++counter));
+  setupKeyset(new CreativeAudio4(++counter));
 
   setupKeyset(new CrownTV1(++counter));
   setupKeyset(new CrownAudio1(++counter));
@@ -342,6 +343,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new GrundigTV1(++counter));
   setupKeyset(new GrundigTV2(++counter));
   setupKeyset(new GrundigTV3(++counter));
+  setupKeyset(new GrundigTV4(++counter));
   setupKeyset(new GrundigDVD1(++counter));
 
   setupKeyset(new HaierTV1(++counter));

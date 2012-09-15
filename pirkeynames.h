@@ -8,6 +8,23 @@ enum PIRKeyName{
   // The "Unmapped" key is a placeholder for commands with no key mapping:
   Unmapped_Key,
 
+  // Power control:
+  Power_Key,
+  PowerOn_Key,
+  PowerOff_Key,
+
+  // Menu control:
+  Menu_Key,
+  Up_Key,
+  Down_Key,
+  Left_Key,
+  Right_Key,
+  Select_Key,
+  Exit_Key,
+  PageUp_Key,
+  PageDown_Key,
+  Guide_Key,
+
   // Number keys:
   Zero_Key,
   One_Key,
@@ -26,11 +43,6 @@ enum PIRKeyName{
   PlusOneHundred_Key,
   Dash_Key,
   DoubleDigit_Key,
-
-  // Power control:
-  Power_Key,
-  PowerOn_Key,
-  PowerOff_Key,
 
   // Volume control:
   VolumeUp_Key,
@@ -77,18 +89,6 @@ enum PIRKeyName{
   RecordMute_Key,
   RecordTimed_Key,
   RecordPDC_Key,
-
-  // Menu control:
-  Menu_Key,
-  Up_Key,
-  Down_Key,
-  Left_Key,
-  Right_Key,
-  Select_Key,
-  Exit_Key,
-  PageUp_Key,
-  PageDown_Key,
-  Guide_Key,
 
   // Color buttons:
   Red_Key,

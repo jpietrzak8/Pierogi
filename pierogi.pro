@@ -223,7 +223,12 @@ SOURCES += main.cpp mainwindow.cpp \
     pirkeynames.cpp \
     dialogs/pircreatecommanddialog.cpp \
     keysets/creative.cpp \
-    keysets/crown.cpp
+    keysets/crown.cpp \
+    dialogs/pireditmacrodialog.cpp \
+    dialogs/pirdeletemacrodialog.cpp \
+    forms/piruserform.cpp \
+    macros/pirmacromanager.cpp \
+    dialogs/pireditcommanddialog.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -421,7 +426,12 @@ HEADERS += mainwindow.h \
     macros/pirreversemultitap.h \
     dialogs/pircreatecommanddialog.h \
     keysets/creative.h \
-    keysets/crown.h
+    keysets/crown.h \
+    dialogs/pireditmacrodialog.h \
+    dialogs/pirdeletemacrodialog.h \
+    forms/piruserform.h \
+    macros/pirmacromanager.h \
+    dialogs/pireditcommanddialog.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -454,7 +464,11 @@ FORMS += mainwindow.ui \
     forms/pircameraform.ui \
     forms/pirpowersearchform.ui \
     dialogs/pirselectmacrodialog.ui \
-    dialogs/pircreatecommanddialog.ui
+    dialogs/pircreatecommanddialog.ui \
+    dialogs/pireditmacrodialog.ui \
+    dialogs/pirdeletemacrodialog.ui \
+    forms/piruserform.ui \
+    dialogs/pireditcommanddialog.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

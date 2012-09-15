@@ -1,3 +1,16 @@
+pierogi (1.1.12) unstable; urgency=low
+  * Pushing up an initial implementation of Macros.  For now, they don't do much, they don't work terribly well, and they are thoroughly undocumented, but at least they exist. :)
+  * Updates to keysets for Creative, Grundig, and RCA, and a bugfix to the RCA protocol.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 14 Sep 2012 20:44:44 -0400
+
+pierogi (1.1.11) unstable; urgency=low
+  * A handful of fixes and updates for the Power Search form -- some button interactions fixed (thanks Sixwheeledbeast), the Pioneer protocol sped up a bit, and an "edit keyset" button added to the panel.
+  * Removed the Triax testing keyset, it didn't work. :(
+  * First pass at keysets for Creative and Crown.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Mon, 10 Sep 2012 23:49:23 -0400
+
 pierogi (1.1.10) unstable; urgency=low
   * Adding one more Triax keyset for testing. :)
 

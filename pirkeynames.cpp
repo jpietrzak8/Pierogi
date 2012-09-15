@@ -1,6 +1,7 @@
 #include "pirkeynames.h"
 
 #include <QComboBox>
+#include <QVariant>
 
 PIRKeynameMgr::PIRKeynameMgr()
 {
@@ -226,10 +227,10 @@ PIRKeyName PIRKeynameMgr::getKeynameID(
 void PIRKeynameMgr::populateComboBox(
   QComboBox *cb)
 {
-  KeynameCollection::const_iterator i = keynameStrings.begin();
-  while (i != keynameStrings.end())
+  ReverseKeynameCollection::const_iterator i = keynameIDs.begin();
+  while (i != keynameIDs.end())
   {
-    cb->insertItem(i->first, i->second);
+    cb->addItem(i->first, QVariant(i->second));
     ++i;
   }
 }

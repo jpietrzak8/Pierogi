@@ -8,21 +8,45 @@
 #include "pirkeynames.h"
 
 class QTimer;
+class QSettings;
 class MainWindow;
 
+// For convenience:
+enum CommandItemType{
+  NoCommand_Type,
+  KeysetCommand_Type,
+  KeyCommand_Type,
+  PauseCommand_Type
+};
 
-class PIRMacroCommandItem: public QObject, public QListWidgetItem
+class PIRMacroCommandItem: public QObject
 {
   Q_OBJECT
 
 public:
+  PIRMacroCommandItem();
+
   PIRMacroCommandItem(
     QString displayName);
 
   virtual void executeCommand() = 0;
 
+  virtual void storeSettings(
+    QSettings &settings,
+    int index) = 0;
+
+  virtual QString getTypeString() const = 0;
+
+  QString getName() const;
+
+  void setName(
+    QString name);
+
 signals:
   void commandCompleted();
+
+private:
+  QString name;
 };
 
 
@@ -35,7 +59,15 @@ public:
     PIRKeyName keyToExecute,
     MainWindow *mw);
 
+  ~PIRKeyCommandItem();
+
   virtual void executeCommand();
+
+  virtual void storeSettings(
+    QSettings &settings,
+    int index);
+
+  virtual QString getTypeString() const;
 
 private slots:
   void startRunningCommand();
@@ -58,7 +90,17 @@ public:
     unsigned int keysetToChoose,
     MainWindow *mw);
 
+  PIRKeysetCommandItem(
+    unsigned int keysetToChoose,
+    MainWindow *mw);
+
   virtual void executeCommand();
+
+  virtual void storeSettings(
+    QSettings &settings,
+    int index);
+
+  virtual QString getTypeString() const;
 
 private:
   unsigned int id;
@@ -72,10 +114,17 @@ class PIRPauseCommandItem: public PIRMacroCommandItem
 
 public:
   PIRPauseCommandItem(
-    QString displayName,
     unsigned int timeToWait);
 
+  ~PIRPauseCommandItem();
+
   virtual void executeCommand();
+
+  virtual void storeSettings(
+    QSettings &settings,
+    int index);
+
+  virtual QString getTypeString() const;
 
 private slots:
   void finishedWaiting();

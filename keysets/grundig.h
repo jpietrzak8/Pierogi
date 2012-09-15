@@ -115,6 +115,16 @@ public:
     QObject *guiObject);
 };
 
+class GrundigTV4: public PIRKeysetMetaData
+{
+public:
+  GrundigTV4(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 class GrundigDVD1: public PIRKeysetMetaData
 {
 public:

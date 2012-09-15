@@ -8,8 +8,9 @@
 
 class QListWidget;
 class QListWidgetItem;
-class PIRKeysetWidgetItem;
 class QKeyEvent;
+class QComboBox;
+class PIRKeysetWidgetItem;
 class PIREditKeysetDialog;
 class MainWindow;
 
@@ -46,12 +47,18 @@ public:
   bool selectPrevKeyset();
   bool selectFirstKeyset();
 
-  QString getKeysetName();
+  QString getCurrentKeysetName();
+
+  QString getKeysetName(
+    unsigned int id);
 
   void openCurrentKeysetDialog();
 
   void selectKeyset(
     unsigned int targetID);
+
+  void populateKeysetComboBox(
+    QComboBox *comboBox);
 
 protected:
   void keyPressEvent(

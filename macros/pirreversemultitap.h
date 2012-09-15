@@ -10,7 +10,6 @@ class PIRReverseMultitap: public PIRMacroPack
 {
 public:
   PIRReverseMultitap(
-    QTreeWidget *qtw,
     MainWindow *mw);
 
 private:

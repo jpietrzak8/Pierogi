@@ -10,6 +10,7 @@
 class QListWidget;
 class QListWidgetItem;
 class QDialog;
+class QKeyEvent;
 
 class PIRSelectKeysetForm;
 class PIRSelectDeviceForm;
@@ -18,9 +19,11 @@ class PIRDocumentationForm;
 class PIRAboutForm;
 class PIRFavoritesDialog;
 class PIRKeysetWidgetItem;
+class PIRMacroPack;
 
 class PIRKeysetManager;
 class PIRPanelManager;
+class PIRMacroManager;
 
 namespace Ui {
     class MainWindow;
@@ -71,10 +74,24 @@ public:
   QString getCurrentName();
   QString getCurrentFullName();
 
+  QString getKeysetMake(
+    unsigned int id);
+
+  QString getKeysetName(
+    unsigned int id);
+
+  QString getFullKeysetName(
+    unsigned int id);
+
   unsigned int getCurrentKeyset()
   {
     return currentKeyset;
   }
+
+  bool findKeysetID(
+    QString make,
+    QString name,
+    unsigned int &id);
 
   void insertCornerButtons();
   void disableUpdates();
@@ -92,6 +109,28 @@ public:
 
   void updateKeysetSelection(
     unsigned int targetID);
+
+  PIRMacroPack *getUserPack();
+  PIRMacroPack *getMultitapPack();
+
+  bool hasMacroButton(
+    unsigned int buttonID);
+
+  QString getMacroButtonText(
+    unsigned int buttonID);
+
+  void executeMacroButton(
+    unsigned int buttonID);
+
+  void updateUserButtons(); // Should this be a slot?
+
+  void storeMacros();
+
+  void setMacroKbdFocus(
+    int index);
+
+  void setMacroBtnFocus(
+    int index);
 
 signals:
   void buttonPressed(
@@ -121,6 +160,9 @@ private slots:
   void finalCleanup();
 
 private:
+  void keyPressEvent(
+    QKeyEvent *event);
+
   void populateFavorites();
 
   Ui::MainWindow *ui;
@@ -134,6 +176,7 @@ private:
 
   PIRKeysetManager *myKeysets;
   PIRPanelManager *myPanels;
+  PIRMacroManager *myMacros;
 
   unsigned int currentKeyset;
 

@@ -25,10 +25,20 @@ public:
     QObject *guiObject);
 };
 
-class CreativeMisc1: public PIRKeysetMetaData
+class CreativeAudio3: public PIRKeysetMetaData
 {
 public:
-  CreativeMisc1(
+  CreativeAudio3(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class CreativeAudio4: public PIRKeysetMetaData
+{
+public:
+  CreativeAudio4(
     unsigned int index);
 
   virtual void populateProtocol(

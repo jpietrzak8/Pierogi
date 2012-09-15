@@ -3,15 +3,37 @@
 #include "mainwindow.h"
 #include "pirkeynames.h"
 
+#include <QSettings>
 #include <QTimer>
+
+#include <iostream>
 
 PIRKeynameMgr keynameMgr;
 
 
+PIRMacroCommandItem::PIRMacroCommandItem()
+  : name("Unnamed")
+{
+}
+
+
 PIRMacroCommandItem::PIRMacroCommandItem(
   QString displayName)
-  : QListWidgetItem(displayName)
+  : name(displayName)
 {
+}
+
+
+QString PIRMacroCommandItem::getName() const
+{
+  return name;
+}
+
+
+void PIRMacroCommandItem::setName(
+  QString n)
+{
+  name = n;
 }
 
 
@@ -23,6 +45,12 @@ PIRKeyCommandItem::PIRKeyCommandItem(
     advanceTimer(0),
     mainWindow(mw)
 {
+}
+
+
+PIRKeyCommandItem::~PIRKeyCommandItem()
+{
+  if (advanceTimer) delete advanceTimer;
 }
 
 
@@ -63,6 +91,26 @@ void PIRKeyCommandItem::stopRunningCommand()
 }
 
 
+void PIRKeyCommandItem::storeSettings(
+  QSettings &settings,
+  int index)
+{
+  QString commandName = "commandType";
+  commandName.append(QString::number(index));
+  settings.setValue(commandName, KeyCommand_Type);
+
+  commandName = "commandKeyID";
+  commandName.append(QString::number(index));
+  settings.setValue(commandName, key);
+}
+
+
+QString PIRKeyCommandItem::getTypeString() const
+{
+  return "Execute Keypress: ";
+}
+
+
 PIRKeysetCommandItem::PIRKeysetCommandItem(
   QString displayName,
   unsigned int keysetToChoose,
@@ -74,6 +122,17 @@ PIRKeysetCommandItem::PIRKeysetCommandItem(
 }
 
 
+PIRKeysetCommandItem::PIRKeysetCommandItem(
+  unsigned int keysetToChoose,
+  MainWindow *mw)
+  : PIRMacroCommandItem(),
+    id(keysetToChoose),
+    mainWindow(mw)
+{
+  setName(mainWindow->getFullKeysetName(keysetToChoose));
+}
+
+
 void PIRKeysetCommandItem::executeCommand()
 {
   mainWindow->updateKeysetSelection(id);
@@ -81,13 +140,50 @@ void PIRKeysetCommandItem::executeCommand()
 }
 
 
+void PIRKeysetCommandItem::storeSettings(
+  QSettings &settings,
+  int index)
+{
+  QString commandName = "commandType";
+  commandName.append(QString::number(index));
+  settings.setValue(commandName, KeysetCommand_Type);
+
+  commandName = "commandKeysetMake";
+  commandName.append(QString::number(index));
+  settings.setValue(commandName, mainWindow->getKeysetMake(id));
+
+  commandName = "commandKeysetName";
+  commandName.append(QString::number(index));
+  settings.setValue(commandName, mainWindow->getKeysetName(id));
+
+  commandName = "commandKeysetDisplayName";
+  commandName.append(QString::number(index));
+  settings.setValue(commandName, mainWindow->getFullKeysetName(id));
+}
+
+
+QString PIRKeysetCommandItem::getTypeString() const
+{
+  return "Choose Keyset: ";
+}
+
+
 PIRPauseCommandItem::PIRPauseCommandItem(
-  QString displayName,
   unsigned int timeToWait)
-  : PIRMacroCommandItem(displayName),
-    timeInSeconds(timeToWait),
+  : timeInSeconds(timeToWait),
     advanceTimer(0)
 {
+  QString pauseName = "Pause for ";
+  pauseName.append(QString::number(timeToWait));
+  pauseName.append(" seconds");
+
+  setName(pauseName);
+}
+
+
+PIRPauseCommandItem::~PIRPauseCommandItem()
+{
+  if (advanceTimer) delete advanceTimer;
 }
 
 
@@ -110,4 +206,24 @@ void PIRPauseCommandItem::finishedWaiting()
   }
 
   emit commandCompleted();
+}
+
+
+void PIRPauseCommandItem::storeSettings(
+  QSettings &settings,
+  int index)
+{
+  QString commandName = "commandType";
+  commandName.append(QString::number(index));
+  settings.setValue(commandName, PauseCommand_Type);
+
+  commandName = "commandPause";
+  commandName.append(QString::number(index));
+  settings.setValue(commandName, timeInSeconds);
+}
+
+
+QString PIRPauseCommandItem::getTypeString() const
+{
+  return "Pause (in seconds): ";
 }

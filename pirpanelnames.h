@@ -18,6 +18,7 @@ enum PIRPanelName
   Audio_Panel,
   Camera_Panel,
   Roomba_Panel,
+  User_Panel,
   Macro_Panel,
   PowerSearch_Panel,
   Last_Panel_Marker // Used when traversing this enumeration.

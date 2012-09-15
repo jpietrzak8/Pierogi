@@ -9,6 +9,7 @@
 #include <QDialogButtonBox>
 #include <QScrollArea>
 #include <QSettings>
+#include <QKeyEvent>
 
 #include "pirkeysetmetadata.h"
 
@@ -23,9 +24,10 @@
 
 #include "pirkeysetmanager.h"
 #include "pirpanelmanager.h"
+#include "macros/pirmacromanager.h"
 
 //#define DEBUGGING
-//#include <iostream>
+#include <iostream>
 
 // Some ugly globals used for thread communications:
 
@@ -50,8 +52,10 @@ MainWindow::MainWindow(QWidget *parent)
     preferencesForm(0),
     documentationForm(0),
     aboutForm(0),
+    favoritesDialog(0),
     myKeysets(0),
     myPanels(0),
+    myMacros(0),
     currentKeyset(1) // Zero is not a valid keyset any more
 {
   ui->setupUi(this);
@@ -61,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   // Create the managers:
   myKeysets = new PIRKeysetManager();
+  myMacros = new PIRMacroManager(this);
   myPanels = new PIRPanelManager(this);
 
   // Display the panels:
@@ -70,6 +75,7 @@ MainWindow::MainWindow(QWidget *parent)
   selectKeysetForm = new PIRSelectKeysetForm(this);
   favoritesDialog = new PIRFavoritesDialog(this);
   myKeysets->populateListWidgets(selectKeysetForm, favoritesDialog);
+  selectKeysetForm->populateKeysetComboBox(myPanels->getKeysetComboBox());
 
   selectDeviceForm = new PIRSelectDeviceForm(this);
   PIRKeysetMetaData::populateDevices(selectDeviceForm);
@@ -91,7 +97,9 @@ MainWindow::MainWindow(QWidget *parent)
   // Add the corner buttons:
   insertCornerButtons();
 
+  // Set up all the buttons:
   enableButtons();
+  myPanels->updateUserButtons();
 
   // Make sure the three selection lists don't show different selections:
   QListWidget *klw = selectKeysetForm->getKeysetListWidget();
@@ -133,11 +141,17 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
   delete myKeysets;
-  if (selectKeysetForm) delete selectKeysetForm;
-  if (selectDeviceForm) delete selectDeviceForm;
-//  if (panelSelectionForm) delete panelSelectionForm;
-  if (documentationForm) delete documentationForm;
+
   if (aboutForm) delete aboutForm;
+  if (documentationForm) delete documentationForm;
+  if (preferencesForm) delete preferencesForm;
+  if (selectDeviceForm) delete selectDeviceForm;
+  if (favoritesDialog) delete favoritesDialog;
+  if (selectKeysetForm) delete selectKeysetForm;
+
+  if (myPanels) delete myPanels;
+  if (myMacros) delete myMacros;
+//  if (myKeysets) delete myKeysets;
   delete ui;
 }
 
@@ -248,7 +262,37 @@ QString MainWindow::getCurrentName()
 
 QString MainWindow::getCurrentFullName()
 {
-  return selectKeysetForm->getKeysetName();
+  return selectKeysetForm->getCurrentKeysetName();
+}
+
+
+QString MainWindow::getKeysetMake(
+  unsigned int id)
+{
+  return makeManager.getMakeString(myKeysets->getMake(id));
+}
+
+
+QString MainWindow::getKeysetName(
+  unsigned int id)
+{
+  return myKeysets->getDisplayName(id);
+}
+
+
+QString MainWindow::getFullKeysetName(
+  unsigned int id)
+{
+  return selectKeysetForm->getKeysetName(id);
+}
+
+
+bool MainWindow::findKeysetID(
+  QString make,
+  QString name,
+  unsigned int &id)
+{
+  return myKeysets->findKeysetID(make, name, id);
 }
 
 
@@ -596,4 +640,156 @@ void MainWindow::updateKeysetSelection(
   unsigned int targetID)
 {
   selectKeysetForm->selectKeyset(targetID);
+}
+
+
+PIRMacroPack *MainWindow::getUserPack()
+{
+  return myMacros->getUserPack();
+}
+
+
+PIRMacroPack *MainWindow::getMultitapPack()
+{
+  return myMacros->getMultitapPack();
+}
+
+
+void MainWindow::keyPressEvent(
+  QKeyEvent *event)
+{
+  switch(event->key())
+  {
+  case Qt::Key_A:
+    myMacros->handleKeypress('A');
+    break;
+  case Qt::Key_B:
+    myMacros->handleKeypress('B');
+    break;
+  case Qt::Key_C:
+    myMacros->handleKeypress('C');
+    break;
+  case Qt::Key_D:
+    myMacros->handleKeypress('D');
+    break;
+  case Qt::Key_E:
+    myMacros->handleKeypress('E');
+    break;
+  case Qt::Key_F:
+    myMacros->handleKeypress('F');
+    break;
+  case Qt::Key_G:
+    myMacros->handleKeypress('G');
+    break;
+  case Qt::Key_H:
+    myMacros->handleKeypress('H');
+    break;
+  case Qt::Key_I:
+    myMacros->handleKeypress('I');
+    break;
+  case Qt::Key_J:
+    myMacros->handleKeypress('J');
+    break;
+  case Qt::Key_K:
+    myMacros->handleKeypress('K');
+    break;
+  case Qt::Key_L:
+    myMacros->handleKeypress('L');
+    break;
+  case Qt::Key_M:
+    myMacros->handleKeypress('M');
+    break;
+  case Qt::Key_N:
+    myMacros->handleKeypress('N');
+    break;
+  case Qt::Key_O:
+    myMacros->handleKeypress('O');
+    break;
+  case Qt::Key_P:
+    myMacros->handleKeypress('P');
+    break;
+  case Qt::Key_Q:
+    myMacros->handleKeypress('Q');
+    break;
+  case Qt::Key_R:
+    myMacros->handleKeypress('R');
+    break;
+  case Qt::Key_S:
+    myMacros->handleKeypress('S');
+    break;
+  case Qt::Key_T:
+    myMacros->handleKeypress('T');
+    break;
+  case Qt::Key_U:
+    myMacros->handleKeypress('U');
+    break;
+  case Qt::Key_V:
+    myMacros->handleKeypress('V');
+    break;
+  case Qt::Key_W:
+    myMacros->handleKeypress('W');
+    break;
+  case Qt::Key_X:
+    myMacros->handleKeypress('X');
+    break;
+  case Qt::Key_Y:
+    myMacros->handleKeypress('Y');
+    break;
+  case Qt::Key_Z:
+    myMacros->handleKeypress('Z');
+    break;
+  case Qt::Key_Space:
+    myMacros->handleKeypress(' ');
+    break;
+  default:
+    QMainWindow::keyPressEvent(event);
+    break;
+  }
+}
+
+
+bool MainWindow::hasMacroButton(
+  unsigned int buttonID)
+{
+  return myMacros->hasMacroButton(buttonID);
+}
+
+
+QString MainWindow::getMacroButtonText(
+  unsigned int buttonID)
+{
+  return myMacros->getMacroButtonText(buttonID);
+}
+
+
+void MainWindow::executeMacroButton(
+  unsigned int buttonID)
+{
+  myMacros->executeMacroButton(buttonID);
+}
+
+
+void MainWindow::updateUserButtons()
+{
+  myPanels->updateUserButtons();
+}
+
+
+void MainWindow::storeMacros()
+{
+  myMacros->storeSettings();
+}
+
+
+void MainWindow::setMacroKbdFocus(
+  int index)
+{
+  myMacros->setKbdFocus(index);
+}
+
+
+void MainWindow::setMacroBtnFocus(
+  int index)
+{
+  myMacros->setBtnFocus(index);
 }

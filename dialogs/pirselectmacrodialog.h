@@ -3,8 +3,8 @@
 
 #include <QDialog>
 
-class MainWindow;
 class PIRMacroPack;
+class PIRMacro;
 class PIRReverseMultitap;
 class QTreeWidgetItem;
 
@@ -19,26 +19,36 @@ class PIRSelectMacroDialog : public QDialog
 public:
 //  explicit PIRSelectMacroDialog(QWidget *parent = 0);
 
-  PIRSelectMacroDialog(
-    MainWindow *mw);
+  PIRSelectMacroDialog();
 
   ~PIRSelectMacroDialog();
 
+  void addPack(
+    PIRMacroPack *pack);
+
+  void resetIndices();
+
 signals:
   void macroChosen(
+    QTreeWidgetItem *item);
+
+  void newMacroRequested();
+
+  void editMacroRequested(
+    QTreeWidgetItem *item);
+
+  void deleteMacroRequested(
     QTreeWidgetItem *item);
   
 private slots:
   void on_buttonBox_accepted();
 //  void on_buttonBox_rejected();
+  void on_newButton_clicked();
+  void on_editButton_clicked();
+  void on_deleteButton_clicked();
 
 private:
   Ui::PIRSelectMacroDialog *ui;
-
-  PIRMacroPack *userPack;
-  PIRReverseMultitap *multitapPack;
-
-//  MainWindow *mainWindow;
 };
 
 #endif // PIRSELECTMACRODIALOG_H

@@ -3,12 +3,11 @@
 #include "pirmacro.h"
 #include "pirmacrocommanditem.h"
 
+#include <iostream>
 
 PIRReverseMultitap::PIRReverseMultitap(
-  QTreeWidget *qtw,
   MainWindow *mw)
   : PIRMacroPack(
-      qtw,
       "Reverse Multitap Keyboard Macros"),
     mainWindow(mw)
 {
@@ -43,219 +42,219 @@ PIRReverseMultitap::PIRReverseMultitap(
 
 void PIRReverseMultitap::generateLetterA()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap A", 'A');
+  PIRMacro *m = new PIRMacro(this, "Multitap A", 'A', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Two_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('A', m);
 }
 
 void PIRReverseMultitap::generateLetterB()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap B", 'B');
+  PIRMacro *m = new PIRMacro(this, "Multitap B", 'B', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Two_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Two_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('B', m);
 }
 
 void PIRReverseMultitap::generateLetterC()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap C", 'C');
+  PIRMacro *m = new PIRMacro(this, "Multitap C", 'C', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Two_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Two_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Two_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('C', m);
 }
 
 void PIRReverseMultitap::generateLetterD()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap D", 'D');
+  PIRMacro *m = new PIRMacro(this, "Multitap D", 'D', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Three_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('D', m);
 }
 
 void PIRReverseMultitap::generateLetterE()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap E", 'E');
+  PIRMacro *m = new PIRMacro(this, "Multitap E", 'E', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Three_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Three_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('E', m);
 }
 
 void PIRReverseMultitap::generateLetterF()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap F", 'F');
+  PIRMacro *m = new PIRMacro(this, "Multitap F", 'F', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Three_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Three_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Three_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('F', m);
 }
 
 void PIRReverseMultitap::generateLetterG()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap G", 'G');
+  PIRMacro *m = new PIRMacro(this, "Multitap G", 'G', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Four_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('G', m);
 }
 
 void PIRReverseMultitap::generateLetterH()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap H", 'H');
+  PIRMacro *m = new PIRMacro(this, "Multitap H", 'H', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Four_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Four_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('H', m);
 }
 
 void PIRReverseMultitap::generateLetterI()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap I", 'I');
+  PIRMacro *m = new PIRMacro(this, "Multitap I", 'I', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Four_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Four_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Four_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('I', m);
 }
 
 void PIRReverseMultitap::generateLetterJ()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap J", 'J');
+  PIRMacro *m = new PIRMacro(this, "Multitap J", 'J', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Five_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('J', m);
 }
 
 void PIRReverseMultitap::generateLetterK()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap K", 'K');
+  PIRMacro *m = new PIRMacro(this, "Multitap K", 'K', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Five_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Five_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('K', m);
 }
 
 void PIRReverseMultitap::generateLetterL()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap L", 'L');
+  PIRMacro *m = new PIRMacro(this, "Multitap L", 'L', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Five_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Five_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Five_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('L', m);
 }
 
 void PIRReverseMultitap::generateLetterM()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap M", 'M');
+  PIRMacro *m = new PIRMacro(this, "Multitap M", 'M', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Six_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('M', m);
 }
 
 void PIRReverseMultitap::generateLetterN()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap N", 'N');
+  PIRMacro *m = new PIRMacro(this, "Multitap N", 'N', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Six_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Six_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('N', m);
 }
 
 void PIRReverseMultitap::generateLetterO()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap O", 'O');
+  PIRMacro *m = new PIRMacro(this, "Multitap O", 'O', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Six_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Six_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Six_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('O', m);
 }
 
 void PIRReverseMultitap::generateLetterP()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap P", 'P');
+  PIRMacro *m = new PIRMacro(this, "Multitap P", 'P', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Seven_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('P', m);
 }
 
 void PIRReverseMultitap::generateLetterQ()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap Q", 'Q');
+  PIRMacro *m = new PIRMacro(this, "Multitap Q", 'Q', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Seven_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Seven_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('Q', m);
 }
 
 void PIRReverseMultitap::generateLetterR()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap R", 'R');
+  PIRMacro *m = new PIRMacro(this, "Multitap R", 'R', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Seven_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Seven_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Seven_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('R', m);
 }
 
 void PIRReverseMultitap::generateLetterS()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap S", 'S');
+  PIRMacro *m = new PIRMacro(this, "Multitap S", 'S', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Seven_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Seven_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Seven_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Seven_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('S', m);
 }
 
 void PIRReverseMultitap::generateLetterT()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap T", 'T');
+  PIRMacro *m = new PIRMacro(this, "Multitap T", 'T', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Eight_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('T', m);
 }
 
 void PIRReverseMultitap::generateLetterU()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap U", 'U');
+  PIRMacro *m = new PIRMacro(this, "Multitap U", 'U', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Eight_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Eight_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('U', m);
 }
 
 void PIRReverseMultitap::generateLetterV()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap V", 'V');
+  PIRMacro *m = new PIRMacro(this, "Multitap V", 'V', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Eight_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Eight_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Eight_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('V', m);
 }
 
 void PIRReverseMultitap::generateLetterW()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap W", 'W');
+  PIRMacro *m = new PIRMacro(this, "Multitap W", 'W', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Nine_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('W', m);
 }
 
 void PIRReverseMultitap::generateLetterX()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap X", 'X');
+  PIRMacro *m = new PIRMacro(this, "Multitap X", 'X', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Nine_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Nine_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('X', m);
 }
 
 void PIRReverseMultitap::generateLetterY()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap Y", 'Y');
+  PIRMacro *m = new PIRMacro(this, "Multitap Y", 'Y', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Nine_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Nine_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Nine_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('Y', m);
 }
 
 void PIRReverseMultitap::generateLetterZ()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap Z", 'Z');
+  PIRMacro *m = new PIRMacro(this, "Multitap Z", 'Z', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Nine_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Nine_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Nine_Key, mainWindow));
   m->appendCommand(new PIRKeyCommandItem(Nine_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey('Z', m);
 }
 
 void PIRReverseMultitap::generateSpace()
 {
-  PIRMacro *m = new PIRMacro(this, "Multitap Space", ' ');
+  PIRMacro *m = new PIRMacro(this, "Multitap Space", ' ', 0, mainWindow);
   m->appendCommand(new PIRKeyCommandItem(Zero_Key, mainWindow));
-//  macros[m->getName()] = m;
+//  registerKey(' ', m);
 }

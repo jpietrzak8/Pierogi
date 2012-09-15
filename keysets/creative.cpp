@@ -85,7 +85,78 @@ void CreativeAudio2::populateProtocol(
 }
 
 
-CreativeMisc1::CreativeMisc1(
+CreativeAudio3::CreativeAudio3(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Sound Card Keyset 1",
+      Creative_Make,
+      index)
+{
+}
+
+
+void CreativeAudio3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset alredy populated.
+    return;
+  }
+
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  setPreData(0x44C1, 16);
+
+  addKey("1", One_Key, 0xD1, 8);
+  addKey("2", Two_Key, 0xF1, 8);
+  addKey("3", Three_Key, 0x09, 8);
+  addKey("4", Four_Key, 0x51, 8);
+  addKey("5", Five_Key, 0x21, 8);
+  addKey("6", Six_Key, 0x1E, 8);
+  addKey("7", Seven_Key, 0x91, 8);
+  addKey("8", Eight_Key, 0xC1, 8);
+  addKey("9", Nine_Key, 0xEE, 8);
+  addKey("0", Zero_Key, 0x01, 8);
+  addKey("stop", Stop_Key, 0xA1, 8);
+  addKey("stop_eject", Eject_Key, 0xA1, 8);
+  addKey("play", Play_Key, 0x9E, 8);
+  addKey("pause", Pause_Key, 0x9E, 8);
+  addKey("slow", Slow_Key, 0xBE, 8);
+  addKey("step", StepForward_Key, 0x7E, 8);
+  addKey("prev", Previous_Key, 0xFE, 8);
+  addKey("next", Next_Key, 0x5E, 8);
+  addKey("mute", Mute_Key, 0x76, 8);
+  addKey("vol-", VolumeDown_Key, 0xC6, 8);
+  addKey("vol+", VolumeUp_Key, 0x46, 8);
+  addKey("eax", Unmapped_Key, 0x31, 8);
+  addKey("EAX_Up", Unmapped_Key, 0x69, 8);
+  addKey("EAX_Down", Unmapped_Key, 0xE9, 8);
+  addKey("options", Unmapped_Key, 0x41, 8);
+  addKey("display", Info_Key, 0x6E, 8);
+  addKey("return", Exit_Key, 0x71, 8);
+  addKey("start", Unmapped_Key, 0x11, 8);
+  addKey("close", Unmapped_Key, 0x3E, 8);
+  addKey("up", Up_Key, 0xDE, 8);
+  addKey("down", Down_Key, 0xB1, 8);
+  addKey("left", Left_Key, 0xE1, 8);
+  addKey("right", Right_Key, 0xAE, 8);
+  addKey("ok", Select_Key, 0x81, 8);
+  addKey("power", Power_Key, 0x86, 8);
+  addKey("cmss", Unmapped_Key, 0x8E, 8);
+  addKey("CMSS_Up", Unmapped_Key, 0x29, 8);
+  addKey("CMSS_Down", Unmapped_Key, 0xA9, 8);
+  addKey("record", Record_Key, 0xCE, 8);
+  addKey("24bit", Unmapped_Key, 0x89, 8); // "x-fi_crystal_on"
+  addKey("24bit_Up", Unmapped_Key, 0x49, 8); // "x-fi_crystal+"
+  addKey("24bit_Down", Unmapped_Key, 0xC9, 8); // "x-fi_crystal-"
+  addKey("3dMidi", Unmapped_Key, 0x19, 8);
+  addKey("3dMidi_Up", Unmapped_Key, 0x99, 8);
+  addKey("3dMidi_Down", Unmapped_Key, 0x59, 8);
+}
+
+
+CreativeAudio4::CreativeAudio4(
   unsigned int index)
   : PIRKeysetMetaData(
       "Infra Keyset",
@@ -95,7 +166,7 @@ CreativeMisc1::CreativeMisc1(
 }
 
 
-void CreativeMisc1::populateProtocol(
+void CreativeAudio4::populateProtocol(
   QObject *guiObject)
 {
   if (threadableProtocol)

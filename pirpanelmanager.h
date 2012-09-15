@@ -18,12 +18,14 @@ class PIRAirConditionerForm;
 class PIRAudioDeviceForm;
 class PIRCameraForm;
 class PIRRoombaForm;
+class PIRUserForm;
 class PIRMacroForm;
 class PIRPowerSearchForm;
 
 class PIRKeysetWidgetItem;
 class PIRKeysetManager;
 class QListWidget;
+class QComboBox;
 class MainWindow;
 
 #include <list>
@@ -57,6 +59,8 @@ public:
     unsigned int currentID,
     unsigned int defaultID);
 
+  void updateUserButtons();
+
   void useMainPanel();
   void useAltMainPanel();
 
@@ -68,6 +72,8 @@ public:
   void setupRecordTabs();
 */
   void setupTabs(PIRTabBarName name);
+
+  QComboBox *getKeysetComboBox();
 
 private:
   void commonEnableButtons(
@@ -89,6 +95,7 @@ private:
   PIRAudioDeviceForm *audioDeviceForm;
   PIRCameraForm *cameraForm;
   PIRRoombaForm *roombaForm;
+  PIRUserForm *userForm;
   PIRMacroForm *macroForm;
   PIRPowerSearchForm *powerSearchForm;
 

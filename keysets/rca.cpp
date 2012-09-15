@@ -26,23 +26,37 @@ void RCATV1::populateProtocol(
   setPreData(0xF, 4);
 
   addKey("Fav", Favorites_Key, 0x00, 8);
+  addKey("Band", Unmapped_Key, 0x04, 8);
   addKey("tv-antenna", AntennaInput_Key, 0x05, 8);
   addKey("tv-clear", Clear_Key, 0x06, 8);
   addKey("tv-clear", Exit_Key, 0x06, 8);
   addKey("Sleep", Sleep_Key, 0x07, 8);
   addKey("tv-menu", Menu_Key, 0x08, 8);
+  addKey("Tracking Down", TrackingMinus_Key, 0x0A, 8);
+  addKey("Tracking Up", TrackingPlus_Key, 0x0B, 8);
+  addKey("Pip Freeze", PIPPause_Key, 0x0C, 8);
+  addKey("Slow", Slow_Key, 0x10, 8);
   addKey("Presets", Unmapped_Key, 0x12, 8);
+  addKey("Pip Move", PIPMove_Key, 0x14, 8);
   addKey("tv-play", Play_Key, 0x15, 8);
+  addKey("Alarm", Unmapped_Key, 0x16, 8);
   addKey("tv-record", Record_Key, 0x17, 8);
-  addKey("setup-", Unmapped_Key, 0x18, 8);
+  addKey("setup-", Program_Key, 0x18, 8); // "Program"
   addKey("tv-pause", Pause_Key, 0x19, 8);
   addKey("tv-guide", Guide_Key, 0x1A, 8);
   addKey("pip", PIP_Key, 0x1B, 8);
   addKey("tv-forward", FastForward_Key, 0x1C, 8);
   addKey("tv-reverse", Rewind_Key, 0x1D, 8);
   addKey("tv-stop", Stop_Key, 0x1F, 8);
+  addKey("Band Right", Unmapped_Key, 0x20, 8);
+  addKey("Band Left", Unmapped_Key, 0x22, 8);
+  addKey("Erase", Unmapped_Key, 0x23, 8);
+  addKey("Add", Unmapped_Key, 0x24, 8);
   addKey("tv-go-back", PrevChannel_Key, 0x27, 8); // "pc"
+  addKey("Seek", Unmapped_Key, 0x28, 8);
+  addKey("Surr Frz Rig", Unmapped_Key, 0x29, 8);
   addKey("tv-on-off", Power_Key, 0x2A, 8);
+  addKey("Surr Frz Lef", Unmapped_Key, 0x2B, 8);
   addKey("tv-ch-", ChannelDown_Key, 0x2C, 8);
   addKey("tv-ch+", ChannelUp_Key, 0x2D, 8);
   addKey("vol-left", VolumeDown_Key, 0x2E, 8);
@@ -60,25 +74,48 @@ void RCATV1::populateProtocol(
   addKey("tv", PowerOn_Key, 0x3A, 8); // "on"
   addKey("off", PowerOff_Key, 0x3B, 8);
   addKey("tv-info", Info_Key, 0x3C, 8); // "display"
+  addKey("Minute", Unmapped_Key, 0x3D, 8);
+  addKey("Clock", Clock_Key, 0x3E, 8);
   addKey("mute", Mute_Key, 0x3F, 8);
-  addKey("skip", Advance_Key, 0x53, 8);
-  addKey("tv-right", Right_Key, 0x57, 8);
+  addKey("Speed", VHSSpeed_Key, 0x46, 8);
+  addKey("Input", Unmapped_Key, 0x47, 8); // Which input is right? Both?
+  addKey("Pip Recall", Unmapped_Key, 0x49, 8);
+  addKey("Ch Memory", Unmapped_Key, 0x4A, 8);
+  addKey("Call Counter", Unmapped_Key, 0x4C, 8);
+  addKey("Call Channel", Unmapped_Key, 0x4D, 8);
+  addKey("Alternate Menu", Unmapped_Key, 0x52, 8);
+  addKey("skip", Advance_Key, 0x53, 8); // "Cs"
+  addKey("Zoom Out", Unmapped_Key, 0x54, 8);
+  addKey("Zoom In", Unmapped_Key, 0x55, 8);
   addKey("tv-left", Left_Key, 0x56, 8);
+  addKey("tv-right", Right_Key, 0x57, 8);
   addKey("tv-down", Down_Key, 0x58, 8);
   addKey("tv-up", Up_Key, 0x59, 8);
-  addKey("Sound", SoundMode_Key, 0x5A, 8);
-  addKey("tv-who", Unmapped_Key, 0x61, 8);
-  addKey("vid+", Unmapped_Key, 0x64, 8);
-  addKey("setup+", Unmapped_Key, 0x65, 8);
+  addKey("Sound", SoundMode_Key, 0x5A, 8); // "Surr On/Off"
+  addKey("Surr Frz", Unmapped_Key, 0x5B, 8);
+  addKey("Surr Zoom Out", Unmapped_Key, 0x5C, 8);
+  addKey("Surr Zoom In", Unmapped_Key, 0x5D, 8);
+  addKey("Surr Frz Dow", Unmapped_Key, 0x5E, 8);
+  addKey("Surr Frz Up", Unmapped_Key, 0x5F, 8);
+  addKey("tv-who", Unmapped_Key, 0x61, 8); // "Favorite"
+  addKey("Down", Unmapped_Key, 0x62, 8);
+  addKey("Up", Unmapped_Key, 0x63, 8);
+  addKey("vid+", Unmapped_Key, 0x64, 8); // "Menu -"
+  addKey("setup+", Unmapped_Key, 0x65, 8); // "Menu +"
   addKey("CC", Captions_Key, 0x80, 8);
+  addKey("Text On", Unmapped_Key, 0x85, 8);
   addKey("aspect", AspectRatio_Key, 0x90, 8);
   addKey("tv-fetch", Unmapped_Key, 0x93, 8);
   addKey("vport", Unmapped_Key, 0x99, 8);
   addKey("tv-input", Input_Key, 0xA3, 8);
+  addKey("Alt Audio", Unmapped_Key, 0xB0, 8);
   addKey("tv_again", Unmapped_Key, 0xBA, 8);
   addKey("swap", PIPSwap_Key, 0xC3, 8);
-  addKey("pgm", Program_Key, 0xE1, 8);
-  addKey("vid-", Unmapped_Key, 0xE2, 8);
+  addKey("100", PlusOneHundred_Key, 0xD1, 8);
+  addKey("Help", Unmapped_Key, 0xD5, 8);
+  addKey("pgm", Unmapped_Key, 0xE1, 8); // "Audio Menu"
+  addKey("vid-", Unmapped_Key, 0xE2, 8); // "Video Menu"
+  addKey("Ch. cntrl", Unmapped_Key, 0xE5, 8);
   addKey("tv-ok", Select_Key, 0xF4, 8);
 }
 

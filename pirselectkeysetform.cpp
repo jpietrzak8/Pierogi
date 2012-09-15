@@ -4,6 +4,7 @@
 //#include <QListWidget>
 //#include <QListWidgetItem>
 #include <QKeyEvent>
+#include <QComboBox>
 
 #include "mainwindow.h"
 #include "pirkeysetwidgetitem.h"
@@ -162,7 +163,7 @@ bool PIRSelectKeysetForm::selectFirstKeyset()
 }
 
 
-QString PIRSelectKeysetForm::getKeysetName()
+QString PIRSelectKeysetForm::getCurrentKeysetName()
 {
   QListWidgetItem *item = ui->keysetListWidget->currentItem();
 
@@ -174,6 +175,38 @@ QString PIRSelectKeysetForm::getKeysetName()
   {
     return "";
   }
+}
+
+
+QString PIRSelectKeysetForm::getKeysetName(
+  unsigned int id)
+{
+  int count = ui->keysetListWidget->count();
+
+  if (count == 0) return "";
+
+  QListWidgetItem *localItem;
+  PIRKeysetWidgetItem *kwi;
+  int row = 0;
+
+  while (row < count)
+  {
+    localItem = ui->keysetListWidget->item(row);
+
+    if (localItem)
+    {
+      kwi = dynamic_cast<PIRKeysetWidgetItem *> (localItem);
+
+      if (kwi->getID() == id)
+      {
+        return kwi->text();
+      }
+    }
+
+    ++row;
+  }
+
+  return "";
 }
 
 
@@ -298,10 +331,7 @@ void PIRSelectKeysetForm::selectKeyset(
 {
   int count = ui->keysetListWidget->count();
 
-  if (count == 0)
-  {
-    return;
-  }
+  if (count == 0) return;
 
   QListWidgetItem *localItem;
   PIRKeysetWidgetItem *kwi;
@@ -325,6 +355,35 @@ void PIRSelectKeysetForm::selectKeyset(
 
         return;
       }
+    }
+
+    ++row;
+  }
+}
+
+
+void PIRSelectKeysetForm::populateKeysetComboBox(
+  QComboBox *comboBox)
+{
+  int count = ui->keysetListWidget->count();
+
+  if (count == 0) return;
+
+  QListWidgetItem *localItem;
+  PIRKeysetWidgetItem *kwi;
+  int row = 0;
+
+  while (row < count)
+  {
+    localItem = ui->keysetListWidget->item(row);
+
+    if (localItem)
+    {
+      kwi = dynamic_cast<PIRKeysetWidgetItem *> (localItem);
+
+      comboBox->addItem(
+        kwi->text(),
+        QVariant(kwi->getID()));
     }
 
     ++row;

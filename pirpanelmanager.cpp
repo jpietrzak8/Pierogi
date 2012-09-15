@@ -15,6 +15,7 @@
 #include "forms/piraudiodeviceform.h"
 #include "forms/pircameraform.h"
 #include "forms/pirroombaform.h"
+#include "forms/piruserform.h"
 #include "forms/pirmacroform.h"
 #include "forms/pirpowersearchform.h"
 
@@ -26,7 +27,7 @@
 
 // Debugging:
 //#include <QMaemo5InformationBox>
-//#include <iostream>
+#include <iostream>
 
 PIRPanelManager::PIRPanelManager(
   MainWindow *mw):
@@ -45,6 +46,7 @@ PIRPanelManager::PIRPanelManager(
     audioDeviceForm(0),
     cameraForm(0),
     roombaForm(0),
+    userForm(0),
     macroForm(0),
     powerSearchForm(0),
     altMainPanelFlag(false),
@@ -109,7 +111,10 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[Roomba_Panel] = "Roomba";
   longPanelNames[Roomba_Panel] =
     "Roomba Panel - robotic vacuum cleaner controls";
-  shortPanelNames[Macro_Panel] = "Edit Macros";
+  shortPanelNames[User_Panel] = "User";
+  longPanelNames[User_Panel] =
+    "User Panel - macro control buttons";
+  shortPanelNames[Macro_Panel] = "Edit Macro Contents";
   longPanelNames[Macro_Panel] =
     "Edit Macros Panel - create, delete, edit, and manage macros";
   shortPanelNames[PowerSearch_Panel] = "Keyset Search";
@@ -161,6 +166,9 @@ PIRPanelManager::PIRPanelManager(
   roombaForm = new PIRRoombaForm(mainWindow);
   panels[Roomba_Panel] = roombaForm;
 
+  userForm = new PIRUserForm(mainWindow);
+  panels[User_Panel] = userForm;
+
   macroForm = new PIRMacroForm(mainWindow);
   panels[Macro_Panel] = macroForm;
 
@@ -176,6 +184,7 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Keypad_Panel);
   pset.push_back(Menu_Panel);
   pset.push_back(Media_Panel);
+  pset.push_back(User_Panel);
 //  pset.push_back(Input_Panel);
   tabLists[Universal_Tabs] = pset;
 
@@ -321,6 +330,12 @@ void PIRPanelManager::commonEnableButtons(
 }
 
 
+void PIRPanelManager::updateUserButtons()
+{
+  userForm->setupButtons();
+}
+
+
 void PIRPanelManager::useMainPanel()
 {
   if (!altMainPanelFlag)
@@ -403,4 +418,10 @@ void PIRPanelManager::setupTabs(
 
   currentTabsName = name;
   updateTabSet();
+}
+
+
+QComboBox *PIRPanelManager::getKeysetComboBox()
+{
+  return macroForm->getKeysetComboBox();
 }
