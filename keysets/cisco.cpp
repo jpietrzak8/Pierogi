@@ -45,7 +45,7 @@ void CiscoSTB1::populateProtocol(
   addKey("play", Play_Key, 0x91, 8);
   addKey("1", One_Key, 0x92, 8);
   addKey("2", Two_Key, 0x93, 8);
-  addKey("hd", HDMIInput_Key, 0x95, 8); // Might be wrong
+  addKey("hd", HDDInput_Key, 0x95, 8);
   addKey("blue", Blue_Key, 0x96, 8);
   addKey("stop", Stop_Key, 0x97, 8);
   addKey("radio", TunerInput_Key, 0x98, 8);
@@ -124,7 +124,7 @@ void CiscoSTB2::populateProtocol(
   addPanOldKey("VolumeUp", VolumeUp_Key, 0x1B, 0x20);
   addPanOldKey("VolumeDown", VolumeDown_Key, 0x1B, 0x21);
   addPanOldKey("Mute", Mute_Key, 0x1B, 0x22);
-  addPanOldKey("List", Unmapped_Key, 0x1B, 0x26);
+  addPanOldKey("List", HDDInput_Key, 0x1B, 0x26); // "myDVR", might be wrong
   addPanOldKey("Replay", Replay_Key, 0x1B, 0x27); // "SkipBack"
   addPanOldKey("FastForward", FastForward_Key, 0x1B, 0x28);
   addPanOldKey("Rewind", Rewind_Key, 0x1B, 0x29);

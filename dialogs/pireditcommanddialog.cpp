@@ -25,7 +25,7 @@ void PIREditCommandDialog::setup(
   ui->commandValueLabel->setText(name);
 }
 
-
+/*
 void PIREditCommandDialog::on_moveUpButton_clicked()
 {
   emit moveCommandUp();
@@ -37,9 +37,16 @@ void PIREditCommandDialog::on_moveDownButton_clicked()
   emit moveCommandDown();
   accept();
 }
+*/
 
 void PIREditCommandDialog::on_deleteButton_clicked()
 {
   emit deleteCommand();
+  accept();
+}
+
+void PIREditCommandDialog::on_copyButton_clicked()
+{
+  emit copyCommand();
   accept();
 }

@@ -74,12 +74,21 @@ PIRMacroForm::PIRMacroForm(
   smd.addPack(mw->getMultitapPack());
 
   // Connect to edit command dialog signals:
+/*
   connect(
     &ecd,
     SIGNAL(deleteCommand()),
     this,
     SLOT(deleteCurrentCommand()));
 
+  connect(
+    &ecd,
+    SIGNAL(copyCommand()),
+    this,
+    SLOT(copyCurrentCommand()));
+*/
+
+/*
   connect(
     &ecd,
     SIGNAL(moveCommandUp()),
@@ -91,6 +100,7 @@ PIRMacroForm::PIRMacroForm(
     SIGNAL(moveCommandDown()),
     this,
     SLOT(moveCurrentCommandDown()));
+*/
 }
 
 
@@ -313,9 +323,13 @@ void PIRMacroForm::on_addButton_clicked()
 }
 
 
-void PIRMacroForm::deleteCurrentCommand()
+//void PIRMacroForm::deleteCurrentCommand()
+void PIRMacroForm::on_deleteButton_clicked()
 {
+  if (!currentMacro) return;
+
   int index = ui->macroListWidget->currentRow();
+
   if (currentMacro->deleteCommand(index))
   {
     currentMacro->populateList(ui->macroListWidget);
@@ -332,10 +346,23 @@ void PIRMacroForm::deleteCurrentCommand()
 }
 
 
-void PIRMacroForm::moveCurrentCommandUp()
+//void PIRMacroForm::copyCurrentCommand()
+void PIRMacroForm::on_copyButton_clicked()
 {
+  if (!currentMacro) return;
+
+  // copy constructor dealing with inheritance issues?
+}
+
+
+//void PIRMacroForm::moveCurrentCommandUp()
+void PIRMacroForm::on_commandUpButton_clicked()
+{
+  if (!currentMacro) return;
+
   int index = ui->macroListWidget->currentRow();
-  if (currentMacro->moveUp(index))
+
+  if ((index > 0) && currentMacro->moveUp(index))
   {
     currentMacro->populateList(ui->macroListWidget);
     ui->macroListWidget->setCurrentRow(index - 1);
@@ -345,11 +372,15 @@ void PIRMacroForm::moveCurrentCommandUp()
 }
 
 
-void PIRMacroForm::moveCurrentCommandDown()
+//void PIRMacroForm::moveCurrentCommandDown()
+void PIRMacroForm::on_commandDownIcon_clicked()
 {
+  if (!currentMacro) return;
+
   int index = ui->macroListWidget->currentRow();
 
-  if (currentMacro->moveDown(index))
+  if ((index < (ui->macroListWidget->count() - 1) &&
+      currentMacro->moveDown(index)))
   {
     currentMacro->populateList(ui->macroListWidget);
     ui->macroListWidget->setCurrentRow(index + 1);
@@ -359,7 +390,21 @@ void PIRMacroForm::moveCurrentCommandDown()
 }
 
 
+void PIRMacroForm::on_macroListWidget_currentRowChanged(int currentRow)
+{
+  if (currentRow < 0)
+  {
+    ui->deleteButton->setEnabled(false);
+  }
+  else
+  {
+    ui->deleteButton->setEnabled(true);
+  }
+}
+
+
 //void PIRMacroForm::on_macroListWidget_itemClicked(QListWidgetItem *item)
+/*
 void PIRMacroForm::on_macroListWidget_itemClicked()
 {
   ecd.setup(
@@ -368,6 +413,7 @@ void PIRMacroForm::on_macroListWidget_itemClicked()
 
   ecd.exec();
 }
+*/
 
 
 /*
@@ -400,4 +446,3 @@ void PIRMacroForm::on_newMacroButton_clicked()
   mainWindow->storeMacros();
 }
 */
-

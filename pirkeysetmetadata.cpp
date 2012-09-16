@@ -22,6 +22,14 @@ PIRKeysetMetaData::PIRKeysetMetaData(
 {
 }
 
+
+PIRKeysetMetaData::~PIRKeysetMetaData()
+{
+  if (threadableProtocol) delete threadableProtocol;
+  threadableProtocol = 0;
+}
+
+
 bool PIRKeysetMetaData::hasKey(
   PIRKeyName name) const
 {

@@ -140,16 +140,17 @@ void TriaxSTB2a::populateProtocol(
 }
 
 
-/*
-TriaxSTB2b::TriaxSTB2b(
+TriaxSTB3::TriaxSTB3(
   unsigned int index)
-  : TriaxSTB2(index)
+  : PIRKeysetMetaData(
+      "Satellite Receiver 3",
+      Triax_Make,
+      index)
 {
-  setKeysetName("Satellite Receiver 2b (experimental)");
 }
 
 
-void TriaxSTB2b::populateProtocol(
+void TriaxSTB3::populateProtocol(
   QObject *guiObject)
 {
   if (threadableProtocol)
@@ -158,8 +159,141 @@ void TriaxSTB2b::populateProtocol(
     return;
   }
 
-  TriaxSTB2::populateProtocol(guiObject);
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
-  setPreData(0xFE01, 16);
+  setPreData(0x7F00, 16);
+
+  addKey("Power", Power_Key, 0x00, 8);
+  addKey("3", Three_Key, 0x01, 8);
+  addKey("2", Two_Key, 0x02, 8);
+  addKey("1", One_Key, 0x03, 8);
+//  addKey("Last/Prev Ch", PrevChannel_Key, 0x04, 8);
+  addKey("EXIT", Exit_Key, 0x04, 8);
+  addKey("6", Six_Key, 0x05, 8);
+  addKey("5", Five_Key, 0x06, 8);
+  addKey("4", Four_Key, 0x07, 8);
+  addKey("OK/Select", Select_Key, 0x08, 8);
+  addKey("9", Nine_Key, 0x09, 8);
+  addKey("8", Eight_Key, 0x0A, 8);
+  addKey("7", Seven_Key, 0x0B, 8);
+  addKey("Arrow_Right", Right_Key, 0x0D, 8);
+  addKey("0", Zero_Key, 0x0E, 8);
+  addKey("Red", Red_Key, 0x0F, 8);
+  addKey("Play", Play_Key, 0x0F, 8);
+  addKey("Info", Info_Key, 0x10, 8);
+  addKey("Stop", Stop_Key, 0x10, 8);
+  addKey("Arrow_Left", Left_Key, 0x11, 8);
+  addKey("Guide", Guide_Key, 0x12, 8);
+  addKey("TV/Sat", Input_Key, 0x13, 8);
+  addKey("Blue", Blue_Key, 0x13, 8);
+  addKey("Mute", Mute_Key, 0x14, 8);
+  addKey("Last/Prev Ch", PrevChannel_Key, 0x15, 8);
+  addKey("PIP On/Off", PIP_Key, 0x16, 8);
+  addKey("Yellow", Yellow_Key, 0x16, 8);
+  addKey("Menu", Menu_Key, 0x19, 8);
+  addKey("CH+", ChannelUp_Key, 0x1A, 8);
+  addKey("Arrow_Up", Up_Key, 0x1A, 8);
+  addKey("CH-", ChannelDown_Key, 0x1B, 8);
+  addKey("Arrow_Down", Down_Key, 0x1B, 8);
+  addKey("Subtitle", Captions_Key, 0x42, 8);
+  addKey("Volume -", VolumeDown_Key, 0x44, 8);
+  addKey("Volume +", VolumeUp_Key, 0x48, 8);
+  addKey("Green", Green_Key, 0x49, 8);
 }
-*/
+
+
+TriaxSTB3a::TriaxSTB3a(
+  unsigned int index)
+  : TriaxSTB3(index)
+{
+  setKeysetName("Satellite Receiver 3a");
+}
+
+
+void TriaxSTB3a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  TriaxSTB3::populateProtocol(guiObject);
+
+//  addKey("Stop", Stop_Key, 0x08, 8);
+  addKey("FFWD", FastForward_Key, 0x0D, 8);
+  addKey("Blue", Blue_Key, 0x10, 8);
+//  addKey("Rewind", Rewind_Key, 0x11, 8);
+  addKey("Replay", Replay_Key, 0x13, 8);
+  addKey("Last/Prev Ch", PrevChannel_Key, 0x16, 8);
+  addKey("Pause", Pause_Key, 0x1A, 8);
+  addKey("Record", Record_Key, 0x43, 8);
+  addKey("Rewind", Rewind_Key, 0x45, 8);
+}
+
+
+TriaxSTB4::TriaxSTB4(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Satellite Receiver 4",
+      Triax_Make,
+      index)
+{
+}
+
+
+void TriaxSTB4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  setPreData(0x7F00, 16);
+
+  addKey("Mute", Mute_Key, 0x00, 8);
+  addKey("Rewind", Rewind_Key, 0x01, 8);
+  addKey("Red", Red_Key, 0x01, 8);
+  addKey("CH+", ChannelUp_Key, 0x02, 8);
+  addKey("Arrow_Up", Up_Key, 0x02, 8);
+//  addKey("Last/Prev Ch", PrevChannel_Key, 0x03, 8);
+  addKey("EXIT", Exit_Key, 0x03, 8);
+  addKey("Input/Source", Input_Key, 0x04, 8);
+  addKey("Green", Green_Key, 0x04, 8);
+  addKey("Volume +", VolumeUp_Key, 0x05, 8);
+  addKey("Arrow_Right", Right_Key, 0x05, 8);
+  addKey("Skip +", Next_Key, 0x05, 8);
+  addKey("Ok/Select", Select_Key, 0x06, 8);
+  addKey("Volume -", VolumeDown_Key, 0x07, 8);
+  addKey("Arrow_Left", Left_Key, 0x07, 8);
+  addKey("Skip -", Previous_Key, 0x07, 8);
+  addKey("Last/Prev Ch", PrevChannel_Key, 0x08, 8);
+  addKey("Pause", Pause_Key, 0x09, 8);
+  addKey("Blue", Blue_Key, 0x09, 8);
+  addKey("CH-", ChannelDown_Key, 0x0A, 8);
+  addKey("Arrow_Down", Down_Key, 0x0A, 8);
+  addKey("Yellow", Yellow_Key, 0x0D, 8);
+  addKey("0", Zero_Key, 0x0E, 8);
+  addKey("9", Nine_Key, 0x0F, 8);
+  addKey("8", Eight_Key, 0x10, 8);
+  addKey("7", Seven_Key, 0x11, 8);
+  addKey("6", Six_Key, 0x12, 8);
+  addKey("5", Five_Key, 0x13, 8);
+  addKey("4", Four_Key, 0x14, 8);
+  addKey("3", Three_Key, 0x15, 8);
+  addKey("2", Two_Key, 0x16, 8);
+  addKey("1", One_Key, 0x17, 8);
+  addKey("Power", Power_Key, 0x18, 8);
+  addKey("Play", Play_Key, 0x1A, 8);
+  addKey("Info/Display", Info_Key, 0x1B, 8);
+  addKey("Stop", Stop_Key, 0x1B, 8);
+  addKey("Format 16:9", AspectRatio_Key, 0x1C, 8);
+  addKey("FAV", Favorites_Key, 0x1C, 8);
+  addKey("Menu", Menu_Key, 0x1D, 8);
+  addKey("Guide", Guide_Key, 0x1E, 8);
+}

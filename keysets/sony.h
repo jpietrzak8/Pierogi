@@ -49,6 +49,17 @@ public:
 };
 
 
+class SonyTV2: public PIRKeysetMetaData
+{
+public:
+  SonyTV2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+
 class SonyAmp1: public PIRKeysetMetaData
 {
 public:

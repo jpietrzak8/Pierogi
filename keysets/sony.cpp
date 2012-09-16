@@ -1,5 +1,6 @@
 #include "sony.h"
 #include "protocols/sircprotocol.h"
+#include "protocols/aiwaprotocol.h"
 
 
 SonyTV1::SonyTV1(
@@ -232,6 +233,64 @@ void SonyTV1c::populateProtocol(
   addSIRC15Key("GREEN", Green_Key, 0x97, 0x26);
   addSIRC15Key("YELLOW", Yellow_Key, 0x97, 0x27);
   addSIRC15Key("SUBTITLES", Captions_Key, 0x97, 0x28);
+}
+
+
+SonyTV2::SonyTV2(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV Keyset 2",
+      Sony_Make,
+      index)
+{
+}
+
+
+void SonyTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new AiwaProtocol(guiObject, index);
+
+  setPreData(0x0119, 13);
+
+  addKey("0", Zero_Key, 0x00, 8);
+  addKey("1", One_Key, 0x01, 8);
+  addKey("2", Two_Key, 0x02, 8);
+  addKey("3", Three_Key, 0x03, 8);
+  addKey("4", Four_Key, 0x04, 8);
+  addKey("5", Five_Key, 0x05, 8);
+  addKey("6", Six_Key, 0x06, 8);
+  addKey("7", Seven_Key, 0x07, 8);
+  addKey("8", Eight_Key, 0x08, 8);
+  addKey("9", Nine_Key, 0x09, 8);
+  addKey("sleep", Sleep_Key, 0x0A, 8);
+  addKey("tv/av", Input_Key, 0x0E, 8);
+  addKey("back", PrevChannel_Key, 0x0F, 8);
+
+  addKey("display", Info_Key, 0x10, 8);
+  addKey("cc", Captions_Key, 0x11, 8);
+  addKey("input 1", Unmapped_Key, 0x12, 8);
+  addKey("pip on/off", PIP_Key, 0x13, 8);
+  addKey("pip move", PIPMove_Key, 0x14, 8);
+  addKey("mute", Mute_Key, 0x15, 8);
+  addKey("pip swap", PIPSwap_Key, 0x16, 8);
+  addKey("menu", Menu_Key, 0x17, 8);
+  addKey("ch-", ChannelDown_Key, 0x1A, 8);
+  addKey("ch-", Down_Key, 0x1A, 8);
+  addKey("ch+", ChannelUp_Key, 0x1B, 8);
+  addKey("ch+", Up_Key, 0x1B, 8);
+  addKey("power", Power_Key, 0x1C, 8);
+  addKey("freeze", PIPPause_Key, 0x1D, 8);
+  addKey("vol-", VolumeDown_Key, 0x1E, 8);
+  addKey("vol-", Left_Key, 0x1E, 8);
+  addKey("vol+", VolumeUp_Key, 0x1F, 8);
+  addKey("vol+", Right_Key, 0x1F, 8);
 }
 
 

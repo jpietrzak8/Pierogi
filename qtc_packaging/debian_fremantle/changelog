@@ -1,3 +1,9 @@
+pierogi (1.1.13) unstable; urgency=low
+  * Found a new source of (possibly unreliable) keysets!  Made a first pass at keysets for Crown Mustang, Hantarex, Keymat, Konka, and Wiwa.  Also added more keysets to ADB (I-Can), Sony, and Triax.  Hopefully more to come...
+  * Made small fixes to the macros UI, and improved the cleanup of threads when Pierogi exits.  Also made small fixes to a Cisco keyset and to LG timing.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 16 Sep 2012 18:41:08 -0400
+
 pierogi (1.1.12) unstable; urgency=low
   * Pushing up an initial implementation of Macros.  For now, they don't do much, they don't work terribly well, and they are thoroughly undocumented, but at least they exist. :)
   * Updates to keysets for Creative, Grundig, and RCA, and a bugfix to the RCA protocol.

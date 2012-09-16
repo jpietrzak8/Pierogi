@@ -35,24 +35,9 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="moveUpButton">
+      <widget class="QPushButton" name="copyButton">
        <property name="text">
-        <string>Move Up</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../PierogiResources.qrc">
-         <normaloff>:/icons/br_up_icon&amp;48.png</normaloff>:/icons/br_up_icon&amp;48.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="moveDownButton">
-       <property name="text">
-        <string>Move Down</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../PierogiResources.qrc">
-         <normaloff>:/icons/br_down_icon&amp;48.png</normaloff>:/icons/br_down_icon&amp;48.png</iconset>
+        <string>Copy</string>
        </property>
       </widget>
      </item>
@@ -77,9 +62,7 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../PierogiResources.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>

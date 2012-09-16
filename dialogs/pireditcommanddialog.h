@@ -23,13 +23,15 @@ public:
 
 signals:
   void deleteCommand();
-  void moveCommandUp();
-  void moveCommandDown();
+//  void moveCommandUp();
+//  void moveCommandDown();
+  void copyCommand();
 
 private slots:
-  void on_moveUpButton_clicked();
-  void on_moveDownButton_clicked();
+//  void on_moveUpButton_clicked();
+//  void on_moveDownButton_clicked();
   void on_deleteButton_clicked();
+  void on_copyButton_clicked();
 
 private:
   Ui::PIREditCommandDialog *ui;

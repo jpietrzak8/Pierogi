@@ -28,6 +28,7 @@ void LGTV1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+  threadableProtocol->setMinimumRepetitions(1);
 
   setPreData(0x04, 8);
 
@@ -561,6 +562,7 @@ void LGVCR1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+  threadableProtocol->setMinimumRepetitions(1);
 
   setPreData(0x6E, 8);
 
@@ -686,6 +688,7 @@ void LGAC1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+  threadableProtocol->setMinimumRepetitions(1);
 
   setPreData(0x6681, 16);
 

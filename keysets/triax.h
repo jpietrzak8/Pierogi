@@ -35,16 +35,34 @@ public:
     QObject *guiObject);
 };
 
-/*
-class TriaxSTB2b: public TriaxSTB2
+class TriaxSTB3: public PIRKeysetMetaData
 {
 public:
-  TriaxSTB2b(
+  TriaxSTB3(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
-*/
+
+class TriaxSTB3a: public TriaxSTB3
+{
+public:
+  TriaxSTB3a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class TriaxSTB4: public PIRKeysetMetaData
+{
+public:
+  TriaxSTB4(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
 
 #endif // TRIAX_H

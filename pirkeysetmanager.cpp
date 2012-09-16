@@ -26,6 +26,7 @@
 #include "keysets/compro.h"
 #include "keysets/creative.h"
 #include "keysets/crown.h"
+#include "keysets/crownmustang.h"
 #include "keysets/daewoo.h"
 #include "keysets/dell.h"
 #include "keysets/denon.h"
@@ -49,6 +50,7 @@
 #include "keysets/goodmans.h"
 #include "keysets/grundig.h"
 #include "keysets/haier.h"
+#include "keysets/hantarex.h"
 #include "keysets/harmankardon.h"
 #include "keysets/hauppauge.h"
 #include "keysets/hitachi.h"
@@ -62,6 +64,8 @@
 #include "keysets/kaon.h"
 #include "keysets/kathrein.h"
 #include "keysets/kenwood.h"
+#include "keysets/keymat.h"
+#include "keysets/konka.h"
 #include "keysets/lexuz.h"
 #include "keysets/lg.h"
 #include "keysets/lifetec.h"
@@ -120,6 +124,7 @@
 #include "keysets/vizio.h"
 #include "keysets/wd.h"
 #include "keysets/westinghouse.h"
+#include "keysets/wiwa.h"
 #include "keysets/xcruiser.h"
 #include "keysets/yamaha.h"
 #include "keysets/zenith.h"
@@ -152,6 +157,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ADBSTB2(++counter));
   setupKeyset(new ADBSTB3(++counter));
   setupKeyset(new ADBSTB4(++counter));
+  setupKeyset(new ADBSTB5(++counter));
 
   setupKeyset(new AdmiralTV1(++counter));
   setupKeyset(new AdmiralTV2(++counter));
@@ -220,6 +226,8 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new CrownTV1(++counter));
   setupKeyset(new CrownAudio1(++counter));
+
+  setupKeyset(new CrownMustangTV1(++counter));
 
   setupKeyset(new DaewooTV1(++counter));
   setupKeyset(new DaewooTV2(++counter));
@@ -348,6 +356,9 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new HaierTV1(++counter));
 
+  setupKeyset(new HantarexTV1(++counter));
+  setupKeyset(new HantarexTV2(++counter));
+
   setupKeyset(new HarmanKardonAmp1(++counter));
   setupKeyset(new HarmanKardonAmp2(++counter));
   setupKeyset(new HarmanKardonReceiver2(++counter));
@@ -424,6 +435,12 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new KenwoodCD1(++counter));
   setupKeyset(new KenwoodDVD1(++counter));
   setupKeyset(new KenwoodTV1(++counter));
+
+  setupKeyset(new KeymatTV1(++counter));
+  setupKeyset(new KeymatTV2(++counter));
+
+  setupKeyset(new KonkaTV1(++counter));
+  setupKeyset(new KonkaTV2(++counter));
 
   setupKeyset(new LexuzDVB1(++counter));
 
@@ -671,6 +688,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SonyTV1a(++counter));
   setupKeyset(new SonyTV1b(++counter));
   setupKeyset(new SonyTV1c(++counter));
+  setupKeyset(new SonyTV2(++counter));
   setupKeyset(new SonyAmp1(++counter));
   setupKeyset(new SonyAmp2(++counter));
   setupKeyset(new SonyAudio1(++counter));
@@ -758,7 +776,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new TriaxSTB1(++counter));
   setupKeyset(new TriaxSTB2(++counter));
   setupKeyset(new TriaxSTB2a(++counter));
-//  setupKeyset(new TriaxSTB2b(++counter));
+  setupKeyset(new TriaxSTB3(++counter));
+  setupKeyset(new TriaxSTB3a(++counter));
+  setupKeyset(new TriaxSTB4(++counter));
 
   setupKeyset(new UnitedDVD1(++counter));
   setupKeyset(new UnitedDVBT1(++counter));
@@ -790,6 +810,8 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new WestinghouseTV1(++counter));
   setupKeyset(new WestinghouseTV2(++counter));
+
+  setupKeyset(new WiwaSTB1(++counter));
 
   setupKeyset(new XcruiserSat1(++counter));
 
@@ -823,12 +845,6 @@ PIRKeysetManager::~PIRKeysetManager()
     stopRepeatingFlag = true;
   }
 
-  // Tell the thread that we want it to stop:
-  commandThread.exit();
-
-  // Wait for the thread to stop:
-  commandThread.wait();
-
   // Delete all the keysets:
   PIRKeysetCollection::iterator i = keysetsInfo.begin();
   while (i != keysetsInfo.end())
@@ -836,6 +852,12 @@ PIRKeysetManager::~PIRKeysetManager()
     if ((*i).second) delete (*i).second;
     ++i;
   }
+
+  // Tell the thread that we want it to stop:
+  commandThread.exit();
+
+  // Wait for the thread to stop:
+  commandThread.wait();
 }
 
 

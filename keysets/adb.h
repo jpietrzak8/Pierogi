@@ -48,4 +48,15 @@ public:
     QObject *guiObject);
 };
 
+
+class ADBSTB5: public PIRKeysetMetaData
+{
+public:
+  ADBSTB5(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // ADB_H

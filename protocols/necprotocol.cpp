@@ -36,6 +36,7 @@ NECProtocol::NECProtocol(
     isExtendedNEC(extNEC),
     isShortRepeat(srtRep)
 {
+  setMinimumRepetitions(1);
 }
 
 

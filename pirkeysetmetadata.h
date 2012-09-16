@@ -27,6 +27,8 @@ public:
     PIRMakeName make,
     unsigned int index);
 
+  ~PIRKeysetMetaData();
+
   bool hasKey(
     PIRKeyName name) const;
 

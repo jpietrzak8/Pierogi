@@ -6,7 +6,7 @@
 #include "dialogs/pireditmacrodialog.h"
 #include "dialogs/pirdeletemacrodialog.h"
 #include "dialogs/pircreatecommanddialog.h"
-#include "dialogs/pireditcommanddialog.h"
+//#include "dialogs/pireditcommanddialog.h"
 
 class PIRMacro;
 class QComboBox;
@@ -44,8 +44,13 @@ private slots:
 //  void on_newMacroButton_clicked();
   void on_runButton_clicked();
   void on_addButton_clicked();
+  void on_commandUpButton_clicked();
+  void on_commandDownIcon_clicked();
+  void on_deleteButton_clicked();
+  void on_copyButton_clicked();
 //  void on_macroListWidget_itemClicked(QListWidgetItem *item);
-  void on_macroListWidget_itemClicked();
+//  void on_macroListWidget_itemClicked();
+  void on_macroListWidget_currentRowChanged(int currentRow);
 
   void displayMacro(
     QTreeWidgetItem *item);
@@ -58,9 +63,10 @@ private slots:
   void deleteMacro(
     QTreeWidgetItem *item);
 
-  void deleteCurrentCommand();
-  void moveCurrentCommandUp();
-  void moveCurrentCommandDown();
+//  void deleteCurrentCommand();
+//  void moveCurrentCommandUp();
+//  void moveCurrentCommandDown();
+//  void copyCurrentCommand();
 
 private:
   Ui::PIRMacroForm *ui;
@@ -69,7 +75,7 @@ private:
   PIREditMacroDialog emd;
   PIRDeleteMacroDialog dmd;
   PIRCreateCommandDialog ccd;
-  PIREditCommandDialog ecd;
+//  PIREditCommandDialog ecd;
 
   PIRMacro *currentMacro;
   PIRMacro *userRequestMacro;

@@ -228,7 +228,12 @@ SOURCES += main.cpp mainwindow.cpp \
     dialogs/pirdeletemacrodialog.cpp \
     forms/piruserform.cpp \
     macros/pirmacromanager.cpp \
-    dialogs/pireditcommanddialog.cpp
+    dialogs/pireditcommanddialog.cpp \
+    keysets/crownmustang.cpp \
+    keysets/hantarex.cpp \
+    keysets/keymat.cpp \
+    keysets/konka.cpp \
+    keysets/wiwa.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -431,7 +436,12 @@ HEADERS += mainwindow.h \
     dialogs/pirdeletemacrodialog.h \
     forms/piruserform.h \
     macros/pirmacromanager.h \
-    dialogs/pireditcommanddialog.h
+    dialogs/pireditcommanddialog.h \
+    keysets/crownmustang.h \
+    keysets/hantarex.h \
+    keysets/keymat.h \
+    keysets/konka.h \
+    keysets/wiwa.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

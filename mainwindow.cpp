@@ -140,8 +140,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-  delete myKeysets;
-
   if (aboutForm) delete aboutForm;
   if (documentationForm) delete documentationForm;
   if (preferencesForm) delete preferencesForm;
@@ -151,7 +149,7 @@ MainWindow::~MainWindow()
 
   if (myPanels) delete myPanels;
   if (myMacros) delete myMacros;
-//  if (myKeysets) delete myKeysets;
+  if (myKeysets) delete myKeysets;
   delete ui;
 }
 
