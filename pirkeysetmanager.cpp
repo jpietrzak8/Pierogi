@@ -22,6 +22,7 @@
 #include "keysets/bush.h"
 #include "keysets/cambridge.h"
 #include "keysets/canon.h"
+#include "keysets/changhong.h"
 #include "keysets/cisco.h"
 #include "keysets/compro.h"
 #include "keysets/creative.h"
@@ -44,6 +45,7 @@
 #include "keysets/epson.h"
 #include "keysets/fortec.h"
 #include "keysets/foxtel.h"
+#include "keysets/frontech.h"
 #include "keysets/gadmei.h"
 #include "keysets/genius.h"
 #include "keysets/goldstar.h"
@@ -101,6 +103,7 @@
 #include "keysets/samsung.h"
 #include "keysets/sanyo.h"
 #include "keysets/sharp.h"
+#include "keysets/sinotec.h"
 #include "keysets/sky.h"
 #include "keysets/sony.h"
 #include "keysets/starsat.h"
@@ -213,6 +216,12 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new CanonCamcorder1(++counter));
   setupKeyset(new CanonPowershot1(++counter));
 
+  setupKeyset(new ChanghongTV1(++counter));
+  setupKeyset(new ChanghongTV1a(++counter));
+  setupKeyset(new ChanghongTV1b(++counter));
+  setupKeyset(new ChanghongTV2(++counter));
+  setupKeyset(new ChanghongTV3(++counter));
+
   setupKeyset(new CiscoSTB1(++counter));
   setupKeyset(new CiscoSTB2(++counter));
   setupKeyset(new CiscoSTB3(++counter));
@@ -322,6 +331,9 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new FoxtelSTB1(++counter));
   setupKeyset(new FoxtelSTB2(++counter));
+
+  setupKeyset(new FrontechTV1(++counter));
+  setupKeyset(new FrontechTV2(++counter));
 
   setupKeyset(new GadmeiTuner1(++counter));
 
@@ -681,6 +693,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SharpReceiver1(++counter));
   setupKeyset(new SharpAC1(++counter));
 
+  setupKeyset(new SinotecTV1(++counter));
+  setupKeyset(new SinotecTV2(++counter));
+
   setupKeyset(new SkyReceiver1(++counter));
   setupKeyset(new SkyReceiver1a(++counter));
 
@@ -745,6 +760,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ThomsonDVD1(++counter));
   setupKeyset(new ThomsonSat1(++counter));
   setupKeyset(new ThomsonAudio1(++counter));
+  setupKeyset(new ThomsonAudio2(++counter));
 
   setupKeyset(new Tivo1(++counter));
   setupKeyset(new Tivo1a(++counter));
@@ -966,17 +982,17 @@ void PIRKeysetManager::populateKeyset(
 }
 
 
-void PIRKeysetManager::clearKeyset(
+bool PIRKeysetManager::clearKeyset(
   unsigned int keysetID)
 {
   PIRKeysetCollection::iterator i = keysetsInfo.find(keysetID);
 
   if (i == keysetsInfo.end())
   {
-    return; // should throw error or something
+    return true; // best I can do here right now...
   }
 
-  i->second->clearProtocol();
+  return i->second->clearProtocol();
 }
 
 

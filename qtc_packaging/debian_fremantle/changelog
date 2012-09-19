@@ -1,3 +1,9 @@
+pierogi (1.1.14) unstable; urgency=low
+  * Fixed a bug that allowed keysets to be deleted while a command was still running (causing all sorts of havoc).  This might improve macro behavior.
+  * Made a first pass at keysets for Changhong, Frontech, Sinotec, and Supra, added a new Thomson keyset, and made a few fixes to ADB (I-Can).
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Wed, 19 Sep 2012 16:13:03 -0400
+
 pierogi (1.1.13) unstable; urgency=low
   * Found a new source of (possibly unreliable) keysets!  Made a first pass at keysets for Crown Mustang, Hantarex, Keymat, Konka, and Wiwa.  Also added more keysets to ADB (I-Can), Sony, and Triax.  Hopefully more to come...
   * Made small fixes to the macros UI, and improved the cleanup of threads when Pierogi exits.  Also made small fixes to a Cisco keyset and to LG timing.

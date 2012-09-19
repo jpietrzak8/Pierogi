@@ -2,6 +2,7 @@
 #include "protocols/xmpprotocol.h"
 #include "protocols/thomsonprotocol.h"
 #include "protocols/necprotocol.h"
+#include "protocols/rcaprotocol.h"
 
 
 ThomsonConverter1::ThomsonConverter1(
@@ -401,4 +402,58 @@ void ThomsonAudio1::populateProtocol(
   addKey("presUp", NextPreset_Key, 0x9C, 8);
   addKey("presDown", ChannelDown_Key, 0x9D, 8);
   addKey("presDown", PrevPreset_Key, 0x9D, 8);
+}
+
+
+ThomsonAudio2::ThomsonAudio2(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Audio Keyset 2",
+      Thomson_Make,
+      index)
+{
+}
+
+
+void ThomsonAudio2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new RCAProtocol(guiObject, index);
+
+  setPreData(0xC, 4);
+
+  addKey("Sleep", Sleep_Key, 0x07, 8);
+  addKey("Menu", Menu_Key, 0x12, 8);
+  addKey("Tune +", ChannelUp_Key, 0x20, 8);
+  addKey("Tune -", ChannelDown_Key, 0x22, 8);
+  addKey("Power", Power_Key, 0x2A, 8);
+  addKey("CH+", Unmapped_Key, 0x2C, 8); // hoping "Tune +" instead
+  addKey("CH-", Unmapped_Key, 0x2D, 8);
+  addKey("Volume -", VolumeDown_Key, 0x2E, 8);
+  addKey("Arrow_Down", Down_Key, 0x2E, 8);
+  addKey("Volume +", VolumeUp_Key, 0x2F, 8);
+  addKey("Arrow_Up", Up_Key, 0x2F, 8);
+  addKey("0", Zero_Key, 0x30, 8);
+  addKey("1", One_Key, 0x31, 8);
+  addKey("2", Two_Key, 0x32, 8);
+  addKey("3", Three_Key, 0x33, 8);
+  addKey("4", Four_Key, 0x34, 8);
+  addKey("5", Five_Key, 0x35, 8);
+  addKey("6", Six_Key, 0x36, 8);
+  addKey("7", Seven_Key, 0x37, 8);
+  addKey("8", Eight_Key, 0x38, 8);
+  addKey("9", Nine_Key, 0x39, 8);
+  addKey("Info/Display", Info_Key, 0x3A, 8);
+  addKey("Mute", Mute_Key, 0x3F, 8);
+  addKey("OK/Select", Select_Key, 0x4F, 8);  // ?
+  addKey("Last/Prev Ch", PrevChannel_Key, 0x56, 8); // ?
+  addKey("Surround", SoundMode_Key, 0x5B, 8);
+  addKey("Arrow_Left", Left_Key, 0x64, 8);
+  addKey("Arrow_Right", Right_Key, 0x65, 8);
 }

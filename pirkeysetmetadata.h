@@ -41,7 +41,7 @@ public:
   virtual void populateProtocol(
     QObject *guiObject) = 0;
 
-  void clearProtocol();
+  bool clearProtocol();
 
   void moveToThread(
     QThread *thread);

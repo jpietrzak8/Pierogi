@@ -9,6 +9,9 @@
 extern bool commandInFlight;
 extern QMutex commandIFMutex;
 
+// Debugging:
+#include <iostream>
+
 // The official NEC protocol, as I understand it, has the following attributes:
 // A "zero" is encoded with a 560 usec pulse, 560 usec space.
 // A "one" is encoded with a 560 usec pulse, and 3*560 (1680) usec space.

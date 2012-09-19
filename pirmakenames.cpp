@@ -20,6 +20,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Bush_Make] = "Bush";
   makes[Cambridge_Make] = "Cambridge Audio";
   makes[Canon_Make] = "Canon";
+  makes[Changhong_Make] = "Changhong";
   makes[Cisco_Make] = "Cisco";
   makes[Compro_Make] = "Compro";
   makes[Creative_Make] = "Creative";
@@ -42,6 +43,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Epson_Make] = "Epson";
   makes[Fortec_Make] = "Fortec Star";
   makes[Foxtel_Make] = "Foxtel";
+  makes[Frontech_Make] = "Frontech";
   makes[Gadmei_Make] = "Gadmei";
   makes[Genius_Make] = "Genius";
   makes[GoldStar_Make] = "GoldStar";
@@ -99,6 +101,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Samsung_Make] = "Samsung";
   makes[Sanyo_Make] = "Sanyo";
   makes[Sharp_Make] = "Sharp";
+  makes[Sinotec_Make] = "Sinotec";
   makes[Sky_Make] = "Sky";
   makes[Sony_Make] = "Sony";
   makes[Starsat_Make] = "Starsat";

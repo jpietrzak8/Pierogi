@@ -75,4 +75,14 @@ public:
     QObject *guiObject);
 };
 
+class ThomsonAudio2: public PIRKeysetMetaData
+{
+public:
+  ThomsonAudio2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // THOMSON_H

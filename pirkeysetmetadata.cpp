@@ -11,6 +11,9 @@ extern PIRMakeMgr makeManager;
 // Static member definition:
 PIRDeviceCollection PIRKeysetMetaData::controlledDevices;
 
+// Thread synchronization stuff:
+extern bool commandInFlight;
+
 PIRKeysetMetaData::PIRKeysetMetaData(
   const char *r,
   PIRMakeName m,
@@ -25,8 +28,7 @@ PIRKeysetMetaData::PIRKeysetMetaData(
 
 PIRKeysetMetaData::~PIRKeysetMetaData()
 {
-  if (threadableProtocol) delete threadableProtocol;
-  threadableProtocol = 0;
+  clearProtocol();
 }
 
 
@@ -302,11 +304,18 @@ void PIRKeysetMetaData::setKeysetName(
 }
 
 
-void PIRKeysetMetaData::clearProtocol()
+bool PIRKeysetMetaData::clearProtocol()
 {
-  if (threadableProtocol)
+  if (!threadableProtocol)
+  {
+    return true;
+  }
+  else if (!commandInFlight)
   {
     delete threadableProtocol;
     threadableProtocol = 0;
+    return true;
   }
+
+  return false;
 }

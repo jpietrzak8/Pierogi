@@ -51,6 +51,7 @@ PIRKeyCommandItem::PIRKeyCommandItem(
 PIRKeyCommandItem::~PIRKeyCommandItem()
 {
   if (advanceTimer) delete advanceTimer;
+  advanceTimer = 0;
 }
 
 

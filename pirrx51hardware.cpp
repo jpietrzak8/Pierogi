@@ -1,6 +1,6 @@
 #include "pirrx51hardware.h"
 
-//#define DEBUGGING
+// #define DEBUGGING
 
 // Needed system includes:
 #include <sys/ioctl.h>

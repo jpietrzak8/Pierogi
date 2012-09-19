@@ -65,7 +65,7 @@ public:
     QObject *guiObject,
     unsigned int keysetID);
 
-  void clearKeyset(
+  bool clearKeyset(
     unsigned int keysetID);
 
   void populateFavorites(

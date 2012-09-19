@@ -233,7 +233,10 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/hantarex.cpp \
     keysets/keymat.cpp \
     keysets/konka.cpp \
-    keysets/wiwa.cpp
+    keysets/wiwa.cpp \
+    keysets/changhong.cpp \
+    keysets/frontech.cpp \
+    keysets/sinotec.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -441,7 +444,10 @@ HEADERS += mainwindow.h \
     keysets/hantarex.h \
     keysets/keymat.h \
     keysets/konka.h \
-    keysets/wiwa.h
+    keysets/wiwa.h \
+    keysets/changhong.h \
+    keysets/frontech.h \
+    keysets/sinotec.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

@@ -200,17 +200,18 @@ bool PIRMacro::executeMacro()
   // Don't start a new macro if one is already running:
   if (macroRunning) return false;
 
+  // Start running the list of commands:
+  macroRunning = true;
+
   currentCommand = commands.begin();
 
   // If this macro is empty, just return:
   if (currentCommand == commands.end())
   {
     emit macroCompleted();
+    macroRunning = false;
     return true;
   }
-
-  // Start running the list of commands:
-  macroRunning = true;
 
   // Take note of the current keyset id:
   preMacroKeysetID = mainWindow->getCurrentKeyset();
