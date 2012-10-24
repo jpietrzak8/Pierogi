@@ -34,6 +34,10 @@ void PIRInputForm::enableButtons(
   emit cableInputEnabled(keyset->hasKey(id, CableInput_Key));
   emit satelliteInputEnabled(keyset->hasKey(id, SatInput_Key));
   emit auxInputEnabled(keyset->hasKey(id, AuxInput_Key));
+  emit compositeInputEnabled(keyset->hasKey(id, CompositeInput_Key));
+  emit componentInputEnabled(keyset->hasKey(id, ComponentInput_Key));
+  emit scartInputEnabled(keyset->hasKey(id, ScartInput_Key));
+  emit hddInputEnabled(keyset->hasKey(id, HDDInput_Key));
 }
 
 
@@ -153,6 +157,46 @@ void PIRInputForm::on_auxInputButton_pressed()
 }
 
 void PIRInputForm::on_auxInputButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRInputForm::on_compositeInputButton_pressed()
+{
+  mainWindow->startRepeating(CompositeInput_Key);
+}
+
+void PIRInputForm::on_compositeInputButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRInputForm::on_scartInputButton_pressed()
+{
+  mainWindow->startRepeating(ScartInput_Key);
+}
+
+void PIRInputForm::on_scartInputButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRInputForm::on_componentInputButton_pressed()
+{
+  mainWindow->startRepeating(ComponentInput_Key);
+}
+
+void PIRInputForm::on_componentInputButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRInputForm::on_hddInputButton_pressed()
+{
+  mainWindow->startRepeating(HDDInput_Key);
+}
+
+void PIRInputForm::on_hddInputButton_released()
 {
   mainWindow->stopRepeating();
 }

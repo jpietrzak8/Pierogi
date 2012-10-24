@@ -236,7 +236,12 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/wiwa.cpp \
     keysets/changhong.cpp \
     keysets/frontech.cpp \
-    keysets/sinotec.cpp
+    keysets/sinotec.cpp \
+    pirtabwidget.cpp \
+    keysets/medialink.cpp \
+    keysets/nec.cpp \
+    keysets/multichoice.cpp \
+    forms/piradvancedform.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -447,7 +452,12 @@ HEADERS += mainwindow.h \
     keysets/wiwa.h \
     keysets/changhong.h \
     keysets/frontech.h \
-    keysets/sinotec.h
+    keysets/sinotec.h \
+    pirtabwidget.h \
+    keysets/medialink.h \
+    keysets/nec.h \
+    keysets/multichoice.h \
+    forms/piradvancedform.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -484,7 +494,8 @@ FORMS += mainwindow.ui \
     dialogs/pireditmacrodialog.ui \
     dialogs/pirdeletemacrodialog.ui \
     forms/piruserform.ui \
-    dialogs/pireditcommanddialog.ui
+    dialogs/pireditcommanddialog.ui \
+    forms/piradvancedform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

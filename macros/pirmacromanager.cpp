@@ -71,6 +71,10 @@ void PIRMacroManager::handleKeypress(
   {
     keyboardController->executeKey(key);
   }
+  else
+  {
+    executeStandardKey(key);
+  }
 }
 
 
@@ -238,5 +242,55 @@ void PIRMacroManager::setBtnFocus(
   else
   {
     buttonsController = multitapPack;
+  }
+}
+
+
+void PIRMacroManager::executeStandardKey(
+  char key)
+{
+  switch (key)
+  {
+  case 'Q':
+    mainWindow->switchToTab(0);
+    break;
+
+  case 'W':
+    mainWindow->switchToTab(1);
+    break;
+
+  case 'E':
+    mainWindow->switchToTab(2);
+    break;
+
+  case 'R':
+    mainWindow->switchToTab(3);
+    break;
+
+  case 'T':
+    mainWindow->switchToTab(4);
+    break;
+
+  case 'Y':
+    mainWindow->switchToTab(5);
+    break;
+
+  case 'U':
+    mainWindow->switchToTab(6);
+    break;
+
+  case 'I':
+    mainWindow->switchToTab(7);
+    break;
+
+  case 'O':
+    mainWindow->switchToTab(8);
+    break;
+
+  case 'P':
+    mainWindow->switchToTab(9);
+
+  default:
+    break;
   }
 }

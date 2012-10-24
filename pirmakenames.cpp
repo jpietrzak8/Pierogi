@@ -73,11 +73,14 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Logitech_Make] = "Logitech";
   makes[Magnavox_Make] = "Magnavox";
   makes[Magnum_Make] = "Magnum";
+  makes[Medialink_Make] = "Medi@link";
   makes[Medion_Make] = "Medion";
   makes[Microsoft_Make] = "Microsoft";
   makes[Mitsubishi_Make] = "Mitsubishi";
   makes[Motorola_Make] = "Motorola";
+  makes[Multichoice_Make] = "Multichoice";
   makes[NAD_Make] = "NAD";
+  makes[NEC_Make] = "NEC";
   makes[Nikon_Make] = "Nikon";
   makes[Nokia_Make] = "Nokia";
   makes[Octagon_Make] = "Octagon";

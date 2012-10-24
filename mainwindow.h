@@ -12,6 +12,8 @@ class QListWidgetItem;
 class QDialog;
 class QKeyEvent;
 
+//class PIRTabWidget;
+
 class PIRSelectKeysetForm;
 class PIRSelectDeviceForm;
 class PIRPreferencesForm;
@@ -132,6 +134,19 @@ public:
   void setMacroBtnFocus(
     int index);
 
+  void switchToTab(
+    int tabNumber);
+
+  void handleKeypress(
+    char key);
+
+//  void handleKeyRelease(
+//    char Key);
+
+  void gotoPreviousTabs();
+
+  void gotoNextTabs();
+
 signals:
   void buttonPressed(
     unsigned int keysetID,
@@ -160,12 +175,17 @@ private slots:
   void finalCleanup();
 
 private:
-  void keyPressEvent(
-    QKeyEvent *event);
+//  void keyPressEvent(
+//    QKeyEvent *event);
+
+//  void keyReleaseEvent(
+//    QKeyEvent *event);
 
   void populateFavorites();
 
   Ui::MainWindow *ui;
+
+//  PIRTabWidget *myTabWidget;
 
   PIRSelectKeysetForm *selectKeysetForm;
   PIRSelectDeviceForm *selectDeviceForm;

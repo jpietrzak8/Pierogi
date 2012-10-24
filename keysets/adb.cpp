@@ -299,3 +299,65 @@ void ADBSTB5::populateProtocol(
   addKey("Yellow", Yellow_Key, 0x22, 8);
   addKey("Blue", Blue_Key, 0x23, 8);
 }
+
+
+ADBSTB6::ADBSTB6(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV Receiver Keyset 6",
+      ADB_Make,
+      index)
+{
+}
+
+
+void ADBSTB6::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  setPreData(0x3C84, 16);
+
+  addKey("5", Five_Key, 0x20, 8);
+  addKey("power", Power_Key, 0x21, 8);
+  addKey("9", Nine_Key, 0x22, 8);
+  addKey("yes", Select_Key, 0x23, 8);
+  addKey("down", Down_Key, 0x24, 8);
+  addKey("mute", Mute_Key, 0x25, 8);
+  addKey("vol+", VolumeUp_Key, 0x26, 8);
+  addKey("vol-", VolumeDown_Key, 0x27, 8);
+  addKey("4", Four_Key, 0x28, 8);
+  addKey("2", Two_Key, 0x29, 8);
+  addKey("8", Eight_Key, 0x2A, 8);
+  addKey("up", Up_Key, 0x2B, 8);
+  addKey("? (question)", Unmapped_Key, 0x2C, 8);
+  addKey("green", Green_Key, 0x2D, 8);
+  addKey("guide", Guide_Key, 0x2E, 8);
+  addKey("10", Zero_Key, 0x2F, 8);
+  addKey("1", One_Key, 0x30, 8);
+  addKey("exit", Exit_Key, 0x31, 8);
+  addKey("7", Seven_Key, 0x32, 8);
+  addKey("0", Zero_Key, 0x33, 8);
+  addKey("left", Left_Key, 0x34, 8);
+  addKey("channel+", ChannelUp_Key, 0x35, 8);
+  addKey("mosaic", PIP_Key, 0x36, 8);
+  addKey("channel-", ChannelDown_Key, 0x37, 8);
+  addKey("6", Six_Key, 0x38, 8);
+  addKey("3", Three_Key, 0x39, 8);
+  addKey("return", Enter_Key, 0x3A, 8);
+  addKey("right", Right_Key, 0x3B, 8);
+  addKey("+ (plus)", Unmapped_Key, 0x3C, 8);
+  addKey("yellow", Yellow_Key, 0x3D, 8);
+  addKey("orange", Red_Key, 0x3E, 8);
+  addKey("blue", Blue_Key, 0x3F, 8);
+  addKey("info", Info_Key, 0x40, 8);
+  addKey("A", Unmapped_Key, 0x41, 8);
+  addKey("B", Unmapped_Key, 0x42, 8);
+  addKey("envelope", Unmapped_Key, 0x43, 8);
+}

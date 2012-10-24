@@ -1,6 +1,13 @@
+pierogi (1.1.15) unstable; urgency=low
+  * Added a new "Advanced Settings" panel, allowing control over carrier frequency and duty cycle values.
+  * Added a few more buttons to "input" panel, and put the "input" panel back on into the TV collection.  The "adjust" panel was moved down into the Video Media collection. (I'm still trying to tweak these collections...)
+  * Made a first pass at keysets for Medi@link, Multichoice, and NEC, and added new keysets to ADB, LG, Mitsubishi, and Pioneer.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Wed, 24 Oct 2012 19:39:30 -0400
+
 pierogi (1.1.14) unstable; urgency=low
   * Fixed a bug that allowed keysets to be deleted while a command was still running (causing all sorts of havoc).  This might improve macro behavior.
-  * Made a first pass at keysets for Changhong, Frontech, Sinotec, and Supra, added a new Thomson keyset, and made a few fixes to ADB (I-Can).
+  * Made a first pass at keysets for Changhong, Frontech, and Sinotec, added a new Thomson keyset, and made a few fixes to ADB (I-Can).
 
  -- John Pietrzak <jpietrzak8@gmail.com>  Wed, 19 Sep 2012 16:13:03 -0400
 

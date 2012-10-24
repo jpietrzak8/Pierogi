@@ -160,7 +160,7 @@ void PIRRX51Hardware::setCarrierFrequency(
 //  if (!frequency) frequency = DEFAULT_FREQUENCY;
 
 #ifdef DEBUGGING
-  std::cout << "Setting frequency to " << frequency << "\n";
+  std::cout << "Setting frequency to " << frequency << std::endl;
 #endif // DEBUGGING
   if (ioctl(fileDescriptor, _IOW('i', 0x13, __u32), &frequency) == -1)
   {
@@ -178,7 +178,7 @@ void PIRRX51Hardware::setDutyCycle(
 //  if (dutyCycle > 100) dutyCycle = DEFAULT_DUTY_CYCLE;
 
 #ifdef DEBUGGING
-  std::cout << "Setting duty cycle to " << dutyCycle << "\n";
+  std::cout << "Setting duty cycle to " << dutyCycle << std::endl;
 #endif // DEBUGGING
   if (ioctl(fileDescriptor, _IOW('i', 0x15, __u32), &dutyCycle) == -1)
   {

@@ -35,6 +35,10 @@ signals:
   void cableInputEnabled(bool);
   void satelliteInputEnabled(bool);
   void auxInputEnabled(bool);
+  void compositeInputEnabled(bool);
+  void scartInputEnabled(bool);
+  void componentInputEnabled(bool);
+  void hddInputEnabled(bool);
 
 private slots:
   void on_cdInputButton_pressed();
@@ -61,6 +65,14 @@ private slots:
   void on_satelliteInputButton_released();
   void on_auxInputButton_pressed();
   void on_auxInputButton_released();
+  void on_compositeInputButton_pressed();
+  void on_compositeInputButton_released();
+  void on_scartInputButton_pressed();
+  void on_scartInputButton_released();
+  void on_componentInputButton_pressed();
+  void on_componentInputButton_released();
+  void on_hddInputButton_pressed();
+  void on_hddInputButton_released();
 
 private:
   Ui::PIRInputForm *ui;

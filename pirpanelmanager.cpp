@@ -18,6 +18,7 @@
 #include "forms/piruserform.h"
 #include "forms/pirmacroform.h"
 #include "forms/pirpowersearchform.h"
+#include "forms/piradvancedform.h"
 
 #include "mainwindow.h"
 
@@ -49,6 +50,7 @@ PIRPanelManager::PIRPanelManager(
     userForm(0),
     macroForm(0),
     powerSearchForm(0),
+    advancedForm(0),
     altMainPanelFlag(false),
     currentTabsName(Universal_Tabs),
     mainWindow(mw)
@@ -120,6 +122,9 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[PowerSearch_Panel] = "Keyset Search";
   longPanelNames[PowerSearch_Panel] =
     "Keyset Search Panel - execute power button in each keyset";
+  shortPanelNames[Advanced_Panel] = "Advanced Settings";
+  longPanelNames[Advanced_Panel] =
+    "Advanced Settings - allows adjustment of protocol settings";
 
   mainForm = new PIRMainForm(mainWindow);
   panels[Main_Panel] = mainForm;
@@ -175,6 +180,9 @@ PIRPanelManager::PIRPanelManager(
   powerSearchForm = new PIRPowerSearchForm(mainWindow);
   panels[PowerSearch_Panel] = powerSearchForm;
 
+  advancedForm = new PIRAdvancedForm();
+  panels[Advanced_Panel] = advancedForm;
+
   // Set up the panel collections:
   PIRPanelNameList pset;
 
@@ -195,7 +203,7 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Keypad_Panel);
   pset.push_back(Menu_Panel);
   pset.push_back(TV_Panel);
-  pset.push_back(Adjust_Panel);
+  pset.push_back(Input_Panel);
   tabLists[TV_Tabs] = pset;
 
   // The video media collection:
@@ -205,6 +213,7 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Media_Panel);
   pset.push_back(Media2_Panel);
   pset.push_back(Input_Panel);
+  pset.push_back(Adjust_Panel);
   tabLists[VideoMedia_Tabs] = pset;
 
   // Audio panel collection:
@@ -245,6 +254,11 @@ PIRPanelManager::PIRPanelManager(
   pset.clear();
   pset.push_back(PowerSearch_Panel);
   tabLists[PowerSearch_Tabs] = pset;
+
+  // The Advanced Settings collection:
+  pset.clear();
+  pset.push_back(Advanced_Panel);
+  tabLists[Advanced_Tabs] = pset;
 }
 
 
@@ -287,7 +301,7 @@ void PIRPanelManager::updateTabSet()
 
 
 void PIRPanelManager::enableButtons(
-  const PIRKeysetManager *keyset,
+  PIRKeysetManager *keyset,
   unsigned int id)
 {
   mainForm->enableButtons(keyset, id);
@@ -297,7 +311,7 @@ void PIRPanelManager::enableButtons(
 
 
 void PIRPanelManager::enableButtons(
-  const PIRKeysetManager *keyset,
+  PIRKeysetManager *keyset,
   unsigned int currentID,
   unsigned int defaultID)
 {
@@ -308,7 +322,7 @@ void PIRPanelManager::enableButtons(
 
 
 void PIRPanelManager::commonEnableButtons(
-  const PIRKeysetManager *keyset,
+  PIRKeysetManager *keyset,
   unsigned int id)
 {
   utilityForm->enableButtons(keyset, id);
@@ -327,6 +341,9 @@ void PIRPanelManager::commonEnableButtons(
 
   // Also, set the label in the power search form:
   powerSearchForm->setKeysetName(mainWindow->getCurrentFullName());
+
+  // Set up the advanced parameters:
+  advancedForm->setupForm(keyset, id);
 }
 
 
@@ -417,6 +434,51 @@ void PIRPanelManager::setupTabs(
   if (currentTabsName == name) return;
 
   currentTabsName = name;
+  updateTabSet();
+}
+
+
+void PIRPanelManager::gotoPreviousTabs()
+{
+  PIRTabsCollection::const_iterator i = tabLists.find(currentTabsName);
+
+  if (i == tabLists.end())
+  {
+    // Couldn't find currentTabsName!  Throw an error here?
+    return;
+  }
+
+  if (i == tabLists.begin())
+  {
+    // Already at first collection, nothing to do:
+    return;
+  }
+
+  --i;
+  currentTabsName = i->first;
+  updateTabSet();
+}
+
+
+void PIRPanelManager::gotoNextTabs()
+{
+  PIRTabsCollection::const_iterator i = tabLists.find(currentTabsName);
+
+  if (i == tabLists.end())
+  {
+    // Couldn't find currentTabsName!  Throw an error?
+    return;
+  }
+
+  ++i;
+
+  if (i == tabLists.end())
+  {
+    // We're already at the last collection, nothing to do:
+    return;
+  }
+
+  currentTabsName = i->first;
   updateTabSet();
 }
 

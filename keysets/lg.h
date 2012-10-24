@@ -75,6 +75,36 @@ public:
     QObject *guiObject);
 };
 
+class LGHT1: public PIRKeysetMetaData
+{
+public:
+  LGHT1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class LGHT2: public PIRKeysetMetaData
+{
+public:
+  LGHT2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class LGHT2a: public LGHT2
+{
+public:
+  LGHT2a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 class LGDisc1: public PIRKeysetMetaData
 {
 public:

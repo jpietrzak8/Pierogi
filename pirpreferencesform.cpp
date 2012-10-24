@@ -217,6 +217,7 @@ void PIRPreferencesForm::setupMacroComboBox(
   QComboBox *cb)
 {
   // Crappy hardcoded list.  Need to replace this...
-  cb->addItem("User Defined Macros");
+  cb->addItem("Standard Controls");
+  cb->addItem("User Defined Keyboard Macros");
   cb->addItem("Reverse Multitap Keboard Macros");
 }

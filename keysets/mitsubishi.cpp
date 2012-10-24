@@ -1,5 +1,6 @@
 #include "mitsubishi.h"
 #include "protocols/lircprotocol.h"
+#include "protocols/protonprotocol.h"
 
 MitsubishiTV1::MitsubishiTV1(
   unsigned int index)
@@ -243,4 +244,55 @@ void MitsubishiVCR1a::populateProtocol(
   addKey("UP", Up_Key, 0x2C, 8);
   addKey("JOG+", Unmapped_Key, 0x50, 8);
   addKey("JOG-", Unmapped_Key, 0x48, 8);
+}
+
+
+MitsubishiProjector1::MitsubishiProjector1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Projector Keyset 1",
+      Mitsubishi_Make,
+      index)
+{
+}
+
+
+void MitsubishiProjector1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new ProtonProtocol(guiObject, index);
+
+  setPreData(0xF0, 8);
+
+  addKey("PowerOn", PowerOn_Key, 0x41, 8);
+  addKey("PowerOff", PowerOff_Key, 0x42, 8);
+  addKey("HDMI", HDMIInput_Key, 0x70, 8);
+  addKey("Component", ComponentInput_Key, 0x64, 8);
+  addKey("Video", CompositeInput_Key, 0x65, 8);
+  addKey("Computer", PCInput_Key, 0x60, 8);
+  addKey("S-Video", SVideoInput_Key, 0x66, 8);
+  addKey("Up", Up_Key, 0x82, 8);
+  addKey("Right", Right_Key, 0x81, 8);
+  addKey("Enter", Enter_Key, 0x87, 8);
+  addKey("Left", Left_Key, 0x80, 8);
+  addKey("Down", Down_Key, 0x83, 8);
+  addKey("Menu", Menu_Key, 0x86, 8);
+  addKey("Aspect", AspectRatio_Key, 0xE2, 8);
+  addKey("M1", Unmapped_Key, 0xE4, 8);
+  addKey("M2", Unmapped_Key, 0xE5, 8);
+  addKey("M3", Unmapped_Key, 0xE6, 8);
+  addKey("Contrast", ContrastUp_Key, 0xD0, 8);
+  addKey("Brightness", BrightnessUp_Key, 0xD1, 8);
+  addKey("ColorTemp", ColorUp_Key, 0xD4, 8);
+  addKey("Gamma", Unmapped_Key, 0xD5, 8);
+  addKey("Sharpness", Unmapped_Key, 0xD6, 8);
+  addKey("AutoPosition", Unmapped_Key, 0xA2, 8);
+  addKey("Blank", Unmapped_Key, 0xA6, 8);
+  addKey("Keystone", Keystone_Key, 0x43, 8);
 }

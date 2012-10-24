@@ -91,6 +91,52 @@ const char *PIRKeysetMetaData::getKeysetName() const
 }
 
 
+unsigned int PIRKeysetMetaData::getCarrierFrequency() const
+{
+  if (!threadableProtocol)
+  {
+    return 0;
+  }
+
+  return threadableProtocol->getCarrierFrequency();
+}
+
+
+void PIRKeysetMetaData::setCarrierFrequency(
+  unsigned int carrierFrequency)
+{
+  if (!threadableProtocol)
+  {
+    return;
+  }
+
+  threadableProtocol->setCarrierFrequency(carrierFrequency);
+}
+
+
+unsigned int PIRKeysetMetaData::getDutyCycle() const
+{
+  if (!threadableProtocol)
+  {
+    return 0;
+  }
+
+  return threadableProtocol->getDutyCycle();
+}
+
+
+void PIRKeysetMetaData::setDutyCycle(
+  unsigned int dutyCycle)
+{
+  if (!threadableProtocol)
+  {
+    return;
+  }
+
+  threadableProtocol->setDutyCycle(dutyCycle);
+}
+
+
 void PIRKeysetMetaData::addControlledDevice(
   PIRMakeName make,
   const char *model,

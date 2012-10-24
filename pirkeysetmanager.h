@@ -72,6 +72,20 @@ public:
     PIRFavoritesDialog *favoritesDialog,
     PIRSelectKeysetForm *keysetForm);
 
+  unsigned int getCarrierFrequency(
+    unsigned int keysetID);
+
+  void setCarrierFrequency(
+    unsigned int carrierFrequency,
+    unsigned int keysetID);
+
+  unsigned int getDutyCycle(
+    unsigned int keysetID);
+
+  void setDutyCycle(
+    unsigned int dutyCycle,
+    unsigned int keysetID);
+
 private:
   void setupKeyset(
     PIRKeysetMetaData *keyset);

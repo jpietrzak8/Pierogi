@@ -45,4 +45,14 @@ public:
     QObject *guiObject);
 };
 
+class MitsubishiProjector1: public PIRKeysetMetaData
+{
+public:
+  MitsubishiProjector1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // MITSUBISHI_H

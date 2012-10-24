@@ -1,73 +1,78 @@
-#ifndef ADB_H
-#define ADB_H
+#ifndef NEC_H
+#define NEC_H
 
 #include "pirkeysetmetadata.h"
 
 class QObject;
 
-class ADBSTB1: public PIRKeysetMetaData
+class NECTV1: public PIRKeysetMetaData
 {
 public:
-  ADBSTB1(
+  NECTV1(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-
-class ADBSTB2: public PIRKeysetMetaData
+class NECVCR1: public PIRKeysetMetaData
 {
 public:
-  ADBSTB2(
+  NECVCR1(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-
-class ADBSTB3: public PIRKeysetMetaData
+class NECVCR2: public PIRKeysetMetaData
 {
 public:
-  ADBSTB3(
+  NECVCR2(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-
-class ADBSTB4: public PIRKeysetMetaData
+class NECVCR3: public PIRKeysetMetaData
 {
 public:
-  ADBSTB4(
+  NECVCR3(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-
-class ADBSTB5: public PIRKeysetMetaData
+class NECDVD1: public PIRKeysetMetaData
 {
 public:
-  ADBSTB5(
+  NECDVD1(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-
-class ADBSTB6: public PIRKeysetMetaData
+class NECProjector1: public PIRKeysetMetaData
 {
 public:
-  ADBSTB6(
+  NECProjector1(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-#endif // ADB_H
+class NECProjector2: public PIRKeysetMetaData
+{
+public:
+  NECProjector2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+#endif // NEC_H

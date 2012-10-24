@@ -125,4 +125,14 @@ public:
     QObject *guiObject);
 };
 
+class PioneerCarStereo1: public PIRKeysetMetaData
+{
+public:
+  PioneerCarStereo1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // PIONEER_H

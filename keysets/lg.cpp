@@ -354,6 +354,206 @@ void LGTV2b::populateProtocol(
 }
 
 
+LGHT1::LGHT1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Home Theater Keyset 1",
+      LG_Make,
+      index)
+{
+}
+
+
+void LGHT1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new NECXProtocol(guiObject, index, true);
+
+  setPreData(0x2222, 16);
+
+  addKey("play", Play_Key, 0x04, 8);
+  addKey("stop", Stop_Key, 0x05, 8);
+  addKey("skip/next track", Next_Key, 0x06, 8);
+  addKey("skip/prev track", Previous_Key, 0x07, 8);
+  addKey("vol down", VolumeDown_Key, 0x16, 8);
+  addKey("vol up", VolumeUp_Key, 0x17, 8);
+  addKey("power", Power_Key, 0x1E, 8);
+  addKey("mute", Mute_Key, 0x1F, 8);
+  addKey("sound effect", Unmapped_Key, 0x2F, 8);
+  addKey("1", One_Key, 0x41, 8);
+  addKey("2", Two_Key, 0x42, 8);
+  addKey("3", Three_Key, 0x43, 8);
+  addKey("4", Four_Key, 0x44, 8);
+  addKey("5", Five_Key, 0x45, 8);
+  addKey("6", Six_Key, 0x46, 8);
+  addKey("7", Seven_Key, 0x47, 8);
+  addKey("8", Eight_Key, 0x48, 8);
+  addKey("9", Nine_Key, 0x49, 8);
+  addKey("0", Zero_Key, 0x4B, 8);
+  addKey("repeat", Repeat_Key, 0x4E, 8);
+  addKey("pause", Pause_Key, 0x4F, 8);
+  addKey("scan forward", FastForward_Key, 0x52, 8);
+  addKey("scan back", Rewind_Key, 0x53, 8);
+  addKey("speaker level", Unmapped_Key, 0x66, 8);
+  addKey("R", Red_Key, 0x6C, 8);
+  addKey("G", Green_Key, 0x6D, 8);
+  addKey("Y", Yellow_Key, 0x6E, 8);
+  addKey("B", Blue_Key, 0x6F, 8);
+  addKey("record", Record_Key, 0x83, 8);
+  addKey("radio&input", Input_Key, 0x8A, 8);
+  addKey("open/close", Eject_Key, 0x9A, 8);
+  addKey("back", Exit_Key, 0xA2, 8);
+  addKey("info/display", Info_Key, 0xA3, 8);
+  addKey("disc menu", DiscMenu_Key, 0xA4, 8);
+  addKey("home", Menu_Key, 0xA5, 8);
+  addKey("down arrow", Down_Key, 0xA6, 8);
+  addKey("up arrow", Up_Key, 0xA7, 8);
+  addKey("left arrow", Left_Key, 0xA8, 8);
+  addKey("right arrow", Right_Key, 0xA9, 8);
+  addKey("enter", Select_Key, 0xAA, 8);
+  addKey("title/pop-up", DiscTitle_Key, 0xAF, 8);
+  addKey("clear", Unmapped_Key, 0xB0, 8);
+  addKey("search", Unmapped_Key, 0xB3, 8);
+  addKey("marker", Unmapped_Key, 0xB4, 8);
+  addKey("optical", Unmapped_Key, 0xB6, 8);
+  addKey("sleep", Sleep_Key, 0xC2, 8);
+}
+
+
+LGHT2::LGHT2(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Home Theater / BD Keyset 2",
+      LG_Make,
+      index)
+{
+}
+
+
+void LGHT2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new NECXProtocol(guiObject, index, true);
+
+  setPreData(0xC2C2, 16);
+
+  addKey("power", Power_Key, 0x30, 8);
+  addKey("play", Play_Key, 0x31, 8);
+  addKey("rewind", Rewind_Key, 0x32, 8);
+  addKey("fast fwd", FastForward_Key, 0x33, 8);
+  addKey("channel up", ChannelUp_Key, 0x34, 8);
+  addKey("next track", Next_Key, 0x34, 8);
+  addKey("channel down", ChannelDown_Key, 0x35, 8);
+  addKey("prev track", Previous_Key, 0x35, 8);
+  addKey("eject", Eject_Key, 0x36, 8);
+  addKey("Slow Fwd 1/16x", SlowPlus_Key, 0x37, 8);
+  addKey("pause", Pause_Key, 0x38, 8);
+  addKey("stop", Stop_Key, 0x39, 8);
+  addKey("display", Info_Key, 0x3A, 8);
+  addKey("1", One_Key, 0x3B, 8);
+  addKey("2", Two_Key, 0x3C, 8);
+  addKey("3", Three_Key, 0x3D, 8);
+  addKey("4", Four_Key, 0x3E, 8);
+  addKey("5", Five_Key, 0x3F, 8);
+  addKey("6", Six_Key, 0x40, 8);
+  addKey("7", Seven_Key, 0x41, 8);
+  addKey("8", Eight_Key, 0x42, 8);
+  addKey("9", Nine_Key, 0x43, 8);
+  addKey("0", Zero_Key, 0x44, 8);
+  addKey("exit", Exit_Key, 0x45, 8); // "return"
+  addKey("blue", Blue_Key, 0x46, 8);
+  addKey("clear", Clear_Key, 0x46, 8);
+  addKey("up arrow", Up_Key, 0x47, 8);
+  addKey("down arrow", Down_Key, 0x48, 8);
+  addKey("green", Green_Key, 0x4A, 8);
+  addKey("title", DiscTitle_Key, 0x4A, 8);
+  addKey("DVD MENU", DiscMenu_Key, 0x4B, 8); // "list"
+  addKey("ANGLE", Angle_Key, 0x4C, 8);
+  addKey("audio", Audio_Key, 0x4F, 8);
+  addKey("subtitle", Captions_Key, 0x50, 8);
+  addKey("RANDOM", Random_Key, 0x51, 8);
+  addKey("red", Red_Key, 0x53, 8);
+  addKey("repeat", Repeat_Key, 0x53, 8);
+  addKey("teletxt", Teletext_Key, 0x54, 8);
+  addKey("A-B", RepeatAB_Key, 0x55, 8);
+  addKey("menu", Menu_Key, 0x56, 8);
+  addKey("PROGRAM", Unmapped_Key, 0x57, 8);
+  addKey("select", Select_Key, 0x58, 8);
+  addKey("left arrow", Left_Key, 0x59, 8);
+  addKey("right arrow", Right_Key, 0x5A, 8);
+  addKey("*", Unmapped_Key, 0x5E, 8);
+  addKey("Slow Rev 1/16x", SlowMinus_Key, 0x60, 8);
+  addKey("yellow", Yellow_Key, 0x61, 8); // "MARKER"
+  addKey("search", Unmapped_Key, 0x62, 8);
+  addKey("ZOOM", Zoom_Key, 0x64, 8);
+  addKey("home", Unmapped_Key, 0x67, 8);
+  addKey("favourite", Favorites_Key, 0x74, 8);
+  addKey("Power ON", PowerOn_Key, 0x75, 8);
+  addKey("Power OFF", PowerOff_Key, 0x76, 8);
+  addKey("ProgramUp", Unmapped_Key, 0x77, 8);
+  addKey("ProgramDown", Unmapped_Key, 0x78, 8);
+  addKey("Lock", Unmapped_Key, 0x79, 8);
+  addKey("inputnext", Input_Key, 0xB0, 8);
+  addKey("record", Record_Key, 0xB6, 8);
+  addKey("timer rec", RecordTimed_Key, 0xB7, 8);
+  addKey("TimeShift", Unmapped_Key, 0xB9, 8);
+  addKey("TV/DVD", Unmapped_Key, 0xBE, 8);
+  addKey("inputdvd", DVDInput_Key, 0xF1, 8);
+  addKey("inputhdd", HDDInput_Key, 0xF2, 8);
+  addKey("ProgramList", Unmapped_Key, 0xF4, 8);
+}
+
+
+LGHT2a::LGHT2a(
+  unsigned int index)
+  : LGHT2(index)
+{
+  setKeysetName("Home Theater / BD Keyset 2a");
+}
+
+
+void LGHT2a::populateProtocol(
+  QObject *guiObject)
+{
+  LGHT2::populateProtocol(guiObject);
+
+  addKey("A (Red)", Red_Key, 0x7C, 8);
+  addKey("B (Green)", Green_Key, 0x7D, 8);
+  addKey("C (Blue)", Blue_Key, 0x7E, 8);
+  addKey("D (Yellow)", Yellow_Key, 0x7F, 8);
+  addKey("Rew 100x", Unmapped_Key, 0x91, 8);
+  addKey("Rew 16x", Unmapped_Key, 0x92, 8);
+  addKey("Rew 4x", Unmapped_Key, 0x95, 8);
+  addKey("Rew 2x", Unmapped_Key, 0x96, 8);
+  addKey("Fwd 2x", Unmapped_Key, 0x99, 8);
+  addKey("Fwd 4x", Unmapped_Key, 0x9B, 8);
+  addKey("Fwd 16x", Unmapped_Key, 0x9D, 8);
+  addKey("Fwd 100x", Unmapped_Key, 0x9F, 8);
+  addKey("Z: Mp1", Unmapped_Key, 0xDE, 8);
+  addKey("Z: Factory Reset !!!", Unmapped_Key, 0xDF, 8);
+  addKey("Z: CPRM DATA READ/SAVE", Unmapped_Key, 0xE0, 8);
+  addKey("Z: TECHNICAL MENU", Unmapped_Key, 0xE1, 8);
+  addKey("Z: INTERLACE/PROG SCAN", Unmapped_Key, 0xE2, 8);
+  addKey("Z: service menu", Unmapped_Key, 0xE5, 8);
+  addKey("Resolution", AspectRatio_Key, 0xF5, 8);
+  addKey("Subtitle on-off", Unmapped_Key, 0xF7, 8);
+  addKey("Pic Mode", PictureMode_Key, 0xF9, 8);
+  addKey("Music ID - ID", Unmapped_Key, 0xFA, 8);
+}
+
+
 LGDisc1::LGDisc1(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -380,9 +580,10 @@ void LGDisc1::populateProtocol(
   addKey("cd-dvd", Unmapped_Key, 0x03, 8);
   addKey("play", Play_Key, 0x04, 8);
   addKey("stop", Stop_Key, 0x05, 8);
-  addKey("<<<", Unmapped_Key, 0x06, 8);
-  addKey(">>>", Unmapped_Key, 0x07, 8);
+  addKey("<<<", Next_Key, 0x06, 8);
+  addKey(">>>", Previous_Key, 0x07, 8);
   addKey("aux", AuxInput_Key, 0x09, 8);
+  addKey("aux", Input_Key, 0x09, 8);
   addKey("minus", Unmapped_Key, 0x12, 8);  // "pr_preset_down"
   addKey("plus", Unmapped_Key, 0x13, 8); // "pr_preset_up"
   addKey("volume-", VolumeDown_Key, 0x16, 8);

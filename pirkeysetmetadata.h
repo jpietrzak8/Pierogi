@@ -38,6 +38,16 @@ public:
 
   const char *getKeysetName() const;
 
+  unsigned int getCarrierFrequency() const;
+
+  void setCarrierFrequency(
+    unsigned int carrierFrequency);
+
+  unsigned int getDutyCycle() const;
+
+  void setDutyCycle(
+    unsigned int dutyCycle);
+
   virtual void populateProtocol(
     QObject *guiObject) = 0;
 

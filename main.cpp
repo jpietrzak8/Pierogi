@@ -1,3 +1,11 @@
+// main.cpp
+//
+// For the Pierogi IR remote control app.
+//
+// Copyright (C) 2012 by John Pietrzak  (john@pietrzak.org)
+//
+// Licensed under the GNU GPL version 2.0 or later.
+
 #include "mainwindow.h"
 #include "pirapplication.h"
 #include <QtGui/QApplication>

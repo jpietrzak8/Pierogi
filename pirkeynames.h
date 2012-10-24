@@ -160,6 +160,9 @@ enum PIRKeyName{
   ContrastDown_Key,
   BalanceRight_Key,
   BalanceLeft_Key,
+  Keystone_Key,
+  PictureMute_Key,
+  Focus_Key,
 
   // Input Controls:
   Input_Key,

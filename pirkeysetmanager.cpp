@@ -76,10 +76,13 @@
 #include "keysets/magnavox.h"
 #include "keysets/magnum.h"
 #include "keysets/mce.h"
+#include "keysets/medialink.h"
 #include "keysets/medion.h"
 #include "keysets/mitsubishi.h"
 #include "keysets/motorola.h"
+#include "keysets/multichoice.h"
 #include "keysets/nad.h"
+#include "keysets/nec.h"
 #include "keysets/nikon.h"
 #include "keysets/nokia.h"
 #include "keysets/octagon.h"
@@ -161,6 +164,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ADBSTB3(++counter));
   setupKeyset(new ADBSTB4(++counter));
   setupKeyset(new ADBSTB5(++counter));
+  setupKeyset(new ADBSTB6(++counter));
 
   setupKeyset(new AdmiralTV1(++counter));
   setupKeyset(new AdmiralTV2(++counter));
@@ -463,6 +467,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new LGTV2(++counter));
   setupKeyset(new LGTV2a(++counter));
   setupKeyset(new LGTV2b(++counter));
+  setupKeyset(new LGHT1(++counter));
+  setupKeyset(new LGHT2(++counter));
+  setupKeyset(new LGHT2a(++counter));
   setupKeyset(new LGDisc1(++counter));
   setupKeyset(new LGDisc2(++counter));
   setupKeyset(new LGDisc2a(++counter));
@@ -499,6 +506,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new MCERemote1f(++counter));
   setupKeyset(new MCERemote1g(++counter));
 
+  setupKeyset(new MedialinkSTB1(++counter));
+
   setupKeyset(new MedionSTB1(++counter));
   setupKeyset(new MedionDVD1(++counter));
   setupKeyset(new MedionDVD2(++counter));
@@ -508,6 +517,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new MitsubishiTV1a(++counter));
   setupKeyset(new MitsubishiVCR1(++counter));
   setupKeyset(new MitsubishiVCR1a(++counter));
+  setupKeyset(new MitsubishiProjector1(++counter));
 
   setupKeyset(new Motorola4DTV(++counter));
   setupKeyset(new MotorolaSTB1(++counter));
@@ -515,12 +525,23 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new MotorolaSTB1b(++counter));
   setupKeyset(new MotorolaSkyDigital(++counter));
 
+  setupKeyset(new MultichoiceSTB1(++counter));
+  setupKeyset(new MultichoiceSTB2(++counter));
+
   setupKeyset(new NADAudio1(++counter));
   setupKeyset(new NADTuner1(++counter));
   setupKeyset(new NADDVD1(++counter));
   setupKeyset(new NADCD1(++counter));
   setupKeyset(new NADCD2(++counter));
   setupKeyset(new NADTape1(++counter));
+
+  setupKeyset(new NECTV1(++counter));
+  setupKeyset(new NECVCR1(++counter));
+  setupKeyset(new NECVCR2(++counter));
+  setupKeyset(new NECVCR3(++counter));
+  setupKeyset(new NECDVD1(++counter));
+  setupKeyset(new NECProjector1(++counter));
+  setupKeyset(new NECProjector2(++counter));
 
   setupKeyset(new NikonDSLR1(++counter));
 
@@ -623,6 +644,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new PioneerCD1(++counter));
   setupKeyset(new PioneerLaserDisc1(++counter));
   setupKeyset(new PioneerDVD1(++counter));
+  setupKeyset(new PioneerCarStereo1(++counter));
 
   setupKeyset(new ProviewDVD1(++counter));
 
@@ -979,6 +1001,64 @@ void PIRKeysetManager::populateKeyset(
 
   i->second->populateProtocol(guiObject);
   i->second->moveToThread(&commandThread);
+}
+
+
+unsigned int PIRKeysetManager::getCarrierFrequency(
+  unsigned int keysetID)
+{
+  PIRKeysetCollection::iterator i = keysetsInfo.find(keysetID);
+
+  if (i == keysetsInfo.end())
+  {
+    return 0;
+  }
+
+  return i->second->getCarrierFrequency();
+}
+
+
+void PIRKeysetManager::setCarrierFrequency(
+  unsigned int carrierFrequency,
+  unsigned int keysetID)
+{
+  PIRKeysetCollection::iterator i = keysetsInfo.find(keysetID);
+
+  if (i == keysetsInfo.end())
+  {
+    return;
+  }
+
+  i->second->setCarrierFrequency(carrierFrequency);
+}
+
+
+unsigned int PIRKeysetManager::getDutyCycle(
+  unsigned int keysetID)
+{
+  PIRKeysetCollection::iterator i = keysetsInfo.find(keysetID);
+
+  if (i == keysetsInfo.end())
+  {
+    return 0;
+  }
+
+  return i->second->getDutyCycle();
+}
+
+
+void PIRKeysetManager::setDutyCycle(
+  unsigned int dutyCycle,
+  unsigned int keysetID)
+{
+  PIRKeysetCollection::iterator i = keysetsInfo.find(keysetID);
+
+  if (i == keysetsInfo.end())
+  {
+    return;
+  }
+
+  i->second->setDutyCycle(dutyCycle);
 }
 
 

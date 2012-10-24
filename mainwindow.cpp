@@ -1,3 +1,11 @@
+// mainwindow.cpp
+//
+// For the Pierogi IR remote control app.
+//
+// Copyright (C) 2012 by John Pietrzak  (john@pietrzak.org)
+//
+// Licensed under the GNU GPL version 2.0 or later.
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -10,6 +18,8 @@
 #include <QScrollArea>
 #include <QSettings>
 #include <QKeyEvent>
+
+//#include "pirtabwidget.h"
 
 #include "pirkeysetmetadata.h"
 
@@ -58,6 +68,9 @@ MainWindow::MainWindow(QWidget *parent)
     myMacros(0),
     currentKeyset(1) // Zero is not a valid keyset any more
 {
+  // Create the tab widget:
+//  myTabWidget = new PIRTabWidget(ui->centralWidget, this);
+
   ui->setupUi(this);
 
   // Make this a Maemo 5 stacked widget:
@@ -561,6 +574,7 @@ void MainWindow::insertCornerButtons()
     Qt::QueuedConnection);
 
   ui->mainTabWidget->setCornerWidget(button, Qt::TopRightCorner);
+//  myTabWidget->setCornerWidget(button, Qt::TopRightCorner);
 
   button =
     new QPushButton(QIcon(":/icons/align_just_icon&32.png"), "");
@@ -575,24 +589,28 @@ void MainWindow::insertCornerButtons()
     Qt::QueuedConnection);
 
   ui->mainTabWidget->setCornerWidget(button, Qt::TopLeftCorner);
+//  myTabWidget->setCornerWidget(button, Qt::TopLeftCorner);
 }
 
 
 void MainWindow::disableUpdates()
 {
   ui->mainTabWidget->setUpdatesEnabled(false);
+//  myTabWidget->setUpdatesEnabled(false);
 }
 
 
 void MainWindow::enableUpdates()
 {
   ui->mainTabWidget->setUpdatesEnabled(true);
+//  myTabWidget->setUpdatesEnabled(true);
 }
 
 
 void MainWindow::clearTabs()
 {
   ui->mainTabWidget->clear();
+//  myTabWidget->clear();
 }
 
 
@@ -601,6 +619,7 @@ void MainWindow::addTab(
   QString label)
 {
   ui->mainTabWidget->addTab(page, label);
+//  myTabWidget->addTab(page, label);
 }
 
 void MainWindow::setupTabs(
@@ -653,6 +672,34 @@ PIRMacroPack *MainWindow::getMultitapPack()
 }
 
 
+void MainWindow::handleKeypress(
+  char key)
+{
+  myMacros->handleKeypress(key);
+}
+
+
+/*
+void MainWindow::handleKeyRelease(
+  char key)
+{
+}
+*/
+
+
+void MainWindow::gotoPreviousTabs()
+{
+  myPanels->gotoPreviousTabs();
+}
+
+
+void MainWindow::gotoNextTabs()
+{
+  myPanels->gotoNextTabs();
+}
+
+ 
+/*
 void MainWindow::keyPressEvent(
   QKeyEvent *event)
 {
@@ -739,11 +786,60 @@ void MainWindow::keyPressEvent(
   case Qt::Key_Space:
     myMacros->handleKeypress(' ');
     break;
+
+  case Qt::Key_Up:
+    myPanels->gotoPreviousTabs();
+    break;
+  case Qt::Key_Down:
+    myPanels->gotoNextTabs();
+    break;
+
+
+  case Qt::Key_Left:
+    startRepeating(VolumeDown_Key);
+    break;
+  case Qt::Key_Right:
+    startRepeating(VolumeUp_Key);
+    break;
+
+  case Qt::Key_Backspace:
+    startRepeating(Power_Key);
+    break;
+  case Qt::Key_Return:
+    startRepeating(Mute_Key);
+    break;
+
   default:
     QMainWindow::keyPressEvent(event);
     break;
   }
 }
+*/
+
+
+/*
+void MainWindow::keyReleaseEvent(
+  QKeyEvent *event)
+{
+  switch(event->key())
+  {
+
+  case Qt::Key_Up:
+  case Qt::Key_Down:
+  case Qt::Key_Left:
+  case Qt::Key_Right:
+
+  case Qt::Key_Backspace:
+  case Qt::Key_Return:
+    stopRepeating();
+    break;
+
+  default:
+    QMainWindow::keyReleaseEvent(event);
+    break;
+  }
+}
+*/
 
 
 bool MainWindow::hasMacroButton(
@@ -790,4 +886,24 @@ void MainWindow::setMacroBtnFocus(
   int index)
 {
   myMacros->setBtnFocus(index);
+}
+
+
+void MainWindow::switchToTab(
+  int tabNumber)
+{
+  int count = ui->mainTabWidget->count();
+
+  if (tabNumber < 0)
+  {
+    ui->mainTabWidget->setCurrentIndex(0);
+  }
+  else if (tabNumber >= count)
+  {
+    ui->mainTabWidget->setCurrentIndex(count-1);
+  }
+  else
+  {
+    ui->mainTabWidget->setCurrentIndex(tabNumber);
+  }
 }

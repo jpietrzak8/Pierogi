@@ -21,6 +21,7 @@ class PIRRoombaForm;
 class PIRUserForm;
 class PIRMacroForm;
 class PIRPowerSearchForm;
+class PIRAdvancedForm;
 
 class PIRKeysetWidgetItem;
 class PIRKeysetManager;
@@ -51,11 +52,11 @@ public:
   void updateTabSet();
 
   void enableButtons(
-    const PIRKeysetManager *keyset,
+    PIRKeysetManager *keyset,
     unsigned int id);
 
   void enableButtons(
-    const PIRKeysetManager *keyset,
+    PIRKeysetManager *keyset,
     unsigned int currentID,
     unsigned int defaultID);
 
@@ -75,9 +76,12 @@ public:
 
   QComboBox *getKeysetComboBox();
 
+  void gotoPreviousTabs();
+  void gotoNextTabs();
+
 private:
   void commonEnableButtons(
-    const PIRKeysetManager *keyset,
+    PIRKeysetManager *keyset,
     unsigned int id);
 
   PIRMainForm *mainForm;
@@ -98,6 +102,7 @@ private:
   PIRUserForm *userForm;
   PIRMacroForm *macroForm;
   PIRPowerSearchForm *powerSearchForm;
+  PIRAdvancedForm *advancedForm;
 
   PIRPanelDisplayNameCollection shortPanelNames;
   PIRPanelDisplayNameCollection longPanelNames;

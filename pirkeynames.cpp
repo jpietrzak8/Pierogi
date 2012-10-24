@@ -132,6 +132,9 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[ContrastDown_Key] = "Contrast Down";
   keynameStrings[BalanceRight_Key] = "Balance Right";
   keynameStrings[BalanceLeft_Key] = "Balance Left";
+  keynameStrings[Keystone_Key] = "Keystone";
+  keynameStrings[PictureMute_Key] = "Picture Mute";
+  keynameStrings[Focus_Key] = "Focus";
   keynameStrings[Input_Key] = "Input";
   keynameStrings[CDInput_Key] = "CD Input";
   keynameStrings[PhonoInput_Key] = "Phono Input";

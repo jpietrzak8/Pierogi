@@ -49,6 +49,16 @@ public:
     unsigned int gSpace,
     bool iclflag);
 
+  unsigned int getCarrierFrequency() const;
+
+  void setCarrierFrequency(
+    unsigned int cf);
+
+  unsigned int getDutyCycle() const;
+
+  void setDutyCycle(
+    unsigned int dc);
+
   void addKey(
     PIRKeyName key,
     unsigned long data,
@@ -110,12 +120,6 @@ public:
     PIRKeyName key,
     unsigned int firstCommand,
     unsigned int secondCommand);
-
-  void setCarrierFrequency(
-    unsigned int freq);
-
-  void setDutyCycle(
-    unsigned int dc);
 
   void setMinimumRepetitions(
     unsigned int minrep);

@@ -46,6 +46,9 @@ public:
 private:
   void retrieveSettings();
 
+  void executeStandardKey(
+    char key);
+
   PIRMacroPack *userPack;
   PIRReverseMultitap *multitapPack;
 

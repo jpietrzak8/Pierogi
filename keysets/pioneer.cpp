@@ -937,3 +937,60 @@ void PioneerDVD1::populateProtocol(
   addPioneerKey("DOWN", Down_Key, 0xA3, 0x99, 0xAF, 0xF3);
   addPioneerKey("RETURN", Exit_Key, 0xA3, 0x99, 0xAF, 0xF4);
 }
+
+
+PioneerCarStereo1::PioneerCarStereo1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Car Stereo Keyset 1",
+      Pioneer_Make,
+      index)
+{
+}
+
+
+void PioneerCarStereo1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new PioneerProtocol(guiObject, index);
+
+  addNECKey("VOL+", VolumeUp_Key, 0xAD, 0x0A);
+  addNECKey("VOL-", VolumeDown_Key, 0xAD, 0x0B);
+  addNECKey("ATT", Mute_Key, 0xAD, 0x0C);
+  addNECKey("Audio", SoundMode_Key, 0xAD, 0x0D);
+  addNECKey("Band/Escape", FM_Key, 0xAD, 0x12);
+  addNECKey("Band/Escape", Exit_Key, 0xAD, 0x12);
+  addNECKey("Source", Input_Key, 0xAD, 0x1A);
+  addNECKey("Radio", TunerInput_Key, 0xAD, 0x1C);
+  addNECKey("CD/iPod", CDInput_Key, 0xAD, 0x1E);
+  addNECKey("Arrow Up", Up_Key, 0xAD, 0x40);
+  addNECKey("Arrow Down", Down_Key, 0xAD, 0x41);
+  addNECKey("Arrow Left", Left_Key, 0xAD, 0x42);
+  addNECKey("Arrow Right", Right_Key, 0xAD, 0x43);
+  addNECKey("Pause", Pause_Key, 0xAD, 0x58);
+
+  addPioneerKey("Entertainment", Unmapped_Key, 0xAD, 0x19, 0xAF, 0x2B);
+  addPioneerKey("List/Enter", Menu_Key, 0xAD, 0x19, 0xAF, 0x2C);
+  addPioneerKey("List/Enter", Select_Key, 0xAD, 0x19, 0xAF, 0x2C);
+  addPioneerKey("Function", Unmapped_Key, 0xAD, 0x19, 0xAF, 0x67);
+  addPioneerKey("PGM", Unmapped_Key, 0xAD, 0x19, 0xAF, 0x68);
+  addPioneerKey("Disp (Scroll)", Info_Key, 0xAD, 0x19, 0xAF, 0x6D);
+  addPioneerKey("Clear", Clear_Key, 0xAD, 0x19, 0xAF, 0xE0);
+  addPioneerKey("Direct", Unmapped_Key, 0xAD, 0x19, 0xAF, 0xE1);
+  addPioneerKey("0", Zero_Key, 0xAD, 0x19, 0xAF, 0xF0);
+  addPioneerKey("1", One_Key, 0xAD, 0x19, 0xAF, 0xF1);
+  addPioneerKey("2", Two_Key, 0xAD, 0x19, 0xAF, 0xF2);
+  addPioneerKey("3", Three_Key, 0xAD, 0x19, 0xAF, 0xF3);
+  addPioneerKey("4", Four_Key, 0xAD, 0x19, 0xAF, 0xF4);
+  addPioneerKey("5", Five_Key, 0xAD, 0x19, 0xAF, 0xF5);
+  addPioneerKey("6", Six_Key, 0xAD, 0x19, 0xAF, 0xF6);
+  addPioneerKey("7", Seven_Key, 0xAD, 0x19, 0xAF, 0xF7);
+  addPioneerKey("8", Eight_Key, 0xAD, 0x19, 0xAF, 0xF8);
+  addPioneerKey("9", Nine_Key, 0xAD, 0x19, 0xAF, 0xF9);
+}

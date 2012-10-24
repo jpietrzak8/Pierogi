@@ -188,15 +188,17 @@ void SanyoTV1::populateProtocol(
   addKey("Sleep", Sleep_Key, 0x0D, 8);
   addKey("Volume Up", VolumeUp_Key, 0x0E, 8);
   addKey("Volume Down", VolumeDown_Key, 0x0F, 8);
-  addKey("Closed Captions", Captions_Key, 0x11, 8);
+//  addKey("Closed Captions", Captions_Key, 0x11, 8);
   addKey("Power", Power_Key, 0x12, 8);
   addKey("video_mode", Input_Key, 0x13, 8); // "input"
   addKey("Surround Toggle", Surround_Key, 0x14, 8);
   addKey("Enter", Enter_Key, 0x15, 8); // odd
+  addKey("DASH", Dash_Key, 0x15, 8);
   addKey("Menu", Menu_Key, 0x17, 8); // "setup"
   addKey("Mute", Mute_Key, 0x18, 8);
   addKey("Recall", PrevChannel_Key, 0x19, 8);
   addKey("audio", Audio_Key, 0x1A, 8);
+  addKey("CC", Captions_Key, 0x1B, 8); // ?
   addKey("reset", Reset_Key, 0x1C, 8);
   addKey("right arrow", Right_Key, 0x1E, 8);
   addKey("left arrow", Left_Key, 0x1F, 8);

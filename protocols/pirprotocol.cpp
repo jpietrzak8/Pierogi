@@ -51,6 +51,32 @@ PIRProtocol::PIRProtocol(
 }
 
 
+unsigned int PIRProtocol::getCarrierFrequency() const
+{
+  return carrierFrequency;
+}
+
+
+void PIRProtocol::setCarrierFrequency(
+  unsigned int cf)
+{
+  carrierFrequency = cf;
+}
+
+
+unsigned int PIRProtocol::getDutyCycle() const
+{
+  return dutyCycle;
+}
+
+
+void PIRProtocol::setDutyCycle(
+  unsigned int dc)
+{
+  dutyCycle = dc;
+}
+
+
 void PIRProtocol::addKey(
   PIRKeyName key,
   unsigned long command,
@@ -335,20 +361,6 @@ void PIRProtocol::addXMPKey(
 
   appendToBitSeq(pkb->firstCode, firstCommand, 8);
   appendToBitSeq(pkb->secondCode, secondCommand, 8);
-}
-
-
-void PIRProtocol::setCarrierFrequency(
-  unsigned int freq)
-{
-  carrierFrequency = freq;
-}
-
-
-void PIRProtocol::setDutyCycle(
-  unsigned int dc)
-{
-  dutyCycle = dc;
 }
 
 
