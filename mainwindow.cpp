@@ -25,6 +25,7 @@
 
 #include "pirkeysetwidgetitem.h"
 #include "pirselectkeysetform.h"
+#include "forms/pirpowersearchform.h"
 #include "pirselectdeviceform.h"
 #include "pirpreferencesform.h"
 #include "pirdocumentationform.h"
@@ -58,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
   : QMainWindow(parent),
     ui(new Ui::MainWindow),
     selectKeysetForm(0),
+    powerSearchForm(0),
     selectDeviceForm(0),
     preferencesForm(0),
     documentationForm(0),
@@ -89,6 +91,8 @@ MainWindow::MainWindow(QWidget *parent)
   favoritesDialog = new PIRFavoritesDialog(this);
   myKeysets->populateListWidgets(selectKeysetForm, favoritesDialog);
   selectKeysetForm->populateKeysetComboBox(myPanels->getKeysetComboBox());
+
+  powerSearchForm = new PIRPowerSearchForm(this);
 
   selectDeviceForm = new PIRSelectDeviceForm(this);
   PIRKeysetMetaData::populateDevices(selectDeviceForm);
@@ -157,6 +161,7 @@ MainWindow::~MainWindow()
   if (documentationForm) delete documentationForm;
   if (preferencesForm) delete preferencesForm;
   if (selectDeviceForm) delete selectDeviceForm;
+  if (powerSearchForm) delete powerSearchForm;
   if (favoritesDialog) delete favoritesDialog;
   if (selectKeysetForm) delete selectKeysetForm;
 
@@ -244,6 +249,9 @@ void MainWindow::enableButtons()
   {
     myPanels->enableButtons(myKeysets, currentKeyset);
   }
+
+  // Finally, update the power search panel with the new keyset name:
+  powerSearchForm->setKeysetName(selectKeysetForm->getCurrentKeysetName());
 }
 
 
@@ -322,6 +330,11 @@ void MainWindow::receivedExternalWarning(
 void MainWindow::on_actionSelectKeyset_triggered()
 {
   selectKeysetForm->show();
+}
+
+void MainWindow::on_actionAutomatic_Keyset_Search_triggered()
+{
+  powerSearchForm->show();
 }
 
 void MainWindow::on_actionBrowse_Device_List_triggered()
@@ -526,6 +539,24 @@ bool MainWindow::startRepeating(
   {
     commandInFlight = true;
     emit buttonPressed(keysetID, name);
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
+
+bool MainWindow::startRepeating(
+  PIRACStateInfo state,
+  PIRKeyName name)
+{
+  QMutexLocker locker(&commandIFMutex);
+  if (!commandInFlight)
+  {
+    commandInFlight = true;
+    emit buttonPressed(state, currentKeyset, name);
     return true;
   }
   else
@@ -906,4 +937,27 @@ void MainWindow::switchToTab(
   {
     ui->mainTabWidget->setCurrentIndex(tabNumber);
   }
+}
+
+
+void MainWindow::switchToNextTab()
+{
+  int i = ui->mainTabWidget->currentIndex();
+  int count = ui->mainTabWidget->count();
+
+  ++i;
+
+  if (i == count) return;  // already at end of tabs
+
+  ui->mainTabWidget->setCurrentIndex(i);
+}
+
+
+void MainWindow::switchToPrevTab()
+{
+  int i = ui->mainTabWidget->currentIndex();
+
+  if (i <= 0) return;  // already at start of tabs
+
+  ui->mainTabWidget->setCurrentIndex(--i);
 }

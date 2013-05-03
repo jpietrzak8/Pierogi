@@ -2,6 +2,7 @@
 #define SAMSUNG_H
 
 #include "pirkeysetmetadata.h"
+#include "pirackeyset.h"
 
 class QObject;
 
@@ -38,50 +39,6 @@ public:
 };
 
 
-class SamsungTV1c: public SamsungTV1
-{
-public:
-  SamsungTV1c(
-    unsigned int index);
-
-  virtual void populateProtocol(
-    QObject *guiObject);
-};
-
-
-class SamsungTV1d: public SamsungTV1
-{
-public:
-  SamsungTV1d(
-    unsigned int index);
-
-  virtual void populateProtocol(
-    QObject *guiObject);
-};
-
-
-class SamsungTV1e: public SamsungTV1
-{
-public:
-  SamsungTV1e(
-    unsigned int index);
-
-  virtual void populateProtocol(
-    QObject *guiObject);
-};
-
-
-class SamsungTV1f: public SamsungTV1
-{
-public:
-  SamsungTV1f(
-    unsigned int index);
-
-  virtual void populateProtocol(
-    QObject *guiObject);
-};
-
-
 class SamsungTV2: public PIRKeysetMetaData
 {
 public:
@@ -92,15 +49,28 @@ public:
     QObject *guiObject);
 };
 
-class SamsungTV2a: public SamsungTV2
+
+class SamsungTV3: public PIRKeysetMetaData
 {
 public:
-  SamsungTV2a(
+  SamsungTV3(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
+
+
+class SamsungTV3a: public SamsungTV3
+{
+public:
+  SamsungTV3a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 
 class SamsungVCR1: public PIRKeysetMetaData
 {
@@ -211,6 +181,40 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+};
+
+class SamsungAC2: public PIRACKeyset
+{
+public:
+  SamsungAC2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+
+  virtual void getTurboModePairs(
+    PIRStatePairs &turboModePairs) const;
+
+  virtual void getSwingPairs(
+    PIRStatePairs &swingPairs) const;
+
+  virtual void getTemperaturePairs(
+    PIRStatePairs &temperaturePairs) const;
+
+  virtual void getFanPairs(
+    PIRStatePairs &fanPairs) const;
+
+  virtual void getModePairs(
+    PIRStatePairs &modePairs) const;
+
+  virtual void getAirCleanPairs(
+    PIRStatePairs &aircleanPairs) const;
+
+  virtual void getPowerPairs(
+    PIRStatePairs &powerPairs) const;
+
+  virtual void getTimerOptionPairs(
+    PIRStatePairs &timerOptionPairs) const;
 };
 
 class SamsungDVBT1: public PIRKeysetMetaData

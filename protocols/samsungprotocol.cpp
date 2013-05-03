@@ -1,3 +1,4 @@
+/*
 #include "samsungprotocol.h"
 
 SamsungProtocol::SamsungProtocol(
@@ -12,3 +13,4 @@ SamsungProtocol::SamsungProtocol(
   headerPulse = 4500;
   headerSpace = 4500;
 }
+*/

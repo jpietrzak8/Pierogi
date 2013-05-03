@@ -184,6 +184,8 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[FanFaster_Key] = "Fan Faster";
   keynameStrings[FanSlower_Key] = "Fan Slower";
   keynameStrings[EnergySave_Key] = "Energy Save Mode";
+  keynameStrings[ACSendCommand_Key] = "Send Stateful AC Command";
+  keynameStrings[ACSetTimer_Key] = "Set AC Timer";
   keynameStrings[RobotForward_Key] = "Robot Forward";
   keynameStrings[RobotCW_Key] = "Robot Clockwise";
   keynameStrings[RobotCCW_Key] = "Robot Counterclockwise";

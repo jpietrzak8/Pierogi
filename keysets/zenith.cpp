@@ -24,7 +24,6 @@ void ZenithTV1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
-//  setPreData(0x20DF, 16);
   setPreData(0x04, 8);
 
   addKey("CH_UP", ChannelUp_Key, 0x00, 8);

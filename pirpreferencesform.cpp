@@ -219,5 +219,5 @@ void PIRPreferencesForm::setupMacroComboBox(
   // Crappy hardcoded list.  Need to replace this...
   cb->addItem("Standard Controls");
   cb->addItem("User Defined Keyboard Macros");
-  cb->addItem("Reverse Multitap Keboard Macros");
+  cb->addItem("Reverse Multitap Keyboard Macros");
 }

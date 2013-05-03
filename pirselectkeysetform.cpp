@@ -73,6 +73,8 @@ PIRSelectKeysetForm::PIRSelectKeysetForm(
 
 PIRSelectKeysetForm::~PIRSelectKeysetForm()
 {
+  if (editDialog) delete editDialog;
+
   delete ui;
 }
 

@@ -1,3 +1,25 @@
+pierogi (1.1.19) unstable; urgency=low
+  * Made a first pass at keysets for Dune, MT-Logic, and Venturer, and significant fixes to the Epson keysets.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 28 Apr 2013 19:16:03 -0400
+
+pierogi (1.1.18) unstable; urgency=low
+  * Added an experimental keyset for Creative / Cambridge speaker systems.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 26 Apr 2013 17:19:18 -0400
+
+pierogi (1.1.17) unstable; urgency=low
+  * First attempt at a "stateful" air conditioner remote.  I'm making it available for testing.  The keyset is "Samsung Air Conditioner 2", and two new panels have been added to the air conditioner set.
+  * Fixed a protocol bug for a Strong keyset.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Tue, 23 Apr 2013 19:34:14 -0400
+
+pierogi (1.1.16) unstable; urgency=low
+  * Promoted the "power key search" up to the menu bar; this is intended to make it one of the primary mechanisms used to find a keyset.
+  * Made a first pass at keysets for Alpine, ILO, SagemCom, and Starhub; added new keysets to Strong and Technics.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Thu, 18 Apr 2013 14:59:07 -0400
+
 pierogi (1.1.15) unstable; urgency=low
   * Added a new "Advanced Settings" panel, allowing control over carrier frequency and duty cycle values.
   * Added a few more buttons to "input" panel, and put the "input" panel back on into the TV collection.  The "adjust" panel was moved down into the Video Media collection. (I'm still trying to tweak these collections...)

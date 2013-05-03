@@ -28,6 +28,7 @@ PanasonicOldProtocol::PanasonicOldProtocol(
       833,
       105000, true)
 {
+  setCarrierFrequency(57600);
 }
 
 
@@ -110,13 +111,14 @@ int PanasonicOldProtocol::generateStandardCommand(
   rx51device.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
-  // Supposedly, this protocol uses 5 bits of address and 6 bits of command,
-  // but it looks like the address can be variable.  So, I'm going to treat
-  // them as more-or-less two separate sets of command data.
+  // This protocol uses 5 bits of address and 6 bits of command.  As with
+  // many protocols used for audio components, one remote can handle
+  // multiple addresses, so both address and command are stored as variable
+  // data.
   //
   // It is laid out as follows:
-  // 1) the five bits of "address" data
-  // 2) the six bits of command data
+  // 1) the five bits of address data, LSB order
+  // 2) the six bits of command data, LSB order
   // 3) repeat of the five bits of address data, inverted
   // 4) repeat of the six bits of command data, inverted
 

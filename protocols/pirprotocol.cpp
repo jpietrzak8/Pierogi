@@ -34,12 +34,20 @@ PIRProtocol::PIRProtocol(
     id(index)
 {
   qRegisterMetaType<PIRKeyName>("PIRKeyName");
+  qRegisterMetaType<PIRACStateInfo>("PIRACStateInfo");
 
   QObject::connect(
     guiObject,
     SIGNAL(buttonPressed(unsigned int, PIRKeyName)),
     this,
     SLOT(startSendingCommand(unsigned int, PIRKeyName)),
+    Qt::QueuedConnection);
+
+  QObject::connect(
+    guiObject,
+    SIGNAL(buttonPressed(PIRACStateInfo, unsigned int, PIRKeyName)),
+    this,
+    SLOT(startSendingStateInfo(PIRACStateInfo, unsigned int, PIRKeyName)),
     Qt::QueuedConnection);
 
   QObject::connect(
@@ -396,6 +404,15 @@ void PIRProtocol::setPostData(
   }
 
   appendToBitSeq(postData, data, bits);
+}
+
+
+void PIRProtocol::startSendingStateInfo(
+  PIRACStateInfo state,
+  unsigned int threadableID,
+  PIRKeyName command)
+{
+  // This method can be ignored by most non-air-conditioner protocols.
 }
 
 

@@ -12,6 +12,7 @@ class PIRSelectKeysetForm;
 class PIRSelectDeviceForm;
 class PIRFavoritesDialog;
 class PIRKeysetWidgetItem;
+class PIRACKeyset;
 
 #include <map>
 class PIRKeysetMetaData;
@@ -85,6 +86,9 @@ public:
   void setDutyCycle(
     unsigned int dutyCycle,
     unsigned int keysetID);
+
+  const PIRACKeyset * getACKeyset(
+    unsigned int keysetID) const;
 
 private:
   void setupKeyset(

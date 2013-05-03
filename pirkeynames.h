@@ -222,6 +222,10 @@ enum PIRKeyName{
   FanSlower_Key,
   EnergySave_Key,
 
+  // Special key for stateful A/C controls:
+  ACSendCommand_Key,
+  ACSetTimer_Key,
+
   // iRobot controls:
   RobotForward_Key,
   RobotCW_Key,

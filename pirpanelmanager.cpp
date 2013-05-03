@@ -12,12 +12,14 @@
 #include "forms/pirinputform.h"
 #include "forms/piradjustform.h"
 #include "forms/pirairconditionerform.h"
+#include "forms/pirstatefulacform.h"
+#include "forms/piractimerform.h"
 #include "forms/piraudiodeviceform.h"
 #include "forms/pircameraform.h"
 #include "forms/pirroombaform.h"
 #include "forms/piruserform.h"
 #include "forms/pirmacroform.h"
-#include "forms/pirpowersearchform.h"
+//#include "forms/pirpowersearchform.h"
 #include "forms/piradvancedform.h"
 
 #include "mainwindow.h"
@@ -44,12 +46,14 @@ PIRPanelManager::PIRPanelManager(
     inputForm(0),
     adjustForm(0),
     acForm(0),
+    statefulACForm(0),
+    acTimerForm(0),
     audioDeviceForm(0),
     cameraForm(0),
     roombaForm(0),
     userForm(0),
     macroForm(0),
-    powerSearchForm(0),
+//    powerSearchForm(0),
     advancedForm(0),
     altMainPanelFlag(false),
     currentTabsName(Universal_Tabs),
@@ -101,9 +105,15 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[Adjust_Panel] = "Adjust";
   longPanelNames[Adjust_Panel] =
     "Adjust Panel - modify audio and video";
-  shortPanelNames[AC_Panel] = "AC";
+  shortPanelNames[AC_Panel] = "Stateless AC";
   longPanelNames[AC_Panel] =
     "A/C Panel - air conditioner controls";
+  shortPanelNames[StatefulAC_Panel] = "Stateful AC";
+  longPanelNames[StatefulAC_Panel] =
+    "Stateful A/C Panel - for A/C remotes with LCD screens";
+  shortPanelNames[ACTimer_Panel] = "Timer";
+  longPanelNames[ACTimer_Panel] =
+    "A/C Timer Panel - set (or cancel) the on/off timer";
   shortPanelNames[Audio_Panel] = "Audio";
   longPanelNames[Audio_Panel] =
     "Audio Device Panel - various audio related buttons";
@@ -119,9 +129,9 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[Macro_Panel] = "Edit Macro Contents";
   longPanelNames[Macro_Panel] =
     "Edit Macros Panel - create, delete, edit, and manage macros";
-  shortPanelNames[PowerSearch_Panel] = "Keyset Search";
-  longPanelNames[PowerSearch_Panel] =
-    "Keyset Search Panel - execute power button in each keyset";
+//  shortPanelNames[PowerSearch_Panel] = "Keyset Search";
+//  longPanelNames[PowerSearch_Panel] =
+//    "Keyset Search Panel - execute power button in each keyset";
   shortPanelNames[Advanced_Panel] = "Advanced Settings";
   longPanelNames[Advanced_Panel] =
     "Advanced Settings - allows adjustment of protocol settings";
@@ -162,6 +172,12 @@ PIRPanelManager::PIRPanelManager(
   acForm = new PIRAirConditionerForm(mainWindow);
   panels[AC_Panel] = acForm;
 
+  statefulACForm = new PIRStatefulACForm(mainWindow);
+  panels[StatefulAC_Panel] = statefulACForm;
+
+  acTimerForm = new PIRACTimerForm(mainWindow);
+  panels[ACTimer_Panel] = acTimerForm;
+
   audioDeviceForm = new PIRAudioDeviceForm(mainWindow);
   panels[Audio_Panel] = audioDeviceForm;
 
@@ -177,8 +193,8 @@ PIRPanelManager::PIRPanelManager(
   macroForm = new PIRMacroForm(mainWindow);
   panels[Macro_Panel] = macroForm;
 
-  powerSearchForm = new PIRPowerSearchForm(mainWindow);
-  panels[PowerSearch_Panel] = powerSearchForm;
+//  powerSearchForm = new PIRPowerSearchForm(mainWindow);
+//  panels[PowerSearch_Panel] = powerSearchForm;
 
   advancedForm = new PIRAdvancedForm();
   panels[Advanced_Panel] = advancedForm;
@@ -227,6 +243,8 @@ PIRPanelManager::PIRPanelManager(
   // The air conditioner collection:
   pset.clear();
   pset.push_back(AC_Panel);
+  pset.push_back(StatefulAC_Panel);
+  pset.push_back(ACTimer_Panel);
   tabLists[AC_Tabs] = pset;
 
   // The recording collection:
@@ -251,9 +269,9 @@ PIRPanelManager::PIRPanelManager(
   tabLists[Macro_Tabs] = pset;
 
   // The Power Search collection:
-  pset.clear();
-  pset.push_back(PowerSearch_Panel);
-  tabLists[PowerSearch_Tabs] = pset;
+//  pset.clear();
+//  pset.push_back(PowerSearch_Panel);
+//  tabLists[PowerSearch_Tabs] = pset;
 
   // The Advanced Settings collection:
   pset.clear();
@@ -335,12 +353,14 @@ void PIRPanelManager::commonEnableButtons(
   inputForm->enableButtons(keyset, id);
   adjustForm->enableButtons(keyset, id);
   acForm->enableButtons(keyset, id);
+  statefulACForm->enableButtons(keyset, id);
+  acTimerForm->enableButtons(keyset, id);
   audioDeviceForm->enableButtons(keyset, id);
   cameraForm->enableButtons(keyset, id);
   roombaForm->enableButtons(keyset, id);
 
   // Also, set the label in the power search form:
-  powerSearchForm->setKeysetName(mainWindow->getCurrentFullName());
+//  powerSearchForm->setKeysetName(mainWindow->getCurrentFullName());
 
   // Set up the advanced parameters:
   advancedForm->setupForm(keyset, id);

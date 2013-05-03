@@ -15,12 +15,16 @@ class PIRTVForm;
 class PIRInputForm;
 class PIRAdjustForm;
 class PIRAirConditionerForm;
+class PIRStatefulACForm;
+class PIRACTimerForm;
 class PIRAudioDeviceForm;
 class PIRCameraForm;
 class PIRRoombaForm;
 class PIRUserForm;
+
+// These need to go elsewhere:
 class PIRMacroForm;
-class PIRPowerSearchForm;
+//class PIRPowerSearchForm;
 class PIRAdvancedForm;
 
 class PIRKeysetWidgetItem;
@@ -96,12 +100,14 @@ private:
   PIRInputForm *inputForm;
   PIRAdjustForm *adjustForm;
   PIRAirConditionerForm *acForm;
+  PIRStatefulACForm *statefulACForm;
+  PIRACTimerForm *acTimerForm;
   PIRAudioDeviceForm *audioDeviceForm;
   PIRCameraForm *cameraForm;
   PIRRoombaForm *roombaForm;
   PIRUserForm *userForm;
   PIRMacroForm *macroForm;
-  PIRPowerSearchForm *powerSearchForm;
+//  PIRPowerSearchForm *powerSearchForm;
   PIRAdvancedForm *advancedForm;
 
   PIRPanelDisplayNameCollection shortPanelNames;

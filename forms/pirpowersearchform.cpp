@@ -26,19 +26,24 @@ PIRPowerSearchForm::PIRPowerSearchForm(QWidget *parent) :
 
 PIRPowerSearchForm::PIRPowerSearchForm(
   MainWindow *mw)
-  : QWidget(0),
+  : QWidget(mw),
     ui(new Ui::PIRPowerSearchForm),
     mainWindow(mw),
     advanceTimer(0)
 {
   ui->setupUi(this);
+
+  // Make this a stacked window:
+  setAttribute(Qt::WA_Maemo5StackedWindow);
+  setWindowFlags(windowFlags() | Qt::Window);
 }
 
 
 PIRPowerSearchForm::~PIRPowerSearchForm()
 {
-  delete ui;
   if (advanceTimer) delete advanceTimer;
+
+  delete ui;
 }
 
 void PIRPowerSearchForm::setKeysetName(

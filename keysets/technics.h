@@ -55,6 +55,36 @@ public:
     QObject *guiObject);
 };
 
+class TechnicsReceiver1: public PIRKeysetMetaData
+{
+public:
+  TechnicsReceiver1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class TechnicsReceiver1a: public TechnicsReceiver1
+{
+public:
+  TechnicsReceiver1a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class TechnicsCD1: public PIRKeysetMetaData
+{
+public:
+  TechnicsCD1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 class TechnicsDVD1: public PIRKeysetMetaData
 {
 public:

@@ -45,4 +45,14 @@ public:
     QObject *guiObject);
 };
 
+class StrongDVBT1: public PIRKeysetMetaData
+{
+public:
+  StrongDVBT1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // STRONG_H

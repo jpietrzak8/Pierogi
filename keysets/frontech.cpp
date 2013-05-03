@@ -1,6 +1,6 @@
 #include "frontech.h"
 #include "protocols/protonprotocol.h"
-#include "protocols/samsungprotocol.h"
+#include "protocols/necxprotocol.h"
 
 FrontechTV1::FrontechTV1(
   unsigned int index)
@@ -76,7 +76,7 @@ void FrontechTV2::populateProtocol(
     return;
   }
 
-  threadableProtocol = new SamsungProtocol(guiObject, index);
+  threadableProtocol = new NECXProtocol(guiObject, index, false);
 
   setPreData(0x0E0E, 16);
 

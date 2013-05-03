@@ -35,4 +35,14 @@ public:
     QObject *guiObject);
 };
 
+class CiscoSTB4: public PIRKeysetMetaData
+{
+public:
+  CiscoSTB4(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // CISCO_H

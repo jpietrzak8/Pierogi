@@ -11,6 +11,7 @@
 #include "keysets/adb.h"
 #include "keysets/admiral.h"
 #include "keysets/aiwa.h"
+#include "keysets/alpine.h"
 #include "keysets/anitech.h"
 #include "keysets/aoc.h"
 #include "keysets/apple.h"
@@ -37,6 +38,7 @@
 #include "keysets/dish.h"
 #include "keysets/dreambox.h"
 #include "keysets/dse.h"
+#include "keysets/dune.h"
 #include "keysets/dynex.h"
 #include "keysets/ei.h"
 #include "keysets/elgato.h"
@@ -61,6 +63,7 @@
 #include "keysets/huawei.h"
 #include "keysets/humax.h"
 #include "keysets/hyundai.h"
+#include "keysets/ilo.h"
 #include "keysets/irobot.h"
 #include "keysets/jvc.h"
 #include "keysets/kaon.h"
@@ -80,6 +83,7 @@
 #include "keysets/medion.h"
 #include "keysets/mitsubishi.h"
 #include "keysets/motorola.h"
+#include "keysets/mtlogic.h"
 #include "keysets/multichoice.h"
 #include "keysets/nad.h"
 #include "keysets/nec.h"
@@ -103,12 +107,14 @@
 #include "keysets/roku.h"
 #include "keysets/saba.h"
 #include "keysets/sagem.h"
+#include "keysets/sagemcom.h"
 #include "keysets/samsung.h"
 #include "keysets/sanyo.h"
 #include "keysets/sharp.h"
 #include "keysets/sinotec.h"
 #include "keysets/sky.h"
 #include "keysets/sony.h"
+#include "keysets/starhub.h"
 #include "keysets/starsat.h"
 #include "keysets/strong.h"
 #include "keysets/sylvania.h"
@@ -123,6 +129,7 @@
 #include "keysets/triax.h"
 #include "keysets/united.h"
 #include "keysets/universum.h"
+#include "keysets/venturer.h"
 #include "keysets/vestel.h"
 #include "keysets/viewsat.h"
 #include "keysets/viewsonic.h"
@@ -186,6 +193,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new AiwaCarStereo1(++counter));
   setupKeyset(new AiwaDVD1(++counter));
 
+  setupKeyset(new AlpineAudio1(++counter));
+
   setupKeyset(new AnitechTV1(++counter));
   setupKeyset(new AnitechVCR1(++counter));
 
@@ -198,6 +207,12 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new BekoTV1(++counter));
 
   setupKeyset(new BenQTV1(++counter));
+  setupKeyset(new BenQProjector1(++counter));
+  setupKeyset(new BenQProjector1a(++counter));
+  setupKeyset(new BenQProjector2(++counter));
+  setupKeyset(new BenQProjector3(++counter));
+  setupKeyset(new BenQProjector4(++counter));
+  setupKeyset(new BenQProjector5(++counter));
 
   setupKeyset(new BlaupunktVCR1(++counter));
 
@@ -229,6 +244,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new CiscoSTB1(++counter));
   setupKeyset(new CiscoSTB2(++counter));
   setupKeyset(new CiscoSTB3(++counter));
+  setupKeyset(new CiscoSTB4(++counter));
 
   setupKeyset(new ComproTVCard1(++counter));
 
@@ -315,6 +331,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new DSEDVD1(++counter));
   setupKeyset(new DSESat1(++counter));
 
+  setupKeyset(new DuneSTB1(++counter));
+
   setupKeyset(new DynexTV1(++counter));
 
   setupKeyset(new EiTV1(++counter));
@@ -328,7 +346,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new EmtecSTB2(++counter));
 
   setupKeyset(new EpsonProjector1(++counter));
-  setupKeyset(new EpsonProjector2(++counter));
+  setupKeyset(new EpsonProjector1a(++counter));
 
   setupKeyset(new FortecReceiver1(++counter));
   setupKeyset(new FortecReceiver2(++counter));
@@ -416,6 +434,10 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new HyundaiDVD1(++counter));
   setupKeyset(new HyundaiAudio1(++counter));
   setupKeyset(new HyundaiTV1(++counter));
+
+  setupKeyset(new ILOTV1(++counter));
+  setupKeyset(new ILOTV2(++counter));
+  setupKeyset(new ILOTV3(++counter));
 
   setupKeyset(new IRobotRoomba1(++counter));
 
@@ -518,12 +540,15 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new MitsubishiVCR1(++counter));
   setupKeyset(new MitsubishiVCR1a(++counter));
   setupKeyset(new MitsubishiProjector1(++counter));
+  setupKeyset(new MitsubishiProjector2(++counter));
 
   setupKeyset(new Motorola4DTV(++counter));
   setupKeyset(new MotorolaSTB1(++counter));
   setupKeyset(new MotorolaSTB1a(++counter));
   setupKeyset(new MotorolaSTB1b(++counter));
   setupKeyset(new MotorolaSkyDigital(++counter));
+
+  setupKeyset(new MTLogicTV1(++counter));
 
   setupKeyset(new MultichoiceSTB1(++counter));
   setupKeyset(new MultichoiceSTB2(++counter));
@@ -674,15 +699,15 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SagemTVBox1(++counter));
   setupKeyset(new SagemTVBox1a(++counter));
 
+  setupKeyset(new SagemcomSTB1(++counter));
+  setupKeyset(new SagemcomSTB2(++counter));
+
   setupKeyset(new SamsungTV1(++counter));
   setupKeyset(new SamsungTV1a(++counter));
   setupKeyset(new SamsungTV1b(++counter));
-  setupKeyset(new SamsungTV1c(++counter));
-  setupKeyset(new SamsungTV1d(++counter));
-  setupKeyset(new SamsungTV1e(++counter));
-  setupKeyset(new SamsungTV1f(++counter));
   setupKeyset(new SamsungTV2(++counter));
-  setupKeyset(new SamsungTV2a(++counter));
+  setupKeyset(new SamsungTV3(++counter));
+  setupKeyset(new SamsungTV3a(++counter));
   setupKeyset(new SamsungVCR1(++counter));
   setupKeyset(new SamsungVCR1a(++counter));
   setupKeyset(new SamsungVCR1b(++counter));
@@ -694,6 +719,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SamsungDVD1b(++counter));
   setupKeyset(new SamsungDVD2(++counter));
   setupKeyset(new SamsungAC1(++counter));
+  setupKeyset(new SamsungAC2(++counter));
   setupKeyset(new SamsungDVBT1(++counter));
 
   setupKeyset(new SanyoVCR1(++counter));
@@ -747,12 +773,16 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SonyProjector1(++counter));
   setupKeyset(new SonyProjector1a(++counter));
 
+  setupKeyset(new StarhubSTB1(++counter));
+  setupKeyset(new StarhubSTB1a(++counter));
+
   setupKeyset(new StarsatSat1(++counter));
 
   setupKeyset(new StrongSat1(++counter));
   setupKeyset(new StrongSat2(++counter));
   setupKeyset(new StrongSat3(++counter));
   setupKeyset(new StrongSat4(++counter));
+  setupKeyset(new StrongDVBT1(++counter));
 
   setupKeyset(new SylvaniaTV1(++counter));
 
@@ -761,6 +791,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new TechnicsAudio2(++counter));
   setupKeyset(new TechnicsAudio3(++counter));
   setupKeyset(new TechnicsAudio3a(++counter));
+  setupKeyset(new TechnicsReceiver1(++counter));
+  setupKeyset(new TechnicsReceiver1a(++counter));
+  setupKeyset(new TechnicsCD1(++counter));
   setupKeyset(new TechnicsDVD1(++counter));
 
   setupKeyset(new TechnisatSTB1(++counter));
@@ -828,6 +861,10 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new UniversumTV1a(++counter));
   setupKeyset(new UniversumSat1(++counter));
   setupKeyset(new UniversumAudio1(++counter));
+
+  setupKeyset(new VenturerTV1(++counter));
+  setupKeyset(new VenturerDVD1(++counter));
+  setupKeyset(new VenturerSTB1(++counter));
 
   setupKeyset(new VestelTV1(++counter));
   setupKeyset(new VestelTV2(++counter));
@@ -1059,6 +1096,27 @@ void PIRKeysetManager::setDutyCycle(
   }
 
   i->second->setDutyCycle(dutyCycle);
+}
+
+
+const PIRACKeyset *PIRKeysetManager::getACKeyset(
+  unsigned int keysetID) const
+{
+  PIRKeysetCollection::const_iterator i = keysetsInfo.find(keysetID);
+
+  if (i == keysetsInfo.end())
+  {
+    return NULL;
+  }
+
+  const PIRKeysetMetaData *meta = i->second;
+
+  if (!meta)
+  {
+    return NULL;
+  }
+
+  return (dynamic_cast<const PIRACKeyset *>(meta));
 }
 
 

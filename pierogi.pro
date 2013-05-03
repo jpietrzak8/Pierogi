@@ -241,7 +241,19 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/medialink.cpp \
     keysets/nec.cpp \
     keysets/multichoice.cpp \
-    forms/piradvancedform.cpp
+    forms/piradvancedform.cpp \
+    keysets/ilo.cpp \
+    keysets/sagemcom.cpp \
+    protocols/recs80protocol.cpp \
+    keysets/starhub.cpp \
+    keysets/alpine.cpp \
+    pirackeyset.cpp \
+    protocols/samsungacprotocol.cpp \
+    forms/piractimerform.cpp \
+    keysets/dune.cpp \
+    keysets/mtlogic.cpp \
+    keysets/venturer.cpp \
+    protocols/mitsubishiprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -457,7 +469,20 @@ HEADERS += mainwindow.h \
     keysets/medialink.h \
     keysets/nec.h \
     keysets/multichoice.h \
-    forms/piradvancedform.h
+    forms/piradvancedform.h \
+    keysets/ilo.h \
+    keysets/sagemcom.h \
+    protocols/recs80protocol.h \
+    keysets/starhub.h \
+    keysets/alpine.h \
+    piracstateinfo.h \
+    pirackeyset.h \
+    protocols/samsungacprotocol.h \
+    forms/piractimerform.h \
+    keysets/dune.h \
+    keysets/mtlogic.h \
+    keysets/venturer.h \
+    protocols/mitsubishiprotocol.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -495,7 +520,8 @@ FORMS += mainwindow.ui \
     dialogs/pirdeletemacrodialog.ui \
     forms/piruserform.ui \
     dialogs/pireditcommanddialog.ui \
-    forms/piradvancedform.ui
+    forms/piradvancedform.ui \
+    forms/piractimerform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

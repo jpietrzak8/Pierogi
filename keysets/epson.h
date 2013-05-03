@@ -15,10 +15,10 @@ public:
     QObject *guiObject);
 };
 
-class EpsonProjector2: public PIRKeysetMetaData
+class EpsonProjector1a: public EpsonProjector1
 {
 public:
-  EpsonProjector2(
+  EpsonProjector1a(
     unsigned int index);
 
   virtual void populateProtocol(

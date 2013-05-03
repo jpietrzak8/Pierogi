@@ -2,6 +2,7 @@
 #include "protocols/necprotocol.h"
 #include "protocols/panasonicoldprotocol.h"
 #include "protocols/nokia32protocol.h"
+#include "protocols/rc5protocol.h"
 
 CiscoSTB1::CiscoSTB1(
   unsigned int index)
@@ -33,7 +34,8 @@ void CiscoSTB1::populateProtocol(
   addKey("channel up", ChannelUp_Key, 0x85, 8);
   addKey("channel down", ChannelDown_Key, 0x86, 8);
   addKey("0", Zero_Key, 0x87, 8);
-  addKey("exit", Exit_Key, 0x88, 8);
+//  addKey("exit", Exit_Key, 0x88, 8); // apparently, this is not "exit"
+  addKey("exit", Info_Key, 0x88, 8);
   addKey("red", Red_Key, 0x89, 8);
   addKey("7", Seven_Key, 0x8A, 8);
   addKey("8", Eight_Key, 0x8B, 8);
@@ -230,4 +232,67 @@ void CiscoSTB3::populateProtocol(
   addKey("recording", Record_Key, 0xF1, 8);
   addKey("livetv", LiveTV_Key, 0xF2, 8);
   addKey("phone", Unmapped_Key, 0xF9, 8);
+}
+
+
+CiscoSTB4::CiscoSTB4(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Set-Top Box Keyset 4",
+      Cisco_Make,
+      index)
+{
+}
+
+
+void CiscoSTB4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new RC5Protocol(guiObject, index);
+
+  addKey("0", Zero_Key, 0x0280, 13);
+  addKey("1", One_Key, 0x0281, 13);
+  addKey("2", Two_Key, 0x0282, 13);
+  addKey("3", Three_Key, 0x0283, 13);
+  addKey("4", Four_Key, 0x0284, 13);
+  addKey("5", Five_Key, 0x0285, 13);
+  addKey("6", Six_Key, 0x0286, 13);
+  addKey("7", Seven_Key, 0x0287, 13);
+  addKey("8", Eight_Key, 0x0288, 13);
+  addKey("9", Nine_Key, 0x0289, 13);
+  addKey("power", Power_Key, 0x028C, 13);
+  addKey("channel up", ChannelUp_Key, 0x02A0, 13);
+  addKey("channel down", ChannelDown_Key, 0x02A1, 13);
+  addKey("last (prev ch)", PrevChannel_Key, 0x02A2, 13);
+  addKey("Skip-", Previous_Key, 0x02AA, 13);
+  addKey("Skip+", Next_Key, 0x02AB, 13);
+  addKey("display", Info_Key, 0x02AF, 13);
+  addKey("play", Play_Key, 0x02B0, 13);
+  addKey("pause", Pause_Key, 0x02B0, 13);
+  addKey("rewind", Rewind_Key, 0x02B2, 13);
+  addKey("ffwd", FastForward_Key, 0x02B4, 13);
+  addKey("stop", Stop_Key, 0x02B6, 13);
+  addKey("record", Record_Key, 0x02B7, 13);
+  addKey("teletext", Teletext_Key, 0x02BC, 13);
+  addKey("V+", Unmapped_Key, 0x1281, 13);
+  addKey("menu", Menu_Key, 0x128F, 13);
+  addKey("up arrow", Up_Key, 0x1290, 13);
+  addKey("down arrow", Down_Key, 0x1291, 13);
+  addKey("program guide", Guide_Key, 0x1292, 13);
+  addKey("exit", Exit_Key, 0x1293, 13);
+//  addKey("TV", Input_Key, 0x1293, 13); // odd
+  addKey("left arrow", Left_Key, 0x1295, 13);
+  addKey("right arrow", Right_Key, 0x1296, 13);
+  addKey("select", Select_Key, 0x1297, 13);
+  addKey("fav", Favorites_Key, 0x12A1, 13);
+  addKey("red", Red_Key, 0x12AB, 13);
+  addKey("green", Green_Key, 0x12AC, 13);
+  addKey("yellow", Yellow_Key, 0x12AD, 13);
+  addKey("blue", Blue_Key, 0x12AE, 13);
 }

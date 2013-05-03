@@ -6,6 +6,7 @@
 #include "pirkeynames.h"
 #include "pirpanelnames.h"
 #include "pirmodprobe.h"
+#include "piracstateinfo.h"
 
 class QListWidget;
 class QListWidgetItem;
@@ -15,6 +16,7 @@ class QKeyEvent;
 //class PIRTabWidget;
 
 class PIRSelectKeysetForm;
+class PIRPowerSearchForm;
 class PIRSelectDeviceForm;
 class PIRPreferencesForm;
 class PIRDocumentationForm;
@@ -56,6 +58,10 @@ public:
   bool startRepeating(
     PIRKeyName name,
     unsigned int keysetID);
+
+  bool startRepeating(
+    PIRACStateInfo state,
+    PIRKeyName name);
 
   void stopRepeating();
 
@@ -137,6 +143,9 @@ public:
   void switchToTab(
     int tabNumber);
 
+  void switchToNextTab();
+  void switchToPrevTab();
+
   void handleKeypress(
     char key);
 
@@ -149,6 +158,11 @@ public:
 
 signals:
   void buttonPressed(
+    unsigned int keysetID,
+    PIRKeyName name);
+
+  void buttonPressed(
+    PIRACStateInfo state,
     unsigned int keysetID,
     PIRKeyName name);
 
@@ -166,6 +180,7 @@ public slots:
 
 private slots:
   void on_actionSelectKeyset_triggered();
+  void on_actionAutomatic_Keyset_Search_triggered();
   void on_actionBrowse_Device_List_triggered();
   void on_actionPreferences_triggered();
   void on_actionAbout_triggered();
@@ -188,6 +203,7 @@ private:
 //  PIRTabWidget *myTabWidget;
 
   PIRSelectKeysetForm *selectKeysetForm;
+  PIRPowerSearchForm *powerSearchForm;
   PIRSelectDeviceForm *selectDeviceForm;
   PIRPreferencesForm *preferencesForm;
   PIRDocumentationForm *documentationForm;

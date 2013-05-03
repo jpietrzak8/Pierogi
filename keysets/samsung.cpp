@@ -1,7 +1,9 @@
 #include "samsung.h"
-#include "protocols/samsungprotocol.h"
+#include "protocols/necxprotocol.h"
 #include "protocols/lircprotocol.h"
 #include "protocols/rc5protocol.h"
+#include "protocols/samsungacprotocol.h"
+#include "protocols/necprotocol.h"
 
 SamsungTV1::SamsungTV1(
   unsigned int index)
@@ -27,13 +29,12 @@ void SamsungTV1::populateProtocol(
     return;
   }
 
-  threadableProtocol = new SamsungProtocol(guiObject, index);
+  threadableProtocol = new NECXProtocol(guiObject, index, false);
 
-//  setPreData(0xE0E0, 16);
   setPreData(0x0707, 16);
 
   addKey("mts", Audio_Key, 0x00, 8); // "dual"
-  addKey("TV/Video", Input_Key, 0x01, 8);
+  addKey("TV/Video", Input_Key, 0x01, 8); // This might not be a toggle
   addKey("Power", Power_Key, 0x02, 8);
   addKey("Sleep", Sleep_Key, 0x03, 8);
   addKey("1", One_Key, 0x04, 8);
@@ -56,12 +57,11 @@ void SamsungTV1::populateProtocol(
   addKey("Yellow", Yellow_Key, 0x15, 8);
   addKey("Blue", Blue_Key, 0x16, 8);
   addKey("Menu", Menu_Key, 0x1A, 8);
-  addKey("tv", Unmapped_Key, 0x1B, 8);
   addKey("Display", Info_Key, 0x1F, 8);
   addKey("PIP", PIP_Key, 0x20, 8);
   addKey("Swap", PIPSwap_Key, 0x21, 8);
-  addKey("position", PIPMove_Key, 0x22, 8);
-  addKey("-/--", DoubleDigit_Key, 0x23, 8);
+  addKey("position", PIPMove_Key, 0x22, 8); // "PIP Locate"
+  addKey("-/--", DoubleDigit_Key, 0x23, 8); // "-/--/hold"
   addKey("+100", PlusOneHundred_Key, 0x23, 8);
   addKey("DASH", Dash_Key, 0x23, 8);
   addKey("PIP.SOURCE", PIPSource_Key, 0x24, 8);
@@ -76,10 +76,11 @@ void SamsungTV1::populateProtocol(
   addKey("PIP.chan+", PIPChannelUp_Key, 0x32, 8); // "AUDCH_UP"
   addKey("PIP.chan-", PIPChannelDown_Key, 0x33, 8); // "AUDCH_DOWN"
   addKey("ANTENNA", AntennaInput_Key, 0x36, 8);
+  addKey("Toggle Service Menu", Unmapped_Key, 0x3B, 8); // Dangerous!
   addKey("surf", Unmapped_Key, 0x3D, 8); // "r.surf"
-  addKey("PSize", PIPSize_Key, 0x3E, 8);
+  addKey("PSize", PIPSize_Key, 0x3E, 8); // "P.Size (aspect)"
   addKey("STILL", PIPPause_Key, 0x42, 8);
-  addKey("TV-DTV", Unmapped_Key, 0x43, 8);
+  addKey("TV-DTV", ComponentInput_Key, 0x43, 8); // "tv/component"
   addKey("FAV-CH", Favorites_Key, 0x44, 8);
   addKey("Rewind", Rewind_Key, 0x45, 8);
   addKey("Stop", Stop_Key, 0x46, 8);
@@ -97,18 +98,37 @@ void SamsungTV1::populateProtocol(
   addKey("Enter", Select_Key, 0x68, 8);
   addKey("pc", PCInput_Key, 0x69, 8);
   addKey("ch-mgr", Unmapped_Key, 0x6B, 8); // "CH_LIST"
-  addKey("Red", Red_Key, 0x6C, 8);
+  addKey("Red", Red_Key, 0x6C, 8);  // "red/turbo"
   addKey("srs", Surround_Key, 0x6E, 8);
   addKey("E.SAVING", Unmapped_Key, 0x77, 8);
   addKey("Content", Unmapped_Key, 0x79, 8);
+  addKey("Display VCR on TV", VCRInput_Key, 0x7A, 8);
+  addKey("Display Cable on TV", CableInput_Key, 0x7B, 8);
+  addKey("Display TV on TV", Unmapped_Key, 0x7D, 8);
+  addKey("Display DVD on TV", DVDInput_Key, 0x7E, 8);
+  addKey("AV1", CompositeInput_Key, 0x84, 8);
+  addKey("S-Video 1", SVideoInput_Key, 0x85, 8);
+  addKey("Component 1", ComponentInput_Key, 0x86, 8);
+  addKey("Component 2", Component2Input_Key, 0x88, 8);
   addKey("HDMI", HDMIInput_Key, 0x8B, 8);
   addKey("WISELINK", Unmapped_Key, 0x8C, 8); // "W.Link", "Media.P"
-  addKey("D.MENU", DiscMenu_Key, 0x8E, 8);
+  addKey("D.MENU", DiscMenu_Key, 0x8E, 8); // "D-Net Menu"
   addKey("Internet", Unmapped_Key, 0x93, 8);
   addKey("E.Mode", Unmapped_Key, 0x94, 8);
   addKey("ANYNET", Unmapped_Key, 0x97, 8);
-
-//  addKey("turbo", Unmapped_Key, 0xA659, 16);
+  addKey("DiscreteOff", PowerOff_Key, 0x98, 8);
+  addKey("DiscreteOn", PowerOn_Key, 0x99, 8);
+  addKey("Dynamic Picture Mode", Unmapped_Key, 0xBD, 8);
+  addKey("Movie Picture Mode", Unmapped_Key, 0xDE, 8);
+  addKey("4:3", Unmapped_Key, 0xE3, 8);
+  addKey("16:9", Unmapped_Key, 0xE4, 8);
+  addKey("Auto Format", Unmapped_Key, 0xE5, 8);
+  addKey("HDMI 2", HDMI2Input_Key, 0xE9, 8);
+  addKey("AV2", Composite2Input_Key, 0xEB, 8);
+  addKey("AV3", Unmapped_Key, 0xEC, 8);
+  addKey("S-Video 2", SVideo2Input_Key, 0xED, 8);
+  addKey("S-Video 3", Unmapped_Key, 0xFB, 8);
+  addKey("Component 3", Unmapped_Key, 0xFD, 8);
 }
 
 
@@ -117,38 +137,12 @@ SamsungTV1a::SamsungTV1a(
   : SamsungTV1(index)
 {
   setKeysetName("TV Keyset 1a");
-}
-
-
-void SamsungTV1a::populateProtocol(
-  QObject *guiObject)
-{
-  if (threadableProtocol)
-  {
-    // If the pointer is not null, the keyset must already be populated.
-    return;
-  }
-
-  SamsungTV1::populateProtocol(guiObject);
-
-  addKey("turbo", Unmapped_Key, 0x13, 8);
-  addKey("s.menu", SoundMode_Key, 0x14, 8);
-  addKey("s.std", Unmapped_Key, 0x15, 8);
-  addKey("p.std", Unmapped_Key, 0x16, 8);
-}
-
-
-SamsungTV1b::SamsungTV1b(
-  unsigned int index)
-  : SamsungTV1(index)
-{
-  setKeysetName("TV Keyset 1b");
 
   addControlledDevice(Samsung_Make, "LE46M51B (R)", TV_Device); // ?
 }
 
 
-void SamsungTV1b::populateProtocol(
+void SamsungTV1a::populateProtocol(
   QObject *guiObject)
 {
   if (threadableProtocol)
@@ -164,108 +158,36 @@ void SamsungTV1b::populateProtocol(
 }
 
 
-SamsungTV1c::SamsungTV1c(
+SamsungTV1b::SamsungTV1b(
   unsigned int index)
   : SamsungTV1(index)
 {
-  setKeysetName("TV Keyset 1c");
+  setKeysetName("TV Keyset 1b");
 }
 
 
-void SamsungTV1c::populateProtocol(
+void SamsungTV1b::populateProtocol(
   QObject *guiObject)
 {
   if (threadableProtocol)
   {
-    // If the pointer is not null, the keyset must already be populated.
+    // Keyset already populated.
     return;
   }
 
   SamsungTV1::populateProtocol(guiObject);
 
-  // Some remotes apparently use channel and volume keys for navigation:
-  addKey("right", Right_Key, 0x07, 8);
-  addKey("left", Left_Key, 0x0B, 8);
-  addKey("down", Down_Key, 0x10, 8);
-  addKey("up", Up_Key, 0x12, 8);
-  addKey("center", Unmapped_Key, 0x1A, 8);
+  addKey("P.Size (aspect)", AspectRatio_Key, 0x3E, 8);
+  addKey("select component 1", ComponentInput_Key, 0x86, 8);
+  addKey("select DVI", HDMI3Input_Key, 0x8A, 8);
+  addKey("select HDMI 2", HDMI2Input_Key, 0xBE, 8);
+  addKey("Aspect Zoom 2", Unmapped_Key, 0xE1, 8);
+  addKey("Aspect 4:3", Unmapped_Key, 0xE3, 8);
+  addKey("Aspect 16:9", Unmapped_Key, 0xE4, 8);
+  addKey("select HDMI 1", HDMIInput_Key, 0xE9, 8);
 }
 
 
-SamsungTV1d::SamsungTV1d(
-  unsigned int index)
-  : SamsungTV1(index)
-{
-  setKeysetName("TV Keyset 1d");
-}
-
-
-void SamsungTV1d::populateProtocol(
-  QObject *guiObject)
-{
-  if (threadableProtocol)
-  {
-    // If the pointer is not null, the keyset must already be populated.
-    return;
-  }
-
-  SamsungTV1::populateProtocol(guiObject);
-
-  addKey("turbo", Unmapped_Key, 0x64, 8);
-}
-
-
-SamsungTV1e::SamsungTV1e(
-  unsigned int index)
-  : SamsungTV1(index)
-{
-  setKeysetName("TV Keyset 1e");
-}
-
-
-void SamsungTV1e::populateProtocol(
-  QObject *guiObject)
-{
-  if (threadableProtocol)
-  {
-    // If the pointer is not null, the keyset must already be populated.
-    return;
-  }
-
-  SamsungTV1::populateProtocol(guiObject);
-
-  addKey("p.mode", PictureMode_Key, 0x16, 8);
-}
-
-
-// This one overrides the color keys:
-SamsungTV1f::SamsungTV1f(
-  unsigned int index)
-  : SamsungTV1(index)
-{
-  setKeysetName("TV Keyset 1f");
-}
-
-
-void SamsungTV1f::populateProtocol(
-  QObject *guiObject)
-{
-  if (threadableProtocol)
-  {
-    // If the pointer is not null, the keyset must already be populated.
-    return;
-  }
-
-  SamsungTV1::populateProtocol(guiObject);
-
-  addKey("p-mode", PictureMode_Key, 0x6C, 8);
-  addKey("s-mode", SoundMode_Key, 0x14, 8);
-  addKey("still", PIPPause_Key, 0x15, 8);
-  addKey("p-size", PIPSize_Key, 0x16, 8);
-}
-
-
-// Not sure that this even is a Samsung TV...
 SamsungTV2::SamsungTV2(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -277,6 +199,105 @@ SamsungTV2::SamsungTV2(
 
 
 void SamsungTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new NECXProtocol(guiObject, index, false);
+
+  setPreData(0x0707, 16);
+
+  addKey("mts", Audio_Key, 0x00, 8); // "dual"
+  addKey("Input Select", Input_Key, 0x01, 8); // On older Samsungs, not toggle
+  addKey("Input Select", AuxInput_Key, 0x01, 8);
+  addKey("Power", Power_Key, 0x02, 8);
+  addKey("Sleep", Sleep_Key, 0x03, 8);
+  addKey("1", One_Key, 0x04, 8);
+  addKey("2", Two_Key, 0x05, 8);
+  addKey("3", Three_Key, 0x06, 8);
+  addKey("Volume Up", VolumeUp_Key, 0x07, 8);
+  addKey("right arrow", Right_Key, 0x07, 8);
+  addKey("4", Four_Key, 0x08, 8);
+  addKey("5", Five_Key, 0x09, 8);
+  addKey("6", Six_Key, 0x0A, 8);
+  addKey("Volume Down", VolumeDown_Key, 0x0B, 8);
+  addKey("left arrow", Left_Key, 0x0B, 8);
+  addKey("7", Seven_Key, 0x0C, 8);
+  addKey("8", Eight_Key, 0x0D, 8);
+  addKey("9", Nine_Key, 0x0E, 8);
+  addKey("Mute", Mute_Key, 0x0F, 8);
+  addKey("Channel Down", ChannelDown_Key, 0x10, 8);
+  addKey("down arrow", Down_Key, 0x10, 8);
+  addKey("0", Zero_Key, 0x11, 8);
+  addKey("Channel Up", ChannelUp_Key, 0x12, 8);
+  addKey("up arrow", Up_Key, 0x12, 8);
+  addKey("PrevCh", PrevChannel_Key, 0x13, 8);
+  addKey("turbo", Red_Key, 0x13, 8); // "Turbo/Red"
+  addKey("Green", Green_Key, 0x14, 8);
+  addKey("s.menu", SoundMode_Key, 0x14, 8); // "S.Menu/Green"
+  addKey("Yellow", Yellow_Key, 0x15, 8);
+  addKey("s.std", Unmapped_Key, 0x15, 8); // "S.Std/Yellow"
+  addKey("Blue", Blue_Key, 0x16, 8);
+  addKey("p.std", Unmapped_Key, 0x16, 8); // "P.Std/Blue"
+  addKey("add/erase", Unmapped_Key, 0x19, 8);
+  addKey("Menu", Menu_Key, 0x1A, 8);
+  addKey("Menu", Select_Key, 0x1A, 8);
+  addKey("tv", AntennaInput_Key, 0x1B, 8); // select TV
+  addKey("p.menu", PictureMode_Key, 0x1E, 8);
+  addKey("Display", Info_Key, 0x1F, 8);
+  addKey("PIP", PIP_Key, 0x20, 8);
+  addKey("Swap", PIPSwap_Key, 0x21, 8);
+  addKey("position", PIPMove_Key, 0x22, 8); // "PIP Locate"
+  addKey("-/--", DoubleDigit_Key, 0x23, 8); // "-/--/hold"
+  addKey("+100", PlusOneHundred_Key, 0x23, 8);
+  addKey("DASH", Dash_Key, 0x23, 8);
+  addKey("PIP.SOURCE", PIPSource_Key, 0x24, 8);
+  addKey("Closed Captions", Captions_Key, 0x25, 8); // "SUBTITLE"
+  addKey("AD", Unmapped_Key, 0x27, 8);
+  addKey("ttx/mix", Teletext_Key, 0x2C, 8); // "teletext"
+  addKey("ch.scan", PIPScan_Key, 0x31, 8);  // "h.scan"
+  addKey("PIP.chan+", PIPChannelUp_Key, 0x32, 8); // "AUDCH_UP"
+  addKey("PIP.chan-", PIPChannelDown_Key, 0x33, 8); // "AUDCH_DOWN"
+//  addKey("Toggle Service Menu", Unmapped_Key, 0x3B, 8); // Dangerous!
+  addKey("surf", Unmapped_Key, 0x3D, 8); // "r.surf"
+  addKey("Zoom", AspectRatio_Key, 0x3E, 8);
+  addKey("STILL", Pause_Key, 0x42, 8);
+  addKey("TV-DTV", ComponentInput_Key, 0x43, 8); // "tv/component"
+  addKey("FAV-CH", Favorites_Key, 0x44, 8);
+  addKey("Rewind", Rewind_Key, 0x45, 8);
+  addKey("Stop", Stop_Key, 0x46, 8);
+  addKey("Play/Pause", Play_Key, 0x47, 8);
+  addKey("Play/Pause", Pause_Key, 0x47, 8);
+  addKey("Fast Forward", FastForward_Key, 0x48, 8);
+  addKey("Record", Record_Key, 0x49, 8);
+  addKey("Guide", Guide_Key, 0x4F, 8);
+  addKey("pc", PCInput_Key, 0x69, 8);
+  addKey("ch-mgr", Unmapped_Key, 0x6B, 8); // "CH_LIST"
+  addKey("srs", Surround_Key, 0x6E, 8);
+  addKey("E.SAVING", Unmapped_Key, 0x77, 8);
+  addKey("Content", Unmapped_Key, 0x79, 8);
+
+//  addKey("enter", Enter_Key, 0x16, 8);
+//  addKey("select", Select_Key, 0x27, 8);
+}
+
+
+// Not sure that this even is a Samsung TV...
+SamsungTV3::SamsungTV3(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV Keyset 3",
+      Samsung_Make,
+      index)
+{
+}
+
+
+void SamsungTV3::populateProtocol(
   QObject *guiObject)
 {
   if (threadableProtocol)
@@ -326,15 +347,15 @@ void SamsungTV2::populateProtocol(
 }
 
 
-SamsungTV2a::SamsungTV2a(
+SamsungTV3a::SamsungTV3a(
   unsigned int index)
-  : SamsungTV2(index)
+  : SamsungTV3(index)
 {
-  setKeysetName("TV Keyset 2a");
+  setKeysetName("TV Keyset 3a");
 }
 
 
-void SamsungTV2a::populateProtocol(
+void SamsungTV3a::populateProtocol(
   QObject *guiObject)
 {
   if (threadableProtocol)
@@ -343,7 +364,7 @@ void SamsungTV2a::populateProtocol(
     return;
   }
 
-  SamsungTV2::populateProtocol(guiObject);
+  SamsungTV3::populateProtocol(guiObject);
 
   addKey("volume+", VolumeUp_Key, 0x1010, 13);
   addKey("volume-", VolumeDown_Key, 0x1011, 13);
@@ -371,9 +392,8 @@ void SamsungVCR1::populateProtocol(
     return;
   }
 
-  threadableProtocol = new SamsungProtocol(guiObject, index);
+  threadableProtocol = new NECXProtocol(guiObject, index, false);
 
-//  setPreData(0xA0A0, 16);
   setPreData(0x0505, 16);
 
   addKey("TV/Video", Input_Key, 0x01, 8);
@@ -780,9 +800,8 @@ void SamsungDVD2::populateProtocol(
     return;
   }
 
-  threadableProtocol= new SamsungProtocol(guiObject, index);
+  threadableProtocol= new NECXProtocol(guiObject, index, false);
 
-//  setPreData(0xC2CA, 16);
   setPreData(0x5343, 16);
 
   addKey("remain", Unmapped_Key, 0x00, 8);
@@ -892,11 +911,10 @@ void SamsungAC1::populateProtocol(
 }
 
 
-/*
 SamsungAC2::SamsungAC2(
   unsigned int index)
-  : PIRKeysetMetaData(
-      "AC Keyset 2",
+  : PIRACKeyset(
+      "Air Conditioner 2",
       Samsung_Make,
       index)
 {
@@ -912,50 +930,209 @@ void SamsungAC2::populateProtocol(
     return;
   }
 
-  threadableProtocol = new ACProtocol(guiObject, index);
+  threadableProtocol = new SamsungACProtocol(guiObject, index);
 
-  addKey("Power Off", PowerOff_Subkey, 0x0, 4);
-  addKey("Power On", PowerOn_Subkey, 0xC, 4);
+  setPreData(0x201, 12);
 
-  addKey("Cool Mode - Normal", CoolModeNormal_Subkey, 0x0, 3);
-  addKey("Cool Mode - Turbo", CoolModeTurbo_Subkey, 0x3, 3);
-  addKey("Cool Mode - Far", CoolModeFar_Subkey, 0x6, 3);
-
-  addKey("Deflector L/R Off", DeflectorLROff_Subkey, 0x1, 1);
-  addKey("Deflector L/R On", DeflectorLROn_Subkey, 0x0, 1);
-  addKey("Deflector U/D Off", DeflectorUDOff_Subkey, 0x1, 1);
-  addKey("Deflector U/D On", DeflectorUDOn_Subkey, 0x0, 1);
-
-  // Sixteen temperature settings; make this a straight-up variable?
-  // It may be that only 18-30 are supported.
-//  addKey("Temperature 16", Temp16_Subkey, 0x0, 8);
-//  addKey("Temperature 17", Temp16_Subkey, 0x1, 8);
-  addKey("Temperature 18", Temp16_Subkey, 0x2, 8);
-  addKey("Temperature 19", Temp16_Subkey, 0x3, 8);
-  addKey("Temperature 20", Temp16_Subkey, 0x4, 8);
-  addKey("Temperature 21", Temp16_Subkey, 0x5, 8);
-  addKey("Temperature 22", Temp16_Subkey, 0x6, 8);
-  addKey("Temperature 23", Temp16_Subkey, 0x7, 8);
-  addKey("Temperature 24", Temp16_Subkey, 0x8, 8);
-  addKey("Temperature 25", Temp16_Subkey, 0x9, 8);
-  addKey("Temperature 26", Temp16_Subkey, 0xA, 8);
-  addKey("Temperature 27", Temp16_Subkey, 0xB, 8);
-  addKey("Temperature 28", Temp16_Subkey, 0xC, 8);
-  addKey("Temperature 29", Temp16_Subkey, 0xD, 8);
-  addKey("Temperature 30", Temp16_Subkey, 0xE, 8);
-//  addKey("Temperature 31", Temp31_Subkey, 0xF, 8);
-
-  addKey("Fan - Auto", FanSpeedAuto_Subkey, 0x0, 3);
-  addKey("Fan - Low", FanSpeedLow_Subkey, 0x2, 3);
-  addKey("Fan - Medium", FanSpeedMed_Subkey, 0x4, 3);
-  addKey("Fan - High", FanSpeedHigh_Subkey, 0x6, 3);
-
-  addKey("Mode - auto", ModeAuto_Subkey, 0x0, 4);
-  addKey("Mode - cool", ModeCool_Subkey, 0x1, 4);
-  addKey("Mode - DeHumidify", ModeDehumidify_Subkey, 0x2, 4);
-  addKey("Mode - fan", ModeFan_Subkey, 0x03, 4);
+  // Bit of a hack:
+  addKey("Send Command", ACSendCommand_Key, 0x0, 0);
+  addKey("Set Timer", ACSetTimer_Key, 0x0, 0);
 }
-*/
+
+
+void SamsungAC2::getTurboModePairs(
+  PIRStatePairs &turboModePairs) const
+{
+  resetPairs(turboModePairs);
+
+  PIRStatePair *normalPair = new PIRStatePair(
+    "Normal", 0x21);
+  turboModePairs.push_back(normalPair);
+
+  PIRStatePair *turboPair = new PIRStatePair(
+    "Turbo", 0x27);
+  turboModePairs.push_back(turboPair);
+
+  PIRStatePair *farPair = new PIRStatePair(
+    "Far", 0x2D);
+  turboModePairs.push_back(farPair);
+}
+
+void SamsungAC2::getSwingPairs(
+  PIRStatePairs &swingPairs) const
+{
+  resetPairs(swingPairs);
+
+  PIRStatePair *swingOffPair = new PIRStatePair(
+    "Off", 0xFE);
+  swingPairs.push_back(swingOffPair);
+
+  PIRStatePair *swingUDPair = new PIRStatePair(
+    "Up/Down", 0xAE);
+  swingPairs.push_back(swingUDPair);
+
+  PIRStatePair *swingLRPair = new PIRStatePair(
+    "Left/Right", 0xBE);
+  swingPairs.push_back(swingLRPair);
+
+  PIRStatePair *swingUDLRPair = new PIRStatePair(
+    "U/D/L/R", 0xCE);
+  swingPairs.push_back(swingUDLRPair);
+}
+
+void SamsungAC2::getTemperaturePairs(
+  PIRStatePairs &temperaturePairs) const
+{
+  resetPairs(temperaturePairs);
+
+  PIRStatePair *eighteenPair = new PIRStatePair(
+    "18 C", 0x23);
+  temperaturePairs.push_back(eighteenPair);
+
+  PIRStatePair *nineteenPair = new PIRStatePair(
+    "19 C", 0x33);
+  temperaturePairs.push_back(nineteenPair);
+
+  PIRStatePair *twentyPair = new PIRStatePair(
+    "20 C", 0x43);
+  temperaturePairs.push_back(twentyPair);
+
+  PIRStatePair *twentyonePair = new PIRStatePair(
+    "21 C", 0x53);
+  temperaturePairs.push_back(twentyonePair);
+
+  PIRStatePair *twentytwoPair = new PIRStatePair(
+    "22 C", 0x63);
+  temperaturePairs.push_back(twentytwoPair);
+
+  PIRStatePair *twentythreePair = new PIRStatePair(
+    "23 C", 0x73);
+  temperaturePairs.push_back(twentythreePair);
+
+  PIRStatePair *twentyfourPair = new PIRStatePair(
+    "24 C", 0x83);
+  temperaturePairs.push_back(twentyfourPair);
+
+  PIRStatePair *twentyfivePair = new PIRStatePair(
+    "25 C", 0x93);
+  temperaturePairs.push_back(twentyfivePair);
+
+  PIRStatePair *twentysixPair = new PIRStatePair(
+    "26 C", 0xA3);
+  temperaturePairs.push_back(twentysixPair);
+
+  PIRStatePair *twentysevenPair = new PIRStatePair(
+    "27 C", 0xB3);
+  temperaturePairs.push_back(twentysevenPair);
+
+  PIRStatePair *twentyeightPair = new PIRStatePair(
+    "28 C", 0xC3);
+  temperaturePairs.push_back(twentyeightPair);
+
+  PIRStatePair *twentyninePair = new PIRStatePair(
+    "29 C", 0xD3);
+  temperaturePairs.push_back(twentyninePair);
+
+  PIRStatePair *thirtyPair = new PIRStatePair(
+    "30 C", 0xE3);
+  temperaturePairs.push_back(thirtyPair);
+}
+
+
+// Only 4 bits for the following!
+void SamsungAC2::getFanPairs(
+  PIRStatePairs &fanPairs) const
+{
+  resetPairs(fanPairs);
+
+  PIRStatePair *autoPair = new PIRStatePair(
+    "Auto", 0x1);
+  fanPairs.push_back(autoPair);
+
+  PIRStatePair *lowPair = new PIRStatePair(
+    "Low", 0x5);
+  fanPairs.push_back(lowPair);
+
+  PIRStatePair *mediumPair = new PIRStatePair(
+    "Medium", 0x9);
+  fanPairs.push_back(mediumPair);
+
+  PIRStatePair *highPair = new PIRStatePair(
+    "High", 0xB);
+  fanPairs.push_back(highPair);
+}
+
+
+void SamsungAC2::getModePairs(
+  PIRStatePairs &modePairs) const
+{
+  resetPairs(modePairs);
+
+  PIRStatePair *autoPair = new PIRStatePair(
+    "Auto", 0x0);
+  modePairs.push_back(autoPair);
+
+  PIRStatePair *coolPair = new PIRStatePair(
+    "Cool", 0x1);
+  modePairs.push_back(coolPair);
+
+  PIRStatePair *dehumidifyPair = new PIRStatePair(
+    "Dehumidify", 0x2);
+  modePairs.push_back(dehumidifyPair);
+
+  PIRStatePair *fanPair = new PIRStatePair(
+    "Fan", 0x3);
+  modePairs.push_back(fanPair);
+}
+
+
+void SamsungAC2::getAirCleanPairs(
+  PIRStatePairs &aircleanPairs) const
+{
+  resetPairs(aircleanPairs);
+
+  PIRStatePair *offPair = new PIRStatePair(
+    "Off", 0x0);
+  aircleanPairs.push_back(offPair);
+
+  PIRStatePair *onPair = new PIRStatePair(
+    "On", 0x4);
+  aircleanPairs.push_back(onPair);
+}
+
+
+void SamsungAC2::getPowerPairs(
+  PIRStatePairs &powerPairs) const
+{
+  resetPairs(powerPairs);
+
+  PIRStatePair *offPair = new PIRStatePair(
+    "Off", 0xE);
+  powerPairs.push_back(offPair);
+
+  PIRStatePair *onPair = new PIRStatePair(
+    "On", 0xF);
+  powerPairs.push_back(onPair);
+}
+
+
+void SamsungAC2::getTimerOptionPairs(
+  PIRStatePairs &timerOptionPairs) const
+{
+  resetPairs(timerOptionPairs);
+
+  PIRStatePair *cancelPair = new PIRStatePair(
+    "Cancel Timers", 0x0);
+  timerOptionPairs.push_back(cancelPair);
+
+  PIRStatePair *onPair = new PIRStatePair(
+    "Set On-Timer", 0x2);
+  timerOptionPairs.push_back(onPair);
+
+  PIRStatePair *offPair = new PIRStatePair(
+    "Set Off-Timer", 0x4);
+  timerOptionPairs.push_back(offPair);
+}
 
 
 SamsungDVBT1::SamsungDVBT1(

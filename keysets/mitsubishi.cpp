@@ -1,6 +1,6 @@
 #include "mitsubishi.h"
-#include "protocols/lircprotocol.h"
 #include "protocols/protonprotocol.h"
+#include "protocols/mitsubishiprotocol.h"
 
 MitsubishiTV1::MitsubishiTV1(
   unsigned int index)
@@ -21,18 +21,7 @@ void MitsubishiTV1::populateProtocol(
     return;
   }
 
-  LIRCProtocol *lp = new LIRCProtocol(
-    guiObject,
-    index,
-    300, 900,
-    300, 2100,
-    53715, true);
-
-  threadableProtocol = lp;
-
-  lp->setTrailerPulse(300);
-
-//  lp->setMinimumRepetitions(1);
+  threadableProtocol = new MitsubishiProtocol(guiObject, index);
 
   setPreData(0xE2, 8);
 
@@ -149,18 +138,7 @@ void MitsubishiVCR1::populateProtocol(
     return;
   }
 
-  LIRCProtocol *lp = new LIRCProtocol(
-    guiObject,
-    index,
-    300, 900,
-    300, 2100,
-    53815, true);
-
-  threadableProtocol = lp;
-
-  lp->setTrailerPulse(300);
-
-//  lp->setMinimumRepetitions(1);
+  threadableProtocol = new MitsubishiProtocol(guiObject, index);
 
   setPreData(0xEA, 8);
 
@@ -270,29 +248,107 @@ void MitsubishiProjector1::populateProtocol(
 
   setPreData(0xF0, 8);
 
+  addKey("Power", Power_Key, 0x40, 8);
   addKey("PowerOn", PowerOn_Key, 0x41, 8);
+  addKey("PowerOn", Green_Key, 0x41, 8); // This is a hack.
   addKey("PowerOff", PowerOff_Key, 0x42, 8);
-  addKey("HDMI", HDMIInput_Key, 0x70, 8);
+  addKey("PowerOff", Red_Key, 0x42, 8); // Also hack.
+  addKey("Keystone", Keystone_Key, 0x43, 8);
+
+  addKey("Computer", PCInput_Key, 0x60, 8); // "RGB1"
+  addKey("Video1", AuxInput_Key, 0x61, 8);
+  addKey("PC Card", Unmapped_Key, 0x62, 8);
   addKey("Component", ComponentInput_Key, 0x64, 8);
   addKey("Video", CompositeInput_Key, 0x65, 8);
-  addKey("Computer", PCInput_Key, 0x60, 8);
   addKey("S-Video", SVideoInput_Key, 0x66, 8);
-  addKey("Up", Up_Key, 0x82, 8);
-  addKey("Right", Right_Key, 0x81, 8);
-  addKey("Enter", Enter_Key, 0x87, 8);
+  addKey("HDMI", HDMIInput_Key, 0x70, 8);
+
   addKey("Left", Left_Key, 0x80, 8);
+  addKey("Right", Right_Key, 0x81, 8);
+  addKey("Up", Up_Key, 0x82, 8);
   addKey("Down", Down_Key, 0x83, 8);
+  addKey("Vol-", VolumeDown_Key, 0x84, 8);
+  addKey("Vol+", VolumeUp_Key, 0x85, 8);
   addKey("Menu", Menu_Key, 0x86, 8);
-  addKey("Aspect", AspectRatio_Key, 0xE2, 8);
-  addKey("M1", Unmapped_Key, 0xE4, 8);
-  addKey("M2", Unmapped_Key, 0xE5, 8);
-  addKey("M3", Unmapped_Key, 0xE6, 8);
+  addKey("Enter", Enter_Key, 0x87, 8);
+
+  addKey("Expand", Unmapped_Key, 0xA1, 8);
+  addKey("AutoPosition", Unmapped_Key, 0xA2, 8);
+  addKey("AutoPlay", Unmapped_Key, 0xA3, 8);
+  addKey("Still", Pause_Key, 0xA4, 8);
+  addKey("Release", Unmapped_Key, 0xA5, 8);
+  addKey("Blank", Unmapped_Key, 0xA6, 8);
+
   addKey("Contrast", ContrastUp_Key, 0xD0, 8);
   addKey("Brightness", BrightnessUp_Key, 0xD1, 8);
   addKey("ColorTemp", ColorUp_Key, 0xD4, 8);
   addKey("Gamma", Unmapped_Key, 0xD5, 8);
   addKey("Sharpness", Unmapped_Key, 0xD6, 8);
-  addKey("AutoPosition", Unmapped_Key, 0xA2, 8);
-  addKey("Blank", Unmapped_Key, 0xA6, 8);
-  addKey("Keystone", Keystone_Key, 0x43, 8);
+
+  addKey("Aspect", AspectRatio_Key, 0xE2, 8);
+  addKey("M1", Unmapped_Key, 0xE4, 8);
+  addKey("M2", Unmapped_Key, 0xE5, 8);
+  addKey("M3", Unmapped_Key, 0xE6, 8);
+}
+
+
+MitsubishiProjector2::MitsubishiProjector2(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Projector Keyset 2",
+      Mitsubishi_Make,
+      index)
+{
+}
+
+
+void MitsubishiProjector2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new MitsubishiProtocol(guiObject, index);
+
+  setPreData(0x47, 8);
+
+  addKey("Power On", Power_Key, 0x42, 8); // Not quite right
+  addKey("Power On", PowerOn_Key, 0x42, 8);
+  addKey("Power On", Green_Key, 0x42, 8); // This is a hack
+  addKey("Power Off", PowerOff_Key, 0x4A, 8);
+  addKey("Power Off", Red_Key, 0x4A, 8); // Also a hack
+  addKey("Display", Info_Key, 0x27, 8);
+  addKey("Pic Mute", Mute_Key, 0x92, 8);
+  addKey("Inputa", Unmapped_Key, 0xA4, 8);
+  addKey("Inputb", Unmapped_Key, 0xAC, 8);
+  addKey("Input Video", Unmapped_Key, 0xF5, 8);
+  addKey("Input Y/C", Unmapped_Key, 0xFD, 8);
+  addKey("Menu", Menu_Key, 0x33, 8);
+  addKey("Menu 2", Guide_Key, 0x73, 8);
+  addKey("Mem List", Favorites_Key, 0x9D, 8); // Not quite right
+  addKey("CRT R", Unmapped_Key, 0xA1, 8);
+  addKey("CRT G", Unmapped_Key, 0xA9, 8);
+  addKey("CRT B", Unmapped_Key, 0xB1, 8);
+  addKey("Test", Unmapped_Key, 0x5E, 8);
+  addKey("1", One_Key, 0x00, 8);
+  addKey("2", Two_Key, 0x08, 8);
+  addKey("3", Three_Key, 0x10, 8);
+  addKey("4", Four_Key, 0x18, 8);
+  addKey("5", Five_Key, 0x20, 8);
+  addKey("6", Six_Key, 0x28, 8);
+  addKey("7", Seven_Key, 0x30, 8);
+  addKey("8", Eight_Key, 0x38, 8);
+  addKey("9", Nine_Key, 0x01, 8);
+  addKey("0", Zero_Key, 0x09, 8);
+  addKey("Enter", Select_Key, 0xBB, 8);
+  addKey("Func", Unmapped_Key, 0xB3, 8);
+  addKey("Esc", Exit_Key, 0x52, 8);
+  addKey("Normal", Unmapped_Key, 0x9F, 8);
+  addKey("Up", Up_Key, 0x74, 8);
+  addKey("Down", Down_Key, 0x7C, 8);
+  addKey("Left", Left_Key, 0x6C, 8);
+  addKey("Right", Right_Key, 0x64, 8);
 }

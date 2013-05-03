@@ -9,6 +9,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[ADB_Make] = "ADB";
   makes[Admiral_Make] = "Admiral";
   makes[Aiwa_Make] = "Aiwa";
+  makes[Alpine_Make] = "Alpine";
   makes[Anitech_Make] = "Anitech";
   makes[AOC_Make] = "AOC";
   makes[Apple_Make] = "Apple";
@@ -35,6 +36,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Dish_Make] = "Dish";
   makes[Dreambox_Make] = "Dream Multimedia";
   makes[DSE_Make] = "DSE (Dick Smith)";
+  makes[Dune_Make] = "Dune";
   makes[Dynex_Make] = "Dynex";
   makes[Ei_Make] = "Ei";
   makes[Elgato_Make] = "Elgato";
@@ -59,6 +61,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Huawei_Make] = "Huawei";
   makes[Humax_Make] = "Humax";
   makes[Hyundai_Make] = "Hyundai";
+  makes[ILO_Make] = "ILO";
   makes[IRobot_Make] = "iRobot";
   makes[JVC_Make] = "JVC";
   makes[Kaon_Make] = "Kaon";
@@ -78,6 +81,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Microsoft_Make] = "Microsoft";
   makes[Mitsubishi_Make] = "Mitsubishi";
   makes[Motorola_Make] = "Motorola";
+  makes[MTLogic_Make] = "MT-Logic";
   makes[Multichoice_Make] = "Multichoice";
   makes[NAD_Make] = "NAD";
   makes[NEC_Make] = "NEC";
@@ -101,12 +105,14 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Roku_Make] = "Roku";
   makes[Saba_Make] = "Saba";
   makes[Sagem_Make] = "Sagem";
+  makes[Sagemcom_Make] = "Sagemcom";
   makes[Samsung_Make] = "Samsung";
   makes[Sanyo_Make] = "Sanyo";
   makes[Sharp_Make] = "Sharp";
   makes[Sinotec_Make] = "Sinotec";
   makes[Sky_Make] = "Sky";
   makes[Sony_Make] = "Sony";
+  makes[Starhub_Make] = "Starhub";
   makes[Starsat_Make] = "Starsat";
   makes[Strong_Make] = "Strong";
   makes[Sylvania_Make] = "Sylvania";
@@ -121,6 +127,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Triax_Make] = "Triax";
   makes[United_Make] = "United";
   makes[Universum_Make] = "Universum";
+  makes[Venturer_Make] = "Venturer";
   makes[Vestel_Make] = "Vestel";
   makes[Viewsat_Make] = "Viewsat";
   makes[Viewsonic_Make] = "Viewsonic";

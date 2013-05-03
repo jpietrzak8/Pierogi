@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Pierogi Power Key Search</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="margin">
@@ -20,35 +20,9 @@
    <item row="0" column="0" colspan="4">
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="powerIcon1Label">
+      <widget class="QLabel" name="keysetSearchLabel">
        <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap resource="../PierogiResources.qrc">:/icons/on-off_icon&amp;48.png</pixmap>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="powerSearchLabel">
-       <property name="text">
-        <string>Power Button Search</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="powerIcon2Label">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap resource="../PierogiResources.qrc">:/icons/on-off_icon&amp;48.png</pixmap>
+        <string>Search for Keysets with Compatible Power Key</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

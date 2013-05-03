@@ -11,8 +11,8 @@ extern QMutex commandIFMutex;
 
 // The NECX protocol is a slight variation of the NEC protocol.  It features
 // a slightly different header and a slightly different repeat mechanism.
-// Most of them use the "extended" address form, so I'll just assume that all
-// of them do.  (It won't hurt anything.)
+// Most of them seem to use the "extended" address form, so for now I'll
+// just use that as the default.
 // Otherwise it is nearly identical:
 // A "zero" is encoded with a 560 usec pulse, 560 usec space.
 // A "one" is encoded with a 560 usec pulse, and 3*560 (1680) usec space.

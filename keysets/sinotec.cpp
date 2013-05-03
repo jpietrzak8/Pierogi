@@ -1,5 +1,5 @@
 #include "sinotec.h"
-#include "protocols/samsungprotocol.h"
+#include "protocols/necxprotocol.h"
 #include "protocols/aiwaprotocol.h"
 
 SinotecTV1::SinotecTV1(
@@ -21,7 +21,7 @@ void SinotecTV1::populateProtocol(
     return;
   }
 
-  threadableProtocol = new SamsungProtocol(guiObject, index);
+  threadableProtocol = new NECXProtocol(guiObject, index, false);
 
   setPreData(0x0E0E, 16);
 

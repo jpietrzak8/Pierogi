@@ -49,6 +49,7 @@
      <string>Pierogi</string>
     </property>
     <addaction name="actionSelectKeyset"/>
+    <addaction name="actionAutomatic_Keyset_Search"/>
     <addaction name="actionBrowse_Device_List"/>
     <addaction name="actionPreferences"/>
     <addaction name="actionDocumentation"/>
@@ -79,6 +80,11 @@
   <action name="actionBrowse_Device_List">
    <property name="text">
     <string>Browse Partial Device List</string>
+   </property>
+  </action>
+  <action name="actionAutomatic_Keyset_Search">
+   <property name="text">
+    <string>Automated Keyset Search</string>
    </property>
   </action>
  </widget>

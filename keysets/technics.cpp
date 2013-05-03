@@ -1,11 +1,12 @@
 #include "technics.h"
 #include "protocols/kaseikyoprotocol.h"
+#include "protocols/panasonicoldprotocol.h"
 
 
 TechnicsAudio1::TechnicsAudio1(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Audio (CD) Keyset 1",
+      "Audio Keyset 1",
       Technics_Make,
       index)
 {
@@ -300,6 +301,159 @@ void TechnicsAudio3a::populateProtocol(
   addKaseikyoKey("play", Play_Key, 0x1CA, 0x0A);
   addKaseikyoKey("vorige", Previous_Key, 0x1CA, 0x49);
   addKaseikyoKey("volgende", Next_Key, 0x1CA, 0x4A);
+}
+
+
+TechnicsReceiver1::TechnicsReceiver1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Receiver Keyset 1",
+      Technics_Make,
+      index)
+{
+}
+
+
+void TechnicsReceiver1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new KaseikyoProtocol(guiObject, index);
+
+  setPreData(0x2002, 16);
+
+  addKaseikyoKey("Vol up", VolumeUp_Key, 0x000, 0x20);
+  addKaseikyoKey("Vol down", VolumeDown_Key, 0x000, 0x21);
+  addKaseikyoKey("Side up", RearVolumeUp_Key, 0x000, 0x2C); // "Surround +"
+  addKaseikyoKey("Side down", RearVolumeDown_Key, 0x000, 0x2D); // "Surround -"
+  addKaseikyoKey("Stereo", Surround_Key, 0x000, 0x30); // "Surround on/off"
+  addKaseikyoKey("SFC", Unmapped_Key, 0x000, 0x31);
+  addKaseikyoKey("Mute", Mute_Key, 0x000, 0x32);
+  addKaseikyoKey("Tuner Select", TunerInput_Key, 0x000, 0x92);
+  addKaseikyoKey("CD Select", CDInput_Key, 0x000, 0x94);
+  addKaseikyoKey("CD5 Select", Unmapped_Key, 0x000, 0x96);
+  addKaseikyoKey("TV Select", AuxInput_Key, 0x000, 0x9C);
+  addKaseikyoKey("DVD Select", DVDInput_Key, 0x000, 0xA3);
+  addKaseikyoKey("Surround", Unmapped_Key, 0x000, 0xB2); // ?
+  addKaseikyoKey("Center up", CenterVolumeUp_Key, 0x000, 0xCE);
+  addKaseikyoKey("Center down", CenterVolumeDown_Key, 0x000, 0xCF);
+
+  addKaseikyoKey("1", One_Key, 0x004, 0x10);
+  addKaseikyoKey("2", Two_Key, 0x004, 0x11);
+  addKaseikyoKey("3", Three_Key, 0x004, 0x12);
+  addKaseikyoKey("4", Four_Key, 0x004, 0x13);
+  addKaseikyoKey("5", Five_Key, 0x004, 0x14);
+  addKaseikyoKey("6", Six_Key, 0x004, 0x15);
+  addKaseikyoKey("7", Seven_Key, 0x004, 0x16);
+  addKaseikyoKey("8", Eight_Key, 0x004, 0x17);
+  addKaseikyoKey("9", Nine_Key, 0x004, 0x18);
+  addKaseikyoKey("0", Zero_Key, 0x004, 0x19);
+  addKaseikyoKey("Channel up", ChannelUp_Key, 0x004, 0x34);
+  addKaseikyoKey("Channel down", ChannelDown_Key, 0x004, 0x35);
+  addKaseikyoKey("power", Power_Key, 0x004, 0x3D);
+  addKaseikyoKey(">=10", DoubleDigit_Key, 0x004, 0x84);
+  addKaseikyoKey("FM Tune +", ChannelUp_Key, 0x004, 0x86);
+  addKaseikyoKey("FM Tune -", ChannelDown_Key, 0x004, 0x87);
+  addKaseikyoKey("Direct tuning", Input_Key, 0x004, 0x88);
+  addKaseikyoKey("Band", FM_Key, 0x004, 0xA4);
+
+  addKaseikyoKey("D/L+", Unmapped_Key, 0x014, 0xBC);
+  addKaseikyoKey("D/L-", Unmapped_Key, 0x014, 0xBD);
+  addKaseikyoKey("Level", Unmapped_Key, 0x014, 0xBE);
+  addKaseikyoKey("Delay", Unmapped_Key, 0x014, 0xBF);
+  addKaseikyoKey("Test", Unmapped_Key, 0x014, 0xF6);
+}
+
+
+TechnicsReceiver1a::TechnicsReceiver1a(
+  unsigned int index)
+  : TechnicsReceiver1(index)
+{
+  setKeysetName("Receiver Keyset 1a");
+}
+
+
+void TechnicsReceiver1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  TechnicsReceiver1::populateProtocol(guiObject);
+
+  addKaseikyoKey("power", Power_Key, 0x000, 0x3D);
+  addKaseikyoKey("Discrete On", PowerOn_Key, 0x000, 0x3E);
+  addKaseikyoKey("Discrete Off", PowerOff_Key, 0x000, 0x3F);
+  addKaseikyoKey("VCR1", VCRInput_Key, 0x000, 0x9E);
+  addKaseikyoKey("VCR2", CableInput_Key, 0x000, 0x9F); // Hack
+  addKaseikyoKey("Dolby Test", Unmapped_Key, 0x000, 0xF6);
+}
+
+
+TechnicsCD1::TechnicsCD1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "CD Keyset 1",
+      Technics_Make,
+      index)
+{
+}
+
+
+void TechnicsCD1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new PanasonicOldProtocol(guiObject, index);
+
+  addPanOldKey("stop", Stop_Key, 0x0C, 0x00);
+  addPanOldKey("SKIP-", Previous_Key, 0x0C, 0x02);
+  addPanOldKey("SKIP+", Next_Key, 0x0C, 0x03);
+  addPanOldKey("display", Info_Key, 0x0C, 0x04);
+  addPanOldKey("rewind", Rewind_Key, 0x0C, 0x04);
+  addPanOldKey("fast fwd", FastForward_Key, 0x0C, 0x05);
+  addPanOldKey("pause", Pause_Key, 0x0C, 0x06);
+  addPanOldKey("repeat", Repeat_Key, 0x0C, 0x07);
+  addPanOldKey("tv/vcr", Input_Key, 0x0C, 0x08);
+  addPanOldKey("recall", PrevChannel_Key, 0x0C, 0x09);
+  addPanOldKey("play", Play_Key, 0x0C, 0x0A);
+  addPanOldKey("Clear", Unmapped_Key, 0x0C, 0x0B);
+  addPanOldKey("left arrow", Left_Key, 0x0C, 0x0C);
+  addPanOldKey("right arrow", Right_Key, 0x0C, 0x0D);
+  addPanOldKey("EJECT", Eject_Key, 0x0C, 0x0E);
+  addPanOldKey("1", One_Key, 0x0C, 0x10);
+  addPanOldKey("2", Two_Key, 0x0C, 0x11);
+  addPanOldKey("3", Three_Key, 0x0C, 0x12);
+  addPanOldKey("4", Four_Key, 0x0C, 0x13);
+  addPanOldKey("5", Five_Key, 0x0C, 0x14);
+  addPanOldKey("6", Six_Key, 0x0C, 0x15);
+  addPanOldKey("7", Seven_Key, 0x0C, 0x16);
+  addPanOldKey("8", Eight_Key, 0x0C, 0x17);
+  addPanOldKey("9", Nine_Key, 0x0C, 0x18);
+  addPanOldKey("0", Zero_Key, 0x0C, 0x19);
+  addPanOldKey(">10", DoubleDigit_Key, 0x0C, 0x1A);
+  addPanOldKey("program guide", Guide_Key, 0x0C, 0x1D);
+  addPanOldKey("RANDOM", Random_Key, 0x0C, 0x1F);
+  addPanOldKey("power", Power_Key, 0x0C, 0x20);
+  addPanOldKey("vol up", VolumeUp_Key, 0x0C, 0x24);
+  addPanOldKey("vol down", VolumeDown_Key, 0x0C, 0x25);
+  addPanOldKey("mute", Mute_Key, 0x0C, 0x25); // odd
+  addPanOldKey("disc select", NextDisc_Key, 0x0C, 0x26);
+  addPanOldKey("time mode", Unmapped_Key, 0x0C, 0x29);
+  addPanOldKey("menu", Menu_Key, 0x0C, 0x2A);
 }
 
 

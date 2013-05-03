@@ -1,5 +1,6 @@
 #include "strong.h"
 #include "protocols/necprotocol.h"
+#include "protocols/recs80protocol.h"
 
 StrongSat1::StrongSat1(
   unsigned int index)
@@ -263,4 +264,63 @@ void StrongSat4::populateProtocol(
   addKey("Scan", Unmapped_Key, 0x5D, 8);
   addKey("Blue", Blue_Key, 0x5E, 8);
   addKey("Record", Record_Key, 0x5F, 8);
+}
+
+
+StrongDVBT1::StrongDVBT1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "DVB-T Receiver Keyset 1",
+      Strong_Make,
+      index)
+{
+}
+
+
+void StrongDVBT1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new RECS80Protocol(guiObject, index);
+
+  setPreData(0x5, 3);
+
+  addKey("display/info", Info_Key, 0x14, 6);
+  addKey("fav", Favorites_Key, 0x15, 6);
+  addKey("sub", Captions_Key, 0x16, 6);
+  addKey("mute", Mute_Key, 0x18, 6);
+  addKey("red", Red_Key, 0x19, 6);
+  addKey("8", Eight_Key, 0x1C, 6);
+  addKey("4", Four_Key, 0x1D, 6);
+  addKey("power", Power_Key, 0x1E, 6);
+  addKey("pause", Pause_Key, 0x20, 6);
+  addKey("vol up", VolumeUp_Key, 0x21, 6);
+  addKey("right arrow", Right_Key, 0x21, 6);
+  addKey("yellow", Yellow_Key, 0x22, 6);
+  addKey("7", Seven_Key, 0x24, 6);
+  addKey("3", Three_Key, 0x25, 6);
+  addKey("menu", Menu_Key, 0x27, 6);
+  addKey("channel up", ChannelUp_Key, 0x28, 6);
+  addKey("up arrow", Up_Key, 0x28, 6);
+  addKey("ok", Select_Key, 0x29, 6);
+  addKey("channel down", ChannelDown_Key, 0x2A, 6);
+  addKey("down arrow", Down_Key, 0x2A, 6);
+  addKey("0", Zero_Key, 0x2B, 6);
+  addKey("6", Six_Key, 0x2C, 6);
+  addKey("2", Two_Key, 0x2D, 6);
+  addKey("list", Unmapped_Key, 0x2E, 6);
+  addKey("epg", Guide_Key, 0x2F, 6);
+  addKey("exit", Exit_Key, 0x30, 6);
+  addKey("vol down", VolumeDown_Key, 0x31, 6);
+  addKey("left arrow", Left_Key, 0x31, 6);
+  addKey("green", Green_Key, 0x32, 6);
+  addKey("9", Nine_Key, 0x33, 6);
+  addKey("5", Five_Key, 0x34, 6);
+  addKey("1", One_Key, 0x35, 6);
+  addKey("blue", Blue_Key, 0x37, 6);
 }

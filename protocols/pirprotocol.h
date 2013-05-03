@@ -5,6 +5,7 @@
 
 #include <QObject>
 #include "pirkeynames.h"
+#include "piracstateinfo.h"
 
 #include <map>
 #include <deque>
@@ -136,6 +137,12 @@ public slots:
   virtual void startSendingCommand(
     unsigned int threadableID,
     PIRKeyName command) = 0;
+
+  // This slot can be ignored by most non-ac protocols:
+  virtual void startSendingStateInfo(
+    PIRACStateInfo state,
+    unsigned int threadableID,
+    PIRKeyName command);
 
 signals:
   void commandFailed(

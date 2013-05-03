@@ -1,3 +1,4 @@
+/*
 #ifndef SAMSUNGPROTOCOL_H
 #define SAMSUNGPROTOCOL_H
 
@@ -17,3 +18,4 @@ public:
 };
 
 #endif // SAMSUNGPROTOCOL_H
+*/
