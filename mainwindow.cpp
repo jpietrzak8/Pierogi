@@ -38,7 +38,7 @@
 #include "macros/pirmacromanager.h"
 
 //#define DEBUGGING
-#include <iostream>
+//#include <iostream>
 
 // Some ugly globals used for thread communications:
 
@@ -65,9 +65,12 @@ MainWindow::MainWindow(QWidget *parent)
     documentationForm(0),
     aboutForm(0),
     favoritesDialog(0),
+    tabsChoiceDialog(0),
     myKeysets(0),
     myPanels(0),
     myMacros(0),
+    currentTabsName(Universal_Tabs),
+    currentFavorite(-1),
     currentKeyset(1) // Zero is not a valid keyset any more
 {
   // Create the tab widget:
@@ -83,14 +86,13 @@ MainWindow::MainWindow(QWidget *parent)
   myMacros = new PIRMacroManager(this);
   myPanels = new PIRPanelManager(this);
 
-  // Display the panels:
-  myPanels->updateTabSet();
-
-  // Construct the rest of the forms:
+  // Construct the forms:
   selectKeysetForm = new PIRSelectKeysetForm(this);
   favoritesDialog = new PIRFavoritesDialog(this);
   myKeysets->populateListWidgets(selectKeysetForm, favoritesDialog);
   selectKeysetForm->populateKeysetComboBox(myPanels->getKeysetComboBox());
+
+  tabsChoiceDialog = new PIRTabsChoiceDialog(this);
 
   powerSearchForm = new PIRPowerSearchForm(this);
 
@@ -109,6 +111,39 @@ MainWindow::MainWindow(QWidget *parent)
       currentKeyset);
   }
 
+  int userPanelIndex = -1;
+
+  if (settings.contains("currentTabsName"))
+  {
+    int tabVal = settings.value("currentTabsName").toInt();
+
+    if ((tabVal < 0) || (tabVal >= Last_Tabs_Marker))
+    {
+      currentTabsName = Universal_Tabs;
+    }
+    else
+    {
+      currentTabsName = PIRTabBarName(tabVal);
+    }
+
+    if (settings.contains("currentPanelIndex"))
+    {
+      userPanelIndex = settings.value("currentPanelIndex").toInt();
+    }
+  }
+
+  tabsChoiceDialog->switchToTabBar(currentTabsName);
+
+  // Display the panels:
+  ui->mainTabWidget->setUpdatesEnabled(false);
+  myPanels->setupTabs(currentTabsName);
+  if (userPanelIndex != -1)
+  {
+    ui->mainTabWidget->setCurrentIndex(userPanelIndex);
+  }
+  ui->mainTabWidget->setUpdatesEnabled(true);
+
+  // Set up the select keyset form:
   selectKeysetForm->selectKeyset(currentKeyset);
 
   // Add the corner buttons:
@@ -163,6 +198,7 @@ MainWindow::~MainWindow()
   if (selectDeviceForm) delete selectDeviceForm;
   if (powerSearchForm) delete powerSearchForm;
   if (favoritesDialog) delete favoritesDialog;
+  if (tabsChoiceDialog) delete tabsChoiceDialog;
   if (selectKeysetForm) delete selectKeysetForm;
 
   if (myPanels) delete myPanels;
@@ -258,12 +294,28 @@ void MainWindow::enableButtons()
 void MainWindow::useMainPanel()
 {
   myPanels->useMainPanel();
+
+  // Reset the panels:
+  ui->mainTabWidget->setUpdatesEnabled(false);
+  int panelIndex = ui->mainTabWidget->currentIndex();
+  ui->mainTabWidget->clear();
+  myPanels->setupTabs(currentTabsName);
+  ui->mainTabWidget->setCurrentIndex(panelIndex);
+  ui->mainTabWidget->setUpdatesEnabled(true);
 }
 
 
 void MainWindow::useAltMainPanel()
 {
   myPanels->useAltMainPanel();
+
+  // Reset the panels:
+  ui->mainTabWidget->setUpdatesEnabled(false);
+  int panelIndex = ui->mainTabWidget->currentIndex();
+  ui->mainTabWidget->clear();
+  myPanels->setupTabs(currentTabsName);
+  ui->mainTabWidget->setCurrentIndex(panelIndex);
+  ui->mainTabWidget->setUpdatesEnabled(true);
 }
 
 
@@ -385,11 +437,33 @@ void MainWindow::keysetSelectionChanged(
     return;
   }
 
+  // If we're currently on a favorite, take note of the panel index:
+  if (currentFavorite != -1)
+  {
+    favoritesDialog->updatePanelIndex(
+      currentFavorite,
+      ui->mainTabWidget->currentIndex());
+  }
+
   // Clean up and remove the current keyset:
   myKeysets->clearKeyset(currentKeyset);
   
+  // Set up the new keyset:
   currentKeyset = kwi->getID();
+  enableButtons();
 
+  // If this is a favorite keyset, set up the favorites info:
+  if (kwi->isFavorite())
+  {
+    currentFavorite = favoritesDialog->selectFavorite(kwi);
+  }
+  else
+  {
+    // Set flag saying current keyset is not favorite:
+    currentFavorite = -1;
+  }
+
+  // Store this keyset info persistently:
   QSettings settings("pietrzak.org", "Pierogi");
 
   settings.setValue(
@@ -399,8 +473,6 @@ void MainWindow::keysetSelectionChanged(
   settings.setValue(
     "currentKeysetName",
     myKeysets->getDisplayName(currentKeyset));
-
-  enableButtons();
 }
 
 
@@ -434,6 +506,10 @@ void MainWindow::addToFavorites(
 
   settings.setValue("keysetName", kwi->getInternalName());
 
+  // No point in adding a tab bar name or a panel index at this point,
+  // as they will both be at the default settings.
+//  settings.setValue("tabBarName", kwi->getTabBarName());
+
   settings.endArray();
 }
 
@@ -457,7 +533,7 @@ void MainWindow::removeFromFavorites(
   if (count == 0) return;
 
   int index = 0;
-  unsigned int id;
+//  unsigned int id;
   PIRKeysetWidgetItem *kwi = NULL;
   settings.beginWriteArray("favorites");
   while (index < count)
@@ -465,13 +541,18 @@ void MainWindow::removeFromFavorites(
     kwi = favoritesDialog->getItem(index);
 
     settings.setArrayIndex(index);
-    id = kwi->getID();
+//    id = kwi->getID();
 
     settings.setValue(
       "keysetMake",
-      makeManager.getMakeString(myKeysets->getMake(id)));
+      kwi->getMake());
+//      makeManager.getMakeString(myKeysets->getMake(id)));
 
-    settings.setValue("keysetName", myKeysets->getDisplayName(id));
+    settings.setValue("keysetName", kwi->getInternalName());
+//    settings.setValue("keysetName", myKeysets->getDisplayName(id));
+
+    settings.setValue("tabBarName", kwi->getTabBarName());
+    settings.setValue("panelIndex", kwi->getPanelIndex());
 
     ++index;
   }
@@ -588,7 +669,7 @@ void MainWindow::selectNextFavKeyset()
 void MainWindow::insertCornerButtons()
 {
   // Set up the dialog boxes:
-  PIRTabsChoiceDialog *tcd = new PIRTabsChoiceDialog(this);
+//  tabsChoiceDialog = new PIRTabsChoiceDialog(this);
 //  favoritesDialog = new PIRFavoritesDialog(this);
 
   // Next, set up the corner buttons:
@@ -600,7 +681,7 @@ void MainWindow::insertCornerButtons()
   connect(
     button,
     SIGNAL(clicked()),
-    tcd,
+    tabsChoiceDialog,
     SLOT(exec()),
     Qt::QueuedConnection);
 
@@ -624,6 +705,7 @@ void MainWindow::insertCornerButtons()
 }
 
 
+/*
 void MainWindow::disableUpdates()
 {
   ui->mainTabWidget->setUpdatesEnabled(false);
@@ -643,6 +725,7 @@ void MainWindow::clearTabs()
   ui->mainTabWidget->clear();
 //  myTabWidget->clear();
 }
+*/
 
 
 void MainWindow::addTab(
@@ -653,10 +736,68 @@ void MainWindow::addTab(
 //  myTabWidget->addTab(page, label);
 }
 
+
 void MainWindow::setupTabs(
   PIRTabBarName name)
 {
+  // If we're already using this tab set, don't change anything:
+  if (name == currentTabsName) return;
+
+  // Stop updating the widget:
+  ui->mainTabWidget->setUpdatesEnabled(false);
+
+  // Change the tabs:
+  ui->mainTabWidget->clear();
   myPanels->setupTabs(name);
+
+  // Start updating the widget again:
+  ui->mainTabWidget->setUpdatesEnabled(true);
+
+  // Update the favorites with this info:
+  if (currentFavorite >= 0)
+  {
+    favoritesDialog->updateTabBarName(currentFavorite, name);
+  }
+
+  // Store the new info:
+  currentTabsName = name;
+  QSettings settings("pietrzak.org", "Pierogi");
+  settings.setValue("currentTabsName", name);
+  settings.setValue("currentPanelIndex", 0);
+}
+
+
+// This method should only be called when switching to a stored favorite
+// panel collection:
+void MainWindow::setupFavoriteTabs(
+  PIRTabBarName name,
+  int panelIndex)
+{
+  int currentPanelIndex = ui->mainTabWidget->currentIndex();
+
+  // Just return immediately if we have nothing to do here.
+  if ((name == currentTabsName) && (panelIndex == currentPanelIndex))
+    return;
+
+  // Stop updating the widget:
+  ui->mainTabWidget->setUpdatesEnabled(false);
+
+  if (name != currentTabsName)
+  {
+    // Change the tabs:
+    ui->mainTabWidget->clear();
+    myPanels->setupTabs(name);
+  }
+
+  ui->mainTabWidget->setCurrentIndex(panelIndex);
+
+  ui->mainTabWidget->setUpdatesEnabled(true);
+
+  // Store the new info into the "current" settings:
+  currentTabsName = name;
+  QSettings settings("pietrzak.org", "Pierogi");
+  settings.setValue("currentTabsName", name);
+  settings.setValue("currentPanelIndex", panelIndex);
 }
 
 
@@ -691,6 +832,66 @@ void MainWindow::updateKeysetSelection(
 }
 
 
+void MainWindow::updateFavoriteKeysetSelection(
+  unsigned int targetID,
+  int favoriteIndex,
+  PIRMakeName makeName,
+  PIRTabBarName tabBarName,
+  int panelIndex)
+{
+  if (currentKeyset == targetID)
+  {
+    // Already using this keyset, nothing to do:
+    return;
+  }
+
+  // Store the panel index of the old keyset:
+  if (currentFavorite != -1)
+  {
+    favoritesDialog->updatePanelIndex(
+      currentFavorite,
+      ui->mainTabWidget->currentIndex());
+  }
+
+  // Set up the new keyset:
+  myKeysets->clearKeyset(currentKeyset);
+  currentKeyset = targetID;
+  currentFavorite = favoriteIndex;
+
+  QSettings settings("pietrzak.org", "Pierogi");
+
+  if (currentTabsName != tabBarName)
+  {
+    // Set up the chosen tab bar for this favorite:
+    ui->mainTabWidget->setUpdatesEnabled(false);
+    ui->mainTabWidget->clear();
+    myPanels->setupTabs(tabBarName);
+    enableButtons();
+    ui->mainTabWidget->setUpdatesEnabled(true);
+    currentTabsName = tabBarName;
+    ui->mainTabWidget->setCurrentIndex(panelIndex);
+    settings.setValue("currentTabsName", tabBarName);
+    settings.setValue("currentPanelIndex", panelIndex);
+
+    // Notify the tabs choice dialog that the tabs changed:
+    tabsChoiceDialog->switchToTabBar(tabBarName);
+  }
+  else
+  {
+    enableButtons();
+  }
+
+  // Store this info persistently:
+  settings.setValue(
+    "currentKeysetMake",
+    makeManager.getMakeString(makeName));
+  settings.setValue(
+    "currentKeysetName",
+    myKeysets->getDisplayName(currentKeyset));
+  settings.setValue("currentTabsName", currentTabsName);
+}
+
+
 PIRMacroPack *MainWindow::getUserPack()
 {
   return myMacros->getUserPack();
@@ -718,6 +919,7 @@ void MainWindow::handleKeyRelease(
 */
 
 
+/*
 void MainWindow::gotoPreviousTabs()
 {
   myPanels->gotoPreviousTabs();
@@ -728,6 +930,7 @@ void MainWindow::gotoNextTabs()
 {
   myPanels->gotoNextTabs();
 }
+*/
 
  
 /*

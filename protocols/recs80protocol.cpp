@@ -30,7 +30,7 @@ RECS80Protocol::RECS80Protocol(
       158, 7426,
       158, 7426,
       158,
-      45000, true),
+      121000, true),
     keypressCount(0)
 {
 }
@@ -129,7 +129,7 @@ int RECS80Protocol::generateCommand(
   }
 
   // Next, the device code and command code.  The device code is three
-  // bits long; the command code is six bits long.  Both are sent inverted.
+  // bits long; the command code is six bits long.  Both are sent in MSB order.
   duration += pushBits(preData, rx51device);
   duration += pushBits(pkb.firstCode, rx51device);
 

@@ -760,7 +760,6 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SonyDVD1(++counter));
   setupKeyset(new SonyDVD1a(++counter));
   setupKeyset(new SonyDVD1b(++counter));
-  setupKeyset(new SonyDVD1c(++counter));
   setupKeyset(new SonyDVD2(++counter));
   setupKeyset(new SonyDVD2a(++counter));
   setupKeyset(new SonyVCR1(++counter));
@@ -772,6 +771,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SonyCD1b(++counter));
   setupKeyset(new SonyProjector1(++counter));
   setupKeyset(new SonyProjector1a(++counter));
+  setupKeyset(new SonyPlaystation1(++counter));
 
   setupKeyset(new StarhubSTB1(++counter));
   setupKeyset(new StarhubSTB1a(++counter));
@@ -1152,6 +1152,8 @@ struct PIRUserData
 {
   bool favorite;
   QString nickname;
+  PIRTabBarName tabBarName;
+  int panelIndex;
 };
 typedef std::map<QString, PIRUserData> PIRUDInnerMap;
 typedef std::map<int, PIRUDInnerMap> PIRUDOuterMap;
@@ -1184,6 +1186,8 @@ void PIRKeysetManager::populateListWidgets(
     // false here, it'll be changed to true below if needed:
     userData[makeID][name].nickname = userName;
     userData[makeID][name].favorite = false;
+    userData[makeID][name].tabBarName = Universal_Tabs;
+    userData[makeID][name].panelIndex = 0;
     ++index;
   }
   settings.endArray();
@@ -1201,6 +1205,19 @@ void PIRKeysetManager::populateListWidgets(
 
     // Insert an entry into the map:
     userData[makeID][name].favorite = true;
+
+    // Add the favorite tab bar name:
+    if (settings.contains("tabBarName"))
+    {
+      userData[makeID][name].tabBarName = PIRTabBarName(
+        settings.value("tabBarName").toInt());
+    }
+
+    if (settings.contains("panelIndex"))
+    {
+      userData[makeID][name].panelIndex =
+        settings.value("panelIndex").toInt();
+    }
 
     ++index;
   }
@@ -1248,6 +1265,8 @@ void PIRKeysetManager::populateListWidgets(
         if (innerIter->second.favorite)
         {
           kwi->setFavorite(true);
+          kwi->setTabBarName(innerIter->second.tabBarName);
+          kwi->setPanelIndex(innerIter->second.panelIndex);
           fd->addItem(kwi);
         }
       }

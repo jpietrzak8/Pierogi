@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "pirpanelnames.h"
+
 class QListWidget;
 class PIRKeysetWidgetItem;
 class QListWidgetItem;
@@ -39,6 +41,17 @@ public:
 
   void selectPrevFavKeyset();
   void selectNextFavKeyset();
+
+  int selectFavorite(
+    PIRKeysetWidgetItem *targetItem);
+
+  void updateTabBarName(
+    int favoritesIndex,
+    PIRTabBarName name);
+
+  void updatePanelIndex(
+    int favoritesIndex,
+    int panelIndex);
 
 private slots:
   void on_favoritesListWidget_itemClicked(

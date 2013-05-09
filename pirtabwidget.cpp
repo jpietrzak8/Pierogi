@@ -102,12 +102,14 @@ void PIRTabWidget::keyPressEvent(
     mainWindow->handleKeypress(' ');
     break;
 
+  // Need to work on messing with tabs:
   case Qt::Key_Up:
-    mainWindow->gotoPreviousTabs();
+//    mainWindow->gotoPreviousTabs();
     break;
   case Qt::Key_Down:
-    mainWindow->gotoNextTabs();
+//    mainWindow->gotoNextTabs();
     break;
+
   case Qt::Key_Left:
     mainWindow->startRepeating(VolumeDown_Key);
     break;

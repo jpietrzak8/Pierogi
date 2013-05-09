@@ -10,7 +10,9 @@ PIRKeysetWidgetItem::PIRKeysetWidgetItem(
     make(m),
     favorite(false),
     nicknameNotEmpty(false),
-    internalName(in)
+    internalName(in),
+    tabBarName(Universal_Tabs),
+    panelIndex(0)
 {
 }
 
@@ -27,7 +29,9 @@ PIRKeysetWidgetItem::PIRKeysetWidgetItem(
     deviceType(t),
     favorite(false),
     nicknameNotEmpty(false),
-    internalName(in)
+    internalName(in),
+    tabBarName(Universal_Tabs),
+    panelIndex(0)
 {
 }
 
@@ -40,7 +44,9 @@ PIRKeysetWidgetItem::PIRKeysetWidgetItem(
     deviceType(original->getDeviceType()),
     favorite(original->isFavorite()),
     nicknameNotEmpty(original->hasNickname()),
-    internalName(original->getInternalName())
+    internalName(original->getInternalName()),
+    tabBarName(original->getTabBarName()),
+    panelIndex(original->getPanelIndex())
 {
   if (nicknameNotEmpty)
   {

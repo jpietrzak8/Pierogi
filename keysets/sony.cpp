@@ -669,8 +669,8 @@ void SonyDVD1::populateProtocol(
   addSIRC20Key("X2_FORWARD", Unmapped_Key, 0x49, 0x1A, 0x37);
   addSIRC20Key("stop", Stop_Key, 0x49, 0x1A, 0x38);
   addSIRC20Key("pause", Pause_Key, 0x49, 0x1A, 0x39);
-  addSIRC20Key("STEP_BACK", Unmapped_Key, 0x49, 0x1A, 0x3A); // "Jog Rev"
-  addSIRC20Key("STEP_FORWARD", Unmapped_Key, 0x49, 0x1A, 0x3B); // "Jog Fwd"
+//  addSIRC20Key("STEP_BACK", Unmapped_Key, 0x49, 0x1A, 0x3A); // "Jog Rev"
+//  addSIRC20Key("STEP_FORWARD", Unmapped_Key, 0x49, 0x1A, 0x3B); // "Jog Fwd"
   addSIRC20Key("RecStop", RecordStop_Key, 0x49, 0x1A, 0x3D);
   addSIRC20Key("RecPause", RecordPause_Key, 0x49, 0x1A, 0x3E);
 
@@ -686,8 +686,8 @@ void SonyDVD1::populateProtocol(
   addSIRC20Key("SA-CD_MULTI/2CH", Unmapped_Key, 0x49, 0x1A, 0x5E);
   addSIRC20Key("SA-CD/CD", Unmapped_Key, 0x49, 0x1A, 0x5F);
 
-  addSIRC20Key("SLOW_BACK", SlowMinus_Key, 0x49, 0x1A, 0x60);
-  addSIRC20Key("SLOW_FORWARD", SlowPlus_Key, 0x49, 0x1A, 0x61);
+//  addSIRC20Key("SLOW_BACK", SlowMinus_Key, 0x49, 0x1A, 0x60);
+//  addSIRC20Key("SLOW_FORWARD", SlowPlus_Key, 0x49, 0x1A, 0x61);
   addSIRC20Key("SUBTITLE_ON_OFF", Captions_Key, 0x49, 0x1A, 0x62);
   addSIRC20Key("Subtitle Change", Unmapped_Key, 0x49, 0x1A, 0x63);
   addSIRC20Key("Language", Audio_Key, 0x49, 0x1A, 0x64); // "Audio"
@@ -696,57 +696,10 @@ void SonyDVD1::populateProtocol(
   addSIRC20Key("down", Down_Key, 0x49, 0x1A, 0x7A);
   addSIRC20Key("left", Left_Key, 0x49, 0x1A, 0x7B);
   addSIRC20Key("right", Right_Key, 0x49, 0x1A, 0x7C);
-
-  addSIRC20Key("Advance", Advance_Key, 0x62, 0x1A, 0x14);
-  addSIRC20Key("Guide", Guide_Key, 0x62, 0x1A, 0x16);
-  addSIRC20Key("Options", Unmapped_Key, 0x62, 0x1A, 0x17); // "Tools"
-  addSIRC20Key("Dot", Unmapped_Key, 0x62, 0x1A, 0x1D);
-  addSIRC20Key("file", Unmapped_Key, 0x62, 0x1A, 0x20);
-  addSIRC20Key("sort", Unmapped_Key, 0x62, 0x1A, 0x21);
-  addSIRC20Key("edit", Unmapped_Key, 0x62, 0x1A, 0x22);
-  addSIRC20Key("ALBUM-MINUS", Unmapped_Key, 0x62, 0x1A, 0x29);
-  addSIRC20Key("ALBUM-PLUS", Unmapped_Key, 0x62, 0x1A, 0x2A);
-  addSIRC20Key("F1", Unmapped_Key, 0x62, 0x1A, 0x2E); // "HDD"
-  addSIRC20Key("F2", Unmapped_Key, 0x62, 0x1A, 0x2F); // "DVD"
-  addSIRC20Key("picture memory", Unmapped_Key, 0x62, 0x1A, 0x3C);
-  addSIRC20Key("disc skip -", PrevDisc_Key, 0x62, 0x1A, 0x3D);
-  addSIRC20Key("DiscSkip", NextDisc_Key, 0x62, 0x1A, 0x3E); // "disc skip +"
-  addSIRC20Key("folder", Unmapped_Key, 0x62, 0x1A, 0x40);
-  addSIRC20Key("Favorites", Favorites_Key, 0x62, 0x1A, 0x5E);
-  addSIRC20Key("Purple", Blue_Key, 0x62, 0x1A, 0x66);
-  addSIRC20Key("Red", Red_Key, 0x62, 0x1A, 0x67);
-  addSIRC20Key("Green", Green_Key, 0x62, 0x1A, 0x68);
-  addSIRC20Key("Yellow", Yellow_Key, 0x62, 0x1A, 0x69);
-  addSIRC20Key("ZOOM", Zoom_Key, 0x62, 0x1A, 0x79);
 }
 
 
-SonyDVD1a::SonyDVD1a(
-  unsigned int index)
-  : SonyDVD1(index)
-{
-  setKeysetName("DVD Keyset 1a");
-}
-
-
-void SonyDVD1a::populateProtocol(
-  QObject *guiObject)
-{
-  if (threadableProtocol)
-  {
-    // If the pointer is not null, the keyset must already be populated.
-    return;
-  }
-
-  SonyDVD1::populateProtocol(guiObject);
-
-  addSIRC20Key("STEP_BACK", StepBack_Key, 0x49, 0x1A, 0x20);
-  addSIRC20Key("STEP_FORWARD", StepForward_Key, 0x49, 0x1A, 0x21);
-  addSIRC20Key("SLOW_BACK", SlowMinus_Key, 0x49, 0x1A, 0x22);
-  addSIRC20Key("SLOW_FORWARD", SlowPlus_Key, 0x49, 0x1A, 0x23);
-}
-
-
+/*
 SonyDVD1b::SonyDVD1b(
   unsigned int index)
   : SonyDVD1(index)
@@ -769,17 +722,18 @@ void SonyDVD1b::populateProtocol(
   addSIRC20Key("SLOW-", SlowMinus_Key, 0x49, 0x1A, 0x72);
   addSIRC20Key("SLOW+", SlowPlus_Key, 0x49, 0x1A, 0x73);
 }
+*/
 
 
-SonyDVD1c::SonyDVD1c(
+SonyDVD1a::SonyDVD1a(
   unsigned int index)
   : SonyDVD1(index)
 {
-  setKeysetName("DVD Keyset 1c");
+  setKeysetName("DVD Keyset 1a");
 }
 
 
-void SonyDVD1c::populateProtocol(
+void SonyDVD1a::populateProtocol(
   QObject *guiObject)
 {
   if (threadableProtocol)
@@ -795,7 +749,49 @@ void SonyDVD1c::populateProtocol(
   addSIRC20Key("left", Left_Key, 0x49, 0x1A, 0x33);
   addSIRC20Key("right", Right_Key, 0x49, 0x1A, 0x34);
   addSIRC20Key("ok", Select_Key, 0x49, 0x1A, 0x32);
-  addSIRC20Key("enter", Enter_Key, 0x49, 0x1A, 0x0B);
+}
+
+
+SonyDVD1b::SonyDVD1b(
+  unsigned int index)
+  : SonyDVD1(index)
+{
+  setKeysetName("DVD Keyset 1b");
+}
+
+
+void SonyDVD1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  SonyDVD1::populateProtocol(guiObject);
+
+  addSIRC20Key("Advance", Advance_Key, 0x62, 0x1A, 0x14);
+  addSIRC20Key("Guide", Guide_Key, 0x62, 0x1A, 0x16);
+  addSIRC20Key("Options", Unmapped_Key, 0x62, 0x1A, 0x17); // "Tools"
+  addSIRC20Key("Dot", Unmapped_Key, 0x62, 0x1A, 0x1D);
+  addSIRC20Key("file", Unmapped_Key, 0x62, 0x1A, 0x20);
+  addSIRC20Key("sort", Unmapped_Key, 0x62, 0x1A, 0x21);
+  addSIRC20Key("edit", Unmapped_Key, 0x62, 0x1A, 0x22);
+  addSIRC20Key("ALBUM-MINUS", Unmapped_Key, 0x62, 0x1A, 0x29);
+  addSIRC20Key("ALBUM-PLUS", Unmapped_Key, 0x62, 0x1A, 0x2A);
+  addSIRC20Key("F1", Unmapped_Key, 0x62, 0x1A, 0x2E); // "HDD"
+  addSIRC20Key("F2", Unmapped_Key, 0x62, 0x1A, 0x2F); // "DVD"
+  addSIRC20Key("picture memory", Unmapped_Key, 0x62, 0x1A, 0x3C);
+  addSIRC20Key("disc skip -", PrevDisc_Key, 0x62, 0x1A, 0x3D);
+  addSIRC20Key("DiscSkip", NextDisc_Key, 0x62, 0x1A, 0x3E); // "disc skip +"
+  addSIRC20Key("folder", Unmapped_Key, 0x62, 0x1A, 0x40);
+  addSIRC20Key("Favorites", Favorites_Key, 0x62, 0x1A, 0x5E);
+  addSIRC20Key("Purple", Blue_Key, 0x62, 0x1A, 0x66);
+  addSIRC20Key("Red", Red_Key, 0x62, 0x1A, 0x67);
+  addSIRC20Key("Green", Green_Key, 0x62, 0x1A, 0x68);
+  addSIRC20Key("Yellow", Yellow_Key, 0x62, 0x1A, 0x69);
+  addSIRC20Key("ZOOM", Zoom_Key, 0x62, 0x1A, 0x79);
 }
 
 
@@ -1392,4 +1388,42 @@ void SonyProjector1a::populateProtocol(
 
   addSIRC15Key("input toggle", Input_Key, 0x54, 0x2C);
   addSIRC15Key("shift-left", Unmapped_Key, 0x54, 0x2F);
+}
+
+
+SonyPlaystation1::SonyPlaystation1(
+  unsigned int index)
+  : SonyDVD1(index)
+{
+  setKeysetName("Playstation Keyset 1");
+}
+
+
+void SonyPlaystation1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  SonyDVD1::populateProtocol(guiObject);
+
+  addSIRC20Key("Select", PSSelect_Key, 0xDA, 0x1A, 0x50);
+  addSIRC20Key("L3", PSL3_Key, 0xDA, 0x1A, 0x51);
+  addSIRC20Key("R3", PSR3_Key, 0xDA, 0x1A, 0x52);
+  addSIRC20Key("Start", PSStart_Key, 0xDA, 0x1A, 0x53);
+  addSIRC20Key("Up", PSUp_Key, 0xDA, 0x1A, 0x54);
+  addSIRC20Key("Right", PSRight_Key, 0xDA, 0x1A, 0x55);
+  addSIRC20Key("Down", PSDown_Key, 0xDA, 0x1A, 0x56);
+  addSIRC20Key("Left", PSLeft_Key, 0xDA, 0x1A, 0x57);
+  addSIRC20Key("L2", PSL2_Key, 0xDA, 0x1A, 0x58);
+  addSIRC20Key("R2", PSR2_Key, 0xDA, 0x1A, 0x59);
+  addSIRC20Key("L1", PSL1_Key, 0xDA, 0x1A, 0x5A);
+  addSIRC20Key("R1", PSR1_Key, 0xDA, 0x1A, 0x5B);
+  addSIRC20Key("Triangle", PSTriangle_Key, 0xDA, 0x1A, 0x5C);
+  addSIRC20Key("Circle", PSCircle_Key, 0xDA, 0x1A, 0x5D);
+  addSIRC20Key("Cross", PSCross_Key, 0xDA, 0x1A, 0x5E);
+  addSIRC20Key("Square", PSSquare_Key, 0xDA, 0x1A, 0x5F);
 }

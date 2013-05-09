@@ -36,5 +36,11 @@
         <file>icons/delete_icon&amp;48.png</file>
         <file>icons/align_just_icon&amp;32.png</file>
         <file>icons/folder_plus_icon&amp;32.png</file>
+        <file>icons/PSCircle.png</file>
+        <file>icons/PSCross.png</file>
+        <file>icons/PSSquare.png</file>
+        <file>icons/PSTriangle.png</file>
+        <file>icons/br_next_icon&amp;48.png</file>
+        <file>icons/br_prev_icon&amp;48.png</file>
     </qresource>
 </RCC>

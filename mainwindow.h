@@ -4,6 +4,7 @@
 #include <QtGui/QMainWindow>
 
 #include "pirkeynames.h"
+#include "pirmakenames.h"
 #include "pirpanelnames.h"
 #include "pirmodprobe.h"
 #include "piracstateinfo.h"
@@ -22,6 +23,7 @@ class PIRPreferencesForm;
 class PIRDocumentationForm;
 class PIRAboutForm;
 class PIRFavoritesDialog;
+class PIRTabsChoiceDialog;
 class PIRKeysetWidgetItem;
 class PIRMacroPack;
 
@@ -102,13 +104,19 @@ public:
     unsigned int &id);
 
   void insertCornerButtons();
-  void disableUpdates();
-  void enableUpdates();
-  void clearTabs();
+//  void disableUpdates();
+//  void enableUpdates();
+//  void clearTabs();
+
   void addTab(
     QWidget *page,
     QString label);
+
   void setupTabs(PIRTabBarName name);
+
+  void setupFavoriteTabs(
+    PIRTabBarName name,
+    int panelIndex);
 
   bool selectNextKeyset();
   bool selectPrevKeyset();
@@ -117,6 +125,13 @@ public:
 
   void updateKeysetSelection(
     unsigned int targetID);
+
+  void updateFavoriteKeysetSelection(
+    unsigned int targetID,
+    int favoritesIndex,
+    PIRMakeName makeName,
+    PIRTabBarName tabBarName,
+    int panelIndex);
 
   PIRMacroPack *getUserPack();
   PIRMacroPack *getMultitapPack();
@@ -152,9 +167,11 @@ public:
 //  void handleKeyRelease(
 //    char Key);
 
+/*
   void gotoPreviousTabs();
 
   void gotoNextTabs();
+*/
 
 signals:
   void buttonPressed(
@@ -209,10 +226,15 @@ private:
   PIRDocumentationForm *documentationForm;
   PIRAboutForm *aboutForm;
   PIRFavoritesDialog *favoritesDialog;
+  PIRTabsChoiceDialog *tabsChoiceDialog;
 
   PIRKeysetManager *myKeysets;
   PIRPanelManager *myPanels;
   PIRMacroManager *myMacros;
+
+  PIRTabBarName currentTabsName;
+  int currentPanelIndex;
+  int currentFavorite;
 
   unsigned int currentKeyset;
 

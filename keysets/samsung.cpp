@@ -188,6 +188,9 @@ void SamsungTV1b::populateProtocol(
 }
 
 
+// Keyset 2 is intended for older Samsung TVs.  In particular, it seems that
+// some older Samsung TVs only use the last seven bits of the command value,
+// so commands with the high bit set won't work in any case...
 SamsungTV2::SamsungTV2(
   unsigned int index)
   : PIRKeysetMetaData(

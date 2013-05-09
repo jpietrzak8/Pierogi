@@ -6,6 +6,9 @@
 #include "mainwindow.h"
 #include "pirkeysetwidgetitem.h"
 #include <QMaemo5InformationBox>
+#include <QSettings>
+
+//#include <iostream>
 
 /*
 PIRFavoritesDialog::PIRFavoritesDialog(QWidget *parent) :
@@ -56,9 +59,14 @@ void PIRFavoritesDialog::selectPrevFavKeyset()
     QItemSelectionModel::ClearAndSelect);
 
   PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *> (
-      ui->favoritesListWidget->currentItem());
+    ui->favoritesListWidget->currentItem());
 
-  mainWindow->updateKeysetSelection(kwi->getID());
+  mainWindow->updateFavoriteKeysetSelection(
+    kwi->getID(),
+    position,
+    kwi->getMake(),
+    kwi->getTabBarName(),
+    kwi->getPanelIndex());
 
   // Tell the user about the change:
   QMaemo5InformationBox::information(0, kwi->text());
@@ -90,7 +98,12 @@ void PIRFavoritesDialog::selectNextFavKeyset()
   PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *> (
       ui->favoritesListWidget->currentItem());
 
-  mainWindow->updateKeysetSelection(kwi->getID());
+  mainWindow->updateFavoriteKeysetSelection(
+    kwi->getID(),
+    position,
+    kwi->getMake(),
+    kwi->getTabBarName(),
+    kwi->getPanelIndex());
 
   // Tell the user about the change:
   QMaemo5InformationBox::information(0, kwi->text());
@@ -158,9 +171,102 @@ void PIRFavoritesDialog::on_favoritesListWidget_itemClicked(
   {
     PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *> (item);
 
-    mainWindow->updateKeysetSelection(kwi->getID());
+    mainWindow->updateFavoriteKeysetSelection(
+      kwi->getID(),
+      ui->favoritesListWidget->currentRow(),
+      kwi->getMake(),
+      kwi->getTabBarName(),
+      kwi->getPanelIndex());
   }
 
   // Exit from the dialog:
   accept();
+}
+
+
+int PIRFavoritesDialog::selectFavorite(
+  PIRKeysetWidgetItem *targetItem)
+{
+  // Try to find the corresponding widget in our list:
+  PIRKeysetWidgetItem *kwi;
+  unsigned int targetID = targetItem->getID();
+  int index = 0;
+  int count = ui->favoritesListWidget->count();
+  while (index < count)
+  {
+    kwi = dynamic_cast<PIRKeysetWidgetItem *> (
+      ui->favoritesListWidget->item(index));
+
+    if (kwi->getID() == targetID)
+    {
+      ui->favoritesListWidget->setCurrentItem(kwi);
+      mainWindow->setupFavoriteTabs(
+        kwi->getTabBarName(), kwi->getPanelIndex());
+      // Return this index:
+      return index;
+    }
+  
+    ++index;
+  }
+
+  // Favorite not found, return flag value:
+  return -1;
+}
+
+
+void PIRFavoritesDialog::updateTabBarName(
+  int favoritesIndex,
+  PIRTabBarName name)
+{
+  // Sanity check first:
+  if ( (favoritesIndex < 0)
+    || (favoritesIndex >= ui->favoritesListWidget->count()))
+  {
+    // Perform error handling here?
+    return;
+  }
+
+  PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *> (
+    ui->favoritesListWidget->item(favoritesIndex));
+
+  kwi->setTabBarName(name);
+
+  QSettings settings("pietrzak.org", "Pierogi");
+
+  settings.beginWriteArray("favorites");
+
+  settings.setArrayIndex(favoritesIndex);
+
+  settings.setValue("tabBarName", name);
+
+  settings.endArray();
+}
+
+
+void PIRFavoritesDialog::updatePanelIndex(
+  int favoritesIndex,
+  int panelIndex)
+{
+  // Sanity check:
+  if ( (favoritesIndex < 0)
+    || (favoritesIndex >= ui->favoritesListWidget->count()))
+  {
+    return;
+  }
+
+
+  PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *> (
+    ui->favoritesListWidget->item(favoritesIndex));
+
+  kwi->setPanelIndex(panelIndex);
+
+  QSettings settings("pietrzak.org", "Pierogi");
+
+  settings.beginWriteArray("favorites");
+
+  settings.setArrayIndex(favoritesIndex);
+
+  settings.setValue("panelIndex", panelIndex);
+
+  settings.endArray();
 }

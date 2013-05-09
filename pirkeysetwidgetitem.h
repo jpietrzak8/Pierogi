@@ -5,6 +5,7 @@
 
 #include "pirmakenames.h"
 #include "pirdevicetypenames.h"
+#include "pirpanelnames.h"
 
 class PIRKeysetWidgetItem: public QListWidgetItem
 {
@@ -45,6 +46,15 @@ public:
 
   QString getInternalName();
 
+  PIRTabBarName getTabBarName();
+  int getPanelIndex();
+
+  void setTabBarName(
+    PIRTabBarName name);
+
+  void setPanelIndex(
+    int index);
+
 private:
   unsigned int id;
   PIRMakeName make;
@@ -53,6 +63,8 @@ private:
   bool nicknameNotEmpty;
   QString internalName;
   QString nickname;
+  PIRTabBarName tabBarName;
+  int panelIndex;
 };
 
 
@@ -102,6 +114,32 @@ inline QString PIRKeysetWidgetItem::getNickname()
 inline QString PIRKeysetWidgetItem::getInternalName()
 {
   return internalName;
+}
+
+
+inline PIRTabBarName PIRKeysetWidgetItem::getTabBarName()
+{
+  return tabBarName;
+}
+
+
+inline int PIRKeysetWidgetItem::getPanelIndex()
+{
+  return panelIndex;
+}
+
+
+inline void PIRKeysetWidgetItem::setTabBarName(
+  PIRTabBarName name)
+{
+  tabBarName = name;
+}
+
+
+inline void PIRKeysetWidgetItem::setPanelIndex(
+  int index)
+{
+  panelIndex = index;
 }
 
 #endif // PIRKEYSETWIDGETITEM_H

@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PIRPlaystationForm</class>
+ <widget class="QWidget" name="PIRPlaystationForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="7" column="0" colspan="6">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="l3Button">
+       <property name="text">
+        <string>L3</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="selectButton">
+       <property name="text">
+        <string>Select</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="startButton">
+       <property name="text">
+        <string>Start</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="r3Button">
+       <property name="text">
+        <string>R3</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="0">
+    <widget class="QPushButton" name="leftButton">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/br_prev_icon&amp;48.png</normaloff>:/icons/br_prev_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="upButton">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/br_up_icon&amp;48.png</normaloff>:/icons/br_up_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>64</width>
+       <height>64</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QPushButton" name="downButton">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/br_down_icon&amp;48.png</normaloff>:/icons/br_down_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>64</width>
+       <height>64</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QPushButton" name="rightButton">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/br_next_icon&amp;48.png</normaloff>:/icons/br_next_icon&amp;48.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="6">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="l1Button">
+       <property name="text">
+        <string>L1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="l2Button">
+       <property name="text">
+        <string>L2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="r2Button">
+       <property name="text">
+        <string>R2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="r1Button">
+       <property name="text">
+        <string>R1</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="3">
+    <widget class="QPushButton" name="squareButton">
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/PSSquare.png</normaloff>:/icons/PSSquare.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="4">
+    <widget class="QPushButton" name="triangleButton">
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/PSTriangle.png</normaloff>:/icons/PSTriangle.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="4">
+    <widget class="QPushButton" name="crossButton">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/PSCross.png</normaloff>:/icons/PSCross.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="5">
+    <widget class="QPushButton" name="circleButton">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../PierogiResources.qrc">
+       <normaloff>:/icons/PSCircle.png</normaloff>:/icons/PSCircle.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>48</width>
+       <height>48</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../PierogiResources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>selectEnabled(bool)</signal>
+   <receiver>selectButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>302</x>
+     <y>423</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>startEnabled(bool)</signal>
+   <receiver>startButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>497</x>
+     <y>423</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>l1Enabled(bool)</signal>
+   <receiver>l1Button</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>108</x>
+     <y>55</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>l2Enabled(bool)</signal>
+   <receiver>l2Button</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>302</x>
+     <y>55</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>l3Enabled(bool)</signal>
+   <receiver>l3Button</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>108</x>
+     <y>423</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>r1Enabled(bool)</signal>
+   <receiver>r1Button</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>691</x>
+     <y>55</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>r2Enabled(bool)</signal>
+   <receiver>r2Button</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>497</x>
+     <y>55</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>r3Enabled(bool)</signal>
+   <receiver>r3Button</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>691</x>
+     <y>423</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>upEnabled(bool)</signal>
+   <receiver>upButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>202</x>
+     <y>155</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>downEnabled(bool)</signal>
+   <receiver>downButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>202</x>
+     <y>327</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>leftEnabled(bool)</signal>
+   <receiver>leftButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>70</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>rightEnabled(bool)</signal>
+   <receiver>rightButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>333</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>triangleEnabled(bool)</signal>
+   <receiver>triangleButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>597</x>
+     <y>155</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>crossEnabled(bool)</signal>
+   <receiver>crossButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>597</x>
+     <y>327</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>squareEnabled(bool)</signal>
+   <receiver>squareButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>465</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRPlaystationForm</sender>
+   <signal>circleEnabled(bool)</signal>
+   <receiver>circleButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>728</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>selectEnabled(bool)</signal>
+  <signal>startEnabled(bool)</signal>
+  <signal>l1Enabled(bool)</signal>
+  <signal>l2Enabled(bool)</signal>
+  <signal>l3Enabled(bool)</signal>
+  <signal>r1Enabled(bool)</signal>
+  <signal>r2Enabled(bool)</signal>
+  <signal>r3Enabled(bool)</signal>
+  <signal>upEnabled(bool)</signal>
+  <signal>downEnabled(bool)</signal>
+  <signal>leftEnabled(bool)</signal>
+  <signal>rightEnabled(bool)</signal>
+  <signal>triangleEnabled(bool)</signal>
+  <signal>crossEnabled(bool)</signal>
+  <signal>squareEnabled(bool)</signal>
+  <signal>circleEnabled(bool)</signal>
+ </slots>
+</ui>

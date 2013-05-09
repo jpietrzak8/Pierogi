@@ -37,6 +37,9 @@ PIRTabsChoiceDialog::PIRTabsChoiceDialog(
     new PIRTabsWidgetItem("Roomba Panels", Roomba_Tabs));
 
   ui->tabsChoiceListWidget->addItem(
+    new PIRTabsWidgetItem("Game Console Panels", Console_Tabs));
+
+  ui->tabsChoiceListWidget->addItem(
     new PIRTabsWidgetItem("Macro Panels", Macro_Tabs));
 
 //  ui->tabsChoiceListWidget->addItem(
@@ -50,6 +53,63 @@ PIRTabsChoiceDialog::PIRTabsChoiceDialog(
 PIRTabsChoiceDialog::~PIRTabsChoiceDialog()
 {
   delete ui;
+}
+
+
+void PIRTabsChoiceDialog::switchToTabBar(
+  PIRTabBarName name)
+{
+  // This is a cheap hack, just wanted to get it out quickly:
+  switch (name)
+  {
+  case Universal_Tabs:
+    ui->tabsChoiceListWidget->setCurrentRow(0);
+    break;
+
+  case TV_Tabs:
+    ui->tabsChoiceListWidget->setCurrentRow(1);
+    break;
+
+  case VideoMedia_Tabs:
+    ui->tabsChoiceListWidget->setCurrentRow(2);
+    break;
+
+  case Audio_Tabs:
+    ui->tabsChoiceListWidget->setCurrentRow(3);
+    break;
+
+  case Record_Tabs:
+    ui->tabsChoiceListWidget->setCurrentRow(4);
+    break;
+
+  case AC_Tabs:
+    ui->tabsChoiceListWidget->setCurrentRow(5);
+    break;
+
+  case Camera_Tabs:
+    ui->tabsChoiceListWidget->setCurrentRow(6);
+    break;
+
+  case Roomba_Tabs:
+    ui->tabsChoiceListWidget->setCurrentRow(7);
+    break;
+
+  case Console_Tabs:
+    ui->tabsChoiceListWidget->setCurrentRow(8);
+    break;
+
+  case Macro_Tabs:
+    ui->tabsChoiceListWidget->setCurrentRow(9);
+    break;
+
+  case Advanced_Tabs:
+    ui->tabsChoiceListWidget->setCurrentRow(10);
+    break;
+
+  default:
+    // Leave it as is.
+    break;
+  }
 }
 
 

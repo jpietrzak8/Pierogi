@@ -20,6 +20,7 @@ class PIRACTimerForm;
 class PIRAudioDeviceForm;
 class PIRCameraForm;
 class PIRRoombaForm;
+class PIRPlaystationForm;
 class PIRUserForm;
 
 // These need to go elsewhere:
@@ -53,7 +54,8 @@ public:
 
   ~PIRPanelManager();
 
-  void updateTabSet();
+//  void updateTabSet();
+  void setupTabs(PIRTabBarName name);
 
   void enableButtons(
     PIRKeysetManager *keyset,
@@ -76,12 +78,11 @@ public:
   void setupACTabs();
   void setupRecordTabs();
 */
-  void setupTabs(PIRTabBarName name);
 
   QComboBox *getKeysetComboBox();
 
-  void gotoPreviousTabs();
-  void gotoNextTabs();
+//  void gotoPreviousTabs();
+//  void gotoNextTabs();
 
 private:
   void commonEnableButtons(
@@ -105,6 +106,7 @@ private:
   PIRAudioDeviceForm *audioDeviceForm;
   PIRCameraForm *cameraForm;
   PIRRoombaForm *roombaForm;
+  PIRPlaystationForm *playstationForm;
   PIRUserForm *userForm;
   PIRMacroForm *macroForm;
 //  PIRPowerSearchForm *powerSearchForm;
@@ -117,8 +119,6 @@ private:
   PIRPanelCollection panels;
 
   bool altMainPanelFlag;
-
-  PIRTabBarName currentTabsName;
 
   MainWindow *mainWindow;
 };

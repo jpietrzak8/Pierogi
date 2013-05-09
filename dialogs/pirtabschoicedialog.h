@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "pirpanelnames.h"
+
 class QListWidgetItem;
 class MainWindow;
 
@@ -18,6 +20,9 @@ public:
 //  explicit PIRTabsChoiceDialog(QWidget *parent = 0);
   PIRTabsChoiceDialog(MainWindow *mw);
   ~PIRTabsChoiceDialog();
+
+  void switchToTabBar(
+    PIRTabBarName name);
   
 private slots:
   void on_tabsChoiceListWidget_itemClicked(QListWidgetItem *item);

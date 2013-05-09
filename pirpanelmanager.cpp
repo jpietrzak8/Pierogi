@@ -17,6 +17,7 @@
 #include "forms/piraudiodeviceform.h"
 #include "forms/pircameraform.h"
 #include "forms/pirroombaform.h"
+#include "forms/pirplaystationform.h"
 #include "forms/piruserform.h"
 #include "forms/pirmacroform.h"
 //#include "forms/pirpowersearchform.h"
@@ -51,29 +52,14 @@ PIRPanelManager::PIRPanelManager(
     audioDeviceForm(0),
     cameraForm(0),
     roombaForm(0),
+    playstationForm(0),
     userForm(0),
     macroForm(0),
 //    powerSearchForm(0),
     advancedForm(0),
     altMainPanelFlag(false),
-    currentTabsName(Universal_Tabs),
     mainWindow(mw)
 {
-  QSettings settings("pietrzak.org", "Pierogi");
-  if (settings.contains("currentTabsName"))
-  {
-    int tabVal = settings.value("currentTabsName").toInt();
-
-    if (tabVal >= Last_Tabs_Marker)
-    {
-      currentTabsName = Universal_Tabs;
-    }
-    else
-    {
-      currentTabsName = PIRTabBarName(tabVal);
-    }
-  }
-
   // Set up the panel names:
   shortPanelNames[Main_Panel] = "Main";
   longPanelNames[Main_Panel] =
@@ -123,6 +109,9 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[Roomba_Panel] = "Roomba";
   longPanelNames[Roomba_Panel] =
     "Roomba Panel - robotic vacuum cleaner controls";
+  shortPanelNames[Playstation_Panel] = "Playstation";
+  longPanelNames[Playstation_Panel] =
+    "Playstation Panel - support for gamepad buttons";
   shortPanelNames[User_Panel] = "User";
   longPanelNames[User_Panel] =
     "User Panel - macro control buttons";
@@ -186,6 +175,9 @@ PIRPanelManager::PIRPanelManager(
 
   roombaForm = new PIRRoombaForm(mainWindow);
   panels[Roomba_Panel] = roombaForm;
+
+  playstationForm = new PIRPlaystationForm(mainWindow);
+  panels[Playstation_Panel] = playstationForm;
 
   userForm = new PIRUserForm(mainWindow);
   panels[User_Panel] = userForm;
@@ -263,6 +255,11 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Roomba_Panel);
   tabLists[Roomba_Tabs] = pset;
 
+  // The Console collection:
+  pset.clear();
+  pset.push_back(Playstation_Panel);
+  tabLists[Console_Tabs] = pset;
+
   // The Macro Management collection:
   pset.clear();
   pset.push_back(Macro_Panel);
@@ -290,17 +287,15 @@ PIRPanelManager::~PIRPanelManager()
 }
 
 
-void PIRPanelManager::updateTabSet()
+void PIRPanelManager::setupTabs(
+  PIRTabBarName tabsName)
 {
-  QSettings settings("pietrzak.org", "Pierogi");
-  settings.setValue("currentTabsName", currentTabsName);
+//  mainWindow->disableUpdates();
+//  mainWindow->clearTabs();
 
-  mainWindow->disableUpdates();
-  mainWindow->clearTabs();
+  PIRPanelNameList::const_iterator i = tabLists[tabsName].begin();
 
-  PIRPanelNameList::const_iterator i = tabLists[currentTabsName].begin();
-
-  while (i != tabLists[currentTabsName].end())
+  while (i != tabLists[tabsName].end())
   {
     if ((*i == Main_Panel) && altMainPanelFlag)
     {
@@ -314,7 +309,7 @@ void PIRPanelManager::updateTabSet()
     ++i;
   }
 
-  mainWindow->enableUpdates();
+//  mainWindow->enableUpdates();
 }
 
 
@@ -358,6 +353,7 @@ void PIRPanelManager::commonEnableButtons(
   audioDeviceForm->enableButtons(keyset, id);
   cameraForm->enableButtons(keyset, id);
   roombaForm->enableButtons(keyset, id);
+  playstationForm->enableButtons(keyset, id);
 
   // Also, set the label in the power search form:
 //  powerSearchForm->setKeysetName(mainWindow->getCurrentFullName());
@@ -383,7 +379,7 @@ void PIRPanelManager::useMainPanel()
 
   altMainPanelFlag = false;
 
-  updateTabSet();
+//  updateTabSet();
 }
 
 
@@ -397,7 +393,7 @@ void PIRPanelManager::useAltMainPanel()
 
   altMainPanelFlag = true;
 
-  updateTabSet();
+//  updateTabSet();
 }
 
 
@@ -448,6 +444,7 @@ void PIRPanelManager::setupRecordTabs()
 */
 
 
+/*
 void PIRPanelManager::setupTabs(
   PIRTabBarName name)
 {
@@ -456,8 +453,9 @@ void PIRPanelManager::setupTabs(
   currentTabsName = name;
   updateTabSet();
 }
+*/
 
-
+/*
 void PIRPanelManager::gotoPreviousTabs()
 {
   PIRTabsCollection::const_iterator i = tabLists.find(currentTabsName);
@@ -501,6 +499,7 @@ void PIRPanelManager::gotoNextTabs()
   currentTabsName = i->first;
   updateTabSet();
 }
+*/
 
 
 QComboBox *PIRPanelManager::getKeysetComboBox()

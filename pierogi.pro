@@ -253,7 +253,8 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/dune.cpp \
     keysets/mtlogic.cpp \
     keysets/venturer.cpp \
-    protocols/mitsubishiprotocol.cpp
+    protocols/mitsubishiprotocol.cpp \
+    forms/pirplaystationform.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -482,7 +483,8 @@ HEADERS += mainwindow.h \
     keysets/dune.h \
     keysets/mtlogic.h \
     keysets/venturer.h \
-    protocols/mitsubishiprotocol.h
+    protocols/mitsubishiprotocol.h \
+    forms/pirplaystationform.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -521,7 +523,8 @@ FORMS += mainwindow.ui \
     forms/piruserform.ui \
     dialogs/pireditcommanddialog.ui \
     forms/piradvancedform.ui \
-    forms/piractimerform.ui
+    forms/piractimerform.ui \
+    forms/pirplaystationform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
@@ -591,7 +594,13 @@ OTHER_FILES += \
     icons/red_pause.png \
     icons/delete_icon&48.png \
     icons/align_just_icon&32.png \
-    icons/folder_plus_icon&32.png
+    icons/folder_plus_icon&32.png \
+    icons/br_next_icon&48.png \
+    icons/br_prev_icon&48.png \
+    icons/PSCircle.png \
+    icons/PSCross.png \
+    icons/PSSquare.png \
+    icons/PSTriangle.png
 
 RESOURCES += \
     PierogiResources.qrc

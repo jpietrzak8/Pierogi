@@ -234,6 +234,24 @@ enum PIRKeyName{
   RobotMax_Key,
   RobotClean_Key,
 
+  // Playstation controls:
+  PSSelect_Key,
+  PSStart_Key,
+  PSL1_Key,
+  PSL2_Key,
+  PSL3_Key,
+  PSR1_Key,
+  PSR2_Key,
+  PSR3_Key,
+  PSUp_Key,
+  PSDown_Key,
+  PSLeft_Key,
+  PSRight_Key,
+  PSTriangle_Key,
+  PSCircle_Key,
+  PSCross_Key,
+  PSSquare_Key,
+
   // Camera controls:
   OpenShutter_Key,
   DelayedOpenShutter_Key,

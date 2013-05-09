@@ -148,17 +148,6 @@ public:
 };
 
 
-class SonyDVD1c: public SonyDVD1
-{
-public:
-  SonyDVD1c(
-    unsigned int index);
-
-  virtual void populateProtocol(
-    QObject *guiObject);
-};
-
-
 class SonyDVD2: public PIRKeysetMetaData
 {
 public:
@@ -269,6 +258,16 @@ class SonyProjector1a: public SonyProjector1
 {
 public:
   SonyProjector1a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SonyPlaystation1: public SonyDVD1
+{
+public:
+  SonyPlaystation1(
     unsigned int index);
 
   virtual void populateProtocol(
