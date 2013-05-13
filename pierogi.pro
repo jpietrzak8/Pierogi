@@ -254,7 +254,11 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/mtlogic.cpp \
     keysets/venturer.cpp \
     protocols/mitsubishiprotocol.cpp \
-    forms/pirplaystationform.cpp
+    forms/pirplaystationform.cpp \
+    keysets/comag.cpp \
+    keysets/openbox.cpp \
+    keysets/silvercrest.cpp \
+    keysets/xoro.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -484,7 +488,11 @@ HEADERS += mainwindow.h \
     keysets/mtlogic.h \
     keysets/venturer.h \
     protocols/mitsubishiprotocol.h \
-    forms/pirplaystationform.h
+    forms/pirplaystationform.h \
+    keysets/comag.h \
+    keysets/openbox.h \
+    keysets/silvercrest.h \
+    keysets/xoro.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

@@ -31,10 +31,10 @@ public:
   void addItem(
     PIRKeysetWidgetItem *item);
 
-  int getCount();
+//  int getCount();
 
-  PIRKeysetWidgetItem *getItem(
-    int index);
+//  PIRKeysetWidgetItem *getItem(
+//    int index);
 
   void removeItem(
     unsigned int keysetID);

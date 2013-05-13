@@ -24,6 +24,7 @@ enum PIRMakeName{
   Canon_Make,
   Changhong_Make,
   Cisco_Make,
+  Comag_Make,
   Compro_Make,
   Creative_Make,
   Crown_Make,
@@ -92,6 +93,7 @@ enum PIRMakeName{
   Olympus_Make,
   Onida_Make,
   Onkyo_Make,
+  OpenBox_Make,
   Orion_Make,
   Panasonic_Make,
   Pentax_Make,
@@ -110,6 +112,7 @@ enum PIRMakeName{
   Samsung_Make,
   Sanyo_Make,
   Sharp_Make,
+  SilverCrest_Make,
   Sinotec_Make,
   Sky_Make,
   Sony_Make,
@@ -138,6 +141,7 @@ enum PIRMakeName{
   Westinghouse_Make,
   Wiwa_Make,
   Xcruiser_Make,
+  Xoro_Make,
   Yamaha_Make,
   Zenith_Make
 };

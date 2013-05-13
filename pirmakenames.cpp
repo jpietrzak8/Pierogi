@@ -23,6 +23,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Canon_Make] = "Canon";
   makes[Changhong_Make] = "Changhong";
   makes[Cisco_Make] = "Cisco";
+  makes[Comag_Make] = "Comag";
   makes[Compro_Make] = "Compro";
   makes[Creative_Make] = "Creative";
   makes[Crown_Make] = "Crown";
@@ -91,6 +92,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Olympus_Make] = "Olympus";
   makes[Onida_Make] = "Onida";
   makes[Onkyo_Make] = "Onkyo";
+  makes[OpenBox_Make] = "OpenBox";
   makes[Orion_Make] = "Orion";
   makes[Panasonic_Make] = "Panasonic";
   makes[Pentax_Make] = "Pentax";
@@ -109,6 +111,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Samsung_Make] = "Samsung";
   makes[Sanyo_Make] = "Sanyo";
   makes[Sharp_Make] = "Sharp";
+  makes[SilverCrest_Make] = "SilverCrest";
   makes[Sinotec_Make] = "Sinotec";
   makes[Sky_Make] = "Sky";
   makes[Sony_Make] = "Sony";
@@ -137,6 +140,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Westinghouse_Make] = "Westinghouse";
   makes[Wiwa_Make] = "Wiwa";
   makes[Xcruiser_Make] = "Xcruiser";
+  makes[Xoro_Make] = "Xoro";
   makes[Yamaha_Make] = "Yamaha";
   makes[Zenith_Make] = "Zenith";
 

@@ -8,7 +8,10 @@
 #include <QMaemo5InformationBox>
 #include <QSettings>
 
-//#include <iostream>
+#include "pirmakenames.h"
+extern PIRMakeMgr makeManager;
+
+#include <iostream>
 
 /*
 PIRFavoritesDialog::PIRFavoritesDialog(QWidget *parent) :
@@ -32,6 +35,41 @@ PIRFavoritesDialog::PIRFavoritesDialog(
 
 PIRFavoritesDialog::~PIRFavoritesDialog()
 {
+  // Destroy and recreate the favorites list here:
+  QSettings settings("pietrzak.org", "Pierogi");
+  settings.remove("favorites");
+
+  int count = ui->favoritesListWidget->count();
+
+  // If the count is empty, we can stop right here:
+  if (count == 0) return;
+
+  int index = 0;
+  PIRKeysetWidgetItem *kwi = NULL;
+  settings.beginWriteArray("favorites");
+  while (index < count)
+  {
+    kwi = dynamic_cast<PIRKeysetWidgetItem *>(
+      ui->favoritesListWidget->item(index));
+
+    // Not sure what to do if the pointer is bad here...
+    if (!kwi)
+    {
+      continue;
+    }
+
+    settings.setArrayIndex(index);
+
+    settings.setValue("keysetMake", 
+      makeManager.getMakeString(kwi->getMake()));
+    settings.setValue("keysetName", kwi->getInternalName());
+    settings.setValue("tabBarName", kwi->getTabBarName());
+    settings.setValue("panelIndex", kwi->getPanelIndex());
+
+    ++index;
+  }
+  settings.endArray();
+
   delete ui;
 }
 
@@ -64,7 +102,7 @@ void PIRFavoritesDialog::selectPrevFavKeyset()
   mainWindow->updateFavoriteKeysetSelection(
     kwi->getID(),
     position,
-    kwi->getMake(),
+//    kwi->getMake(),
     kwi->getTabBarName(),
     kwi->getPanelIndex());
 
@@ -101,7 +139,7 @@ void PIRFavoritesDialog::selectNextFavKeyset()
   mainWindow->updateFavoriteKeysetSelection(
     kwi->getID(),
     position,
-    kwi->getMake(),
+//    kwi->getMake(),
     kwi->getTabBarName(),
     kwi->getPanelIndex());
 
@@ -119,18 +157,22 @@ void PIRFavoritesDialog::addItem(
 }
 
 
+/*
 int PIRFavoritesDialog::getCount()
 {
   return ui->favoritesListWidget->count();
 }
+*/
 
 
+/*
 PIRKeysetWidgetItem *PIRFavoritesDialog::getItem(
   int index)
 {
   return dynamic_cast<PIRKeysetWidgetItem *>(
     ui->favoritesListWidget->item(index));
 }
+*/
 
 
 void PIRFavoritesDialog::removeItem(
@@ -174,7 +216,7 @@ void PIRFavoritesDialog::on_favoritesListWidget_itemClicked(
     mainWindow->updateFavoriteKeysetSelection(
       kwi->getID(),
       ui->favoritesListWidget->currentRow(),
-      kwi->getMake(),
+//      kwi->getMake(),
       kwi->getTabBarName(),
       kwi->getPanelIndex());
   }
@@ -230,16 +272,6 @@ void PIRFavoritesDialog::updateTabBarName(
     ui->favoritesListWidget->item(favoritesIndex));
 
   kwi->setTabBarName(name);
-
-  QSettings settings("pietrzak.org", "Pierogi");
-
-  settings.beginWriteArray("favorites");
-
-  settings.setArrayIndex(favoritesIndex);
-
-  settings.setValue("tabBarName", name);
-
-  settings.endArray();
 }
 
 
@@ -247,6 +279,7 @@ void PIRFavoritesDialog::updatePanelIndex(
   int favoritesIndex,
   int panelIndex)
 {
+
   // Sanity check:
   if ( (favoritesIndex < 0)
     || (favoritesIndex >= ui->favoritesListWidget->count()))
@@ -259,14 +292,4 @@ void PIRFavoritesDialog::updatePanelIndex(
     ui->favoritesListWidget->item(favoritesIndex));
 
   kwi->setPanelIndex(panelIndex);
-
-  QSettings settings("pietrzak.org", "Pierogi");
-
-  settings.beginWriteArray("favorites");
-
-  settings.setArrayIndex(favoritesIndex);
-
-  settings.setValue("panelIndex", panelIndex);
-
-  settings.endArray();
 }

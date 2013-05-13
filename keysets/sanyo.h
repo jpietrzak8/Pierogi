@@ -75,10 +75,40 @@ public:
     QObject *guiObject);
 };
 
-class SanyoProjector: public PIRKeysetMetaData
+class SanyoProjector1: public PIRKeysetMetaData
 {
 public:
-  SanyoProjector(
+  SanyoProjector1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SanyoProjector1a: public SanyoProjector1
+{
+public:
+  SanyoProjector1a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SanyoProjector1b: public SanyoProjector1
+{
+public:
+  SanyoProjector1b(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SanyoProjector1c: public SanyoProjector1
+{
+public:
+  SanyoProjector1c(
     unsigned int index);
 
   virtual void populateProtocol(

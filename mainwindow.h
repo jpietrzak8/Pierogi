@@ -129,7 +129,7 @@ public:
   void updateFavoriteKeysetSelection(
     unsigned int targetID,
     int favoritesIndex,
-    PIRMakeName makeName,
+//    PIRMakeName makeName,
     PIRTabBarName tabBarName,
     int panelIndex);
 

@@ -384,18 +384,18 @@ void SanyoTV1d::populateProtocol(
 }
 
 
-SanyoProjector::SanyoProjector(
+SanyoProjector1::SanyoProjector1(
   unsigned int index)
   : PIRKeysetMetaData(
       "Projector Keyset 1",
       Sanyo_Make,
       index)
 {
-  addControlledDevice(Sanyo_Make, "PLV-Z1", Other_Device);
+  addControlledDevice(Sanyo_Make, "PLV-70", Other_Device);
 }
 
 
-void SanyoProjector::populateProtocol(
+void SanyoProjector1::populateProtocol(
   QObject *guiObject)
 {
   if (threadableProtocol)
@@ -404,40 +404,49 @@ void SanyoProjector::populateProtocol(
     return;
   }
 
-  threadableProtocol = new NECProtocol(guiObject, index, false, true);
+  // Need to set the protocol to use 16-bit predata, for child keysets:
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
-//  setPreData(0x0CF3, 16);
-  setPreData(0x30, 16);
+  setPreData(0xCF30, 16);
 
-  addKey("ONOFF0", Power_Key, 0x00, 8);
+  addKey("Power", Power_Key, 0x00, 8); //"ONOFF0"
   addKey("D.Zoom +", Unmapped_Key, 0x01, 8);
   addKey("D.ZOOM -", Unmapped_Key, 0x02, 8);
-  addKey("INPUT", Input_Key, 0x05, 8);
+  addKey("Input", Input_Key, 0x05, 8);
   addKey("VOLUME +", VolumeUp_Key, 0x09, 8);
   addKey("VOLUME -", VolumeDown_Key, 0x0A, 8);
   addKey("MUTE", Mute_Key, 0x0B, 8);
-  addKey("IMAGE", Unmapped_Key, 0x0C, 8);
+  addKey("Image (Adj.)", PictureMode_Key, 0x0C, 8);
+  addKey("Image (z1)", Unmapped_Key, 0x0E, 8); // put into different keyset?
   addKey("SELECT", Select_Key, 0x0F, 8);
   addKey("INFORMATION", Info_Key, 0x16, 8);
   addKey("AUTO SET", Unmapped_Key, 0x17, 8);
-  addKey("LAMP CONTROL", Unmapped_Key, 0x18, 8);
+  addKey("LAMP CONTROL", Unmapped_Key, 0x18, 8); // "(Lamp Mode)"
   addKey("MENU", Menu_Key, 0x1C, 8);
   addKey("RIGHT", Right_Key, 0x1D, 8);
   addKey("LEFT", Left_Key, 0x1E, 8);
+  addKey("Standard (Image)", Unmapped_Key, 0x1F, 8);
   addKey("HDMI", HDMIInput_Key, 0x37, 8);
   addKey("COMPUTER 1", PCInput_Key, 0x38, 8);
   addKey("COMPUTER 2", Unmapped_Key, 0x39, 8);
-  addKey("AUTO", Unmapped_Key, 0x3C, 8);
-  addKey("COMPOSITE", Unmapped_Key, 0x3D, 8); // "VIDEO"
-  addKey("S-VIDEO", Unmapped_Key, 0x3E, 8); // "S-VIDEO"
+  addKey("Input 3", Unmapped_Key, 0x3A, 8);
+  addKey("AUTO", Unmapped_Key, 0x3C, 8); // "My-P (My Picture)"
+  addKey("COMPOSITE", AuxInput_Key, 0x3D, 8); // "VIDEO"
+  addKey("S-VIDEO", SVideoInput_Key, 0x3E, 8); // "S-VIDEO"
+  addKey("Lens Shift", Unmapped_Key, 0x40, 8);
   addKey("FREEZE", Pause_Key, 0x43, 8);
+  addKey("Zoom -", Unmapped_Key, 0x46, 8);
+  addKey("Zoom +", Unmapped_Key, 0x47, 8);
+  addKey("Focus +", Unmapped_Key, 0x4A, 8);
+  addKey("Focus -", Unmapped_Key, 0x4B, 8);
   addKey("IMAGE_1", One_Key, 0x50, 8);
   addKey("IMAGE_2", Two_Key, 0x51, 8);
   addKey("IMAGE_3", Three_Key, 0x56, 8);
   addKey("IMAGE_4", Four_Key, 0x57, 8);
+  addKey("P-Im (Image, Preset)", Unmapped_Key, 0x58, 8);
   addKey("KEYSTONE", Unmapped_Key, 0x5B, 8);
   addKey("SCREEN", AspectRatio_Key, 0x82, 8); // "ASPECT"
-  addKey("COMPONENT", Unmapped_Key, 0x83, 8);
+  addKey("COMPONENT", ComponentInput_Key, 0x83, 8);
   addKey("AUTO_PC_ADJ", Unmapped_Key, 0x89, 8);
   addKey("P-TIMER", Unmapped_Key, 0x8A, 8);
   addKey("NOSHOW", Unmapped_Key, 0x8B, 8); // "AV MUTE"
@@ -445,6 +454,81 @@ void SanyoProjector::populateProtocol(
   addKey("DOWN", Down_Key, 0x8D, 8);
   addKey("KEYSTONE_UP", Unmapped_Key, 0x8E, 8);
   addKey("KEYSTONE_DOWN", Unmapped_Key, 0x8F, 8);
-//  addKey("ONOFF1", Unmapped_Key, 0x0C73FF00, 32);
+  addKey("Power On", Green_Key, 0xA0, 8);
+  addKey("Power Off", Red_Key, 0xA1, 8);
 }
 
+
+SanyoProjector1a::SanyoProjector1a(
+  unsigned int index)
+  : SanyoProjector1(index)
+{
+  addControlledDevice(Sanyo_Make, "PLV-Z1", Other_Device);
+
+  setKeysetName("Projector Keyset 1a");
+}
+
+
+void SanyoProjector1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  SanyoProjector1::populateProtocol(guiObject);
+
+  setPreData(0xCE30, 16);
+}
+
+
+SanyoProjector1b::SanyoProjector1b(
+  unsigned int index)
+  : SanyoProjector1(index)
+{
+  addControlledDevice(Sanyo_Make, "PLV-Z2", Other_Device);
+
+  setKeysetName("Projector Keyset 1b");
+}
+
+
+void SanyoProjector1b::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  SanyoProjector1::populateProtocol(guiObject);
+
+  setPreData(0x0033, 16);
+}
+
+
+SanyoProjector1c::SanyoProjector1c(
+  unsigned int index)
+  : SanyoProjector1(index)
+{
+  addControlledDevice(Sanyo_Make, "PLV-Z2 (code 2)", Other_Device);
+
+  setKeysetName("Projector Keyset 1c");
+}
+
+
+void  SanyoProjector1c::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  SanyoProjector1::populateProtocol(guiObject);
+
+  setPreData(0x1133, 16);
+}

@@ -1,3 +1,11 @@
+pierogi (1.1.22) unstable; urgency=low
+  * Fixed a nasty bug causing favorite keysets to be forgotten.
+  * Pushed all QSettings setValue calls to the end of the program, significantly improving performance.
+  * Made a first pass at keysets for Comag, OpenBox, SilverCrest, and Xoro.
+  * Added several Sanyo projector keysets.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 12 May 2013 21:20:26 -0400
+
 pierogi (1.1.21) unstable; urgency=low
   * The favorites manager now remembers the most recent panel collection used with a given favorite.  However, performance is taking a hit; may need to back this change out...
   * Continuing to work on fixes for a new protocol for Strong.

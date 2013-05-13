@@ -25,6 +25,7 @@
 #include "keysets/canon.h"
 #include "keysets/changhong.h"
 #include "keysets/cisco.h"
+#include "keysets/comag.h"
 #include "keysets/compro.h"
 #include "keysets/creative.h"
 #include "keysets/crown.h"
@@ -93,6 +94,7 @@
 #include "keysets/olympus.h"
 #include "keysets/onida.h"
 #include "keysets/onkyo.h"
+#include "keysets/openbox.h"
 #include "keysets/orion.h"
 #include "keysets/panasonic.h"
 #include "keysets/pentax.h"
@@ -111,6 +113,7 @@
 #include "keysets/samsung.h"
 #include "keysets/sanyo.h"
 #include "keysets/sharp.h"
+#include "keysets/silvercrest.h"
 #include "keysets/sinotec.h"
 #include "keysets/sky.h"
 #include "keysets/sony.h"
@@ -139,6 +142,7 @@
 #include "keysets/westinghouse.h"
 #include "keysets/wiwa.h"
 #include "keysets/xcruiser.h"
+#include "keysets/xoro.h"
 #include "keysets/yamaha.h"
 #include "keysets/zenith.h"
 
@@ -245,6 +249,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new CiscoSTB2(++counter));
   setupKeyset(new CiscoSTB3(++counter));
   setupKeyset(new CiscoSTB4(++counter));
+
+  setupKeyset(new ComagSTB1(++counter));
+  setupKeyset(new ComagSTB2(++counter));
 
   setupKeyset(new ComproTVCard1(++counter));
 
@@ -590,6 +597,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new OnkyoDVD1(++counter));
   setupKeyset(new OnkyoDVD2(++counter));
 
+  setupKeyset(new OpenBoxSTB1(++counter));
+  setupKeyset(new OpenBoxSTB2(++counter));
+
   setupKeyset(new OrionTV1(++counter));
   setupKeyset(new OrionTV2(++counter));
   setupKeyset(new OrionTV3(++counter));
@@ -729,7 +739,10 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SanyoTV1b(++counter));
   setupKeyset(new SanyoTV1c(++counter));
   setupKeyset(new SanyoTV1d(++counter));
-  setupKeyset(new SanyoProjector(++counter));
+  setupKeyset(new SanyoProjector1(++counter));
+  setupKeyset(new SanyoProjector1a(++counter));
+  setupKeyset(new SanyoProjector1b(++counter));
+  setupKeyset(new SanyoProjector1c(++counter));
 
   setupKeyset(new SharpTV1(++counter));
   setupKeyset(new SharpTV1a(++counter));
@@ -740,6 +753,10 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SharpVCR1(++counter));
   setupKeyset(new SharpReceiver1(++counter));
   setupKeyset(new SharpAC1(++counter));
+
+  setupKeyset(new SilverCrestDVD1(++counter));
+  setupKeyset(new SilverCrestDVD2(++counter));
+  setupKeyset(new SilverCrestDVD3(++counter));
 
   setupKeyset(new SinotecTV1(++counter));
   setupKeyset(new SinotecTV2(++counter));
@@ -889,6 +906,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new WiwaSTB1(++counter));
 
   setupKeyset(new XcruiserSat1(++counter));
+
+  setupKeyset(new XoroSTB1(++counter));
 
   setupKeyset(new YamahaDVD1(++counter));
   setupKeyset(new YamahaDVD1a(++counter));

@@ -38,7 +38,7 @@
 #include "macros/pirmacromanager.h"
 
 //#define DEBUGGING
-//#include <iostream>
+#include <iostream>
 
 // Some ugly globals used for thread communications:
 
@@ -192,6 +192,16 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+  QSettings settings("pietrzak.org", "Pierogi");
+  settings.setValue(
+    "currentKeysetMake",
+    makeManager.getMakeString(myKeysets->getMake(currentKeyset)));
+  settings.setValue(
+    "currentKeysetName",
+    myKeysets->getDisplayName(currentKeyset));
+  settings.setValue("currentTabsName", currentTabsName);
+  settings.setValue("currentPanelIndex", ui->mainTabWidget->currentIndex());
+
   if (aboutForm) delete aboutForm;
   if (documentationForm) delete documentationForm;
   if (preferencesForm) delete preferencesForm;
@@ -437,7 +447,8 @@ void MainWindow::keysetSelectionChanged(
     return;
   }
 
-  // If we're currently on a favorite, take note of the panel index:
+  // If we're currently on a favorite, take note of the panel index.  (Don't
+  // need to worry about tab bar name, that's already stored.)
   if (currentFavorite != -1)
   {
     favoritesDialog->updatePanelIndex(
@@ -450,7 +461,6 @@ void MainWindow::keysetSelectionChanged(
   
   // Set up the new keyset:
   currentKeyset = kwi->getID();
-  enableButtons();
 
   // If this is a favorite keyset, set up the favorites info:
   if (kwi->isFavorite())
@@ -463,7 +473,10 @@ void MainWindow::keysetSelectionChanged(
     currentFavorite = -1;
   }
 
+  enableButtons();
+
   // Store this keyset info persistently:
+/*
   QSettings settings("pietrzak.org", "Pierogi");
 
   settings.setValue(
@@ -473,6 +486,7 @@ void MainWindow::keysetSelectionChanged(
   settings.setValue(
     "currentKeysetName",
     myKeysets->getDisplayName(currentKeyset));
+*/
 }
 
 
@@ -492,6 +506,7 @@ void MainWindow::addToFavorites(
   favoritesDialog->addItem(new PIRKeysetWidgetItem(kwi));
 
   // And, add the keyset id to the persistent list:
+/*
   QSettings settings("pietrzak.org", "Pierogi");
 
   int favSettingsSize = settings.beginReadArray("favorites");
@@ -511,6 +526,7 @@ void MainWindow::addToFavorites(
 //  settings.setValue("tabBarName", kwi->getTabBarName());
 
   settings.endArray();
+*/
 }
 
 
@@ -523,6 +539,7 @@ void MainWindow::removeFromFavorites(
   // little more convenient to just blow away the existing list of favorites
   // and rewrite it, as modifying an existing QSettings array in the middle
   // seems a bit hard...
+/*
   QSettings settings("pietrzak.org", "Pierogi");
 
   settings.remove("favorites");
@@ -557,6 +574,7 @@ void MainWindow::removeFromFavorites(
     ++index;
   }
   settings.endArray();
+*/
 }
 
 
@@ -754,16 +772,19 @@ void MainWindow::setupTabs(
   ui->mainTabWidget->setUpdatesEnabled(true);
 
   // Update the favorites with this info:
-  if (currentFavorite >= 0)
+  if (currentFavorite != -1)
   {
     favoritesDialog->updateTabBarName(currentFavorite, name);
+    favoritesDialog->updatePanelIndex(currentFavorite, 0);
   }
 
   // Store the new info:
   currentTabsName = name;
+/*
   QSettings settings("pietrzak.org", "Pierogi");
   settings.setValue("currentTabsName", name);
   settings.setValue("currentPanelIndex", 0);
+*/
 }
 
 
@@ -795,9 +816,11 @@ void MainWindow::setupFavoriteTabs(
 
   // Store the new info into the "current" settings:
   currentTabsName = name;
+/*
   QSettings settings("pietrzak.org", "Pierogi");
   settings.setValue("currentTabsName", name);
   settings.setValue("currentPanelIndex", panelIndex);
+*/
 }
 
 
@@ -835,7 +858,7 @@ void MainWindow::updateKeysetSelection(
 void MainWindow::updateFavoriteKeysetSelection(
   unsigned int targetID,
   int favoriteIndex,
-  PIRMakeName makeName,
+//  PIRMakeName makeName,
   PIRTabBarName tabBarName,
   int panelIndex)
 {
@@ -845,7 +868,8 @@ void MainWindow::updateFavoriteKeysetSelection(
     return;
   }
 
-  // Store the panel index of the old keyset:
+  // Store the panel index of the old keyset.  (Don't need to worry about
+  // the tab bar name, that should already be stored.)
   if (currentFavorite != -1)
   {
     favoritesDialog->updatePanelIndex(
@@ -858,7 +882,7 @@ void MainWindow::updateFavoriteKeysetSelection(
   currentKeyset = targetID;
   currentFavorite = favoriteIndex;
 
-  QSettings settings("pietrzak.org", "Pierogi");
+//  QSettings settings("pietrzak.org", "Pierogi");
 
   if (currentTabsName != tabBarName)
   {
@@ -870,8 +894,8 @@ void MainWindow::updateFavoriteKeysetSelection(
     ui->mainTabWidget->setUpdatesEnabled(true);
     currentTabsName = tabBarName;
     ui->mainTabWidget->setCurrentIndex(panelIndex);
-    settings.setValue("currentTabsName", tabBarName);
-    settings.setValue("currentPanelIndex", panelIndex);
+//    settings.setValue("currentTabsName", tabBarName);
+//    settings.setValue("currentPanelIndex", panelIndex);
 
     // Notify the tabs choice dialog that the tabs changed:
     tabsChoiceDialog->switchToTabBar(tabBarName);
@@ -879,9 +903,12 @@ void MainWindow::updateFavoriteKeysetSelection(
   else
   {
     enableButtons();
+    ui->mainTabWidget->setCurrentIndex(panelIndex);
   }
 
   // Store this info persistently:
+/*
+  QSettings settings("pietrzak.org", "Pierogi");
   settings.setValue(
     "currentKeysetMake",
     makeManager.getMakeString(makeName));
@@ -889,6 +916,7 @@ void MainWindow::updateFavoriteKeysetSelection(
     "currentKeysetName",
     myKeysets->getDisplayName(currentKeyset));
   settings.setValue("currentTabsName", currentTabsName);
+*/
 }
 
 
