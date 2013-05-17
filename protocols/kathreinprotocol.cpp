@@ -1,6 +1,6 @@
 #include "kathreinprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -59,7 +59,7 @@ void KathreinProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
@@ -67,15 +67,15 @@ void KathreinProtocol::startSendingCommand(
     {
       if (repeatCount)
       {
-        commandDuration = generateRepeatCommand((*i).second, rx51device);
+        commandDuration = generateRepeatCommand((*i).second, led);
       }
       else
       {
-        commandDuration = generateStandardCommand((*i).second, rx51device);
+        commandDuration = generateStandardCommand((*i).second, led);
       }
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -111,25 +111,25 @@ void KathreinProtocol::startSendingCommand(
 
 int KathreinProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
   // Kathrein protocol has four bits of address and eight bits of command.
   // As in NEC protocol, the address and command are complemented.
   // - "preData" should contain the 4-bit address
   // - "firstCode" should contain the 8-bit command
-  duration += pushReverseBits(preData, rx51device);
-  duration += pushInvertedReverseBits(preData, rx51device);
-  duration += pushReverseBits(pkb.firstCode, rx51device);
-  duration += pushInvertedReverseBits(pkb.firstCode, rx51device);
+  duration += pushReverseBits(preData, led);
+  duration += pushInvertedReverseBits(preData, led);
+  duration += pushReverseBits(pkb.firstCode, led);
+  duration += pushInvertedReverseBits(pkb.firstCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;
@@ -138,19 +138,19 @@ int KathreinProtocol::generateStandardCommand(
 
 int KathreinProtocol::generateRepeatCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
   // The Kathrein repeat block contains the 8-bit command and nothing else:
-  duration += pushReverseBits(pkb.firstCode, rx51device);
+  duration += pushReverseBits(pkb.firstCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

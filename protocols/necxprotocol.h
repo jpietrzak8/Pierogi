@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The "NECX" protocol is a slight variation on the popular NEC protocol.
@@ -29,10 +29,10 @@ private:
 
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int generateRepeatCommand(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // NECXPROTOCOL_H

@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // This is apparently a very old Panasonic protocol, but still in use by a
@@ -25,7 +25,7 @@ public slots:
 private:
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // PANASONICOLDPROTOCOL_H

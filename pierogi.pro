@@ -54,7 +54,6 @@ SOURCES += main.cpp mainwindow.cpp \
     pirmodprobe.cpp \
     keysets/jvc.cpp \
     pirselectkeysetform.cpp \
-    pirrx51hardware.cpp \
     pirdevicetypenames.cpp \
     keysets/raite.cpp \
     keysets/sagem.cpp \
@@ -258,7 +257,10 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/comag.cpp \
     keysets/openbox.cpp \
     keysets/silvercrest.cpp \
-    keysets/xoro.cpp
+    keysets/xoro.cpp \
+    pirinfraredled.cpp \
+    pirflashled.cpp \
+    keysets/insignia.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -287,7 +289,6 @@ HEADERS += mainwindow.h \
     pirmodprobe.h \
     keysets/jvc.h \
     pirselectkeysetform.h \
-    pirrx51hardware.h \
     pirdevicetypenames.h \
     keysets/raite.h \
     keysets/sagem.h \
@@ -492,7 +493,10 @@ HEADERS += mainwindow.h \
     keysets/comag.h \
     keysets/openbox.h \
     keysets/silvercrest.h \
-    keysets/xoro.h
+    keysets/xoro.h \
+    pirinfraredled.h \
+    pirflashled.h \
+    keysets/insignia.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

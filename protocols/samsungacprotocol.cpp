@@ -1,6 +1,6 @@
 #include "samsungacprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -135,19 +135,19 @@ void SamsungACProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     if (command == ACSetTimer_Key)
     {
-      generateTimerCommand(rx51device);
+      generateTimerCommand(led);
     }
     else
     {
-      generateCommand(rx51device);
+      generateCommand(led);
     }
 
     // Now, tell the device to send the whole command:
-    rx51device.sendCommandToDevice();
+    led.sendCommandToDevice();
 
     QMutexLocker cifLocker(&commandIFMutex);
     commandInFlight = false;
@@ -161,13 +161,13 @@ void SamsungACProtocol::startSendingCommand(
 
 
 void SamsungACProtocol::generateCommand(
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
 
   // Next, the "address" information (12 bits):
-  pushReverseBits(preData, rx51device);
+  pushReverseBits(preData, led);
 
   // Now, the fun part.  We'll need to construct a massive command, containing
   // all the state information for the air conditioner.
@@ -175,31 +175,31 @@ void SamsungACProtocol::generateCommand(
   // First, calculate and push the checksum (4 bits):
   CommandSequence checksum;
   calculateChecksum(checksum);
-  pushReverseBits(checksum, rx51device);
+  pushReverseBits(checksum, led);
 
   // Next, push the swing mode (8 bits):
-  pushReverseBits(swing, rx51device);
+  pushReverseBits(swing, led);
 
   // Next, the turbo mode (8 bits):
-  pushReverseBits(turbo, rx51device);
+  pushReverseBits(turbo, led);
 
   // Next, the temperature (8 bits):
-  pushReverseBits(temperature, rx51device);
+  pushReverseBits(temperature, led);
 
   // Next, the fan (4 bits):
-  pushReverseBits(fan, rx51device);
+  pushReverseBits(fan, led);
 
   // Next, the mode (4 bits):
-  pushReverseBits(mode, rx51device);
+  pushReverseBits(mode, led);
 
   // Next, "air clean" (4 bits):
-  pushReverseBits(airclean, rx51device);
+  pushReverseBits(airclean, led);
 
   // Next, power (4 bits):
-  pushReverseBits(power, rx51device);
+  pushReverseBits(power, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
 }
 
 
@@ -267,55 +267,55 @@ void SamsungACProtocol::calculateChecksum(
 
 
 void SamsungACProtocol::generateTimerCommand(
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
 
   // Next, the "address" information (12 bits):
-  pushReverseBits(preData, rx51device);
+  pushReverseBits(preData, led);
 
   // The checksum (4 bits):
   CommandSequence checksum;
   calculateTimerChecksum(checksum);
-  pushReverseBits(checksum, rx51device);
+  pushReverseBits(checksum, led);
 
   // Push an 0xF to indicate this is a timer command.
-  pushBits(timerHeader, rx51device);
+  pushBits(timerHeader, led);
 
   // if this is an off timer, push the time, otherwise 0:
   if (timerCommandType == 0x4)
   {
-    pushReverseBits(timerMinutes, rx51device);
-    pushReverseBits(timerHours, rx51device);
+    pushReverseBits(timerMinutes, led);
+    pushReverseBits(timerHours, led);
   }
   else
   {
-    pushBits(emptyTimer, rx51device);
+    pushBits(emptyTimer, led);
   }
 
   // if this is an on timer, push the time, otherwise 0:
   if (timerCommandType == 0x2)
   {
-    pushReverseBits(timerMinutes, rx51device);
-    pushReverseBits(timerHours, rx51device);
+    pushReverseBits(timerMinutes, led);
+    pushReverseBits(timerHours, led);
   }
   else
   {
-    pushBits(emptyTimer, rx51device);
+    pushBits(emptyTimer, led);
   }
 
   // This is a hack to add in 4 bits of 0:
-  pushBits(fourBitZero, rx51device);
+  pushBits(fourBitZero, led);
 
   // Push the timer command type:
-  pushReverseBits(timerOption, rx51device);
+  pushReverseBits(timerOption, led);
 
   // Finish off the command:
-  pushBits(timerFooter, rx51device);
+  pushBits(timerFooter, led);
 
   // Add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
 }
 
 

@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // Although it is hard to find solid data on the RCA protocol, it seems
@@ -29,7 +29,7 @@ public slots:
 private:
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // RCAPROTOCOL_H

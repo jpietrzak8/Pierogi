@@ -1,6 +1,6 @@
 #include "boseprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -57,16 +57,16 @@ void BoseProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      commandDuration = generateStandardCommand((*i).second, rx51device);
+      commandDuration = generateStandardCommand((*i).second, led);
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -102,22 +102,22 @@ void BoseProtocol::startSendingCommand(
 
 int BoseProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
   // The Bose protocol uses 1/2 of the NEC protocol; it has the command
   // portion, but no device address portion.  So, we only need to reverse
   // the command, then invert and reverse the command:
-  duration += pushReverseBits(pkb.firstCode, rx51device);
-  duration += pushInvertedReverseBits(pkb.firstCode, rx51device);
+  duration += pushReverseBits(pkb.firstCode, led);
+  duration += pushInvertedReverseBits(pkb.firstCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

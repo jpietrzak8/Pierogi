@@ -1,4 +1,4 @@
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 // #define DEBUGGING
 
@@ -31,7 +31,7 @@ timeval previousTime;
 //#define DEFAULT_DUTY_CYCLE 50
 
 
-PIRRX51Hardware::PIRRX51Hardware()
+PIRInfraredLED::PIRInfraredLED()
   : fileDescriptor(-1),
     index(0)
 {
@@ -39,7 +39,7 @@ PIRRX51Hardware::PIRRX51Hardware()
 }
 
 
-PIRRX51Hardware::PIRRX51Hardware(
+PIRInfraredLED::PIRInfraredLED(
   unsigned int frequency,
   unsigned int dutyCycle)
   : fileDescriptor(-1),
@@ -51,13 +51,13 @@ PIRRX51Hardware::PIRRX51Hardware(
 }
 
 
-PIRRX51Hardware::~PIRRX51Hardware()
+PIRInfraredLED::~PIRInfraredLED()
 {
   if (fileDescriptor >= 0) close(fileDescriptor);
 }
 
 
-void PIRRX51Hardware::openLircDevice()
+void PIRInfraredLED::openLircDevice()
 {
 #ifdef DEBUGGING
   // check the current time:
@@ -75,7 +75,7 @@ void PIRRX51Hardware::openLircDevice()
 }
 
 
-void PIRRX51Hardware::addPair(
+void PIRInfraredLED::addPair(
   int pulse,
   int space)
 {
@@ -92,7 +92,7 @@ void PIRRX51Hardware::addPair(
 }
 
 
-void PIRRX51Hardware::addSingle(
+void PIRInfraredLED::addSingle(
   int single)
 {
   if (index >= BUFFER_SIZE)
@@ -105,7 +105,7 @@ void PIRRX51Hardware::addSingle(
 }
 
 
-void PIRRX51Hardware::sendCommandToDevice()
+void PIRInfraredLED::sendCommandToDevice()
 {
   // Sanity check first:
   if (!index)
@@ -154,7 +154,7 @@ void PIRRX51Hardware::sendCommandToDevice()
 }
 
 
-void PIRRX51Hardware::setCarrierFrequency(
+void PIRInfraredLED::setCarrierFrequency(
   unsigned int frequency)
 {
 //  if (!frequency) frequency = DEFAULT_FREQUENCY;
@@ -172,7 +172,7 @@ void PIRRX51Hardware::setCarrierFrequency(
 }
 
 
-void PIRRX51Hardware::setDutyCycle(
+void PIRInfraredLED::setDutyCycle(
   unsigned int dutyCycle)
 {
 //  if (dutyCycle > 100) dutyCycle = DEFAULT_DUTY_CYCLE;

@@ -1,6 +1,6 @@
 #include "xmpprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -74,7 +74,7 @@ void XMPProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
@@ -82,15 +82,15 @@ void XMPProtocol::startSendingCommand(
     {
       if (repeatCount)
       {
-        commandDuration = generateRepeatCommand(i->second, rx51device);
+        commandDuration = generateRepeatCommand(i->second, led);
       }
       else
       {
-        commandDuration = generateStandardCommand(i->second, rx51device);
+        commandDuration = generateStandardCommand(i->second, led);
       }
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -104,8 +104,8 @@ void XMPProtocol::startSendingCommand(
           // Do we need to send out a final frame?
           if (hasFinalFrame)
           {
-            commandDuration = generateFinalCommand(i->second, rx51device);
-            rx51device.sendCommandToDevice();
+            commandDuration = generateFinalCommand(i->second, led);
+            led.sendCommandToDevice();
             sleepUntilRepeat(commandDuration);
           }
 
@@ -134,7 +134,7 @@ void XMPProtocol::startSendingCommand(
 
 int XMPProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
@@ -156,27 +156,27 @@ int XMPProtocol::generateStandardCommand(
   // their side of the frame to 15, taking the complement, and modding the
   // result with 16.
 
-  duration += pushHalfByte(subDeviceOne, rx51device);
-  duration += pushHalfByte(calculateChecksumOne(), rx51device);
-  duration += pushHalfByte(subDeviceTwo, rx51device);
-  duration += pushHalfByte(0xF, rx51device);
-  duration += pushFullByte(oemCode, rx51device);
-  duration += pushFullByte(deviceCode, rx51device);
+  duration += pushHalfByte(subDeviceOne, led);
+  duration += pushHalfByte(calculateChecksumOne(), led);
+  duration += pushHalfByte(subDeviceTwo, led);
+  duration += pushHalfByte(0xF, led);
+  duration += pushFullByte(oemCode, led);
+  duration += pushFullByte(deviceCode, led);
 
-  rx51device.addPair(210, 13800);
+  led.addPair(210, 13800);
   duration += 14010;
 
-  duration += pushHalfByte(subDeviceOne, rx51device);
+  duration += pushHalfByte(subDeviceOne, led);
   duration += pushHalfByte(
     calculateChecksumTwo(0x0, pkb.firstCode, pkb.secondCode),
-    rx51device);
-  duration += pushHalfByte(0x0, rx51device);
-  duration += pushHalfByte(subDeviceTwo, rx51device);
-  duration += pushBits(pkb.firstCode, rx51device);
-  duration += pushBits(pkb.secondCode, rx51device);
+    led);
+  duration += pushHalfByte(0x0, led);
+  duration += pushHalfByte(subDeviceTwo, led);
+  duration += pushBits(pkb.firstCode, led);
+  duration += pushBits(pkb.secondCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(210);
+  led.addSingle(210);
   duration += 210;
 
   return duration;
@@ -185,34 +185,34 @@ int XMPProtocol::generateStandardCommand(
 
 int XMPProtocol::generateRepeatCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // an XMP repeat frame is identical to the start frame, except that
   // the "toggle" value is now 8.
 
-  duration += pushHalfByte(subDeviceOne, rx51device);
-  duration += pushHalfByte(calculateChecksumOne(), rx51device);
-  duration += pushHalfByte(subDeviceTwo, rx51device);
-  duration += pushHalfByte(0xF, rx51device);
-  duration += pushFullByte(oemCode, rx51device);
-  duration += pushFullByte(deviceCode, rx51device);
+  duration += pushHalfByte(subDeviceOne, led);
+  duration += pushHalfByte(calculateChecksumOne(), led);
+  duration += pushHalfByte(subDeviceTwo, led);
+  duration += pushHalfByte(0xF, led);
+  duration += pushFullByte(oemCode, led);
+  duration += pushFullByte(deviceCode, led);
 
-  rx51device.addPair(210, 13800);
+  led.addPair(210, 13800);
   duration += 14010;
 
-  duration += pushHalfByte(subDeviceOne, rx51device);
+  duration += pushHalfByte(subDeviceOne, led);
   duration += pushHalfByte(
     calculateChecksumTwo(0x8, pkb.firstCode, pkb.secondCode),
-    rx51device);
-  duration += pushHalfByte(0x8, rx51device);
-  duration += pushHalfByte(subDeviceTwo, rx51device);
-  duration += pushBits(pkb.firstCode, rx51device);
-  duration += pushBits(pkb.secondCode, rx51device);
+    led);
+  duration += pushHalfByte(0x8, led);
+  duration += pushHalfByte(subDeviceTwo, led);
+  duration += pushBits(pkb.firstCode, led);
+  duration += pushBits(pkb.secondCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(210);
+  led.addSingle(210);
   duration += 210;
 
   return duration;
@@ -221,7 +221,7 @@ int XMPProtocol::generateRepeatCommand(
 
 int XMPProtocol::generateFinalCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
@@ -229,49 +229,49 @@ int XMPProtocol::generateFinalCommand(
   // gap between them is only 13800 usec, and the "toggle" value of the
   // second frame is 9.
 
-  duration += pushHalfByte(subDeviceOne, rx51device);
-  duration += pushHalfByte(calculateChecksumOne(), rx51device);
-  duration += pushHalfByte(subDeviceTwo, rx51device);
-  duration += pushHalfByte(0xF, rx51device);
-  duration += pushFullByte(oemCode, rx51device);
-  duration += pushFullByte(deviceCode, rx51device);
+  duration += pushHalfByte(subDeviceOne, led);
+  duration += pushHalfByte(calculateChecksumOne(), led);
+  duration += pushHalfByte(subDeviceTwo, led);
+  duration += pushHalfByte(0xF, led);
+  duration += pushFullByte(oemCode, led);
+  duration += pushFullByte(deviceCode, led);
 
-  rx51device.addPair(210, 13800);
+  led.addPair(210, 13800);
   duration += 14010;
 
-  duration += pushHalfByte(subDeviceOne, rx51device);
+  duration += pushHalfByte(subDeviceOne, led);
   duration += pushHalfByte(
     calculateChecksumTwo(0x8, pkb.firstCode, pkb.secondCode),
-    rx51device);
-  duration += pushHalfByte(0x8, rx51device);
-  duration += pushHalfByte(subDeviceTwo, rx51device);
-  duration += pushBits(pkb.firstCode, rx51device);
-  duration += pushBits(pkb.secondCode, rx51device);
+    led);
+  duration += pushHalfByte(0x8, led);
+  duration += pushHalfByte(subDeviceTwo, led);
+  duration += pushBits(pkb.firstCode, led);
+  duration += pushBits(pkb.secondCode, led);
 
-  rx51device.addPair(210, 13800);
+  led.addPair(210, 13800);
   duration += 14010;
 
-  duration += pushHalfByte(subDeviceOne, rx51device);
-  duration += pushHalfByte(calculateChecksumOne(), rx51device);
-  duration += pushHalfByte(subDeviceTwo, rx51device);
-  duration += pushHalfByte(0xF, rx51device);
-  duration += pushFullByte(oemCode, rx51device);
-  duration += pushFullByte(deviceCode, rx51device);
+  duration += pushHalfByte(subDeviceOne, led);
+  duration += pushHalfByte(calculateChecksumOne(), led);
+  duration += pushHalfByte(subDeviceTwo, led);
+  duration += pushHalfByte(0xF, led);
+  duration += pushFullByte(oemCode, led);
+  duration += pushFullByte(deviceCode, led);
 
-  rx51device.addPair(210, 13800);
+  led.addPair(210, 13800);
   duration += 14010;
 
-  duration += pushHalfByte(subDeviceOne, rx51device);
+  duration += pushHalfByte(subDeviceOne, led);
   duration += pushHalfByte(
     calculateChecksumTwo(0x9, pkb.firstCode, pkb.secondCode),
-    rx51device);
-  duration += pushHalfByte(0x9, rx51device);
-  duration += pushHalfByte(subDeviceTwo, rx51device);
-  duration += pushBits(pkb.firstCode, rx51device);
-  duration += pushBits(pkb.secondCode, rx51device);
+    led);
+  duration += pushHalfByte(0x9, led);
+  duration += pushHalfByte(subDeviceTwo, led);
+  duration += pushBits(pkb.firstCode, led);
+  duration += pushBits(pkb.secondCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(210);
+  led.addSingle(210);
   duration += 210;
 
   return duration;
@@ -354,10 +354,10 @@ unsigned int XMPProtocol::calculateChecksumTwo(
 
 int XMPProtocol::pushHalfByte(
   unsigned int halfByte,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   unsigned int space = 760 + (136 * halfByte);
-  rx51device.addPair(210, space);
+  led.addPair(210, space);
 
   return (210 + space);
 }
@@ -365,13 +365,13 @@ int XMPProtocol::pushHalfByte(
 
 int XMPProtocol::pushFullByte(
   unsigned int fullByte,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   unsigned int firstSpace = 760 + (136 * (fullByte >> 4));
   unsigned int secondSpace = 760 + (136 * (fullByte & 0xF));
 
-  rx51device.addPair(210, firstSpace);
-  rx51device.addPair(210, secondSpace);
+  led.addPair(210, firstSpace);
+  led.addPair(210, secondSpace);
 
   return (420 + firstSpace + secondSpace);
 }
@@ -379,7 +379,7 @@ int XMPProtocol::pushFullByte(
 
 int XMPProtocol::pushBits(
   const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   unsigned int duration = 0;
 
@@ -400,7 +400,7 @@ int XMPProtocol::pushBits(
     }
     else
     {
-      rx51device.addPair(210, 760 + (136 * bitsValue));
+      led.addPair(210, 760 + (136 * bitsValue));
       duration += 970 + (136 * bitsValue);
 
       count = 1;
@@ -412,7 +412,7 @@ int XMPProtocol::pushBits(
 
   if (count == 4)
   {
-    rx51device.addPair(210, 760 + (136 * bitsValue));
+    led.addPair(210, 760 + (136 * bitsValue));
     duration += 970 + (136 * bitsValue);
   }
 

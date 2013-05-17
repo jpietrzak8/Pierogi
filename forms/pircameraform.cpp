@@ -3,6 +3,7 @@
 
 #include "mainwindow.h"
 #include "pirkeysetmanager.h"
+#include "pirflashled.h"
 
 /*
 PIRCameraForm::PIRCameraForm(QWidget *parent) :
@@ -18,7 +19,8 @@ PIRCameraForm::PIRCameraForm(
   MainWindow *mw)
   : QWidget(0),
     ui(new Ui::PIRCameraForm),
-    mainWindow(mw)
+    mainWindow(mw),
+    flash(0)
 {
   ui->setupUi(this);
 }
@@ -26,6 +28,8 @@ PIRCameraForm::PIRCameraForm(
 
 PIRCameraForm::~PIRCameraForm()
 {
+  if (flash) delete flash;
+
   delete ui;
 }
 
@@ -39,22 +43,31 @@ void PIRCameraForm::enableButtons(
 }
 
 
-void PIRCameraForm::on_delayedShutterButton_pressed()
-{
-  mainWindow->startRepeating(DelayedOpenShutter_Key);
-}
-
-void PIRCameraForm::on_delayedShutterButton_released()
-{
-  mainWindow->stopRepeating();
-}
-
 void PIRCameraForm::on_openShutterButton_pressed()
 {
-  mainWindow->startRepeating(OpenShutter_Key);
+  if (ui->delayedShutterCheckBox->isChecked())
+  {
+    mainWindow->startRepeating(DelayedOpenShutter_Key);
+  }
+  else
+  {
+    if (ui->remoteFlashCheckBox->isChecked())
+    {
+      flash = new PIRFlashLED();
+      flash->strobe();
+    }
+
+    mainWindow->startRepeating(OpenShutter_Key);
+  }
 }
 
 void PIRCameraForm::on_openShutterButton_released()
 {
   mainWindow->stopRepeating();
+
+  if (flash)
+  {
+    delete flash;
+    flash = 0;
+  }
 }

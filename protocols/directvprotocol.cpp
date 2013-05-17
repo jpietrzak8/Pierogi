@@ -1,6 +1,6 @@
 #include "directvprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 #include <string>
@@ -87,7 +87,7 @@ void DirectvProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
@@ -97,20 +97,20 @@ void DirectvProtocol::startSendingCommand(
       // a long-pulse header.
       if (repeatCount)
       {
-        rx51device.addPair(3000, 1200);
+        led.addPair(3000, 1200);
         commandDuration += 4200;
       }
       else
       {
-        rx51device.addPair(6000, 1200);
+        led.addPair(6000, 1200);
         commandDuration += 7200;
       }
 
       // Now, generate the rest of the command:
-      commandDuration += generateStandardCommand((*i).second, rx51device);
+      commandDuration += generateStandardCommand((*i).second, led);
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -146,7 +146,7 @@ void DirectvProtocol::startSendingCommand(
 
 int DirectvProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
@@ -161,15 +161,15 @@ int DirectvProtocol::generateStandardCommand(
 
   // - "preData" will contain the address
   // - "firstCode" will contain the command
-  duration += pushDTVBits(preData, rx51device);
-  duration += pushDTVBits(pkb.firstCode, rx51device);
+  duration += pushDTVBits(preData, led);
+  duration += pushDTVBits(pkb.firstCode, led);
 
   CommandSequence checksumBits;
   generateChecksum(pkb.firstCode, checksumBits);
-  duration += pushDTVBits(checksumBits, rx51device);
+  duration += pushDTVBits(checksumBits, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(600);
+  led.addSingle(600);
   duration += 600;
 
   return duration;
@@ -178,7 +178,7 @@ int DirectvProtocol::generateStandardCommand(
 
 int DirectvProtocol::pushDTVBits(
   const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
   CommandSequence::const_iterator i = bits.begin();
@@ -187,13 +187,13 @@ int DirectvProtocol::pushDTVBits(
     if (*i)
     {
       // Send the value for "One":
-      rx51device.addSingle(1200);
+      led.addSingle(1200);
       duration += 1200;
     }
     else
     {
       // Send the value for "Zero":
-      rx51device.addSingle(600);
+      led.addSingle(600);
       duration += 600;
     }
     ++i;

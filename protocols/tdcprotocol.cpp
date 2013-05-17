@@ -1,6 +1,6 @@
 #include "tdcprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -59,7 +59,7 @@ void TDCProtocol::startSendingCommand(
     }
 
     // Construct the object that communicates with the device driver:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
@@ -67,21 +67,21 @@ void TDCProtocol::startSendingCommand(
     {
       // Construct the actual command string.
       // The string always starts with a constant "1" bit:
-      commandDuration += pushBit(true, rx51device);
+      commandDuration += pushBit(true, led);
 
       // Next, the device bits:
-      commandDuration += pushBits(preData, rx51device);
+      commandDuration += pushBits(preData, led);
 
       // Then, the subdevice bits:
-      commandDuration += pushBits(postData, rx51device);
+      commandDuration += pushBits(postData, led);
 
       // Finally, the command bits:
-      commandDuration += pushBits((*i).second.firstCode, rx51device);
+      commandDuration += pushBits((*i).second.firstCode, led);
 
       // Clear out the buffer, if needed:
       if (buffer)
       {
-        rx51device.addSingle(buffer);
+        led.addSingle(buffer);
         commandDuration += buffer;
 
         buffer = 0;
@@ -90,7 +90,7 @@ void TDCProtocol::startSendingCommand(
       }
 
       // Send the command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // Sleep for the required amount of time.
       sleepUntilRepeat(commandDuration);
@@ -122,7 +122,7 @@ void TDCProtocol::startSendingCommand(
 
 int TDCProtocol::pushBits(
   const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
@@ -130,7 +130,7 @@ int TDCProtocol::pushBits(
 
   while (i != bits.end())
   {
-    duration += pushBit(*i, rx51device);
+    duration += pushBit(*i, led);
     ++i;
   }
 
@@ -140,7 +140,7 @@ int TDCProtocol::pushBits(
 
 int TDCProtocol::pushBit(
   bool bitValue,
-  PIRRX51Hardware &device)
+  PIRInfraredLED &led)
 {
   unsigned int duration = 0;
   // TDC encodes a "0" by using a space followed by a pulse,
@@ -152,7 +152,7 @@ int TDCProtocol::pushBit(
     if (bufferContainsPulse)
     {
       // Merge our pulse with the previous one, and send them to the device:
-      device.addSingle(buffer + biphaseUnit);
+      led.addSingle(buffer + biphaseUnit);
       duration += (buffer + biphaseUnit);
       buffer = 0;
       bufferContainsPulse = false;
@@ -162,14 +162,14 @@ int TDCProtocol::pushBit(
       if (bufferContainsSpace)
       {
         // Flush out the buffer:
-        device.addSingle(buffer);
+        led.addSingle(buffer);
         duration += buffer;
         buffer = 0;
         bufferContainsSpace = false;
       }
 
       // Add a pulse:
-      device.addSingle(biphaseUnit);
+      led.addSingle(biphaseUnit);
       duration += biphaseUnit;
     }
 
@@ -184,7 +184,7 @@ int TDCProtocol::pushBit(
     {
       // Merge our space with the previous space, and send them to
       // the device.
-      device.addSingle(buffer + biphaseUnit);
+      led.addSingle(buffer + biphaseUnit);
       duration += (buffer + biphaseUnit);
       buffer = 0;
       bufferContainsSpace = false;
@@ -194,13 +194,13 @@ int TDCProtocol::pushBit(
       if (bufferContainsPulse)
       {
         // Flush the buffer:
-        device.addSingle(buffer);
+        led.addSingle(buffer);
         duration += buffer;
         buffer = 0;
         bufferContainsPulse = false;
       }
       // Add a space:
-      device.addSingle(biphaseUnit);
+      led.addSingle(biphaseUnit);
       duration += biphaseUnit;
     }
 

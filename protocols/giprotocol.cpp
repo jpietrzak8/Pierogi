@@ -1,6 +1,6 @@
 #include "giprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -60,7 +60,7 @@ void GIProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
@@ -69,15 +69,15 @@ void GIProtocol::startSendingCommand(
       // If we are currently repeating, send a repeat block.
       if (repeatCount)
       {
-        commandDuration = generateRepeatCommand(rx51device);
+        commandDuration = generateRepeatCommand(led);
       }
       else
       {
-        commandDuration = generateStandardCommand((*i).second, rx51device);
+        commandDuration = generateStandardCommand((*i).second, led);
       }
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -113,12 +113,12 @@ void GIProtocol::startSendingCommand(
 
 int GIProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
   // The GI protocol consists of a 4-bit device code and an 8-bit command.
@@ -127,10 +127,10 @@ int GIProtocol::generateStandardCommand(
   // now, so I'm going to dump all 16 bits into the "firstCode" in MSB
   // order, and reverse them here:
 
-  duration += pushReverseBits(pkb.firstCode, rx51device);
+  duration += pushReverseBits(pkb.firstCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;
@@ -138,16 +138,16 @@ int GIProtocol::generateStandardCommand(
 
 
 int GIProtocol::generateRepeatCommand(
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // Add the repeat pulse:
-  rx51device.addPair(repeatPulse, repeatSpace);
+  led.addPair(repeatPulse, repeatSpace);
   duration += (repeatPulse + repeatSpace);
 
   // Add the trailer:
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

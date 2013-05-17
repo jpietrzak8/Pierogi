@@ -3,7 +3,7 @@
 
 #include "pirprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The Sky protocol is a fairly close implementation of RC6 mode 6.
@@ -24,13 +24,13 @@ public slots:
 private:
   int pushBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushZero(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushOne(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   unsigned int biphaseUnit;
 

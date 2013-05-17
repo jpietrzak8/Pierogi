@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The SIRC protocol is Sony's system for transmitting information via
@@ -40,7 +40,7 @@ public slots:
 private:
   int generateStandardCommand(
     const PIRKeyBits &pkb,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // SIRCPROTOCOL_H

@@ -3,7 +3,7 @@
 
 #include "pirprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The MCE protocol is derived from (but does not exactly match) RC6 mode 6A.
@@ -25,13 +25,13 @@ public slots:
 private:
   int pushBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushZero(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushOne(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   unsigned int biphaseUnit;
 

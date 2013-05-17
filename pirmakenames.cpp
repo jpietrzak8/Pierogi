@@ -63,6 +63,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Humax_Make] = "Humax";
   makes[Hyundai_Make] = "Hyundai";
   makes[ILO_Make] = "ILO";
+  makes[Insignia_Make] = "Insignia";
   makes[IRobot_Make] = "iRobot";
   makes[JVC_Make] = "JVC";
   makes[Kaon_Make] = "Kaon";

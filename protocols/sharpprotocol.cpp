@@ -1,6 +1,6 @@
 #include "sharpprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 #include <string>
@@ -66,7 +66,7 @@ void SharpProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
@@ -75,15 +75,15 @@ void SharpProtocol::startSendingCommand(
       // Every other repeat count, we invert everything but the address:
       if (repeatCount % 2)
       {
-        commandDuration = generateToggledCommand((*i).second, rx51device);
+        commandDuration = generateToggledCommand((*i).second, led);
       }
       else
       {
-        commandDuration = generateStandardCommand((*i).second, rx51device);
+        commandDuration = generateStandardCommand((*i).second, led);
       }
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -120,34 +120,34 @@ void SharpProtocol::startSendingCommand(
 
 int SharpProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, push the address:
-  duration += pushReverseBits(pkb.firstCode, rx51device);
+  duration += pushReverseBits(pkb.firstCode, led);
 
   // Next, push the command:
-  duration += pushReverseBits(pkb.secondCode, rx51device);
+  duration += pushReverseBits(pkb.secondCode, led);
 
   // Next, there is an "expansion" bit and a "check" bit.  Not entirely sure
   // what these two do.  The check bit is fixed at "0".
   if (expansionBit)
   {
-    rx51device.addPair(onePulse, oneSpace);
+    led.addPair(onePulse, oneSpace);
     duration += (onePulse + oneSpace);
   }
   else
   {
-    rx51device.addPair(zeroPulse, zeroSpace);
+    led.addPair(zeroPulse, zeroSpace);
     duration += (zeroPulse + zeroSpace);
   }
 
-  rx51device.addPair(zeroPulse, zeroSpace);
+  led.addPair(zeroPulse, zeroSpace);
   duration += (zeroPulse + zeroSpace);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;
@@ -158,32 +158,32 @@ int SharpProtocol::generateStandardCommand(
 // are inverted:
 int SharpProtocol::generateToggledCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
-  pushReverseBits(pkb.firstCode, rx51device);
+  pushReverseBits(pkb.firstCode, led);
 
   // This time we invert the command bits:
-  pushInvertedReverseBits(pkb.secondCode, rx51device);
+  pushInvertedReverseBits(pkb.secondCode, led);
 
   // We'll also invert the two administrative bits here:
   if (expansionBit)
   {
-    rx51device.addPair(zeroPulse, zeroSpace);
+    led.addPair(zeroPulse, zeroSpace);
     duration += (zeroPulse + zeroSpace);
   }
   else
   {
-    rx51device.addPair(onePulse, oneSpace);
+    led.addPair(onePulse, oneSpace);
     duration += (onePulse + oneSpace);
   }
 
-  rx51device.addPair(onePulse, oneSpace);
+  led.addPair(onePulse, oneSpace);
   duration += (onePulse + oneSpace);
 
   // Add trail on end:
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

@@ -3,7 +3,7 @@
 
 #include "pirprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 class TDCProtocol: public PIRProtocol
 {
@@ -23,11 +23,11 @@ public slots:
 private:
   int pushBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushBit(
     bool bitValue,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   unsigned int biphaseUnit;
   unsigned int buffer;

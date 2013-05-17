@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 // The "G.I." protocol appears to be used by some Motorola boxes.
 
@@ -25,10 +25,10 @@ private:
 
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int generateRepeatCommand(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // GIPROTOCOL_H

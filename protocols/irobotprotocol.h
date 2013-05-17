@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 // The iRobot protocol is extremely simple, but my sources differ slightly
 // on its exact properties (particularly how repetition is handled).  So
@@ -24,7 +24,7 @@ public slots:
 private:
   int generateCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // IROBOTPROTOCOL_H

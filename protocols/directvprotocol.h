@@ -3,7 +3,7 @@
 
 #include "pirprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 enum DirectvGapSize
 {
@@ -36,11 +36,11 @@ private:
 
   int generateStandardCommand(
     const PIRKeyBits &pkb,
-    PIRRX51Hardware &rx51device);
+    PIRInfraredLED &led);
 
   int pushDTVBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   void generateChecksum(
     const CommandSequence &bits,

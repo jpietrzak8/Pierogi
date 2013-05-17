@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // Aiwa's protocol is mostly similar to the NEC protocol, with a slightly
@@ -28,10 +28,10 @@ private:
 
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int generateRepeatCommand(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // AIWAPROTOCOL_H

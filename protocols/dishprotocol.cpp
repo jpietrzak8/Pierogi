@@ -1,6 +1,6 @@
 #include "dishprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -64,7 +64,7 @@ void DishProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
@@ -73,15 +73,15 @@ void DishProtocol::startSendingCommand(
       // If this is not a repetition, we need to add the initial header:
       if (repeatCount == 0)
       {
-        rx51device.addPair(headerPulse, headerSpace);
+        led.addPair(headerPulse, headerSpace);
         commandDuration += (headerPulse + headerSpace);
       }
 
       // generate the rest of the command:
-      commandDuration += generateStandardCommand(i->second, rx51device);
+      commandDuration += generateStandardCommand(i->second, led);
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -117,7 +117,7 @@ void DishProtocol::startSendingCommand(
 
 int DishProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
@@ -133,12 +133,12 @@ int DishProtocol::generateStandardCommand(
   // - "firstCode" should contain 6-bit value
   // - "preData" should contain 5 bits of pairing data
   // - "secondCode" should contain the last 5 bits.
-  duration += pushBits(pkb.firstCode, rx51device);
-  duration += pushReverseBits(postData, rx51device);
-  duration += pushBits(pkb.secondCode, rx51device);
+  duration += pushBits(pkb.firstCode, led);
+  duration += pushReverseBits(postData, led);
+  duration += pushBits(pkb.secondCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

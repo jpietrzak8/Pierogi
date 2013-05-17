@@ -1,6 +1,6 @@
 #include "protonprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -59,16 +59,16 @@ void ProtonProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      commandDuration = generateStandardCommand((*i).second, rx51device);
+      commandDuration = generateStandardCommand((*i).second, led);
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -104,12 +104,12 @@ void ProtonProtocol::startSendingCommand(
 
 int ProtonProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
   // The Proton protocol contains an 8 bit address and an 8 bit command,
@@ -118,15 +118,15 @@ int ProtonProtocol::generateStandardCommand(
   // - "preData" should contain the address.
   // - "firstCode" should contain the command.
 
-  duration += pushReverseBits(preData, rx51device);
+  duration += pushReverseBits(preData, led);
 
-  rx51device.addPair(500, 4000);
+  led.addPair(500, 4000);
   duration += 4500;
 
-  duration += pushReverseBits(pkb.firstCode, rx51device);
+  duration += pushReverseBits(pkb.firstCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

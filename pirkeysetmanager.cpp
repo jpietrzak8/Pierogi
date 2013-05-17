@@ -65,6 +65,7 @@
 #include "keysets/humax.h"
 #include "keysets/hyundai.h"
 #include "keysets/ilo.h"
+#include "keysets/insignia.h"
 #include "keysets/irobot.h"
 #include "keysets/jvc.h"
 #include "keysets/kaon.h"
@@ -445,6 +446,13 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ILOTV1(++counter));
   setupKeyset(new ILOTV2(++counter));
   setupKeyset(new ILOTV3(++counter));
+
+  setupKeyset(new InsigniaTV1(++counter));
+  setupKeyset(new InsigniaTV2(++counter));
+  setupKeyset(new InsigniaTV3(++counter));
+  setupKeyset(new InsigniaDVD1(++counter));
+  setupKeyset(new InsigniaDVD2(++counter));
+  setupKeyset(new InsigniaDVD3(++counter));
 
   setupKeyset(new IRobotRoomba1(++counter));
 
@@ -1225,17 +1233,31 @@ void PIRKeysetManager::populateListWidgets(
     // Insert an entry into the map:
     userData[makeID][name].favorite = true;
 
+    // Initialize the tab bar name:
+    userData[makeID][name].tabBarName = Universal_Tabs;
     // Add the favorite tab bar name:
     if (settings.contains("tabBarName"))
     {
-      userData[makeID][name].tabBarName = PIRTabBarName(
-        settings.value("tabBarName").toInt());
+      int tbname = settings.value("tabBarName").toInt();
+      if ((tbname >= 0) && (tbname < Last_Tabs_Marker))
+      {
+        userData[makeID][name].tabBarName = PIRTabBarName(tbname);
+      }
     }
 
+    // Intialize the panel index:
+    userData[makeID][name].panelIndex = 0;
+
+    // Retrieve the user's last panel index:
     if (settings.contains("panelIndex"))
     {
-      userData[makeID][name].panelIndex =
-        settings.value("panelIndex").toInt();
+      int pi = settings.value("panelIndex").toInt();
+      // Sanity check upper limit of 10 tabs here, there should always be
+      // less than that:
+      if ((pi >= 0) && (pi < 10))
+      {
+        userData[makeID][name].panelIndex = pi;
+      }
     }
 
     ++index;

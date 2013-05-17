@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // Daewoo is using something that looks like a simplified NEC protocol,
@@ -29,7 +29,7 @@ private:
 
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // DAEWOOPROTOCOL_H

@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The Kathrein 24-bit protocol shares some features with the NEC protocol
@@ -26,11 +26,11 @@ public slots:
 private:
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int generateRepeatCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // KATHREINPROTOCOL_H

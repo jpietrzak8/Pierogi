@@ -1,6 +1,6 @@
 #include "recs80protocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -62,16 +62,16 @@ void RECS80Protocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      commandDuration = generateCommand((*i).second, rx51device);
+      commandDuration = generateCommand((*i).second, led);
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -108,33 +108,33 @@ void RECS80Protocol::startSendingCommand(
 
 int RECS80Protocol::generateCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
   // Next, a toggle bit:
   if (keypressCount % 2)
   {
-    rx51device.addPair(zeroPulse, zeroSpace);
+    led.addPair(zeroPulse, zeroSpace);
     duration += (zeroPulse + zeroSpace);
   }
   else
   {
-    rx51device.addPair(onePulse, oneSpace);
+    led.addPair(onePulse, oneSpace);
     duration += (onePulse + oneSpace);
   }
 
   // Next, the device code and command code.  The device code is three
   // bits long; the command code is six bits long.  Both are sent in MSB order.
-  duration += pushBits(preData, rx51device);
-  duration += pushBits(pkb.firstCode, rx51device);
+  duration += pushBits(preData, led);
+  duration += pushBits(pkb.firstCode, led);
 
   // Finally, add the trailing pulse:
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

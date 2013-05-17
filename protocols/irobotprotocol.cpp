@@ -1,6 +1,6 @@
 #include "irobotprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -59,7 +59,7 @@ void IRobotProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
@@ -70,10 +70,10 @@ void IRobotProtocol::startSendingCommand(
       // repeats.
       if (!repeatCount)
       {
-        commandDuration = generateCommand((*i).second, rx51device);
+        commandDuration = generateCommand((*i).second, led);
 
         // Tell the device to send the command:
-        rx51device.sendCommandToDevice();
+        led.sendCommandToDevice();
       }
 
       // sleep until the next repetition of command:
@@ -110,7 +110,7 @@ void IRobotProtocol::startSendingCommand(
 
 int IRobotProtocol::generateCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
@@ -126,12 +126,12 @@ int IRobotProtocol::generateCommand(
   {
     if (*i)
     {
-      rx51device.addPair(onePulse, oneSpace);
+      led.addPair(onePulse, oneSpace);
       duration += onePulse + oneSpace;
     }
     else
     {
-      rx51device.addPair(zeroPulse, zeroSpace);
+      led.addPair(zeroPulse, zeroSpace);
       duration += zeroPulse + zeroSpace;
     }
 
@@ -144,12 +144,12 @@ int IRobotProtocol::generateCommand(
   {
     if (*i)
     {
-      rx51device.addPair(onePulse, oneSpace + 16000);
+      led.addPair(onePulse, oneSpace + 16000);
       duration += onePulse + oneSpace + 16000;
     }
     else
     {
-      rx51device.addPair(zeroPulse, zeroSpace + 16000);
+      led.addPair(zeroPulse, zeroSpace + 16000);
       duration += zeroPulse + zeroSpace + 16000;
     }
   }
@@ -161,12 +161,12 @@ int IRobotProtocol::generateCommand(
   {
     if (*i)
     {
-      rx51device.addPair(onePulse, oneSpace);
+      led.addPair(onePulse, oneSpace);
       duration += onePulse + oneSpace;
     }
     else
     {
-      rx51device.addPair(zeroPulse, zeroSpace);
+      led.addPair(zeroPulse, zeroSpace);
       duration += zeroPulse + zeroSpace;
     }
 
@@ -179,12 +179,12 @@ int IRobotProtocol::generateCommand(
   {
     if (*i)
     {
-      rx51device.addSingle(onePulse);
+      led.addSingle(onePulse);
       duration += onePulse;
     }
     else
     {
-      rx51device.addSingle(zeroPulse);
+      led.addSingle(zeroPulse);
       duration += zeroPulse;
     }
   }

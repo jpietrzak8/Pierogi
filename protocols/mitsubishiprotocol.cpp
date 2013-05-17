@@ -1,6 +1,6 @@
 #include "mitsubishiprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -59,16 +59,16 @@ void MitsubishiProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      commandDuration = generateCommand((*i).second, rx51device);
+      commandDuration = generateCommand((*i).second, led);
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -104,17 +104,17 @@ void MitsubishiProtocol::startSendingCommand(
 
 int MitsubishiProtocol::generateCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // For this protocol, the device code and command code are both 8 bits,
   // and sent in LSB order:
-  duration += pushReverseBits(preData, rx51device);
-  duration += pushReverseBits(pkb.firstCode, rx51device);
+  duration += pushReverseBits(preData, led);
+  duration += pushReverseBits(pkb.firstCode, led);
 
   // Finally add the "trail" bit:
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

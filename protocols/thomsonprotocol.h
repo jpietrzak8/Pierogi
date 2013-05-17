@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // Thomson protocol is a nice little protocol, taking space-encoded values
@@ -28,7 +28,7 @@ private:
 
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // THOMSONPROTOCOL_H

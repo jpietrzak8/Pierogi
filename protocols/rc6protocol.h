@@ -3,7 +3,7 @@
 
 #include "pirprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The RC6 protocol is a much fancier, much more complex successor to the
@@ -30,7 +30,7 @@ protected:
 private:
   int pushBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   unsigned int buffer;
   int keypressCount;

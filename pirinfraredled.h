@@ -1,5 +1,5 @@
-#ifndef PIRRX51HARDWARE_H
-#define PIRRX51HARDWARE_H
+#ifndef PIRINFRAREDLED_H
+#define PIRINFRAREDLED_H
 
 //
 // Encapsulates communication with the N900's IR hardware, using the LIRC
@@ -10,16 +10,16 @@
 // N900's IR device driver, so that's probably a good limit to set:
 #define BUFFER_SIZE 256
 
-class PIRRX51Hardware
+class PIRInfraredLED
 {
 public:
-  PIRRX51Hardware();
+  PIRInfraredLED();
 
-  PIRRX51Hardware(
+  PIRInfraredLED(
     unsigned int frequency,
     unsigned int dutyCycle);
 
-  ~PIRRX51Hardware();
+  ~PIRInfraredLED();
 
   // Most remotes will just want to append pairs of on/off times:
   void addPair(
@@ -48,4 +48,4 @@ private:
   int index;
 };
 
-#endif // PIRRX51HARDWARE_H
+#endif // PIRINFRAREDLED_H

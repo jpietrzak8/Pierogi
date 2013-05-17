@@ -3,7 +3,7 @@
 
 #include "pirprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 // This class supports the generic (LIRC-based) space encoded IR protocol.
 // It is intended to support all other space-based protocols through
@@ -29,19 +29,19 @@ public:
 protected:
   int pushBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushReverseBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushInvertedBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushInvertedReverseBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   unsigned int zeroPulse;
   unsigned int zeroSpace;

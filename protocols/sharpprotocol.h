@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // Sharp has its own protocol.  It is "space-encoded", like the popular NEC
@@ -33,11 +33,11 @@ private:
 
   int generateStandardCommand(
     const PIRKeyBits &pkb,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int generateToggledCommand(
     const PIRKeyBits &pkb,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // SHARPPROTOCOL_H

@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The Dish protocol is space encoded, but otherwise is unlike just about
@@ -25,7 +25,7 @@ public slots:
 private:
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // DISHPROTOCOL_H

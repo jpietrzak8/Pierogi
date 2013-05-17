@@ -1,6 +1,6 @@
 #include "kaseikyoprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -60,16 +60,16 @@ void KaseikyoProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      commandDuration = generateStandardCommand((*i).second, rx51device);
+      commandDuration = generateStandardCommand((*i).second, led);
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -105,12 +105,12 @@ void KaseikyoProtocol::startSendingCommand(
 
 int KaseikyoProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, the header pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
   // While I don't yet fully understand the contents of the protocol, the
@@ -132,30 +132,30 @@ int KaseikyoProtocol::generateStandardCommand(
   CommandSequence checksum;
 
   // The "manufacturer codes":
-  duration += pushReverseBits(preData, rx51device);
+  duration += pushReverseBits(preData, led);
 
   generateChecksum(preData, checksum);
-  duration += pushReverseBits(checksum, rx51device);
+  duration += pushReverseBits(checksum, led);
 
   // The command portion:
   // First, the address and command:
-  duration += pushReverseBits(pkb.firstCode, rx51device);
-  duration += pushReverseBits(pkb.secondCode, rx51device);
+  duration += pushReverseBits(pkb.firstCode, led);
+  duration += pushReverseBits(pkb.secondCode, led);
 
   // Next, the odd little checksum:
   CommandSequence littleChecksum;
   generateLittleChecksum(pkb.firstCode, pkb.secondCode, littleChecksum);
-  duration += pushReverseBits(littleChecksum, rx51device);
+  duration += pushReverseBits(littleChecksum, led);
   
   // Finally, the last checksum:
   checksum.clear();
   generateChecksum(pkb.firstCode, checksum);
   generateChecksum(pkb.secondCode, checksum);
   generateChecksum(littleChecksum, checksum);
-  duration += pushReverseBits(checksum, rx51device);
+  duration += pushReverseBits(checksum, led);
 
   // Add the trailer pulse:
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

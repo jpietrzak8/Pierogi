@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 // The "Pace" protocol seems to be a very simple space-encoded protocol
 // with little more than the command code and a toggle bit.
@@ -25,7 +25,7 @@ private:
 
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // PACEPROTOCOL_H

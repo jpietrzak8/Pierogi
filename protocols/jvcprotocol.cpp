@@ -1,5 +1,5 @@
 #include "jvcprotocol.h"
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 #include <string>
@@ -60,7 +60,7 @@ void JVCProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
@@ -70,15 +70,15 @@ void JVCProtocol::startSendingCommand(
       // use that signal.  Otherwise, generate a normal command string.
       if (repeatCount)
       {
-        commandDuration = generateHeadlessCommand((*i).second, rx51device);
+        commandDuration = generateHeadlessCommand((*i).second, led);
       }
       else
       {
-        commandDuration = generateStandardCommand((*i).second, rx51device);
+        commandDuration = generateStandardCommand((*i).second, led);
       }
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -116,20 +116,20 @@ void JVCProtocol::startSendingCommand(
 // sent first.
 int JVCProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
   // Now, push the actual data:
-  duration += pushReverseBits(preData, rx51device);
-  duration += pushReverseBits(pkb.firstCode, rx51device);
+  duration += pushReverseBits(preData, led);
+  duration += pushReverseBits(pkb.firstCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;
@@ -138,16 +138,16 @@ int JVCProtocol::generateStandardCommand(
 
 int JVCProtocol::generateHeadlessCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // Push the actual data:
-  duration += pushReverseBits(preData, rx51device);
-  duration += pushReverseBits(pkb.firstCode, rx51device);
+  duration += pushReverseBits(preData, led);
+  duration += pushReverseBits(pkb.firstCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

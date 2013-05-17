@@ -3,7 +3,7 @@
 
 #include "pirprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The XMP protocol is a large, fairly complex protocol, but seems to be
@@ -30,15 +30,15 @@ public slots:
 private:
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int generateRepeatCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int generateFinalCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   unsigned int calculateChecksumOne();
 
@@ -49,15 +49,15 @@ private:
 
   int pushHalfByte(
     unsigned int halfByte,
-    PIRRX51Hardware &rx51device);
+    PIRInfraredLED &led);
 
   int pushFullByte(
     unsigned int fullByte,
-    PIRRX51Hardware &rx51device);
+    PIRInfraredLED &led);
 
   int pushBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &rx51device);
+    PIRInfraredLED &led);
 
   unsigned int subDeviceOne;
   unsigned int subDeviceTwo;

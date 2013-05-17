@@ -1,6 +1,6 @@
 #include "nokia32protocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -68,16 +68,16 @@ void Nokia32Protocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      commandDuration = generateStandardCommand((*i).second, rx51device);
+      commandDuration = generateStandardCommand((*i).second, led);
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -115,12 +115,12 @@ void Nokia32Protocol::startSendingCommand(
 
 int Nokia32Protocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
   // The layout of the Nokia 32 protocol is as follows:
@@ -135,12 +135,12 @@ int Nokia32Protocol::generateStandardCommand(
   // preData, the next 7 bits of address in the postData, and the 8 bits
   // of command in the firstCode:
 
-  duration += pushBits(preData, rx51device);
-  duration += pushToggleAndBits(postData, rx51device);
-  duration += pushBits(pkb.firstCode, rx51device);
+  duration += pushBits(preData, led);
+  duration += pushToggleAndBits(postData, led);
+  duration += pushBits(pkb.firstCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;
@@ -149,7 +149,7 @@ int Nokia32Protocol::generateStandardCommand(
 
 int Nokia32Protocol::pushBits(
   const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
   bool firstBit;
@@ -163,7 +163,7 @@ int Nokia32Protocol::pushBits(
     if (i == bits.end()) break;
     secondBit = *i;
 
-    duration += pushDoubleBit(firstBit, secondBit, rx51device);
+    duration += pushDoubleBit(firstBit, secondBit, led);
 
     ++i;
   }
@@ -174,7 +174,7 @@ int Nokia32Protocol::pushBits(
 
 int Nokia32Protocol::pushToggleAndBits(
   const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
   bool firstBit;
@@ -195,7 +195,7 @@ int Nokia32Protocol::pushToggleAndBits(
 
   secondBit = *i;
 
-  duration += pushDoubleBit(firstBit, secondBit, rx51device);
+  duration += pushDoubleBit(firstBit, secondBit, led);
 
   ++i;
 
@@ -206,7 +206,7 @@ int Nokia32Protocol::pushToggleAndBits(
     if (i == bits.end()) break;
     secondBit = *i;
 
-    duration += pushDoubleBit(firstBit, secondBit, rx51device);
+    duration += pushDoubleBit(firstBit, secondBit, led);
 
     ++i;
   }
@@ -218,7 +218,7 @@ int Nokia32Protocol::pushToggleAndBits(
 int Nokia32Protocol::pushDoubleBit(
   bool firstBit,
   bool secondBit,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
@@ -227,13 +227,13 @@ int Nokia32Protocol::pushDoubleBit(
     if (secondBit == 0)
     {
       // Send the pulse for "Zero":
-      rx51device.addPair(zeroPulse, zeroSpace);
+      led.addPair(zeroPulse, zeroSpace);
       duration += (zeroPulse + zeroSpace);
     }
     else
     {
       // Send the pulse for "One":
-      rx51device.addPair(onePulse, oneSpace);
+      led.addPair(onePulse, oneSpace);
       duration += (onePulse + oneSpace);
     }
   }
@@ -242,13 +242,13 @@ int Nokia32Protocol::pushDoubleBit(
     if (secondBit == 0)
     {
       // Send the pulse for "Two":
-      rx51device.addPair(twoPulse, twoSpace);
+      led.addPair(twoPulse, twoSpace);
       duration += (twoPulse + twoSpace);
     }
     else
     {
       // Send the pulse for "Three":
-      rx51device.addPair(threePulse, threeSpace);
+      led.addPair(threePulse, threeSpace);
       duration += (threePulse + threeSpace);
     }
   }

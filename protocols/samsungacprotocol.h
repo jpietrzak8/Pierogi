@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 class SamsungACProtocol: public SpaceProtocol
 {
@@ -24,13 +24,13 @@ public slots:
 
 private:
   void generateCommand(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   void calculateChecksum(
     CommandSequence &checksum);
 
   void generateTimerCommand(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   void calculateTimerChecksum(
     CommandSequence &checksum);

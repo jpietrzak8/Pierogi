@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 class RECS80Protocol: public SpaceProtocol
 {
@@ -20,7 +20,7 @@ public slots:
 private:
   int generateCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int keypressCount;
 };

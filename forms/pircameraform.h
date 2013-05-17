@@ -5,6 +5,7 @@
 
 class MainWindow;
 class PIRKeysetManager;
+class PIRFlashLED;
 
 namespace Ui {
 class PIRCameraForm;
@@ -31,8 +32,6 @@ signals:
   void delayedOpenShutterEnabled(bool);
   
 private slots:
-  void on_delayedShutterButton_pressed();
-  void on_delayedShutterButton_released();
   void on_openShutterButton_pressed();
   void on_openShutterButton_released();
 
@@ -40,6 +39,8 @@ private:
   Ui::PIRCameraForm *ui;
 
   MainWindow *mainWindow;
+
+  PIRFlashLED *flash;
 };
 
 #endif // PIRCAMERAFORM_H

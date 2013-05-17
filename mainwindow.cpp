@@ -137,7 +137,7 @@ MainWindow::MainWindow(QWidget *parent)
   // Display the panels:
   ui->mainTabWidget->setUpdatesEnabled(false);
   myPanels->setupTabs(currentTabsName);
-  if (userPanelIndex != -1)
+  if ((userPanelIndex >= 0) && (userPanelIndex < ui->mainTabWidget->count()))
   {
     ui->mainTabWidget->setCurrentIndex(userPanelIndex);
   }

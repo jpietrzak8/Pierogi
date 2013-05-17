@@ -1,6 +1,6 @@
 #include "spaceprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 SpaceProtocol::SpaceProtocol(
   QObject *guiObject,
@@ -28,7 +28,7 @@ SpaceProtocol::SpaceProtocol(
 
 int SpaceProtocol::pushBits(
   const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
   CommandSequence::const_iterator i = bits.begin();
@@ -37,13 +37,13 @@ int SpaceProtocol::pushBits(
     if (*i)
     {
       // Send the pulse for "One":
-      rx51device.addPair(onePulse, oneSpace);
+      led.addPair(onePulse, oneSpace);
       duration += (onePulse + oneSpace);
     }
     else
     {
       // Send the pulse for "Zero":
-      rx51device.addPair(zeroPulse, zeroSpace);
+      led.addPair(zeroPulse, zeroSpace);
       duration += (zeroPulse + zeroSpace);
     }
     ++i;
@@ -55,7 +55,7 @@ int SpaceProtocol::pushBits(
 
 int SpaceProtocol::pushReverseBits(
   const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
   CommandSequence::const_reverse_iterator i = bits.rbegin();
@@ -64,13 +64,13 @@ int SpaceProtocol::pushReverseBits(
     if (*i)
     {
       // Send the pulse for "One":
-      rx51device.addPair(onePulse, oneSpace);
+      led.addPair(onePulse, oneSpace);
       duration += (onePulse + oneSpace);
     }
     else
     {
       // Send the pulse for "Zero":
-      rx51device.addPair(zeroPulse, zeroSpace);
+      led.addPair(zeroPulse, zeroSpace);
       duration += (zeroPulse + zeroSpace);
     }
     ++i;
@@ -82,7 +82,7 @@ int SpaceProtocol::pushReverseBits(
 
 int SpaceProtocol::pushInvertedBits(
   const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
   CommandSequence::const_iterator i = bits.begin();
@@ -91,13 +91,13 @@ int SpaceProtocol::pushInvertedBits(
     if (*i)
     {
       // Send the pulse for "Zero":
-      rx51device.addPair(zeroPulse, zeroSpace);
+      led.addPair(zeroPulse, zeroSpace);
       duration += (zeroPulse + zeroSpace);
     }
     else
     {
       // Send the pulse for "One":
-      rx51device.addPair(onePulse, oneSpace);
+      led.addPair(onePulse, oneSpace);
       duration += (onePulse + oneSpace);
     }
     ++i;
@@ -109,7 +109,7 @@ int SpaceProtocol::pushInvertedBits(
 
 int SpaceProtocol::pushInvertedReverseBits(
   const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
   CommandSequence::const_reverse_iterator i = bits.rbegin();
@@ -118,13 +118,13 @@ int SpaceProtocol::pushInvertedReverseBits(
     if (*i)
     {
       // Send the pulse for "Zero":
-      rx51device.addPair(zeroPulse, zeroSpace);
+      led.addPair(zeroPulse, zeroSpace);
       duration += (zeroPulse + zeroSpace);
     }
     else
     {
       // Send the pulse for "One":
-      rx51device.addPair(onePulse, oneSpace);
+      led.addPair(onePulse, oneSpace);
       duration += (onePulse + oneSpace);
     }
     ++i;

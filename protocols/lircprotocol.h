@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // LIRC does not itself have an actual protocol; what it does do is attempt
@@ -62,14 +62,14 @@ private:
 
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int generateHeadlessCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int generateRepeatCommand(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // LIRCPROTOCOL_H

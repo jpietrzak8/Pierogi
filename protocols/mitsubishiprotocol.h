@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 // The Mitsubishi protocol is a very simple protocol, with no redundancy or
 // checksum (or even a header).
@@ -23,7 +23,7 @@ public slots:
 private:
   int generateCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // MITSUBISHIPROTOCOL_H

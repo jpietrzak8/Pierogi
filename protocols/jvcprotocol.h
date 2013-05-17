@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // JVC has its own protocol, similar in some ways to the popular NEC protocol.
@@ -27,11 +27,11 @@ public slots:
 private:
   int generateStandardCommand(
     const PIRKeyBits &pkb,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int generateHeadlessCommand(
     const PIRKeyBits &pkb,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // JVCPROTOCOL_H

@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The Kaseikyo protocol is a more complex protocol than NEC or RC5 (although
@@ -26,7 +26,7 @@ public slots:
 private:
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   void generateChecksum(
     const CommandSequence &bits,

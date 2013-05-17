@@ -1,6 +1,6 @@
 #include "thomsonprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -59,16 +59,16 @@ void ThomsonProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      commandDuration = generateStandardCommand((*i).second, rx51device);
+      commandDuration = generateStandardCommand((*i).second, led);
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -106,30 +106,30 @@ void ThomsonProtocol::startSendingCommand(
 
 int ThomsonProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, four bits of address:
-  duration += pushBits(preData, rx51device);
+  duration += pushBits(preData, led);
 
   // Next, the toggle bit:
   if (keypressCount % 2)
   {
-    rx51device.addPair(onePulse, oneSpace);
+    led.addPair(onePulse, oneSpace);
     duration += (onePulse + oneSpace);
   }
   else
   {
-    rx51device.addPair(zeroPulse, zeroSpace);
+    led.addPair(zeroPulse, zeroSpace);
     duration += (zeroPulse + zeroSpace);
   }
 
   // Next, seven bits of command:
-  duration += pushBits(pkb.firstCode, rx51device);
+  duration += pushBits(pkb.firstCode, led);
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

@@ -1,6 +1,6 @@
 #include "necprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -76,7 +76,7 @@ void NECProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
@@ -86,15 +86,15 @@ void NECProtocol::startSendingCommand(
       // use that signal.  Otherwise, generate a normal command string.
       if (isShortRepeat && repeatCount)
       {
-        commandDuration = generateRepeatCommand(rx51device);
+        commandDuration = generateRepeatCommand(led);
       }
       else
       {
-        commandDuration = generateStandardCommand((*i).second, rx51device);
+        commandDuration = generateStandardCommand((*i).second, led);
       }
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -130,12 +130,12 @@ void NECProtocol::startSendingCommand(
 
 int NECProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
   // Now, check the encoding format:
@@ -145,9 +145,9 @@ int NECProtocol::generateStandardCommand(
     // sent once.  The command portion stays the same.
     // - "preData" should contain 16-bit value
     // - "bits" should contain 8-bit value
-    duration += pushReverseBits(preData, rx51device);
-    duration += pushReverseBits(pkb.firstCode, rx51device);
-    duration += pushInvertedReverseBits(pkb.firstCode, rx51device);
+    duration += pushReverseBits(preData, led);
+    duration += pushReverseBits(pkb.firstCode, led);
+    duration += pushInvertedReverseBits(pkb.firstCode, led);
   }
   else
   {
@@ -157,14 +157,14 @@ int NECProtocol::generateStandardCommand(
     // Next, we do the same to the command bits.
     // - "preData" should contain 8-bit value
     // - "bits" should contain 8-bit value
-    duration += pushReverseBits(preData, rx51device);
-    duration += pushInvertedReverseBits(preData, rx51device);
-    duration += pushReverseBits(pkb.firstCode, rx51device);
-    duration += pushInvertedReverseBits(pkb.firstCode, rx51device);
+    duration += pushReverseBits(preData, led);
+    duration += pushInvertedReverseBits(preData, led);
+    duration += pushReverseBits(pkb.firstCode, led);
+    duration += pushInvertedReverseBits(pkb.firstCode, led);
   }
 
   // Finally add the "trail":
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;
@@ -172,16 +172,16 @@ int NECProtocol::generateStandardCommand(
 
 
 int NECProtocol::generateRepeatCommand(
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // Add the repeat pulse:
-  rx51device.addPair(repeatPulse, repeatSpace);
+  led.addPair(repeatPulse, repeatSpace);
   duration += (repeatPulse + repeatSpace);
 
   // Add the trailer:
-  rx51device.addSingle(trailerPulse);
+  led.addSingle(trailerPulse);
   duration += trailerPulse;
 
   return duration;

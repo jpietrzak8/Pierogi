@@ -1,6 +1,6 @@
 #include "rc5protocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -60,7 +60,7 @@ void RC5Protocol::startSendingCommand(
     }
 
     // Construct the object that communicates with the device driver:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
@@ -74,22 +74,22 @@ void RC5Protocol::startSendingCommand(
         // and the key contains only the 6-bit command portion.
 
         // First, construct the control portion:
-        commandDuration += pushControlBits(rx51device);
+        commandDuration += pushControlBits(led);
 
         // Next, the key-command portion:
-        commandDuration += pushKeyCommandBits((*i).second, rx51device);
+        commandDuration += pushKeyCommandBits((*i).second, led);
       }
       else
       {
         // For non-standard RC5, the entire 13 bits are stuffed into the
         // key portion, as all of them can vary:
-        commandDuration += pushNonStandardRC5((*i).second, rx51device);
+        commandDuration += pushNonStandardRC5((*i).second, led);
       }
 
       // Clear out the buffer, if necessary:
       if (buffer)
       {
-        rx51device.addSingle(buffer);
+        led.addSingle(buffer);
         commandDuration += buffer;
 
         // probably unnecessary cleanup of buffer:
@@ -99,7 +99,7 @@ void RC5Protocol::startSendingCommand(
       }
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // Sleep for an amount of time.  (Need to make this interruptable!)
       sleepUntilRepeat(commandDuration);
@@ -132,7 +132,7 @@ void RC5Protocol::startSendingCommand(
 
 
 int RC5Protocol::pushControlBits(
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
@@ -146,7 +146,7 @@ int RC5Protocol::pushControlBits(
   // Push the first bit:
   if (i != preData.end())
   {
-    duration += pushBit(*i, rx51device);
+    duration += pushBit(*i, led);
     ++i;
   }
 
@@ -155,11 +155,11 @@ int RC5Protocol::pushControlBits(
   {
     if (keypressCount % 2)
     {
-      duration += pushBit(!(*i), rx51device);
+      duration += pushBit(!(*i), led);
     }
     else
     {
-      duration += pushBit(*i, rx51device);
+      duration += pushBit(*i, led);
     }
 
     ++i;
@@ -168,7 +168,7 @@ int RC5Protocol::pushControlBits(
   // Simply push the rest of the bits:
   while (i != preData.end())
   {
-    duration += pushBit(*i, rx51device);
+    duration += pushBit(*i, led);
     ++i;
   }
 
@@ -178,7 +178,7 @@ int RC5Protocol::pushControlBits(
 
 int RC5Protocol::pushKeyCommandBits(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
@@ -186,7 +186,7 @@ int RC5Protocol::pushKeyCommandBits(
   CommandSequence::const_iterator i = pkb.firstCode.begin();
   while (i != pkb.firstCode.end())
   {
-    duration += pushBit(*i, rx51device);
+    duration += pushBit(*i, led);
     ++i;
   }
 
@@ -196,7 +196,7 @@ int RC5Protocol::pushKeyCommandBits(
 
 int RC5Protocol::pushNonStandardRC5(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
@@ -210,7 +210,7 @@ int RC5Protocol::pushNonStandardRC5(
   // Push the first bit:
   if (i != pkb.firstCode.end())
   {
-    duration += pushBit(*i, rx51device);
+    duration += pushBit(*i, led);
     ++i;
   }
 
@@ -219,11 +219,11 @@ int RC5Protocol::pushNonStandardRC5(
   {
     if (keypressCount % 2)
     {
-      duration += pushBit(!(*i), rx51device);
+      duration += pushBit(!(*i), led);
     }
     else
     {
-      duration += pushBit(*i, rx51device);
+      duration += pushBit(*i, led);
     }
 
     ++i;
@@ -232,7 +232,7 @@ int RC5Protocol::pushNonStandardRC5(
   // Simply push the rest of the bits:
   while (i != pkb.firstCode.end())
   {
-    duration += pushBit(*i, rx51device);
+    duration += pushBit(*i, led);
     ++i;
   }
 
@@ -242,7 +242,7 @@ int RC5Protocol::pushNonStandardRC5(
 
 int RC5Protocol::pushBit(
   bool bitValue,
-  PIRRX51Hardware &device)
+  PIRInfraredLED &led)
 {
   unsigned int duration = 0;
   // RC5 encodes a "0" by using a pulse followed by a space,
@@ -255,7 +255,7 @@ int RC5Protocol::pushBit(
     {
       // Merge our space with the previous space, and send them to
       // the device.
-      device.addSingle(buffer + biphaseUnit);
+      led.addSingle(buffer + biphaseUnit);
       duration += (buffer + biphaseUnit);
       buffer = 0;
       bufferContainsSpace = false;
@@ -265,13 +265,13 @@ int RC5Protocol::pushBit(
       if (bufferContainsPulse)
       {
         // Flush the buffer:
-        device.addSingle(buffer);
+        led.addSingle(buffer);
         duration += buffer;
         buffer = 0;
         bufferContainsPulse = false;
       }
       // Add a space:
-      device.addSingle(biphaseUnit);
+      led.addSingle(biphaseUnit);
       duration += biphaseUnit;
     }
 
@@ -285,7 +285,7 @@ int RC5Protocol::pushBit(
     if (bufferContainsPulse)
     {
       // Merge our pulse with the previous one, and send them to the device:
-      device.addSingle(buffer + biphaseUnit);
+      led.addSingle(buffer + biphaseUnit);
       duration += (buffer + biphaseUnit);
       buffer = 0;
       bufferContainsPulse = false;
@@ -295,14 +295,14 @@ int RC5Protocol::pushBit(
       if (bufferContainsSpace)
       {
         // Flush out the buffer:
-        device.addSingle(buffer);
+        led.addSingle(buffer);
         duration += buffer;
         buffer = 0;
         bufferContainsSpace = false;
       }
 
       // Add a pulse:
-      device.addSingle(biphaseUnit);
+      led.addSingle(biphaseUnit);
       duration += biphaseUnit;
     }
 

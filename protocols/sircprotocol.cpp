@@ -1,6 +1,6 @@
 #include "sircprotocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 #include <string>
@@ -60,16 +60,16 @@ void SIRCProtocol::startSendingCommand(
     }
 
     // construct the device:
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int commandDuration = 0;
     while (repeatCount < MAX_REPEAT_COUNT)
     {
-      commandDuration = generateStandardCommand((*i).second, rx51device);
+      commandDuration = generateStandardCommand((*i).second, led);
 
       // Now, tell the device to send the whole command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // sleep until the next repetition of command:
       sleepUntilRepeat(commandDuration);
@@ -106,20 +106,20 @@ void SIRCProtocol::startSendingCommand(
 
 int SIRCProtocol::generateStandardCommand(
   const PIRKeyBits &pkb,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int duration = 0;
 
   // First, the "header" pulse:
-  rx51device.addPair(headerPulse, headerSpace);
+  led.addPair(headerPulse, headerSpace);
   duration += (headerPulse + headerSpace);
 
   // Next, push the data.
   // These bits are sent in reverse order, and moreover, the codes are sent
   // in reverse order as well:
-  duration += pushReverseBits(pkb.thirdCode, rx51device);
-  duration += pushReverseBits(pkb.secondCode, rx51device);
-  duration += pushReverseBits(pkb.firstCode, rx51device);
+  duration += pushReverseBits(pkb.thirdCode, led);
+  duration += pushReverseBits(pkb.secondCode, led);
+  duration += pushReverseBits(pkb.firstCode, led);
 
   return duration;
 }

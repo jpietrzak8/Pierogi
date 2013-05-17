@@ -1,6 +1,6 @@
 #include "rc6protocol.h"
 
-#include "pirrx51hardware.h"
+#include "pirinfraredled.h"
 
 #include "pirexception.h"
 
@@ -53,7 +53,7 @@ void RC6Protocol::startSendingCommand(
 //      throw PIRException(s);
     }
 
-    PIRRX51Hardware rx51device(carrierFrequency, dutyCycle);
+    PIRInfraredLED led(carrierFrequency, dutyCycle);
 
     int repeatCount = 0;
     int duration = 0;
@@ -71,30 +71,30 @@ void RC6Protocol::startSendingCommand(
       // d) the double-sized "trailer" bit, toggled on each keypress (so
       //    either 889 pulse 889 space, or 889 space 889 pulse)
 
-      rx51device.addSingle(HEADER_PULSE); // lead pulse
+      led.addSingle(HEADER_PULSE); // lead pulse
       duration += HEADER_PULSE;
-      rx51device.addSingle(HEADER_SPACE); // lead space
+      led.addSingle(HEADER_SPACE); // lead space
       duration += HEADER_SPACE;
-      rx51device.addSingle(biphaseUnit); // start bit pulse
+      led.addSingle(biphaseUnit); // start bit pulse
       duration += biphaseUnit;
 
       // start bit space + control bit 1 space:
-      rx51device.addSingle(2 * biphaseUnit);
+      led.addSingle(2 * biphaseUnit);
       duration += 2 * biphaseUnit;
-      rx51device.addSingle(biphaseUnit); // bit 1 pulse;
+      led.addSingle(biphaseUnit); // bit 1 pulse;
       duration += biphaseUnit;
-      rx51device.addSingle(biphaseUnit); // bit 2 space;
+      led.addSingle(biphaseUnit); // bit 2 space;
       duration += biphaseUnit;
-      rx51device.addSingle(biphaseUnit); // bit 2 pulse;
+      led.addSingle(biphaseUnit); // bit 2 pulse;
       duration += biphaseUnit;
-      rx51device.addSingle(biphaseUnit); // bit 3 space;
+      led.addSingle(biphaseUnit); // bit 3 space;
       duration += biphaseUnit;
 
       // Next, need to check whether we should toggle or not:
       if (keypressCount % 2)
       {
         // bit 3 pulse plus long trailer bit pulse:
-        rx51device.addSingle(3 * biphaseUnit);
+        led.addSingle(3 * biphaseUnit);
         duration += 3 * biphaseUnit;
 
         // load the trailer bit space onto the buffer:
@@ -104,9 +104,9 @@ void RC6Protocol::startSendingCommand(
       }
       else
       {
-        rx51device.addSingle(biphaseUnit); // bit three pulse
+        led.addSingle(biphaseUnit); // bit three pulse
         duration += biphaseUnit;
-        rx51device.addSingle(2 * biphaseUnit); // trailer bit space
+        led.addSingle(2 * biphaseUnit); // trailer bit space
         duration += 2 * biphaseUnit;
 
         // load the trailer bit pulse onto the buffer:
@@ -118,21 +118,21 @@ void RC6Protocol::startSendingCommand(
       // Now, we can start the normal buffering process:
 
       // push any pre-data onto the device:
-      duration += pushBits(preData, rx51device);
+      duration += pushBits(preData, led);
 
       // push the actual command:
-      duration += pushBits((*i).second.firstCode, rx51device);
+      duration += pushBits((*i).second.firstCode, led);
 
       // Flush out the buffer, if necessary:
       if (buffer)
       {
-        rx51device.addSingle(buffer);
+        led.addSingle(buffer);
         duration += buffer;
         buffer = 0;
       }
 
       // Actually send out the command:
-      rx51device.sendCommandToDevice();
+      led.sendCommandToDevice();
 
       // Sleep for an amount of time.  (RC6 demands an addtional 6 unit space
       // at the end of any command...)
@@ -165,7 +165,7 @@ void RC6Protocol::startSendingCommand(
 
 int RC6Protocol::pushBits(
   const CommandSequence &bits,
-  PIRRX51Hardware &rx51device)
+  PIRInfraredLED &led)
 {
   int bitsDuration = 0;
 
@@ -184,7 +184,7 @@ int RC6Protocol::pushBits(
       // First, the pulse:
       if (bufferContainsPulse)
       {
-        rx51device.addSingle(buffer + biphaseUnit);
+        led.addSingle(buffer + biphaseUnit);
         bitsDuration += (buffer + biphaseUnit);
         buffer = 0;
         bufferContainsPulse = false;
@@ -194,13 +194,13 @@ int RC6Protocol::pushBits(
         if (bufferContainsSpace)
         {
           // Flush the buffer:
-          rx51device.addSingle(buffer);
+          led.addSingle(buffer);
           bitsDuration += buffer;
           buffer = 0;
           bufferContainsSpace = false;
         }
         // Now, add the pulse:
-        rx51device.addSingle(biphaseUnit);
+        led.addSingle(biphaseUnit);
         bitsDuration += biphaseUnit;
       }
 
@@ -214,7 +214,7 @@ int RC6Protocol::pushBits(
       if (bufferContainsSpace)
       {
         // Merge this space and the previous one, and send to device:
-        rx51device.addSingle(buffer + biphaseUnit);
+        led.addSingle(buffer + biphaseUnit);
         bitsDuration += (buffer + biphaseUnit);
         buffer = 0;
         bufferContainsSpace = false;
@@ -224,14 +224,14 @@ int RC6Protocol::pushBits(
         if (bufferContainsPulse)
         {
           // Flush out the buffer:
-          rx51device.addSingle(buffer);
+          led.addSingle(buffer);
           bitsDuration += buffer;
           buffer = 0;
           bufferContainsPulse = false;
         }
 
         // push a space onto the device:
-        rx51device.addSingle(biphaseUnit);
+        led.addSingle(biphaseUnit);
         bitsDuration += biphaseUnit;
       }
 

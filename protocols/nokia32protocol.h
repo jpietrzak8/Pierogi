@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The Nokia32 protocol is a somewhat unusual 32-bit protocol.  It encodes
@@ -25,20 +25,20 @@ public slots:
 private:
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &rx51device);
+    PIRInfraredLED &led);
 
   int pushToggleAndBits(
     const CommandSequence &bits,
-    PIRRX51Hardware &rx51device);
+    PIRInfraredLED &led);
 
   int pushDoubleBit(
     bool firstBit,
     bool secondBit,
-    PIRRX51Hardware &rx51device);
+    PIRInfraredLED &led);
 
   unsigned int zeroPulse;
   unsigned int zeroSpace;

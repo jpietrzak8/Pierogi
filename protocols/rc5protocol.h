@@ -3,7 +3,7 @@
 
 #include "pirprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The RC5 protocol is not as widespread as the NEC protocol, but still
@@ -35,19 +35,19 @@ protected:
 
 private:
   int pushControlBits(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushKeyCommandBits(
     const PIRKeyBits &pkb,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushNonStandardRC5(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int pushBit(
     bool bitValue,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   unsigned int buffer;
   int keypressCount;

@@ -1,3 +1,14 @@
+pierogi (1.1.24) unstable; urgency=low
+  * Added "Remote Flash" feature to Camera panel, allowing you to strobe the N900's flash LEDs in sync with the "open shutter" command to the remote camera.
+  * Made a first pass at keysets for Insignia.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 17 May 2013 18:14:32 -0400
+
+pierogi (1.1.23) unstable; urgency=low
+  * Quick fix for an uninitialized variable causing havoc.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Mon, 13 May 2013 17:22:23 -0400
+
 pierogi (1.1.22) unstable; urgency=low
   * Fixed a nasty bug causing favorite keysets to be forgotten.
   * Pushed all QSettings setValue calls to the end of the program, significantly improving performance.

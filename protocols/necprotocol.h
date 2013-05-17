@@ -3,7 +3,7 @@
 
 #include "spaceprotocol.h"
 
-class PIRRX51Hardware;
+class PIRInfraredLED;
 
 //
 // The "NEC" Protocol is, more or less, followed by the majority of
@@ -43,10 +43,10 @@ private:
 
   int generateStandardCommand(
     const PIRKeyBits &bits,
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 
   int generateRepeatCommand(
-    PIRRX51Hardware &device);
+    PIRInfraredLED &led);
 };
 
 #endif // NECPROTOCOL_H
