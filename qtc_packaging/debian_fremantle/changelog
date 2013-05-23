@@ -1,3 +1,9 @@
+pierogi (1.1.25) unstable; urgency=low
+  * Started UI cleanup; "Advanced Settings" moved into preferences window, air conditioner panels split into stateless and stateful tab collections.
+  * Added some General Electric AC keysets, a Minolta camera keyset, and a Majestic DVD keyset; also, many new keysets for Emerson, Insignia, and Strong.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Thu, 23 May 2013 04:55:59 -0400
+
 pierogi (1.1.24) unstable; urgency=low
   * Added "Remote Flash" feature to Camera panel, allowing you to strobe the N900's flash LEDs in sync with the "open shutter" command to the remote camera.
   * Made a first pass at keysets for Insignia.

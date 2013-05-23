@@ -1,3 +1,25 @@
+//
+// pirmakenames.cpp
+//
+// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+//
+// This file is part of Pierogi.
+//
+// Pierogi is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// Pierogi is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software Foundation,
+// Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+//
+
 #include "pirmakenames.h"
 
 #include <QComboBox>
@@ -48,6 +70,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Foxtel_Make] = "Foxtel";
   makes[Frontech_Make] = "Frontech";
   makes[Gadmei_Make] = "Gadmei";
+  makes[GeneralElectric_Make] = "General Electric";
   makes[Genius_Make] = "Genius";
   makes[GoldStar_Make] = "GoldStar";
   makes[Goodmans_Make] = "Goodmans";
@@ -78,9 +101,11 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Logitech_Make] = "Logitech";
   makes[Magnavox_Make] = "Magnavox";
   makes[Magnum_Make] = "Magnum";
+  makes[Majestic_Make] = "Majestic";
   makes[Medialink_Make] = "Medi@link";
   makes[Medion_Make] = "Medion";
   makes[Microsoft_Make] = "Microsoft";
+  makes[Minolta_Make] = "Minolta";
   makes[Mitsubishi_Make] = "Mitsubishi";
   makes[Motorola_Make] = "Motorola";
   makes[MTLogic_Make] = "MT-Logic";

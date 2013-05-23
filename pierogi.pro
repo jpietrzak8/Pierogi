@@ -240,7 +240,6 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/medialink.cpp \
     keysets/nec.cpp \
     keysets/multichoice.cpp \
-    forms/piradvancedform.cpp \
     keysets/ilo.cpp \
     keysets/sagemcom.cpp \
     protocols/recs80protocol.cpp \
@@ -260,7 +259,12 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/xoro.cpp \
     pirinfraredled.cpp \
     pirflashled.cpp \
-    keysets/insignia.cpp
+    keysets/insignia.cpp \
+    keysets/minolta.cpp \
+    keysets/generalelectric.cpp \
+    keysets/majestic.cpp \
+    protocols/f12protocol.cpp \
+    protocols/emersonprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -475,7 +479,6 @@ HEADERS += mainwindow.h \
     keysets/medialink.h \
     keysets/nec.h \
     keysets/multichoice.h \
-    forms/piradvancedform.h \
     keysets/ilo.h \
     keysets/sagemcom.h \
     protocols/recs80protocol.h \
@@ -496,7 +499,12 @@ HEADERS += mainwindow.h \
     keysets/xoro.h \
     pirinfraredled.h \
     pirflashled.h \
-    keysets/insignia.h
+    keysets/insignia.h \
+    keysets/minolta.h \
+    keysets/generalelectric.h \
+    keysets/majestic.h \
+    protocols/f12protocol.h \
+    protocols/emersonprotocol.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -534,7 +542,6 @@ FORMS += mainwindow.ui \
     dialogs/pirdeletemacrodialog.ui \
     forms/piruserform.ui \
     dialogs/pireditcommanddialog.ui \
-    forms/piradvancedform.ui \
     forms/piractimerform.ui \
     forms/pirplaystationform.ui
 
@@ -612,7 +619,10 @@ OTHER_FILES += \
     icons/PSCircle.png \
     icons/PSCross.png \
     icons/PSSquare.png \
-    icons/PSTriangle.png
+    icons/PSTriangle.png \
+    COPYING \
+    LICENSE.md \
+    README.md
 
 RESOURCES += \
     PierogiResources.qrc

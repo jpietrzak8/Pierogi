@@ -1,3 +1,25 @@
+//
+// pirmakenames.h
+//
+// Copyright 2012, 2013 by John Pietrzak  (jpietrzak8@gmail.com)
+//
+// This file is part of Pierogi.
+//
+// Pierogi is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// Pierogi is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software Foundation,
+// Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+//
+
 #ifndef PIRMAKENAMES_H
 #define PIRMAKENAMES_H
 
@@ -49,6 +71,7 @@ enum PIRMakeName{
   Foxtel_Make,
   Frontech_Make,
   Gadmei_Make,
+  GeneralElectric_Make,
   Genius_Make,
   GoldStar_Make,
   Goodmans_Make,
@@ -79,9 +102,11 @@ enum PIRMakeName{
   Logitech_Make,
   Magnavox_Make,
   Magnum_Make,
+  Majestic_Make,
   Medialink_Make,
   Medion_Make,
   Microsoft_Make,
+  Minolta_Make,
   Mitsubishi_Make,
   Motorola_Make,
   MTLogic_Make,

@@ -1,3 +1,25 @@
+//
+// pirpanelmanager.cpp
+//
+// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+//
+// This file is part of Pierogi.
+//
+// Pierogi is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// Pierogi is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software Foundation,
+// Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+//
+
 #include "pirpanelmanager.h"
 
 #include "forms/pirmainform.h"
@@ -21,7 +43,7 @@
 #include "forms/piruserform.h"
 #include "forms/pirmacroform.h"
 //#include "forms/pirpowersearchform.h"
-#include "forms/piradvancedform.h"
+//#include "forms/piradvancedform.h"
 
 #include "mainwindow.h"
 
@@ -56,7 +78,7 @@ PIRPanelManager::PIRPanelManager(
     userForm(0),
     macroForm(0),
 //    powerSearchForm(0),
-    advancedForm(0),
+//    advancedForm(0),
     altMainPanelFlag(false),
     mainWindow(mw)
 {
@@ -91,13 +113,13 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[Adjust_Panel] = "Adjust";
   longPanelNames[Adjust_Panel] =
     "Adjust Panel - modify audio and video";
-  shortPanelNames[AC_Panel] = "Stateless AC";
+  shortPanelNames[AC_Panel] = "A/C General";
   longPanelNames[AC_Panel] =
     "A/C Panel - air conditioner controls";
-  shortPanelNames[StatefulAC_Panel] = "Stateful AC";
+  shortPanelNames[StatefulAC_Panel] = "A/C General";
   longPanelNames[StatefulAC_Panel] =
     "Stateful A/C Panel - for A/C remotes with LCD screens";
-  shortPanelNames[ACTimer_Panel] = "Timer";
+  shortPanelNames[ACTimer_Panel] = "A/C Timer";
   longPanelNames[ACTimer_Panel] =
     "A/C Timer Panel - set (or cancel) the on/off timer";
   shortPanelNames[Audio_Panel] = "Audio";
@@ -121,9 +143,9 @@ PIRPanelManager::PIRPanelManager(
 //  shortPanelNames[PowerSearch_Panel] = "Keyset Search";
 //  longPanelNames[PowerSearch_Panel] =
 //    "Keyset Search Panel - execute power button in each keyset";
-  shortPanelNames[Advanced_Panel] = "Advanced Settings";
-  longPanelNames[Advanced_Panel] =
-    "Advanced Settings - allows adjustment of protocol settings";
+//  shortPanelNames[Advanced_Panel] = "Advanced Settings";
+//  longPanelNames[Advanced_Panel] =
+//    "Advanced Settings - allows adjustment of protocol settings";
 
   mainForm = new PIRMainForm(mainWindow);
   panels[Main_Panel] = mainForm;
@@ -188,8 +210,8 @@ PIRPanelManager::PIRPanelManager(
 //  powerSearchForm = new PIRPowerSearchForm(mainWindow);
 //  panels[PowerSearch_Panel] = powerSearchForm;
 
-  advancedForm = new PIRAdvancedForm();
-  panels[Advanced_Panel] = advancedForm;
+//  advancedForm = new PIRAdvancedForm();
+//  panels[Advanced_Panel] = advancedForm;
 
   // Set up the panel collections:
   PIRPanelNameList pset;
@@ -232,12 +254,16 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Audio_Panel);
   tabLists[Audio_Tabs] = pset;
 
-  // The air conditioner collection:
+  // The standard air conditioner collection:
   pset.clear();
   pset.push_back(AC_Panel);
+  tabLists[StandardAC_Tabs] = pset;
+
+  // The stateful air conditioner collection:
+  pset.clear();
   pset.push_back(StatefulAC_Panel);
   pset.push_back(ACTimer_Panel);
-  tabLists[AC_Tabs] = pset;
+  tabLists[StatefulAC_Tabs] = pset;
 
   // The recording collection:
   pset.clear();
@@ -271,9 +297,9 @@ PIRPanelManager::PIRPanelManager(
 //  tabLists[PowerSearch_Tabs] = pset;
 
   // The Advanced Settings collection:
-  pset.clear();
-  pset.push_back(Advanced_Panel);
-  tabLists[Advanced_Tabs] = pset;
+//  pset.clear();
+//  pset.push_back(Advanced_Panel);
+//  tabLists[Advanced_Tabs] = pset;
 }
 
 
@@ -359,7 +385,7 @@ void PIRPanelManager::commonEnableButtons(
 //  powerSearchForm->setKeysetName(mainWindow->getCurrentFullName());
 
   // Set up the advanced parameters:
-  advancedForm->setupForm(keyset, id);
+//  advancedForm->setupForm(keyset, id);
 }
 
 

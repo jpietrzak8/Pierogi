@@ -1,3 +1,25 @@
+//
+// pirkeysetmanager.cpp
+//
+// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+//
+// This file is part of Pierogi.
+//
+// Pierogi is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// Pierogi is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software Foundation,
+// Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+//
+
 #include "pirkeysetmanager.h"
 
 #include <QSettings>
@@ -50,6 +72,7 @@
 #include "keysets/foxtel.h"
 #include "keysets/frontech.h"
 #include "keysets/gadmei.h"
+#include "keysets/generalelectric.h"
 #include "keysets/genius.h"
 #include "keysets/goldstar.h"
 #include "keysets/goodmans.h"
@@ -81,8 +104,10 @@
 #include "keysets/magnavox.h"
 #include "keysets/magnum.h"
 #include "keysets/mce.h"
+#include "keysets/majestic.h"
 #include "keysets/medialink.h"
 #include "keysets/medion.h"
+#include "keysets/minolta.h"
 #include "keysets/mitsubishi.h"
 #include "keysets/motorola.h"
 #include "keysets/mtlogic.h"
@@ -348,7 +373,15 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ElgatoEyeTV1(++counter));
 
   setupKeyset(new EmersonTV1(++counter));
+  setupKeyset(new EmersonTV2(++counter));
+  setupKeyset(new EmersonTV3(++counter));
+  setupKeyset(new EmersonTV4(++counter));
+  setupKeyset(new EmersonTV5(++counter));
+  setupKeyset(new EmersonSTB1(++counter));
   setupKeyset(new EmersonDVD1(++counter));
+  setupKeyset(new EmersonAudio1(++counter));
+  setupKeyset(new EmersonAudio2(++counter));
+  setupKeyset(new EmersonAudio3(++counter));
 
   setupKeyset(new EmtecSTB1(++counter));
   setupKeyset(new EmtecSTB2(++counter));
@@ -366,6 +399,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new FrontechTV2(++counter));
 
   setupKeyset(new GadmeiTuner1(++counter));
+
+  setupKeyset(new GeneralElectricAC1(++counter));
+  setupKeyset(new GeneralElectricAC2(++counter));
 
   setupKeyset(new GeniusSpeakers1(++counter));
 
@@ -448,11 +484,19 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ILOTV3(++counter));
 
   setupKeyset(new InsigniaTV1(++counter));
+  setupKeyset(new InsigniaTV1a(++counter));
+  setupKeyset(new InsigniaTV1b(++counter));
   setupKeyset(new InsigniaTV2(++counter));
   setupKeyset(new InsigniaTV3(++counter));
+  setupKeyset(new InsigniaTV4(++counter));
+  setupKeyset(new InsigniaTV5(++counter));
+  setupKeyset(new InsigniaTV6(++counter));
   setupKeyset(new InsigniaDVD1(++counter));
   setupKeyset(new InsigniaDVD2(++counter));
   setupKeyset(new InsigniaDVD3(++counter));
+  setupKeyset(new InsigniaDVD4(++counter));
+  setupKeyset(new InsigniaDVD5(++counter));
+  setupKeyset(new InsigniaDVD6(++counter));
 
   setupKeyset(new IRobotRoomba1(++counter));
 
@@ -543,12 +587,16 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new MCERemote1f(++counter));
   setupKeyset(new MCERemote1g(++counter));
 
+  setupKeyset(new MajesticDVD1(++counter));
+
   setupKeyset(new MedialinkSTB1(++counter));
 
   setupKeyset(new MedionSTB1(++counter));
   setupKeyset(new MedionDVD1(++counter));
   setupKeyset(new MedionDVD2(++counter));
   setupKeyset(new MedionVCR1(++counter));
+
+  setupKeyset(new MinoltaCamera1(++counter));
 
   setupKeyset(new MitsubishiTV1(++counter));
   setupKeyset(new MitsubishiTV1a(++counter));
@@ -805,9 +853,17 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new StrongSat1(++counter));
   setupKeyset(new StrongSat2(++counter));
+  setupKeyset(new StrongSat2a(++counter));
   setupKeyset(new StrongSat3(++counter));
+  setupKeyset(new StrongSat3a(++counter));
   setupKeyset(new StrongSat4(++counter));
-  setupKeyset(new StrongDVBT1(++counter));
+  setupKeyset(new StrongSat5(++counter));
+  setupKeyset(new StrongSat5a(++counter));
+  setupKeyset(new StrongSTB1(++counter));
+  setupKeyset(new StrongSTB2(++counter));
+  setupKeyset(new StrongSTB3(++counter));
+  setupKeyset(new StrongSTB4(++counter));
+  setupKeyset(new StrongSTB5(++counter));
 
   setupKeyset(new SylvaniaTV1(++counter));
 

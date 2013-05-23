@@ -1,3 +1,25 @@
+//
+// pirtabschoicedialog.cpp
+//
+// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+//
+// This file is part of Pierogi.
+//
+// Pierogi is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// Pierogi is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software Foundation,
+// Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+//
+
 #include "pirtabschoicedialog.h"
 #include "ui_pirtabschoicedialog.h"
 
@@ -28,7 +50,10 @@ PIRTabsChoiceDialog::PIRTabsChoiceDialog(
     new PIRTabsWidgetItem("Recording Panels", Record_Tabs));
 
   ui->tabsChoiceListWidget->addItem(
-    new PIRTabsWidgetItem("Air Conditioner Panels", AC_Tabs));
+    new PIRTabsWidgetItem("Standard A/C Panels", StandardAC_Tabs));
+
+  ui->tabsChoiceListWidget->addItem(
+    new PIRTabsWidgetItem("Stateful A/C Panels", StatefulAC_Tabs));
 
   ui->tabsChoiceListWidget->addItem(
     new PIRTabsWidgetItem("Camera Panels", Camera_Tabs));
@@ -45,8 +70,8 @@ PIRTabsChoiceDialog::PIRTabsChoiceDialog(
 //  ui->tabsChoiceListWidget->addItem(
 //    new PIRTabsWidgetItem("Keyset Search Panels", PowerSearch_Tabs));
 
-  ui->tabsChoiceListWidget->addItem(
-    new PIRTabsWidgetItem("Advanced Settings", Advanced_Tabs));
+//  ui->tabsChoiceListWidget->addItem(
+//    new PIRTabsWidgetItem("Advanced Settings", Advanced_Tabs));
 }
 
 
@@ -82,29 +107,33 @@ void PIRTabsChoiceDialog::switchToTabBar(
     ui->tabsChoiceListWidget->setCurrentRow(4);
     break;
 
-  case AC_Tabs:
+  case StandardAC_Tabs:
     ui->tabsChoiceListWidget->setCurrentRow(5);
     break;
 
-  case Camera_Tabs:
+  case StatefulAC_Tabs:
     ui->tabsChoiceListWidget->setCurrentRow(6);
     break;
 
-  case Roomba_Tabs:
+  case Camera_Tabs:
     ui->tabsChoiceListWidget->setCurrentRow(7);
     break;
 
-  case Console_Tabs:
+  case Roomba_Tabs:
     ui->tabsChoiceListWidget->setCurrentRow(8);
     break;
 
-  case Macro_Tabs:
+  case Console_Tabs:
     ui->tabsChoiceListWidget->setCurrentRow(9);
     break;
 
-  case Advanced_Tabs:
+  case Macro_Tabs:
     ui->tabsChoiceListWidget->setCurrentRow(10);
     break;
+
+//  case Advanced_Tabs:
+//    ui->tabsChoiceListWidget->setCurrentRow(11);
+//    break;
 
   default:
     // Leave it as is.
