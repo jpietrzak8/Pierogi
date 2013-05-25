@@ -36,6 +36,7 @@
 #include "keysets/alpine.h"
 #include "keysets/anitech.h"
 #include "keysets/aoc.h"
+#include "keysets/apex.h"
 #include "keysets/apple.h"
 #include "keysets/arcam.h"
 #include "keysets/beko.h"
@@ -229,6 +230,14 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new AnitechVCR1(++counter));
 
   setupKeyset(new AOCTV1(++counter));
+
+  setupKeyset(new ApexTV1(++counter));
+  setupKeyset(new ApexSTB1(++counter));
+  setupKeyset(new ApexDVD1(++counter));
+  setupKeyset(new ApexDVD1a(++counter));
+  setupKeyset(new ApexDVD2(++counter));
+  setupKeyset(new ApexDVD2a(++counter));
+  setupKeyset(new ApexDVD3(++counter));
 
   setupKeyset(new AppleWhiteRemote(++counter));
 
