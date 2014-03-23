@@ -147,6 +147,16 @@ public:
     QObject *guiObject);
 };
 
+class ToshibaVCR1b: public ToshibaVCR1
+{
+public:
+  ToshibaVCR1b(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 class ToshibaDisc1: public PIRKeysetMetaData
 {
 public:
@@ -187,10 +197,42 @@ public:
     QObject *guiObject);
 };
 
+/*
 class ToshibaDisc1d: public ToshibaDisc1a
 {
 public:
   ToshibaDisc1d(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+*/
+
+class ToshibaDisc2: public PIRKeysetMetaData
+{
+public:
+  ToshibaDisc2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class ToshibaProjector1: public PIRKeysetMetaData
+{
+public:
+  ToshibaProjector1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class ToshibaSTB1: public PIRKeysetMetaData
+{
+public:
+  ToshibaSTB1(
     unsigned int index);
 
   virtual void populateProtocol(

@@ -26,7 +26,8 @@
 // I will need to eventually have a set of "universal" buttons, something that
 // should be able to match a decent subset of the buttons on all the remotes
 // out there.  The following list should give me a decent start...
-enum PIRKeyName{
+enum PIRKeyName
+{
   // The "Unmapped" key is a placeholder for commands with no key mapping:
   Unmapped_Key,
 

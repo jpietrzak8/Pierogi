@@ -264,11 +264,13 @@ void YamahaAudio2::populateProtocol(
   addKey("CDRewind", Rewind_Key, 0x0D, 8);
   addKey("PHONO_PLAY/CUT", Unmapped_Key, 0x0E, 8);
   addKey("vcr", Unmapped_Key, 0x0F, 8);
+
   addKey("ch+", ChannelUp_Key, 0x10, 8);
   addKey("ch-", ChannelDown_Key, 0x11, 8);
   addKey("abcde", Unmapped_Key, 0x12, 8); // "A/B/C/D/E" "tuner-toggle"
   addKey("GO_VCR2", Unmapped_Key, 0x13, 8);
   addKey("phono", PhonoInput_Key, 0x14, 8);
+  addKey("AUX", AuxInput_Key, 0x14, 8);
   addKey("cd", CDInput_Key, 0x15, 8);
   addKey("tuner", TunerInput_Key, 0x16, 8);
   addKey("dvdld", DVDInput_Key, 0x17, 8); // "d-tv/cbl", "AUX"
@@ -319,7 +321,10 @@ void YamahaAudio2::populateProtocol(
   addKey("down", Down_Key, 0x99, 8);
   addKey("setmenu", Unmapped_Key, 0x9C, 8);
   addKey("setmenu-", Unmapped_Key, 0x9D, 8);
+
+  addKey("DVD", Unmapped_Key, 0xC1, 8);
   addKey("display", Info_Key, 0xC2, 8); // "onscreen"
+  addKey("MD_CDR_INPU", Unmapped_Key, 0xC9, 8);
 }
 
 

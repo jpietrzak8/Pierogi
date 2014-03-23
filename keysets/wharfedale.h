@@ -1,7 +1,5 @@
 //
-// piraboutform.cpp
-//
-// Implementation of the "About" window for Pierogi.
+// wharfedale.h
 //
 // Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
 //
@@ -18,24 +16,35 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Pierogi; if not, write to the Free Software Foundation,
+// along with this program; if not, write to the Free Software Foundation,
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 
-#include "piraboutform.h"
-#include "ui_piraboutform.h"
+#ifndef WHARFEDALE_H
+#define WHARFEDALE_H
 
-PIRAboutForm::PIRAboutForm(QWidget *parent) :
-  QWidget(parent),
-  ui(new Ui::PIRAboutForm)
+#include "pirkeysetmetadata.h"
+
+class QObject;
+
+class WharfedaleTV1: public PIRKeysetMetaData
 {
-  ui->setupUi(this);
+public:
+  WharfedaleTV1(
+    unsigned int index);
 
-  setAttribute(Qt::WA_Maemo5StackedWindow);
-  setWindowFlags(windowFlags() | Qt::Window);
-}
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
 
-PIRAboutForm::~PIRAboutForm()
+class WharfedaleTV2: public PIRKeysetMetaData
 {
-  delete ui;
-}
+public:
+  WharfedaleTV2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+#endif // WHARFEDALE_H

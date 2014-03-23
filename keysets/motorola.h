@@ -67,6 +67,16 @@ public:
     QObject *guiObject);
 };
 
+class MotorolaSTB2: public PIRKeysetMetaData
+{
+public:
+  MotorolaSTB2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 class MotorolaSkyDigital: public PIRKeysetMetaData
 {
 public:

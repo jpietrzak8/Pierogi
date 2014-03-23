@@ -165,6 +165,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Vizio_Make] = "Vizio";
   makes[WD_Make] = "Western Digital";
   makes[Westinghouse_Make] = "Westinghouse";
+  makes[Wharfedale_Make] = "Wharfedale";
   makes[Wiwa_Make] = "Wiwa";
   makes[Xcruiser_Make] = "Xcruiser";
   makes[Xoro_Make] = "Xoro";

@@ -167,6 +167,7 @@
 #include "keysets/vizio.h"
 #include "keysets/wd.h"
 #include "keysets/westinghouse.h"
+#include "keysets/wharfedale.h"
 #include "keysets/wiwa.h"
 #include "keysets/xcruiser.h"
 #include "keysets/xoro.h"
@@ -618,6 +619,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new MotorolaSTB1(++counter));
   setupKeyset(new MotorolaSTB1a(++counter));
   setupKeyset(new MotorolaSTB1b(++counter));
+  setupKeyset(new MotorolaSTB2(++counter));
   setupKeyset(new MotorolaSkyDigital(++counter));
 
   setupKeyset(new MTLogicTV1(++counter));
@@ -928,11 +930,14 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ToshibaTV1i(++counter));
   setupKeyset(new ToshibaVCR1(++counter));
   setupKeyset(new ToshibaVCR1a(++counter));
+  setupKeyset(new ToshibaVCR1b(++counter));
   setupKeyset(new ToshibaDisc1(++counter));
   setupKeyset(new ToshibaDisc1a(++counter));
   setupKeyset(new ToshibaDisc1b(++counter));
   setupKeyset(new ToshibaDisc1c(++counter));
-  setupKeyset(new ToshibaDisc1d(++counter));
+  setupKeyset(new ToshibaDisc2(++counter));
+  setupKeyset(new ToshibaProjector1(++counter));
+  setupKeyset(new ToshibaSTB1(++counter));
 
   setupKeyset(new TriaxSTB1(++counter));
   setupKeyset(new TriaxSTB2(++counter));
@@ -975,6 +980,9 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new WestinghouseTV1(++counter));
   setupKeyset(new WestinghouseTV2(++counter));
+
+  setupKeyset(new WharfedaleTV1(++counter));
+  setupKeyset(new WharfedaleTV2(++counter));
 
   setupKeyset(new WiwaSTB1(++counter));
 

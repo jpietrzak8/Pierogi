@@ -166,6 +166,7 @@ enum PIRMakeName{
   Vizio_Make,
   WD_Make,
   Westinghouse_Make,
+  Wharfedale_Make,
   Wiwa_Make,
   Xcruiser_Make,
   Xoro_Make,

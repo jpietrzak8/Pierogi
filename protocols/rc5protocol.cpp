@@ -123,7 +123,7 @@ void RC5Protocol::startSendingCommand(
       // Now, tell the device to send the whole command:
       led.sendCommandToDevice();
 
-      // Sleep for an amount of time.  (Need to make this interruptable!)
+      // Sleep for an amount of time.
       sleepUntilRepeat(commandDuration);
 
       // Have we been told to stop yet?

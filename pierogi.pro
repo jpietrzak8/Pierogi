@@ -265,7 +265,9 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/majestic.cpp \
     protocols/f12protocol.cpp \
     protocols/emersonprotocol.cpp \
-    keysets/apex.cpp
+    keysets/apex.cpp \
+    keysets/wharfedale.cpp \
+    protocols/canalsatprotocol.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -506,7 +508,9 @@ HEADERS += mainwindow.h \
     keysets/majestic.h \
     protocols/f12protocol.h \
     protocols/emersonprotocol.h \
-    keysets/apex.h
+    keysets/apex.h \
+    keysets/wharfedale.h \
+    protocols/canalsatprotocol.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

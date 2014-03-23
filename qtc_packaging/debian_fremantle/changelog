@@ -1,3 +1,10 @@
+pierogi (1.1.26) unstable; urgency=low
+  * Finally, back to updating Pierogi again!  This is a minor update just to get myself moving again.
+  * Added a new keyset for the Motorola VIP1853/1903 (under the name "Motorola STB Keyset 2).  This required writing an entire new protocol, so there may be bugs...
+  * Also, added a keyset and a half for Wharfedale TVs.  (Keyset #2 is still incomplete.)
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 23 Mar 2014 09:42:32 -0400
+
 pierogi (1.1.25) unstable; urgency=low
   * Started UI cleanup; "Advanced Settings" moved into preferences window, air conditioner panels split into stateless and stateful tab collections.
   * Made a first pass at keysets for Apex, General Electric, Minolta, and Majestic; also, many new keysets for Emerson, Insignia, and Strong.
