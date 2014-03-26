@@ -1,3 +1,10 @@
+pierogi (1.1.27) unstable; urgency=low
+  * Added a fix for a missing bit to the CanalSat protocol (used by Motorola Keyset 2).
+  * Also, a quick fix to the Wharfedale Keyset 2.
+  * Made a first pass at a keyset for the Astro B.Yond set-top box.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Wed, 26 Mar 2014 15:55:59 -0400
+
 pierogi (1.1.26) unstable; urgency=low
   * Finally, back to updating Pierogi again!  This is a minor update just to get myself moving again.
   * Added a new keyset for the Motorola VIP1853/1903 (under the name "Motorola STB Keyset 2).  This required writing an entire new protocol, so there may be bugs...

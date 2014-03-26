@@ -39,6 +39,7 @@
 #include "keysets/apex.h"
 #include "keysets/apple.h"
 #include "keysets/arcam.h"
+#include "keysets/astro.h"
 #include "keysets/beko.h"
 #include "keysets/benq.h"
 #include "keysets/blaupunkt.h"
@@ -243,6 +244,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new AppleWhiteRemote(++counter));
 
   setupKeyset(new ArcamReceiver1(++counter));
+
+  setupKeyset(new AstroSTB1(++counter));
 
   setupKeyset(new BekoTV1(++counter));
 

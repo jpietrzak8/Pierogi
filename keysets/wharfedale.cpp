@@ -121,7 +121,7 @@ void WharfedaleTV2::populateProtocol(
 
   addKey("power", Power_Key, 0x100C, 13);
   addKey("mute", Mute_Key, 0x100D, 13);
-  addKey("volume down", VolumeDown_Key, 0x1010, 13);
-  addKey("menu", Menu_Key, 0x1011, 13);
+  addKey("menu", Menu_Key, 0x1010, 13);
+  addKey("volume down", VolumeDown_Key, 0x1011, 13);
   addKey("volume up", VolumeUp_Key, 0x1012, 13);
 }

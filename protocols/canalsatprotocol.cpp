@@ -36,7 +36,7 @@ extern QMutex commandIFMutex;
 // Zero is OffOn, One is OnOff.
 // The header is 320 usec on, 320 usec off (a One).
 // Repeat performed by resending full command train; but first command sets
-// toggle bit to 0, and each repeat sets toggle bit to 1.
+// toggle bit to 0, and each repeat frame sets toggle bit to 1.
 // There's a gap of 85000 usec between commands.
 // Carrier frequency is 56 kHz.
 
@@ -142,7 +142,7 @@ int CanalSatProtocol::pushBits(
   buffer = 0;
   bufferContainsPulse = false;
   bufferContainsSpace = false;
-  duration += pushBit(true, led);
+  duration += pushBit(1, led);
 
   CommandSequence::const_iterator i = preData.begin();
 
@@ -156,12 +156,15 @@ int CanalSatProtocol::pushBits(
   // Push the toggle bit:
   if (repeatCount)
   {
-    duration += pushBit(true, led);
+    duration += pushBit(1, led);
   }
   else
   {
-    duration += pushBit(false, led);
+    duration += pushBit(0, led);
   }
+
+  // Push a constant "zero" bit:
+  duration += pushBit(0, led);
 
   // Push the command bits:
   i = pkb.firstCode.begin();

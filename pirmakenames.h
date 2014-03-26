@@ -38,6 +38,7 @@ enum PIRMakeName{
   Apex_Make,
   Apple_Make,
   Arcam_Make,
+  Astro_Make,
   Beko_Make,
   BenQ_Make,
   Blaupunkt_Make,
