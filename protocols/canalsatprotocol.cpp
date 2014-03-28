@@ -167,19 +167,17 @@ int CanalSatProtocol::pushBits(
   duration += pushBit(0, led);
 
   // Push the command bits:
+  bool finalBit = 0;
   i = pkb.firstCode.begin();
   while (i != pkb.firstCode.end())
   {
     duration += pushBit(*i, led);
+    finalBit = *i;
     ++i;
   }
 
-  // Push the inverse of the first command bit:
-  i = pkb.firstCode.begin();
-  if (i != pkb.firstCode.end())
-  {
-    duration += pushBit(!(*i), led);
-  }
+  // Push the inverse of the final command bit:
+  duration += pushBit(!finalBit, led);
 
   return duration;
 }

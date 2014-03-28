@@ -246,6 +246,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new ArcamReceiver1(++counter));
 
   setupKeyset(new AstroSTB1(++counter));
+  setupKeyset(new AstroSTB2(++counter));
 
   setupKeyset(new BekoTV1(++counter));
 

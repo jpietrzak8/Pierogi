@@ -1,7 +1,13 @@
+pierogi (1.1.28) unstable; urgency=low
+  * Another modification to attempt to get the CanalSat protocol working.
+  * Added a new Astro keyset for the B.yond set-top box.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 28 Mar 2014 05:37:50 -0400
+
 pierogi (1.1.27) unstable; urgency=low
   * Added a fix for a missing bit to the CanalSat protocol (used by Motorola Keyset 2).
   * Also, a quick fix to the Wharfedale Keyset 2.
-  * Made a first pass at a keyset for the Astro B.Yond set-top box.
+  * Made a first pass at a keyset for the Astro B.yond set-top box.
 
  -- John Pietrzak <jpietrzak8@gmail.com>  Wed, 26 Mar 2014 15:55:59 -0400
 

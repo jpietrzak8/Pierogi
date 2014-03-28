@@ -312,6 +312,31 @@ void MotorolaSTB2::populateProtocol(
 }
 
 
+/*
+MotorolaSTB2a::MotorolaSTB2a(
+  unsigned int index)
+  : MotorolaSTB2(index)
+{
+  setKeysetName("STB Keyset 2a");
+}
+
+
+void MotorolaSTB2a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Already populated.
+    return;
+  }
+
+  MotorolaSTB2::populateProtocol(guiObject);
+
+  threadableProtocol->setCarrierFrequency(36000);
+}
+*/
+
+
 MotorolaSkyDigital::MotorolaSkyDigital(
   unsigned int index)
   : PIRKeysetMetaData(

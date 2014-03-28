@@ -37,4 +37,14 @@ public:
     QObject *guiObject);
 };
 
+class AstroSTB2: public PIRKeysetMetaData
+{
+public:
+  AstroSTB2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // ASTRO_H
