@@ -22,6 +22,13 @@
     </widget>
    </item>
    <item>
+    <widget class="QCheckBox" name="delayedShutterCheckBox">
+     <property name="text">
+      <string>Tell camera to pause before opening shutter</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QPushButton" name="openShutterButton">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -54,8 +61,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>PIRCameraForm</sender>
+   <signal>delayedOpenShutterEnabled(bool)</signal>
+   <receiver>delayedShutterCheckBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>403</x>
+     <y>36</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <signal>openShutterEnabled(bool)</signal>
+  <signal>delayedOpenShutterEnabled(bool)</signal>
  </slots>
 </ui>

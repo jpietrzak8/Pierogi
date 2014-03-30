@@ -25,7 +25,8 @@
 
 #include "mainwindow.h"
 #include "pirkeysetmanager.h"
-#include "QTimer.h"
+#include <QTimer>
+#include <time.h>
 
 /*
 PIRIntervalometerForm::PIRIntervalometerForm(QWidget *parent) :
@@ -78,21 +79,29 @@ void PIRIntervalometerForm::on_startPushButton_clicked()
   }
 
   QTime zeroTime(0,0,0,0);
-  int intervalValue = zeroTime.msecsTo(ui->intervalTimeEdit->time());
+  intervalValue = zeroTime.msecsTo(ui->intervalTimeEdit->time());
   if (intervalValue < 1000)
   {
     ui->numberLeftLabel->setText("0");
     return;
   }
 
+  int pauseBeforeStart = zeroTime.msecsTo(ui->pauseTimeEdit->time());
   exposureCount = ui->quantitySpinBox->value();
-  executeInterval();
 
-  if (exposureCount > 0)
+  QString tempString;
+  ui->numberLeftLabel->setText(tempString.setNum(exposureCount));
+
+  if (pauseBeforeStart > 0)
   {
-    intervalTimer = new QTimer(this);
-    connect (intervalTimer, SIGNAL(timeout()), this, SLOT(executeInterval()));
-    intervalTimer->start(intervalValue);
+    QTimer::singleShot(
+      pauseBeforeStart,
+      this,
+      SLOT(startIntervalometer()));
+  }
+  else
+  {
+    startIntervalometer();
   }
 }
 
@@ -109,11 +118,33 @@ void PIRIntervalometerForm::on_quitPushButton_clicked()
 }
 
 
+void PIRIntervalometerForm::startIntervalometer()
+{
+  executeInterval();
+
+  if (exposureCount > 0)
+  {
+    intervalTimer = new QTimer(this);
+    connect (intervalTimer, SIGNAL(timeout()), this, SLOT(executeInterval()));
+    intervalTimer->start(intervalValue);
+  }
+}
+
+
 void PIRIntervalometerForm::executeInterval()
 {
   // execute the "open shutter" command for a short period:
   mainWindow->startRepeating(OpenShutter_Key);
-  // wait for a bit?
+
+  // Wait for a moment:
+  timespec sleeptime;
+  sleeptime.tv_sec = 0;
+  sleeptime.tv_nsec = 20000;
+  timespec remainingtime;
+
+  nanosleep(&sleeptime, &remainingtime);
+
+  // Stop repeating the command:
   mainWindow->stopRepeating();
 
   --exposureCount;

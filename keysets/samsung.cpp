@@ -1164,7 +1164,7 @@ void SamsungAC2::getTimerOptionPairs(
 SamsungSTB1::SamsungSTB1(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Set-top Box Keyset 1",
+      "STB Keyset 1",
       Samsung_Make,
       index)
 {
@@ -1231,7 +1231,7 @@ void SamsungSTB1::populateProtocol(
 SamsungSTB2::SamsungSTB2(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Set-top Box Keyset 2",
+      "STB Keyset 2",
       Samsung_Make,
       index)
 {
@@ -1283,7 +1283,7 @@ void SamsungSTB2::populateProtocol(
 SamsungSTB3::SamsungSTB3(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Set-top Box Keyset 3",
+      "STB Keyset 3",
       Samsung_Make,
       index)
 {
@@ -1347,7 +1347,7 @@ void SamsungSTB3::populateProtocol(
 SamsungSTB4::SamsungSTB4(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Set-top Box Keyset 4",
+      "STB Keyset 4",
       Samsung_Make,
       index)
 {
@@ -1412,7 +1412,7 @@ void SamsungSTB4::populateProtocol(
 SamsungSTB5::SamsungSTB5(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Set-top Box Keyset 5",
+      "STB Keyset 5",
       Samsung_Make,
       index)
 {
@@ -1483,7 +1483,7 @@ void SamsungSTB5::populateProtocol(
 SamsungSTB6::SamsungSTB6(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Set-top Box Keyset 6",
+      "STB Keyset 6",
       Samsung_Make,
       index)
 {

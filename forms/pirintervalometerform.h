@@ -54,6 +54,7 @@ private slots:
   void on_startPushButton_clicked();
   void on_quitPushButton_clicked();
 
+  void startIntervalometer();
   void executeInterval();
 
 private:
@@ -61,6 +62,7 @@ private:
 
   QTimer *intervalTimer;
   int exposureCount;
+  int intervalValue;
 
   MainWindow *mainWindow;
 };

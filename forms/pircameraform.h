@@ -51,7 +51,7 @@ public:
 
 signals:
   void openShutterEnabled(bool);
-//  void delayedOpenShutterEnabled(bool);
+  void delayedOpenShutterEnabled(bool);
 
 private slots:
   void on_openShutterButton_pressed();

@@ -52,7 +52,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Interval between exposures (HH:MM:SS):</string>
+        <string>Interval between exposures (MM:SS):</string>
        </property>
       </widget>
      </item>
@@ -65,8 +65,38 @@
          <second>1</second>
         </time>
        </property>
+       <property name="currentSection">
+        <enum>QDateTimeEdit::SecondSection</enum>
+       </property>
        <property name="displayFormat">
-        <string>hh:mm:ss</string>
+        <string>mm:ss</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="pauseLabel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Pause before first exposure (MM:SS):</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTimeEdit" name="pauseTimeEdit">
+       <property name="currentSection">
+        <enum>QDateTimeEdit::SecondSection</enum>
+       </property>
+       <property name="displayFormat">
+        <string>mm:ss</string>
        </property>
       </widget>
      </item>

@@ -136,7 +136,7 @@ int CanalSatProtocol::pushBits(
   // Next, a toggle bit, set to 1 if this is a repeat frame.
   // Next value is 0.
   // Then, 6 bits of command data are sent.
-  // Finally, inverse of first bit of command data is sent.
+  // Finally, inverse of last bit of command data is sent.
 
   // First push the initial "1":
   buffer = 0;

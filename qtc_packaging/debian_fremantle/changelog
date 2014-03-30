@@ -1,3 +1,8 @@
+pierogi (1.1.30) unstable; urgency=low
+  * Improvmenets to the intervalometer.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 30 Mar 2014 13:38:04 -0400
+
 pierogi (1.1.29) unstable; urgency=low
   * New feature: an "intervalometer" panel added to the camera tabs, to support time-lapse photograpy.
   * Added several new Samsung set-top box keysets.
