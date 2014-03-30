@@ -268,7 +268,8 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/apex.cpp \
     keysets/wharfedale.cpp \
     protocols/canalsatprotocol.cpp \
-    keysets/astro.cpp
+    keysets/astro.cpp \
+    forms/pirintervalometerform.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -512,7 +513,8 @@ HEADERS += mainwindow.h \
     keysets/apex.h \
     keysets/wharfedale.h \
     protocols/canalsatprotocol.h \
-    keysets/astro.h
+    keysets/astro.h \
+    forms/pirintervalometerform.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -551,7 +553,8 @@ FORMS += mainwindow.ui \
     forms/piruserform.ui \
     dialogs/pireditcommanddialog.ui \
     forms/piractimerform.ui \
-    forms/pirplaystationform.ui
+    forms/pirplaystationform.ui \
+    forms/pirintervalometerform.ui
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

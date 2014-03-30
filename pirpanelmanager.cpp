@@ -38,6 +38,7 @@
 #include "forms/piractimerform.h"
 #include "forms/piraudiodeviceform.h"
 #include "forms/pircameraform.h"
+#include "forms/pirintervalometerform.h"
 #include "forms/pirroombaform.h"
 #include "forms/pirplaystationform.h"
 #include "forms/piruserform.h"
@@ -73,6 +74,7 @@ PIRPanelManager::PIRPanelManager(
     acTimerForm(0),
     audioDeviceForm(0),
     cameraForm(0),
+    intervalometerForm(0),
     roombaForm(0),
     playstationForm(0),
     userForm(0),
@@ -128,6 +130,9 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[Camera_Panel] = "Camera";
   longPanelNames[Camera_Panel] =
     "Camera Panel - simple shutter controls";
+  shortPanelNames[Intervalometer_Panel] = "Intervalometer";
+  longPanelNames[Intervalometer_Panel] =
+    "Intervalometer Panel - for time-lapse photography";
   shortPanelNames[Roomba_Panel] = "Roomba";
   longPanelNames[Roomba_Panel] =
     "Roomba Panel - robotic vacuum cleaner controls";
@@ -194,6 +199,9 @@ PIRPanelManager::PIRPanelManager(
 
   cameraForm = new PIRCameraForm(mainWindow);
   panels[Camera_Panel] = cameraForm;
+
+  intervalometerForm = new PIRIntervalometerForm(mainWindow);
+  panels[Intervalometer_Panel] = intervalometerForm;
 
   roombaForm = new PIRRoombaForm(mainWindow);
   panels[Roomba_Panel] = roombaForm;
@@ -274,6 +282,7 @@ PIRPanelManager::PIRPanelManager(
   // The camera control collection:
   pset.clear();
   pset.push_back(Camera_Panel);
+  pset.push_back(Intervalometer_Panel);
   tabLists[Camera_Tabs] = pset;
 
   // The Roomba collection:
@@ -378,6 +387,7 @@ void PIRPanelManager::commonEnableButtons(
   acTimerForm->enableButtons(keyset, id);
   audioDeviceForm->enableButtons(keyset, id);
   cameraForm->enableButtons(keyset, id);
+  intervalometerForm->enableButtons(keyset, id);
   roombaForm->enableButtons(keyset, id);
   playstationForm->enableButtons(keyset, id);
 

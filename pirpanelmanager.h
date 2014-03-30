@@ -41,6 +41,7 @@ class PIRStatefulACForm;
 class PIRACTimerForm;
 class PIRAudioDeviceForm;
 class PIRCameraForm;
+class PIRIntervalometerForm;
 class PIRRoombaForm;
 class PIRPlaystationForm;
 class PIRUserForm;
@@ -127,6 +128,7 @@ private:
   PIRACTimerForm *acTimerForm;
   PIRAudioDeviceForm *audioDeviceForm;
   PIRCameraForm *cameraForm;
+  PIRIntervalometerForm *intervalometerForm;
   PIRRoombaForm *roombaForm;
   PIRPlaystationForm *playstationForm;
   PIRUserForm *userForm;

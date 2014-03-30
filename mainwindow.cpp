@@ -188,6 +188,15 @@ MainWindow::MainWindow(QWidget *parent)
     SLOT(clearSelection()),
     Qt::QueuedConnection);
 
+  // For panels performing tricky operations, need to know when the context
+  // changes:
+  connect(
+    ui->mainTabWidget,
+    SIGNAL(currentChanged(int)),
+    this,
+    SLOT(reportContextChange(int)),
+    Qt::QueuedConnection);
+
 #ifndef DEBUGGING
   // The PIRModprobe object should take care of setting up and shutting down
   // the lirc_rx51 kernel module, if necessary:
@@ -502,6 +511,13 @@ void MainWindow::keysetSelectionChanged(
     "currentKeysetName",
     myKeysets->getDisplayName(currentKeyset));
 */
+}
+
+
+void MainWindow::reportContextChange(
+  int tabnum)
+{
+  emit contextChanged();
 }
 
 

@@ -239,10 +239,60 @@ public:
     PIRStatePairs &timerOptionPairs) const;
 };
 
-class SamsungDVBT1: public PIRKeysetMetaData
+class SamsungSTB1: public PIRKeysetMetaData
 {
 public:
-  SamsungDVBT1(
+  SamsungSTB1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SamsungSTB2: public PIRKeysetMetaData
+{
+public:
+  SamsungSTB2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SamsungSTB3: public PIRKeysetMetaData
+{
+public:
+  SamsungSTB3(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SamsungSTB4: public PIRKeysetMetaData
+{
+public:
+  SamsungSTB4(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SamsungSTB5: public PIRKeysetMetaData
+{
+public:
+  SamsungSTB5(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SamsungSTB6: public PIRKeysetMetaData
+{
+public:
+  SamsungSTB6(
     unsigned int index);
 
   virtual void populateProtocol(

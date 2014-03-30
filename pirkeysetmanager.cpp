@@ -801,7 +801,12 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SamsungDVD2(++counter));
   setupKeyset(new SamsungAC1(++counter));
   setupKeyset(new SamsungAC2(++counter));
-  setupKeyset(new SamsungDVBT1(++counter));
+  setupKeyset(new SamsungSTB1(++counter));
+  setupKeyset(new SamsungSTB2(++counter));
+  setupKeyset(new SamsungSTB3(++counter));
+  setupKeyset(new SamsungSTB4(++counter));
+  setupKeyset(new SamsungSTB5(++counter));
+  setupKeyset(new SamsungSTB6(++counter));
 
   setupKeyset(new SanyoVCR1(++counter));
   setupKeyset(new SanyoDVD1(++counter));

@@ -1,7 +1,7 @@
 //
-// pircameraform.h
+// pirintervalometerform.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -20,30 +20,28 @@
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 
-#ifndef PIRCAMERAFORM_H
-#define PIRCAMERAFORM_H
+#ifndef PIRINTERVALOMETERFORM_H
+#define PIRINTERVALOMETERFORM_H
 
 #include <QWidget>
 
 class MainWindow;
 class PIRKeysetManager;
-class PIRFlashLED;
+class QTimer;
 
 namespace Ui {
-class PIRCameraForm;
+class PIRIntervalometerForm;
 }
 
-class PIRCameraForm : public QWidget
+class PIRIntervalometerForm : public QWidget
 {
   Q_OBJECT
   
 public:
-//  explicit PIRCameraForm(QWidget *parent = 0);
-
-  PIRCameraForm(
+  PIRIntervalometerForm(
     MainWindow *mw);
 
-  ~PIRCameraForm();
+  ~PIRIntervalometerForm();
 
   void enableButtons(
     const PIRKeysetManager *keyset,
@@ -51,18 +49,20 @@ public:
 
 signals:
   void openShutterEnabled(bool);
-//  void delayedOpenShutterEnabled(bool);
 
 private slots:
-  void on_openShutterButton_pressed();
-  void on_openShutterButton_released();
+  void on_startPushButton_clicked();
+  void on_quitPushButton_clicked();
+
+  void executeInterval();
 
 private:
-  Ui::PIRCameraForm *ui;
+  Ui::PIRIntervalometerForm *ui;
+
+  QTimer *intervalTimer;
+  int exposureCount;
 
   MainWindow *mainWindow;
-
-  PIRFlashLED *flash;
 };
 
-#endif // PIRCAMERAFORM_H
+#endif // PIRINTERVALOMETERFORM_H

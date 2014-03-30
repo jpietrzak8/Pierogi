@@ -212,6 +212,8 @@ signals:
 
   void buttonReleased();
 
+  void contextChanged();
+
 public slots:
   void receivedExternalWarning(
     const char *warning);
@@ -221,6 +223,9 @@ public slots:
 
   void keysetSelectionChanged(
     QListWidgetItem *item);
+
+  void reportContextChange(
+    int tabnum);
 
 private slots:
   void on_actionSelectKeyset_triggered();

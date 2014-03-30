@@ -1,3 +1,9 @@
+pierogi (1.1.29) unstable; urgency=low
+  * New feature: an "intervalometer" panel added to the camera tabs, to support time-lapse photograpy.
+  * Added several new Samsung set-top box keysets.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sat, 29 Mar 2014 21:34:02 -0400
+
 pierogi (1.1.28) unstable; urgency=low
   * Another modification to attempt to get the CanalSat protocol working.
   * Added a new Astro keyset for the B.yond set-top box.

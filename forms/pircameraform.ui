@@ -14,26 +14,10 @@
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="margin">
-    <number>8</number>
-   </property>
    <item>
     <widget class="QCheckBox" name="remoteFlashCheckBox">
      <property name="text">
-      <string>Strobe the N900's flash LEDs on open shutter (&quot;Remote Flash&quot;)</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="delayedShutterCheckBox">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Tell camera to pause before opening shutter</string>
+      <string>Remote Flash (Strobe the N900's flash LEDs on open shutter)</string>
      </property>
     </widget>
    </item>
@@ -70,25 +54,8 @@
     </hint>
    </hints>
   </connection>
-  <connection>
-   <sender>PIRCameraForm</sender>
-   <signal>delayedOpenShutterEnabled(bool)</signal>
-   <receiver>delayedShutterCheckBox</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>402</x>
-     <y>139</y>
-    </hint>
-   </hints>
-  </connection>
  </connections>
  <slots>
   <signal>openShutterEnabled(bool)</signal>
-  <signal>delayedOpenShutterEnabled(bool)</signal>
  </slots>
 </ui>

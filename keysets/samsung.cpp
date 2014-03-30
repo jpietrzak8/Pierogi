@@ -26,6 +26,7 @@
 #include "protocols/rc5protocol.h"
 #include "protocols/samsungacprotocol.h"
 #include "protocols/necprotocol.h"
+#include "protocols/nokia32protocol.h"
 
 SamsungTV1::SamsungTV1(
   unsigned int index)
@@ -1160,10 +1161,10 @@ void SamsungAC2::getTimerOptionPairs(
 }
 
 
-SamsungDVBT1::SamsungDVBT1(
+SamsungSTB1::SamsungSTB1(
   unsigned int index)
   : PIRKeysetMetaData(
-      "DVB-T Receiver Keyset 1",
+      "Set-top Box Keyset 1",
       Samsung_Make,
       index)
 {
@@ -1172,7 +1173,7 @@ SamsungDVBT1::SamsungDVBT1(
 }
 
 
-void SamsungDVBT1::populateProtocol(
+void SamsungSTB1::populateProtocol(
   QObject *guiObject)
 {
   if (threadableProtocol)
@@ -1224,4 +1225,309 @@ void SamsungDVBT1::populateProtocol(
   addKey("rcl", PrevChannel_Key, 0x43, 8);
   addKey("txt", Teletext_Key, 0x45, 8); // might be wrong
   addKey("a-z", Unmapped_Key, 0x46, 8);
+}
+
+
+SamsungSTB2::SamsungSTB2(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Set-top Box Keyset 2",
+      Samsung_Make,
+      index)
+{
+}
+
+
+void SamsungSTB2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  setPreData(0xF58A, 16);
+
+  addKey("num_0", Zero_Key, 0x00, 8);
+  addKey("num_1", One_Key, 0x01, 8);
+  addKey("num_2", Two_Key, 0x02, 8);
+  addKey("num_3", Three_Key, 0x03, 8);
+  addKey("num_4", Four_Key, 0x04, 8);
+  addKey("num_5", Five_Key, 0x05, 8);
+  addKey("num_6", Six_Key, 0x06, 8);
+  addKey("num_7", Seven_Key, 0x07, 8);
+  addKey("num_8", Eight_Key, 0x08, 8);
+  addKey("num_9", Nine_Key, 0x09, 8);
+  addKey("Power", Power_Key, 0x0C, 8);
+  addKey("Guide", Guide_Key, 0x0E, 8);
+  addKey("Mute", Mute_Key, 0x12, 8);
+  addKey("VOL+", VolumeUp_Key, 0x13, 8);
+  addKey("VOL-", VolumeDown_Key, 0x14, 8);
+  addKey("Menu", Menu_Key, 0x16, 8);
+  addKey("CH+", ChannelUp_Key, 0x17, 8);
+  addKey("CH-", ChannelDown_Key, 0x18, 8);
+  addKey("Last_ch", PrevChannel_Key, 0x19, 8);
+  addKey("up_arrow", Up_Key, 0x1A, 8);
+  addKey("down_arrow", Down_Key, 0x1B, 8);
+  addKey("right_arrow", Right_Key, 0x1C, 8);
+  addKey("left_arrow", Left_Key, 0x1D, 8);
+  addKey("Select", Select_Key, 0x1F, 8);
+  addKey("Info", Info_Key, 0x25, 8);
+  addKey("exit", Exit_Key, 0x62, 8);
+}
+
+
+SamsungSTB3::SamsungSTB3(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Set-top Box Keyset 3",
+      Samsung_Make,
+      index)
+{
+}
+
+
+void SamsungSTB3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new NECXProtocol(guiObject, index, false);
+
+  setPreData(0x1AF2, 16);
+
+  addKey("num_1", One_Key, 0x00, 8);
+  addKey("num_2", Two_Key, 0x01, 8);
+  addKey("num_3", Three_Key, 0x02, 8);
+  addKey("num_4", Four_Key, 0x03, 8);
+  addKey("num_5", Five_Key, 0x04, 8);
+  addKey("num_6", Six_Key, 0x05, 8);
+  addKey("num_7", Seven_Key, 0x06, 8);
+  addKey("num_8", Eight_Key, 0x07, 8);
+  addKey("num_9", Nine_Key, 0x08, 8);
+  addKey("num_0", Zero_Key, 0x09, 8);
+  addKey("VOL+", VolumeUp_Key, 0x0A, 8);
+  addKey("VOL-", VolumeDown_Key, 0x0B, 8);
+  addKey("CH+", ChannelUp_Key, 0x0C, 8);
+  addKey("CH-", ChannelDown_Key, 0x0D, 8);
+  addKey("up_arrow", Up_Key, 0x10, 8);
+  addKey("down_arrow", Down_Key, 0x11, 8);
+  addKey("left_arrow", Left_Key, 0x12, 8);
+  addKey("right_arrow", Right_Key, 0x13, 8);
+  addKey("Select", Select_Key, 0x14, 8);
+  addKey("exit", Exit_Key, 0x15, 8);
+  addKey("Guide", Guide_Key, 0x1B, 8);
+  addKey("Power", Power_Key, 0x1E, 8);
+  addKey("Mute", Mute_Key, 0x20, 8);
+  addKey("TV/Radio", TunerInput_Key, 0x21, 8);
+  addKey("Green", Green_Key, 0x22, 8);
+  addKey("Yellow", Yellow_Key, 0x23, 8);
+  addKey("Blue", Blue_Key, 0x24, 8);
+  addKey("Info", Info_Key, 0x25, 8);
+  addKey("Red", Red_Key, 0x26, 8);
+  addKey("Media", Unmapped_Key, 0x2B, 8);
+  addKey("Last_ch", PrevChannel_Key, 0x2C, 8);
+  addKey("Rsolution", Unmapped_Key, 0x2F, 8);
+  addKey("Language", Unmapped_Key, 0x31, 8);
+  addKey("Display", AspectRatio_Key, 0x32, 8);
+  addKey("Option", Unmapped_Key, 0x33, 8);
+  addKey("Application", Unmapped_Key, 0x35, 8);
+  addKey("Menu", Menu_Key, 0x36, 8);
+  addKey("Back", Unmapped_Key, 0x38, 8);
+}
+
+
+SamsungSTB4::SamsungSTB4(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Set-top Box Keyset 4",
+      Samsung_Make,
+      index)
+{
+}
+
+
+void SamsungSTB4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new RC5Protocol(guiObject, index);
+
+  addKey("num_0", Zero_Key, 0x1280, 13);
+  addKey("num_1", One_Key, 0x1281, 13);
+  addKey("num_2", Two_Key, 0x1282, 13);
+  addKey("num_3", Three_Key, 0x1283, 13);
+  addKey("num_4", Four_Key, 0x1284, 13);
+  addKey("num_5", Five_Key, 0x1285, 13);
+  addKey("num_6", Six_Key, 0x1286, 13);
+  addKey("num_7", Seven_Key, 0x1287, 13);
+  addKey("num_8", Eight_Key, 0x1288, 13);
+  addKey("num_9", Nine_Key, 0x1289, 13);
+  addKey("Stop", Stop_Key, 0x129D, 13);
+  addKey("Menu", Menu_Key, 0x129E, 13);
+  addKey("White", Unmapped_Key, 0x129F, 13);
+  addKey("CH+", ChannelUp_Key, 0x12A0, 13);
+  addKey("CH-", ChannelDown_Key, 0x12A1, 13);
+  addKey("Zoom", Zoom_Key, 0x12A2, 13);
+  addKey("Info", Info_Key, 0x12AC, 13);
+  addKey("Text", Teletext_Key, 0x12AD, 13);
+  addKey("Pause", Pause_Key, 0x12B0, 13);
+  addKey("rewind", Rewind_Key, 0x12B2, 13);
+  addKey("ffwd", FastForward_Key, 0x12B4, 13);
+  addKey("Play", Play_Key, 0x12B5, 13);
+  addKey("Record", Record_Key, 0x12B7, 13);
+  addKey("Enter", Enter_Key, 0x12B9, 13);
+
+  addKey("Page-", PageDown_Key, 0x028B, 13);
+  addKey("Page+", PageUp_Key, 0x028C, 13);
+  addKey("up_arrow", Up_Key, 0x0290, 13);
+  addKey("down_arrow", Down_Key, 0x0291, 13);
+  addKey("left_arrow", Left_Key, 0x0295, 13);
+  addKey("right_arrow", Right_Key, 0x0296, 13);
+  addKey("Select", Select_Key, 0x0297, 13);
+  addKey("Power", Power_Key, 0x02A8, 13);
+  addKey("Red", Red_Key, 0x02AB, 13);
+  addKey("Green", Green_Key, 0x02AC, 13);
+  addKey("Yellow", Yellow_Key, 0x02AD, 13);
+  addKey("Blue", Blue_Key, 0x02AE, 13);
+  addKey("Last_ch", PrevChannel_Key, 0x02AF, 13);
+  addKey("Guide", Guide_Key, 0x02B0, 13);
+  addKey("Exit", Exit_Key, 0x02B1, 13);
+  addKey("Goto Play/Film", Unmapped_Key, 0x02B7, 13);
+}
+
+
+SamsungSTB5::SamsungSTB5(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Set-top Box Keyset 5",
+      Samsung_Make,
+      index)
+{
+}
+
+
+void SamsungSTB5::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new Nokia32Protocol(guiObject, index);
+
+  setPreData(0x2670, 16);
+  setPostData(0x26, 7);
+
+  addKey("num_0", Zero_Key, 0x00, 8);
+  addKey("num_1", One_Key, 0x01, 8);
+  addKey("num_2", Two_Key, 0x02, 8);
+  addKey("num_3", Three_Key, 0x03, 8);
+  addKey("num_4", Four_Key, 0x04, 8);
+  addKey("num_5", Five_Key, 0x05, 8);
+  addKey("num_6", Six_Key, 0x06, 8);
+  addKey("num_7", Seven_Key, 0x07, 8);
+  addKey("num_8", Eight_Key, 0x08, 8);
+  addKey("num_9", Nine_Key, 0x09, 8);
+  addKey("Power", Power_Key, 0x0C, 8);
+  addKey("Mute", Mute_Key, 0x0D, 8);
+  addKey("Info", Info_Key, 0x0F, 8);
+  addKey("VOL+", VolumeUp_Key, 0x10, 8);
+  addKey("VOL-", VolumeDown_Key, 0x11, 8);
+  addKey("CH+", ChannelUp_Key, 0x20, 8);
+  addKey("CH-", ChannelDown_Key, 0x21, 8);
+  addKey("ffwd", FastForward_Key, 0x28, 8);
+  addKey("rewind", Rewind_Key, 0x29, 8);
+  addKey("Play", Play_Key, 0x2C, 8);
+  addKey("Pause", Pause_Key, 0x2C, 8);
+  addKey("Stop", Stop_Key, 0x31, 8);
+  addKey("Record", Record_Key, 0x37, 8);
+  addKey("Teletext", Teletext_Key, 0x3C, 8);
+  addKey("TV/Radio", TunerInput_Key, 0x43, 8);
+  addKey("Menu", Menu_Key, 0x54, 8);
+  addKey("up_arrow", Up_Key, 0x58, 8);
+  addKey("down_arrow", Down_Key, 0x59, 8);
+  addKey("left_arrow", Left_Key, 0x5A, 8);
+  addKey("right_arrow", Right_Key, 0x5B, 8);
+  addKey("Select", Select_Key, 0x5C, 8);
+  addKey("Red", Red_Key, 0x6D, 8);
+  addKey("Green", Green_Key, 0x6E, 8);
+  addKey("Yellow", Yellow_Key, 0x6F, 8);
+  addKey("Blue", Blue_Key, 0x70, 8);
+  addKey("Search", Unmapped_Key, 0x81, 8);
+  addKey("Last_ch", PrevChannel_Key, 0x83, 8);
+  addKey("TV", AntennaInput_Key, 0xA6, 8);
+  addKey("TV/Video", AuxInput_Key, 0xA7, 8);
+  addKey("Guide", Guide_Key, 0xCC, 8);
+  addKey("Option", Unmapped_Key, 0xDB, 8);
+  addKey("exit", Exit_Key, 0xEE, 8);
+  addKey("Recordings", Unmapped_Key, 0xF0, 8);
+  addKey("Select Video", Unmapped_Key, 0xFD, 8);
+}
+
+
+SamsungSTB6::SamsungSTB6(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Set-top Box Keyset 6",
+      Samsung_Make,
+      index)
+{
+}
+
+
+void SamsungSTB6::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  setPreData(0xA8AD, 16);
+
+  addKey("Power", Power_Key, 0xA0, 8);
+  addKey("CH+", ChannelUp_Key, 0xA6, 8);
+  addKey("CH-", ChannelDown_Key, 0xA7, 8);
+  addKey("Page+", PageUp_Key, 0xAA, 8);
+  addKey("Page-", PageDown_Key, 0xAB, 8);
+  addKey("Guide", Guide_Key, 0xAC, 8);
+  addKey("up_arrow", Up_Key, 0xB0, 8);
+  addKey("down_arrow", Down_Key, 0xB1, 8);
+  addKey("Select", Select_Key, 0xB2, 8);
+  addKey("left_arrow", Left_Key, 0xB3, 8);
+  addKey("right_arrow", Right_Key, 0xB4, 8);
+  addKey("Red", Red_Key, 0xB5, 8);
+  addKey("Yellow", Yellow_Key, 0xB6, 8);
+  addKey("Green", Green_Key, 0xB7, 8);
+  addKey("Blue", Blue_Key, 0xB8, 8);
+  addKey("num_1", One_Key, 0xB9, 8);
+  addKey("num_2", Two_Key, 0xBA, 8);
+  addKey("num_3", Three_Key, 0xBB, 8);
+  addKey("num_4", Four_Key, 0xBC, 8);
+  addKey("num_5", Five_Key, 0xBD, 8);
+  addKey("num_6", Six_Key, 0xBE, 8);
+  addKey("num_7", Seven_Key, 0xBF, 8);
+  addKey("num_8", Eight_Key, 0xC0, 8);
+  addKey("num_9", Nine_Key, 0xC1, 8);
+  addKey("num_0", Zero_Key, 0xC2, 8);
+  addKey("Backspace", Unmapped_Key, 0xC3, 8);
+  addKey("Home", Unmapped_Key, 0xC6, 8);
 }

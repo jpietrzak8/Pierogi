@@ -41,6 +41,7 @@ enum PIRPanelName
   ACTimer_Panel,
   Audio_Panel,
   Camera_Panel,
+  Intervalometer_Panel,
   Roomba_Panel,
   Playstation_Panel,
   User_Panel,
