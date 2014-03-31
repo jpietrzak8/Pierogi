@@ -26,7 +26,7 @@
 SagemTVBox1::SagemTVBox1(
   unsigned int index)
   : PIRKeysetMetaData(
-      "DVB-T/Cable Box Keyset 1",
+      "STB Keyset 1",
       Sagem_Make,
       index)
 {
@@ -92,7 +92,7 @@ SagemTVBox1a::SagemTVBox1a(
   unsigned int index)
   : SagemTVBox1(index)
 {
-  setKeysetName("DVB-T/Cable Box Keyset 1a");
+  setKeysetName("STB Keyset 1a");
 }
 
 

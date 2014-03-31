@@ -85,66 +85,66 @@ PIRPanelManager::PIRPanelManager(
     mainWindow(mw)
 {
   // Set up the panel names:
-  shortPanelNames[Main_Panel] = "Main";
+  shortPanelNames[Main_Panel] = MainWindow::tr("Main");
   longPanelNames[Main_Panel] =
-    "Main Panel - power, volume, and channel controls";
-  shortPanelNames[Utility_Panel] = "Utility";
+    MainWindow::tr("Main Panel - power, volume, and channel controls");
+  shortPanelNames[Utility_Panel] = MainWindow::tr("Utility");
   longPanelNames[Utility_Panel] = 
-    "Utility Panel - commonly used controls";
-  shortPanelNames[Keypad_Panel] = "Keypad";
+    MainWindow::tr("Utility Panel - commonly used controls");
+  shortPanelNames[Keypad_Panel] = MainWindow::tr("Keypad");
   longPanelNames[Keypad_Panel] =
-    "Keypad Panel - numeric value entry";
-  shortPanelNames[Menu_Panel] = "Menu";
+    MainWindow::tr("Keypad Panel - numeric value entry");
+  shortPanelNames[Menu_Panel] = MainWindow::tr("Menu");
   longPanelNames[Menu_Panel] =
-    "Menu Panel - enter, exit, and navigate menus";
-  shortPanelNames[Media_Panel] = "Media";
+    MainWindow::tr("Menu Panel - enter, exit, and navigate menus");
+  shortPanelNames[Media_Panel] = MainWindow::tr("Media");
   longPanelNames[Media_Panel] =
-    "Media Panel - control over recorded data";
-  shortPanelNames[Media2_Panel] = "Media2";
+    MainWindow::tr("Media Panel - control over recorded data");
+  shortPanelNames[Media2_Panel] = MainWindow::tr("Media2");
   longPanelNames[Media2_Panel] =
-    "Media2 Panel - additonal media controls";
-  shortPanelNames[Record_Panel] = "Record";
+    MainWindow::tr("Media2 Panel - additonal media controls");
+  shortPanelNames[Record_Panel] = MainWindow::tr("Record");
   longPanelNames[Record_Panel] =
-    "Program/Record Panel - control over memory and storage";
-  shortPanelNames[TV_Panel] = "TV";
+    MainWindow::tr("Program/Record Panel - control over memory and storage");
+  shortPanelNames[TV_Panel] = MainWindow::tr("TV");
   longPanelNames[TV_Panel] =
-    "TV Panel - teletext and picture-in-picture";
-  shortPanelNames[Input_Panel] = "Input";
+    MainWindow::tr("TV Panel - teletext and picture-in-picture");
+  shortPanelNames[Input_Panel] = MainWindow::tr("Input");
   longPanelNames[Input_Panel] =
-    "Input Panel - manage data sources";
-  shortPanelNames[Adjust_Panel] = "Adjust";
+    MainWindow::tr("Input Panel - manage data sources");
+  shortPanelNames[Adjust_Panel] = MainWindow::tr("Adjust");
   longPanelNames[Adjust_Panel] =
-    "Adjust Panel - modify audio and video";
-  shortPanelNames[AC_Panel] = "A/C General";
+    MainWindow::tr("Adjust Panel - modify audio and video");
+  shortPanelNames[AC_Panel] = MainWindow::tr("A/C General");
   longPanelNames[AC_Panel] =
-    "A/C Panel - air conditioner controls";
-  shortPanelNames[StatefulAC_Panel] = "A/C General";
+    MainWindow::tr("A/C Panel - air conditioner controls");
+  shortPanelNames[StatefulAC_Panel] = MainWindow::tr("A/C General");
   longPanelNames[StatefulAC_Panel] =
-    "Stateful A/C Panel - for A/C remotes with LCD screens";
-  shortPanelNames[ACTimer_Panel] = "A/C Timer";
+    MainWindow::tr("Stateful A/C Panel - for A/C remotes with LCD screens");
+  shortPanelNames[ACTimer_Panel] = MainWindow::tr("A/C Timer");
   longPanelNames[ACTimer_Panel] =
-    "A/C Timer Panel - set (or cancel) the on/off timer";
-  shortPanelNames[Audio_Panel] = "Audio";
+    MainWindow::tr("A/C Timer Panel - set (or cancel) the on/off timer");
+  shortPanelNames[Audio_Panel] = MainWindow::tr("Audio");
   longPanelNames[Audio_Panel] =
-    "Audio Device Panel - various audio related buttons";
-  shortPanelNames[Camera_Panel] = "Camera";
+    MainWindow::tr("Audio Device Panel - various audio related buttons");
+  shortPanelNames[Camera_Panel] = MainWindow::tr("Camera");
   longPanelNames[Camera_Panel] =
-    "Camera Panel - simple shutter controls";
-  shortPanelNames[Intervalometer_Panel] = "Intervalometer";
+    MainWindow::tr("Camera Panel - simple shutter controls");
+  shortPanelNames[Intervalometer_Panel] = MainWindow::tr("Intervalometer");
   longPanelNames[Intervalometer_Panel] =
-    "Intervalometer Panel - for time-lapse photography";
-  shortPanelNames[Roomba_Panel] = "Roomba";
+    MainWindow::tr("Intervalometer Panel - for time-lapse photography");
+  shortPanelNames[Roomba_Panel] = MainWindow::tr("Roomba");
   longPanelNames[Roomba_Panel] =
-    "Roomba Panel - robotic vacuum cleaner controls";
-  shortPanelNames[Playstation_Panel] = "Playstation";
+    MainWindow::tr("Roomba Panel - robotic vacuum cleaner controls");
+  shortPanelNames[Playstation_Panel] = MainWindow::tr("Playstation");
   longPanelNames[Playstation_Panel] =
-    "Playstation Panel - support for gamepad buttons";
-  shortPanelNames[User_Panel] = "User";
+    MainWindow::tr("Playstation Panel - support for gamepad buttons");
+  shortPanelNames[User_Panel] = MainWindow::tr("User");
   longPanelNames[User_Panel] =
-    "User Panel - macro control buttons";
-  shortPanelNames[Macro_Panel] = "Edit Macro Contents";
+    MainWindow::tr("User Panel - macro control buttons");
+  shortPanelNames[Macro_Panel] = MainWindow::tr("Edit Macro Contents");
   longPanelNames[Macro_Panel] =
-    "Edit Macros Panel - create, delete, edit, and manage macros";
+    MainWindow::tr("Edit Macros Panel - create, delete, edit, and manage macros");
 //  shortPanelNames[PowerSearch_Panel] = "Keyset Search";
 //  longPanelNames[PowerSearch_Panel] =
 //    "Keyset Search Panel - execute power button in each keyset";

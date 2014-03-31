@@ -166,7 +166,7 @@ void MagnavoxVCR1::populateProtocol(
 MagnavoxConverterBox1::MagnavoxConverterBox1(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Settop Box Keyset 1",
+      "STB Keyset 1",
       Magnavox_Make,
       index)
 {

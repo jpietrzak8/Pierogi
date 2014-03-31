@@ -26,7 +26,7 @@
 RokuBox1::RokuBox1(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Settop Box Keyset 1",
+      "STB Keyset 1",
       Roku_Make,
       index)
 {

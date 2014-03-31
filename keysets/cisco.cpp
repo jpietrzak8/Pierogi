@@ -29,7 +29,7 @@
 CiscoSTB1::CiscoSTB1(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Set-Top Box Keyset 1",
+      "STB Keyset 1",
       Cisco_Make,
       index)
 {
@@ -100,7 +100,7 @@ void CiscoSTB1::populateProtocol(
 CiscoSTB2::CiscoSTB2(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Set-Top Box Keyset 2",
+      "STB Keyset 2",
       Cisco_Make,
       index)
 {
@@ -188,7 +188,7 @@ void CiscoSTB2::populateProtocol(
 CiscoSTB3::CiscoSTB3(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Set-Top Box Keyset 3",
+      "STB Keyset 3",
       Cisco_Make,
       index)
 {
@@ -260,7 +260,7 @@ void CiscoSTB3::populateProtocol(
 CiscoSTB4::CiscoSTB4(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Set-Top Box Keyset 4",
+      "STB Keyset 4",
       Cisco_Make,
       index)
 {

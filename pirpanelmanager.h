@@ -66,7 +66,7 @@ typedef std::list<PIRPanelName> PIRPanelNameList;
 typedef std::map<PIRTabBarName, PIRPanelNameList> PIRTabsCollection;
 
 typedef std::map<PIRPanelName, QWidget *> PIRPanelCollection;
-typedef std::map<PIRPanelName, const char *> PIRPanelDisplayNameCollection;
+typedef std::map<PIRPanelName, QString> PIRPanelDisplayNameCollection;
 typedef std::map<QString, PIRPanelName> PIRReversePanelIndex;
 
 class PIRPanelManager

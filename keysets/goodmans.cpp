@@ -27,7 +27,7 @@
 GoodmansSTB1::GoodmansSTB1(
   unsigned int index)
   : PIRKeysetMetaData(
-      "TV Set Top Box Keyset 1",
+      "STB Keyset 1",
       Goodmans_Make,
       index)
 {

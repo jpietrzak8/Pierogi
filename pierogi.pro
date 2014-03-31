@@ -556,6 +556,9 @@ FORMS += mainwindow.ui \
     forms/pirplaystationform.ui \
     forms/pirintervalometerform.ui
 
+TRANSLATIONS += \
+    translations/pierogi_nl.ts
+
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
 qtcAddDeployment()
@@ -633,7 +636,8 @@ OTHER_FILES += \
     icons/PSTriangle.png \
     COPYING \
     LICENSE.md \
-    README.md
+    README.md \
+    translations/pierogi_nl.ts
 
 RESOURCES += \
     PierogiResources.qrc

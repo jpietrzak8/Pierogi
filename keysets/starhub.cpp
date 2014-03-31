@@ -26,7 +26,7 @@
 StarhubSTB1::StarhubSTB1(
   unsigned int index)
   : PIRKeysetMetaData(
-      "Set-Top Box Keyset 1",
+      "STB Keyset 1",
       Starhub_Make,
       index)
 {
@@ -116,7 +116,7 @@ StarhubSTB1a::StarhubSTB1a(
   unsigned int index)
   : StarhubSTB1(index)
 {
-  setKeysetName("Set-Top Box Keyset 1a");
+  setKeysetName("STB Keyset 1a");
 }
 
 

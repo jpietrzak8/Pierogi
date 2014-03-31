@@ -205,7 +205,7 @@ MainWindow::MainWindow(QWidget *parent)
   {
     // Couldn't load module, quit:
     QMessageBox errBox;
-    errBox.setText("Couldn't load lirc_rx51 kernel module!");
+    errBox.setText(tr("Couldn't load lirc_rx51 kernel module!"));
     errBox.setIcon(QMessageBox::Warning);
     errBox.exec();
 //    throw; // Need a clean way to exit here!!!
