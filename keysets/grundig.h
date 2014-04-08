@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class GrundigSat1: public PIRKeysetMetaData
 {
@@ -65,6 +66,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class GrundigAudio1: public PIRKeysetMetaData
@@ -85,6 +89,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class GrundigVCR1: public PIRKeysetMetaData

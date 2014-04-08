@@ -23,7 +23,9 @@
 #include "goldstar.h"
 #include "protocols/necprotocol.h"
 #include "protocols/rc5protocol.h"
-#include "protocols/lircprotocol.h"
+//#include "protocols/lircprotocol.h"
+#include "protocols/necxprotocol.h"
+#include <QComboBox>
 
 GoldStarTV1::GoldStarTV1(
   unsigned int index)
@@ -289,7 +291,7 @@ void GoldStarVCR1c::populateProtocol(
 }
 
 
-GoldStarCD1::GoldStarCD1(
+GoldStarAudio1::GoldStarAudio1(
   unsigned int index)
   : PIRKeysetMetaData(
       "Audio Keyset 1",
@@ -302,7 +304,7 @@ GoldStarCD1::GoldStarCD1(
 
 
 // Based on LIRC 6710S-6000A config file
-void GoldStarCD1::populateProtocol(
+void GoldStarAudio1::populateProtocol(
   QObject *guiObject)
 {
   if (threadableProtocol)
@@ -311,45 +313,48 @@ void GoldStarCD1::populateProtocol(
     return;
   }
 
-  LIRCProtocol *lp = new LIRCProtocol(
-    guiObject,
-    index,
-    600, 500,
-    600, 1600,
-    108000, true);
+  threadableProtocol = new NECXProtocol(guiObject, index, true);
 
-  threadableProtocol = lp;
+  setPreData(0x1010, 16);
 
-  lp->setHeaderPair(4500, 4500);
-  lp->setTrailerPulse(600);
-  lp->setRepeatPair(600, 1600);
-  lp->setRepeatNeedsHeader(true);
+  addKey("fm", FM_Key, 0x00, 8);
+  addKey("mw", AM_Key, 0x01, 8);
+  addKey("lw", LW_Key, 0x02, 8);
+  addKey("cd", CDInput_Key, 0x03, 8);
+  addKey("ply/pau", Play_Key, 0x04, 8);
+  addKey("stop", Stop_Key, 0x05, 8);
+  addKey("prev", Previous_Key, 0x06, 8);
+  addKey("next", Next_Key, 0x07, 8);
+  addKey("tape", TapeInput_Key, 0x08, 8);
+  addKey("aux", AuxInput_Key, 0x09, 8);
+  addKey("pre-", ChannelDown_Key, 0x12, 8);
+  addKey("pre-", PrevPreset_Key, 0x12, 8);
+  addKey("pre+", ChannelUp_Key, 0x13, 8);
+  addKey("pre+", NextPreset_Key, 0x13, 8);
+  addKey("vol-", VolumeDown_Key, 0x16, 8);
+  addKey("vol+", VolumeUp_Key, 0x17, 8);
 
-  setPreData(0x0808, 16);
-  setPostData(0x1, 1);
+  addKey("power", Power_Key, 0x1E, 8);
+  addKey("mute", Mute_Key, 0x1F, 8);
 
-  addKey("power", Power_Key, 0x3C43, 15);
-  addKey("mute", Mute_Key, 0x7C03, 15);
-  addKey("cd", CDInput_Key, 0x601F, 15);
-  addKey("tape", TapeInput_Key, 0x0877, 15);
-  addKey("aux", AuxInput_Key, 0x4837, 15);
-  addKey("fm", Unmapped_Key, 0x007F, 15);
-  addKey("mw", Unmapped_Key, 0x403F, 15);
-  addKey("lw", Unmapped_Key, 0x205F, 15);
-  addKey("pre-", ChannelDown_Key, 0x245B, 15);
-  addKey("pre-", PrevPreset_Key, 0x245B, 15);
-  addKey("pre+", ChannelUp_Key, 0x641B, 15);
-  addKey("pre+", NextPreset_Key, 0x641B, 15);
-  addKey("ply/pau", Play_Key, 0x106F, 15);
-  addKey("stop", Stop_Key, 0x502F, 15);
-  addKey("prev", Previous_Key, 0x304F, 15);
-  addKey("next", Next_Key, 0x700F, 15);
-  addKey("prog", Program_Key, 0x5926, 15);
-  addKey("repeat", Repeat_Key, 0x3946, 15);
-  addKey("random", Random_Key, 0x057A, 15);
-  addKey("dskip", NextDisc_Key, 0x2956, 15);
-  addKey("remain", Unmapped_Key, 0x453A, 15);
-  addKey("eqpatt", Unmapped_Key, 0x017E, 15);
-  addKey("vol-", VolumeDown_Key, 0x344B, 15);
-  addKey("vol+", VolumeUp_Key, 0x740B, 15);
+  addKey("eqpatt", Unmapped_Key, 0x40, 8);
+  addKey("dskip", NextDisc_Key, 0x4A, 8);
+  addKey("prog", Program_Key, 0x4D, 8);
+  addKey("repeat", Repeat_Key, 0x4E, 8);
+  addKey("random", Random_Key, 0x50, 8);
+  addKey("remain", Unmapped_Key, 0x51, 8);
+}
+
+
+void GoldStarAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("FM", QVariant(FM_Key));
+  cb->addItem("MW", QVariant(AM_Key));
+  cb->addItem("LW", QVariant(LW_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }

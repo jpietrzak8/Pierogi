@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class NADAudio1: public PIRKeysetMetaData
 {
@@ -35,6 +36,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class NADTuner1: public PIRKeysetMetaData

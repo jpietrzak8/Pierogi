@@ -22,6 +22,7 @@
 
 #include "hitachi.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 HitachiTV1::HitachiTV1(
@@ -58,6 +59,7 @@ void HitachiTV1::populateProtocol(
   addKey("1", One_Key, 0x0D, 8);
   addKey("2", Two_Key, 0x0E, 8);
   addKey("3", Three_Key, 0x0F, 8);
+
   addKey("recall", PrevChannel_Key, 0x10, 8);
   addKey("timer", Sleep_Key, 0x11, 8);
   addKey("vol_up", VolumeUp_Key, 0x12, 8);
@@ -73,6 +75,7 @@ void HitachiTV1::populateProtocol(
   addKey("5", Five_Key, 0x1D, 8);
   addKey("6", Six_Key, 0x1E, 8);
   addKey("7", Seven_Key, 0x1F, 8);
+
   addKey("MENU", Menu_Key, 0x40, 8);
   addKey("OK", Select_Key, 0x43, 8);
   addKey("return", Exit_Key, 0x44, 8);
@@ -151,72 +154,6 @@ void HitachiTV1b::populateProtocol(
 }
 
 
-HitachiTV1c::HitachiTV1c(
-  unsigned int index)
-  : HitachiTV1(index)
-{
-  setKeysetName("TV Keyset 1c");
-
-  addControlledDevice(Hitachi_Make, "57F510", TV_Device);
-}
-
-
-void HitachiTV1c::populateProtocol(
-  QObject *guiObject)
-{
-  if (threadableProtocol)
-  {
-    // If the pointer is not null, the keyset must already be populated.
-    return;
-  }
-
-  HitachiTV1::populateProtocol(guiObject);
-
-  addKey("LastChannel", PrevChannel_Key, 0x0A, 8);
-  addKey("Info", Info_Key, 0x10, 8);
-  addKey("-", Dash_Key, 0x11, 8);
-  addKey("Input1", Unmapped_Key, 0x21, 8);
-  addKey("Input2", Unmapped_Key, 0x22, 8);
-  addKey("Input3", Unmapped_Key, 0x23, 8);
-  addKey("Input4", Unmapped_Key, 0x24, 8);
-  addKey("ChannelUp", Unmapped_Key, 0x28, 8); // these four are odd
-  addKey("ChannelDown", Unmapped_Key, 0x29, 8); // duplicate?
-  addKey("VolumeDown", Unmapped_Key, 0x2A, 8); // maybe pip?
-  addKey("VolumeUp", Unmapped_Key, 0x2B, 8); // doesn't make sense
-  addKey("SELECT", Select_Key, 0x2E, 8);
-  addKey("Guide", Guide_Key, 0x35, 8);
-  addKey("CC", Captions_Key, 0x37, 8);
-  addKey("FavouriteChannel", Favorites_Key, 0x38, 8);
-  addKey("1080i/540p", Unmapped_Key, 0x3C, 8);
-  addKey("Input5", Unmapped_Key, 0x3D, 8);
-  addKey("PowerON", PowerOn_Key, 0x3E, 8);
-  addKey("PowerOFF", PowerOff_Key, 0x3F, 8);
-  addKey("Menu", Menu_Key, 0x53, 8);
-  addKey("PIP Swap", PIPSwap_Key, 0x56, 8);
-  addKey("PIP", PIP_Key, 0x58, 8);
-  addKey("Day/Night", Unmapped_Key, 0x5E, 8);
-  addKey("Freeze/Pause", Unmapped_Key, 0x61, 8); // note: have to hit "exit" to get out of frozen screen?
-  addKey("EXIT", Exit_Key, 0x64, 8);
-  addKey("16:9", Unmapped_Key, 0x65, 8);
-  addKey("16:9Zoom", Unmapped_Key, 0x66, 8);
-  addKey("4:3Standard", Unmapped_Key, 0x67, 8);
-  addKey("4:3Expanded", Unmapped_Key, 0x68, 8);
-  addKey("4:3Zoom1", Unmapped_Key, 0x69, 8);
-  addKey("4:3Zoom2", Unmapped_Key, 0x6A, 8);
-  addKey("540p", Unmapped_Key, 0x6B, 8);
-  addKey("1080i", Unmapped_Key, 0x6C, 8);
-  addKey("Aspect", AspectRatio_Key, 0x6F, 8);
-//  addKey("ArrowRight", Right_Key, 0x72, 8);
-//  addKey("ArrowLeft", Left_Key, 0x73, 8);
-  addKey("DayMode", Unmapped_Key, 0x74, 8);
-  addKey("NightMode", Unmapped_Key, 0x75, 8);
-  addKey("AntennaA", AntennaInput_Key, 0x76, 8);
-  addKey("AntennaB", Antenna2Input_Key, 0x77, 8);
-  addKey("CC", Unmapped_Key, 0x78, 8); // Another CC key?
-  // Many more codes available in LIRC's hitachi/CLU4341UG2 config file
-}
-
-
 // Taken from Hitachi 42HDM12.rmdu, a plasma HDMI monitor without a tuner
 HitachiTV2::HitachiTV2(
   unsigned int index)
@@ -277,6 +214,7 @@ HitachiTV3::HitachiTV3(
       Hitachi_Make,
       index)
 {
+  addControlledDevice(Hitachi_Make, "57F510", TV_Device);
 }
 
 
@@ -300,6 +238,7 @@ void HitachiTV3::populateProtocol(
   addKey("2", Two_Key, 0x0E, 8);
   addKey("3", Three_Key, 0x0F, 8);
 
+//  addKey("Info", Info_Key, 0x10, 8);
   addKey("DASH/DISPLAY", Dash_Key, 0x11, 8);
   addKey("DASH/DISPLAY", Info_Key, 0x11, 8);
   addKey("vol_up", VolumeUp_Key, 0x12, 8); // "VOL +"
@@ -321,9 +260,16 @@ void HitachiTV3::populateProtocol(
   addKey("CURSOR UP/CH UP", ChannelUp_Key, 0x28, 8);
   addKey("CURSOR DOWN/CH DOWN", Down_Key, 0x29, 8);
   addKey("CURSOR DOWN/CH DOWN", ChannelDown_Key, 0x29, 8);
+//  addKey("VolumeDown", Unmapped_Key, 0x2A, 8); // maybe pip?
+//  addKey("VolumeUp", Unmapped_Key, 0x2B, 8); // doesn't make sense
   addKey("VGA", PCInput_Key, 0x2C, 8);
   addKey("ENTER", Select_Key, 0x2E, 8);
   addKey("ENTER", Enter_Key, 0x2E, 8);
+
+  addKey("Guide", Guide_Key, 0x35, 8);
+//  addKey("CC", Captions_Key, 0x37, 8);
+  addKey("FavouriteChannel", Favorites_Key, 0x38, 8);
+  addKey("1080i/540p", Unmapped_Key, 0x3C, 8);
   addKey("HDMI 1", HDMIInput_Key, 0x3D, 8);
   addKey("POWER ON", PowerOn_Key, 0x3E, 8);
   addKey("POWER OFF", PowerOff_Key, 0x3F, 8);
@@ -332,16 +278,32 @@ void HitachiTV3::populateProtocol(
   addKey("PLAY", Play_Key, 0x46, 8);
   addKey("SEARCH FORWARD", FastForward_Key, 0x47, 8);
   addKey("STOP", Stop_Key, 0x49, 8);
+
   addKey("SKIP REVERSE", Previous_Key, 0x50, 8);
   addKey("SKIP FORWARD", Next_Key, 0x52, 8);
   addKey("MENU", Menu_Key, 0x53, 8);
+  addKey("PIP Swap", PIPSwap_Key, 0x56, 8);
+  addKey("PIP", PIP_Key, 0x58, 8);
+
   addKey("PAUSE", Pause_Key, 0x61, 8);
   addKey("EXIT/CANCEL", Exit_Key, 0x64, 8);
   addKey("EXIT/CANCEL", Clear_Key, 0x64, 8);
+  addKey("16:9", Unmapped_Key, 0x65, 8);
+  addKey("16:9Zoom", Unmapped_Key, 0x66, 8);
+  addKey("4:3Standard", Unmapped_Key, 0x67, 8);
+  addKey("4:3Expanded", Unmapped_Key, 0x68, 8);
+  addKey("4:3Zoom1", Unmapped_Key, 0x69, 8);
+  addKey("4:3Zoom2", Unmapped_Key, 0x6A, 8);
+  addKey("540p", Unmapped_Key, 0x6B, 8);
+  addKey("1080i", Unmapped_Key, 0x6C, 8);
   addKey("ASPECT", AspectRatio_Key, 0x6F, 8);
+
   addKey("CURSOR RIGHT", Right_Key, 0x72, 8);
   addKey("CURSOR LEFT", Left_Key, 0x73, 8);
+  addKey("DayMode", Unmapped_Key, 0x74, 8);
+  addKey("NightMode", Unmapped_Key, 0x75, 8);
   addKey("TV", AntennaInput_Key, 0x76, 8); // "AntennaA"
+  addKey("AntennaB", Antenna2Input_Key, 0x77, 8);
   addKey("C.C./SUBTITLE", Captions_Key, 0x78, 8);
   addKey("RETURN", Unmapped_Key, 0xE0, 8);
   addKey("REPEAT A-B", RepeatAB_Key, 0xE1, 8);
@@ -355,6 +317,25 @@ void HitachiTV3::populateProtocol(
   addKey("SLOW FORWARD", StepForward_Key, 0xEA, 8);
   addKey("TV/DVD", Unmapped_Key, 0xEB, 8);
   addKey("PLAY MODE", Unmapped_Key, 0xEC, 8);
+}
+
+
+void HitachiTV3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Video", QVariant(Input_Key));
+  cb->addItem("Antenna A", QVariant(AntennaInput_Key));
+  cb->addItem("Antenna B", QVariant(Antenna2Input_Key));
+  cb->addItem("HDMI 1", QVariant(HDMIInput_Key));
+  cb->addItem("HDMI 2", QVariant(HDMI2Input_Key));
+  cb->addItem("HDMI 3", QVariant(HDMI3Input_Key));
+  cb->addItem("VGA", QVariant(PCInput_Key));
+  cb->addItem("Component 1", QVariant(ComponentInput_Key));
+  cb->addItem("Component 2", QVariant(Component2Input_Key));
+  cb->addItem("AV 1", QVariant(CompositeInput_Key));
+  cb->addItem("AV 2", QVariant(Composite2Input_Key));
 }
 
 

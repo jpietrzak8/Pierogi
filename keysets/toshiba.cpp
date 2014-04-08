@@ -22,6 +22,8 @@
 
 #include "toshiba.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 ToshibaTV1::ToshibaTV1(
   unsigned int index)
@@ -430,6 +432,17 @@ void ToshibaVCR1::populateProtocol(
 }
 
 
+void ToshibaVCR1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input", QVariant(Input_Key));
+  cb->addItem("TV / VCR", QVariant(Input_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+}
+
+
 ToshibaVCR1a::ToshibaVCR1a(
   unsigned int index)
   : ToshibaVCR1(index)
@@ -566,6 +579,8 @@ void ToshibaDisc1::populateProtocol(
   addKey("ch-", ChannelDown_Key, 0x81, 8);
   addKey("down", Down_Key, 0x81, 8); // "ch-"
   addKey("menu", DiscMenu_Key, 0x84, 8);
+  addKey("dvd", DVDInput_Key, 0xCC, 8);
+  addKey("vcr", VCRInput_Key, 0xCD, 8);
   addKey("FlSelect", Unmapped_Key, 0xD7, 8);
   addKey("top_menu", DiscTitle_Key, 0xDE, 8); // "title"
   addKey("EPM", Unmapped_Key, 0xEE, 8);
@@ -574,6 +589,16 @@ void ToshibaDisc1::populateProtocol(
   addKey("Zoom +", Unmapped_Key, 0xF1, 8);
   addKey("open/close 2", Unmapped_Key, 0xF3, 8);
   addKey("eject", Eject_Key, 0xF5, 8);
+}
+
+
+void ToshibaDisc1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("VCR", QVariant(VCRInput_Key));
 }
 
 
@@ -623,8 +648,6 @@ void ToshibaDisc1b::populateProtocol(
   ToshibaDisc1::populateProtocol(guiObject);
 
   addKey("sp/slp", VHSSpeed_Key, 0x2C, 8);
-  addKey("dvd", DVDInput_Key, 0xCC, 8);
-  addKey("vcr", VCRInput_Key, 0xCD, 8);
   addKey("record tape", Record_Key, 0xE8, 8);
 }
 
@@ -659,8 +682,6 @@ void ToshibaDisc1c::populateProtocol(
   addKey("live tv", LiveTV_Key, 0xB9, 8);
   addKey("record", Record_Key, 0xBA, 8);
   addKey("prev ch", PrevChannel_Key, 0xBB, 8);
-  addKey("dvd", DVDInput_Key, 0xCC, 8);
-  addKey("vcr", VCRInput_Key, 0xCD, 8);
   addKey("record tape", Unmapped_Key, 0xE8, 8);
   addKey("thumbs down", Unmapped_Key, 0xF0, 8);
   addKey("thumbs up", Unmapped_Key, 0xF1, 8);
@@ -771,6 +792,17 @@ void ToshibaDisc2::populateProtocol(
 }
 
 
+void ToshibaDisc2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input", QVariant(Input_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("HDD", QVariant(HDDInput_Key));
+}
+
+
 ToshibaProjector1::ToshibaProjector1(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -806,6 +838,16 @@ void ToshibaProjector1::populateProtocol(
   addKey("channel up", ChannelUp_Key, 0x43, 8);
   addKey("resize", AspectRatio_Key, 0x44, 8);
   addKey("freeze", Pause_Key, 0x45, 8);
+}
+
+
+void ToshibaProjector1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Video", QVariant(AuxInput_Key));
+  cb->addItem("RGB", QVariant(ComponentInput_Key));
 }
 
 
@@ -872,4 +914,14 @@ void ToshibaSTB1::populateProtocol(
   addKey("favorite program", Favorites_Key, 0xD7, 8);
   addKey("category list", Unmapped_Key, 0xD8, 8);
   addKey("external input", AuxInput_Key, 0xD9, 8);
+}
+
+
+void ToshibaSTB1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Sat / TV", QVariant(Input_Key));
+  cb->addItem("External Input", QVariant(AuxInput_Key));
 }

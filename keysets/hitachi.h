@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class HitachiTV1: public PIRKeysetMetaData
 {
@@ -57,16 +58,6 @@ public:
     QObject *guiObject);
 };
 
-class HitachiTV1c: public HitachiTV1
-{
-public:
-  HitachiTV1c(
-    unsigned int index);
-
-  virtual void populateProtocol(
-    QObject *guiObject);
-};
-
 class HitachiTV2: public PIRKeysetMetaData
 {
 public:
@@ -85,6 +76,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class HitachiProjector: public PIRKeysetMetaData

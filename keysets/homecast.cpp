@@ -22,6 +22,7 @@
 
 #include "homecast.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 HomecastReceiver1::HomecastReceiver1(
@@ -81,6 +82,16 @@ void HomecastReceiver1::populateProtocol(
   addKey("4", Four_Key, 0x46, 8);
   addKey("Func", Unmapped_Key, 0x49, 8);
   addKey("0", Zero_Key, 0x4E, 8);
+}
+
+
+void HomecastReceiver1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV-STB", QVariant(Input_Key));
+  cb->addItem("TV-Radio", QVariant(TunerInput_Key));
 }
 
 

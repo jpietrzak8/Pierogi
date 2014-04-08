@@ -22,6 +22,8 @@
 
 #include "topfield.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 TopfieldPVR1::TopfieldPVR1(
   unsigned int index)
@@ -104,6 +106,17 @@ void TopfieldPVR1::populateProtocol(
 }
 
 
+void TopfieldPVR1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("Sat", QVariant(SatInput_Key));
+  cb->addItem("UHF", QVariant(AntennaInput_Key));
+}
+
+
 TopfieldSat1::TopfieldSat1(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -170,4 +183,16 @@ void TopfieldSat1::populateProtocol(
   addKey("Teletext", Teletext_Key, 0x47, 8);
 
   addKey("SAT", SatInput_Key, 0x5E, 8);
+}
+
+
+void TopfieldSat1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
+  cb->addItem("TV / STB", QVariant(Input_Key));
+  cb->addItem("UHF", QVariant(AntennaInput_Key));
+  cb->addItem("Sat", QVariant(SatInput_Key));
 }

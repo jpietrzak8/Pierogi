@@ -23,6 +23,7 @@
 #include "sony.h"
 #include "protocols/sircprotocol.h"
 #include "protocols/aiwaprotocol.h"
+#include <QComboBox>
 
 
 SonyTV1::SonyTV1(
@@ -166,6 +167,18 @@ void SonyTV1::populateProtocol(
   addSIRC15Key("16:9", AspectRatio_Key, 0xA4, 0x3D); // "WIDE"
   addSIRC15Key("EPG", Guide_Key, 0xA4, 0x5B);
   addSIRC15Key("PIP_Audio", Unmapped_Key, 0xA4, 0x7C);
+}
+
+
+void SonyTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Video", QVariant(Input_Key));
+  cb->addItem("ANT", QVariant(AntennaInput_Key));
+  cb->addItem("Cable", QVariant(CableInput_Key));
+  cb->addItem("Sat", QVariant(SatInput_Key));
 }
 
 
@@ -351,26 +364,48 @@ void SonyAmp1::populateProtocol(
   addSIRC12Key("0", Zero_Key, 0x0C, 0x09);
   addSIRC12Key("ENTER", Enter_Key, 0x0C, 0x0B);
   addSIRC12Key("DIGITAL", Unmapped_Key, 0x0C, 0x0C);
-  addSIRC12Key("VIDEO3", Unmapped_Key, 0x0C, 0x0A);
-  addSIRC12Key("VIDEO4", Unmapped_Key, 0x0C, 0x0B);
+  addSIRC12Key("VIDEO3", ComponentInput_Key, 0x0C, 0x0A);
+  addSIRC12Key("VIDEO4", Component2Input_Key, 0x0C, 0x0B);
   addSIRC12Key("VOL+", VolumeUp_Key, 0x0C, 0x12);
   addSIRC12Key("VOL-", VolumeDown_Key, 0x0C, 0x13);
   addSIRC12Key("MUTE", Mute_Key, 0x0C, 0x14);
   addSIRC12Key("POWER", Power_Key, 0x0C, 0x15);
   addSIRC12Key("LD", LDInput_Key, 0x0C, 0x19);
-  addSIRC12Key("TV", CableInput_Key, 0x0C, 0x18);
-  addSIRC12Key("VIDEO2", Unmapped_Key, 0x0C, 0x1E);
+  addSIRC12Key("TV", AntennaInput_Key, 0x0C, 0x18);
+  addSIRC12Key("VIDEO2", Composite2Input_Key, 0x0C, 0x1E);
   addSIRC12Key("PHONO", PhonoInput_Key, 0x0C, 0x20);
   addSIRC12Key("TUNER", TunerInput_Key, 0x0C, 0x21);
-  addSIRC12Key("VIDEO1", Unmapped_Key, 0x0C, 0x22);
+  addSIRC12Key("VIDEO1", CompositeInput_Key, 0x0C, 0x22);
   addSIRC12Key("TAPE", TapeInput_Key, 0x0C, 0x23);
   addSIRC12Key("CD", CDInput_Key, 0x0C, 0x25);
-  addSIRC12Key("DAT", Unmapped_Key, 0x0C, 0x46);
+  addSIRC12Key("DAT", ScartInput_Key, 0x0C, 0x46); // hack
   addSIRC12Key("SLEEP", Sleep_Key, 0x0C, 0x60);
   addSIRC12Key("MD", MDInput_Key, 0x0C, 0x69);
-  addSIRC12Key("TV2", Unmapped_Key, 0x0C, 0x6A);
+  addSIRC12Key("TV2", Antenna2Input_Key, 0x0C, 0x6A);
   addSIRC12Key("5.1CH", Unmapped_Key, 0x0C, 0x72);
   addSIRC12Key("DVD", DVDInput_Key, 0x0C, 0x7D);
+}
+
+
+void SonyAmp1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("MD", QVariant(MDInput_Key));
+  cb->addItem("DAT", QVariant(ScartInput_Key));
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("TV2", QVariant(Antenna2Input_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("LD", QVariant(LDInput_Key));
+  cb->addItem("Video 1", CompositeInput_Key);
+  cb->addItem("Video 2", Composite2Input_Key);
+  cb->addItem("Video 3", ComponentInput_Key);
+  cb->addItem("Video 4", Component2Input_Key);
 }
 
 
@@ -421,18 +456,37 @@ void SonyAmp2::populateProtocol(
   addSIRC12Key("mute", Mute_Key, 0x10, 0x14);
   addSIRC12Key("power", Power_Key, 0x10, 0x15);
   addSIRC12Key("aux/vdp", AuxInput_Key, 0x10, 0x1D);
-  addSIRC12Key("video2", Unmapped_Key, 0x10, 0x1E);
+  addSIRC12Key("video2", Composite2Input_Key, 0x10, 0x1E);
   addSIRC12Key("phono", PhonoInput_Key, 0x10, 0x20);
   addSIRC12Key("tuner", TunerInput_Key, 0x10, 0x21);
-  addSIRC12Key("video1", Unmapped_Key, 0x10, 0x22);
+  addSIRC12Key("video1", CompositeInput_Key, 0x10, 0x22);
   addSIRC12Key("tape", TapeInput_Key, 0x10, 0x23);
   addSIRC12Key("cd", CDInput_Key, 0x10, 0x25);
   addSIRC12Key("power_on", PowerOn_Key, 0x10, 0x2E);
-  addSIRC12Key("video3", Unmapped_Key, 0x10, 0x42);
+  addSIRC12Key("video3", ComponentInput_Key, 0x10, 0x42);
   addSIRC12Key("tv", CableInput_Key, 0x10, 0x6A);
   addSIRC12Key("dvd", DVDInput_Key, 0x10, 0x7D);
 
   addSIRC15Key("md/dat", MDInput_Key, 0x10, 0x69);
+}
+
+
+void SonyAmp2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Aux / VDP", QVariant(AuxInput_Key));
+  cb->addItem("TV", QVariant(CableInput_Key));
+  cb->addItem("Video 1", QVariant(CompositeInput_Key));
+  cb->addItem("Video 2", QVariant(Composite2Input_Key));
+  cb->addItem("Video 3", QVariant(ComponentInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("MD / DAT", QVariant(MDInput_Key));
 }
 
 
@@ -475,6 +529,7 @@ void SonyAudio1::populateProtocol(
   addSIRC12Key("VOL-", VolumeDown_Key, 0x10, 0x13);
   addSIRC12Key("ON-OFF", Power_Key, 0x10, 0x15);
   addSIRC12Key("effect_on_off", Unmapped_Key, 0x10, 0x1F);
+  addSIRC12Key("tape", TapeInput_Key, 0x10, 0x23);
   addSIRC12Key("cd", CDInput_Key, 0x10, 0x25);
   addSIRC12Key("DISPLAY", Info_Key, 0x10, 0x4B);
   addSIRC12Key("dimmer", Unmapped_Key, 0x10, 0x4D);
@@ -482,7 +537,7 @@ void SonyAudio1::populateProtocol(
   addSIRC12Key("SLEEP", Sleep_Key, 0x10, 0x60);
   addSIRC12Key("TIMER_SELECT", Unmapped_Key, 0x10, 0x62); // "clock_select"
   addSIRC12Key("TIMER_SET", Timer_Key, 0x10, 0x65);
-  addSIRC12Key("md", Unmapped_Key, 0x10, 0x69);
+  addSIRC12Key("md", MDInput_Key, 0x10, 0x69);
   addSIRC12Key("game", Unmapped_Key, 0x10, 0x7C);
 
   addSIRC12Key("CD_REPEAT", Repeat_Key, 0x11, 0x2C);
@@ -537,6 +592,19 @@ void SonyAudio1::populateProtocol(
 }
 
 
+void SonyAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Video", QVariant(Input_Key));
+  cb->addItem("Tuner Band", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("MD", QVariant(MDInput_Key));
+}
+
+
 SonyAudio1a::SonyAudio1a(
   unsigned int index)
   : SonyAudio1(index)
@@ -555,8 +623,6 @@ void SonyAudio1a::populateProtocol(
   }
 
   SonyAudio1::populateProtocol(guiObject);
-
-  addSIRC12Key("tape", TapeInput_Key, 0x10, 0x23);
 
 //  addSIRC20Key("select", Select_Key, 0x39, 0x1A, 0x32); // Doesn't make sense
   addSIRC20Key("play", Play_Key, 0x39, 0x1A, 0x32);
@@ -1003,6 +1069,16 @@ void SonyVCR1::populateProtocol(
 }
 
 
+void SonyVCR1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input", QVariant(Input_Key));
+  cb->addItem("TV / VCR", QVariant(AntennaInput_Key));
+}
+
+
 SonyVCR1a::SonyVCR1a(
   unsigned int index)
   : SonyVCR1(index)
@@ -1107,14 +1183,14 @@ void SonyReceiver1::populateProtocol(
   addSIRC15Key("VOLUME_DOWN", VolumeDown_Key, 0x30, 0x13);
   addSIRC15Key("MUTING", Mute_Key, 0x30, 0x14);
   addSIRC15Key("POWER", Power_Key, 0x30, 0x15);
-  addSIRC15Key("VIDEO2", Unmapped_Key, 0x30, 0x1E);
+  addSIRC15Key("VIDEO2", Composite2Input_Key, 0x30, 0x1E);
   addSIRC15Key("TUNER", TunerInput_Key, 0x30, 0x21);
-  addSIRC15Key("VIDEO1", Unmapped_Key, 0x30, 0x22);
-  addSIRC15Key("SA_CD", Unmapped_Key, 0x30, 0x25);
-  addSIRC15Key("VIDEO3", Unmapped_Key, 0x30, 0x42);
+  addSIRC15Key("VIDEO1", CompositeInput_Key, 0x30, 0x22);
+  addSIRC15Key("SA_CD", CDInput_Key, 0x30, 0x25);
+  addSIRC15Key("VIDEO3", ComponentInput_Key, 0x30, 0x42);
   addSIRC15Key("DISPLAY", Info_Key, 0x30, 0x4B);
   addSIRC15Key("SLEEP", Sleep_Key, 0x30, 0x60);
-  addSIRC15Key("TV", Unmapped_Key, 0x30, 0x6A);
+  addSIRC15Key("TV", AntennaInput_Key, 0x30, 0x6A);
   addSIRC15Key("DVD", DVDInput_Key, 0x30, 0x7D);
 
   addSIRC15Key("SAT", SatInput_Key, 0xB0, 0x03);
@@ -1128,6 +1204,22 @@ void SonyReceiver1::populateProtocol(
   addSIRC15Key("DOWN", Down_Key, 0xB0, 0x79);
   addSIRC15Key("LEFT", Left_Key, 0xB0, 0x7A);
   addSIRC15Key("RIGHT", Right_Key, 0xB0, 0x7B);
+}
+
+
+void SonyReceiver1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("SACD", QVariant(CDInput_Key));
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("SAT", QVariant(SatInput_Key));
+  cb->addItem("Video 1", QVariant(CompositeInput_Key));
+  cb->addItem("Video 2", QVariant(Composite2Input_Key));
+  cb->addItem("Video 3", QVariant(ComponentInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
 }
 
 
@@ -1384,6 +1476,21 @@ void SonyProjector1::populateProtocol(
   addSIRC20Key("apa", Unmapped_Key, 0x2A, 0x1A, 0x60);
   addSIRC20Key("wide mode", AspectRatio_Key, 0x2A, 0x1A, 0x6E);
   addSIRC20Key("lens", Unmapped_Key, 0x2A, 0x1A, 0x78);
+}
+
+
+void SonyProjector1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / VCR", QVariant(Input_Key));
+  cb->addItem("Video 1", QVariant(CompositeInput_Key));
+  cb->addItem("Video 2", QVariant(Composite2Input_Key));
+  cb->addItem("SVideo 1", QVariant(SVideoInput_Key));
+  cb->addItem("SVideo 2", QVariant(SVideo2Input_Key));
+  cb->addItem("Component", QVariant(ComponentInput_Key));
+  cb->addItem("A", QVariant(AuxInput_Key));
 }
 
 

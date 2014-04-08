@@ -25,6 +25,7 @@
 #include "protocols/giprotocol.h"
 #include "protocols/necprotocol.h"
 #include "protocols/canalsatprotocol.h"
+#include <QComboBox>
 
 
 Motorola4DTV::Motorola4DTV(
@@ -87,6 +88,16 @@ void Motorola4DTV::populateProtocol(
   addKey("Ch-DOWN", ChannelDown_Key, 0x08A, 12);
   addKey("LastCh", PrevChannel_Key, 0x187, 12);
   addKey("Help", Unmapped_Key, 0xF8E, 12);
+}
+
+
+void Motorola4DTV::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Source", QVariant(Input_Key));
+  cb->addItem("Satellite", QVariant(SatInput_Key));
 }
 
 
@@ -181,6 +192,16 @@ void MotorolaSTB1::populateProtocol(
   addKey("back", Unmapped_Key, 0x649D, 16);
 
   addKey("exit", Unmapped_Key, 0x60FB, 16); // separate keyset?
+}
+
+
+void MotorolaSTB1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("MyDVR", QVariant(HDDInput_Key));
 }
 
 

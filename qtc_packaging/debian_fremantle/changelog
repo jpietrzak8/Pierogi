@@ -1,3 +1,9 @@
+pierogi (1.1.31) unstable; urgency=low
+  * Introduced new interface for "Input" buttons; all inputs are now collected into a single combo box.  This combo box can be found in the "Input" panel and in the "Utility" panel.  Select the input you desire from the list, then click on the "Switch to Selected Input" button.
+  * Starting work to clean up Denon keysets.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Mon, 07 Apr 2014 20:02:39 -0400
+
 pierogi (1.1.30) unstable; urgency=low
   * Improvmenets to the intervalometer.
 

@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class NECTV1: public PIRKeysetMetaData
 {
@@ -95,6 +96,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 #endif // NEC_H

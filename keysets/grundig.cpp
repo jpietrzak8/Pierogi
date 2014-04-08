@@ -25,6 +25,8 @@
 #include "protocols/necxprotocol.h"
 #include "protocols/necprotocol.h"
 #include "protocols/protonprotocol.h"
+#include <QComboBox>
+
 
 // This one is iffy, might be another brand:
 GrundigSat1::GrundigSat1(
@@ -260,9 +262,10 @@ void GrundigAmp1::populateProtocol(
   addKey("cd", CDInput_Key, 0x1D3F, 13);
 
   addKey("phono", PhonoInput_Key, 0x1D7F, 13);
+
   addKey("dsr_up", Unmapped_Key, 0x1DA0, 13);
   addKey("dsr_down", Unmapped_Key, 0x1DA1, 13);
-  addKey("dsr_aux", AuxInput_Key, 0x1DBF, 13);
+  addKey("dsr_aux", SatInput_Key, 0x1DBF, 13);
 
   addKey("dcc_play_back", Unmapped_Key, 0x1DEF, 13);
   addKey("dcc_pause", Unmapped_Key, 0x1DF0, 13);
@@ -271,7 +274,21 @@ void GrundigAmp1::populateProtocol(
   addKey("dcc_play_forward", Unmapped_Key, 0x1DF5, 13);
   addKey("dcc_stop", Unmapped_Key, 0x1DF6, 13);
   addKey("dcc_record", Unmapped_Key, 0x1DF7, 13);
-  addKey("dcc", Unmapped_Key, 0x1DFF, 13);
+  addKey("dcc", MDInput_Key, 0x1DFF, 13); // Bit of a hack
+}
+
+
+void GrundigAmp1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Digital Satellite Radio", QVariant(SatInput_Key));
+  cb->addItem("Digital Compact Cassette", QVariant(MDInput_Key));
 }
 
 
@@ -364,8 +381,7 @@ void GrundigAudio2::populateProtocol(
   addKey("0", Zero_Key, 0x0B, 8);
   addKey("tuning_up", ChannelUp_Key, 0x0C, 8);
   addKey("random", Random_Key, 0x0D, 8);
-  addKey("band", FM_Key, 0x0E, 8);  // This is a hack
-  addKey("band", AM_Key, 0x0E, 8);  // This too
+  addKey("band", ToggleBand_Key, 0x0E, 8);
   addKey("cd", CDInput_Key, 0x0F, 8);
 
   addKey("3", Three_Key, 0x11, 8);
@@ -388,6 +404,17 @@ void GrundigAudio2::populateProtocol(
   addKey("volume_down", VolumeDown_Key, 0x60, 8);
   addKey("mute", Mute_Key, 0xA0, 8);
   addKey("+10", DoubleDigit_Key, 0xE0, 8);
+}
+
+
+void GrundigAudio2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
 }
 
 

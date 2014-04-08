@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class OrionTV1: public PIRKeysetMetaData
 {
@@ -35,6 +36,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class OrionTV2: public PIRKeysetMetaData
@@ -55,6 +59,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class OrionVCR1: public PIRKeysetMetaData

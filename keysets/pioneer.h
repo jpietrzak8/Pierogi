@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class PioneerTV1: public PIRKeysetMetaData
 {
@@ -35,6 +36,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PioneerTV2: public PIRKeysetMetaData
@@ -65,6 +69,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PioneerAudio1a: public PioneerAudio1
@@ -85,6 +92,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PioneerAudio3: public PIRKeysetMetaData
@@ -95,6 +105,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PioneerAudio4: public PIRKeysetMetaData
@@ -115,6 +128,22 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
+};
+
+class PioneerAudio6: public PIRKeysetMetaData
+{
+public:
+  PioneerAudio6(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PioneerCD1: public PIRKeysetMetaData
@@ -155,6 +184,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 #endif // PIONEER_H

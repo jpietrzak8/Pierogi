@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class ToshibaTV1: public PIRKeysetMetaData
 {
@@ -135,6 +136,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class ToshibaVCR1a: public ToshibaVCR1
@@ -165,6 +169,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class ToshibaDisc1a: public ToshibaDisc1
@@ -217,6 +224,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class ToshibaProjector1: public PIRKeysetMetaData
@@ -227,6 +237,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class ToshibaSTB1: public PIRKeysetMetaData
@@ -237,6 +250,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 #endif // TOSHIBA_H

@@ -23,6 +23,7 @@
 #include "sanyo.h"
 
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 SanyoVCR1::SanyoVCR1(
   unsigned int index)
@@ -229,7 +230,7 @@ void SanyoTV1::populateProtocol(
   addKey("down arrow", Down_Key, 0x4F, 8);
   addKey("exit", Exit_Key, 0x53, 8);
   addKey("enter", Select_Key, 0x54, 8);
-  addKey("tuner", Unmapped_Key, 0x55, 8); // "Tuner Toggle (analog-digital)"
+  addKey("tuner", ADTunerSwap_Key, 0x55, 8); // "Tuner Toggle (analog-digital)"
   addKey("pix shape", AspectRatio_Key, 0x57, 8);
   addKey("pip up", Unmapped_Key, 0x59, 8);
   addKey("pip down", Unmapped_Key, 0x5A, 8);
@@ -259,6 +260,15 @@ void SanyoTV1::populateProtocol(
   addKey("Self Test", Unmapped_Key, 0xC3, 8);
 
 //  addKey("Black screen (recoverable with 0x9F then MENU)", Unmapped_Key, 0x9E, 8);
+}
+
+
+void SanyoTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("A/D Tuner Toggle", QVariant(ADTunerSwap_Key));
 }
 
 
@@ -450,10 +460,10 @@ void SanyoProjector1::populateProtocol(
   addKey("Standard (Image)", Unmapped_Key, 0x1F, 8);
   addKey("HDMI", HDMIInput_Key, 0x37, 8);
   addKey("COMPUTER 1", PCInput_Key, 0x38, 8);
-  addKey("COMPUTER 2", Unmapped_Key, 0x39, 8);
-  addKey("Input 3", Unmapped_Key, 0x3A, 8);
+  addKey("COMPUTER 2", LDInput_Key, 0x39, 8); // hack
+  addKey("Input 3", PhonoInput_Key, 0x3A, 8); // hack
   addKey("AUTO", Unmapped_Key, 0x3C, 8); // "My-P (My Picture)"
-  addKey("COMPOSITE", AuxInput_Key, 0x3D, 8); // "VIDEO"
+  addKey("COMPOSITE", CompositeInput_Key, 0x3D, 8); // "VIDEO"
   addKey("S-VIDEO", SVideoInput_Key, 0x3E, 8); // "S-VIDEO"
   addKey("Lens Shift", Unmapped_Key, 0x40, 8);
   addKey("FREEZE", Pause_Key, 0x43, 8);
@@ -478,6 +488,21 @@ void SanyoProjector1::populateProtocol(
   addKey("KEYSTONE_DOWN", Unmapped_Key, 0x8F, 8);
   addKey("Power On", Green_Key, 0xA0, 8);
   addKey("Power Off", Red_Key, 0xA1, 8);
+}
+
+
+void SanyoProjector1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input", QVariant(Input_Key));
+  cb->addItem("HDMI", QVariant(HDMIInput_Key));
+  cb->addItem("Computer 1", QVariant(PCInput_Key));
+  cb->addItem("Computer 2", QVariant(LDInput_Key));
+  cb->addItem("Input 3", QVariant(PhonoInput_Key));
+  cb->addItem("Composite", QVariant(CompositeInput_Key));
+  cb->addItem("S-Video", QVariant(SVideoInput_Key));
 }
 
 

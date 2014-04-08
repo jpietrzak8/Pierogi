@@ -186,6 +186,7 @@ enum PIRKeyName
   Keystone_Key,
   PictureMute_Key,
   Focus_Key,
+  SpeakerSwitch_Key,
 
   // Input Controls:
   Input_Key,
@@ -219,6 +220,7 @@ enum PIRKeyName
   OpticalInput_Key,
   DigitalCoaxInput_Key,
   USBInput_Key,
+  ADTunerSwap_Key,
 
   // "Program" Controls:
   Program_Key,
@@ -227,12 +229,13 @@ enum PIRKeyName
   NextPreset_Key,
   PrevPreset_Key,
 
-  // Audio controls:
-//  TunerBand_Key,
-  FMMode_Key,
+  // Receiver-specific controls:
+  ToggleBand_Key,
   FM_Key,
   AM_Key, // also "MW"
   LW_Key,
+  FMMode_Key,
+  RDS_Key,
 
   // Air Conditioner controls:
   TempUp_Key,

@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class AiwaVCR1: public PIRKeysetMetaData
 {
@@ -65,6 +66,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class AiwaAudio1a: public AiwaAudio1
@@ -85,6 +89,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class AiwaAudio2a: public AiwaAudio2
@@ -155,6 +162,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class AiwaCarStereo1: public PIRKeysetMetaData
@@ -165,6 +175,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class AiwaDVD1: public PIRKeysetMetaData

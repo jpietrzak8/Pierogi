@@ -22,6 +22,8 @@
 
 #include "viewsonic.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 ViewsonicProjector1::ViewsonicProjector1(
   unsigned int index)
@@ -48,8 +50,8 @@ void ViewsonicProjector1::populateProtocol(
   setPreData(0x4587, 16);
 
   addKey("power", Power_Key, 0x17, 8);
-  addKey("RGB", Unmapped_Key, 0x18, 8);
-  addKey("video", PictureMode_Key, 0x19, 8);
+  addKey("RGB", ComponentInput_Key, 0x18, 8);
+  addKey("video", CompositeInput_Key, 0x19, 8);
   addKey("menu", Menu_Key, 0x20, 8);
   addKey("select", Select_Key, 0x21, 8);
   addKey("reset", Reset_Key, 0x22, 8);
@@ -68,6 +70,16 @@ void ViewsonicProjector1::populateProtocol(
   addKey("magnify off", Unmapped_Key, 0xB3, 8);
   addKey("freeze", Pause_Key, 0xB4, 8);
   addKey("keystone", Unmapped_Key, 0xB6, 8);
+}
+
+
+void ViewsonicProjector1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("RGB", QVariant(ComponentInput_Key));
+  cb->addItem("Video", QVariant(CompositeInput_Key));
 }
 
 
@@ -96,7 +108,7 @@ void ViewsonicProjector2::populateProtocol(
   setPreData(0x1586, 16);
 
   addKey("7", Seven_Key, 0x03, 8);
-  addKey("Video", AuxInput_Key, 0x03, 8);
+  addKey("Video", CompositeInput_Key, 0x03, 8);
   addKey("5", Five_Key, 0x04, 8);
   addKey("RGB", ComponentInput_Key, 0x04, 8);
   addKey("4", Four_Key, 0x05, 8);
@@ -109,9 +121,9 @@ void ViewsonicProjector2::populateProtocol(
   addKey("select", Select_Key, 0x17, 8);
   addKey("exit", Exit_Key, 0x25, 8);
   addKey("9", Nine_Key, 0x2B, 8);
-  addKey("YCbCr", Unmapped_Key, 0x2B, 8);
+  addKey("YCbCr", CableInput_Key, 0x2B, 8); // hack
   addKey("6", Six_Key, 0x2C, 8);
-  addKey("YPbPr", Unmapped_Key, 0x2C, 8);
+  addKey("YPbPr", PhonoInput_Key, 0x2C, 8); // hack
   addKey("pip on/off", PIP_Key, 0x30, 8);
   addKey("1", One_Key, 0x32, 8);
   addKey("Horiz Keystone", Unmapped_Key, 0x32, 8);
@@ -133,4 +145,19 @@ void ViewsonicProjector2::populateProtocol(
   addKey("S-Video", SVideoInput_Key, 0xC6, 8);
   addKey("Increase (+)", Unmapped_Key, 0xDE, 8);
   addKey("Decrease (-)", Unmapped_Key, 0xDF, 8);
+}
+
+
+void ViewsonicProjector2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("RGB", QVariant(ComponentInput_Key));
+  cb->addItem("Digital", QVariant(PCInput_Key));
+  cb->addItem("TV / VCR", QVariant(Input_Key));
+  cb->addItem("YCbCr", QVariant(CableInput_Key));
+  cb->addItem("YPbPr", QVariant(PhonoInput_Key));
+  cb->addItem("S-Video", QVariant(SVideoInput_Key));
 }

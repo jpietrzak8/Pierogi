@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class LGTV1: public PIRKeysetMetaData
 {
@@ -35,6 +36,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class LGTV1a: public LGTV1
@@ -105,6 +109,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+//  virtual void populateInputList(
+//    QComboBox *cb);
 };
 
 class LGHT2: public PIRKeysetMetaData
@@ -115,6 +122,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class LGHT2a: public LGHT2
@@ -135,6 +145,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class LGDisc2: public PIRKeysetMetaData

@@ -22,6 +22,7 @@
 
 #include "gadmei.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 GadmeiTuner1::GadmeiTuner1(
@@ -82,4 +83,14 @@ void GadmeiTuner1::populateProtocol(
   addKey("view", Unmapped_Key, 0x46, 8);
   addKey("OSD", Unmapped_Key, 0x49, 8);
   addKey("resolution", AspectRatio_Key, 0x4A, 8);
+}
+
+
+void GadmeiTuner1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("AV", QVariant(Input_Key));
+  cb->addItem("FM", QVariant(TunerInput_Key));
 }

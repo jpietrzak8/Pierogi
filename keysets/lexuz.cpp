@@ -22,6 +22,7 @@
 
 #include "lexuz.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 LexuzDVB1::LexuzDVB1(
@@ -81,4 +82,14 @@ void LexuzDVB1::populateProtocol(
   addKey("yellow", Yellow_Key, 0x49, 8);
   addKey("green", Green_Key, 0x4A, 8);
   addKey("red", Red_Key, 0x4B, 8);
+}
+
+
+void LexuzDVB1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV - Sat", QVariant(SatInput_Key));
+  cb->addItem("TV - Radio", QVariant(Input_Key));
 }

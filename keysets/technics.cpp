@@ -23,6 +23,7 @@
 #include "technics.h"
 #include "protocols/kaseikyoprotocol.h"
 #include "protocols/panasonicoldprotocol.h"
+#include <QComboBox>
 
 
 TechnicsAudio1::TechnicsAudio1(
@@ -198,6 +199,16 @@ void TechnicsAudio2::populateProtocol(
 }
 
 
+void TechnicsAudio2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tuner / Band", QVariant(TunerInput_Key));
+}
+
+
 TechnicsAudio3::TechnicsAudio3(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -230,10 +241,10 @@ void TechnicsAudio3::populateProtocol(
   addKaseikyoKey("muting", Mute_Key, 0x00A, 0x32);
   addKaseikyoKey("VCR/VDP", VCRInput_Key, 0x00A, 0x86);
   addKaseikyoKey("phono", PhonoInput_Key, 0x00A, 0x90);
-  addKaseikyoKey("Amp.Tuner", Unmapped_Key, 0x00A, 0x92);
+  addKaseikyoKey("Amp.Tuner", TunerInput_Key, 0x00A, 0x92);
   addKaseikyoKey("cd", CDInput_Key, 0x00A, 0x94);
   addKaseikyoKey("tape", TapeInput_Key, 0x00A, 0x96);
-  addKaseikyoKey("TAPE2", Unmapped_Key, 0x00A, 0x97);
+  addKaseikyoKey("TAPE2", MDInput_Key, 0x00A, 0x97);
   addKaseikyoKey("ext", Unmapped_Key, 0x00A, 0x99); // "DCC"
   addKaseikyoKey("AUX", AuxInput_Key, 0x00A, 0x9A);
   addKaseikyoKey("vdp", Unmapped_Key, 0x00A, 0xA2); // separate keyset?
@@ -247,7 +258,7 @@ void TechnicsAudio3::populateProtocol(
   addKaseikyoKey("auto/mono", FMMode_Key, 0x04A, 0x33);
   addKaseikyoKey("Tuner.Preset.up", ChannelUp_Key, 0x04A, 0x34);
   addKaseikyoKey("Tuner.Preset.down", ChannelDown_Key, 0x04A, 0x35);
-  addKaseikyoKey("tuner/band", TunerInput_Key, 0x04A, 0xA4);
+  addKaseikyoKey("tuner/band", ToggleBand_Key, 0x04A, 0xA4);
 
   addKaseikyoKey("tape_stop", Unmapped_Key, 0x08A, 0x00);
   addKaseikyoKey("tape_open/close", Unmapped_Key, 0x08A, 0x01);
@@ -256,7 +267,7 @@ void TechnicsAudio3::populateProtocol(
   addKaseikyoKey("rec_pause", Unmapped_Key, 0x08A, 0x08);
   addKaseikyoKey("tape_play_fwd", Unmapped_Key, 0x08A, 0x0A);
   addKaseikyoKey("tape_play_back", Unmapped_Key, 0x08A, 0x0B);
-  addKaseikyoKey("tape", Unmapped_Key, 0x08A, 0x95); // what is this?
+  addKaseikyoKey("tape", PCInput_Key, 0x08A, 0x95); // hack
 
   addKaseikyoKey("cd_stop", Stop_Key, 0x0AA, 0x00);
   addKaseikyoKey("cd_open/close", Eject_Key, 0x0AA, 0x01);
@@ -294,6 +305,22 @@ void TechnicsAudio3::populateProtocol(
   addKaseikyoKey("up", Up_Key, 0x1CA, 0xF3);
   addKaseikyoKey("right", Right_Key, 0x1CA, 0xFC);
   addKaseikyoKey("left", Left_Key, 0x1CA, 0xFD);
+}
+
+
+void TechnicsAudio3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Tape 2", QVariant(MDInput_Key));
+  cb->addItem("Tape 3", QVariant(PCInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+  cb->addItem("VCR / VDP", QVariant(VCRInput_Key));
 }
 
 
@@ -359,7 +386,9 @@ void TechnicsReceiver1::populateProtocol(
   addKaseikyoKey("Tuner Select", TunerInput_Key, 0x000, 0x92);
   addKaseikyoKey("CD Select", CDInput_Key, 0x000, 0x94);
   addKaseikyoKey("CD5 Select", Unmapped_Key, 0x000, 0x96);
-  addKaseikyoKey("TV Select", AuxInput_Key, 0x000, 0x9C);
+  addKaseikyoKey("TV Select", Antenna2Input_Key, 0x000, 0x9C);
+  addKaseikyoKey("VCR1", VCRInput_Key, 0x000, 0x9E);
+  addKaseikyoKey("VCR2", CableInput_Key, 0x000, 0x9F); // Hack
   addKaseikyoKey("DVD Select", DVDInput_Key, 0x000, 0xA3);
   addKaseikyoKey("Surround", Unmapped_Key, 0x000, 0xB2); // ?
   addKaseikyoKey("Center up", CenterVolumeUp_Key, 0x000, 0xCE);
@@ -381,14 +410,29 @@ void TechnicsReceiver1::populateProtocol(
   addKaseikyoKey(">=10", DoubleDigit_Key, 0x004, 0x84);
   addKaseikyoKey("FM Tune +", ChannelUp_Key, 0x004, 0x86);
   addKaseikyoKey("FM Tune -", ChannelDown_Key, 0x004, 0x87);
-  addKaseikyoKey("Direct tuning", Input_Key, 0x004, 0x88);
-  addKaseikyoKey("Band", FM_Key, 0x004, 0xA4);
+  addKaseikyoKey("Direct tuning", AntennaInput_Key, 0x004, 0x88);
+  addKaseikyoKey("Band", ToggleBand_Key, 0x004, 0xA4);
 
   addKaseikyoKey("D/L+", Unmapped_Key, 0x014, 0xBC);
   addKaseikyoKey("D/L-", Unmapped_Key, 0x014, 0xBD);
   addKaseikyoKey("Level", Unmapped_Key, 0x014, 0xBE);
   addKaseikyoKey("Delay", Unmapped_Key, 0x014, 0xBF);
   addKaseikyoKey("Test", Unmapped_Key, 0x014, 0xF6);
+}
+
+
+void TechnicsReceiver1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("Tuner (alt)", QVariant(AntennaInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("TV", QVariant(Antenna2Input_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("VCR", QVariant(VCRInput_Key));
+  cb->addItem("VCR 2", QVariant(CableInput_Key));
 }
 
 
@@ -414,8 +458,6 @@ void TechnicsReceiver1a::populateProtocol(
   addKaseikyoKey("power", Power_Key, 0x000, 0x3D);
   addKaseikyoKey("Discrete On", PowerOn_Key, 0x000, 0x3E);
   addKaseikyoKey("Discrete Off", PowerOff_Key, 0x000, 0x3F);
-  addKaseikyoKey("VCR1", VCRInput_Key, 0x000, 0x9E);
-  addKaseikyoKey("VCR2", CableInput_Key, 0x000, 0x9F); // Hack
   addKaseikyoKey("Dolby Test", Unmapped_Key, 0x000, 0xF6);
 }
 

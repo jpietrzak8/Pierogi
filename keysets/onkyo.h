@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class OnkyoAudio1: public PIRKeysetMetaData
 {
@@ -65,6 +66,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class OnkyoAudio4: public PIRKeysetMetaData
@@ -95,6 +99,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class OnkyoDVD2: public PIRKeysetMetaData

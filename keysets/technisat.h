@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class TechnisatSTB1: public PIRKeysetMetaData
 {
@@ -35,6 +36,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class TechnisatSTB1a: public TechnisatSTB1
@@ -55,6 +59,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class TechnisatSTB2a: public TechnisatSTB2

@@ -24,6 +24,7 @@
 #include "protocols/necprotocol.h"
 #include "protocols/kaseikyoprotocol.h"
 #include "protocols/panasonicoldprotocol.h"
+#include <QComboBox>
 
 
 PanasonicCarAudio::PanasonicCarAudio(
@@ -895,6 +896,17 @@ void PanasonicAudio1::populateProtocol(
 }
 
 
+void PanasonicAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner Band", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+}
+
+
 PanasonicAudio2::PanasonicAudio2(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -921,7 +933,7 @@ void PanasonicAudio2::populateProtocol(
   addKaseikyoKey("Volume_Up", VolumeUp_Key, 0x00A, 0x20);
   addKaseikyoKey("Volume_Down", VolumeDown_Key, 0x00A, 0x21);
   addKaseikyoKey("Mute", Mute_Key, 0x00A, 0x32);
-  addKaseikyoKey("INPUT:AUX", AuxInput_Key, 0x00A, 0x9A);
+  addKaseikyoKey("INPUT:AUX", LineInput_Key, 0x00A, 0x9A); // hack
   addKaseikyoKey("Super_Woofer", Unmapped_Key, 0x00A, 0xC2);
 
   addKaseikyoKey("tuner", TunerInput_Key, 0x04A, 0xA4);
@@ -935,7 +947,7 @@ void PanasonicAudio2::populateProtocol(
   addKaseikyoKey("cd", CDInput_Key, 0x00A, 0x94);
   addKaseikyoKey("aux", AuxInput_Key, 0x00A, 0x9A);
   addKaseikyoKey("cancel", Clear_Key, 0x0AA, 0xA3);
-  addKaseikyoKey("Disc", NextDisc_Key, 0x0AA, 0xA4);
+  addKaseikyoKey("Disc", NextDisc_Key, 0x0AA, 0xA4);  // ???
 
   addKaseikyoKey("Eq", Unmapped_Key, 0x10A, 0x83); // "Preset EQ"
 
@@ -970,6 +982,19 @@ void PanasonicAudio2::populateProtocol(
 }
 
 
+void PanasonicAudio2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+  cb->addItem("Aux (alt)", QVariant(LineInput_Key));
+}
+
+
 PanasonicAudio2a::PanasonicAudio2a(
   unsigned int index)
   : PanasonicAudio2(index)
@@ -989,7 +1014,7 @@ void PanasonicAudio2a::populateProtocol(
 
   PanasonicAudio2::populateProtocol(guiObject);
 
-  addKaseikyoKey("INPUT: CD play/pause", CDInput_Key, 0x0AA, 0x0A);
+//  addKaseikyoKey("INPUT: CD play/pause", CDInput_Key, 0x0AA, 0x0A);
   addKaseikyoKey("INPUT: CD play/pause", Play_Key, 0x0AA, 0x0A);
   addKaseikyoKey("INPUT: CD play/pause", Pause_Key, 0x0AA, 0x0A);
 }
@@ -1020,7 +1045,7 @@ void PanasonicAudio3::populateProtocol(
   addPanOldKey("audio_phono", PhonoInput_Key, 0x09, 0x0C);
   addPanOldKey("vol-", VolumeDown_Key, 0x09, 0x25);
   addPanOldKey("vol+", VolumeUp_Key, 0x09, 0x24);
-  addPanOldKey("audio_video", Input_Key, 0x09, 0x2E);
+  addPanOldKey("audio_video", CompositeInput_Key, 0x09, 0x2E);
   addPanOldKey("audio_tape", TapeInput_Key, 0x09, 0x0A);
   addPanOldKey("tuner-", ChannelDown_Key, 0x09, 0x23);
   addPanOldKey("tuner+", ChannelUp_Key, 0x09, 0x22);
@@ -1032,17 +1057,31 @@ void PanasonicAudio3::populateProtocol(
   addPanOldKey("vcr_stop", Unmapped_Key, 0x02, 0x00);
   addPanOldKey("vcr_ch-", Unmapped_Key, 0x02, 0x23);
   addPanOldKey("vcr_ch+", Unmapped_Key, 0x02, 0x22);
-  addPanOldKey("tv_vcr", Unmapped_Key, 0x02, 0x2A);
+  addPanOldKey("tv_vcr", Input_Key, 0x02, 0x2A);
   addPanOldKey("vcr_pause", Unmapped_Key, 0x02, 0x06);
   addPanOldKey("vcr_rec", Unmapped_Key, 0x02, 0x08);
   addPanOldKey("tv_power", Unmapped_Key, 0x00, 0x20);
   addPanOldKey("vcr_play", Unmapped_Key, 0x02, 0x0A);
   addPanOldKey("vcr_rew", Unmapped_Key, 0x02, 0x02);
   addPanOldKey("vcr_ff", Unmapped_Key, 0x02, 0x03);
-  addPanOldKey("tv_video", Unmapped_Key, 0x00, 0x0D);
-  addPanOldKey("tv_ant", Unmapped_Key, 0x00, 0x2A);
+  addPanOldKey("tv_video", Input_Key, 0x00, 0x0D);
+  addPanOldKey("tv_ant", AntennaInput_Key, 0x00, 0x2A);
   addPanOldKey("tv_ch-", Unmapped_Key, 0x00, 0x23);
   addPanOldKey("tv_ch+", Unmapped_Key, 0x00, 0x22);
+}
+
+
+void PanasonicAudio3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("TV / VCR", QVariant(VCRInput_Key));
+  cb->addItem("TV / Video", QVariant(Input_Key));
+  cb->addItem("TV / Ant", QVariant(AntennaInput_Key));
 }
 
 

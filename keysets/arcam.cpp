@@ -22,6 +22,7 @@
 
 #include "arcam.h"
 #include "protocols/rc5protocol.h"
+#include <QComboBox>
 
 
 ArcamReceiver1::ArcamReceiver1(
@@ -75,4 +76,18 @@ void ArcamReceiver1::populateProtocol(
   addKey("p+", ChannelUp_Key, 0x1438, 13);
   addKey("p-", ChannelDown_Key, 0x1439, 13);
   addKey("dyn", Unmapped_Key, 0x143E, 13);
+}
+
+
+void ArcamReceiver1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Satellite", QVariant(SatInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("VCR", QVariant(VCRInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }

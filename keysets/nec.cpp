@@ -23,6 +23,8 @@
 #include "nec.h"
 #include "protocols/necprotocol.h"
 #include "protocols/necxprotocol.h"
+#include <QComboBox>
+
 
 NECTV1::NECTV1(
   unsigned int index)
@@ -509,4 +511,16 @@ void NECProjector2::populateProtocol(
   addKey("right", Right_Key, 0xBA, 8);
 
   addKey("S-VIDEO", SVideoInput_Key, 0xC6, 8);
+}
+
+
+void NECProjector2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("RGB", QVariant(ComponentInput_Key));
+  cb->addItem("RGB 2", QVariant(Component2Input_Key));
+  cb->addItem("S-Video", QVariant(SVideoInput_Key));
 }

@@ -23,6 +23,8 @@
 #include "goodmans.h"
 #include "protocols/rc5protocol.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 GoodmansSTB1::GoodmansSTB1(
   unsigned int index)
@@ -240,28 +242,7 @@ void GoodmansAudio1::populateProtocol(
 
   setPreData(0x6C87, 16);
 
-  addKey("power", Power_Key, 0x0A, 8);
-  addKey("tape", TapeInput_Key, 0x4B, 8);
-  addKey("cd", CDInput_Key, 0x48, 8);
-  addKey("tuner", TunerInput_Key, 0x4A, 8);
-  addKey("aux", AuxInput_Key, 0x4D, 8);
-  addKey("play", Play_Key, 0x12, 8);
-  addKey("random", Random_Key, 0x13, 8);
-  addKey("stop", Stop_Key, 0x11, 8);
-  addKey("rew", Rewind_Key, 0x15, 8);
-  addKey("repeat", Repeat_Key, 0x16, 8);
-  addKey("ffwd", FastForward_Key, 0x14, 8);
-  addKey("space", Unmapped_Key, 0x17, 8);
-  addKey("display", Info_Key, 0x1A, 8);
-  addKey("mute", Mute_Key, 0x1D, 8);
-  addKey("vol-", VolumeDown_Key, 0x1F, 8);
-  addKey("vol+", VolumeUp_Key, 0x1E, 8);
-  addKey("tun+", ChannelUp_Key, 0x94, 8);
-  addKey("tun-", ChannelDown_Key, 0x95, 8);
-  addKey("mode", FMMode_Key, 0x4F, 8); // might be wrong
-  addKey("band", FM_Key, 0x43, 8);
-  addKey("program", Program_Key, 0x19, 8);
-  addKey("intro", Unmapped_Key, 0x18, 8);
+  addKey("0", Zero_Key, 0x00, 8);
   addKey("1", One_Key, 0x01, 8);
   addKey("2", Two_Key, 0x02, 8);
   addKey("3", Three_Key, 0x03, 8);
@@ -271,5 +252,41 @@ void GoodmansAudio1::populateProtocol(
   addKey("7", Seven_Key, 0x07, 8);
   addKey("8", Eight_Key, 0x08, 8);
   addKey("9", Nine_Key, 0x09, 8);
-  addKey("0", Zero_Key, 0x00, 8);
+  addKey("power", Power_Key, 0x0A, 8);
+
+  addKey("stop", Stop_Key, 0x11, 8);
+  addKey("play", Play_Key, 0x12, 8);
+  addKey("random", Random_Key, 0x13, 8);
+  addKey("ffwd", FastForward_Key, 0x14, 8);
+  addKey("rew", Rewind_Key, 0x15, 8);
+  addKey("repeat", Repeat_Key, 0x16, 8);
+  addKey("space", Unmapped_Key, 0x17, 8);
+  addKey("intro", Unmapped_Key, 0x18, 8);
+  addKey("program", Program_Key, 0x19, 8);
+  addKey("display", Info_Key, 0x1A, 8);
+  addKey("mute", Mute_Key, 0x1D, 8);
+  addKey("vol+", VolumeUp_Key, 0x1E, 8);
+  addKey("vol-", VolumeDown_Key, 0x1F, 8);
+
+  addKey("band", ToggleBand_Key, 0x43, 8);
+  addKey("cd", CDInput_Key, 0x48, 8);
+  addKey("tuner", TunerInput_Key, 0x4A, 8);
+  addKey("tape", TapeInput_Key, 0x4B, 8);
+  addKey("aux", AuxInput_Key, 0x4D, 8);
+  addKey("mode", FMMode_Key, 0x4F, 8); // might be wrong
+
+  addKey("tun+", ChannelUp_Key, 0x94, 8);
+  addKey("tun-", ChannelDown_Key, 0x95, 8);
+}
+
+
+void GoodmansAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }

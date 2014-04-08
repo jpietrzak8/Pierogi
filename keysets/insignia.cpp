@@ -27,6 +27,7 @@
 #include "protocols/recs80protocol.h"
 #include "protocols/aiwaprotocol.h"
 #include "protocols/rc5protocol.h"
+#include <QComboBox>
 
 
 InsigniaTV1::InsigniaTV1(
@@ -98,9 +99,13 @@ void InsigniaTV1a::populateProtocol(
 
   InsigniaTV1::populateProtocol(guiObject);
 
+//  addKey("UP ARROW", Up_Key, 0x0A, 8);
+//  addKey("DOWN ARROW", Down_Key, 0x0B, 8);
+//  addKey("LEFT ARROW", Left_Key, 0x0D, 8);
   addKey("mts/sap", Audio_Key, 0x11, 8);
   addKey("right arrow", Right_Key, 0x15, 8);
   addKey("left arrow", Left_Key, 0x16, 8);
+//  addKey("GUIDE", Guide_Key, 0x17, 8); // dubious
   addKey("exit", Exit_Key, 0x1B, 8);
   addKey("ccd", Captions_Key, 0x1C, 8);
   addKey("input", Input_Key, 0x1D, 8);
@@ -109,14 +114,16 @@ void InsigniaTV1a::populateProtocol(
   addKey("down arrow", Down_Key, 0x43, 8);
   addKey("zoom", Zoom_Key, 0x44, 8);
   addKey("guide", Guide_Key, 0x45, 8);
+  addKey("Parental Control", Unmapped_Key, 0x47, 8);
   addKey("audio", SoundMode_Key, 0x48, 8);
   addKey("picture", PictureMode_Key, 0x49, 8);
   addKey("favorite", Favorites_Key, 0x4B, 8);
   addKey("video", AuxInput_Key, 0x4C, 8);
-  addKey("comp", PCInput_Key, 0x4D, 8);
+  addKey("Component", ComponentInput_Key, 0x4D, 8);
   addKey("tv", AntennaInput_Key, 0x4F, 8);
   addKey("hdmi", HDMIInput_Key, 0x50, 8);
   addKey("DVD", DVDInput_Key, 0x52, 8);
+//  addKey("Freeze", Pause_Key, 0x53, 8);
   addKey("Discrete Off", PowerOff_Key, 0x60, 8);
   addKey("Discrete On", PowerOn_Key, 0x61, 8);
   addKey("play", Play_Key, 0x70, 8);
@@ -145,44 +152,17 @@ void InsigniaTV1a::populateProtocol(
 }
 
 
-InsigniaTV1b::InsigniaTV1b(
-  unsigned int index)
-  : InsigniaTV1(index)
+void InsigniaTV1a::populateInputList(
+  QComboBox *cb)
 {
-  setKeysetName("TV Keyset 1b");
-}
+  cb->clear();
 
-
-void InsigniaTV1b::populateProtocol(
-  QObject *guiObject)
-{
-  if (threadableProtocol)
-  {
-    // Keyset already populated.
-    return;
-  }
-
-  InsigniaTV1::populateProtocol(guiObject);
-
-  addKey("UP ARROW", Up_Key, 0x0A, 8);
-  addKey("DOWN ARROW", Down_Key, 0x0B, 8);
-  addKey("LEFT ARROW", Left_Key, 0x0D, 8);
-  addKey("SAP", Audio_Key, 0x11, 8);
-  addKey("Right Arrow", Right_Key, 0x15, 8); // This should be 0x0C!!!!
-  addKey("GUIDE", Guide_Key, 0x17, 8); // dubious
-  addKey("exit", Exit_Key, 0x1B, 8);
-  addKey("Closed Caption", Captions_Key, 0x1C, 8);
-  addKey("Input", Input_Key, 0x1D, 8);
-  addKey("zoom", Zoom_Key, 0x44, 8);
-  addKey("Parental Control", Unmapped_Key, 0x47, 8);
-  addKey("audio EQ", SoundMode_Key, 0x48, 8);
-  addKey("pict", PictureMode_Key, 0x49, 8);
-  addKey("fav", Favorites_Key, 0x4B, 8);
-  addKey("Video", AuxInput_Key, 0x4C, 8);
-  addKey("Component", ComponentInput_Key, 0x4D, 8);
-  addKey("TV (RF/Antenna)", AntennaInput_Key, 0x4F, 8);
-  addKey("HDMI", HDMIInput_Key, 0x50, 8);
-  addKey("Freeze", Pause_Key, 0x53, 8);
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("Video", QVariant(AuxInput_Key));
+  cb->addItem("Component", QVariant(ComponentInput_Key));
+  cb->addItem("HDMI", QVariant(HDMIInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
 }
 
 
@@ -235,6 +215,16 @@ void InsigniaTV2::populateProtocol(
   addKey("CH+", ChannelUp_Key, 0x1B, 8);
   addKey("VOL-", VolumeDown_Key, 0x1D, 8);
   addKey("PARENTAL CONTROL", Unmapped_Key, 0x1E, 8);
+}
+
+
+void InsigniaTV2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("AV / Source", QVariant(Input_Key));
+  cb->addItem("Air / Cable", QVariant(AntennaInput_Key));
 }
 
 
@@ -588,7 +578,7 @@ void InsigniaDVD2::populateProtocol(
   addKey("6", Six_Key, 0x2C, 6);
   addKey("2", Two_Key, 0x2D, 6);
   addKey("Angle/PBC", Angle_Key, 0x2E, 6);
-  addKey("Audio FM ST", TunerInput_Key, 0x2F, 6);
+  addKey("Audio FM ST", Unmapped_Key, 0x2F, 6);
   addKey("exit", Exit_Key, 0x30, 6);
   addKey("left arrow", Left_Key, 0x31, 6);
   addKey("fast fwd", FastForward_Key, 0x32, 6);
@@ -667,6 +657,18 @@ void InsigniaDVD3::populateProtocol(
   addKey("tv/vcr", AntennaInput_Key, 0xBE, 8);
   addKey("dvd", DVDInput_Key, 0xF1, 8);
   addKey("vcr", VCRInput_Key, 0xF3, 8);
+}
+
+
+void InsigniaDVD3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("TV / VCR", QVariant(AntennaInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("VCR", QVariant(VCRInput_Key));
 }
 
 
@@ -892,8 +894,20 @@ void InsigniaDVD6::populateProtocol(
   addKey("eq mode", Unmapped_Key, 0x63, 8);
   addKey("bass on/off", EnhancedBass_Key, 0x66, 8);
   addKey("mute", Mute_Key, 0x6A, 8);
-  addKey("video source", Input_Key, 0x6B, 8);
+  addKey("video source", CompositeInput_Key, 0x6B, 8);
   addKey("fm/am", TunerInput_Key, 0x6C, 8);
-  addKey("audio source", Unmapped_Key, 0x6D, 8);
+  addKey("audio source", AuxInput_Key, 0x6D, 8);
   addKey("surround mode", Surround_Key, 0xBF, 8);
+}
+
+
+void InsigniaDVD6::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("FM / AM toggle", QVariant(TunerInput_Key));
+  cb->addItem("Audio", QVariant(AuxInput_Key));
 }

@@ -23,6 +23,7 @@
 #include "dreambox.h"
 #include "protocols/xmpprotocol.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 DreamboxSat1::DreamboxSat1(
@@ -92,6 +93,16 @@ void DreamboxSat1::populateProtocol(
   addXMPKey("help", Guide_Key, 0x54, 0x00);
   addXMPKey("discrete_off", PowerOff_Key, 0xB4, 0x00);
   addXMPKey("discrete_on", PowerOn_Key, 0xE8, 0x00);
+}
+
+
+void DreamboxSat1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV (pause/play)", QVariant(Input_Key));
+  cb->addItem("Radio", QVariant(TunerInput_Key));
 }
 
 
@@ -256,6 +267,16 @@ void DreamboxSat2::populateProtocol(
 }
 
 
+void DreamboxSat2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV (play/pause)", QVariant(Input_Key));
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+}
+
+
 DreamboxSat3::DreamboxSat3(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -320,6 +341,17 @@ void DreamboxSat3::populateProtocol(
   addKey("Radio", TunerInput_Key, 0x28, 8);
   addKey("Teletext", Teletext_Key, 0x29, 8);
   addKey("Record", Record_Key, 0x2A, 8);
+}
+
+
+void DreamboxSat3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+  cb->addItem("PVR", QVariant(HDDInput_Key));
 }
 
 

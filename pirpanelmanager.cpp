@@ -31,7 +31,9 @@
 #include "forms/pirmedia2form.h"
 #include "forms/pirrecordform.h"
 #include "forms/pirtvform.h"
+#include "forms/pirreceiverform.h"
 #include "forms/pirinputform.h"
+#include "forms/pirinputlistform.h"
 #include "forms/piradjustform.h"
 #include "forms/pirairconditionerform.h"
 #include "forms/pirstatefulacform.h"
@@ -67,7 +69,9 @@ PIRPanelManager::PIRPanelManager(
     media2Form(0),
     recordForm(0),
     tvForm(0),
+    receiverForm(0),
     inputForm(0),
+    inputListForm(0),
     adjustForm(0),
     acForm(0),
     statefulACForm(0),
@@ -109,8 +113,14 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[TV_Panel] = MainWindow::tr("TV");
   longPanelNames[TV_Panel] =
     MainWindow::tr("TV Panel - teletext and picture-in-picture");
+  shortPanelNames[Receiver_Panel] = MainWindow::tr("Receiver");
+  longPanelNames[Receiver_Panel] =
+    MainWindow::tr("Receiver Panel - main controls for receivers");
   shortPanelNames[Input_Panel] = MainWindow::tr("Input");
   longPanelNames[Input_Panel] =
+    MainWindow::tr("Input Panel - manage data sources");
+  shortPanelNames[InputList_Panel] = MainWindow::tr("Input");
+  longPanelNames[InputList_Panel] =
     MainWindow::tr("Input Panel - manage data sources");
   shortPanelNames[Adjust_Panel] = MainWindow::tr("Adjust");
   longPanelNames[Adjust_Panel] =
@@ -179,8 +189,14 @@ PIRPanelManager::PIRPanelManager(
   tvForm = new PIRTVForm(mainWindow);
   panels[TV_Panel] = tvForm;
 
+  receiverForm = new PIRReceiverForm(mainWindow);
+  panels[Receiver_Panel] = receiverForm;
+
   inputForm = new PIRInputForm(mainWindow);
   panels[Input_Panel] = inputForm;
+
+  inputListForm = new PIRInputListForm(mainWindow);
+  panels[InputList_Panel] = inputListForm;
 
   adjustForm = new PIRAdjustForm(mainWindow);
   panels[Adjust_Panel] = adjustForm;
@@ -241,7 +257,8 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Keypad_Panel);
   pset.push_back(Menu_Panel);
   pset.push_back(TV_Panel);
-  pset.push_back(Input_Panel);
+//  pset.push_back(Input_Panel);
+  pset.push_back(InputList_Panel);
   tabLists[TV_Tabs] = pset;
 
   // The video media collection:
@@ -250,16 +267,19 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Menu_Panel);
   pset.push_back(Media_Panel);
   pset.push_back(Media2_Panel);
-  pset.push_back(Input_Panel);
+//  pset.push_back(Input_Panel);
+  pset.push_back(InputList_Panel);
   pset.push_back(Adjust_Panel);
   tabLists[VideoMedia_Tabs] = pset;
 
   // Audio panel collection:
   pset.clear();
-  pset.push_back(Main_Panel);
+//  pset.push_back(Main_Panel);
+  pset.push_back(Receiver_Panel);
   pset.push_back(Keypad_Panel);
   pset.push_back(Media_Panel);
   pset.push_back(Audio_Panel);
+  pset.push_back(InputList_Panel);
   tabLists[Audio_Tabs] = pset;
 
   // The standard air conditioner collection:
@@ -380,7 +400,9 @@ void PIRPanelManager::commonEnableButtons(
   media2Form->enableButtons(keyset, id);
   recordForm->enableButtons(keyset, id);
   tvForm->enableButtons(keyset, id);
+  receiverForm->enableButtons(keyset, id);
   inputForm->enableButtons(keyset, id);
+  inputListForm->enableButtons(keyset, id);
   adjustForm->enableButtons(keyset, id);
   acForm->enableButtons(keyset, id);
   statefulACForm->enableButtons(keyset, id);

@@ -23,6 +23,7 @@
 #include "openbox.h"
 
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 OpenBoxSTB1::OpenBoxSTB1(
   unsigned int index)
@@ -102,6 +103,16 @@ void OpenBoxSTB1::populateProtocol(
   addKey("Audio", Audio_Key, 0x50, 8);
   addKey("Page+", PageUp_Key, 0x51, 8);
   addKey("Find", Unmapped_Key, 0x52, 8);
+}
+
+
+void OpenBoxSTB1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Sat", QVariant(Input_Key));
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
 }
 
 

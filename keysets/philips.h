@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class PhilipsTV1: public PIRKeysetMetaData
 {
@@ -205,6 +206,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PhilipsDVD3a: public PhilipsDVD3
@@ -225,6 +229,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PhilipsVCR1: public PIRKeysetMetaData
@@ -315,6 +322,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PhilipsAudio1a: public PhilipsAudio1
@@ -335,6 +345,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PhilipsAudio2: public PIRKeysetMetaData
@@ -345,6 +358,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PhilipsAudio3: public PIRKeysetMetaData
@@ -365,6 +381,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+//  virtual void populateInputList(
+//    QComboBox *cb);
 };
 
 #endif // PHILIPS_H

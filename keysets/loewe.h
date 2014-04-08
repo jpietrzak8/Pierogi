@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class LoeweTV1: public PIRKeysetMetaData
 {
@@ -45,6 +46,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class LoeweDVD1: public PIRKeysetMetaData

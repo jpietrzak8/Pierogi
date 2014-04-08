@@ -24,6 +24,8 @@
 #include "protocols/rc5protocol.h"
 #include "protocols/rc6protocol.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 PhilipsTV1::PhilipsTV1(
   unsigned int index)
@@ -862,6 +864,7 @@ void PhilipsDVD3::populateProtocol(
   addKey("Subtitle", Captions_Key, 0x4B, 8);
   addKey("Audio", Audio_Key, 0x4E, 8);
 
+  addKey("Menu", Menu_Key, 0x54, 8);
   addKey("Up", Up_Key, 0x58, 8);
   addKey("Down", Down_Key, 0x59, 8);
   addKey("Left", Left_Key, 0x5A, 8);
@@ -881,11 +884,14 @@ void PhilipsDVD3::populateProtocol(
   addKey("angle", Angle_Key, 0x85, 8);
   addKey("inoputtuner", TunerInput_Key, 0x8A, 8);
 
-  addKey("HDDList", Unmapped_Key, 0x90, 8);
-  addKey("Home", Menu_Key, 0x92, 8);
+//  addKey("HDDList", Unmapped_Key, 0x90, 8);
+//  addKey("Home", Unmapped_Key, 0x92, 8);
+  addKey("InputDVD", DVDInput_Key, 0x90, 8);
+  addKey("InputHDD", HDDInput_Key, 0x92, 8);
 
   addKey("TVGuide", Guide_Key, 0xC2, 8);
-  addKey("Cam", Unmapped_Key, 0xC3, 8);
+//  addKey("Cam", Unmapped_Key, 0xC3, 8);
+  addKey("inputusb", USBInput_Key, 0xC3, 8);
   addKey("t/c", Unmapped_Key, 0xC8, 8); // title/chapter
   addKey("Select", Unmapped_Key, 0xC9, 8); // "menuselect"
 
@@ -894,6 +900,20 @@ void PhilipsDVD3::populateProtocol(
   addKey("LiveTV", LiveTV_Key, 0xEE, 8);
   addKey("Edit", Unmapped_Key, 0xF1, 8);
   addKey("timer", Timer_Key, 0xFE, 8);
+}
+
+
+void PhilipsDVD3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("SCART", QVariant(ScartInput_Key));
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("HDD", QVariant(HDDInput_Key));
+  cb->addItem("USB", QVariant(USBInput_Key));
 }
 
 
@@ -920,10 +940,6 @@ void PhilipsDVD3a::populateProtocol(
 
   addKey("CH+", ChannelUp_Key, 0x1E, 8);
   addKey("CH-", ChannelDown_Key, 0x1F, 8);
-  addKey("Menu", Menu_Key, 0x54, 8);
-  addKey("InputDVD", Unmapped_Key, 0x90, 8);
-  addKey("InputHDD", Unmapped_Key, 0x92, 8);
-  addKey("inputusb", USBInput_Key, 0xC3, 8);
   addKey("Audio", Audio_Key, 0xD2, 8);
   addKey("Record", Record_Key, 0xF3, 8);
 }
@@ -1003,6 +1019,16 @@ void PhilipsDVD4::populateProtocol(
   addKey("ZOOM", Zoom_Key, 0xF7, 8);
   addKey("SELECT", Select_Key, 0xFA, 8);
   addKey("TIMER", Timer_Key, 0xFE, 8);
+}
+
+
+void PhilipsDVD4::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / DVD", QVariant(Input_Key));
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
 }
 
 
@@ -1291,7 +1317,7 @@ void PhilipsSat2::populateProtocol(
   addKey("power", Power_Key, 0x0C, 8);
   addKey("ch+", ChannelUp_Key, 0x20, 8);
   addKey("ch-", ChannelDown_Key, 0x21, 8);
-  addKey("source", Input_Key, 0x43, 8);
+  addKey("source", Unmapped_Key, 0x43, 8); // ?
   addKey("menu", Menu_Key, 0x54, 8);
   addKey("exit", Exit_Key, 0x55, 8);
   addKey("up", Up_Key, 0x58, 8);
@@ -1453,7 +1479,7 @@ void PhilipsAudio1::populateProtocol(
   addKey("tape_ff", Unmapped_Key, 0x14B3, 13);
   addKey("tape_play", Unmapped_Key, 0x14B5, 13);
   addKey("tape_stop", Unmapped_Key, 0x14B6, 13);
-  addKey("tape", Unmapped_Key, 0x14BF, 13); // "tape1-2"
+  addKey("tape", TapeInput_Key, 0x14BF, 13); // "tape1-2"
   addKey("cd_power", Unmapped_Key, 0x150C, 13);
   addKey("cd_shuffle", Random_Key, 0x151C, 13);
   addKey("cd_repeat", Repeat_Key, 0x151D, 13);
@@ -1495,7 +1521,7 @@ void PhilipsAudio1::populateProtocol(
   addKey("BALANCE_RIGHT", BalanceRight_Key, 0x141A, 13); // "BalR"
   addKey("BALANCE_LEFT", BalanceLeft_Key, 0x141B, 13); // "BalL"
   addKey("TUNER_DISPLAY", Unmapped_Key, 0x144F, 13);
-  addKey("CDR", Unmapped_Key, 0x16BF, 13);
+  addKey("CDR", MDInput_Key, 0x16BF, 13); // hack
   addKey("CDR_POWER", Unmapped_Key, 0x100C, 13);
   addKey("CDR_REPEAT", Unmapped_Key, 0x169D, 13);
   addKey("CDR_SHUFFLE", Unmapped_Key, 0x169C, 13);
@@ -1508,6 +1534,19 @@ void PhilipsAudio1::populateProtocol(
   addKey("CDR_STOP", Unmapped_Key, 0x16B6, 13);
   addKey("CDR_FWD", Unmapped_Key, 0x16B4, 13);
   addKey("CDR_BWD", Unmapped_Key, 0x16B2, 13);
+}
+
+
+void PhilipsAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+  cb->addItem("CDR", QVariant(MDInput_Key));
 }
 
 
@@ -1560,8 +1599,8 @@ void PhilipsAudio1b::populateProtocol(
 
   addKey("tv_power", Unmapped_Key, 0x100C, 13);
   addKey("tv_vcr", VCRInput_Key, 0x103F, 13);
-  addKey("tape1", TapeInput_Key, 0x14AC, 13);
-  addKey("tape2", Unmapped_Key, 0x14AE, 13);
+  addKey("tape1", SVideoInput_Key, 0x14AC, 13); // hack
+  addKey("tape2", SVideo2Input_Key, 0x14AE, 13); // hack
   addKey("play", Play_Key, 0x1175, 13);
   addKey("pause", Pause_Key, 0x1170, 13);
   addKey("stop", Stop_Key, 0x1176, 13);
@@ -1570,6 +1609,17 @@ void PhilipsAudio1b::populateProtocol(
   addKey("forw", FastForward_Key, 0x1010, 13);
   addKey("back", Rewind_Key, 0x1011, 13);
   addKey("disc_up", NextDisc_Key, 0x151E, 13);
+}
+
+
+void PhilipsAudio1b::populateInputList(
+  QComboBox *cb)
+{
+  PhilipsAudio1::populateInputList(cb);
+
+  cb->addItem("TV / VCR)", QVariant(VCRInput_Key));
+  cb->addItem("Tape 1", QVariant(SVideoInput_Key));
+  cb->addItem("Tape 2", QVariant(SVideo2Input_Key));
 }
 
 
@@ -1647,6 +1697,18 @@ void PhilipsAudio2::populateProtocol(
   addKey("TAPE2_PLAY", Unmapped_Key, 0x51, 8);
   addKey("TAPE2_FW", Unmapped_Key, 0x50, 8);
 //  addKey("PAUSE_RECORD", RecordPause_Key, 0x50, 8);
+}
+
+
+void PhilipsAudio2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }
 
 

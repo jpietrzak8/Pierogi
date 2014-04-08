@@ -22,6 +22,7 @@
 
 #include "epson.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 EpsonProjector1::EpsonProjector1(
   unsigned int index)
@@ -128,6 +129,21 @@ void EpsonProjector1::populateProtocol(
   addKey("RIGHT", Right_Key, 0xB1, 8);
   addKey("DOWN", Down_Key, 0xB2, 8);
   addKey("LEFT", Left_Key, 0xB3, 8);
+}
+
+
+void EpsonProjector1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Video", QVariant(AuxInput_Key));
+  cb->addItem("Input A / Component", QVariant(ComponentInput_Key));
+  cb->addItem("D / SCART", QVariant(ScartInput_Key));
+  cb->addItem("HDMI", QVariant(HDMIInput_Key));
+  cb->addItem("USB Display", QVariant(USBInput_Key));
+  cb->addItem("Video 2", QVariant(SVideoInput_Key));
+  cb->addItem("Input A-B", QVariant(Input_Key));
 }
 
 

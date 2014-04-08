@@ -23,6 +23,8 @@
 #include "bose.h"
 #include "protocols/boseprotocol.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 BoseRadio1::BoseRadio1(
   unsigned int index)
@@ -48,7 +50,8 @@ void BoseRadio1::populateProtocol(
   addKey("Mute", Mute_Key, 0x01, 8);
   addKey("Volume_Down", VolumeDown_Key, 0x02, 8);
   addKey("Volume_Up", VolumeUp_Key, 0x03, 8);
-  addKey("FM_AM", TunerInput_Key, 0x06, 8);
+  addKey("FM_AM", ToggleBand_Key, 0x06, 8);
+  addKey("FM_AM", TunerInput_Key, 0x06, 8); //?
   addKey("1", One_Key, 0x07, 8);
   addKey("2", Two_Key, 0x08, 8);
   addKey("3", Three_Key, 0x09, 8);
@@ -76,6 +79,17 @@ void BoseRadio1::populateProtocol(
 
   addKey("Alarm_Wake_To", Unmapped_Key, 0x70, 8);
   addKey("Time_Minus", Unmapped_Key, 0x9E, 8);
+}
+
+
+void BoseRadio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }
 
 
@@ -124,6 +138,18 @@ void BoseRadio2::populateProtocol(
 }
 
 
+void BoseRadio2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("AM Radio", QVariant(AM_Key));
+  cb->addItem("FM Radio", QVariant(FM_Key));
+  cb->addItem("CD", QVariant(Play_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+}
+
+
 BoseRadio3::BoseRadio3(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -150,8 +176,9 @@ void BoseRadio3::populateProtocol(
   addKey("MUTE", Mute_Key, 0x01, 8);
   addKey("VOL-", VolumeDown_Key, 0x02, 8);
   addKey("VOL+", VolumeUp_Key, 0x03, 8);
-  addKey("STATION", Unmapped_Key, 0x04, 8);
-  addKey("AM/FM", TunerInput_Key, 0x05, 8);
+  addKey("STATION", RDS_Key, 0x04, 8);
+  addKey("AM/FM", ToggleBand_Key, 0x05, 8);
+  addKey("AM/FM", TunerInput_Key, 0x05, 8); //?
   addKey("1", One_Key, 0x07, 8);
   addKey("2", Two_Key, 0x08, 8);
   addKey("3", Three_Key, 0x09, 8);
@@ -168,6 +195,16 @@ void BoseRadio3::populateProtocol(
   addKey("SLEEP", Sleep_Key, 0x1E, 8);
 
   addKey("POWER", Power_Key, 0x4C, 8); // also "enter"?
+}
+
+
+void BoseRadio3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }
 
 
@@ -232,4 +269,18 @@ void BoseHomeTheater1::populateProtocol(
   addKey("left arrow", Left_Key, 0xA0, 8);
   addKey("up arrow", Up_Key, 0xC0, 8);
   addKey("select", Select_Key, 0xE0, 8);
+}
+
+
+void BoseHomeTheater1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("FM Radio", QVariant(FM_Key));
+  cb->addItem("AM Radio", QVariant(AM_Key));
+  cb->addItem("Video1", QVariant(AntennaInput_Key));
+  cb->addItem("Video2", QVariant(CableInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+  cb->addItem("CD / DVD", QVariant(DVDInput_Key));
 }

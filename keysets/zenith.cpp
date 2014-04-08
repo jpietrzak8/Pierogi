@@ -22,6 +22,8 @@
 
 #include "zenith.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 // Based on LIRC Zenith_C32V37 config file
 ZenithTV1::ZenithTV1(
@@ -87,8 +89,19 @@ void ZenithTV1::populateProtocol(
   addKey("pipch-", PIPChannelDown_Key, 0x72, 8);
   addKey("ratio", AspectRatio_Key, 0x79, 8);
   addKey("signal", Unmapped_Key, 0x96, 8);
-  addKey("comp/dvi", Unmapped_Key, 0x98, 8);
+  addKey("comp/dvi", ComponentInput_Key, 0x98, 8);
   addKey("info", Info_Key, 0xAA, 8);
+}
+
+
+void ZenithTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Video", QVariant(Input_Key));
+  cb->addItem("PC", QVariant(PCInput_Key));
+  cb->addItem("Comp / DVI", QVariant(ComponentInput_Key));
 }
 
 

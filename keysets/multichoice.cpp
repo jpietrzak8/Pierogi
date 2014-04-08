@@ -23,6 +23,8 @@
 #include "multichoice.h"
 #include "protocols/rc5protocol.h"
 #include "protocols/xmpprotocol.h"
+#include <QComboBox>
+
 
 MultichoiceSTB1::MultichoiceSTB1(
   unsigned int index)
@@ -89,6 +91,16 @@ void MultichoiceSTB1::populateProtocol(
   addKey("exit", Exit_Key, 0x1631, 13);
   addKey("Last/Prev Ch", PrevChannel_Key, 0x1631, 13);
   addKey("tvguide", Guide_Key, 0x1635, 13);
+}
+
+
+void MultichoiceSTB1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("Radio", QVariant(TunerInput_Key));
 }
 
 

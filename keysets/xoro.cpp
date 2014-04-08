@@ -23,6 +23,7 @@
 #include "xoro.h"
 
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 XoroSTB1::XoroSTB1(
   unsigned int index)
@@ -78,4 +79,14 @@ void XoroSTB1::populateProtocol(
   addKey("v-", VolumeDown_Key, 0x1D, 8);
   addKey("ch+", ChannelUp_Key, 0x40, 8);
   addKey("ch-", ChannelDown_Key, 0x1E, 8);
+}
+
+
+void XoroSTB1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+  cb->addItem("VCR", QVariant(VCRInput_Key));
 }

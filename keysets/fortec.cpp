@@ -22,6 +22,7 @@
 
 #include "fortec.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 FortecReceiver1::FortecReceiver1(
@@ -80,6 +81,16 @@ void FortecReceiver1::populateProtocol(
   addKey("F1", Unmapped_Key, 0x57, 8);
   addKey("F2", Unmapped_Key, 0x58, 8);
   addKey("F3", Unmapped_Key, 0x59, 8);
+}
+
+
+void FortecReceiver1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Radio", QVariant(Input_Key));
+  cb->addItem("Satellite", QVariant(SatInput_Key));
 }
 
 
@@ -163,4 +174,13 @@ void FortecReceiver2::populateProtocol(
 
   addKey("back", Replay_Key, 0x50, 8);
   addKey("fwd", Advance_Key, 0x51, 8);
+}
+
+void FortecReceiver2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / DBS", QVariant(Input_Key));
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
 }

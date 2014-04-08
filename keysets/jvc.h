@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class JVCSat1: public PIRKeysetMetaData
 {
@@ -95,6 +96,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+//  virtual void populateInputList(
+//    QComboBox *cb);
 };
 
 class JVCTV1a: public JVCTV1
@@ -165,6 +169,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class JVCAudio1a: public JVCAudio1
@@ -185,6 +192,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class JVCAudio2: public PIRKeysetMetaData
@@ -195,6 +205,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class JVCDVD1: public PIRKeysetMetaData

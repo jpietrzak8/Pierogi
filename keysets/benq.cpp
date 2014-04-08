@@ -22,6 +22,7 @@
 
 #include "benq.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 BenQTV1::BenQTV1(
@@ -176,6 +177,21 @@ void BenQProjector1a::populateProtocol(
 }
 
 
+void BenQProjector1a::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("S-Video", QVariant(SVideoInput_Key));
+  cb->addItem("D-Sub", QVariant(PCInput_Key));
+  cb->addItem("Composite 1", QVariant(CompositeInput_Key));
+  cb->addItem("Composite 2", QVariant(Composite2Input_Key));
+  cb->addItem("Video", QVariant(AuxInput_Key));
+  cb->addItem("HDMI", QVariant(HDMIInput_Key));
+}
+
+
 BenQProjector2::BenQProjector2(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -218,6 +234,19 @@ void BenQProjector2::populateProtocol(
   addKey("Pause", Pause_Key, 0xF1, 8);
   addKey("Right Arrow", Right_Key, 0xFD, 8);
   addKey("Left Arrow", Left_Key, 0xFF, 8);
+}
+
+
+void BenQProjector2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("Composite Video", QVariant(CompositeInput_Key));
+  cb->addItem("S-Video", QVariant(SVideoInput_Key));
+  cb->addItem("Analog RGB", QVariant(ComponentInput_Key));
+  cb->addItem("Analog YPbPr", QVariant(Component2Input_Key));
 }
 
 
@@ -307,6 +336,19 @@ void BenQProjector4::populateProtocol(
 }
 
 
+void BenQProjector4::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / VCR", QVariant(Input_Key));
+  cb->addItem("Composite", QVariant(CompositeInput_Key));
+  cb->addItem("S-Video", QVariant(SVideoInput_Key));
+  cb->addItem("RGB", QVariant(ComponentInput_Key));
+  cb->addItem("Y/Pb/Pr", QVariant(Component2Input_Key));
+}
+
+
 BenQProjector5::BenQProjector5(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -350,4 +392,16 @@ void BenQProjector5::populateProtocol(
   addKey("LB", Unmapped_Key, 0x52, 8);
   addKey("PC(DVI)", PCInput_Key, 0x58, 8);
   addKey("exit", Exit_Key, 0x5C, 8);
+}
+
+
+void BenQProjector5::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Composite", QVariant(CompositeInput_Key));
+  cb->addItem("S-Video", QVariant(SVideoInput_Key));
+  cb->addItem("Component", QVariant(ComponentInput_Key));
+  cb->addItem("PC (DVI)", QVariant(PCInput_Key));
 }

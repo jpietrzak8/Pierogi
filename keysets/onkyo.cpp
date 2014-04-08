@@ -23,6 +23,7 @@
 #include "onkyo.h"
 #include "protocols/necprotocol.h"
 #include "protocols/kaseikyoprotocol.h"
+#include <QComboBox>
 
 
 OnkyoAudio1::OnkyoAudio1(
@@ -195,13 +196,13 @@ void OnkyoAudio3::populateProtocol(
   addKey("power", Power_Key, 0x04, 8);
   addKey("audio_muting", Mute_Key, 0x05, 8);
   addKey("input_selector_:_aux", AuxInput_Key, 0x06, 8);
-  addKey("input_selector_:_tape_2", Unmapped_Key, 0x07, 8);
+  addKey("input_selector_:_tape_2", MDInput_Key, 0x07, 8); // hack
   addKey("input_selector_:_tape_1", TapeInput_Key, 0x08, 8);
   addKey("input_selector_:_cd", CDInput_Key, 0x09, 8);
   addKey("input_selector_:_phono", PhonoInput_Key, 0x0A, 8);
   addKey("input_selector_:_tuner", TunerInput_Key, 0x0B, 8);
-  addKey("input_selector_:_video_2", Unmapped_Key, 0x0D, 8);
-  addKey("input_selector_:_video_1", Unmapped_Key, 0x0E, 8);
+  addKey("input_selector_:_video_2", Composite2Input_Key, 0x0D, 8);
+  addKey("input_selector_:_video_1", CompositeInput_Key, 0x0E, 8);
   addKey("v1", Unmapped_Key, 0x0F, 8); // another video?
 
   addKey("deck_B_:#", Unmapped_Key, 0x13, 8);
@@ -219,8 +220,8 @@ void OnkyoAudio3::populateProtocol(
   addKey("REAR_LEVEL-UP", RearVolumeUp_Key, 0x42, 8);
   addKey("REAR_LEVEL-DOWN", RearVolumeDown_Key, 0x43, 8);
   addKey("source_direct", Unmapped_Key, 0x44, 8); // "INPUT_SEL_DIRECT"
-  addKey("FM", Unmapped_Key, 0x46, 8);
-  addKey("AM", Unmapped_Key, 0x47, 8);
+  addKey("FM", FM_Key, 0x46, 8);
+  addKey("AM", AM_Key, 0x47, 8);
   addKey("tuner_:_class", Unmapped_Key, 0x4A, 8); // set a preset?
   addKey("SURROUND_FUNCTION-MODE", Surround_Key, 0x4C, 8); // "surrmode"
   addKey("stop", Unmapped_Key, 0x4D, 8); // "deck_A_:#"
@@ -253,6 +254,22 @@ void OnkyoAudio3::populateProtocol(
   addKey("SIMUL_SOURCE_VOL-UP", Unmapped_Key, 0xC2, 8);
   addKey("SIMUL_SOURCE_VOL-DOWN", Unmapped_Key, 0xC3, 8);
   addKey("SIMUL_SOURCE", Unmapped_Key, 0xCC, 8);
+}
+
+
+void OnkyoAudio3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("Tape 1", QVariant(TapeInput_Key));
+  cb->addItem("Tape 2", QVariant(MDInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Video 1", QVariant(CompositeInput_Key));
+  cb->addItem("Video 2", QVariant(Composite2Input_Key));
 }
 
 
@@ -445,6 +462,16 @@ void OnkyoDVD1::populateProtocol(
 }
 
 
+void OnkyoDVD1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("MD / Tape", QVariant(TapeInput_Key));
+}
+
+
 OnkyoDVD2::OnkyoDVD2(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -517,7 +544,7 @@ void OnkyoDVD2::populateProtocol(
 
   addKey("SlowReverse", StepBack_Key, 0x8F, 8);
   addKey("NextSelection", Unmapped_Key, 0x90, 8);
-  addKey("CDPlay", CDInput_Key, 0xD2, 8);
+  addKey("CDPlay", CDInput_Key, 0xD2, 8); // dubious
   addKey("Disc+", NextDisc_Key, 0xD3, 8);
   addKey("Disc-", PrevDisc_Key, 0xD4, 8);
   addKey("Disc1", Unmapped_Key, 0xD5, 8);

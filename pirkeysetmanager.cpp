@@ -322,11 +322,12 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new DenonReceiver1b(++counter));
   setupKeyset(new DenonReceiver1c(++counter));
   setupKeyset(new DenonReceiver1d(++counter));
-  setupKeyset(new DenonReceiver1e(++counter));
+//  setupKeyset(new DenonReceiver1e(++counter));
   setupKeyset(new DenonReceiver1f(++counter));
   setupKeyset(new DenonReceiver2(++counter));
   setupKeyset(new DenonReceiver2a(++counter));
   setupKeyset(new DenonReceiver3(++counter));
+  setupKeyset(new DenonReceiver4(++counter));
   setupKeyset(new DenonAudio1(++counter));
   setupKeyset(new DenonAudio1a(++counter));
   setupKeyset(new DenonAudio1b(++counter));
@@ -425,7 +426,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new GoldStarVCR1a(++counter));
   setupKeyset(new GoldStarVCR1b(++counter));
   setupKeyset(new GoldStarVCR1c(++counter));
-  setupKeyset(new GoldStarCD1(++counter));
+  setupKeyset(new GoldStarAudio1(++counter));
 
   setupKeyset(new GoodmansSTB1(++counter));
   setupKeyset(new GoodmansVCR1(++counter));
@@ -469,7 +470,6 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new HitachiTV1(++counter));
   setupKeyset(new HitachiTV1a(++counter));
   setupKeyset(new HitachiTV1b(++counter));
-  setupKeyset(new HitachiTV1c(++counter));
   setupKeyset(new HitachiTV2(++counter));
   setupKeyset(new HitachiTV3(++counter));
   setupKeyset(new HitachiProjector(++counter));
@@ -499,7 +499,6 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new InsigniaTV1(++counter));
   setupKeyset(new InsigniaTV1a(++counter));
-  setupKeyset(new InsigniaTV1b(++counter));
   setupKeyset(new InsigniaTV2(++counter));
   setupKeyset(new InsigniaTV3(++counter));
   setupKeyset(new InsigniaTV4(++counter));
@@ -747,6 +746,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new PioneerAudio3(++counter));
   setupKeyset(new PioneerAudio4(++counter));
   setupKeyset(new PioneerAudio5(++counter));
+  setupKeyset(new PioneerAudio6(++counter));
   setupKeyset(new PioneerCD1(++counter));
   setupKeyset(new PioneerLaserDisc1(++counter));
   setupKeyset(new PioneerDVD1(++counter));
@@ -1415,3 +1415,15 @@ void PIRKeysetManager::populateDeviceTypes(
 }
 */
 
+
+void PIRKeysetManager::populateInputList(
+  QComboBox *cb,
+  unsigned int keysetID) const
+{
+  PIRKeysetCollection::const_iterator i = keysetsInfo.find(keysetID);
+
+  // Exit immediately if the keyset doesn't exist:
+  if ((i == keysetsInfo.end()) || !i->second) return;
+
+  i->second->populateInputList(cb);
+}

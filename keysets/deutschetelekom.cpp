@@ -88,6 +88,6 @@ void DeutscheTelekomSTB1::populateProtocol(
   addKey("mute", Mute_Key, 0x52, 7);
   addKey("teletext", Teletext_Key, 0x55, 7);
   addKey("options", Unmapped_Key, 0x56, 7);
-  addKey("radio", TunerInput_Key, 0x59, 7);
+  addKey("radio", Input_Key, 0x59, 7);
   addKey("menu", Menu_Key, 0x5A, 7);
 }

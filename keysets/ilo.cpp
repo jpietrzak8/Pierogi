@@ -22,6 +22,7 @@
 
 #include "ilo.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 ILOTV1::ILOTV1(
   unsigned int index)
@@ -97,6 +98,19 @@ void ILOTV1::populateProtocol(
   addKey("V-Chip", Unmapped_Key, 0x4C, 8);
   addKey("Audio", Unmapped_Key, 0x4D, 8);
   addKey("pip swap", PIPSwap_Key, 0x4E, 8);
+}
+
+
+void ILOTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("AV", QVariant(CompositeInput_Key));
+  cb->addItem("SVideo", QVariant(SVideoInput_Key));
+  cb->addItem("Component", QVariant(ComponentInput_Key));
+  cb->addItem("DVI", QVariant(PCInput_Key));
 }
 
 
@@ -234,4 +248,14 @@ void ILOTV3::populateProtocol(
   addKey("Menu Down", Down_Key, 0x5D, 8);
   addKey("Menu Left", Left_Key, 0x5E, 8);
   addKey("Menu Right", Right_Key, 0x5F, 8);
+}
+
+
+void ILOTV3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("Video", QVariant(AuxInput_Key));
 }

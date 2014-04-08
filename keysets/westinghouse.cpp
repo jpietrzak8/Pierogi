@@ -23,6 +23,8 @@
 #include "westinghouse.h"
 #include "protocols/necprotocol.h"
 #include "protocols/sircprotocol.h"
+#include <QComboBox>
+
 
 WestinghouseTV1::WestinghouseTV1(
   unsigned int index)
@@ -52,13 +54,13 @@ void WestinghouseTV1::populateProtocol(
   addKey("KEY_POWER", Power_Key, 0x01, 8);
   addKey("KEY_VOLUMEUP", VolumeUp_Key, 0x04, 8);
   addKey("KEY_VOLUMEDOWN", VolumeDown_Key, 0x05, 8);
-  addKey("DVI", Unmapped_Key, 0x06, 8);
+  addKey("DVI", HDMIInput_Key, 0x06, 8);
   addKey("ASPECT_RATIO", AspectRatio_Key, 0x07, 8);
   addKey("KEY_BACK", PrevChannel_Key, 0x08, 8);
   addKey("VGA", PCInput_Key, 0x09, 8);
-  addKey("YPbPr", Unmapped_Key, 0x0A, 8);
-  addKey("AV", Unmapped_Key, 0x0B, 8);
-  addKey("S-Video", Unmapped_Key, 0x0C, 8);
+  addKey("YPbPr", ComponentInput_Key, 0x0A, 8);
+  addKey("AV", CompositeInput_Key, 0x0B, 8);
+  addKey("S-Video", SVideoInput_Key, 0x0C, 8);
   addKey("KEY_MUTE", Mute_Key, 0x10, 8);
   addKey("KEY_1", One_Key, 0x11, 8);
   addKey("KEY_2", Two_Key, 0x12, 8);
@@ -78,6 +80,20 @@ void WestinghouseTV1::populateProtocol(
   addKey("KEY_RIGHT", Right_Key, 0x43, 8);
   addKey("KEY_DOWN", Down_Key, 0x44, 8);
   addKey("KEY_MENU", Menu_Key, 0x46, 8);
+}
+
+
+void WestinghouseTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input", QVariant(Input_Key));
+  cb->addItem("AV", QVariant(CompositeInput_Key));
+  cb->addItem("S-Video", QVariant(SVideoInput_Key));
+  cb->addItem("YPbPr", QVariant(ComponentInput_Key));
+  cb->addItem("DVI", QVariant(HDMIInput_Key));
+  cb->addItem("VGA", QVariant(PCInput_Key));
 }
 
 
@@ -132,13 +148,13 @@ void WestinghouseTV2::populateProtocol(
   addSIRC12Key("Sleep", Sleep_Key, 0x01, 0x36);
   addSIRC12Key("Retry", Unmapped_Key, 0x01, 0x3B);
   addSIRC12Key("Info", Info_Key, 0x01, 0x3A);
-  addSIRC12Key("Video", Unmapped_Key, 0x01, 0x40);
+  addSIRC12Key("Video", CompositeInput_Key, 0x01, 0x40);
   addSIRC12Key("HDMI", HDMIInput_Key, 0x01, 0x42);
   addSIRC12Key("PC", PCInput_Key, 0x01, 0x43);
-  addSIRC12Key("DVI", Unmapped_Key, 0x01, 0x44);
-  addSIRC12Key("YPbPr1", Unmapped_Key, 0x01, 0x48);
-  addSIRC12Key("YPbPr2", Unmapped_Key, 0x01, 0x49);
-  addSIRC12Key("SVideo", Unmapped_Key, 0x01, 0x4D);
+  addSIRC12Key("DVI", HDMI2Input_Key, 0x01, 0x44);
+  addSIRC12Key("YPbPr1", ComponentInput_Key, 0x01, 0x48);
+  addSIRC12Key("YPbPr2", Component2Input_Key, 0x01, 0x49);
+  addSIRC12Key("SVideo", SVideoInput_Key, 0x01, 0x4D);
   addSIRC12Key("PIP", PIP_Key, 0x01, 0x5B);
   addSIRC12Key("PIPSwap", PIPSwap_Key, 0x01, 0x5F);
   addSIRC12Key("Menu", Menu_Key, 0x01, 0x60);
@@ -148,4 +164,20 @@ void WestinghouseTV2::populateProtocol(
   addSIRC12Key("C", Unmapped_Key, 0x01, 0x6C);
   addSIRC12Key("Up", Up_Key, 0x01, 0x74);
   addSIRC12Key("Down", Down_Key, 0x01, 0x75);
+}
+
+
+void WestinghouseTV2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input", QVariant(Input_Key));
+  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("SVideo", QVariant(SVideoInput_Key));
+  cb->addItem("YPbPr 1", QVariant(ComponentInput_Key));
+  cb->addItem("YPbPr 2", QVariant(Component2Input_Key));
+  cb->addItem("HDMI", QVariant(HDMIInput_Key));
+  cb->addItem("DVI", QVariant(HDMI2Input_Key));
+  cb->addItem("PC", QVariant(PCInput_Key));
 }

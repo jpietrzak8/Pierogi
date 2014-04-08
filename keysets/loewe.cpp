@@ -24,6 +24,7 @@
 #include "protocols/rc5protocol.h"
 #include "protocols/necprotocol.h"
 #include "protocols/rc6protocol.h"
+#include <QComboBox>
 
 LoeweTV1::LoeweTV1(
   unsigned int index)
@@ -141,6 +142,16 @@ void LoeweVCR1::populateProtocol(
   addKey("MARK", IndexMark_Key, 0x50, 8);
   addKey("ERASE", IndexErase_Key, 0x42, 8);
   addKey("0000", Reset_Key, 0x4D, 8);
+}
+
+
+void LoeweVCR1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("AV", QVariant(CompositeInput_Key));
 }
 
 

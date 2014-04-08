@@ -24,8 +24,10 @@
 #include "protocols/sharpprotocol.h"
 #include "protocols/lircprotocol.h"
 #include "protocols/necprotocol.h"
+//#include "protocols/kaseikyoprotocol.h"
+#include "protocols/denonprotocol.h"
+#include <QComboBox>
 
-// This whole set of Denon keysets is a mess.  Need to clean it up!!!
 
 DenonDVD1::DenonDVD1(
   unsigned int index)
@@ -47,7 +49,7 @@ void DenonDVD1::populateProtocol(
     return;
   }
 
-  threadableProtocol = new SharpProtocol(guiObject, index, false);
+  threadableProtocol = new DenonProtocol(guiObject, index);
 
   addSharpKey("SEARCH_MODE", Unmapped_Key, 0x04, 0x9E);
   addSharpKey("ZOOM", Zoom_Key, 0x04, 0x9F);
@@ -118,6 +120,12 @@ void DenonDVD2::populateProtocol(
     // If the pointer is not null, the keyset must already be populated.
     return;
   }
+
+/*
+  threadableProtocol = new KaseikyoProtocol(guiObject, index);
+
+  setPreData(0x2002, 160);
+*/
 
   LIRCProtocol *lp = new LIRCProtocol(
     guiObject,
@@ -195,7 +203,7 @@ void DenonDVD3::populateProtocol(
     return;
   }
 
-  threadableProtocol = new SharpProtocol(guiObject, index, false);
+  threadableProtocol = new DenonProtocol(guiObject, index);
 
   addSharpKey("0", Zero_Key, 0x01, 0x81);
   addSharpKey("1", One_Key, 0x01, 0x82);
@@ -260,7 +268,7 @@ void DenonReceiver1::populateProtocol(
     return;
   }
 
-  threadableProtocol = new SharpProtocol(guiObject, index, false);
+  threadableProtocol = new DenonProtocol(guiObject, index);
 
   addSharpKey("Phono", PhonoInput_Key, 0x02, 0xC3);
   addSharpKey("CD", CDInput_Key, 0x02, 0xC4);
@@ -319,6 +327,24 @@ void DenonReceiver1::populateProtocol(
   addSharpKey("channel-", ChannelDown_Key, 0x0C, 0xD5);
   addSharpKey("channel+", ChannelUp_Key, 0x0C, 0xD6);
   addSharpKey("Dimmer", Unmapped_Key, 0x0C, 0xDF);
+}
+
+
+void DenonReceiver1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("TV / Cable", QVariant(CableInput_Key));
+  cb->addItem("Satellite", QVariant(SatInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("VCR", QVariant(VCRInput_Key));
+  cb->addItem("DVR", QVariant(DVRInput_Key));
+  cb->addItem("DAT / Tape", QVariant(TapeInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }
 
 
@@ -483,41 +509,6 @@ void DenonReceiver1d::populateProtocol(
 }
 
 
-DenonReceiver1e::DenonReceiver1e(
-  unsigned int index)
-  : DenonReceiver1d(index)
-{
-  setKeysetName("Receiver Keyset 1e");
-
-  addControlledDevice(Denon_Make, "DRA-385RD", Audio_Device);
-}
-
-
-void DenonReceiver1e::populateProtocol(
-  QObject *guiObject)
-{
-  if (threadableProtocol)
-  {
-    // If the pointer is not null, the keyset must already be populated.
-    return;
-  }
-
-  DenonReceiver1d::populateProtocol(guiObject);
-
-  addSharpKey("voldwn", VolumeDown_Key, 0x0C, 0x4C);
-  addSharpKey("volup", VolumeUp_Key, 0x0C, 0x4D);
-  addSharpKey("preset+", NextPreset_Key, 0x0C, 0x4E);
-  addSharpKey("preset-", PrevPreset_Key, 0x0C, 0x4F);
-  addSharpKey("video", CableInput_Key, 0x0C, 0x53);
-  addSharpKey("phono", PhonoInput_Key, 0x0C, 0x58);
-  addSharpKey("tuner", TunerInput_Key, 0x0C, 0x59);
-  addSharpKey("cd", CDInput_Key, 0x0C, 0x5A);
-  addSharpKey("tape_mon", Unmapped_Key, 0x0C, 0x5C);
-  addSharpKey("tape1", Unmapped_Key, 0x0C, 0x5D);
-  addSharpKey("tape2", Unmapped_Key, 0x0C, 0x5E);
-}
-
-
 DenonReceiver1f::DenonReceiver1f(
   unsigned int index)
   : DenonReceiver1c(index)
@@ -569,7 +560,7 @@ void DenonReceiver2::populateProtocol(
     return;
   }
 
-  threadableProtocol = new SharpProtocol(guiObject, index, false);
+  threadableProtocol = new DenonProtocol(guiObject, index);
 
   addSharpKey("tun_1", One_Key, 0x13, 0x42);
   addSharpKey("tun_2", Two_Key, 0x13, 0x43);
@@ -610,6 +601,19 @@ void DenonReceiver2::populateProtocol(
   addSharpKey("tape_pause", Unmapped_Key, 0x1B, 0x5D);
   addSharpKey("tape_stop", Unmapped_Key, 0x1B, 0x5E);
   addSharpKey("tape_rec", Unmapped_Key, 0x1B, 0x5F);
+}
+
+
+void DenonReceiver2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("Aux / Video", QVariant(AuxInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
 }
 
 
@@ -702,6 +706,100 @@ void DenonReceiver3::populateProtocol(
 }
 
 
+void DenonReceiver3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("TV", QVariant(CableInput_Key));
+  cb->addItem("VCR", QVariant(VCRInput_Key));
+}
+
+
+DenonReceiver4::DenonReceiver4(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Receiver Keyset 4",
+      Denon_Make,
+      index)
+{
+  addControlledDevice(Denon_Make, "DRA-385RD", Audio_Device);
+  addControlledDevice(Denon_Make, "DRA-455", Audio_Device);
+  addControlledDevice(Denon_Make, "DRA-685P", Audio_Device);
+}
+
+
+void DenonReceiver4::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new DenonProtocol(guiObject, index);
+
+  addSharpKey("a/b", SpeakerSwitch_Key, 0x04, 0x43);
+  addSharpKey("play<", Unmapped_Key, 0x04, 0x57); // Tape play reverse
+  addSharpKey("rew>", Unmapped_Key, 0x04, 0x5A); // Tape fast forward
+  addSharpKey("rew<", Unmapped_Key, 0x04, 0x5B); // Tape rewind
+  addSharpKey("play>", Unmapped_Key, 0x04, 0x5C); // Tape play
+  addSharpKey("pause", Unmapped_Key, 0x04, 0x5D); // Tape pause
+  addSharpKey("stop", Unmapped_Key, 0x04, 0x5E); // Tape stop
+  addSharpKey("rec", Unmapped_Key, 0x04, 0x5F); // Tape record
+
+  addSharpKey("repeat", Repeat_Key, 0x08, 0x54); // CD repeat
+  addSharpKey(">>|", Next_Key, 0x08, 0x58); // CD next
+  addSharpKey("|<<", Previous_Key, 0x08, 0x59); // CD previous
+  addSharpKey("cdplay", Play_Key, 0x08, 0x5C); // CD play
+  addSharpKey("cdpause", Pause_Key, 0x08, 0x5D); // CD pause
+  addSharpKey("cdstop", Stop_Key, 0x08, 0x5E); // CD Stop
+  addSharpKey("random", Random_Key, 0x08, 0x6A); // CD random
+  addSharpKey("disc skip", NextDisc_Key, 0x08, 0x6B); // CD next disc
+
+  addSharpKey("mute", Mute_Key, 0x0C, 0x4B);
+  addSharpKey("voldwn", VolumeDown_Key, 0x0C, 0x4C);
+  addSharpKey("volup", VolumeUp_Key, 0x0C, 0x4D);
+  addSharpKey("preset+", NextPreset_Key, 0x0C, 0x4E);
+  addSharpKey("preset-", PrevPreset_Key, 0x0C, 0x4F);
+  addSharpKey("power", Power_Key, 0x0C, 0x50);
+  addSharpKey("video", VCRInput_Key, 0x0C, 0x53);
+  addSharpKey("phono", PhonoInput_Key, 0x0C, 0x58);
+  addSharpKey("tuner", TunerInput_Key, 0x0C, 0x59); // FM
+  addSharpKey("cd", CDInput_Key, 0x0C, 0x5A);
+  addSharpKey("V-Aux", AuxInput_Key, 0x0C, 0x5B);
+  addSharpKey("tape_mon", Unmapped_Key, 0x0C, 0x5C);
+  addSharpKey("tape1", TapeInput_Key, 0x0C, 0x5D);
+  addSharpKey("tape2", MDInput_Key, 0x0C, 0x5E); // hack
+  addSharpKey("Power On", PowerOn_Key, 0x0C, 0x68);
+  addSharpKey("Speaker B", Unmapped_Key, 0x0C, 0x69);
+  addSharpKey("Speaker A", Unmapped_Key, 0x0C, 0x6A);
+  addSharpKey("Multi-Out", Unmapped_Key, 0x0C, 0x75);
+  addSharpKey("Power Off", PowerOff_Key, 0x0C, 0x7A);
+  addSharpKey("panel", Info_Key, 0x0C, 0x7E);
+}
+
+
+void DenonReceiver4::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Tape 1", QVariant(TapeInput_Key));
+  cb->addItem("Tape 2", QVariant(MDInput_Key));
+  cb->addItem("Video", QVariant(VCRInput_Key));
+  cb->addItem("V-Aux", QVariant(AuxInput_Key));
+}
+
+
 DenonAudio1::DenonAudio1(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -726,7 +824,7 @@ void DenonAudio1::populateProtocol(
     return;
   }
 
-  threadableProtocol = new SharpProtocol(guiObject, index, false);
+  threadableProtocol = new DenonProtocol(guiObject, index);
 
   addSharpKey("reset", Reset_Key, 0x04, 0x54);
   addSharpKey("TAPE REW", Unmapped_Key, 0x04, 0x57); // "TAPE_PLAY_REV"
@@ -789,26 +887,39 @@ void DenonAudio1::populateProtocol(
   addSharpKey("PRESET UP", Up_Key, 0x0C, 0x4E); // "up"
   addSharpKey("PRESET DOWN", Down_Key, 0x0C, 0x4F); // "dwn"
   addSharpKey("KEY_POWER", Power_Key, 0x0C, 0x50); // "aus"
-  addSharpKey("RCVR_VIDEO", CableInput_Key, 0x0C, 0x53);
+  addSharpKey("RCVR_VIDEO", CompositeInput_Key, 0x0C, 0x53);
   addSharpKey("RCVR_PHONO", PhonoInput_Key, 0x0C, 0x58);
   addSharpKey("tuner", TunerInput_Key, 0x0C, 0x59); // "RCVR_TUNER"
   addSharpKey("RCVR_TAPE_MON", Unmapped_Key, 0x0C, 0x5C);
-  addSharpKey("RCVR_TAPE1", Unmapped_Key, 0x0C, 0x5D);
-  addSharpKey("RCVR_TAPE2", Unmapped_Key, 0x0C, 0x5E);
+  addSharpKey("RCVR_TAPE1", TapeInput_Key, 0x0C, 0x5D);
+  addSharpKey("RCVR_TAPE2", MDInput_Key, 0x0C, 0x5E); // hack
   addSharpKey("KEY_FN", Unmapped_Key, 0x0C, 0x5F); // "func"
   addSharpKey("RCVR_CD", CDInput_Key, 0x0C, 0x6A);
   addSharpKey("KEY_SLEEP", Sleep_Key, 0x0C, 0x72);
 //  addSharpKey("RCVR_PANEL", Info_Key, 0x0C, 0x7E);  // Either 0x7E or 0xDE here
   addSharpKey("memo", Unmapped_Key, 0x0C, 0xD1);
-  addSharpKey("RDS", Unmapped_Key, 0x0C, 0xD2); // "TUNER_RDS"
+  addSharpKey("RDS", RDS_Key, 0x0C, 0xD2); // "TUNER_RDS"
   addSharpKey("CT", Unmapped_Key, 0x0C, 0xD3); // "TUNER_CT"
   addSharpKey("pty", Unmapped_Key, 0x0C, 0xD4); // "TUNER_PTY"
-  addSharpKey("TUNER BAND", FM_Key, 0x0C, 0xD7); // this is a hack
-  addSharpKey("TUNER BAND", AM_Key, 0x0C, 0xD7); // this too
+  addSharpKey("TUNER BAND", ToggleBand_Key, 0x0C, 0xD7);
   addSharpKey("TUNER KEY_UP", ChannelUp_Key, 0x0C, 0xD9);
   addSharpKey("TUNER KEY_DOWN", ChannelDown_Key, 0x0C, 0xDA);
   addSharpKey("panel", Info_Key, 0x0C, 0xDE);
   addSharpKey("eon", Unmapped_Key, 0x0C, 0xFE);
+}
+
+
+void DenonAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape 1", QVariant(TapeInput_Key));
+  cb->addItem("Tape 2", QVariant(MDInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Video", QVariant(CompositeInput_Key));
 }
 
 
@@ -959,7 +1070,7 @@ void DenonAudio2::populateProtocol(
   addKey("Volume_Down", VolumeDown_Key, 0x02, 8);
   addKey("Remain", Unmapped_Key, 0x03, 8);
   addKey("A.Edit", Unmapped_Key, 0x04, 8);
-  addKey("Tuner_Band", TunerInput_Key, 0x07, 8);
+  addKey("Tuner_Band", ToggleBand_Key, 0x07, 8);
   addKey("Tape_1/2", Unmapped_Key, 0x09, 8);
   addKey("P.Mode", Unmapped_Key, 0x0B, 8);
   addKey("EQ_Pattern", Unmapped_Key, 0x11, 8);
@@ -1013,7 +1124,7 @@ void DenonAudio3::populateProtocol(
     return;
   }
 
-  threadableProtocol = new SharpProtocol(guiObject, index, false);
+  threadableProtocol = new DenonProtocol(guiObject, index);
 
   addKey("1", One_Key, 0x06, 0xC1);
   addKey("2", Two_Key, 0x06, 0xC2);
@@ -1074,8 +1185,9 @@ void DenonAudio4::populateProtocol(
 //  setPreData(0x4040, 16);
   setPreData(0x0202, 16);
 
-  addKey("fm/am", TunerInput_Key, 0x00, 8);
-  addKey("rds", Unmapped_Key, 0x01, 8);
+  addKey("fm/am", TunerInput_Key, 0x00, 8); //?
+  addKey("fm/am", ToggleBand_Key, 0x00, 8);
+  addKey("rds", RDS_Key, 0x01, 8);
   addKey("1", One_Key, 0x02, 8);
   addKey("6", Six_Key, 0x03, 8);
   addKey("+10", DoubleDigit_Key, 0x04, 8);
@@ -1107,7 +1219,7 @@ void DenonAudio4::populateProtocol(
   addKey("titleinput", Unmapped_Key, 0x1E, 8);
   addKey("vol-", VolumeDown_Key, 0x1F, 8);
   addKey("md", MDInput_Key, 0x40, 8);
-  addKey("fmmode", Unmapped_Key, 0x41, 8);
+  addKey("fmmode", FMMode_Key, 0x41, 8);
   addKey("5", Five_Key, 0x42, 8);
   addKey("0", Zero_Key, 0x43, 8);
   addKey("sleep", Sleep_Key, 0x44, 8);
@@ -1128,4 +1240,16 @@ void DenonAudio4::populateProtocol(
   addKey("next", Next_Key, 0x53, 8);
   addKey("backward", Rewind_Key, 0x56, 8);
   addKey("stop", Stop_Key, 0x57, 8);
+}
+
+
+void DenonAudio4::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("FM / AM toggle", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+  cb->addItem("MD", QVariant(MDInput_Key));
 }

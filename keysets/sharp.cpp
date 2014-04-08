@@ -23,6 +23,8 @@
 #include "sharp.h"
 #include "protocols/sharpprotocol.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 SharpTV1::SharpTV1(
   unsigned int index)
@@ -449,6 +451,18 @@ void SharpReceiver1::populateProtocol(
   addSharpKey("STOP", Stop_Key, 0x14, 0x27);
   addSharpKey("REPEAT", Repeat_Key, 0x14, 0x36);
   addSharpKey("+10", DoubleDigit_Key, 0x14, 0x38);
+}
+
+
+void SharpReceiver1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
 }
 
 

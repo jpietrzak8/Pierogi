@@ -23,6 +23,7 @@
 #include "changhong.h"
 #include "protocols/necprotocol.h"
 #include "protocols/protonprotocol.h"
+#include <QComboBox>
 
 ChanghongTV1::ChanghongTV1(
   unsigned int index)
@@ -221,6 +222,16 @@ void ChanghongTV2::populateProtocol(
   addKey("Arrow_Left", Left_Key, 0x82, 8);
   addKey("Power", Power_Key, 0x83, 8);
   addKey("100+", PlusOneHundred_Key, 0x90, 8);
+}
+
+
+void ChanghongTV2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Video", QVariant(Input_Key));
+  cb->addItem("Radio", QVariant(Input_Key));
 }
 
 

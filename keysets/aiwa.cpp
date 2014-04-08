@@ -24,6 +24,7 @@
 #include "protocols/aiwaprotocol.h"
 #include "protocols/lircprotocol.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 AiwaVCR1::AiwaVCR1(
   unsigned int index)
@@ -293,8 +294,7 @@ void AiwaAudio1::populateProtocol(
 
   addKey("volume_up", VolumeUp_Key, 0x11, 8);
   addKey("volume_down", VolumeDown_Key, 0x12, 8);
-  addKey("tuner_band", AM_Key, 0x13, 8);  // This is a hack
-  addKey("tuner_band", FM_Key, 0x13, 8);  // This too
+  addKey("tuner_band", ToggleBand_Key, 0x13, 8);
   addKey("tape_play", Unmapped_Key, 0x14, 8);
   addKey("tape_stop", Unmapped_Key, 0x15, 8);
   addKey("tape_next", Unmapped_Key, 0x16, 8);
@@ -338,6 +338,18 @@ void AiwaAudio1::populateProtocol(
   addKey("PAUSE", Pause_Key, 0xC9, 8);
   addKey("dimmer", Unmapped_Key, 0xCD, 8);
   addKey("tray", Eject_Key, 0xCF, 8);
+}
+
+
+void AiwaAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }
 
 
@@ -474,6 +486,21 @@ void AiwaAudio2::populateProtocol(
   addKey("DOLBY", NoiseReduction_Key, 0x6A, 8);
   addKey("md", MDInput_Key, 0x70, 8);
   addKey("Enter", Enter_Key, 0x73, 8);
+}
+
+
+void AiwaAudio2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Video", QVariant(AuxInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("CD Disc 1", QVariant(DiscOne_Key));
+  cb->addItem("CD Disc 2", QVariant(DiscTwo_Key));
+  cb->addItem("CD Disc 3", QVariant(DiscThree_Key));
+  cb->addItem("MD", QVariant(MDInput_Key));
 }
 
 
@@ -775,6 +802,17 @@ void AiwaAudio6::populateProtocol(
 }
 
 
+void AiwaAudio6::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("VCR / Aux", QVariant(AuxInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+}
+
+
 AiwaCarStereo1::AiwaCarStereo1(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -803,13 +841,24 @@ void AiwaCarStereo1::populateProtocol(
   addKey("vol-", VolumeDown_Key, 0x10, 8);
   addKey("disc_tune+", ChannelUp_Key, 0x11, 8);
   addKey("disc_tune-", ChannelDown_Key, 0x12, 8);
-  addKey("radio_band", TunerInput_Key, 0x13, 8);
+  addKey("radio_band", ToggleBand_Key, 0x13, 8);
+  addKey("radio_band", TunerInput_Key, 0x13, 8); // ?
   addKey("tape", TapeInput_Key, 0x14, 8);
   addKey("ff_next", FastForward_Key, 0x16, 8);
   addKey("rew_prev", Rewind_Key, 0x17, 8);
   addKey("playpause", Play_Key, 0x1B, 8);
   addKey("playpause", Pause_Key, 0x1B, 8);
   addKey("preset_scan", Scan_Key, 0x1F, 8);
+}
+
+
+void AiwaCarStereo1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
 }
 
 

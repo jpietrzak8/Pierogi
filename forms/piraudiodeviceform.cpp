@@ -45,14 +45,6 @@ void PIRAudioDeviceForm::enableButtons(
   const PIRKeysetManager *keyset,
   unsigned int id)
 {
-  emit cdEnabled(keyset->hasKey(id, CDInput_Key));
-  emit tapeEnabled(keyset->hasKey(id, TapeInput_Key));
-  emit phonoEnabled(keyset->hasKey(id, PhonoInput_Key));
-  emit auxEnabled(keyset->hasKey(id, AuxInput_Key));
-  emit tunerEnabled(keyset->hasKey(id, TunerInput_Key));
-  emit fmEnabled(keyset->hasKey(id, FM_Key));
-  emit amEnabled(keyset->hasKey(id, AM_Key));
-  emit lwEnabled(keyset->hasKey(id, LW_Key));
   emit fmModeEnabled(keyset->hasKey(id, FMMode_Key));
   emit repeatEnabled(keyset->hasKey(id, Repeat_Key));
   emit repeatABEnabled(keyset->hasKey(id, RepeatAB_Key));
@@ -61,86 +53,7 @@ void PIRAudioDeviceForm::enableButtons(
   emit prevDiscEnabled(keyset->hasKey(id, PrevDisc_Key));
   emit sleepEnabled(keyset->hasKey(id, Sleep_Key));
   emit infoEnabled(keyset->hasKey(id, Info_Key));
-}
-
-void PIRAudioDeviceForm::on_cdButton_pressed()
-{
-  mainWindow->startRepeating(CDInput_Key);
-}
-
-void PIRAudioDeviceForm::on_cdButton_released()
-{
-  mainWindow->stopRepeating();
-}
-
-void PIRAudioDeviceForm::on_tapeButton_pressed()
-{
-  mainWindow->startRepeating(TapeInput_Key);
-}
-
-void PIRAudioDeviceForm::on_tapeButton_released()
-{
-  mainWindow->stopRepeating();
-}
-
-void PIRAudioDeviceForm::on_phonoButton_pressed()
-{
-  mainWindow->startRepeating(PhonoInput_Key);
-}
-
-void PIRAudioDeviceForm::on_phonoButton_released()
-{
-  mainWindow->stopRepeating();
-}
-
-void PIRAudioDeviceForm::on_auxButton_pressed()
-{
-  mainWindow->startRepeating(AuxInput_Key);
-}
-
-void PIRAudioDeviceForm::on_auxButton_released()
-{
-  mainWindow->stopRepeating();
-}
-
-void PIRAudioDeviceForm::on_tunerButton_pressed()
-{
-  mainWindow->startRepeating(TunerInput_Key);
-}
-
-void PIRAudioDeviceForm::on_tunerButton_released()
-{
-  mainWindow->stopRepeating();
-}
-
-void PIRAudioDeviceForm::on_fmButton_pressed()
-{
-  mainWindow->startRepeating(FM_Key);
-}
-
-void PIRAudioDeviceForm::on_fmButton_released()
-{
-  mainWindow->stopRepeating();
-}
-
-void PIRAudioDeviceForm::on_amButton_pressed()
-{
-  mainWindow->startRepeating(AM_Key);
-}
-
-void PIRAudioDeviceForm::on_amButton_released()
-{
-  mainWindow->stopRepeating();
-}
-
-void PIRAudioDeviceForm::on_lwButton_pressed()
-{
-  mainWindow->startRepeating(LW_Key);
-}
-
-void PIRAudioDeviceForm::on_lwButton_released()
-{
-  mainWindow->stopRepeating();
+  emit rdsEnabled(keyset->hasKey(id, RDS_Key));
 }
 
 void PIRAudioDeviceForm::on_fmModeButton_pressed()
@@ -219,6 +132,16 @@ void PIRAudioDeviceForm::on_infoButton_pressed()
 }
 
 void PIRAudioDeviceForm::on_infoButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRAudioDeviceForm::on_rdsButton_pressed()
+{
+  mainWindow->startRepeating(RDS_Key);
+}
+
+void PIRAudioDeviceForm::on_rdsButton_released()
 {
   mainWindow->stopRepeating();
 }

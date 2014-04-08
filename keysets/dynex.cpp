@@ -22,6 +22,7 @@
 
 #include "dynex.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 DynexTV1::DynexTV1(
@@ -85,10 +86,23 @@ void DynexTV1::populateProtocol(
   addKey("audio", SoundMode_Key, 0x48, 8);
   addKey("picture", PictureMode_Key, 0x49, 8);
   addKey("favorite", Favorites_Key, 0x4B, 8);
-  addKey("comp", PCInput_Key, 0x4D, 8);
+  addKey("comp", CompositeInput_Key, 0x4D, 8);
   addKey("hdmi", HDMIInput_Key, 0x50, 8);
   addKey("video", AuxInput_Key, 0x4C, 8);
   addKey("tv", AntennaInput_Key, 0x4F, 8);
 
   addKey("ch-list", Unmapped_Key, 0x86, 8);
+}
+
+
+void DynexTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("Composite", QVariant(CompositeInput_Key));
+  cb->addItem("HDMI", QVariant(HDMIInput_Key));
+  cb->addItem("Video", QVariant(AuxInput_Key));
 }

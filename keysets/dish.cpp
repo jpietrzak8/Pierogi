@@ -22,6 +22,8 @@
 
 #include "dish.h"
 #include "protocols/dishprotocol.h"
+#include <QComboBox>
+
 
 DishReceiver1::DishReceiver1(
   unsigned int index)
@@ -114,6 +116,16 @@ void DishReceiver1::populateProtocol(
   addDishKey("pip", PIP_Key, 0x3A, 0x10);
   addDishKey("position", PIPMove_Key, 0x3B, 0x10);
   addDishKey("swap", PIPSwap_Key, 0x3D, 0x10);
+}
+
+
+void DishReceiver1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Video", QVariant(Input_Key));
+  cb->addItem("DVR", QVariant(HDDInput_Key));
 }
 
 

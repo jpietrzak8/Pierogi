@@ -23,6 +23,7 @@
 #include "jvc.h"
 #include "protocols/jvcprotocol.h"
 #include "protocols/lircprotocol.h"
+#include <QComboBox>
 
 JVCSat1::JVCSat1(
   unsigned int index)
@@ -732,6 +733,17 @@ void JVCAudio1::populateProtocol(
 }
 
 
+void JVCAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("MD / Aux", QVariant(AuxInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Tuner - Band", QVariant(TunerInput_Key));
+}
+
+
 JVCAudio1a::JVCAudio1a(
   unsigned int index)
   : JVCAudio1(index)
@@ -827,6 +839,17 @@ void JVCAudio1b::populateProtocol(
   addKey("Disc 4", Unmapped_Key, 0x7CB3, 16);
   addKey("Disc 5", Unmapped_Key, 0x7DB3, 16);
   addKey("Disc 6", Unmapped_Key, 0x7EB3, 16);
+}
+
+
+void JVCAudio1b::populateInputList(
+  QComboBox *cb)
+{
+  JVCAudio1::populateInputList(cb);
+
+  cb->addItem("VCR", QVariant(VCRInput_Key));
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
 }
 
 
@@ -929,6 +952,16 @@ void JVCAudio2::populateProtocol(
   addKey("ejectcd1", Unmapped_Key, 0xF4, 8);
   addKey("ejectcd2", Unmapped_Key, 0xF5, 8);
   addKey("ejectcd2", Unmapped_Key, 0xF6, 8);
+}
+
+
+void JVCAudio2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner Band", QVariant(TunerInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }
 
 

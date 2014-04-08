@@ -26,6 +26,7 @@
 #include "protocols/pirprotocol.h"
 
 #include <iostream>
+#include <QComboBox>
 
 // Global helper object:
 extern PIRMakeMgr makeManager;
@@ -386,4 +387,12 @@ bool PIRKeysetMetaData::clearProtocol()
   }
 
   return false;
+}
+
+
+void PIRKeysetMetaData::populateInputList(
+  QComboBox *cb)
+{
+  // By default, just empty the combo box:
+  cb->clear();
 }

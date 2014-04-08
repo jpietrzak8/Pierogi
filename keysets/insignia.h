@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class InsigniaTV1: public PIRKeysetMetaData
 {
@@ -45,16 +46,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
-};
 
-class InsigniaTV1b: public InsigniaTV1
-{
-public:
-  InsigniaTV1b(
-    unsigned int index);
-
-  virtual void populateProtocol(
-    QObject *guiObject);
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class InsigniaTV2: public PIRKeysetMetaData
@@ -65,6 +59,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class InsigniaTV3: public PIRKeysetMetaData
@@ -135,6 +132,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class InsigniaDVD4: public PIRKeysetMetaData
@@ -145,6 +145,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+//  virtual void populateInputList(
+//    QComboBox *cb);
 };
 
 class InsigniaDVD5: public PIRKeysetMetaData
@@ -165,6 +168,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 #endif // INSIGNIA_H

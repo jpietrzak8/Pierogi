@@ -23,6 +23,7 @@
 #include "technisat.h"
 #include "protocols/paceprotocol.h"
 #include "protocols/rc5protocol.h"
+#include <QComboBox>
 
 
 TechnisatSTB1::TechnisatSTB1(
@@ -89,6 +90,16 @@ void TechnisatSTB1::populateProtocol(
   addKey("ARROW_RIGHT", Right_Key, 0x35, 6);
   addKey("OK", Select_Key, 0x36, 6);
   addKey("LIST", Unmapped_Key, 0x37, 6);
+}
+
+
+void TechnisatSTB1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / R", QVariant(TunerInput_Key));
+  cb->addItem("SAT", QVariant(SatInput_Key));
 }
 
 
@@ -176,8 +187,18 @@ void TechnisatSTB2::populateProtocol(
   addKey("A/B", Audio_Key, 0x1223, 13);
   addKey("STOP", Unmapped_Key, 0x1229, 13);
   addKey("EPG", Guide_Key, 0x122F, 13); // "SFI"
-  addKey("EXT", Input_Key, 0x1238, 13);
+  addKey("EXT", Input_Key, 0x1238, 13);  // ??
   addKey("VT", Teletext_Key, 0x123C, 13); // "TXT"
+}
+
+
+void TechnisatSTB2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / SAT", QVariant(SatInput_Key));
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
 }
 
 

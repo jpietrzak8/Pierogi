@@ -34,6 +34,7 @@
 
 class QThread;
 class QObject;
+class QComboBox;
 
 class PIRSelectDeviceForm;
 class PIRProtocol;
@@ -74,6 +75,9 @@ public:
     QObject *guiObject) = 0;
 
   bool clearProtocol();
+
+  virtual void populateInputList(
+    QComboBox *cb);
 
   void moveToThread(
     QThread *thread);

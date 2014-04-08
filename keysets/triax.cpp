@@ -23,6 +23,8 @@
 #include "triax.h"
 #include "protocols/rc5protocol.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 TriaxSTB1::TriaxSTB1(
   unsigned int index)
@@ -136,6 +138,16 @@ void TriaxSTB2::populateProtocol(
   addKey("next track", Next_Key, 0x5B, 8);
   addKey("fav", Favorites_Key, 0x5C, 8);
   addKey("program guide", Guide_Key, 0x5D, 8);
+}
+
+
+void TriaxSTB2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Satellite", QVariant(Input_Key));
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
 }
 
 

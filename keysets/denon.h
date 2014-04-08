@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class DenonDVD1: public PIRKeysetMetaData
 {
@@ -65,6 +66,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class DenonReceiver1a: public DenonReceiver1
@@ -107,16 +111,6 @@ public:
     QObject *guiObject);
 };
 
-class DenonReceiver1e: public DenonReceiver1d
-{
-public:
-  DenonReceiver1e(
-    unsigned int index);
-
-  virtual void populateProtocol(
-    QObject *guiObject);
-};
-
 class DenonReceiver1f: public DenonReceiver1c
 {
 public:
@@ -135,6 +129,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class DenonReceiver2a: public DenonReceiver2
@@ -155,6 +152,22 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
+};
+
+class DenonReceiver4: public PIRKeysetMetaData
+{
+public:
+  DenonReceiver4(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class DenonAudio1: public PIRKeysetMetaData
@@ -165,6 +178,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class DenonAudio1a: public DenonAudio1
@@ -215,6 +231,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+//  virtual void populateInputList(
+//    QComboBox *cb);
 };
 
 class DenonAudio3: public PIRKeysetMetaData
@@ -235,6 +254,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 #endif // DENON_H

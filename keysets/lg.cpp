@@ -24,6 +24,7 @@
 #include "protocols/necprotocol.h"
 #include "protocols/necxprotocol.h"
 #include "protocols/rc5protocol.h"
+#include <QComboBox>
 
 LGTV1::LGTV1(
   unsigned int index)
@@ -67,7 +68,7 @@ void LGTV1::populateProtocol(
   addKey("picture", PictureMode_Key, 0x0C, 8);
   addKey("sound", SoundMode_Key, 0x0D, 8);
   addKey("sleep", Sleep_Key, 0x0E, 8);
-  addKey("TvVideo", Unmapped_Key, 0x0F, 8);
+  addKey("TvVideo", OpticalInput_Key, 0x0F, 8);  // Hack
   addKey("0", Zero_Key, 0x10, 8);
   addKey("1", One_Key, 0x11, 8);
   addKey("2", Two_Key, 0x12, 8);
@@ -96,8 +97,8 @@ void LGTV1::populateProtocol(
   addKey("qmenu", Unmapped_Key, 0x45, 8);
   addKey("-", Dash_Key, 0x4C, 8);
   addKey("video", PictureMode_Key, 0x4D, 8); // "apc", "PSM", "picture mode"
-  addKey("TV/PC", PCInput_Key, 0x50, 8);
-  addKey("AV-2", Unmapped_Key, 0x51, 8);
+  addKey("TV/PC", LDInput_Key, 0x50, 8); // This is a hack
+  addKey("AV-2", Composite2Input_Key, 0x51, 8);
   addKey("sound", SoundMode_Key, 0x52, 8); // "SSM", "Select Sound Mode"
   addKey("list", Unmapped_Key, 0x53, 8);
   addKey("auto", Unmapped_Key, 0x54, 8);
@@ -120,25 +121,25 @@ void LGTV1::populateProtocol(
   addKey("app/x", Unmapped_Key, 0x90, 8);
   addKey("ad", Unmapped_Key, 0x91, 8);
   addKey("energy", Unmapped_Key, 0x95, 8); // "EYEASTERISK"
-  addKey("comp-rgb-dvi", ComponentInput_Key, 0x98, 8);
-  addKey("InputAv1", Unmapped_Key, 0xA5, 8);
+  addKey("comp-rgb-dvi", TapeInput_Key, 0x98, 8);  // Hack
+  addKey("InputAv1", SVideoInput_Key, 0xA5, 8);
   addKey("info", Info_Key, 0xAA, 8);
   addKey("guide", Guide_Key, 0xAB, 8);
   addKey("RatioZoom", Zoom_Key, 0xAF, 8);
   addKey("rec", Record_Key, 0xBD, 8);
-  addKey("InputComponent1", Unmapped_Key, 0xBF, 8);
+  addKey("InputComponent1", ComponentInput_Key, 0xBF, 8);
   addKey("PowerOn", PowerOn_Key, 0xC4, 8);
   addKey("PowerOff", PowerOff_Key, 0xC5, 8);
   addKey("hdmi", HDMIInput_Key, 0xC6, 8);
   addKey("InputHDMI2", HDMI2Input_Key, 0xCC, 8);
-//  addKey("InputHDMI1", HDMIInput_Key, 0xCE, 8);
-  addKey("InputAv2", Unmapped_Key, 0xD0, 8);
-  addKey("InputComponent2", Unmapped_Key, 0xD2, 8);
+  addKey("InputHDMI1", LineInput_Key, 0xCE, 8); // Hack!
+  addKey("InputAv2", SVideo2Input_Key, 0xD0, 8);
+  addKey("InputComponent2", Component2Input_Key, 0xD2, 8);
   addKey("InputRgb-Pc", PCInput_Key, 0xD5, 8);
   addKey("aerial", AntennaInput_Key, 0xD6, 8);
-  addKey("InputTv", Unmapped_Key, 0xD9, 8);
-  addKey("InputHDMI4", Unmapped_Key, 0xDA, 8);
-  addKey("InputHDMI3", Unmapped_Key, 0xE9, 8);
+  addKey("InputTv", MDInput_Key, 0xD9, 8); // yet another TV input?
+  addKey("InputHDMI4", PhonoInput_Key, 0xDA, 8); // too many HDMIs!
+  addKey("InputHDMI3", HDMI3Input_Key, 0xE9, 8);
   addKey("Auto Demo Mode", Unmapped_Key, 0xED, 8);
   addKey("tv/radio", TunerInput_Key, 0xF0, 8);
 
@@ -149,6 +150,32 @@ void LGTV1::populateProtocol(
   addKey("Password Protected Function", Unmapped_Key, 0xFC, 8);
   addKey("PowerOnly", Unmapped_Key, 0xFE, 8);
   addKey("EZadjust", Unmapped_Key, 0xFF, 8);
+}
+
+
+void LGTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("TV", QVariant(MDInput_Key));
+  cb->addItem("TV / Video", QVariant(OpticalInput_Key));
+  cb->addItem("TV / PC", QVariant(LDInput_Key));
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
+  cb->addItem("AV 1", QVariant(CompositeInput_Key));
+  cb->addItem("AV 2", QVariant(Composite2Input_Key));
+  cb->addItem("AV 1 (alt)", QVariant(SVideoInput_Key));
+  cb->addItem("AV 2 (alt)", QVariant(SVideo2Input_Key));
+  cb->addItem("Component 1", QVariant(ComponentInput_Key));
+  cb->addItem("Component 2", QVariant(Component2Input_Key));
+  cb->addItem("HDMI", QVariant(HDMIInput_Key));
+  cb->addItem("HDMI 1", QVariant(LineInput_Key));
+  cb->addItem("HDMI 2", QVariant(HDMI2Input_Key));
+  cb->addItem("HDMI 3", QVariant(HDMI3Input_Key));
+  cb->addItem("HDMI 4", QVariant(PhonoInput_Key));
+  cb->addItem("Comp / RGB / DVI", QVariant(TapeInput_Key));
+  cb->addItem("RGB / PC", QVariant(PCInput_Key));
 }
 
 
@@ -531,10 +558,22 @@ void LGHT2::populateProtocol(
   addKey("record", Record_Key, 0xB6, 8);
   addKey("timer rec", RecordTimed_Key, 0xB7, 8);
   addKey("TimeShift", Unmapped_Key, 0xB9, 8);
-  addKey("TV/DVD", Unmapped_Key, 0xBE, 8);
+  addKey("TV/DVD", AntennaInput_Key, 0xBE, 8);
   addKey("inputdvd", DVDInput_Key, 0xF1, 8);
   addKey("inputhdd", HDDInput_Key, 0xF2, 8);
   addKey("ProgramList", Unmapped_Key, 0xF4, 8);
+}
+
+
+void LGHT2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("TV / DVD", QVariant(AntennaInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("HDD", QVariant(HDDInput_Key));
 }
 
 
@@ -599,13 +638,12 @@ void LGDisc1::populateProtocol(
 
   setPreData(0x2C2C, 16);
 
-  addKey("cd-dvd", Unmapped_Key, 0x03, 8);
+  addKey("cd-dvd", CDInput_Key, 0x03, 8);
   addKey("play", Play_Key, 0x04, 8);
   addKey("stop", Stop_Key, 0x05, 8);
   addKey("<<<", Next_Key, 0x06, 8);
   addKey(">>>", Previous_Key, 0x07, 8);
   addKey("aux", AuxInput_Key, 0x09, 8);
-  addKey("aux", Input_Key, 0x09, 8);
   addKey("minus", Unmapped_Key, 0x12, 8);  // "pr_preset_down"
   addKey("plus", Unmapped_Key, 0x13, 8); // "pr_preset_up"
   addKey("volume-", VolumeDown_Key, 0x16, 8);
@@ -626,17 +664,16 @@ void LGDisc1::populateProtocol(
   addKey("program", Program_Key, 0x4D, 8);
   addKey("repeat", Repeat_Key, 0x4E, 8);
   addKey("pause", Pause_Key, 0x4F, 8);
-  addKey("band", FM_Key, 0x59, 8); // This is a hack
-  addKey("band", AM_Key, 0x59, 8); // This too
+  addKey("band", ToggleBand_Key, 0x59, 8);
   addKey("dimmer", Unmapped_Key, 0x5E, 8);
-  addKey("rds", Unmapped_Key, 0x60, 8);
+  addKey("rds", RDS_Key, 0x60, 8);
   addKey("exit_cancel", Unmapped_Key, 0x69, 8);
   addKey("caption", Captions_Key, 0x6A, 8);
   addKey("guide", Guide_Key, 0x6B, 8);
   addKey("pty", Unmapped_Key, 0x71, 8);
   addKey("i_ii", Unmapped_Key, 0x7A, 8);
   addKey("text", Unmapped_Key, 0x7B, 8);
-  addKey("tv_radio", TunerInput_Key, 0x82, 8);
+  addKey("tv_radio", Input_Key, 0x82, 8);
 //  addKey("aux", Unmapped_Key, 0x8A, 8);
   addKey("open-close", Eject_Key, 0x9A, 8);
   addKey("audio", Audio_Key, 0xA0, 8);
@@ -661,6 +698,17 @@ void LGDisc1::populateProtocol(
   addKey("search", Unmapped_Key, 0xB3, 8);
   addKey("marker", Unmapped_Key, 0xB4, 8);
   addKey("sleep", Sleep_Key, 0xC2, 8);
+}
+
+
+void LGDisc1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("CD / DVD", QVariant(CDInput_Key));
+  cb->addItem("TV / Radio", QVariant(Input_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }
 
 

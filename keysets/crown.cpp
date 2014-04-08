@@ -23,6 +23,7 @@
 #include "crown.h"
 #include "protocols/necprotocol.h"
 #include "protocols/rc5protocol.h"
+#include <QComboBox>
 
 CrownTV1::CrownTV1(
   unsigned int index)
@@ -86,6 +87,16 @@ void CrownTV1::populateProtocol(
   addKey("STEREO", Unmapped_Key, 0x102F, 13);
   addKey("MONO", Unmapped_Key, 0x1023, 13);
   addKey("PS", Unmapped_Key, 0x1024, 13);
+}
+
+
+void CrownTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("AV", QVariant(AuxInput_Key));
 }
 
 

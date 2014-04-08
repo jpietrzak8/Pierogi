@@ -24,6 +24,7 @@
 #include "protocols/necprotocol.h"
 #include "protocols/necxprotocol.h"
 #include "protocols/rc5protocol.h"
+#include <QComboBox>
 
 
 CambridgeCD1::CambridgeCD1(
@@ -189,14 +190,29 @@ void CambridgeAudio2::populateProtocol(
   addKey("ENTER", Select_Key, 0x21, 8);
 
   addKey("DVD", DVDInput_Key, 0x22, 8);
-  addKey("VIDEO1", Unmapped_Key, 0x23, 8);
-  addKey("VIDEO2", Unmapped_Key, 0x24, 8);
-  addKey("VIDEO3", Unmapped_Key, 0x25, 8);
+  addKey("VIDEO1", CompositeInput_Key, 0x23, 8);
+  addKey("VIDEO2", Composite2Input_Key, 0x24, 8);
+  addKey("VIDEO3", SVideoInput_Key, 0x25, 8); // bit of a hack
   addKey("TAPE_MD_CDR", TapeInput_Key, 0x26, 8);
   addKey("CD_AUX", AuxInput_Key, 0x27, 8);
 
   addKey("INPUT_MODE", Unmapped_Key, 0x60, 8);
   addKey("DELAY", Unmapped_Key, 0xA0, 8);
+}
+
+
+void CambridgeAudio2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("AM / FM Toggle", QVariant(TunerInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("Video 1", QVariant(CompositeInput_Key));
+  cb->addItem("Video 2", QVariant(Composite2Input_Key));
+  cb->addItem("Video 3", QVariant(SVideoInput_Key));
+  cb->addItem("Tape / MD / CDR", QVariant(TapeInput_Key));
+  cb->addItem("CD / Aux", QVariant(AuxInput_Key));
 }
 
 
@@ -240,6 +256,20 @@ void CambridgeAudio3::populateProtocol(
   addKey("Clip_On", Unmapped_Key, 0x1416, 13);
   addKey("Mute_On", Unmapped_Key, 0x1432, 13);
   addKey("Mute_Off", Unmapped_Key, 0x1433, 13);
+}
+
+
+void CambridgeAudio3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("Tuner / DAB", QVariant(TunerInput_Key));
+  cb->addItem("Tape Monitor", QVariant(TapeInput_Key));
+  cb->addItem("AV / MD", QVariant(MDInput_Key));
+  cb->addItem("Aux / Phono", QVariant(AuxInput_Key));
 }
 
 

@@ -49,14 +49,6 @@ public:
     unsigned int id);
 
 signals:
-  void cdEnabled(bool);
-  void tapeEnabled(bool);
-  void phonoEnabled(bool);
-  void auxEnabled(bool);
-  void tunerEnabled(bool);
-  void fmEnabled(bool);
-  void amEnabled(bool);
-  void lwEnabled(bool);
   void fmModeEnabled(bool);
   void repeatEnabled(bool);
   void repeatABEnabled(bool);
@@ -65,24 +57,9 @@ signals:
   void prevDiscEnabled(bool);
   void sleepEnabled(bool);
   void infoEnabled(bool);
+  void rdsEnabled(bool);
   
 private slots:
-  void on_cdButton_pressed();
-  void on_cdButton_released();
-  void on_tapeButton_pressed();
-  void on_tapeButton_released();
-  void on_phonoButton_pressed();
-  void on_phonoButton_released();
-  void on_auxButton_pressed();
-  void on_auxButton_released();
-  void on_tunerButton_pressed();
-  void on_tunerButton_released();
-  void on_fmButton_pressed();
-  void on_fmButton_released();
-  void on_amButton_pressed();
-  void on_amButton_released();
-  void on_lwButton_pressed();
-  void on_lwButton_released();
   void on_fmModeButton_pressed();
   void on_fmModeButton_released();
   void on_repeatButton_pressed();
@@ -99,6 +76,8 @@ private slots:
   void on_sleepButton_released();
   void on_infoButton_pressed();
   void on_infoButton_released();
+  void on_rdsButton_pressed();
+  void on_rdsButton_released();
 
 private:
   Ui::PIRAudioDeviceForm *ui;

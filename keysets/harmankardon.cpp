@@ -22,6 +22,7 @@
 
 #include "harmankardon.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 HarmanKardonAmp1::HarmanKardonAmp1(
@@ -87,24 +88,43 @@ void HarmanKardonAmp1::populateProtocol(
   addKey("Phono", PhonoInput_Key, 0xC2, 8);
   addKey("TUNER", TunerInput_Key, 0xC3, 8);
   addKey("CD", CDInput_Key, 0xC4, 8);
-  addKey("video", Unmapped_Key, 0xC6, 8);
+  addKey("video", CompositeInput_Key, 0xC6, 8);
   addKey("VOLUP", VolumeUp_Key, 0xC7, 8);
   addKey("VOLDN", VolumeDown_Key, 0xC8, 8);
   addKey("VCR1", VCRInput_Key, 0xCA, 8);
-  addKey("VCR2", Unmapped_Key, 0xCB, 8);
+  addKey("VCR2", Composite2Input_Key, 0xCB, 8); // hacky
   addKey("source_tape", TapeInput_Key, 0xCC, 8);
   addKey("TAPEMON", Unmapped_Key, 0xCD, 8); // "Tape2"
   addKey("TVAUX", AuxInput_Key, 0xCE, 8);
 
   addKey("source_dvd", DVDInput_Key, 0xD0, 8);
-  addKey("source_vid4", Unmapped_Key, 0xD1, 8);
-  addKey("aux2", Unmapped_Key, 0xD5, 8);
+  addKey("source_vid4", SVideoInput_Key, 0xD1, 8); // hacky
+  addKey("aux2", LineInput_Key, 0xD5, 8); // hacky
   addKey("S_REARUP", RearVolumeUp_Key, 0xD7, 8);
   addKey("S_REARDN", RearVolumeDown_Key, 0xD8, 8);
   addKey("S_CNTUP", CenterVolumeUp_Key, 0xD9, 8);
   addKey("S_CNTDN", CenterVolumeDown_Key, 0xDA, 8);
   addKey("SLEEP", Sleep_Key, 0xDB, 8);
   addKey("DISPLAY", Info_Key, 0xDC, 8);
+}
+
+
+void HarmanKardonAmp1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("VCR1", QVariant(VCRInput_Key));
+  cb->addItem("VCR2", QVariant(Composite2Input_Key));
+  cb->addItem("Video4", QVariant(SVideoInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+  cb->addItem("Aux2", QVariant(LineInput_Key));
 }
 
 
@@ -137,17 +157,30 @@ void HarmanKardonAmp2::populateProtocol(
   addKey("speaker2", Unmapped_Key, 0x43, 8);
   addKey("phono", PhonoInput_Key, 0x44, 8);
   addKey("cd", CDInput_Key, 0x48, 8);
-  addKey("vid1", Unmapped_Key, 0x4B, 8);
-  addKey("vid2", Unmapped_Key, 0x4C, 8);
-  addKey("vid3", Unmapped_Key, 0x4D, 8);
-  addKey("fm", Unmapped_Key, 0x46, 8);
-  addKey("am", Unmapped_Key, 0x45, 8);
+  addKey("vid1", CompositeInput_Key, 0x4B, 8);
+  addKey("vid2", Composite2Input_Key, 0x4C, 8);
+  addKey("vid3", SVideoInput_Key, 0x4D, 8); // hacky
+  addKey("fm", FM_Key, 0x46, 8);
+  addKey("am", AM_Key, 0x45, 8);
   addKey("tapemon", Unmapped_Key, 0x4A, 8);
   addKey("vol+", VolumeUp_Key, 0x54, 8);
   addKey("vol-", VolumeDown_Key, 0x53, 8);
   addKey("mute", Mute_Key, 0x5A, 8);
   addKey("dimmer", Unmapped_Key, 0x5C, 8);
   addKey("sleep", Sleep_Key, 0x5B, 8);
+}
+
+
+void HarmanKardonAmp2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Video 1", QVariant(CompositeInput_Key));
+  cb->addItem("Video 2", QVariant(Composite2Input_Key));
+  cb->addItem("Video 3", QVariant(SVideoInput_Key));
 }
 
 

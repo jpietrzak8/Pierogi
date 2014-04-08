@@ -23,6 +23,8 @@
 #include "mitsubishi.h"
 #include "protocols/protonprotocol.h"
 #include "protocols/mitsubishiprotocol.h"
+#include <QComboBox>
+
 
 MitsubishiTV1::MitsubishiTV1(
   unsigned int index)
@@ -279,7 +281,7 @@ void MitsubishiProjector1::populateProtocol(
 
   addKey("Computer", PCInput_Key, 0x60, 8); // "RGB1"
   addKey("Video1", AuxInput_Key, 0x61, 8);
-  addKey("PC Card", Unmapped_Key, 0x62, 8);
+  addKey("PC Card", PhonoInput_Key, 0x62, 8); // hack
   addKey("Component", ComponentInput_Key, 0x64, 8);
   addKey("Video", CompositeInput_Key, 0x65, 8);
   addKey("S-Video", SVideoInput_Key, 0x66, 8);
@@ -314,6 +316,21 @@ void MitsubishiProjector1::populateProtocol(
 }
 
 
+void MitsubishiProjector1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("S-Video", QVariant(SVideoInput_Key));
+  cb->addItem("Video 1", QVariant(AuxInput_Key));
+  cb->addItem("Component", QVariant(ComponentInput_Key));
+  cb->addItem("HDMI", QVariant(HDMIInput_Key));
+  cb->addItem("Computer", QVariant(PCInput_Key));
+  cb->addItem("PC Card", QVariant(PhonoInput_Key));
+}
+
+
 MitsubishiProjector2::MitsubishiProjector2(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -344,10 +361,10 @@ void MitsubishiProjector2::populateProtocol(
   addKey("Power Off", Red_Key, 0x4A, 8); // Also a hack
   addKey("Display", Info_Key, 0x27, 8);
   addKey("Pic Mute", Mute_Key, 0x92, 8);
-  addKey("Inputa", Unmapped_Key, 0xA4, 8);
-  addKey("Inputb", Unmapped_Key, 0xAC, 8);
-  addKey("Input Video", Unmapped_Key, 0xF5, 8);
-  addKey("Input Y/C", Unmapped_Key, 0xFD, 8);
+  addKey("Inputa", Input_Key, 0xA4, 8);
+  addKey("Inputb", AuxInput_Key, 0xAC, 8);
+  addKey("Input Video", CompositeInput_Key, 0xF5, 8);
+  addKey("Input Y/C", ComponentInput_Key, 0xFD, 8);
   addKey("Menu", Menu_Key, 0x33, 8);
   addKey("Menu 2", Guide_Key, 0x73, 8);
   addKey("Mem List", Favorites_Key, 0x9D, 8); // Not quite right
@@ -373,4 +390,16 @@ void MitsubishiProjector2::populateProtocol(
   addKey("Down", Down_Key, 0x7C, 8);
   addKey("Left", Left_Key, 0x6C, 8);
   addKey("Right", Right_Key, 0x64, 8);
+}
+
+
+void MitsubishiProjector2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("A", QVariant(Input_Key));
+  cb->addItem("B", QVariant(AuxInput_Key));
+  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("Y / C", QVariant(ComponentInput_Key));
 }

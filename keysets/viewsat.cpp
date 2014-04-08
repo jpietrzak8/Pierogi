@@ -22,6 +22,7 @@
 
 #include "viewsat.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 ViewsatSat1::ViewsatSat1(
@@ -88,6 +89,17 @@ void ViewsatSat1::populateProtocol(
   addKey("F2", Unmapped_Key, 0x40, 8);
   addKey("F3", Unmapped_Key, 0x41, 8);
   addKey("Help", Unmapped_Key, 0x42, 8); // "color"
+}
+
+
+void ViewsatSat1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input", QVariant(Input_Key));
+  cb->addItem("Sat", QVariant(SatInput_Key));
+  cb->addItem("Radio", QVariant(TunerInput_Key));
 }
 
 

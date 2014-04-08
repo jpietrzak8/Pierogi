@@ -22,6 +22,7 @@
 
 #include "vizio.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 VizioTV1::VizioTV1(
@@ -94,9 +95,23 @@ void VizioTV1::populateProtocol(
   addKey("swap", PIPSwap_Key, 0x66, 8);
   addKey("mode", Mode_Key, 0x67, 8);
   addKey("wide", AspectRatio_Key, 0x77, 8);
-  addKey("RGB", Unmapped_Key, 0x98, 8);
+  addKey("RGB", Component2Input_Key, 0x98, 8);
   addKey("HDMI", HDMIInput_Key, 0xC6, 8);
-  addKey("TV", Unmapped_Key, 0xD6, 8);
+  addKey("TV", AntennaInput_Key, 0xD6, 8);
 
   addKey("DASH", Unmapped_Key, 0xFF, 8); // "enter"
+}
+
+
+void VizioTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input", QVariant(Input_Key));
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("AV", QVariant(AuxInput_Key));
+  cb->addItem("Comp", QVariant(ComponentInput_Key));
+  cb->addItem("RGB", QVariant(Component2Input_Key));
+  cb->addItem("HDMI", QVariant(HDMIInput_Key));
 }

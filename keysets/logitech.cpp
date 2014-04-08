@@ -22,6 +22,8 @@
 
 #include "logitech.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 LogitechSpeakers::LogitechSpeakers(
   unsigned int index)
@@ -65,6 +67,17 @@ void LogitechSpeakers::populateProtocol(
   addKey("effect", Red_Key, 0x1D, 8);
   addKey("settings", Blue_Key, 0x1F, 8);
   addKey("vol+", VolumeUp_Key, 0x1A, 8);
+}
+
+
+void LogitechSpeakers::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Direct", QVariant(PCInput_Key));
+  cb->addItem("Optical", QVariant(OpticalInput_Key));
+  cb->addItem("Coax", QVariant(DigitalCoaxInput_Key));
 }
 
 

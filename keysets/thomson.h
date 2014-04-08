@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class ThomsonConverter1: public PIRKeysetMetaData
 {
@@ -85,6 +86,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class ThomsonAudio1: public PIRKeysetMetaData

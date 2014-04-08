@@ -25,6 +25,7 @@
 #include "protocols/thomsonprotocol.h"
 #include "protocols/necprotocol.h"
 #include "protocols/rcaprotocol.h"
+#include <QComboBox>
 
 
 ThomsonConverter1::ThomsonConverter1(
@@ -386,6 +387,16 @@ void ThomsonSat1::populateProtocol(
 }
 
 
+void ThomsonSat1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+  cb->addItem("AV", QVariant(Input_Key));
+}
+
+
 ThomsonAudio1::ThomsonAudio1(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -417,7 +428,7 @@ void ThomsonAudio1::populateProtocol(
   addKey("trackBack", Previous_Key, 0x90, 8);
   addKey("volUp", VolumeUp_Key, 0x91, 8);
   addKey("soundEffect", Unmapped_Key, 0x93, 8);
-  addKey("band", TunerInput_Key, 0x94, 8);
+  addKey("band", ToggleBand_Key, 0x94, 8);
   addKey("mode", Mode_Key, 0x95, 8);
   addKey("select", Select_Key, 0x99, 8); // ?
   addKey("presUp", ChannelUp_Key, 0x9C, 8);

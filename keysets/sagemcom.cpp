@@ -23,6 +23,8 @@
 #include "sagemcom.h"
 #include "protocols/mceprotocol.h"
 #include "protocols/nokia32protocol.h"
+#include <QComboBox>
+
 
 SagemcomSTB1::SagemcomSTB1(
   unsigned int index)
@@ -148,11 +150,22 @@ void SagemcomSTB2::populateProtocol(
   addKey("Blue", Blue_Key, 0x70, 8);
   addKey("Search", Unmapped_Key, 0x81, 8);
   addKey("Last_ch", PrevChannel_Key, 0x83, 8);
-  addKey("TV", Unmapped_Key, 0xA6, 8);
-  addKey("TV/Video", Input_Key, 0xA7, 8);
+  addKey("TV", Input_Key, 0xA6, 8);
+  addKey("TV/Video", AuxInput_Key, 0xA7, 8);
   addKey("Guide", Guide_Key, 0xCC, 8);
   addKey("Option", Unmapped_Key, 0xDB, 8);
   addKey("exit", Exit_Key, 0xEE, 8);
   addKey("Recordings", Unmapped_Key, 0xF0, 8);
   addKey("Select Video", Unmapped_Key, 0xFD, 8);
+}
+
+
+void SagemcomSTB2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
+  cb->addItem("TV / Video", QVariant(AuxInput_Key));
 }

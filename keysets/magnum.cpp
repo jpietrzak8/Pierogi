@@ -22,6 +22,7 @@
 
 #include "magnum.h"
 #include "protocols/rc5protocol.h"
+#include <QComboBox>
 
 
 MagnumTV1::MagnumTV1(
@@ -83,4 +84,14 @@ void MagnumTV1::populateProtocol(
   addKey("RIGHT", Right_Key, 0x1076, 13);
   addKey("RIGHT", VolumeUp_Key, 0x1076, 13);  // more guesswork
   addKey("MENU", Menu_Key, 0x1077, 13);
+}
+
+
+void MagnumTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("AV", QVariant(CableInput_Key));
 }

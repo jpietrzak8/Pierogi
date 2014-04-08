@@ -25,6 +25,7 @@
 #include "protocols/necprotocol.h"
 #include "protocols/nokia32protocol.h"
 #include "protocols/aiwaprotocol.h"
+#include <QComboBox>
 
 ADBSTB1::ADBSTB1(
   unsigned int index)
@@ -320,6 +321,16 @@ void ADBSTB5::populateProtocol(
   addKey("Green", Green_Key, 0x21, 8);
   addKey("Yellow", Yellow_Key, 0x22, 8);
   addKey("Blue", Blue_Key, 0x23, 8);
+}
+
+
+void ADBSTB5::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("TV / Radio Toggle", QVariant(TunerInput_Key));
 }
 
 

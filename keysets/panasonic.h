@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class PanasonicCarAudio: public PIRKeysetMetaData
 {
@@ -185,6 +186,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PanasonicAudio2: public PIRKeysetMetaData
@@ -195,6 +199,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PanasonicAudio2a: public PanasonicAudio2
@@ -215,6 +222,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PanasonicAC1: public PIRKeysetMetaData

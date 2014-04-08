@@ -23,6 +23,8 @@
 #include "astro.h"
 #include "protocols/nokia32protocol.h"
 #include "protocols/rc6protocol.h"
+#include <QComboBox>
+
 
 AstroSTB1::AstroSTB1(
   unsigned int index)
@@ -122,8 +124,8 @@ void AstroSTB2::populateProtocol(
 
   addKey("Mute", Mute_Key, 0x0D, 8);
   addKey("Byond", Unmapped_Key, 0x83, 8);
-  addKey("TV", Unmapped_Key, 0xCC, 8);
-  addKey("Radio", Unmapped_Key, 0xF2, 8);
+  addKey("TV", AntennaInput_Key, 0xCC, 8);
+  addKey("Radio", Antenna2Input_Key, 0xF2, 8);
   addKey("Home", Unmapped_Key, 0x54, 8);
   addKey("VolumeUp", VolumeUp_Key, 0x10, 8);
   addKey("VolumeDown", VolumeDown_Key, 0x11, 8);
@@ -157,4 +159,14 @@ void AstroSTB2::populateProtocol(
   addKey("8", Eight_Key, 0x08, 8);
   addKey("9", Nine_Key, 0x09, 8);
   addKey("0", Zero_Key, 0x00, 8);
+}
+
+
+void AstroSTB2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("Radio", QVariant(Antenna2Input_Key));
 }

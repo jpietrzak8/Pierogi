@@ -25,6 +25,8 @@
 #include "protocols/daewooprotocol.h"
 #include "protocols/necprotocol.h"
 #include "protocols/protonprotocol.h"
+#include <QComboBox>
+
 
 DaewooTV1::DaewooTV1(
   unsigned int index)
@@ -90,6 +92,16 @@ void DaewooTV1::populateProtocol(
   addKey("scartmode", AuxInput_Key, 0x1038, 13); // "IN", "Src"
   addKey("Teletext", Teletext_Key, 0x103C, 13); // "PAGE", "videotextmode"
   addKey("tvmode", Input_Key, 0x103F, 13);
+}
+
+
+void DaewooTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV Mode", QVariant(Input_Key));
+  cb->addItem("SCART Mode", QVariant(AuxInput_Key));
 }
 
 
@@ -246,6 +258,17 @@ void DaewooTV3::populateProtocol(
 }
 
 
+void DaewooTV3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / CATV", QVariant(Input_Key));
+  cb->addItem("AV / COMP", QVariant(AuxInput_Key));
+  cb->addItem("DTV / PC", QVariant(PCInput_Key));
+}
+
+
 DaewooTV4::DaewooTV4(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -306,6 +329,16 @@ void DaewooTV4::populateProtocol(
 //  addKey("pip move", PIPPosition_Key, 0x14, 8);
 //  addKey("select", Select_Key, 0x18, 8);
 //  addKey("pip on/off", PIP_Key, 0x19, 8);
+}
+
+
+void DaewooTV4::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / VCR", QVariant(Input_Key));
+  cb->addItem("TV / CATV (ant/cbl)", QVariant(AntennaInput_Key));
 }
 
 
@@ -425,7 +458,7 @@ void DaewooDVD1::populateProtocol(
   addKey("3D", Unmapped_Key, 0xB4, 8);
   addKey("SUB", Captions_Key, 0xB5, 8);
   addKey("REPEAT", Repeat_Key, 0xB8, 8);
-  addKey("SCART", ScartInput_Key, 0xBA, 8);
+  addKey("SCART", ScartInput_Key, 0xBA, 8); // ?
   addKey("PROG", Program_Key, 0xBB, 8);
   addKey("SFFWD", StepForward_Key, 0xBC, 8);
   addKey("SEARCH", Unmapped_Key, 0xBE, 8);
@@ -560,4 +593,14 @@ void DaewooVCR2::populateProtocol(
   addKey("av", AuxInput_Key, 0x36, 8);
   addKey("sv/v+", Unmapped_Key, 0x39, 8);
   addKey("indexdown", Previous_Key, 0x3F, 8);
+}
+
+
+void DaewooVCR2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / VCR", QVariant(Input_Key));
+  cb->addItem("AV", QVariant(AuxInput_Key));
 }

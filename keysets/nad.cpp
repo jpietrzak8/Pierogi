@@ -24,6 +24,7 @@
 #include "protocols/necprotocol.h"
 #include "protocols/necxprotocol.h"
 #include "protocols/sircprotocol.h"
+#include <QComboBox>
 
 
 NADAudio1::NADAudio1(
@@ -64,8 +65,8 @@ void NADAudio1::populateProtocol(
   addKey("EXT._5.1", Unmapped_Key, 0x2E, 8);
   addKey("RCVR_DYN.R", NoiseReduction_Key, 0x2F, 8);
 
-  addKey("VIDEO_4", Unmapped_Key, 0x30, 8);
-  addKey("VIDEO_5", Unmapped_Key, 0x31, 8);
+  addKey("VIDEO_4", CompositeInput_Key, 0x30, 8);
+  addKey("VIDEO_5", Composite2Input_Key, 0x31, 8);
   addKey("RCVR_TUNE_MODE", Mode_Key, 0x33, 8);
   addKey("CD-Pause", Pause_Key, 0x4A, 8);
 
@@ -89,7 +90,7 @@ void NADAudio1::populateProtocol(
   addKey("RCVR_2", Two_Key, 0x8E, 8);
   addKey("RCVR_6", Six_Key, 0x8F, 8);
 
-  addKey("Input-Tape2", Unmapped_Key, 0x91, 8);
+  addKey("Input-Tape2", MDInput_Key, 0x91, 8); // hack
   addKey("RCVR_3", Three_Key, 0x92, 8);
   addKey("RCVR_7", Seven_Key, 0x93, 8);
   addKey("Mute", Mute_Key, 0x94, 8); // "RCVR_MUTE_ENTER"
@@ -115,8 +116,29 @@ void NADAudio1::populateProtocol(
 
   addKey("Tuner-PresetLeft", ChannelDown_Key, 0xD1, 8);
   addKey("Tuner-PresetRight", ChannelUp_Key, 0xD2, 8);
+  addKey("FM/AM", ToggleBand_Key, 0xDD, 8); // "tuner"
   addKey("FM/AM", TunerInput_Key, 0xDD, 8); // "tuner"
   addKey("TapeB-Rev", Unmapped_Key, 0xDE, 8);
+}
+
+
+void NADAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("FM", QVariant(FM_Key));
+  cb->addItem("AM", QVariant(AM_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Disc", QVariant(PhonoInput_Key));
+  cb->addItem("Tape 1", QVariant(TapeInput_Key));
+  cb->addItem("Tape 2", QVariant(MDInput_Key));
+  cb->addItem("Video 1 (DVD / LD)", QVariant(DVDInput_Key));
+  cb->addItem("Video 2 (Sat)", QVariant(SatInput_Key));
+  cb->addItem("Video 3 (VCR)", QVariant(VCRInput_Key));
+  cb->addItem("Video 4", QVariant(CompositeInput_Key));
+  cb->addItem("Video 5", QVariant(Composite2Input_Key));
 }
 
 

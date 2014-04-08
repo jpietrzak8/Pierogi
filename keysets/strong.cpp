@@ -23,6 +23,8 @@
 #include "strong.h"
 #include "protocols/necprotocol.h"
 #include "protocols/recs80protocol.h"
+#include <QComboBox>
+
 
 StrongSat1::StrongSat1(
   unsigned int index)
@@ -85,6 +87,16 @@ void StrongSat1::populateProtocol(
 }
 
 
+void StrongSat1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Sat", QVariant(Input_Key));
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
+}
+
+
 StrongSat2::StrongSat2(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -144,6 +156,16 @@ void StrongSat2::populateProtocol(
   addKey("green", Green_Key, 0x45, 8);
   addKey("yellow", Yellow_Key, 0x46, 8);
   addKey("blue", Blue_Key, 0x47, 8);
+}
+
+
+void StrongSat2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Sat", QVariant(Input_Key));
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
 }
 
 
@@ -243,6 +265,16 @@ void StrongSat3::populateProtocol(
 }
 
 
+void StrongSat3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("AV", QVariant(Input_Key));
+  cb->addItem("TV / R", QVariant(TunerInput_Key));
+}
+
+
 StrongSat3a::StrongSat3a(
   unsigned int index)
   : StrongSat3(index)
@@ -271,7 +303,7 @@ void StrongSat3a::populateProtocol(
   addKey("sleep", Sleep_Key, 0x1B, 8);
   addKey("f1", Unmapped_Key, 0x1B, 8);
   addKey("tv/radio", TunerInput_Key, 0x1C, 8);
-  addKey("sat", SatInput_Key, 0x1D, 8);
+  addKey("sat", Input_Key, 0x1D, 8);
   addKey("pgup", PageUp_Key, 0x1E, 8);
   addKey("audio", Audio_Key, 0x40, 8);
   addKey("red", Red_Key, 0x40, 8);
@@ -415,7 +447,7 @@ void StrongSat5::populateProtocol(
   addKey("Digital TV", AntennaInput_Key, 0x12, 8);
   addKey("CH+ / Page Up", PageUp_Key, 0x13, 8); // why "CH+" here?
   addKey("sub", Captions_Key, 0x14, 8);
-  addKey("Analog TV", Unmapped_Key, 0x15, 8);
+  addKey("Analog TV", Antenna2Input_Key, 0x15, 8);
   addKey("Language", Audio_Key, 0x16, 8);
   addKey("Sound", SoundMode_Key, 0x17, 8);
   addKey("Mute / green", Mute_Key, 0x19, 8);
@@ -432,6 +464,18 @@ void StrongSat5::populateProtocol(
   addKey("Info / Function / Scan", Info_Key, 0x42, 8);
   addKey("Exit / Yellow", Exit_Key, 0x43, 8);
   addKey("Exit / Yellow", Yellow_Key, 0x43, 8);
+}
+
+
+void StrongSat5::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Digital TV", QVariant(AntennaInput_Key));
+  cb->addItem("Analog TV", QVariant(Antenna2Input_Key));
+  cb->addItem("Digital Radio", QVariant(TunerInput_Key));
+  cb->addItem("Satellite", QVariant(SatInput_Key));
 }
 
 
@@ -601,6 +645,16 @@ void StrongSTB2::populateProtocol(
 }
 
 
+void StrongSTB2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
+  cb->addItem("TV / STB", QVariant(Input_Key));
+}
+
+
 StrongSTB3::StrongSTB3(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -717,6 +771,16 @@ void StrongSTB4::populateProtocol(
   addKey("power", Power_Key, 0x9F, 8);
   addKey("display", Info_Key, 0xD4, 8);
   addKey("channel up", ChannelUp_Key, 0xDC, 8);
+}
+
+
+void StrongSTB4::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
+  cb->addItem("TV / Video", QVariant(Input_Key));
 }
 
 

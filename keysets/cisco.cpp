@@ -25,6 +25,8 @@
 #include "protocols/panasonicoldprotocol.h"
 #include "protocols/nokia32protocol.h"
 #include "protocols/rc5protocol.h"
+#include <QComboBox>
+
 
 CiscoSTB1::CiscoSTB1(
   unsigned int index)
@@ -94,6 +96,17 @@ void CiscoSTB1::populateProtocol(
   addKey("power", Power_Key, 0xDC, 8);
   addKey("pageup", PageUp_Key, 0xDD, 8);
   addKey("favourite", Favorites_Key, 0xDD, 8);
+}
+
+
+void CiscoSTB1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("HD", QVariant(HDDInput_Key));
+  cb->addItem("Radio", QVariant(TunerInput_Key));
 }
 
 
@@ -182,6 +195,17 @@ void CiscoSTB2::populateProtocol(
   addPanOldKey("M2", Unmapped_Key, 0x1F, 0x39); // "M1(alt)"
   addPanOldKey("Person", Unmapped_Key, 0x1F, 0x3B);
   addPanOldKey("Green D Diamond", Green_Key, 0x1F, 0x3D);
+}
+
+
+void CiscoSTB2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Video Source", QVariant(Input_Key));
+  cb->addItem("Live", QVariant(LiveTV_Key));
+  cb->addItem("List", QVariant(HDDInput_Key));
 }
 
 

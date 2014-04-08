@@ -22,6 +22,7 @@
 
 #include "compro.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 ComproTVCard1::ComproTVCard1(
@@ -85,4 +86,15 @@ void ComproTVCard1::populateProtocol(
   addKey("LANGUAGE", Audio_Key, 0x40, 8);
   addKey("0", Zero_Key, 0x1F, 8);
   addKey("SLEEP", Sleep_Key, 0x41, 8);
+}
+
+void ComproTVCard1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Video", QVariant(Input_Key));
+  cb->addItem("FM", QVariant(TunerInput_Key));
+  cb->addItem("PVR", QVariant(HDDInput_Key));
+  cb->addItem("DVD / VCD", QVariant(DVDInput_Key));
 }

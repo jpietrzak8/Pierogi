@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class GoldStarTV1: public PIRKeysetMetaData
 {
@@ -93,14 +94,17 @@ public:
 };
 
 
-class GoldStarCD1: public PIRKeysetMetaData
+class GoldStarAudio1: public PIRKeysetMetaData
 {
 public:
-  GoldStarCD1(
+  GoldStarAudio1(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 #endif // GOLDSTAR_H

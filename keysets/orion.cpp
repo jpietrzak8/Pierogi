@@ -22,6 +22,8 @@
 
 #include "orion.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 OrionTV1::OrionTV1(
   unsigned int index)
@@ -85,6 +87,16 @@ void OrionTV1::populateProtocol(
   addKey("-", Left_Key, 0x54, 8); // bit of a hack
   addKey("+", Right_Key, 0x58, 8); // also here
   addKey("Mode", Mode_Key, 0x5C, 8);
+}
+
+
+void OrionTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
+  cb->addItem("TV / AV", QVariant(Input_Key));
 }
 
 
@@ -209,6 +221,17 @@ void OrionTV3::populateProtocol(
   addKey("TV/Radio", TunerInput_Key, 0xB3, 8);
   addKey("Vol+", VolumeUp_Key, 0xC5, 8);
   addKey("Vol-", VolumeDown_Key, 0xC6, 8);
+}
+
+
+void OrionTV3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / DBTV", QVariant(AntennaInput_Key));
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
+  cb->addItem("TV / DVD", QVariant(DVDInput_Key));
 }
 
 

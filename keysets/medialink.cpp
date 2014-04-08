@@ -22,6 +22,8 @@
 
 #include "medialink.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
+
 
 MedialinkSTB1::MedialinkSTB1(
   unsigned int index)
@@ -97,4 +99,14 @@ void MedialinkSTB1::populateProtocol(
   addKey("PVR Left Key", Unmapped_Key, 0x57, 8);
   addKey("PVR Middle", Unmapped_Key, 0x58, 8);
   addKey("Skip+", Next_Key, 0x5E, 8);
+}
+
+
+void MedialinkSTB1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
+  cb->addItem("PVR", QVariant(HDDInput_Key));
 }

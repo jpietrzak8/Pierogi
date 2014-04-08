@@ -22,6 +22,7 @@
 
 #include "kaon.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 KaonSat1::KaonSat1(
@@ -87,4 +88,14 @@ void KaonSat1::populateProtocol(
   addKey("8", Eight_Key, 0x45, 8);
   addKey("9", Nine_Key, 0x46, 8);
   addKey("0", Zero_Key, 0x47, 8);
+}
+
+
+void KaonSat1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV - Radio", QVariant(TunerInput_Key));
+  cb->addItem("TV - STB", QVariant(Input_Key));
 }

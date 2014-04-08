@@ -23,6 +23,8 @@
 #include "pioneer.h"
 #include "protocols/pioneerprotocol.h"
 #include "protocols/lircprotocol.h"
+#include <QComboBox>
+
 
 PioneerTV1::PioneerTV1(
   unsigned int index)
@@ -75,10 +77,10 @@ void PioneerTV1::populateProtocol(
   addPioneerKey("CH_RETURN", PrevChannel_Key, 0xAA, 0x5A, 0xAF, 0x62);
   addPioneerKey("DOT", Unmapped_Key, 0xAA, 0x5A, 0xAF, 0x64);
   addPioneerKey("INPUT_PC", PCInput_Key, 0xAA, 0x5A, 0xAF, 0x74);
-  addPioneerKey("INPUT1", Unmapped_Key, 0xAA, 0x5A, 0xAF, 0x7A);
-  addPioneerKey("INPUT2", Unmapped_Key, 0xAA, 0x5A, 0xAF, 0x7B);
-  addPioneerKey("INPUT3", Unmapped_Key, 0xAA, 0x5A, 0xAF, 0x7C);
-  addPioneerKey("INPUT4", Unmapped_Key, 0xAA, 0x5A, 0xAF, 0x7D);
+  addPioneerKey("INPUT1", CompositeInput_Key, 0xAA, 0x5A, 0xAF, 0x7A);
+  addPioneerKey("INPUT2", Composite2Input_Key, 0xAA, 0x5A, 0xAF, 0x7B);
+  addPioneerKey("INPUT3", ComponentInput_Key, 0xAA, 0x5A, 0xAF, 0x7C);
+  addPioneerKey("INPUT4", Component2Input_Key, 0xAA, 0x5A, 0xAF, 0x7D);
   addPioneerKey("HDMI5", HDMIInput_Key, 0xAA, 0x5A, 0xAF, 0x7E);
   addPioneerKey("HDMI6", HDMI2Input_Key, 0xAA, 0x5A, 0xAF, 0x7F);
 
@@ -99,6 +101,23 @@ void PioneerTV1::populateProtocol(
   addNECKey("AV_SELECTION", Input_Key, 0xAA, 0x5E); // is this right?
   addPioneerKey("SCREEN_SIZE", AspectRatio_Key, 0xAA, 0x5E, 0xAF, 0x3A);
   addPioneerKey("SLEEP", Sleep_Key, 0xAA, 0x5E, 0xAF, 0x70);
+}
+
+
+void PioneerTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Antenna", QVariant(AntennaInput_Key));
+  cb->addItem("PC", QVariant(PCInput_Key));
+  cb->addItem("Input 1", QVariant(CompositeInput_Key));
+  cb->addItem("Input 2", QVariant(Composite2Input_Key));
+  cb->addItem("Input 3", QVariant(ComponentInput_Key));
+  cb->addItem("Input 4", QVariant(Component2Input_Key));
+  cb->addItem("HDMI 5", QVariant(HDMIInput_Key));
+  cb->addItem("HDMI 6", QVariant(HDMI2Input_Key));
+  cb->addItem("AV Selection", QVariant(Input_Key)); //?
 }
 
 
@@ -349,6 +368,19 @@ void PioneerAudio1::populateProtocol(
 }
 
 
+void PioneerAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("FM / AM", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("MD", QVariant(MDInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+}
+
+
 PioneerAudio1a::PioneerAudio1a(
   unsigned int index)
   : PioneerAudio1(index)
@@ -383,6 +415,7 @@ PioneerAudio2::PioneerAudio2(
 }
 
 
+// I don't think "Audio2" is an audio device at all.  Looks like a DVD.
 void PioneerAudio2::populateProtocol(
   QObject *guiObject)
 {
@@ -438,6 +471,16 @@ void PioneerAudio2::populateProtocol(
   addNECKey("Green", Green_Key, 0xAF, 0x63);
   addNECKey("HDD", HDDInput_Key, 0xAF, 0x64);
   addNECKey("DVD", DVDInput_Key, 0xAF, 0x65);
+}
+
+
+void PioneerAudio2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("HDD", QVariant(HDDInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
 }
 
 
@@ -507,12 +550,11 @@ void PioneerAudio3::populateProtocol(
   addNECKey("7", Seven_Key, 0xA4, 0x07);
   addNECKey("8", Eight_Key, 0xA4, 0x08);
   addNECKey("9", Nine_Key, 0xA4, 0x09);
-  addNECKey("fm", Unmapped_Key, 0xA4, 0x0D);
-  addNECKey("am", Unmapped_Key, 0xA4, 0x0E);
+  addNECKey("fm", FM_Key, 0xA4, 0x0D);
+  addNECKey("am", AM_Key, 0xA4, 0x0E);
   addNECKey("tuner_station+", NextPreset_Key, 0xA4, 0x10);
   addNECKey("tuner_station-", PrevPreset_Key, 0xA4, 0x11);
-  addNECKey("tuner_band", AM_Key, 0xA4, 0x13); // This is a hack
-  addNECKey("tuner_band", FM_Key, 0xA4, 0x13); // This too
+  addNECKey("tuner_band", ToggleBand_Key, 0xA4, 0x13);
   addNECKey("tuner_power", Unmapped_Key, 0xA4, 0x1C);
   addNECKey("mpx", Unmapped_Key, 0xA4, 0x1E); // Toggle mono FM
   addNECKey("tunerclass", Unmapped_Key, 0xA4, 0x40); // class A, B, C
@@ -536,15 +578,15 @@ void PioneerAudio3::populateProtocol(
   addNECKey("volume-", VolumeDown_Key, 0xA5, 0x0B);
   addNECKey("tv/sat", SatInput_Key, 0xA5, 0x0C);
   addNECKey("ld", LDInput_Key, 0xA5, 0x0D); // "VDP"
-  addNECKey("vcr2", Unmapped_Key, 0xA5, 0x0E);
+  addNECKey("vcr2", DVRInput_Key, 0xA5, 0x0E); // hack
   addNECKey("vcr-line", VCRInput_Key, 0xA5, 0x0F);
-  addNECKey("md/tape1", TapeInput_Key, 0xA5, 0x11);
+  addNECKey("md/tape1", MDInput_Key, 0xA5, 0x11);
   addNECKey("muting", Mute_Key, 0xA5, 0x12);
-  addNECKey("video", Unmapped_Key, 0xA5, 0x16);
+  addNECKey("video", CompositeInput_Key, 0xA5, 0x16);
   addNECKey("poweron", PowerOn_Key, 0xA5, 0x1A);
   addNECKey("poweroff", PowerOff_Key, 0xA5, 0x1B);
   addNECKey("amp_power", Power_Key, 0xA5, 0x1C);
-  addNECKey("tape2", Unmapped_Key, 0xA5, 0x1D);
+  addNECKey("tape2", OpticalInput_Key, 0xA5, 0x1D); // hack
   addNECKey("dsp", Unmapped_Key, 0xA5, 0x40); // cycle hall, jazz, dance, theater
   addNECKey("loudness", Unmapped_Key, 0xA5, 0x44);
   addNECKey("tuner", TunerInput_Key, 0xA5, 0x47);
@@ -573,7 +615,7 @@ void PioneerAudio3::populateProtocol(
   addNECKey("right", Right_Key, 0xA5, 0x82);
   addNECKey("left", Left_Key, 0xA5, 0x83);
   addNECKey("enter", Select_Key, 0xA5, 0x84);
-  addNECKey("dvd/ld", Unmapped_Key, 0xA5, 0x85);
+  addNECKey("dvd/ld", DVDInput_Key, 0xA5, 0x85);
 
   addPioneerKey("setup", Menu_Key, 0xA5, 0x9B, 0xA5, 0xD6);
 
@@ -595,7 +637,7 @@ void PioneerAudio3::populateProtocol(
   addNECKey("tv_func", Unmapped_Key, 0xAA, 0x13);
   addNECKey("tv_power", Unmapped_Key, 0xAA, 0x1C);
 
-  addNECKey("vcr_tv-vcr", Unmapped_Key, 0xAB, 0x0F);
+  addNECKey("vcr_tv-vcr", AntennaInput_Key, 0xAB, 0x0F);
   addNECKey("vcr_ff", Unmapped_Key, 0xAB, 0x10);
   addNECKey("vcr_rew", Unmapped_Key, 0xAB, 0x11);
   addNECKey("vcr_stop", Unmapped_Key, 0xAB, 0x16);
@@ -603,6 +645,29 @@ void PioneerAudio3::populateProtocol(
   addNECKey("vcr_pause", Unmapped_Key, 0xAB, 0x18);
   addNECKey("vcr_channel+", Unmapped_Key, 0xAB, 0x52);
   addNECKey("vcr_channel-", Unmapped_Key, 0xAB, 0x53);
+}
+
+
+void PioneerAudio3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("MD / Tape 1", QVariant(MDInput_Key));
+  cb->addItem("DAT / Tape 1", QVariant(TapeInput_Key));
+  cb->addItem("Tape 2", QVariant(OpticalInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Line", QVariant(LineInput_Key));
+  cb->addItem("TV / Sat", QVariant(SatInput_Key));
+  cb->addItem("TV / VCR", QVariant(AntennaInput_Key));
+  cb->addItem("VCR / Line", QVariant(VCRInput_Key));
+  cb->addItem("VCR2", QVariant(DVRInput_Key));
+  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("DVD / LD", QVariant(DVDInput_Key));
+  cb->addItem("LD", QVariant(LDInput_Key));
 }
 
 
@@ -691,8 +756,7 @@ void PioneerAudio5::populateProtocol(
   addKey("POWER", Power_Key, 0x9867, 16);
   addKey("MONO", FMMode_Key, 0x48B7, 16);
   addKey("MEM_SCAN", Unmapped_Key, 0x8877, 16);
-  addKey("TUNER_BAND", AM_Key, 0x18E7, 16);  // This is a hack
-  addKey("TUNER_BAND", FM_Key, 0x18E7, 16);  // This too
+  addKey("TUNER_BAND", ToggleBand_Key, 0x18E7, 16);
   addKey("1", One_Key, 0x00FF, 16);
   addKey("2", Two_Key, 0x807F, 16);
   addKey("3", Three_Key, 0x40BF, 16);
@@ -721,6 +785,229 @@ void PioneerAudio5::populateProtocol(
   addKey("AUX_VIDEO", AuxInput_Key, 0xF807, 16);
   addKey("TUNER", TunerInput_Key, 0xD827, 16);
   addKey("CD", CDInput_Key, 0x38C7, 16);
+}
+
+
+void PioneerAudio5::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+}
+
+
+PioneerAudio6::PioneerAudio6(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Audio Keyset 6",
+      Pioneer_Make,
+      index)
+{
+  addControlledDevice(Pioneer_Make, "VSX-D901S", Audio_Device);
+}
+
+
+void PioneerAudio6::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new PioneerProtocol(guiObject, index);
+
+  addNECKey("Menu", Menu_Key, 0xA3, 0x99);
+
+  addNECKey("0", Zero_Key, 0xA4, 0x00);
+  addNECKey("1", One_Key, 0xA4, 0x01);
+  addNECKey("2", Two_Key, 0xA4, 0x02);
+  addNECKey("3", Three_Key, 0xA4, 0x03);
+  addNECKey("4", Four_Key, 0xA4, 0x04);
+  addNECKey("5", Five_Key, 0xA4, 0x05);
+  addNECKey("6", Six_Key, 0xA4, 0x06);
+  addNECKey("7", Seven_Key, 0xA4, 0x07);
+  addNECKey("8", Eight_Key, 0xA4, 0x08);
+  addNECKey("9", Nine_Key, 0xA4, 0x09);
+  addNECKey("PresetNext", NextPreset_Key, 0xA4, 0x10);
+  addNECKey("PresetPrev", PrevPreset_Key, 0xA4, 0x11);
+  addNECKey("AmFmToggle", Unmapped_Key, 0xA4, 0x13);
+  addNECKey("Mpx", Unmapped_Key, 0xA4, 0x1E);
+  addNECKey("PresetClass", Unmapped_Key, 0xA4, 0x40);
+  addNECKey("TunerDisplay", Info_Key, 0xA4, 0x4A);
+  addNECKey("TuneUp", ChannelUp_Key, 0xA4, 0x56);
+  addNECKey("TuneDown", ChannelDown_Key, 0xA4, 0x57);
+  addNECKey("TunerEdit", Unmapped_Key, 0xA4, 0x58);
+  addNECKey("Select/Ok", Select_Key, 0xA4, 0x59);
+
+  addNECKey("VolueUp", VolumeUp_Key, 0xA5, 0x0A);
+  addNECKey("VolumeDown", VolumeDown_Key, 0xA5, 0x0B);
+  addNECKey("InputTV", AntennaInput_Key, 0xA5, 0x0C);
+  addNECKey("InputLd", LDInput_Key, 0xA5, 0x0D);
+  addNECKey("InputVCR2", SVideoInput_Key, 0xA5, 0x0E); // hack
+  addNECKey("InputVCR1", VCRInput_Key, 0xA5, 0x0F);
+  addNECKey("InputSat", SatInput_Key, 0xA5, 0x10);
+  addNECKey("InputMD", MDInput_Key, 0xA5, 0x11);
+  addNECKey("Mute", Mute_Key, 0xA5, 0x12);
+  addNECKey("InputVideo", CompositeInput_Key, 0xA5, 0x16);
+  addNECKey("InputVideo2", Composite2Input_Key, 0xA5, 0x17);
+  addNECKey("PowerOn", PowerOn_Key, 0xA5, 0x1A);
+  addNECKey("PowerOff", PowerOff_Key, 0xA5, 0x1B);
+  addNECKey("PowerToggle", Power_Key, 0xA5, 0x1C);
+  addNECKey("SurroundMode", Surround_Key, 0xA5, 0x40);
+  addNECKey("VolumeRearUp", RearVolumeUp_Key, 0xA5, 0x41);
+  addNECKey("VolumeRearDown", RearVolumeDown_Key, 0xA5, 0x42);
+  addNECKey("InputVcr3", SVideo2Input_Key, 0xA5, 0x46); // hack
+  addNECKey("InputTuner", TunerInput_Key, 0xA5, 0x47);
+  addNECKey("Sleep", Sleep_Key, 0xA5, 0x48);
+  addNECKey("InputCd", CDInput_Key, 0xA5, 0x4C);
+  addNECKey("InputPhono", PhonoInput_Key, 0xA5, 0x4D);
+  addNECKey("InputLine", LineInput_Key, 0xA5, 0x4F);
+  addNECKey("VideoSelect", Unmapped_Key, 0xA5, 0x54);
+  addNECKey("InputNext", Input_Key, 0xA5, 0x55);
+  addNECKey("DirectionUp", Up_Key, 0xA5, 0x80);
+  addNECKey("DirectionDown", Down_Key, 0xA5, 0x81);
+  addNECKey("DirectionRight", Right_Key, 0xA5, 0x82);
+  addNECKey("DirectionLeft", Left_Key, 0xA5, 0x83);
+  addNECKey("SurroundModeEnter", Unmapped_Key, 0xA5, 0x84);
+  addNECKey("InputDvd", DVDInput_Key, 0xA5, 0x85);
+  addNECKey("InputCdr", ScartInput_Key, 0xA5, 0x88); // hack
+  addNECKey("InputDvr/Vcr", ComponentInput_Key, 0xA5, 0x89); // hack
+  addNECKey("InputFm", FM_Key, 0xA5, 0x8A);
+  addNECKey("InputAm", AM_Key, 0xA5, 0x8B);
+
+  addPioneerKey("Subtitle", Captions_Key, 0xA3, 0x99, 0xAF, 0x16);
+  addPioneerKey("TopMenu", DiscMenu_Key, 0xA3, 0x99, 0xAF, 0x94);
+  addPioneerKey("Angle", Angle_Key, 0xA3, 0x99, 0xAF, 0x95);
+  addPioneerKey("Audio", Audio_Key, 0xA3, 0x99, 0xAF, 0x9E);
+
+  addPioneerKey("TuneDirect", Unmapped_Key, 0xA4, 0x43, 0xAF, 0x57);
+
+  addPioneerKey("VolumeCenterDown", CenterVolumeDown_Key, 0xA5, 0x41, 0xAF, 0x02);
+  addPioneerKey("EffectUp", Unmapped_Key, 0xA5, 0x41, 0xAF, 0x05);
+  addPioneerKey("ChannelLevelDown", Unmapped_Key, 0xA5, 0x41, 0xAF, 0x07);
+  addPioneerKey("EffectLevelUp", Unmapped_Key, 0xA5, 0x41, 0xAF, 0xC6);
+  addPioneerKey("VolumeCenterUp", CenterVolumeUp_Key, 0xA5, 0x42, 0xAF, 0x02);
+  addPioneerKey("EffectDown", Unmapped_Key, 0xA5, 0x42, 0xAF, 0x05);
+  addPioneerKey("ChannelLevelUp", Unmapped_Key, 0xA5, 0x42, 0xAF, 0x07);
+  addPioneerKey("EffectLevelDown", Unmapped_Key, 0xA5, 0x42, 0xAF, 0xC6);
+  addPioneerKey("InputTape1", TapeInput_Key, 0xA5, 0x4E, 0xAF, 0x1D);
+  addPioneerKey("SpeakerToggle", Unmapped_Key, 0xA5, 0x56, 0xAF, 0x00);
+  addPioneerKey("TestTone", Unmapped_Key, 0xA5, 0x56, 0xAF, 0x01);
+  addPioneerKey("SignalSelect", Unmapped_Key, 0xA5, 0x56, 0xAF, 0x03);
+  addPioneerKey("ChannelSelect", Unmapped_Key, 0xA5, 0x56, 0xAF, 0x04);
+  addPioneerKey("Dimmer", Unmapped_Key, 0xA5, 0x56, 0xAF, 0x06);
+  addPioneerKey("Display", Unmapped_Key, 0xA5, 0x56, 0xAF, 0xC0);
+  addPioneerKey("EqualizerBassUp", BassUp_Key, 0xA5, 0x57, 0xAF, 0x00);
+  addPioneerKey("EqualizerBassDown", BassDown_Key, 0xA5, 0x57, 0xAF, 0x01);
+  addPioneerKey("EqualizerTrebleUp", TrebleUp_Key, 0xA5, 0x57, 0xAF, 0x02);
+  addPioneerKey("EqualizerTrebleDown", TrebleDown_Key, 0xA5, 0x57, 0xAF, 0x03);
+  addPioneerKey("SurroundModeNext", Unmapped_Key, 0xA5, 0x57, 0xAF, 0x08);
+  addPioneerKey("SurroundModePrev", Unmapped_Key, 0xA5, 0x57, 0xAF, 0x09);
+  addPioneerKey("Tone", Unmapped_Key, 0xA5, 0x57, 0xAF, 0xC0);
+  addPioneerKey("Bass/Treble", Unmapped_Key, 0xA5, 0x57, 0xAF, 0xC2);
+  addPioneerKey("HiBit", Unmapped_Key, 0xA5, 0x59, 0xAF, 0x06);
+  addPioneerKey("DNR", NoiseReduction_Key, 0xA5, 0x59, 0xAF, 0x07);
+  addPioneerKey("Delay", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0x03);
+  addPioneerKey("SuperBass", EnhancedBass_Key, 0xA5, 0x5A, 0xAF, 0x04);
+  addPioneerKey("CenterMode", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0x08);
+  addPioneerKey("Quiet", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xC0);
+  addPioneerKey("Flat", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xC1);
+  addPioneerKey("RoomS", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xC2);
+  addPioneerKey("RoomM", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xC3);
+  addPioneerKey("RoomL", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xC4);
+  addPioneerKey("RoomSetup", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xC5);
+  addPioneerKey("SoundMode", SoundMode_Key, 0xA5, 0x5A, 0xAF, 0xC6);
+  addPioneerKey("SurroundMovie", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xC7);
+  addPioneerKey("SurroundMusic", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xC8);
+  addPioneerKey("MCACCSetup", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xC9);
+  addPioneerKey("AVParameter", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xCA);
+  addPioneerKey("Phase", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xCB);
+  addPioneerKey("MCACC", Unmapped_Key, 0xA5, 0x5A, 0xAF, 0xCC);
+  addPioneerKey("Exit", Exit_Key, 0xA5, 0x5D, 0xAF, 0x09);
+  addPioneerKey("InputMultiChannel", Unmapped_Key, 0xA5, 0x5E, 0xAF, 0x06);
+  addPioneerKey("Attenuation", Unmapped_Key, 0xA5, 0x5E, 0xAF, 0x07);
+  addPioneerKey("SurroundStandard", Unmapped_Key, 0xA5, 0x5E, 0xAF, 0x08);
+  addPioneerKey("InputDigital", DigitalCoaxInput_Key, 0xA5, 0x5E, 0xAF, 0xC1);
+  addPioneerKey("InputHdmi1", HDMIInput_Key, 0xA5, 0x5E, 0xAF, 0xCA);
+  addPioneerKey("InputHdmo2", HDMI2Input_Key, 0xA5, 0x5E, 0xAF, 0xCB);
+  addPioneerKey("iPodPause", Unmapped_Key, 0xA5, 0x98, 0xAF, 0xC1);
+  addPioneerKey("iPodSkipBack", Unmapped_Key, 0xA5, 0x98, 0xAF, 0xC2);
+  addPioneerKey("iPodSkipForward", Unmapped_Key, 0xA5, 0x98, 0xAF, 0xC3);
+  addPioneerKey("iPodRewind", Unmapped_Key, 0xA5, 0x98, 0xAF, 0xC4);
+  addPioneerKey("iPodFastForward", Unmapped_Key, 0xA5, 0x98, 0xAF, 0xC5);
+  addPioneerKey("iPodStop", Unmapped_Key, 0xA5, 0x98, 0xAF, 0xCA);
+  addPioneerKey("iPodUp", Unmapped_Key, 0xA5, 0x98, 0xAF, 0xD0);
+  addPioneerKey("iPodDown", Unmapped_Key, 0xA5, 0x98, 0xAF, 0xD1);
+  addPioneerKey("iPodPlay", Unmapped_Key, 0xA5, 0x98, 0xAF, 0xD4);
+  addPioneerKey("iPodExit", Unmapped_Key, 0xA5, 0x98, 0xAF, 0xD5);
+  addPioneerKey("iPodMenu", Unmapped_Key, 0xA5, 0x98, 0xAF, 0xD6);
+  addPioneerKey("SignalDirect", Unmapped_Key, 0xA5, 0x9A, 0xAF, 0xC3);
+  addPioneerKey("SystemSetup", Unmapped_Key, 0xA5, 0x9B, 0xAF, 0xD6);
+  addPioneerKey("Status", Unmapped_Key, 0xA5, 0x9B, 0xAF, 0xDD);
+  addPioneerKey("InputFront", Unmapped_Key, 0xA5, 0x9E, 0xAF, 0xC6);
+  addPioneerKey("InputLink", Unmapped_Key, 0xA5, 0x9E, 0xAF, 0xC8);
+  addPioneerKey("InputDVR/VCR2", Component2Input_Key, 0xA5, 0x9E, 0xAF, 0xCA);
+  addPioneerKey("InputiPod", USBInput_Key, 0xA5, 0x9E, 0xAF, 0xCB);
+  addPioneerKey("InputXM", PCInput_Key, 0xA5, 0x9E, 0xAF, 0xCC);
+  addPioneerKey("Stereo", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xC0);
+  addPioneerKey("3-ChLogic", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xC1);
+  addPioneerKey("Loudness", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xCB);
+  addPioneerKey("EffectsSD", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xD0);
+  addPioneerKey("THX", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xD1);
+  addPioneerKey("EffectVirtual", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xD2);
+  addPioneerKey("SurroundAdvance", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xD3);
+  addPioneerKey("SbChannelMode", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xD4);
+  addPioneerKey("SurroundAuto", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xD5);
+  addPioneerKey("EffectGame", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xD6);
+  addPioneerKey("EffectTvSurround", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xD7);
+  addPioneerKey("EffectMusical", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xD8);
+  addPioneerKey("EffectDrama", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xD9);
+  addPioneerKey("EffectAction", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xDA);
+  addPioneerKey("SurroundPhones", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xDB);
+  addPioneerKey("Equalizer", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xDC);
+  addPioneerKey("DialogEnhance", Unmapped_Key, 0xA5, 0x9F, 0xAF, 0xDE);
+}
+
+
+void PioneerAudio6::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Next Input", QVariant(Input_Key));
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("FM", QVariant(FM_Key));
+  cb->addItem("AM", QVariant(AM_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("CDR", QVariant(ScartInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Line", QVariant(LineInput_Key));
+  cb->addItem("Digital", QVariant(DigitalCoaxInput_Key));
+  cb->addItem("MD", QVariant(MDInput_Key));
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("HDMI 1", QVariant(HDMIInput_Key));
+  cb->addItem("HDMI 2", QVariant(HDMI2Input_Key));
+  cb->addItem("VCR 1", QVariant(VCRInput_Key));
+  cb->addItem("VCR 2", QVariant(SVideoInput_Key));
+  cb->addItem("VCR 3", QVariant(SVideo2Input_Key));
+  cb->addItem("Sat", QVariant(SatInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("LD", QVariant(LDInput_Key));
+  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("Video 2", QVariant(Composite2Input_Key));
+  cb->addItem("DVR / VCR", QVariant(ComponentInput_Key));
+  cb->addItem("DVR / VCR 2", QVariant(Component2Input_Key));
+  cb->addItem("iPod", QVariant(USBInput_Key));
+  cb->addItem("XM", QVariant(PCInput_Key));
+//  cb->addItem("Multi-Channel", QVariant(something));
+//  cb->addItem("Front", QVariant(something));
+//  cb->addItem("Link", QVariant(something));
 }
 
 
@@ -986,8 +1273,8 @@ void PioneerCarStereo1::populateProtocol(
   addNECKey("VOL-", VolumeDown_Key, 0xAD, 0x0B);
   addNECKey("ATT", Mute_Key, 0xAD, 0x0C);
   addNECKey("Audio", SoundMode_Key, 0xAD, 0x0D);
-  addNECKey("Band/Escape", FM_Key, 0xAD, 0x12);
-  addNECKey("Band/Escape", Exit_Key, 0xAD, 0x12);
+  addNECKey("Band/Escape", ToggleBand_Key, 0xAD, 0x12);
+  addNECKey("Band/Escape", Exit_Key, 0xAD, 0x12); // ?
   addNECKey("Source", Input_Key, 0xAD, 0x1A);
   addNECKey("Radio", TunerInput_Key, 0xAD, 0x1C);
   addNECKey("CD/iPod", CDInput_Key, 0xAD, 0x1E);
@@ -1015,4 +1302,15 @@ void PioneerCarStereo1::populateProtocol(
   addPioneerKey("7", Seven_Key, 0xAD, 0x19, 0xAF, 0xF7);
   addPioneerKey("8", Eight_Key, 0xAD, 0x19, 0xAF, 0xF8);
   addPioneerKey("9", Nine_Key, 0xAD, 0x19, 0xAF, 0xF9);
+}
+
+
+void PioneerCarStereo1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Source", QVariant(Input_Key));
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+  cb->addItem("CD / iPod", QVariant(CDInput_Key));
 }

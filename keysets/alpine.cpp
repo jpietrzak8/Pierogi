@@ -52,8 +52,8 @@ void AlpineAudio1::populateProtocol(
   addKey("Play/Pause", Play_Key, 0x07, 8);
   addKey("A_Proc", Unmapped_Key, 0x09, 8); // for an "external audio processor"
   addKey("Source", Input_Key, 0x0A, 8);
-  addKey("Band_Prog", FM_Key, 0x0D, 8);
-  addKey("Band_Prog", Program_Key, 0x0D, 8);
+  addKey("Band_Prog", ToggleBand_Key, 0x0D, 8); // ?
+  addKey("Band_Prog", Program_Key, 0x0D, 8); // ?
   addKey("Up", Up_Key, 0x0E, 8);
   addKey("Up", ChannelUp_Key, 0x0E, 8);
   addKey("Down", Down_Key, 0x0F, 8);

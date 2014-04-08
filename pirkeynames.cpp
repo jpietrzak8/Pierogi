@@ -157,6 +157,7 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[Keystone_Key] = "Keystone";
   keynameStrings[PictureMute_Key] = "Picture Mute";
   keynameStrings[Focus_Key] = "Focus";
+  keynameStrings[SpeakerSwitch_Key] = "Switch Speaker Set";
   keynameStrings[Input_Key] = "Input";
   keynameStrings[CDInput_Key] = "CD Input";
   keynameStrings[PhonoInput_Key] = "Phono Input";
@@ -188,15 +189,17 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[OpticalInput_Key] = "Optical Input";
   keynameStrings[DigitalCoaxInput_Key] = "Digital Coax Input";
   keynameStrings[USBInput_Key] = "USB Input";
+  keynameStrings[ADTunerSwap_Key] = "A/D Tuner Swap"; 
   keynameStrings[Program_Key] = "Program";
   keynameStrings[Memory_Key] = "Memory";
   keynameStrings[Call_Key] = "Call";
   keynameStrings[NextPreset_Key] = "Next Preset";
   keynameStrings[PrevPreset_Key] = "Previous Preset";
-  keynameStrings[FMMode_Key] = "FM Mode";
+  keynameStrings[ToggleBand_Key] = "Toggle Radio Band";
   keynameStrings[FM_Key] = "FM";
   keynameStrings[AM_Key] = "AM (MW)";
   keynameStrings[LW_Key] = "LW";
+  keynameStrings[FMMode_Key] = "FM Mode";
   keynameStrings[TempUp_Key] = "Temperature Up";
   keynameStrings[TempDown_Key] = "Temperature Down";
   keynameStrings[Fan_Key] = "Fan";

@@ -26,6 +26,7 @@
 #include "pirkeysetmetadata.h"
 
 class QObject;
+class QComboBox;
 
 class TechnicsAudio1: public PIRKeysetMetaData
 {
@@ -55,6 +56,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class TechnicsAudio3: public PIRKeysetMetaData
@@ -65,6 +69,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class TechnicsAudio3a: public TechnicsAudio3
@@ -85,6 +92,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class TechnicsReceiver1a: public TechnicsReceiver1

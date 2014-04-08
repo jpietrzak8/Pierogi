@@ -22,6 +22,7 @@
 
 #include "bush.h"
 #include "protocols/rc5protocol.h"
+#include <QComboBox>
 
 
 BushTV1::BushTV1(
@@ -77,6 +78,16 @@ void BushTV1::populateProtocol(
   addKey("menu", Menu_Key, 0x103B, 13);
   addKey("text", Teletext_Key, 0x103C, 13);
   addKey("tv", Input_Key, 0x103F, 13);
+}
+
+
+void BushTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }
 
 

@@ -22,6 +22,7 @@
 
 #include "yamaha.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 YamahaDVD1::YamahaDVD1(
@@ -263,19 +264,19 @@ void YamahaAudio2::populateProtocol(
   addKey("CDForward", FastForward_Key, 0x0C, 8);
   addKey("CDRewind", Rewind_Key, 0x0D, 8);
   addKey("PHONO_PLAY/CUT", Unmapped_Key, 0x0E, 8);
-  addKey("vcr", Unmapped_Key, 0x0F, 8);
+  addKey("vcr", CompositeInput_Key, 0x0F, 8);
 
   addKey("ch+", ChannelUp_Key, 0x10, 8);
   addKey("ch-", ChannelDown_Key, 0x11, 8);
   addKey("abcde", Unmapped_Key, 0x12, 8); // "A/B/C/D/E" "tuner-toggle"
-  addKey("GO_VCR2", Unmapped_Key, 0x13, 8);
+  addKey("GO_VCR2", Composite2Input_Key, 0x13, 8);
   addKey("phono", PhonoInput_Key, 0x14, 8);
   addKey("AUX", AuxInput_Key, 0x14, 8);
   addKey("cd", CDInput_Key, 0x15, 8);
   addKey("tuner", TunerInput_Key, 0x16, 8);
-  addKey("dvdld", DVDInput_Key, 0x17, 8); // "d-tv/cbl", "AUX"
+  addKey("dvdld", LDInput_Key, 0x17, 8); // "d-tv/cbl", "AUX"
   addKey("tapemonitor", TapeInput_Key, 0x18, 8); // "Tape/MD_Monitor", "DAT"
-  addKey("TAPE2", Unmapped_Key, 0x19, 8);
+  addKey("TAPE2", PCInput_Key, 0x19, 8); // hack
   addKey("vol+", VolumeUp_Key, 0x1A, 8);
   addKey("vol-", VolumeDown_Key, 0x1B, 8);
   addKey("mute", Mute_Key, 0x1C, 8); // "-20DB"
@@ -288,7 +289,7 @@ void YamahaAudio2::populateProtocol(
   addKey("right", Right_Key, 0x52, 8);  // "DSP+", "DELAY_TIME+"
   addKey("left", Left_Key, 0x53, 8); // "DSP-", "DELAY_TIME-"
   addKey("tvdbs", SatInput_Key, 0x54, 8); // "SAT/D-TV" "d-tv/cbl alt"
-  addKey("vaux", Unmapped_Key, 0x55, 8); // "GO_CDV1"
+  addKey("vaux", SVideoInput_Key, 0x55, 8); // "GO_CDV1"
   addKey("effect", Unmapped_Key, 0x56, 8);
   addKey("sleep", Sleep_Key, 0x57, 8);
   addKey("effect+", Unmapped_Key, 0x58, 8); // "DSP_Prg+"
@@ -322,9 +323,30 @@ void YamahaAudio2::populateProtocol(
   addKey("setmenu", Unmapped_Key, 0x9C, 8);
   addKey("setmenu-", Unmapped_Key, 0x9D, 8);
 
-  addKey("DVD", Unmapped_Key, 0xC1, 8);
+  addKey("DVD", DVDInput_Key, 0xC1, 8);
   addKey("display", Info_Key, 0xC2, 8); // "onscreen"
-  addKey("MD_CDR_INPU", Unmapped_Key, 0xC9, 8);
+  addKey("MD_CDR_INPU", MDInput_Key, 0xC9, 8);
+}
+
+
+void YamahaAudio2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape Monitor", QVariant(TapeInput_Key));
+  cb->addItem("Tape 2", QVariant(PCInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+  cb->addItem("TV DBS", QVariant(SatInput_Key));
+  cb->addItem("VCR", QVariant(CompositeInput_Key));
+  cb->addItem("VCR 2", QVariant(Composite2Input_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("DVD / LD", QVariant(LDInput_Key));
+  cb->addItem("MD / CDR", QVariant(MDInput_Key));
+  cb->addItem("Video Aux", QVariant(SVideoInput_Key));
 }
 
 
@@ -531,7 +553,7 @@ void YamahaAudio4::populateProtocol(
   addKey("cd_next", Next_Key, 0x03, 8);
   addKey("cd_last", Previous_Key, 0x04, 8);
   addKey("random", Random_Key, 0x07, 8);
-  addKey("tape", Unmapped_Key, 0x08, 8);
+  addKey("tape", TapeInput_Key, 0x08, 8);
   addKey("edit", Unmapped_Key, 0x09, 8);
   addKey("time", Unmapped_Key, 0x0A, 8);
   addKey("prog", Program_Key, 0x0B, 8);
@@ -570,6 +592,17 @@ void YamahaAudio4::populateProtocol(
   addKey("user", Unmapped_Key, 0x5C, 8);
   addKey("mode", Unmapped_Key, 0x5D, 8);
   addKey("input", Input_Key, 0x5E, 8);
+}
+
+
+void YamahaAudio4::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input", QVariant(Input_Key));
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
 }
 
 
@@ -659,4 +692,18 @@ void YamahaKaraoke1::populateProtocol(
   addKey("MPX/STEREO", Unmapped_Key, 0xD8, 8);
   addKey("VOCAL_AID", Unmapped_Key, 0xD9, 8);
   addKey("ONE_TOUCH_KAR.", Unmapped_Key, 0xDA, 8);
+}
+
+
+void YamahaKaraoke1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("CD / CDG", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("VCR", QVariant(VCRInput_Key));
+  cb->addItem("LD", QVariant(LDInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+  cb->addItem("Aux2", QVariant(CompositeInput_Key));
 }

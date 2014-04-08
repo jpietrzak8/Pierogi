@@ -22,6 +22,7 @@
 
 #include "humax.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 HumaxReceiver1::HumaxReceiver1(
@@ -94,6 +95,16 @@ void HumaxReceiver1::populateProtocol(
 }
 
 
+void HumaxReceiver1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV-Sat", QVariant(Input_Key));
+  cb->addItem("TV-Radio", QVariant(TunerInput_Key));
+}
+
+
 // Ugly!  Humax has two different keysets using the same device code. :(
 HumaxReceiver2::HumaxReceiver2(
   unsigned int index)
@@ -153,6 +164,16 @@ void HumaxReceiver2::populateProtocol(
 
   addKey("v-", VolumeDown_Key, 0x40, 8);
   addKey("down", Down_Key, 0x41, 8);
+}
+
+
+void HumaxReceiver2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV-Sat", QVariant(Input_Key));
+  cb->addItem("TV-Radio", QVariant(TunerInput_Key));
 }
 
 
@@ -232,4 +253,15 @@ void HumaxReceiver3::populateProtocol(
   addKey("pipch", PIPChannelUp_Key, 0x69, 8);
   addKey("setbookmark", Unmapped_Key, 0x6A, 8);
   addKey("listbookmarks", Unmapped_Key, 0x6B, 8);
+}
+
+
+void HumaxReceiver3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Source", QVariant(Input_Key));
+  cb->addItem("List", QVariant(HDDInput_Key));
+  cb->addItem("TV-Radio", QVariant(TunerInput_Key));
 }

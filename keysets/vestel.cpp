@@ -22,6 +22,7 @@
 
 #include "vestel.h"
 #include "protocols/rc5protocol.h"
+#include <QComboBox>
 
 
 VestelTV1::VestelTV1(
@@ -155,4 +156,14 @@ void VestelTV2::populateProtocol(
   addKey("stop", Stop_Key, 0x176F, 13);
   addKey("Title", DiscTitle_Key, 0x177C, 13);
   addKey("Open_close", Eject_Key, 0x174C, 13);
+}
+
+
+void VestelTV2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(Input_Key));
+  cb->addItem("AV", QVariant(AuxInput_Key));
 }

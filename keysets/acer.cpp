@@ -23,6 +23,8 @@
 #include "acer.h"
 #include "protocols/necprotocol.h"
 
+#include <QComboBox>
+
 AcerTV1::AcerTV1(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -102,6 +104,16 @@ void AcerTV1::populateProtocol(
   addKey("reveal", TeletextReveal_Key, 0x4B, 8);
 
   addKey("ebutton", Unmapped_Key, 0x65, 8);
+}
+
+
+void AcerTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("SCART", QVariant(ScartInput_Key));
+  cb->addItem("PC", QVariant(PCInput_Key));
 }
 
 

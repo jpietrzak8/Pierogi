@@ -30,6 +30,7 @@
 #include <QThread>
 
 class QObject;
+class QComboBox;
 class PIRSelectKeysetForm;
 class PIRSelectDeviceForm;
 class PIRFavoritesDialog;
@@ -55,6 +56,10 @@ public:
   void populateListWidgets(
     PIRSelectKeysetForm *skf,
     PIRFavoritesDialog *fd) const;
+
+  void populateInputList(
+    QComboBox *cb,
+    unsigned int keysetID) const;
 
   bool keysetExists(
     unsigned int keysetID) const;

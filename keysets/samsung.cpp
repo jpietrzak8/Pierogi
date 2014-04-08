@@ -27,6 +27,7 @@
 #include "protocols/samsungacprotocol.h"
 #include "protocols/necprotocol.h"
 #include "protocols/nokia32protocol.h"
+#include <QComboBox>
 
 SamsungTV1::SamsungTV1(
   unsigned int index)
@@ -155,6 +156,28 @@ void SamsungTV1::populateProtocol(
 }
 
 
+void SamsungTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("Antenna", QVariant(AntennaInput_Key));
+  cb->addItem("PC", QVariant(PCInput_Key));
+  cb->addItem("VCR", QVariant(VCRInput_Key));
+  cb->addItem("Cable", QVariant(CableInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("AV 1", QVariant(CompositeInput_Key));
+  cb->addItem("AV 2", QVariant(Composite2Input_Key));
+  cb->addItem("S-Video 1", QVariant(SVideoInput_Key));
+  cb->addItem("S-Video 2", QVariant(SVideo2Input_Key));
+  cb->addItem("Component", QVariant(ComponentInput_Key));
+  cb->addItem("Component 2", QVariant(Component2Input_Key));
+  cb->addItem("HDMI", QVariant(HDMIInput_Key));
+  cb->addItem("HDMI 2", QVariant(HDMI2Input_Key));
+}
+
+
 SamsungTV1a::SamsungTV1a(
   unsigned int index)
   : SamsungTV1(index)
@@ -202,7 +225,7 @@ void SamsungTV1b::populateProtocol(
 
   addKey("P.Size (aspect)", AspectRatio_Key, 0x3E, 8);
   addKey("select component 1", ComponentInput_Key, 0x86, 8);
-  addKey("select DVI", HDMI3Input_Key, 0x8A, 8);
+  addKey("select DVI", PCInput_Key, 0x8A, 8);
   addKey("select HDMI 2", HDMI2Input_Key, 0xBE, 8);
   addKey("Aspect Zoom 2", Unmapped_Key, 0xE1, 8);
   addKey("Aspect 4:3", Unmapped_Key, 0xE3, 8);
@@ -309,6 +332,18 @@ void SamsungTV2::populateProtocol(
 
 //  addKey("enter", Enter_Key, 0x16, 8);
 //  addKey("select", Select_Key, 0x27, 8);
+}
+
+
+void SamsungTV2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Select", QVariant(Input_Key));
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("TV / Component", QVariant(ComponentInput_Key));
+  cb->addItem("PC", QVariant(PCInput_Key));
 }
 
 
@@ -887,6 +922,18 @@ void SamsungDVD2::populateProtocol(
 }
 
 
+void SamsungDVD2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("TV / Video", QVariant(Input_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+}
+
+
 SamsungAC1::SamsungAC1(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -1228,6 +1275,16 @@ void SamsungSTB1::populateProtocol(
 }
 
 
+void SamsungSTB1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / STB", QVariant(Input_Key));
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+}
+
+
 SamsungSTB2::SamsungSTB2(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -1326,7 +1383,7 @@ void SamsungSTB3::populateProtocol(
   addKey("Guide", Guide_Key, 0x1B, 8);
   addKey("Power", Power_Key, 0x1E, 8);
   addKey("Mute", Mute_Key, 0x20, 8);
-  addKey("TV/Radio", TunerInput_Key, 0x21, 8);
+  addKey("TV/Radio", Input_Key, 0x21, 8);
   addKey("Green", Green_Key, 0x22, 8);
   addKey("Yellow", Yellow_Key, 0x23, 8);
   addKey("Blue", Blue_Key, 0x24, 8);
@@ -1477,6 +1534,17 @@ void SamsungSTB5::populateProtocol(
   addKey("exit", Exit_Key, 0xEE, 8);
   addKey("Recordings", Unmapped_Key, 0xF0, 8);
   addKey("Select Video", Unmapped_Key, 0xFD, 8);
+}
+
+
+void SamsungSTB5::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("TV / Radio", QVariant(TunerInput_Key));
+  cb->addItem("TV / Video", QVariant(AuxInput_Key));
 }
 
 

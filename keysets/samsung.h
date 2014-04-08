@@ -27,6 +27,7 @@
 #include "pirackeyset.h"
 
 class QObject;
+class QComboBox;
 
 class SamsungTV1: public PIRKeysetMetaData
 {
@@ -36,6 +37,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 
@@ -69,6 +73,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 
@@ -193,6 +200,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class SamsungAC1: public PIRKeysetMetaData
@@ -247,6 +257,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class SamsungSTB2: public PIRKeysetMetaData
@@ -287,6 +300,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class SamsungSTB6: public PIRKeysetMetaData

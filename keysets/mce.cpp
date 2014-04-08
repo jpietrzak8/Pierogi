@@ -22,6 +22,8 @@
 
 #include "mce.h"
 #include "protocols/mceprotocol.h"
+#include <QComboBox>
+
 
 MCERemote1::MCERemote1(
   unsigned int index)
@@ -97,11 +99,11 @@ void MCERemote1::populateProtocol(
   addKey("SlideShow", Unmapped_Key, 0x33, 8);
   addKey("Eject", Eject_Key, 0x34, 8);
 
-  addKey("TV", Unmapped_Key, 0x46, 8); // "My TV"
-  addKey("Music", Unmapped_Key, 0x47, 8); // "My Music"
-  addKey("RecTV", Unmapped_Key, 0x48, 8); // "Recorded TV"
-  addKey("Pictures", Unmapped_Key, 0x49, 8); // "My Pictures"
-  addKey("Videos", Unmapped_Key, 0x4A, 8); // "My Videos"
+  addKey("TV", AntennaInput_Key, 0x46, 8); // "My TV"
+  addKey("Music", CDInput_Key, 0x47, 8); // "My Music"
+  addKey("RecTV", HDDInput_Key, 0x48, 8); // "Recorded TV"
+  addKey("Pictures", PhonoInput_Key, 0x49, 8); // "My Pictures"
+  addKey("Videos", VCRInput_Key, 0x4A, 8); // "My Videos"
   addKey("DVD angle", Angle_Key, 0x4B, 8);
   addKey("DVD audio", Audio_Key, 0x4C, 8);
   addKey("DVD subtitle", Captions_Key, 0x4D, 8);
@@ -119,6 +121,20 @@ void MCERemote1::populateProtocol(
 //  addKey("PlayPause", Pause_Key, 0x6E, 8);
 
   addKey("Media", Unmapped_Key, 0x80, 8); // "Write"
+}
+
+
+void MCERemote1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+  cb->addItem("Recorded TV", QVariant(HDDInput_Key));
+  cb->addItem("Music", QVariant(CDInput_Key));
+  cb->addItem("Pictures", QVariant(PhonoInput_Key));
+  cb->addItem("Videos", QVariant(VCRInput_Key));
 }
 
 

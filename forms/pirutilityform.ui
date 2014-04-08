@@ -14,9 +14,6 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <property name="margin">
-    <number>0</number>
-   </property>
    <item row="0" column="0">
     <widget class="QPushButton" name="redButton">
      <property name="sizePolicy">
@@ -123,7 +120,7 @@
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QPushButton" name="aspectRatioButton">
+    <widget class="QPushButton" name="inputButton">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
@@ -131,7 +128,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>Aspect Ratio</string>
+      <string>Input</string>
      </property>
     </widget>
    </item>
@@ -175,7 +172,7 @@
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QPushButton" name="inputButton">
+    <widget class="QPushButton" name="aspectRatioButton">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
@@ -183,7 +180,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>Input</string>
+      <string>Aspect Ratio</string>
      </property>
     </widget>
    </item>
@@ -212,6 +209,46 @@
       <string>CC / Subtitle</string>
      </property>
     </widget>
+   </item>
+   <item row="3" column="0" colspan="4">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="inputSelectorLabel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Select Input: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="inputSelectorComboBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="selectInputPushButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Switch to Selected Input</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -411,6 +448,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>PIRUtilityForm</sender>
+   <signal>selectInputListEnabled(bool)</signal>
+   <receiver>inputSelectorComboBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>450</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRUtilityForm</sender>
+   <signal>selectInputListEnabled(bool)</signal>
+   <receiver>selectInputPushButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>696</x>
+     <y>451</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <signal>redEnabled(bool)</signal>
@@ -425,5 +494,6 @@
   <signal>inputEnabled(bool)</signal>
   <signal>sleepEnabled(bool)</signal>
   <signal>captionsEnabled(bool)</signal>
+  <signal>selectInputListEnabled(bool)</signal>
  </slots>
 </ui>

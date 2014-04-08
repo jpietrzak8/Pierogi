@@ -22,6 +22,7 @@
 
 #include "kenwood.h"
 #include "protocols/necprotocol.h"
+#include <QComboBox>
 
 
 KenwoodAudio1::KenwoodAudio1(
@@ -81,8 +82,8 @@ void KenwoodAudio1::populateProtocol(
   addKey("SELECT_CD", CDInput_Key, 0x92, 8);
   addKey("SELECT_VIDEO_2", AuxInput_Key, 0x93, 8); // "AUX"
   addKey("SELECT_TAPE_A", TapeInput_Key, 0x94, 8);
-  addKey("SELECT_TAPE_B", Unmapped_Key, 0x95, 8);
-  addKey("SELECT_VIDEO_1", Unmapped_Key, 0x96, 8);
+  addKey("SELECT_TAPE_B", MDInput_Key, 0x95, 8); // Hacky
+  addKey("SELECT_VIDEO_1", CompositeInput_Key, 0x96, 8);
   addKey("TUNER_UP", ChannelUp_Key, 0x99, 8);
   addKey("VOL-", VolumeDown_Key, 0x9A, 8);
   addKey("VOL+", VolumeUp_Key, 0x9B, 8);
@@ -119,6 +120,22 @@ void KenwoodAudio1::populateProtocol(
   addKey("TAPE_A_RECORD", Unmapped_Key, 0xDE, 8);
   addKey("SURROUND", Surround_Key, 0xDF, 8);
 }
+
+
+void KenwoodAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Video 1", QVariant(CompositeInput_Key));
+  cb->addItem("Video 2 (Aux)", QVariant(AuxInput_Key));
+  cb->addItem("Tape A", QVariant(TapeInput_Key));
+  cb->addItem("Tape B", QVariant(MDInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+}
+
 
 /*
 KenwoodAudio2::KenwoodAudio2(
@@ -190,8 +207,7 @@ void KenwoodComponent1::populateProtocol(
   addKey("7", Seven_Key, 0x87, 8);
   addKey("8", Eight_Key, 0x88, 8);
   addKey("9", Nine_Key, 0x89, 8);
-  addKey("BAND", AM_Key, 0x8F, 8);  // This is a hack
-  addKey("BAND", FM_Key, 0x8F, 8);  // This too
+  addKey("BAND", ToggleBand_Key, 0x8F, 8);
 
   addKey("Phono-play", Unmapped_Key, 0x90, 8);
   addKey("TUNER", TunerInput_Key, 0x91, 8);
@@ -199,7 +215,7 @@ void KenwoodComponent1::populateProtocol(
   addKey("AUX", AuxInput_Key, 0x93, 8);
   addKey("tape/a_<>", Unmapped_Key, 0x94, 8);
   addKey("TAPE", TapeInput_Key, 0x95, 8); // "tape/b_<>"
-  addKey("VIDEO", Unmapped_Key, 0x96, 8);
+  addKey("VIDEO", CompositeInput_Key, 0x96, 8);
   addKey("Sleep", Sleep_Key, 0x97, 8);
   addKey("VOLUME_DOWN", VolumeDown_Key, 0x9A, 8); // "DOWN"
   addKey("VOLUME_DOWN", Down_Key, 0x9A, 8); // "DOWN"
@@ -237,6 +253,19 @@ void KenwoodComponent1::populateProtocol(
   addKey("STOP", Unmapped_Key, 0xDD, 8);
   addKey("Tape-B-record", Unmapped_Key, 0xDE, 8);
   addKey("Presence", Unmapped_Key, 0xDF, 8); // "LISTEN_MODE"
+}
+
+
+void KenwoodComponent1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
+  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
 }
 
 
@@ -291,12 +320,22 @@ void KenwoodComponent2::populateProtocol(
   addKey("INPUT", Input_Key, 0xCC, 8);
   addKey("dual_sound", Unmapped_Key, 0xCE, 8);
 
-  addKey("MD/DAT", Unmapped_Key, 0xD2, 8); // MDInput_Key?
+  addKey("MD/DAT", MDInput_Key, 0xD2, 8);
   addKey("random", Random_Key, 0xD4, 8);
   addKey("FWD_MD", Unmapped_Key, 0xD8, 8); // play?
   addKey("STOP_MD", Stop_Key, 0xD9, 8);
   addKey("REW_MD", Rewind_Key, 0xDC, 8);
   addKey("FWD_MD", Unmapped_Key, 0xDD, 8); // fast forward?
+}
+
+
+void KenwoodComponent2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input", QVariant(Input_Key));
+  cb->addItem("MD / DAT", QVariant(MDInput_Key));
 }
 
 
@@ -354,6 +393,17 @@ void KenwoodComponent3::populateProtocol(
 
   addKey("rev.mode", Unmapped_Key, 0xD0, 8);
   addKey("tape_eq", Unmapped_Key, 0xD1, 8);
+}
+
+
+void KenwoodComponent3::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("CD / Tuner / Tape", QVariant(Input_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Tuner / Band", QVariant(TunerInput_Key));
 }
 
 /*
@@ -604,4 +654,14 @@ void KenwoodTV1::populateProtocol(
 
   addKey("TIMER", Sleep_Key, 0x1A, 8);
   addKey("RECALL", PrevChannel_Key, 0x1B, 8);
+}
+
+
+void KenwoodTV1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV / Video", QVariant(Input_Key));
+  cb->addItem("Ant / Aux", QVariant(AntennaInput_Key));
 }

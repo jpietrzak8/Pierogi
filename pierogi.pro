@@ -269,7 +269,10 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/wharfedale.cpp \
     protocols/canalsatprotocol.cpp \
     keysets/astro.cpp \
-    forms/pirintervalometerform.cpp
+    forms/pirintervalometerform.cpp \
+    forms/pirreceiverform.cpp \
+    protocols/denonprotocol.cpp \
+    forms/pirinputlistform.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -514,7 +517,10 @@ HEADERS += mainwindow.h \
     keysets/wharfedale.h \
     protocols/canalsatprotocol.h \
     keysets/astro.h \
-    forms/pirintervalometerform.h
+    forms/pirintervalometerform.h \
+    forms/pirreceiverform.h \
+    protocols/denonprotocol.h \
+    forms/pirinputlistform.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -554,7 +560,9 @@ FORMS += mainwindow.ui \
     dialogs/pireditcommanddialog.ui \
     forms/piractimerform.ui \
     forms/pirplaystationform.ui \
-    forms/pirintervalometerform.ui
+    forms/pirintervalometerform.ui \
+    forms/pirreceiverform.ui \
+    forms/pirinputlistform.ui
 
 TRANSLATIONS += \
     translations/pierogi_nl.ts

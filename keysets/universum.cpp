@@ -24,6 +24,7 @@
 #include "protocols/necprotocol.h"
 #include "protocols/necxprotocol.h"
 #include "protocols/rc5protocol.h"
+#include <QComboBox>
 
 
 UniversumVCR1::UniversumVCR1(
@@ -397,6 +398,17 @@ void UniversumSat1::populateProtocol(
 }
 
 
+void UniversumSat1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+  cb->addItem("AV", QVariant(AuxInput_Key));
+}
+
+
 UniversumAudio1::UniversumAudio1(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -467,4 +479,19 @@ void UniversumAudio1::populateProtocol(
   addKey("CLOCK", Info_Key, 0xC1, 8);
   addKey("SLEEP", Sleep_Key, 0xC2, 8);
   addKey("TP_RMUTE", Unmapped_Key, 0xD1, 8);
+}
+
+
+void UniversumAudio1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("FM", QVariant(FM_Key));
+  cb->addItem("MW", QVariant(AM_Key));
+  cb->addItem("LW", QVariant(LW_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+  cb->addItem("Phono", QVariant(PhonoInput_Key));
+  cb->addItem("Aux", QVariant(AuxInput_Key));
 }
