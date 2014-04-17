@@ -24,6 +24,7 @@
 #define PIRPREFERENCESFORM_H
 
 #include <QWidget>
+#include <QString>
 
 class MainWindow;
 class PIRKeysetManager;
@@ -61,10 +62,14 @@ private slots:
   void on_altMainCheckBox_stateChanged(int arg1);
   void on_carrierFrequencySpinBox_valueChanged(int arg1);
   void on_dutyCycleSpinBox_valueChanged(int arg1);
+  void on_macroFilenameButton_clicked();
 
 private:
   void setupMacroComboBox(
     QComboBox *cb);
+
+  void loadMacroFile(
+    QString filename);
 
   Ui::PIRPreferencesForm *ui;
 

@@ -18,4 +18,4 @@ devices.
 
 For more information, visit the Pierogi website:
  
-http://pietrzak.github.io/pierogi
+http://jpietrzak8.github.io/Pierogi

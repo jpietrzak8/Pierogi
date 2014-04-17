@@ -132,7 +132,7 @@
          <item>
           <widget class="QPushButton" name="macroFilenameButton">
            <property name="text">
-            <string>None</string>
+            <string>No File Selected</string>
            </property>
           </widget>
          </item>

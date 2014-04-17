@@ -421,6 +421,12 @@ void PIRPanelManager::commonEnableButtons(
 }
 
 
+void PIRPanelManager::setupMacroForm()
+{
+  userForm->setupMacroForm();
+}
+
+
 void PIRPanelManager::updateUserButtons()
 {
   userForm->setupButtons();

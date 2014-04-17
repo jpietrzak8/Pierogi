@@ -156,31 +156,40 @@ void PIRUserForm::on_userDef6Button_clicked()
 void PIRUserForm::on_loadPackButton_clicked()
 {
   QString filename = QFileDialog::getOpenFileName(
-    this,
-    tr("Select Macro XML File"),
-    "~/MyDocs");
+    0,
+    tr("Select Macro XML File"));
 
-  if (!filename.isEmpty())
+  if (filename.isEmpty())
   {
-    if (mainWindow->loadNewMacros(filename))
-    {
-      ui->macroComboBox->clear();
-
-      mainWindow->populateMacroComboBox(
-        ui->macroComboBox);
-
-      if (ui->macroComboBox->count())
-      {
-        emit runEnabled(true);
-      }
-      else
-      {
-        emit runEnabled(false);
-      }
-
-      setupButtons();
-    }
+    return;
   }
+
+  if (!mainWindow->loadNewMacros(filename))
+  {
+    return;
+  }
+
+  setupMacroForm();
+}
+
+
+void PIRUserForm::setupMacroForm()
+{
+  ui->macroComboBox->clear();
+
+  mainWindow->populateMacroComboBox(
+    ui->macroComboBox);
+
+  if (ui->macroComboBox->count())
+  {
+    emit runEnabled(true);
+  }
+  else
+  {
+    emit runEnabled(false);
+  }
+
+  setupButtons();
 }
 
 

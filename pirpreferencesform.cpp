@@ -28,6 +28,7 @@
 
 #include <QSettings>
 #include <QComboBox>
+#include <QFileDialog>
 
 //#include <iostream>
 
@@ -81,6 +82,16 @@ PIRPreferencesForm::PIRPreferencesForm(
     {
       ui->altMainCheckBox->setChecked(true);
       mainWindow->useAltMainPanel();
+    }
+  }
+
+  if (settings.contains("macroFileName"))
+  {
+    QString filename = settings.value("macroFileName").toString();
+
+    if (filename != "No File Selected")
+    {
+      loadMacroFile(filename);
     }
   }
 
@@ -188,4 +199,42 @@ void PIRPreferencesForm::on_carrierFrequencySpinBox_valueChanged(int arg1)
 void PIRPreferencesForm::on_dutyCycleSpinBox_valueChanged(int arg1)
 {
   mainWindow->setDutyCycle((unsigned int) arg1);
+}
+
+
+void PIRPreferencesForm::on_macroFilenameButton_clicked()
+{
+  QString filename = QFileDialog::getOpenFileName(
+    0,
+    tr("Select Macro XML File"));
+
+  loadMacroFile(filename);
+
+  QSettings settings("pietrzak.org", "Pierogi");
+  settings.beginGroup("Preferences");
+  settings.setValue("macroFileName", ui->macroFilenameButton->text());
+  settings.endGroup();
+}
+
+
+void PIRPreferencesForm::loadMacroFile(
+  QString filename)
+{
+  if (filename.isEmpty())
+  {
+    ui->macroFilenameButton->setText("No File Selected");
+    mainWindow->setupMacroForm();
+    return;
+  }
+
+  if (!mainWindow->loadNewMacros(filename))
+  {
+    ui->macroFilenameButton->setText("No File Selected");
+    mainWindow->setupMacroForm();
+    return;
+  }
+
+  ui->macroFilenameButton->setText(filename);
+
+  mainWindow->setupMacroForm();
 }

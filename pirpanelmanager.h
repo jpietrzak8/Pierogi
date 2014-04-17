@@ -96,6 +96,8 @@ public:
   void useMainPanel();
   void useAltMainPanel();
 
+  void setupMacroForm();
+
 /*
   void setupUniversalTabs();
   void setupTVTabs();

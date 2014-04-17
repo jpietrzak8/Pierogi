@@ -43,6 +43,8 @@ public:
 
   ~PIRUserForm();
 
+  void setupMacroForm();
+
   void setupButtons();
 
 signals:

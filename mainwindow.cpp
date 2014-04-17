@@ -1162,6 +1162,12 @@ bool MainWindow::loadNewMacros(
 }
 
 
+void MainWindow::setupMacroForm()
+{
+  myPanels->setupMacroForm();
+}
+
+
 void MainWindow::populateMacroComboBox(
   QComboBox *cb)
 {

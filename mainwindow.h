@@ -164,6 +164,8 @@ public:
   bool loadNewMacros(
     QString filename);
 
+  void setupMacroForm();
+
   void populateMacroComboBox(
     QComboBox *cb);
 
