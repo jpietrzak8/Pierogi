@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Macros in Pierogi</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Macros in Pierogi</h1>
+        </header>
+
+        <section id="main_content">
+
+<p>
+In Pierogi, a "Macro" is not really a user-defined button; it is more like
+a "user-defined user".  When you run a macro, you are subcontracting the
+work of controlling the Pierogi app to an automated script.  While it runs,
+you will not have access to the Pierogi user interface.  A dialog box will
+be displayed as the macro runs; you will be able to abort the macro by
+pressing the "abort" button in that dialog.
+</p>
+
+<h2>XML Syntax</h2>
+
+<p>
+As of Pierogi 1.1.32, the syntax of a Macro XML file is extremely limited.
+(Please be prepared for significant changes, as well as an actual DTD, in
+future updates.)
+</p>
+
+<h3>Macropack</h3>
+<p>
+The root element of the Pierogi XML file format is the "macropack"; it
+currently has a single attribute, "name", which allows you to give the
+pack a name.  A macropack can contain an unlimited number of macro elements.
+</p>
+
+<h3>Macro</h3>
+<p>
+The "macro" element encapsulates an individual macro.  It has three
+attributes: "name", "button", and "shortcut".  The name attribute is
+required, and contains a string defining the macro's name.  This name
+should be unique -- it is used internally by Pierogi as the macro's
+identifier.  If two macros are given the same name, the results
+are undefined.
+</p>
+
+<p>
+The "button" attribute is optional.  The value for
+"button" is an integer, and corresponds to the user-defined buttons on
+the "Macros" panel; assigning the button's id number to the macro will
+cause that button to be associated with the macro.  (Currently, values
+from 1 to 6 are supported.)
+</p>
+
+<p>
+The "shortcut" attribute is also optional.  The value for "shortcut" is
+a single character, and corresponds to the characters on the keyboard.
+Currently, values from A-Z are supported.  Pressing the macro's associated
+key will execute the macro.
+</p>
+
+<h3>Examples</h3>
+
+<p>
+Here is a simple example that sends the "Power Button" key using the
+currently defined keyset:
+</p>
+
+<pre>
+&lt;?xml version="1.0"?&gt;
+
+&lt;macropack name="Power Button Example"&gt;
+
+ &lt;macro name="Power Button" button="1" shortcut="P"&gt;
+  &lt;send key="Power"/&gt;
+ &lt;/macro&gt;
+
+&lt;/macropack&gt;
+</pre>
+
+<p>
+Here is a slightly more complex example.  My low-end Sanyo HDTV does not
+support direct entry of digital subchannel numbers; therefore, to reach 
+a particular channel, one must first type in the major channel number, then
+navigate to the minor channel using the up/down buttons.  So, the following
+macros provide more direct access to interesting channels; channel 7-2 is
+weather, and 16-4 is a government access channel.  I've defined my TV's
+specific keyset for these macros, so that I can use them even if Pierogi is
+currently set up for a different device.
+</p>
+
+<pre>
+&lt;?xml version="1.0"?&gt;
+
+&lt;macropack name="Local Channels on Bedroom TV"&gt;
+
+ &lt;macro name="Power Button" button="1" shortcut="P"&gt;
+  &lt;keyset make="Sanyo" name="TV Keyset 1"/&gt;
+  &lt;send key="Power"/&gt;
+ &lt;/macro&gt;
+
+ &lt;macro name="PBS" button="2"&gt;
+  &lt;keyset make="Sanyo" name="TV Keyset 1"/&gt;
+  &lt;send key="1"/&gt;
+  &lt;send key="6"/&gt;
+ &lt;/macro&gt;
+
+ &lt;macro name="Local Weather" button="3"&gt;
+  &lt;keyset make="Sanyo" name="TV Keyset 1"/&gt;
+  &lt;send key="0"/&gt;
+  &lt;send key="7"/&gt;
+  &lt;send key="Channel Up"/&gt;
+ &lt;/macro&gt;
+
+ &lt;macro name="Ohio Government" button="4"&gt;
+  &lt;keyset make="Sanyo" name="TV Keyset 1"/&gt;
+  &lt;send key="1"/&gt;
+  &lt;send key="6"/&gt;
+  &lt;send key="Channel Up"/&gt;
+  &lt;send key="Channel Up"/&gt;
+  &lt;send key="Channel Up"/&gt;
+ &lt;/macro&gt;
+
+&lt;/macropack&gt;
+</pre>
+
+<h2>Available Keys</h2>
+
+As of Pierogi version 1.1.32, the following are the keys available for use
+in a "send" comamnd.  Please note that Pierogi's parser currently requires
+the spelling of these commands to be exact, including capitalization.
+
+<h3>Power Controls</h3>
+<dl>
+
+<dt>Power</dt>
+<dd>Toggle the target device on or off.  (This command is referred to as
+"Standby" on some remotes.)</dd>
+
+<dt>Power On</dt>
+<dd>Turn the target device on.  (Sending this command will not turn the
+device off if it is already on.)</dd>
+
+<dt>Power Off</dt>
+<dd>Turn the target device off.  (Sending this command will not turn the
+device on if it is already off.)</dd>
+</dl>
+
+<h3>Menu Controls</h3>
+
+<dl>
+
+<dt>Menu</dt>
+<dd>Bring up the menu on the target device.</dd>
+
+<dt>Up</dt>
+<dd>Move up in the menu.  (Note that on some devices, this can also
+control the volume or channel selection.)</dd>
+
+<dt>Down</dt>
+<dd>Move down in the menu.  (Note that on some devices, this can also
+control the volume or channnel selection.)</dd>
+
+<dt>Left</dt>
+<dd>Move left in the menu.  (Note that on some devices, this can also
+control volume or channel selection.)</dd>
+
+<dt>Right</dt>
+<dd>Move right in the menu.  (Note that on some devices, this can also
+control volume or channel selection.)</dd>
+
+<dt>Select</dt>
+<dd>Activate the current chosen element of the menu.  (On some devices,
+this key may be labeled "OK" or "Enter".)</dd>
+
+<dt>Exit</dt>
+<dd>Leave the menu without activating any elements.</dd>
+
+<dt>Page Up</dt>
+<dd>Scroll up through a long list of elements a screenful at a time.</dd>
+
+<dt>Page Down</dt>
+<dd>Scroll down through a long list of elements a screenful at a time.</dd>
+
+<dt>Guide</dt>
+<dd>Bring up the Guide on the target device.</dd>
+
+</dl>
+
+<h3>Keypad Controls</h3>
+
+<dl>
+
+<dt>0</dt>
+<dd>Send a "0" to the target device.</dd>
+
+<dt>1</dt>
+<dd>Send a "1" to the target device.</dd>
+
+<dt>2</dt>
+<dd>Send a "2" to the target device.</dd>
+
+<dt>3</dt>
+<dd>Send a "3" to the target device.</dd>
+
+<dt>4</dt>
+<dd>Send a "4" to the target device.</dd>
+
+<dt>5</dt>
+<dd>Send a "5" to the target device.</dd>
+
+<dt>6</dt>
+<dd>Send a "6" to the target device.</dd>
+
+<dt>7</dt>
+<dd>Send a "7" to the target device.</dd>
+
+<dt>8</dt>
+<dd>Send a "8" to the target device.</dd>
+
+<dt>9</dt>
+<dd>Send a "9" to the target device.</dd>
+
+<dt>Enter</dt>
+<dd>Tell the target device that no more numbers will be coming.  (Note that
+this is <i>not</i> the same command as "Select".  Very few remote
+controls have a keypad with this key; far more use an "enter" key to select
+a menu element.)</dd>
+
+<dt>Clear</dt>
+<dd>Tell the target device to disregard the previous sequence of numbers.</dd>
+
+<dt>+100</dt>
+<dd>Used on some (old) TVs to construct a three-digit channel identifier.</dd>
+
+<dt>-/--</dt>
+<dd>Used on some (very old) TVs to construct a two-digit channel
+identifier.</dd>
+
+<dt>-</dt>
+<dd>Used to identify the subchannel of a digital broadcast channel.  For
+example, to go to the second subchannel of channel 16, one would press "1",
+then "6", then "-", then "2".  (On some TVs, this divider is represented
+as a dot rather than a dash.)
+
+</dl>
+
+<h3>Channel Controls</h3>
+
+<dl>
+
+<dt>Channel Up</dt>
+<dd>Tell the device to switch to the preceding channel in the list. 
+("Channel" is referred to as "Programme" on some remotes.)</dd>
+
+<dt>Channel Down</dt>
+<dd>Tell the device to switch to the next channel in the list.</dd>
+
+<dt>Previous Channel</dt>
+<dd>Tell the device to return to the channel that was being watched most
+recently (if any).</dd>
+
+</dl>
+
+<h3>Volume Controls</h3>
+
+<dl>
+<dt>Volume Up</dt>
+<dd>Increase the audio volume coming from the target device.  This command
+will often increase the volume continuously for as long as it is sent.</dd>
+
+<dt>Volume Down</dt>
+<dd>Decrease the audio volume coming from the target device.  This command
+will often decrease the volume continuously for as long as it is sent.</dd>
+
+<dt>Mute</dt>
+<dd>Turn off the volume from the target device.  Normally, this is a toggle
+command, and will return the volume to the previous level if sent to a
+device that has been muted.</dd>
+
+<dt>Surround Sound</dt>
+<dd>This will normally be a toggle command, switching the device between
+"stereo" and "surround-sound" usage.</dd>
+
+<dt>Rear Volume Up</dt>
+<dd>Increase the volume from the rear speakers.</dd>
+
+<dt>Rear Volume Down</dt>
+<dd>Decrease the volume from the rear speakers.</dd>
+
+<dt>Center Volume Up</dt>
+<dd>Increase the volume from the center speakers.</dd>
+
+<dt>Center Volume Down</dt>
+<dd>Decrease the volume from the center speakers.</dd>
+
+<dt>Woofer Up</dt>
+<dd>Increase the volume from the woofer.</dd>
+
+<dt>Woofer Down</dt>
+<dd>Decrease the volume from the woofer.</dd>
+
+</dl>
+
+<h3>Media Controls</h3>
+
+<dl>
+
+<dt>Play</dt>
+<dd>Begin playback of the selected media.  (On many devices, this is a
+toggle button; if pressed when playing, it serves as a "Pause" command.)</dd>
+
+<dt>Pause</dt>
+<dd>Pause playback of the selected media.  (On many devices, this is a
+toggle button; if pressed while paused, it will continue playback of the
+current media.)</dd>
+
+<dt>Stop</dt>
+<dd>Stop playback of the selected media.</dd>
+
+<dt>Fast Forward</dt>
+<dd>Move forward through the selected media at a rapid pace.  This will
+normally continue for as long as the command is being sent.</dd>
+
+<dt>Rewind</dt>
+<dd>Move backwards through the selected media at a rapid pace.  This will
+normally continue for as long as the command is being sent.</dd>
+
+<dt>Play X2</dt>
+<dd>Begin playback of the selected media at a slightly faster-than-normal
+pace.  (Note that, unlike Fast Forward, this mode will often continue after
+the command has been sent.)</dd>
+
+<dt>Next</dt>
+<dd>Move to the next media item in the list.</dd>
+
+<dt>Previous</dt>
+<dd>Move to the previous media item in the list.</dd>
+
+<dt>Step Forward</dt>
+<dd>Move to the next frame of information in the current media.  (Normally
+used to step through a video.)</dd>
+
+<dt>Step Back</dt>
+<dd>Move to the previous frame of information in the current media.</dd>
+
+<dt>Advance</dt>
+<dd>Move forward through the current media by a fixed amount.  (For example,
+this may bypass 30 seconds of media on a particular device.)</dd>
+
+<dt>Replay</dt>
+<dd>Move backwards through the current media by a fixed amount.  (For example,
+this may go back to where the media was 30 seconds ago on a particular
+device.)</dd>
+
+<dt>Eject</dt>
+<dd>Physically remove the current data storage medium from the device.  For
+example, this could be a CD, DVD, or cassette tape.</dd>
+
+<dt>Random</dt>
+<dd>Switch to a random track of the currently selected media.</dd>
+
+<dt>Repeat</dt>
+<dd>Repeat the currently selected media.</dd>
+
+<dt>RepeatAB</dt>
+<dd>Repeat a selected portion of the media.</dd>
+
+<dt>Slow</dt>
+<dd>Play back the current media at a slower pace than normal.  The effect of
+this command can vary from device to device.</dd>
+
+<dt>Slow +</dt>
+<dd>Speed up the playback of the media while in "slow" mode.  (Very few
+devices support this command.)</dd>
+
+<dt>Slow -</dt>
+<dd>Slow down the playback of the media while in "slow" mode.  (Very few
+devices support this command.)</dd>
+
+<dt>Timer</dt>
+<dd>Activate control of timers on the device.</dd>
+
+<dt>Record</dt>
+<dd>Begin recording the currently selected media.  The details of how
+this occurs will vary from device to device.</dd>
+
+<dt>Record Pause</dt>
+<dd>Pause the current recording.  This will normally be a toggle command,
+and will resume recording when sent to a device that has been paused.  (This
+is a fairly rare command.)</dd>
+
+<dt>Record Stop</dt>
+<dd>Tell the device to stop recording.</dd>
+
+<dt>Record Mute</dt>
+<dd>Used in some very old devices to insert a blank space on a tape; also
+rarely found in some other high-end devices.  Check your device manual for
+the exact results of sending this command.</dd>
+
+<dt>Record Timed</dt>
+<dd>Unlike the normal "record" command, this command will allow you to
+specify a particular duration that the device should continue recording.</dd>
+
+<dt>Record PDC</dt>
+<dd>Used in some VCRs to simplify recording a particular broadcast (using
+Teletext).  Probably obsolete today.</dd>
+
+</dl>
+
+<h3>Color Buttons</h3>
+
+<p>
+Originally created for use with Teletext, these buttons are now used for
+a wide array of purposes on most modern television sets.
+</p>
+
+<dl>
+
+<dt>Red</dt>
+<dd>Send the Red command.</dd>
+
+<dt>Green</dt>
+<dd>Send the Green command.</dd>
+
+<dt>Yellow</dt>
+<dd>Send the Yellow command.</dd>
+
+<dt>Blue</dt>
+<dd>Send the Blue command.</dd>
+
+</dl>
+
+<h3>Teletext Commands</h3>
+
+<p>
+To my understanding, Teletext existed mostly in Europe and some regions of
+Asia, and is currently being phased out even there.  So, many of these
+commands will today be of little value...
+</p>
+
+<dl>
+<dt>Teletext</dt>
+<dd>Begin teletext on the device.  (This might be a toggle command.)</dd>
+
+<dt>Teletext Reveal</dt>
+<dd>Send the teletext "reveal" command.</dd>
+
+<dt>Teletext Hold</dt>
+<dd>Send the teletext "hold" command.</dd>
+
+<dt>Teletext Size</dt>
+<dd>Send the teletext "size" command.</dd>
+
+<dt>Teletext Select</dt>
+<dd>Send the teletext "select" command.</dd>
+
+<dt>Teletext Time</dt>
+<dd>Send the teletext "time" command.</dd>
+
+<dt>Teletext Mix</dt>
+<dd>Combine display of TV and teletext on screen.</dd>
+
+<dt>Teletext Down</dt>
+<dd>Send the teletext "down" command.</dd>
+
+<dt>Teletext Up</dt>
+<dd>Send the teletext "up" command.</dd>
+
+<dt>Teletext Background TV</dt>
+<dd>Display TV broadcast in backround of teletext.</dd>
+
+<dt>Teletext Store</dt>
+<dd>Send the teletext "store" command.</dd>
+
+<dt>Teletext Index</dt>
+<dd>Send the teletext "index" command.</dd>
+
+<dt>Teletext Off</dt>
+<dd>Turn off teletext.</dd>
+
+</dl>
+
+<h3>Picture in Picture Commands</h3>
+
+<p>
+Some televisions support display of multiple sources of media at the same
+time, by overlaying the main screen with one or more miniature screens.
+</p>
+
+<dl>
+<dt>PIP</dt>
+<dd>Turn on the picture-in-picture feature.  (Normally, this is a toggle.)</dd>
+
+<dt>PIP Swap</dt>
+<dd>Exchange the media source between the main screen and the currently
+selected miniature screen.</dd>
+
+<dt>PIP Move</dt>
+<dd>Move the miniature screen to a different location on the main screen.</dd>
+
+<dt>PIP Source</dt>
+<dd>Choose the source of media for the miniature screen.</dd>
+
+<dt>PIP Channel Up</dt>
+<dd>Switch the miniature screen to the previous channel in the list.</dd>
+
+<dt>PIP Channel Down</dt>
+<dd>Switch the miniature screen to the next channel in the list.</dd>
+
+<dt>PIP Pause</dt>
+<dd>Pause the media displayed on the miniature screen.</dd>
+
+<dt>PIP Size</dt>
+<dd>Change the size of the miniature screen.</dd>
+
+</dl>
+
+<h3>Disc Commands</h3>
+
+<p>
+These are commands generally found only on CD/DVD/Blu-ray devices.
+</p>
+
+<dl>
+<dt>Disc Title</dt>
+<dd>Tell the device to display the media's Title screen.  (Used only with
+DVDs and Blu-rays.)</dd>
+
+<dt>Disc Menu</dt>
+<dd>Tell the device to display the media's Menu screen.  (Used only with
+DVDs and Blu-rays.)</dd>
+
+<dt>Angle</dt>
+<dd>Tell the device to switch to a different camera angle.  (A very obscure
+command only used with certain DVDs and Blu-rays.)
+
+<dt>Next Disc</dt>
+<dd>Tell a multi-disc device to switch to the next disc in the collection.</dd>
+
+<dt>Previous Disc</dt>
+<dd>Tell a multi-disc device to switch to the previous disc in the
+collection.</dd>
+
+<dt>Disc One</dt>
+<dd>Tell a multi-disc device to switch to the first disc.</dd>
+
+<dt>Disc Two</dt>
+<dd>Tell a multi-disc device to switch to the second disc.</dd>
+
+<dt>Disc Three</dt>
+<dd>Tell a multi-disc device to switch to the third disc.</dd>
+
+</dl>
+
+<h3>VHS (and Beta) Cassette Tape Commands</h3>
+
+<dl>
+
+<dt>VHS Speed</dt>
+<dd>Tell the device to switch between the available recording speeds.  These
+are normally SP (standard play), LP (long play), EP (extended play), and
+SLP (super long play).  Not all devices support all speeds.</dd>
+
+<dt>Tracking +</dt>
+<dd>Manually adjust the "tracking" of the tape upwards.</dd>
+
+<dt>Tracking -</dt>
+<dd>Manually adjust the "tracking" of the tape downwards.</dd>
+
+<dt>Auto Tracking</dt>
+<dd>Have the device automatically adjust the tracking of the tape.</dd>
+
+<dt>Index Search</dt>
+<dd>Have the device search for an index on the tape. (Also known as VISS.)</dd>
+
+<dt>Index Mark</dt>
+<dd>Have the device place an index mark on the tape.</dd>
+
+<dt>Index Erase</dt>
+<dd>Have the device remove an index mark on the tape.</dd>
+
+</dl>
+
+<h3>Audio/Video Adjustment Controls</h3>
+
+<p>
+These are controls for direct adjustment of audio and video playback.
+(Most modern TVs have moved the majority of these controls into the menu
+system.)
+</p>
+
+<dl>
+<dt>Picture Mode</dt>
+<dd>This will toggle between a TV's available picture modes.</dd>
+
+<dt>Sound Mode</dt>
+<dd>This will toggle between a TV's available sound modes.</dd>
+
+<dt>Noise Reduction</dt>
+<dd>Toggle noise reduction in the target device.  (Called "Dolby" on many
+devices.)</dd>
+
+<dt>Enhanced Bass</dt>
+<dd>Toggles the enhanced or "super" bass mode of the device.</dd>
+
+<dt>Bass Up</dt>
+<dd>Increase the bass level of the device.</dd>
+
+<dt>Bass Down</dt>
+<dd>Decrease the bass level of the device.</dd>
+
+<dt>Treble Up</dt>
+<dd>Increase the treble level of the device.</dd>
+
+<dt>Treble Down</dt>
+<dd>Decrease the treble level of the device.</dd>
+
+<dt>Brightness Up</dt>
+<dd>Increase the screen's brightness.</dd>
+
+<dt>Brightness Down</dt>
+<dd>Decrease the screen's brightness.</dd>
+
+<dt>Color Up</dt>
+<dd>Increase the screen's color.</dd>
+
+<dt>Color Down</dt>
+<dd>Decrease the screen's color.</dd>
+
+<dt>Contrast Up</dt>
+<dd>Increase the screen's contrast.</dd>
+
+<dt>Contrast Down</dt>
+<dd>Decrease the screen's contrast.</dd>
+
+<dt>Balance Right</dt>
+<dd>Shift the stereo balance to the right.</dd>
+
+<dt>Balance Left</dt>
+<dd>Shift the stereo balance to the left.</dd>
+
+<dt>Keystone</dt>
+<dd>Shift the "keystone" adjustment made by the projector.</dd>
+
+<dt>Picture Mute</dt>
+<dd>"Mute" the picture displayed by the projector.</dd>
+
+<dt>Focus</dt>
+<dd>Adjust the focus of the projector.</dd>
+
+</dl>
+
+<h3>Input Commands</h3>
+
+<p>
+These commands select the source of media to be played on the target
+device.  In modern audio/video equipment, the possible list of media
+sources has grown absolutely enormous; as such, the following set of
+controls are not sufficiently comprehensive to support all the possible
+input commands on every device.
+</p>
+
+<dl>
+
+<dt>Input</dt>
+<dd>Toggle between the entire list of available input sources.</dd>
+
+<dt>CD Input</dt>
+<dd>Switch to the Compact Disc media.</dd>
+
+<dt>Phono Input</dt>
+<dd>Switch to the Phonograph record media.</dd>
+
+<dt>Tuner Input</dt>
+<dd>Switch to the (AM/FM Radio) tuner.</dd>
+
+<dt>Line Input</dt>
+<dd>Switch to the "line input".</dd>
+
+<dt>Tape Input<dt>
+<dd>Switch to the tape deck.  (Specifically, the first tape deck, if there
+are more than one.)</dd>
+
+<dt>Antenna Input</dt>
+<dd>Switch to the antenna input.  (Specifically, the first one, if more
+than one are present.)</dd>
+
+<dt>Antenna Input 2</dt>
+<dd>Switch to the second antenna input.</dd>
+
+<dt>PC Input</dt>
+<dd>Switch to the PC input port.  (This is normally a VGA port on most
+devices.)</dd>
+
+<dt>Composite Input</dt>
+<dd>Switch to the Composite input port.  (The first one, if there are more
+than one.)</dd>
+
+<dt>Composite Input 2</dt>
+<dd>Switch to the second Composite input port.</dd>
+
+<dt>SVideo Input</dt>
+<dd>Switch to the S-Video port.  (The first one, if there are more than
+one.)</dd>
+
+<dt>SVideo Input 2</dt>
+<dd>Switch to the second S-Video port.</dd>
+
+<dt>Component Input</dt>
+<dd>Switch to the Component Input port.  (The first one, if there are more
+than one.)</dd>
+
+<dt>Component Input 2</dt>
+<dd>Switch to the second Component input port.</dd>
+
+<dt>HDMI Input</dt>
+<dd>Switch to the HDMI port.  (The first one, if there are more than
+one.)</dd>
+
+<dt>HDMI Input 2</dt>
+<dd>Switch to the second HDMI port.</dd>
+
+<dt>HDMI Input 3</dt>
+<dd>Switch to the third HDMI port.</dd>
+
+<dt>SCART Input</dt>
+<dd>Switch to the SCART port.</dd>
+
+<dt>Aux Input</dt>
+<dd>Switch to the Aux input port.</dd>
+
+<dt>MD Input</dt>
+<dd>Switch to the MiniDisc.</dd>
+
+<dt>LD Input</dt>
+<dd>Switch to the LaserDisc.</dd>
+
+<dt>DVD Input</dt>
+<dd>Switch to the DVD.</dd>
+
+<dt>VCR Input</dt>
+<dd>Switch to the VCR.</dd>
+
+<dt>HDD Input</dt>
+<dd>Switch to the hard drive.</dd>
+
+<dt>Cable Input</dt>
+<dd>Switch to Cable input.</dd>
+
+<dt>Satellite Input</dt>
+<dd>Switch to Satellite input.</dd>
+
+<dt>DVR Input</dt>
+<dd>Switch to the DVR.</dd>
+
+<dt>Optical Input</dt>
+<dd>Switch to the Optical (audio) input.</dd>
+
+<dt>Digital Coax Input</dt>
+<dd>Switch to the digital coax input.</dd>
+
+<dt>USB Input</dt>
+<dd>Switch to the USB input.</dt>
+
+<dt>A/D Tuner Swap</dt>
+<dd>Toggle between the Analog and Digital TV tuners.  (Probably obsolete now
+in most regions.)</dd>
+
+</dl>
+
+<h3>Program Controls</h3>
+
+<p>
+These controls are used to store and retrieve information within the device,
+such as a list of favorite channels.
+</p>
+
+<dl>
+
+<dt>Program</dt>
+<dd>Sends the "program" command to the device.  Effects vary.</dd>
+
+<dt>Memory</dt>
+<dd>Sends the "memory" command to the device.</dd>
+
+<dt>Call</dt>
+<dd>Sends the "call" command to the device.</dd>
+
+<dt>Next Preset</dt>
+<dd>Switch to the next preset channel in the list.</dd>
+
+<dt>Previous Preset</dt>
+<dd>Switch to the previous preset channel in the list.</dd>
+
+</dl>
+
+<h3>Receiver Controls</h3>
+
+<dl>
+
+<dt>Toggle Band</dt>
+<dd>Toggle between the available receiver bands (normally AM and FM).</dd>
+
+<dt>FM</dt>
+<dd>Switch directly to the FM band.</dd>
+
+<dt>AM</dt>
+<dd>Switch directly to the AM band.  (Also called "MW" on some receivers.)</dd>
+
+<dt>LW</dt>
+<dd>Switch directly to the LW band.  (Not found on many receivers.)</dd>
+
+<dt>FM Mode</dt>
+<dd>Switch between "mono" and "stereo" FM modes.</dd>
+
+<dt>RDS</dt>
+<dd>Access the RDS information being broadcast by the current channel.</dd>
+
+</dl>
+
+<h3>Air Conditioner Controls</h3>
+
+<p>
+Please note that the following commands are specific to air-conditioners
+that have stateless remote controls.  Stateful controls will need to use
+a completely different macro mechanism.
+</p>
+
+<dl>
+
+<dt>Temperature Up</dt>
+<dd>Raise the target temperature.</dd>
+
+<dt>Temperature Down</dt>
+<dd>Lower the target temperature.</dd>
+
+<dt>Fan</dt>
+<dd>Put the AC into fan-only mode.</dd>
+
+<dt>Cool</dt>
+<dd>Put the AC into cooling mode.</dd>
+
+<dt>Heat</dt>
+<dd>Put the AC into heating mode.</dd>
+
+<dt>Oscillate</dt>
+<dd>Toggle the fan oscillation mode.</dt>
+
+<dt>Fan Faster</dt>
+<dd>Increase the fan's speed.</dd>
+
+<dt>Fan Slower</dt>
+<dd>Reduce the fan's speed.</dd>
+
+<dt>Energy Save Mode<dt>
+<dd>Toggle the Energy Saving mode on the AC.</dd>
+
+</dl>
+
+<h3>iRobot (Roomba) Controls</h3>
+
+<dl>
+<dt>Robot Forward</dt>
+<dd>Send the robot forward.</dd>
+
+<dt>Robot Clockwise</dt>
+<dd>Turn the robot clockwise.</dd>
+
+<dt>Robot Counterclockwise</dt>
+<dd>Turn the robot counter-clockwise.</dd>
+
+<dt>Robot Spot</dt>
+<dd>Send the "spot cleaning" command to the robot.</dd>
+
+<dt>Robot Max</dt>
+<dd>Send the "max power" command to the robot.</dd>
+
+<dt>Robot Clean</dt>
+<dd>Send the "clean" command to the robot.</dd>
+
+</dl>
+
+<h3>Playstation Controls</h3>
+
+<dl>
+<dt>PS Select</dt>
+<dd>Send the "select" command.</dd>
+
+<dt>PS Start</dt>
+<dd>Send the "start" command.</dd>
+
+<dt>PS Left 1</dt>
+<dd>Send the "L1" command.</dd>
+
+<dt>PS Left 2</dt>
+<dd>Send the "L2" command.</dd>
+
+<dt>PS Left 3</dt>
+<dd>Send the "L3" command.</dd>
+
+<dt>PS Right 1</dt>
+<dd>Send the "R1" command.</dd>
+
+<dt>PS Right 2</dt>
+<dd>Send the "R2" command.</dd>
+
+<dt>PS Right 3</dt>
+<dd>Send the "R3" command.</dd>
+
+<dt>PS Up</dt>
+<dd>Send the "up" command.</dd>
+
+<dt>PS Down</dt>
+<dd>Send the "down" command.</dd>
+
+<dt>PS Left</dt>
+<dd>Send the "left" command.</dd>
+
+<dt>PS Right</dt>
+<dd>Send the "right" command.</dd>
+
+<dt>PS Triangle</dt>
+<dd>Send the triangle key's command.</dd>
+
+<dt>PS Circle</dt>
+<dd>Send the circle key's command.</dd>
+
+<dt>PS Cross</dt>
+<dd>Send the cross key's command.</dd>
+
+<dt>PS Square</dt>
+<dd>Send the square key's command.</dd>
+</dl>
+
+<h3>Camera Controls</h3>
+
+<dl>
+
+<dt>Open Shutter</dt>
+<dd>Cause the target device to take a picture.</dt>
+
+<dt>Open Shutter After Delay</dt>
+<dd>Cause the target device to take a picture after a fixed delay period.
+(Probably only available on Canon cameras, where the delay is 2 seconds.)
+</dd>
+
+<h3>"Factory" TV Controls</h3>
+
+<p>
+These controls are used to manipulate the low-level details of a television
+set, and are never found on any remote control.  Please do not use them
+unless you know what you are doing -- some factory control settings can
+permanently damage a TV set!
+</p>
+
+<dl>
+<dt>Service Menu</dt>
+<dd>Open the service menu control for the television set.</dd>
+
+<dt>Factory Reset</dt>
+<dd>Send the "factory reset" command to the TV -- please do be careful
+with this, as it will cause all of the user's settings to be removed.</dd>
+</dl>
+
+<h3>Miscellaneous</h3>
+
+<p>
+Remote control commands that have not yet been categorized.
+</p>
+
+<dl>
+
+<dt>Captions</dt>
+<dd>This command is used for both the "captions" control found on many TVs
+and the "subtitles" control found on DVD / Blu-ray players.</dd>
+
+<dt>Info</dt>
+<dd>Tells the device to display information about the current media.  Also
+found under the name "display" on many remotes.</dd>
+
+<dt>Sleep</dt>
+<dd>Tell the device to switch itself off after a specified amount of time.</dd>
+
+<dt>Reset</dt>
+<dd>Used in VCRs to reset the counter, but in other devices to perform other
+kinds of reset.</dd>
+
+<dt>Aspect Ratio</dt>
+<dd>Used to change the format of a TV display, often between 4:3 and 16:9
+aspect ratios.</dd>
+
+<dt>I/II</dt>
+<dd>Used to change between languages in broadcast TV.  Sometimes also labeled
+as "Audio".</dd>
+
+<dt>Favorites</dt>
+<dd>Used to access the "favorites list" on some TVs.</dd>
+
+<dt>Scan</dt>
+<dd>Used to scan for channels on a few TVs.</dd>
+
+<dt>Zoom</dt>
+<dd>Used to zoom in the display on some devices.</dd>
+
+<dt>Live TV</dt>
+<dd>Used on DVR/PVR devices to return to synchronous display of a TV
+broadcast after pausing.</dd>
+
+</dl>
+
+<h2>Available Keysets</h2>
+
+<p>
+As of Pierogi version 1.1.32, these are the available keysets.  Please note
+that this list is modified frequently; not only are new keysets being added,
+but existing keysets are being renamed and removed.  If you are having trouble
+with a keyset, please check its name against your current version of Pierogi.
+</p>
+
+<p>
+Also, the current Pierogi XML parser is not flexible enough to deal with 
+spelling differences; so, the keyset make and name must have the same
+capitalization and spacing as shown below.
+</p>
+
+<dl>
+
+<dt>Acer</dt>
+<dd>TV Keyset 1</dd>
+<dd>PC Keyset 1</dd>
+
+<dt>ADB</dt>
+<dd>TV Receiver Keyset 1</dd>
+<dd>TV Receiver Keyset 2</dd>
+<dd>TV Receiver Keyset 3</dd>
+<dd>TV Receiver Keyset 4</dd>
+<dd>TV Receiver Keyset 5</dd>
+<dd>TV Receiver Keyset 6</dd>
+
+<dt>Admiral</dt>
+<dd>TV Keyset 1</dt>
+<dd>TV Keyset 2</dt>
+<dd>VCR Keyset 1</dt>
+
+<dt>Aiwa</dt>
+<dd>VCR Keyset 1</dd>
+<dd>VCR Keyset 2</dd>
+<dd>VCR Keyset 3</dd>
+<dd>Audio Keyset 1</dd>
+<dd>Audio Keyset 1a</dd>
+<dd>Audio Keyset 2</dd>
+<dd>Audio Keyset 2a</dd>
+<dd>Audio Keyset 2b</dd>
+<dd>Audio Keyset 2c</dd>
+<dd>Audio Keyset 3</dd>
+<dd>Audio Keyset 4</dd>
+<dd>Audio Keyset 5</dd>
+<dd>Audio Keyset 6</dd>
+<dd>Car Stereo Keyset 1</dd>
+<dd>DVD Keyset 1</dd>
+
+<dt>Alpine</dt>
+<dd>Car Stereo Keyset 1</dd>
+
+<dt>Anitech</dt>
+<dd>TV Keyset 1</dd>
+<dd>VCR Keyset 1</dd>
+
+<dt>AOC</dt>
+<dd>TV Keyset 1</dd>
+
+<dt>Apex</dt>
+<dd>TV Keyset 1</dd>
+<dd>HDTV Converter Keyset 1</dd>
+<dd>DVD Keyset 1</dd>
+<dd>DVD Keyset 1a</dd>
+<dd>DVD Keyset 2</dd>
+<dd>DVD Keyset 2a</dd>
+<dd>DVD Keyset 3</dd>
+
+<dt>Apple</dt>
+<dd>White Remote</dd>
+
+<dt>Arcam</dt>
+<dd>Receiver Keyset 1</dd>
+
+<dt>Astro</dt>
+<dd>STB Keyset 1</dd>
+<dd>STB Keyset 2</dd>
+
+<dt>Beko</dt>
+<dd>TV Keyset 1</dd>
+
+<dt>BenQ</dt>
+<dd>TV Keyset 1</dd>
+<dd>Projector Keyset 1</dd>
+<dd>Projector Keyset 1a</dd>
+<dd>Projector Keyset 2</dd>
+<dd>Projector Keyset 3</dd>
+<dd>Projector Keyset 4</dd>
+<dd>Projector Keyset 5</dd>
+
+<dt>Blaupunkt</dt>
+<dd>VCR Keyset 1</dd>
+
+<dt>Bose</dt>
+<dd>Wave Radio Keyset 1</dd> 
+<dd>Wave Radio Keyset 2</dd> 
+<dd>Wave Radio Keyset 3</dd> 
+<dd>Home Theater 1</dd> 
+
+<dt>Bush</dt> 
+<dd>TV Keyset 1</dd> 
+<dd>TV Keyset 2</dd> 
+<dd>STB Keyset 1</dd> 
+
+<dt>Cambridge Audio</dt> 
+<dd>CD Keyset 1</dd> 
+<dd>Audio Keyset 1</dd> 
+<dd>Audio Keyset 2</dd> 
+<dd>Audio Keyset 3</dd> 
+<dd>DVD Keyset 1</dd>
+ 
+<dt>Canon</dt> 
+<dd>RC 1/5/6 Keyset</dd> 
+<dd>Camcorder Keyset 1</dd> 
+<dd>Powershot Keyset 1</dd> 
+
+<dt>Changhong</dt> 
+<dd>TV Keyset 1</dd> 
+<dd>TV Keyset 1a</dd> 
+<dd>TV Keyset 1b</dd> 
+<dd>TV Keyset 2</dd> 
+<dd>TV Keyset 3</dd> 
+
+<dt>Cisco</dt>
+<dd>STB Keyset 1</dd> 
+<dd>STB Keyset 2</dd>
+<dd>STB Keyset 3 </dd>
+<dd>STB Keyset 4 </dd>
+
+<dt>Comag </dt>
+<dd>TV Receiver Keyset 1 </dd>
+<dd>TV Receiver Keyset 2 </dd>
+
+<dt>Compro </dt>
+<dd>PC TV Tuner Card 1 </dd>
+
+<dt>Creative </dt>
+<dd>Speakers Keyset 1 </dd>
+<dd>MP3 Player Keyset 1 </dd>
+<dd>Sound Card Keyset 1 </dd>
+<dd>Infra Keyset </dd>
+
+<dt>Crown </dt>
+<dd>TV Keyset 1 </dd>
+<dd>CD Keyset 1 </dd>
+
+<dt>Crown Mustang </dt>
+<dd>TV Keyset 1 </dd>
+
+<dt>Daewoo </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 3 </dd>
+<dd>TV Keyset 4 </dd>
+<dd>TV Keyset 5 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 2 </dd>
+
+<dt>Denon </dt>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD Keyset 2 </dd>
+<dd>DVD Keyset 3 </dd>
+<dd>Receiver Keyset 1 </dd>
+<dd>Receiver Keyset 1a </dd>
+<dd>Receiver Keyset 1b </dd>
+<dd>Receiver Keyset 1c </dd>
+<dd>Receiver Keyset 1d </dd>
+<dd>Receiver Keyset 1f </dd>
+<dd>Receiver Keyset 2 </dd>
+<dd>Receiver Keyset 2a </dd>
+<dd>Receiver Keyset 3 </dd>
+<dd>Receiver Keyset 4 </dd>
+<dd>Audio Keyset 1 </dd>
+<dd>Audio Keyset 1a </dd>
+<dd>Audio Keyset 1b </dd>
+<dd>Audio Keyset 1c </dd>
+<dd>Audio Keyset 1d </dd>
+<dd>Audio Keyset 2 </dd>
+<dd>Audio Keyset 3 </dd>
+<dd>Audio Keyset 4 </dd>
+
+<dt>Dell </dt>
+<dd>Remote Keyset 1 </dd>
+
+<dt>Digital Stream </dt>
+<dd>Receiver Keyset 1 </dd>
+
+<dt>DirecTV </dt>
+<dd>Sat Keyset 1 </dd>
+<dd>Sat Keyset 1a </dd>
+<dd>Sat Keyset 1b </dd>
+<dd>Sat Keyset 1c </dd>
+<dd>Sat Keyset 1d </dd>
+<dd>Sat Keyset 1e </dd>
+
+<dt>Dish </dt>
+<dd>Sat Keyset 1 </dd>
+<dd>Sat Keyset 1 mode 2 </dd>
+<dd>Sat Keyset 1 mode 3 </dd>
+<dd>Sat Keyset 1 mode 4 </dd>
+<dd>Sat Keyset 1 mode 5 </dd>
+<dd>Sat Keyset 1 mode 6 </dd>
+<dd>Sat Keyset 1 mode 7 </dd>
+<dd>Sat Keyset 1 mode 8 </dd>
+<dd>Sat Keyset 1 mode 9 </dd>
+<dd>Sat Keyset 1 mode 10 </dd>
+<dd>Sat Keyset 1 mode 11 </dd>
+<dd>Sat Keyset 1 mode 12 </dd>
+<dd>Sat Keyset 1 mode 13 </dd>
+<dd>Sat Keyset 1 mode 14 </dd>
+<dd>Sat Keyset 1 mode 15 </dd>
+<dd>Sat Keyset 1 mode 16 </dd>
+
+<dt>Dream Multimedia </dt>
+<dd>Dreambox Keyset 1 </dd>
+<dd>Dreambox Keyset 1a </dd>
+<dd>Dreambox Keyset 1b </dd>
+<dd>Dreambox Keyset 1c </dd>
+<dd>Dreambox Keyset 2 </dd>
+<dd>Dreambox Keyset 3 </dd>
+<dd>Dreambox Keyset 4 </dd>
+<dd>Dreambox Keyset 5 </dd>
+
+<dt>DSE (Dick Smith) </dt>
+<dd>DVD Keyset 1 </dd>
+<dd>Sat Keyset 1 </dd>
+
+<dt>Dune </dt>
+<dd>Media Player Keyset 1 </dd>
+
+<dt>Dynex </dt>
+<dd>TV Keyset 1 </dd>
+
+<dt>Ei </dt>
+<dd>TV Keyset 1 </dd>
+
+<dt>Elgato </dt>
+<dd>EyeTV Keyset 1 </dd>
+
+<dt>Emerson </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+<dd>TV/VCR Keyset 3 </dd>
+<dd>TV/VCR Keyset 4 </dd>
+<dd>TV Keyset 5 </dd>
+<dd>Cable Box Keyset 1 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>Audio Keyset 1 </dd>
+<dd>Audio Keyset 2 </dd>
+<dd>Audio Keyset 3 </dd>
+
+<dt>Emtec </dt>
+<dd>Movie Cube Keyset 1 </dd>
+<dd>Movie Cube Keyset 2 </dd>
+
+<dt>Epson </dt>
+<dd>Projector Keyset 1 </dd>
+<dd>Projector Keyset 1a </dd>
+
+<dt>Fortec Star </dt>
+<dd>Sat Keyset 1 </dd>
+<dd>Sat Keyset 2 </dd>
+
+<dt>Foxtel </dt>
+<dd>STB Keyset 1 </dd>
+<dd>STB Keyset 2 </dd>
+
+<dt>Frontech </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+
+<dt>Gadmei </dt>
+<dd>TV Tuner Keyset 1 </dd>
+
+<dt>General Electric </dt>
+<dd>AC Keyset 1 </dd>
+<dd>AC Keyset 2 </dd>
+
+<dt>Genius </dt>
+<dd>Speaker Keyset 1 </dd>
+
+<dt>GoldStar </dt>
+<dd>105-210A TV </dd>
+<dd>TV Keyset 2 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 1a </dd>
+<dd>VCR Keyset 1b </dd>
+<dd>VCR Keyset 1c </dd>
+<dd>Audio Keyset 1 </dd>
+
+<dt>Goodmans </dt>
+<dd>STB Keyset 1 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>Audio Keyset 1 </dd>
+
+<dt>Grundig </dt>
+<dd>Satellite Keyset 1 </dd>
+<dd>Satellite Keyset 2 </dd>
+<dd>Satellite Keyset 3 </dd>
+<dd>Amp Keyset 1 </dd>
+<dd>Audio(CD) Keyset 1 </dd>
+<dd>Audio Keyset 2 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 1a </dd>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+<dd>TV/VDR Keyset 3 </dd>
+<dd>TV Keyset 4 </dd>
+<dd>DVD Keyset 1 </dd>
+
+<dt>Haier </dt>
+<dd>TV Keyset 1 </dd>
+
+<dt>Hantarex </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+
+<dt>Harman/Kardon </dt>
+<dd>Amp/Receiver Component 1 </dd>
+<dd>Amp Component 2 </dd>
+<dd>Receiver Component 2 </dd>
+<dd>Tape Component 1 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD Keyset 1a </dd>
+<dd>CD Keyset 1 </dd>
+<dd>CD Keyset 2 </dd>
+
+<dt>Hauppauge </dt>
+<dd>PCTV Keyset 1 </dd>
+<dd>PCTV Keyset 1a </dd>
+<dd>PCTV Keyset 1b </dd>
+<dd>PCTV Keyset 1c </dd>
+<dd>PCTV Keyset 2 </dd>
+
+<dt>Hitachi </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>TV Keyset 1b </dd>
+<dd>TV (monitor) Keyset 2 </dd>
+<dd>TV Keyset 3 </dd>
+<dd>Projector Keyset </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>Audio Keyset 1 </dd>
+<dd>VCR Keyset 1 </dd>
+
+<dt>Homecast </dt>
+<dd>Sat Keyset 1 </dd>
+<dd>DVB-T Keyset 1 </dd>
+
+<dt>HP </dt>
+<dd>Remote Keyset 1 </dd>
+
+<dt>Huawei </dt>
+<dd>STB Keyset 1 </dd>
+<dd>STB Keyset 2 </dd>
+
+<dt>Humax </dt>
+<dd>STB Keyset 1 </dd>
+<dd>STB Keyset 2 </dd>
+<dd>STB Keyset 3 </dd>
+
+<dt>Hyundai </dt>
+<dd>DVD Keyset 1 </dd>
+<dd>Audio Keyset 1 </dd>
+<dd>TV/Monitor Keyset 1 </dd>
+
+<dt>ILO </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+<dd>TV Keyset 3 </dd>
+
+<dt>Insignia </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>TV Keyset 2 </dd>
+<dd>TV Keyset 3 </dd>
+<dd>TV Keyset 4 </dd>
+<dd>TV Keyset 5 </dd>
+<dd>TV Keyset 6 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD Keyset 2 </dd>
+<dd>DVD Keyset 3 </dd>
+<dd>DVD Keyset 4 </dd>
+<dd>DVD (BD) Keyset 5 </dd>
+<dd>DVD Keyset 6 </dd>
+
+<dt>iRobot </dt>
+<dd>Roomba Keyset 1 </dd>
+
+<dt>JVC </dt>
+<dd>Sat (Dish) Keyset 1 </dd>
+<dd>Sat (Dish) Keyset 2 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 1a </dd>
+<dd>VCR (B Mode) keyset 1 </dd>
+<dd>VCR (B Mode) keyset 1a </dd>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>TV Keyset 1b </dd>
+<dd>TV Keyset 1c </dd>
+<dd>TV Keyset 1d </dd>
+<dd>DAT Keyset 1 </dd>
+<dd>Car Deck Keyset 1 </dd>
+<dd>Audio Keyset 1 </dd>
+<dd>Audio Keyset 1a </dd>
+<dd>Audio Keyset 1b </dd>
+<dd>Audio Keyset 2 </dd>
+<dd>DVD Keyset 1 </dd>
+
+<dt>Kaon </dt>
+<dd>Sat Keyset 1 </dd>
+
+<dt>Kathrein </dt>
+<dd>Sat Keyset 1 </dd>
+<dd>Sat Keyset 2 </dd>
+<dd>Sat Keyset 3 </dd>
+
+<dt>Kenwood </dt>
+<dd>Audio Keyset 1 </dd>
+<dd>Component Keyset 1 </dd>
+<dd>Component Keyset 2 </dd>
+<dd>Component Keyset 3 </dd>
+<dd>CD Keyset 1 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>TV Keyset 1 </dd>
+
+<dt>Keymat </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+
+<dt>Konka </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+
+<dt>Lexuz </dt>
+<dd>DVB Keyset 1 </dd>
+
+<dt>LG </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>TV Keyset 1b </dd>
+<dd>TV Keyset 1c </dd>
+<dd>TV Keyset 2 </dd>
+<dd>TV Keyset 2a </dd>
+<dd>TV Keyset 2b </dd>
+<dd>Home Theater Keyset 1 </dd>
+<dd>Home Theater / BD Keyset 2 </dd>
+<dd>Home Theater / BD Keyset 2a </dd>
+<dd>DVD/BD Keyset 1 </dd>
+<dd>DVD/BD Keyset 2 </dd>
+<dd>DVD/BD Keyset 2a </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 1a </dd>
+<dd>VCR Keyset 1b </dd>
+<dd>Air Conditioner 1 </dd>
+
+<dt>Lifetec </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>Audio Keyset 1 </dd>
+
+<dt>Loewe </dt>
+<dd>TV Keyset 1 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>DVD Keyset 1 </dd>
+
+<dt>Logitech </dt>
+<dd>Digital Speakers Keyset </dd>
+<dd>Squeezebox Keyset </dd>
+
+<dt>Magnavox </dt>
+<dd>DVD Keyset 1 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>STB Keyset 1 </dd>
+<dd>TV(?) Keyset 1 </dd>
+
+<dt>Magnum </dt>
+<dd>TV Keyset 1 </dd>
+
+<dt>Microsoft </dt>
+<dd>Windows MCE Remote 1 </dd>
+<dd>Windows MCE Remote 2 </dd>
+<dd>Windows MCE Remote 3 </dd>
+<dd>Windows MCE Remote 4 </dd>
+<dd>Windows MCE Remote 5 </dd>
+<dd>Windows MCE Remote 6 </dd>
+<dd>Windows MCE Remote 7 </dd>
+<dd>Windows MCE Remote 8 </dd>
+
+<dt>Majestic </dt>
+<dd>DVD Keyset 1 </dd>
+
+<dt>Medi@link </dt>
+<dd>HD Receiver Keyset 1 </dd>
+
+<dt>Medion </dt>
+<dd>TV DVR Keyset 1 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD Keyset 2 </dd>
+<dd>VCR Keyset 1 </dd>
+
+<dt>Minolta </dt>
+<dd>RC-3 Keyset </dd>
+
+<dt>Mitsubishi </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 1a </dd>
+<dd>Projector Keyset 1 </dd>
+<dd>Projector Keyset 2 </dd>
+
+<dt>Motorola </dt>
+<dd>4DTV/StarChoice Keyset </dd>
+<dd>STB Keyset 1 </dd>
+<dd>STB Keyset 1a </dd>
+<dd>STB Keyset 1b </dd>
+<dd>STB Keyset 2 </dd>
+<dd>Sky Digital Keyset </dd>
+
+<dt>MT-Logic </dt>
+<dd>TV Keyset 1 </dd>
+
+<dt>Multichoice </dt>
+<dd>TV Decoder Keyset 1 </dd>
+<dd>TV Decoder Keyset 2 </dd>
+
+<dt>NAD </dt>
+<dd>Receiver Component 1 </dd>
+<dd>Tuner Component 1 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>CD Component 1 </dd>
+<dd>CD Component 2 </dd>
+<dd>Tape Component 1 </dd>
+
+<dt>NEC </dt>
+<dd>TV Keyset 1 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 2 </dd>
+<dd>VCR Keyset 3 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>Projector Keyset 1 </dd>
+<dd>Projector Keyset 2 </dd>
+
+<dt>Nikon </dt>
+<dd>ML-L3 Remote Keyset </dd>
+
+<dt>Nokia </dt>
+<dd>Generic VCR </dd>
+
+<dt>Octagon </dt>
+<dd>Sat Keyset 1 </dd>
+<dd>Sat Keyset 1a </dd>
+<dd>Sat Keyset 2 </dd>
+
+<dt>Olympus </dt>
+<dd>RM-2 Remote Keyset </dd>
+
+<dt>Onida </dt>
+<dd>TV Keyset 1 </dd>
+<dd>DVD Keyset 1 </dd>
+
+<dt>Onkyo </dt>
+<dd>Audio Keyset 1 </dd>
+<dd>Audio Keyset 2 </dd>
+<dd>Audio Keyset 2a </dd>
+<dd>Audio Keyset 3 </dd>
+<dd>Audio Keyset 4 </dd>
+<dd>Audio Keyset 5 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD Keyset 2 </dd>
+
+<dt>OpenBox </dt>
+<dd>Satellite Receiver 1 </dd>
+<dd>Satellite Receiver 2 </dd>
+
+<dt>Orion </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+<dd>TV Keyset 3 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 2 </dd>
+<dd>DVD Keyset 1 </dd>
+
+<dt>Panasonic </dt>
+<dd>Car Audio Keyset </dd>
+<dd>Satellite Keyset 1 </dd>
+<dd>Satellite Keyset 1a </dd>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>TV Keyset 1b </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 1a </dd>
+<dd>VCR Keyset 1b </dd>
+<dd>VCR Keyset 1c </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD Keyset 1a </dd>
+<dd>Audio Keyset 1 </dd>
+<dd>Audio Keyset 2 </dd>
+<dd>Audio Keyset 2a </dd>
+<dd>Air Conditioner 1 </dd>
+
+<dt>Pentax </dt>
+<dd>RC-F Remote Keyset </dd>
+
+<dt>Philco </dt>
+<dd>TV Keyset 1 </dd>
+
+<dt>Philips </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>TV Keyset 1b </dd>
+<dd>TV Keyset 1c </dd>
+<dd>TV Keyset 1d </dd>
+<dd>TV Keyset 1e </dd>
+<dd>TV Keyset 1f </dd>
+<dd>TV Keyset 2 </dd>
+<dd>TV Keyset 2a </dd>
+<dd>TV Keyset 2b </dd>
+<dd>TV (settop-box) keyset 3 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD Keyset 1a </dd>
+<dd>DVD Keyset 1b </dd>
+<dd>DVD Keyset 1c </dd>
+<dd>DVD Keyset 1d </dd>
+<dd>DVD/BD Keyset 2 </dd>
+<dd>DVD Keyset 3 </dd>
+<dd>DVD Keyset 3a </dd>
+<dd>DVD Keyset 4 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 1a </dd>
+<dd>VCR Keyset 1b </dd>
+<dd>VCR Keyset 1c </dd>
+<dd>Sat Keyset 1 </dd>
+<dd>Sat Keyset 2 </dd>
+<dd>Sat Keyset 2a </dd>
+<dd>Sat Keyset 3 </dd>
+<dd>Audio Keyset 1 </dd>
+<dd>Audio Keyset 1a </dd>
+<dd>Audio Keyset 1b </dd>
+<dd>Audio Keyset 2 </dd>
+<dd>Audio Keyset 3 </dd>
+<dd>Audio Keyset 4 </dd>
+
+<dt>Pinnacle Systems </dt>
+<dd>PCTV Keyset 1 </dd>
+<dd>PCTV Keyset 2 </dd>
+<dd>PCTV Keyset 3 </dd>
+
+<dt>Pioneer </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV (STB) Keyset 2 </dd>
+<dd>TV (STB) Keyset 3 </dd>
+<dd>Audio Keyset 1 </dd>
+<dd>Audio Keyset 1a </dd>
+<dd>Audio Keyset 2 </dd>
+<dd>Audio Keyset 3 </dd>
+<dd>Audio Keyset 4 </dd>
+<dd>Audio Keyset 5 </dd>
+<dd>Audio Keyset 6 </dd>
+<dd>CD Keyset 1 </dd>
+<dd>LD Keyset 1 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>Car Stereo Keyset 1 </dd>
+
+<dt>Proview </dt>
+<dd>DVD Keyset 1 </dd>
+
+<dt>QNAP </dt>
+<dd>Media Player Keyset 1 </dd>
+
+<dt>Raite </dt>
+<dd>DVD Keyset 1 </dd>
+
+<dt>RCA </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>TV Keyset 1b </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR(alt) Keyset 1a </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD Keyset 1a </dd>
+<dd>Satellite(DirecTV) Keyset 1 </dd>
+<dd>Satellite (Dish Network) Keyset 2 </dd>
+
+<dt>Roku </dt>
+<dd>STB Keyset 1 </dd>
+<dd>Soundbridge Keyset 1 </dd>
+
+<dt>Saba </dt>
+<dd>TV/VCR Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+
+<dt>Sagem </dt>
+<dd>STB Keyset 1 </dd>
+<dd>STB Keyset 1a </dd>
+
+<dt>Sagemcom </dt>
+<dd>Digital Receiver Keyset 1 </dd>
+<dd>Digital Receiver Keyset 2 </dd>
+
+<dt>Samsung </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>TV Keyset 1b </dd>
+<dd>TV Keyset 2 </dd>
+<dd>TV Keyset 3 </dd>
+<dd>TV Keyset 3a </dd>
+<dd>VCR(DVD) Keyset 1 </dd>
+<dd>VCR(DVD) Keyset 1a </dd>
+<dd>VCR(DVD) Keyset 1b </dd>
+<dd>VCR(DVD) Keyset 1c </dd>
+<dd>VCR/TV Combo Keyset 1d </dd>
+<dd>VCR(DVD) Keyset 1e </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD Keyset 1a </dd>
+<dd>DVD Keyset 1b </dd>
+<dd>DVD Keyset 2 </dd>
+<dd>Air Conditioner 1 </dd>
+<dd>Air Conditioner 2 </dd>
+<dd>STB Keyset 1 </dd>
+<dd>STB Keyset 2 </dd>
+<dd>STB Keyset 3 </dd>
+<dd>STB Keyset 4 </dd>
+<dd>STB Keyset 5 </dd>
+<dd>STB Keyset 6 </dd>
+
+<dt>Sanyo </dt>
+<dd>DVD/VCR Keyset 1 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1b </dd>
+<dd>TV Keyset 1d </dd>
+<dd>TV Keyset 2 </dd>
+<dd>Projector Keyset 1 </dd>
+<dd>Projector Keyset 1a </dd>
+<dd>Projector Keyset 1b </dd>
+<dd>Projector Keyset 1c </dd>
+
+<dt>Sharp </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>TV Keyset 1b </dd>
+<dd>TV Keyset 1c </dd>
+<dd>TV Keyset 1d </dd>
+<dd>TV Keyset 1e </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>Receiver Keyset 1 </dd>
+<dd>Air Conditioner 1 </dd>
+
+<dt>SilverCrest </dt>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD Keyset 2 </dd>
+<dd>DVD Keyset 3 </dd>
+
+<dt>Sinotec </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+
+<dt>Sky </dt>
+<dd>Receiver Keyset 1 </dd>
+<dd>Receiver Keyset 1a </dd>
+
+<dt>Sony </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>TV Keyset 1b </dd>
+<dd>TV Keyset 1c </dd>
+<dd>TV Keyset 2 </dd>
+<dd>Amp Keyset 1 </dd>
+<dd>Amp Keyset 2 </dd>
+<dd>Audio Keyset 1 </dd>
+<dd>Audio Keyset 1a </dd>
+<dd>DAT Keyset 1 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD Keyset 1a </dd>
+<dd>DVD Keyset 1b </dd>
+<dd>DVD Keyset 2 </dd>
+<dd>DVD Keyset 2a </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 1a </dd>
+<dd>VCR Keyset 1b </dd>
+<dd>Receiver Keyset 1 </dd>
+<dd>CD Keyset 1 </dd>
+<dd>CD Keyset 1a </dd>
+<dd>CD Keyset 1b </dd>
+<dd>Projector Keyset 1 </dd>
+<dd>Projector Keyset 1a </dd>
+<dd>Playstation Keyset 1 </dd>
+
+<dt>Starhub </dt>
+<dd>STB Keyset 1 </dd>
+<dd>STB Keyset 1a </dd>
+
+<dt>Starsat </dt>
+<dd>Sat Keyset 1 </dd>
+
+<dt>Strong </dt>
+<dd>Sat Receiver Keyset 1 </dd>
+<dd>Sat Receiver Keyset 2 </dd>
+<dd>Sat Receiver Keyset 2a </dd>
+<dd>Sat Receiver Keyset 3 </dd>
+<dd>Sat Receiver Keyset 3a </dd>
+<dd>Sat Receiver Keyset 4 </dd>
+<dd>Sat Receiver Keyset 5 </dd>
+<dd>Sat Receiver Keyset 5a </dd>
+<dd>DVB-T Receiver Keyset 1 </dd>
+<dd>DVB-T Receiver Keyset 2 </dd>
+<dd>DVB-T Receiver Keyset 3 </dd>
+<dd>DVB-T Receiver Keyset 4 </dd>
+<dd>DVB-T Receiver Keyset 5 </dd>
+
+<dt>Sylvania </dt>
+<dd>TV Keyset 1 </dd>
+
+<dt>Technics </dt>
+<dd>Audio Keyset 1 </dd>
+<dd>Audio Keyset 1a </dd>
+<dd>Audio Keyset 2 </dd>
+<dd>Audio Keyset 3 </dd>
+<dd>Audio Keyset 3a </dd>
+<dd>Receiver Keyset 1 </dd>
+<dd>Receiver Keyset 1a </dd>
+<dd>CD Keyset 1 </dd>
+<dd>DVD Keyset 1 </dd>
+
+<dt>Technisat </dt>
+<dd>Satellite Receiver 1 </dd>
+<dd>Satellite Receiver 1a </dd>
+<dd>Satellite Receiver 2 </dd>
+<dd>Satellite Receiver 2a </dd>
+<dd>Satellite Receiver (and PCTV) 3 </dd>
+<dd>Satellite Receiver (and PCTV) 3a </dd>
+
+<dt>Telefunken </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+
+<dt>Telenet </dt>
+<dd>STB Keyset 1 </dd>
+
+<dt>Thomson </dt>
+<dd>Converter Keyset 1 </dd>
+<dd>TV/DVR Keyset 1 </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 1a </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>Sat Keyset 1 </dd>
+<dd>Audio Keyset 1 </dd>
+<dd>Audio Keyset 2 </dd>
+
+<dt>TiVo </dt>
+<dd>Tivo Keyset 1 </dd>
+<dd>Tivo Keyset 1a </dd>
+<dd>Tivo Keyset 1b </dd>
+<dd>Tivo Keyset 1c </dd>
+<dd>Tivo Keyset 1d </dd>
+
+<dt>Topfield </dt>
+<dd>PVR Keyset 1 </dd>
+<dd>Sat Keyset 1 </dd>
+
+<dt>Toshiba </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>TV Keyset 1b </dd>
+<dd>TV Keyset 1c </dd>
+<dd>TV Keyset 1d </dd>
+<dd>TV Keyset 1e </dd>
+<dd>TV Keyset 1f </dd>
+<dd>TV Keyset 1g </dd>
+<dd>TV Keyset 1h </dd>
+<dd>TV Keyset 1i </dd>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 1a </dd>
+<dd>VCR Keyset 1b </dd>
+<dd>Disc Keyset 1 </dd>
+<dd>Disc Keyset 1a </dd>
+<dd>DVD/VCR Keyset 1b </dd>
+<dd>DVD/Tivo Keyset 1c </dd>
+<dd>DVD Keyset 2 </dd>
+<dd>Projector Keyset 1 </dd>
+<dd>Satellite Receiver 1 </dd>
+
+<dt>Triax </dt>
+<dd>Satellite Receiver 1 </dd>
+<dd>Satellite Receiver 2 </dd>
+<dd>Satellite Receiver 2a </dd>
+<dd>Satellite Receiver 3 </dd>
+<dd>Satellite Receiver 3a </dd>
+<dd>Satellite Receiver 4 </dd>
+
+<dt>United </dt>
+<dd>DVD Keyset 1 </dd>
+<dd>DVBT Keyset 1 </dd>
+
+<dt>Universum </dt>
+<dd>VCR Keyset 1 </dd>
+<dd>VCR Keyset 2 </dd>
+<dd>VCR Keyset 3 </dd>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 1a </dd>
+<dd>Sat Keyset 1 </dd>
+<dd>Audio Keyset 1 </dd>
+
+<dt>Venturer </dt>
+<dd>TV Keyset 1 </dd>
+<dd>DVD Keyset 1 </dd>
+<dd>STB Keyset 1 </dd>
+
+<dt>Vestel </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV/DVD Keyset 2 </dd>
+
+<dt>Viewsat </dt>
+<dd>Satellite Keyset 1 </dd>
+<dd>Satellite Keyset 1a </dd>
+
+<dt>Viewsonic </dt>
+<dd>Projector Keyset 1 </dd>
+<dd>Projector Keyset 2 </dd>
+
+<dt>Virgin Media </dt>
+<dd>STB Keyset 1 </dd>
+
+<dt>Vizio </dt>
+<dd>TV Keyset 1 </dd>
+
+<dt>Western Digital </dt>
+<dd>Media Player Keyset 1 </dd>
+<dd>Media Player Keyset 1a </dd>
+<dd>Media Player Keyset 1b </dd>
+
+<dt>Westinghouse </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+
+<dt>Wharfedale </dt>
+<dd>TV Keyset 1 </dd>
+<dd>TV Keyset 2 </dd>
+
+<dt>Wiwa </dt>
+<dd>TV Receiver Keyset 1 </dd>
+
+<dt>Xcruiser </dt>
+<dd>Sat Keyset 1 </dd>
+
+<dt>Xoro </dt>
+<dd>DVB-T Keyset 1 </dd>
+
+<dt>Yamaha </dt>
+<dd>DVD Keyset 1 </dd>
+<dd>DVD/LD Keyset 1a </dd>
+<dd>Audio Device Keyset 1 </dd>
+<dd>Audio Keyset 1a </dd>
+<dd>Audio Keyset 2 </dd>
+<dd>Audio Keyset 2a </dd>
+<dd>Audio Keyset 2b </dd>
+<dd>Audio Keyset 2c </dd>
+<dd>Audio Keyset 2d </dd>
+<dd>Audio Keyset 3 </dd>
+<dd>Audio Keyset 4 </dd>
+<dd>TV Keyset 1 </dd>
+<dd>Karaoke Keyset 1 </dd>
+
+<dt>Zenith </dt>
+<dd>TV Keyset 1 </dd>
+<dd>Digital Converter Box 1 </dd>
+
+</dl>
+
+</section>
+
+        <footer>
+          Pierogi is maintained by <a href="https://github.com/jpietrzak8">jpietrzak8</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+      </div>
+    </div>
+</body>
+</html>
