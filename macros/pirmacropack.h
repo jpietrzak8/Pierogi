@@ -29,7 +29,12 @@
 
 class QTreeWidget;
 class PIRMacro;
+class QXmlStreamReader;
+class MainWindow;
+class QComboBox;
+class PIRRunMacroDialog;
 
+typedef std::map<QString, PIRMacro *> MacroCollection;
 typedef std::map<unsigned int, PIRMacro *> ButtonCollection;
 typedef std::map<char, PIRMacro *> KeyboardCollection;
 
@@ -37,7 +42,16 @@ class PIRMacroPack: public QTreeWidgetItem
 {
 public:
   PIRMacroPack(
-    QString n);
+    QString n,
+    MainWindow *mw);
+
+  ~PIRMacroPack();
+
+  void runMacro(
+    PIRRunMacroDialog *rmd,
+    QString macroName);
+
+  void abortMacro();
 
   bool hasButton(
     unsigned int buttonID);
@@ -46,14 +60,17 @@ public:
     unsigned int buttonID,
     PIRMacro *macro);
 
+/*
   void eraseButton(
     unsigned int buttonID,
     PIRMacro *macro);
+*/
 
   QString buttonText(
     unsigned int buttonID);
 
   void executeButton(
+    PIRRunMacroDialog *rmd,
     unsigned int buttonID);
 
   bool hasKey(
@@ -63,18 +80,30 @@ public:
     char key,
     PIRMacro *macro);
 
+/*
   void eraseKey(
     char key,
     PIRMacro *macro);
+*/
 
   void executeKey(
+    PIRRunMacroDialog *rmd,
     char key);
 
   void storeSettings();
 
+  bool parseMacroPack(
+    QXmlStreamReader &sr);
+
+  void populateMacroComboBox(
+    QComboBox *cb);
+
 private:
+  MacroCollection macros;
   ButtonCollection buttons;
   KeyboardCollection keymaps;
+
+  MainWindow *mainWindow;
 };
 
 #endif // PIRMACROPACK_H

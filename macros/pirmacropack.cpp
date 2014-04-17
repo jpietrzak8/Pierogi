@@ -25,13 +25,54 @@
 #include "pirmacro.h"
 
 #include <QSettings>
+#include <QXmlStreamReader>
+#include <QMaemo5InformationBox>
+#include <QComboBox>
 
 #include <iostream>
 
 PIRMacroPack::PIRMacroPack(
-  QString name)
+  QString name,
+  MainWindow *mw)
+  : mainWindow(mw)
 {
   setText(0, name);
+}
+
+
+PIRMacroPack::~PIRMacroPack()
+{
+  MacroCollection::iterator i = macros.begin();
+
+  while (i != macros.end())
+  {
+    if (i->second)
+    {
+      delete i->second;
+      i->second = 0;
+    }
+
+    ++i;
+  }
+}
+
+
+void PIRMacroPack::runMacro(
+  PIRRunMacroDialog *rmd,
+  QString macroName)
+{
+  MacroCollection::const_iterator i = macros.find(macroName);
+
+  if (i != macros.end())
+  {
+    i->second->executeMacro(rmd);
+  }
+}
+
+
+void PIRMacroPack::abortMacro()
+{
+  PIRMacro::abortMacro();
 }
 
 
@@ -40,14 +81,7 @@ bool PIRMacroPack::hasButton(
 {
   ButtonCollection::const_iterator i = buttons.find(buttonID);
 
-  if (i != buttons.end())
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
+  return (i != buttons.end());
 }
 
 
@@ -59,6 +93,7 @@ void PIRMacroPack::registerButton(
 }
 
 
+/*
 void PIRMacroPack::eraseButton(
   unsigned int buttonID,
   PIRMacro *macro)
@@ -70,6 +105,7 @@ void PIRMacroPack::eraseButton(
     buttons.erase(i);
   }
 }
+*/
 
 
 QString PIRMacroPack::buttonText(
@@ -89,13 +125,14 @@ QString PIRMacroPack::buttonText(
 
 
 void PIRMacroPack::executeButton(
+  PIRRunMacroDialog *rmd,
   unsigned int buttonID)
 {
   ButtonCollection::const_iterator i = buttons.find(buttonID);
 
   if (i != buttons.end())
   {
-    i->second->executeMacro();
+    i->second->executeMacro(rmd);
   }
 }
 
@@ -105,14 +142,7 @@ bool PIRMacroPack::hasKey(
 {
   KeyboardCollection::const_iterator i = keymaps.find(key);
 
-  if (i != keymaps.end())
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
+  return (i != keymaps.end());
 }
 
 
@@ -124,6 +154,7 @@ void PIRMacroPack::registerKey(
 }
 
 
+/*
 void PIRMacroPack::eraseKey(
   char key,
   PIRMacro *macro)
@@ -135,16 +166,18 @@ void PIRMacroPack::eraseKey(
     keymaps.erase(i);
   }
 }
+*/
 
 
 void PIRMacroPack::executeKey(
+  PIRRunMacroDialog *rmd,
   char key)
 {
   KeyboardCollection::const_iterator i = keymaps.find(key);
 
   if (i != keymaps.end())
   {
-    i->second->executeMacro();
+    i->second->executeMacro(rmd);
   }
 }
 
@@ -178,4 +211,102 @@ void PIRMacroPack::storeSettings()
   }
 
   settings.endArray();
+}
+
+
+///////////////////////////
+
+// Parse XML
+
+bool PIRMacroPack::parseMacroPack(
+  QXmlStreamReader &sr)
+{
+  PIRMacro *m;
+
+  while (!sr.atEnd())
+  {
+    sr.readNext();
+
+    if (sr.isStartElement())
+    {
+      if (sr.name() == "macro")
+      {
+        QString name = "unnamed";
+        char shortcut = 0;
+        unsigned int button = 0;
+
+        if (sr.attributes().hasAttribute("name"))
+        {
+          name = sr.attributes().value("name").toString();
+        }
+
+        if (sr.attributes().hasAttribute("shortcut"))
+        {
+          shortcut = sr.attributes().value("shortcut").at(0).toAscii();
+        }
+
+        if (sr.attributes().hasAttribute("button"))
+        {
+          button = sr.attributes().value("button").toString().toInt();
+        }
+
+        m = new PIRMacro(this, name, shortcut, button, mainWindow);
+
+        if (m->parseMacro(sr))
+        {
+          // Add macro to the collections:
+          macros[m->getName()] = m;
+
+          if (m->hasButtonID())
+          {
+            buttons[m->getButtonID()] = m;
+          }
+
+          if (m->hasKey())
+          {
+            keymaps[m->getKey()] = m;
+          }
+        }
+        else
+        {
+          // Wasn't able to construct macro:
+          delete m;
+          m = 0;
+        }
+      }
+    }
+
+    if (sr.isEndElement())
+    {
+      if (sr.name() == "pack")
+      {
+        break;
+      }
+    }
+  }
+
+  if (sr.hasError())
+  {
+    QString errStr = "QXmlStreamReader returned error: ";
+    errStr += sr.errorString();
+    QMaemo5InformationBox::information(0, errStr, 0);
+    return false;
+  }
+
+  return true;
+}
+
+
+void PIRMacroPack::populateMacroComboBox(
+  QComboBox *cb)
+{
+  MacroCollection::const_iterator i = macros.begin();
+
+  while (i != macros.end())
+  {
+    cb->addItem(
+      i->second->getName());
+
+    ++i;
+  }
 }

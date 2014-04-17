@@ -59,11 +59,7 @@ private slots:
   void on_clearDefaultButton_clicked();
   void on_useDefaultCheckBox_stateChanged(int arg1);
   void on_altMainCheckBox_stateChanged(int arg1);
-  void on_macroKbdComboBox_activated(int index);
-  void on_macroBtnComboBox_activated(int index);
-
   void on_carrierFrequencySpinBox_valueChanged(int arg1);
-
   void on_dutyCycleSpinBox_valueChanged(int arg1);
 
 private:

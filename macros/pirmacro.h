@@ -32,6 +32,8 @@ class PIRMacroPack;
 class QListWidget;
 class QSettings;
 class MainWindow;
+class QXmlStreamReader;
+class PIRRunMacroDialog;
 
 #include <list>
 typedef std::list<PIRMacroCommandItem *> CommandSequence;
@@ -55,10 +57,14 @@ public:
   void setName(
     QString name);
 
+  bool hasKey();
+
   char getKey();
 
   void setKey(
     char key);
+
+  bool hasButtonID();
 
   unsigned int getButtonID();
 
@@ -80,7 +86,10 @@ public:
   void populateList(
     QListWidget *lw);
 
-  bool executeMacro();
+  bool executeMacro(
+    PIRRunMacroDialog *rmd);
+
+  static void abortMacro(); // aborts all macros...
 
   void storeSettings(
     QSettings &settings);
@@ -91,6 +100,9 @@ public:
   QString getCommandName(
     int index);
 
+  bool parseMacro(
+    QXmlStreamReader &sr);
+
 signals:
   void macroCompleted();
 
@@ -98,13 +110,18 @@ private slots:
   void startNextCommand();
 
 private:
+  bool keyDefined;
   char key;
+  bool buttonDefined;
   unsigned int buttonID;
   CommandSequence commands;
   CommandSequence::iterator currentCommand;
   unsigned int preMacroKeysetID;
 
   static bool macroRunning; // only one macro can run at a time!
+  static bool stopRunningMacro;
+
+  PIRRunMacroDialog *macroDialog;
 
   MainWindow *mainWindow;
 };

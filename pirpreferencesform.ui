@@ -117,28 +117,24 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QLabel" name="macroKbdLabel">
+          <widget class="QLabel" name="macroFileLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
-            <string>Macro Pack with Keyboard Focus</string>
+            <string>Default Macros File: </string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="macroKbdComboBox"/>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QLabel" name="macroBtnLabel">
+          <widget class="QPushButton" name="macroFilenameButton">
            <property name="text">
-            <string>Macro Pack for User Buttons</string>
+            <string>None</string>
            </property>
           </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="macroBtnComboBox"/>
          </item>
         </layout>
        </item>

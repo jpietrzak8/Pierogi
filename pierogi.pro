@@ -171,7 +171,6 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/xcruiser.cpp \
     keysets/benq.cpp \
     keysets/octagon.cpp \
-    forms/pirmacroform.cpp \
     dialogs/pirtextentrydialog.cpp \
     keysets/lexuz.cpp \
     protocols/protonprotocol.cpp \
@@ -214,20 +213,14 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/goodmans.cpp \
     keysets/emtec.cpp \
     protocols/tdcprotocol.cpp \
-    dialogs/pirselectmacrodialog.cpp \
     macros/pirmacro.cpp \
     macros/pirmacrocommanditem.cpp \
     macros/pirmacropack.cpp \
-    macros/pirreversemultitap.cpp \
     pirkeynames.cpp \
-    dialogs/pircreatecommanddialog.cpp \
     keysets/creative.cpp \
     keysets/crown.cpp \
-    dialogs/pireditmacrodialog.cpp \
-    dialogs/pirdeletemacrodialog.cpp \
     forms/piruserform.cpp \
     macros/pirmacromanager.cpp \
-    dialogs/pireditcommanddialog.cpp \
     keysets/crownmustang.cpp \
     keysets/hantarex.cpp \
     keysets/keymat.cpp \
@@ -272,7 +265,8 @@ SOURCES += main.cpp mainwindow.cpp \
     forms/pirintervalometerform.cpp \
     forms/pirreceiverform.cpp \
     protocols/denonprotocol.cpp \
-    forms/pirinputlistform.cpp
+    forms/pirinputlistform.cpp \
+    dialogs/pirrunmacrodialog.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -419,7 +413,6 @@ HEADERS += mainwindow.h \
     keysets/xcruiser.h \
     keysets/benq.h \
     keysets/octagon.h \
-    forms/pirmacroform.h \
     dialogs/pirtextentrydialog.h \
     keysets/lexuz.h \
     protocols/protonprotocol.h \
@@ -462,19 +455,13 @@ HEADERS += mainwindow.h \
     keysets/goodmans.h \
     keysets/emtec.h \
     protocols/tdcprotocol.h \
-    dialogs/pirselectmacrodialog.h \
     macros/pirmacro.h \
     macros/pirmacrocommanditem.h \
     macros/pirmacropack.h \
-    macros/pirreversemultitap.h \
-    dialogs/pircreatecommanddialog.h \
     keysets/creative.h \
     keysets/crown.h \
-    dialogs/pireditmacrodialog.h \
-    dialogs/pirdeletemacrodialog.h \
     forms/piruserform.h \
     macros/pirmacromanager.h \
-    dialogs/pireditcommanddialog.h \
     keysets/crownmustang.h \
     keysets/hantarex.h \
     keysets/keymat.h \
@@ -520,7 +507,8 @@ HEADERS += mainwindow.h \
     forms/pirintervalometerform.h \
     forms/pirreceiverform.h \
     protocols/denonprotocol.h \
-    forms/pirinputlistform.h
+    forms/pirinputlistform.h \
+    dialogs/pirrunmacrodialog.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -540,7 +528,6 @@ FORMS += mainwindow.ui \
     forms/pirrecordform.ui \
     forms/piraltmainform.ui \
     pirpreferencesform.ui \
-    forms/pirmacroform.ui \
     dialogs/pirtextentrydialog.ui \
     dialogs/pirtabschoicedialog.ui \
     dialogs/pireditkeysetdialog.ui \
@@ -552,17 +539,13 @@ FORMS += mainwindow.ui \
     forms/pirstatefulacform.ui \
     forms/pircameraform.ui \
     forms/pirpowersearchform.ui \
-    dialogs/pirselectmacrodialog.ui \
-    dialogs/pircreatecommanddialog.ui \
-    dialogs/pireditmacrodialog.ui \
-    dialogs/pirdeletemacrodialog.ui \
     forms/piruserform.ui \
-    dialogs/pireditcommanddialog.ui \
     forms/piractimerform.ui \
     forms/pirplaystationform.ui \
     forms/pirintervalometerform.ui \
     forms/pirreceiverform.ui \
-    forms/pirinputlistform.ui
+    forms/pirinputlistform.ui \
+    dialogs/pirrunmacrodialog.ui
 
 TRANSLATIONS += \
     translations/pierogi_nl.ts

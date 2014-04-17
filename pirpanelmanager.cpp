@@ -44,7 +44,7 @@
 #include "forms/pirroombaform.h"
 #include "forms/pirplaystationform.h"
 #include "forms/piruserform.h"
-#include "forms/pirmacroform.h"
+//#include "forms/pirmacroform.h"
 //#include "forms/pirpowersearchform.h"
 //#include "forms/piradvancedform.h"
 
@@ -82,7 +82,7 @@ PIRPanelManager::PIRPanelManager(
     roombaForm(0),
     playstationForm(0),
     userForm(0),
-    macroForm(0),
+//    macroForm(0),
 //    powerSearchForm(0),
 //    advancedForm(0),
     altMainPanelFlag(false),
@@ -149,12 +149,12 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[Playstation_Panel] = MainWindow::tr("Playstation");
   longPanelNames[Playstation_Panel] =
     MainWindow::tr("Playstation Panel - support for gamepad buttons");
-  shortPanelNames[User_Panel] = MainWindow::tr("User");
+  shortPanelNames[User_Panel] = MainWindow::tr("Macros");
   longPanelNames[User_Panel] =
-    MainWindow::tr("User Panel - macro control buttons");
-  shortPanelNames[Macro_Panel] = MainWindow::tr("Edit Macro Contents");
-  longPanelNames[Macro_Panel] =
-    MainWindow::tr("Edit Macros Panel - create, delete, edit, and manage macros");
+    MainWindow::tr("Macro Panel - macro control buttons");
+//  shortPanelNames[Macro_Panel] = MainWindow::tr("Edit Macro Contents");
+//  longPanelNames[Macro_Panel] =
+//    MainWindow::tr("Edit Macros Panel - create, delete, edit, and manage macros");
 //  shortPanelNames[PowerSearch_Panel] = "Keyset Search";
 //  longPanelNames[PowerSearch_Panel] =
 //    "Keyset Search Panel - execute power button in each keyset";
@@ -228,8 +228,8 @@ PIRPanelManager::PIRPanelManager(
   userForm = new PIRUserForm(mainWindow);
   panels[User_Panel] = userForm;
 
-  macroForm = new PIRMacroForm(mainWindow);
-  panels[Macro_Panel] = macroForm;
+//  macroForm = new PIRMacroForm(mainWindow);
+//  panels[Macro_Panel] = macroForm;
 
 //  powerSearchForm = new PIRPowerSearchForm(mainWindow);
 //  panels[PowerSearch_Panel] = powerSearchForm;
@@ -316,9 +316,9 @@ PIRPanelManager::PIRPanelManager(
   tabLists[Console_Tabs] = pset;
 
   // The Macro Management collection:
-  pset.clear();
-  pset.push_back(Macro_Panel);
-  tabLists[Macro_Tabs] = pset;
+//  pset.clear();
+//  pset.push_back(Macro_Panel);
+//  tabLists[Macro_Tabs] = pset;
 
   // The Power Search collection:
 //  pset.clear();
@@ -560,7 +560,9 @@ void PIRPanelManager::gotoNextTabs()
 */
 
 
+/*
 QComboBox *PIRPanelManager::getKeysetComboBox()
 {
   return macroForm->getKeysetComboBox();
 }
+*/

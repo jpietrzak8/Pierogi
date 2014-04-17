@@ -64,8 +64,8 @@ PIRTabsChoiceDialog::PIRTabsChoiceDialog(
   ui->tabsChoiceListWidget->addItem(
     new PIRTabsWidgetItem("Game Console Panels", Console_Tabs));
 
-  ui->tabsChoiceListWidget->addItem(
-    new PIRTabsWidgetItem("Macro Panels", Macro_Tabs));
+//  ui->tabsChoiceListWidget->addItem(
+//    new PIRTabsWidgetItem("Macro Panels", Macro_Tabs));
 
 //  ui->tabsChoiceListWidget->addItem(
 //    new PIRTabsWidgetItem("Keyset Search Panels", PowerSearch_Tabs));
@@ -127,9 +127,9 @@ void PIRTabsChoiceDialog::switchToTabBar(
     ui->tabsChoiceListWidget->setCurrentRow(9);
     break;
 
-  case Macro_Tabs:
-    ui->tabsChoiceListWidget->setCurrentRow(10);
-    break;
+//  case Macro_Tabs:
+//    ui->tabsChoiceListWidget->setCurrentRow(10);
+//    break;
 
 //  case Advanced_Tabs:
 //    ui->tabsChoiceListWidget->setCurrentRow(11);

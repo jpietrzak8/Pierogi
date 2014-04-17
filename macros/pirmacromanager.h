@@ -27,6 +27,8 @@ class PIRMacroPack;
 class PIRReverseMultitap;
 class MainWindow;
 class QString;
+class QComboBox;
+class PIRRunMacroDialog;
 
 class PIRMacroManager
 {
@@ -36,14 +38,21 @@ public:
 
   ~PIRMacroManager();
 
-  PIRMacroPack *getUserPack();
-  PIRMacroPack *getMultitapPack();
+//  PIRMacroPack *getUserPack();
+//  PIRMacroPack *getMultitapPack();
 
-  void setKeyboardController(
+/*
+  void setKeyboardMacros(
     PIRMacroPack *pack);
 
-  void setButtonsController(
+  void setButtonMacros(
     PIRMacroPack *pack);
+*/
+
+  void runMacro(
+    QString macroName);
+
+  void abortMacro();
 
   void handleKeypress(
     char key);
@@ -57,25 +66,36 @@ public:
   void executeMacroButton(
     unsigned int buttonID);
 
-  void storeSettings();
+//  void storeSettings();
 
+/*
   void setKbdFocus(
     int index);
 
   void setBtnFocus(
     int index);
+*/
+
+  bool parseMacroFile(
+    QString filename);
+
+  void populateMacroComboBox(
+    QComboBox *cb);
 
 private:
-  void retrieveSettings();
+//  void retrieveSettings();
 
   void executeStandardKey(
     char key);
 
-  PIRMacroPack *userPack;
-  PIRReverseMultitap *multitapPack;
+//  PIRMacroPack *userPack;
+//  PIRReverseMultitap *multitapPack;
 
-  PIRMacroPack *keyboardController;
-  PIRMacroPack *buttonsController;
+  PIRMacroPack *macroPack;
+//  PIRMacroPack *keyboardMacros;
+//  PIRMacroPack *buttonMacros;
+
+  PIRRunMacroDialog *macroDialog;
 
   MainWindow *mainWindow;
 };

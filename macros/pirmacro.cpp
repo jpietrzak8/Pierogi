@@ -25,12 +25,19 @@
 #include "pirmacrocommanditem.h"
 #include "pirmacropack.h"
 #include "mainwindow.h"
+#include "dialogs/pirrunmacrodialog.h"
 
 #include <QSettings>
+#include <QXmlStreamReader>
+#include <QMaemo5InformationBox>
 
 #include <iostream>
 
+// An ugly global, need to work on this:
+extern PIRKeynameMgr keynameMgr;
+
 bool PIRMacro::macroRunning = false;
+bool PIRMacro::stopRunningMacro = false;
 
 PIRMacro::PIRMacro(
   PIRMacroPack *parent,
@@ -39,8 +46,11 @@ PIRMacro::PIRMacro(
   unsigned int b,
   MainWindow *mw)
   : QTreeWidgetItem(parent),
+    keyDefined(false),
     key(k),
+    buttonDefined(false),
     buttonID(b),
+    macroDialog(0),
     mainWindow(mw)
 {
   setText(0, name);
@@ -48,29 +58,19 @@ PIRMacro::PIRMacro(
   if (key)
   {
     parent->registerKey(key, this);
+    keyDefined = true;
   }
 
   if (buttonID)
   {
     parent->registerButton(buttonID, this);
+    buttonDefined = true;
   }
 }
 
 
 PIRMacro::~PIRMacro()
 {
-  PIRMacroPack *mp = dynamic_cast<PIRMacroPack*> (QTreeWidgetItem::parent());
-
-  if (key)
-  {
-    mp->eraseKey(key, this);
-  }
-
-  if (buttonID)
-  {
-    mp->eraseButton(buttonID, this);
-  }
-
   currentCommand = commands.begin();
   while (currentCommand != commands.end())
   {
@@ -94,6 +94,12 @@ void PIRMacro::setName(
 }
 
 
+bool PIRMacro::hasKey()
+{
+  return keyDefined;
+}
+
+
 char PIRMacro::getKey()
 {
   return key;
@@ -104,6 +110,12 @@ void PIRMacro::setKey(
   char k)
 {
   key = k;
+}
+
+
+bool PIRMacro::hasButtonID()
+{
+  return buttonDefined;
 }
 
 
@@ -217,13 +229,13 @@ void PIRMacro::populateList(
 
 
 // executeMacro() returns false if it was unable to start the macro running:
-bool PIRMacro::executeMacro()
+bool PIRMacro::executeMacro(
+  PIRRunMacroDialog *rmd)
 {
   // Don't start a new macro if one is already running:
   if (macroRunning) return false;
 
-  // Start running the list of commands:
-  macroRunning = true;
+  stopRunningMacro = false;
 
   currentCommand = commands.begin();
 
@@ -235,6 +247,14 @@ bool PIRMacro::executeMacro()
     return true;
   }
 
+  // Prepare the macro dialog box:
+  macroDialog = rmd;
+  macroDialog->setMacroName(text(0));
+  macroDialog->setModal(true);
+
+  // Start running the list of commands:
+  macroRunning = true;
+
   // Take note of the current keyset id:
   preMacroKeysetID = mainWindow->getCurrentKeyset();
 
@@ -244,9 +264,20 @@ bool PIRMacro::executeMacro()
     this,
     SLOT(startNextCommand()));
 
+  macroDialog->setCommandName(
+    (*currentCommand)->getName());
+
+  macroDialog->show();
+
   (*currentCommand)->executeCommand();
 
   return true;
+}
+
+
+void PIRMacro::abortMacro()
+{
+  stopRunningMacro = true;
 }
 
 
@@ -261,12 +292,14 @@ void PIRMacro::startNextCommand()
   ++currentCommand;
 
   // Are we done?
-  if (currentCommand == commands.end())
+  if (currentCommand == commands.end() || stopRunningMacro)
   {
     // We are done.
-    macroRunning = false;
     mainWindow->updateKeysetSelection(preMacroKeysetID);
     emit macroCompleted();
+    macroDialog->hide();
+    macroDialog = 0;
+    macroRunning = false;
     return;
   }
 
@@ -276,6 +309,9 @@ void PIRMacro::startNextCommand()
     SIGNAL(commandCompleted()),
     this,
     SLOT(startNextCommand()));
+
+  macroDialog->setCommandName(
+    (*currentCommand)->getName());
 
   (*currentCommand)->executeCommand();
 }
@@ -338,4 +374,104 @@ QString PIRMacro::getCommandName(
   }
 
   return "";
+}
+
+
+/////////////////////////
+
+// Parse XML
+
+bool PIRMacro::parseMacro(
+  QXmlStreamReader &sr)
+{
+  while (!sr.atEnd())
+  {
+    sr.readNext();
+
+    if (sr.isStartElement())
+    {
+      if (sr.name() == "send")
+      {
+        if (sr.attributes().hasAttribute("key"))
+        {
+          PIRKeyName kn = keynameMgr.getKeynameID(
+            sr.attributes().value("key"));
+
+          if (kn == Unmapped_Key)
+          {
+            QString errStr = "Could not find mapping for key: ";
+            errStr += sr.attributes().value("key");
+            QMaemo5InformationBox::information(0, errStr, 0);
+            break;
+          }
+
+          PIRKeyCommandItem *kci = new PIRKeyCommandItem(kn, mainWindow);
+
+          commands.push_back(kci);
+        }
+
+        // Need error message here!
+      }
+
+      else if (sr.name() == "pause")
+      {
+        // Construct a "pause" command
+        if (sr.attributes().hasAttribute("seconds"))
+        {
+          unsigned int seconds =
+            sr.attributes().value("seconds").toString().toInt();
+
+          PIRPauseCommandItem *pci = new PIRPauseCommandItem(seconds);
+
+          commands.push_back(pci);
+        }
+      }
+
+      else if (sr.name() == "keyset")
+      {
+        // Construct a "change keyset" command:
+        if ( sr.attributes().hasAttribute("make")
+          && sr.attributes().hasAttribute("name"))
+        {
+          QString make(sr.attributes().value("make").toString());
+          QString name(sr.attributes().value("name").toString());
+          unsigned int keysetID;
+          QString displayName = make + " " + name;
+
+          if (!mainWindow->findKeysetID(make, name, keysetID))
+          {
+            QString errStr = "Could not find keyset: ";
+            errStr += displayName;
+            QMaemo5InformationBox::information(0, errStr, 0);
+            return false;
+          }
+
+          PIRKeysetCommandItem *kci = new PIRKeysetCommandItem(
+            displayName,
+            keysetID,
+            mainWindow);
+
+          commands.push_back(kci);
+        }
+      }
+    }
+
+    if (sr.isEndElement())
+    {
+      if (sr.name() == "macro")
+      {
+        break;
+      }
+    }
+  }
+
+  if (sr.hasError())
+  {
+    QString errStr = "QXmlStreamReader returned error: ";
+    errStr += sr.errorString();
+    QMaemo5InformationBox::information(0, errStr, 0);
+    return false;
+  }
+
+  return true;
 }

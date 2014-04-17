@@ -1,7 +1,7 @@
 //
-// pireditcommanddialog.h
+// pirrunmacrodialog.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -20,43 +20,41 @@
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 
-#ifndef PIREDITCOMMANDDIALOG_H
-#define PIREDITCOMMANDDIALOG_H
+#ifndef PIRRUNMACRODIALOG_H
+#define PIRRUNMACRODIALOG_H
 
 #include <QDialog>
 
-class PIRMacroCommandItem;
+class MainWindow;
 
 namespace Ui {
-class PIREditCommandDialog;
+class PIRRunMacroDialog;
 }
 
-class PIREditCommandDialog : public QDialog
+class PIRRunMacroDialog : public QDialog
 {
   Q_OBJECT
   
 public:
-  explicit PIREditCommandDialog(QWidget *parent = 0);
-  ~PIREditCommandDialog();
+  PIRRunMacroDialog(
+    MainWindow *mw);
 
-  void setup(
-    QString typeString,
-    QString name);
+  ~PIRRunMacroDialog();
 
-signals:
-  void deleteCommand();
-//  void moveCommandUp();
-//  void moveCommandDown();
-  void copyCommand();
+  void setMacroName(
+    QString macroName);
 
+  void setCommandName(
+    QString commandName);
+  
 private slots:
-//  void on_moveUpButton_clicked();
-//  void on_moveDownButton_clicked();
-  void on_deleteButton_clicked();
-  void on_copyButton_clicked();
+  void on_buttonBox_accepted();
+  void on_buttonBox_rejected();
 
 private:
-  Ui::PIREditCommandDialog *ui;
+  MainWindow *mainWindow;
+
+  Ui::PIRRunMacroDialog *ui;
 };
 
-#endif // PIREDITCOMMANDDIALOG_H
+#endif // PIRRUNMACRODIALOG_H

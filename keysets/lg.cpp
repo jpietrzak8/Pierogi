@@ -145,11 +145,11 @@ void LGTV1::populateProtocol(
 
   // Factory controls:
   addKey("Picture Test Mode", Unmapped_Key, 0xF9, 8);
-  addKey("InStop(FactoryReset)", Unmapped_Key, 0xFA, 8);
+  addKey("InStop(FactoryReset)", FactoryReset_Key, 0xFA, 8);
   addKey("InStart", Unmapped_Key, 0xFB, 8);
   addKey("Password Protected Function", Unmapped_Key, 0xFC, 8);
   addKey("PowerOnly", Unmapped_Key, 0xFE, 8);
-  addKey("EZadjust", Unmapped_Key, 0xFF, 8);
+  addKey("EZadjust", ServiceMenu_Key, 0xFF, 8);
 }
 
 

@@ -100,7 +100,7 @@ void SamsungTV1::populateProtocol(
   addKey("PIP.chan+", PIPChannelUp_Key, 0x32, 8); // "AUDCH_UP"
   addKey("PIP.chan-", PIPChannelDown_Key, 0x33, 8); // "AUDCH_DOWN"
   addKey("ANTENNA", AntennaInput_Key, 0x36, 8);
-  addKey("Toggle Service Menu", Unmapped_Key, 0x3B, 8); // Dangerous!
+  addKey("Toggle Service Menu", ServiceMenu_Key, 0x3B, 8); // Dangerous!
   addKey("surf", Unmapped_Key, 0x3D, 8); // "r.surf"
   addKey("PSize", PIPSize_Key, 0x3E, 8); // "P.Size (aspect)"
   addKey("STILL", PIPPause_Key, 0x42, 8);
@@ -311,7 +311,7 @@ void SamsungTV2::populateProtocol(
   addKey("ch.scan", PIPScan_Key, 0x31, 8);  // "h.scan"
   addKey("PIP.chan+", PIPChannelUp_Key, 0x32, 8); // "AUDCH_UP"
   addKey("PIP.chan-", PIPChannelDown_Key, 0x33, 8); // "AUDCH_DOWN"
-//  addKey("Toggle Service Menu", Unmapped_Key, 0x3B, 8); // Dangerous!
+  addKey("Toggle Service Menu", ServiceMenu_Key, 0x3B, 8); // Dangerous!
   addKey("surf", Unmapped_Key, 0x3D, 8); // "r.surf"
   addKey("Zoom", AspectRatio_Key, 0x3E, 8);
   addKey("STILL", Pause_Key, 0x42, 8);

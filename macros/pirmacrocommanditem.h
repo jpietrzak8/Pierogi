@@ -91,6 +91,11 @@ public:
 
   virtual QString getTypeString() const;
 
+/*
+  bool parse(
+    QXmlStreamReader &sr);
+*/
+
 private slots:
   void startRunningCommand();
   void stopRunningCommand();

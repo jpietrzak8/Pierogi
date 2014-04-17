@@ -23,6 +23,7 @@
 #include "piruserform.h"
 #include "ui_piruserform.h"
 
+#include <QFileDialog>
 #include "mainwindow.h"
 
 /*
@@ -53,7 +54,6 @@ PIRUserForm::~PIRUserForm()
 
 void PIRUserForm::setupButtons()
 {
-
   if (mainWindow->hasMacroButton(1))
   {
     ui->userDef1Button->setEnabled(true);
@@ -62,7 +62,7 @@ void PIRUserForm::setupButtons()
   else
   {
     ui->userDef1Button->setEnabled(false);
-    ui->userDef1Button->setText("User Defined 1");
+    ui->userDef1Button->setText("Macro 1");
   }
 
   if (mainWindow->hasMacroButton(2))
@@ -73,7 +73,7 @@ void PIRUserForm::setupButtons()
   else
   {
     ui->userDef2Button->setEnabled(false);
-    ui->userDef2Button->setText("User Defined 2");
+    ui->userDef2Button->setText("Macro 2");
   }
 
   if (mainWindow->hasMacroButton(3))
@@ -84,7 +84,7 @@ void PIRUserForm::setupButtons()
   else
   {
     ui->userDef3Button->setEnabled(false);
-    ui->userDef3Button->setText("User Defined 3");
+    ui->userDef3Button->setText("Macro 3");
   }
 
   if (mainWindow->hasMacroButton(4))
@@ -95,7 +95,7 @@ void PIRUserForm::setupButtons()
   else
   {
     ui->userDef4Button->setEnabled(false);
-    ui->userDef4Button->setText("User Defined 4");
+    ui->userDef4Button->setText("Macro 4");
   }
 
   if (mainWindow->hasMacroButton(5))
@@ -106,7 +106,7 @@ void PIRUserForm::setupButtons()
   else
   {
     ui->userDef5Button->setEnabled(false);
-    ui->userDef5Button->setText("User Defined 5");
+    ui->userDef5Button->setText("Macro 5");
   }
 
   if (mainWindow->hasMacroButton(6))
@@ -117,9 +117,8 @@ void PIRUserForm::setupButtons()
   else
   {
     ui->userDef6Button->setEnabled(false);
-    ui->userDef6Button->setText("User Defined 6");
+    ui->userDef6Button->setText("Macro 6");
   }
-
 }
 
 
@@ -152,3 +151,49 @@ void PIRUserForm::on_userDef6Button_clicked()
 {
   mainWindow->executeMacroButton(6);
 }
+
+
+void PIRUserForm::on_loadPackButton_clicked()
+{
+  QString filename = QFileDialog::getOpenFileName(
+    this,
+    tr("Select Macro XML File"),
+    "~/MyDocs");
+
+  if (!filename.isEmpty())
+  {
+    if (mainWindow->loadNewMacros(filename))
+    {
+      ui->macroComboBox->clear();
+
+      mainWindow->populateMacroComboBox(
+        ui->macroComboBox);
+
+      if (ui->macroComboBox->count())
+      {
+        emit runEnabled(true);
+      }
+      else
+      {
+        emit runEnabled(false);
+      }
+
+      setupButtons();
+    }
+  }
+}
+
+
+void PIRUserForm::on_runButton_clicked()
+{
+  mainWindow->runMacro(
+    ui->macroComboBox->currentText());
+}
+
+
+/*
+void PIRUserForm::on_macroComboBox_currentIndexChanged(const QString &arg1)
+{
+
+}
+*/

@@ -1,50 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PIREditCommandDialog</class>
- <widget class="QDialog" name="PIREditCommandDialog">
+ <class>PIRRunMacroDialog</class>
+ <widget class="QDialog" name="PIRRunMacroDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>480</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Edit Command</string>
+   <string>Macro In Progress</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="commandTypeLabel">
-       <property name="text">
-        <string>Command Type</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="commandValueLabel">
-       <property name="text">
-        <string>Command Value</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QLabel" name="nameLabel">
+     <property name="text">
+      <string>Name of Macro</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="copyButton">
+      <widget class="QLabel" name="commandLabel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
-        <string>Copy</string>
+        <string>Command: </string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="deleteButton">
+      <widget class="QLabel" name="commandNameLabel">
        <property name="text">
-        <string>Delete</string>
+        <string>Starting Macro</string>
        </property>
       </widget>
      </item>
@@ -56,7 +54,7 @@
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel</set>
+      <set>QDialogButtonBox::Abort</set>
      </property>
     </widget>
    </item>
@@ -67,7 +65,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>PIREditCommandDialog</receiver>
+   <receiver>PIRRunMacroDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -83,7 +81,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>PIREditCommandDialog</receiver>
+   <receiver>PIRRunMacroDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

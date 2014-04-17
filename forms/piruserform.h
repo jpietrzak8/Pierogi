@@ -44,6 +44,9 @@ public:
   ~PIRUserForm();
 
   void setupButtons();
+
+signals:
+  void runEnabled(bool);
   
 private slots:
   void on_userDef1Button_clicked();
@@ -52,6 +55,9 @@ private slots:
   void on_userDef4Button_clicked();
   void on_userDef5Button_clicked();
   void on_userDef6Button_clicked();
+  void on_loadPackButton_clicked();
+  void on_runButton_clicked();
+//  void on_macroComboBox_currentIndexChanged(const QString &arg1);
 
 private:
   Ui::PIRUserForm *ui;

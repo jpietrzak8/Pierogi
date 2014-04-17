@@ -1,7 +1,7 @@
 //
-// pirdeletemacrodialog.cpp
+// pirrunmacrodialog.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -20,26 +20,45 @@
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 
-#include "pirdeletemacrodialog.h"
-#include "ui_pirdeletemacrodialog.h"
+#include "pirrunmacrodialog.h"
+#include "ui_pirrunmacrodialog.h"
 
-#include "macros/pirmacro.h"
+#include "mainwindow.h"
 
-PIRDeleteMacroDialog::PIRDeleteMacroDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::PIRDeleteMacroDialog)
+PIRRunMacroDialog::PIRRunMacroDialog(
+  MainWindow *mw)
+  : QDialog(),
+    mainWindow(mw),
+    ui(new Ui::PIRRunMacroDialog)
 {
   ui->setupUi(this);
 }
 
-PIRDeleteMacroDialog::~PIRDeleteMacroDialog()
+PIRRunMacroDialog::~PIRRunMacroDialog()
 {
   delete ui;
 }
 
 
-void PIRDeleteMacroDialog::setup(
-  PIRMacro *macro)
+void PIRRunMacroDialog::setMacroName(
+  QString macroName)
 {
-  ui->macroNameLabel->setText(macro->getName());
+  ui->nameLabel->setText(macroName);
+}
+
+void PIRRunMacroDialog::setCommandName(
+  QString commandName)
+{
+  ui->commandNameLabel->setText(commandName);
+}
+
+void PIRRunMacroDialog::on_buttonBox_accepted()
+{
+  // Do nothing here?  Not sure.
+}
+
+void PIRRunMacroDialog::on_buttonBox_rejected()
+{
+  // Stop the running macro:
+  mainWindow->abortMacro();
 }

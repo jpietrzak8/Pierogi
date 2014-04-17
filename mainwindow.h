@@ -35,6 +35,7 @@ class QListWidget;
 class QListWidgetItem;
 class QDialog;
 class QKeyEvent;
+class QComboBox;
 
 //class PIRTabWidget;
 
@@ -155,8 +156,21 @@ public:
     PIRTabBarName tabBarName,
     int panelIndex);
 
+/*
   PIRMacroPack *getUserPack();
   PIRMacroPack *getMultitapPack();
+*/
+
+  bool loadNewMacros(
+    QString filename);
+
+  void populateMacroComboBox(
+    QComboBox *cb);
+
+  void runMacro(
+    QString macroName);
+
+  void abortMacro();
 
   bool hasMacroButton(
     unsigned int buttonID);

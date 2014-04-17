@@ -192,7 +192,6 @@ void SanyoTV1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
-//  setPreData(0x1CE3, 16);
   setPreData(0x38, 8);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -211,32 +210,36 @@ void SanyoTV1::populateProtocol(
   addKey("Sleep", Sleep_Key, 0x0D, 8);
   addKey("Volume Up", VolumeUp_Key, 0x0E, 8);
   addKey("Volume Down", VolumeDown_Key, 0x0F, 8);
-//  addKey("Closed Captions", Captions_Key, 0x11, 8);
+  addKey("Closed Captions", Captions_Key, 0x11, 8);
   addKey("Power", Power_Key, 0x12, 8);
-  addKey("video_mode", Input_Key, 0x13, 8); // "input"
+  addKey("Input", Input_Key, 0x13, 8); // "TV/AV"
   addKey("Surround Toggle", Surround_Key, 0x14, 8);
   addKey("Enter", Enter_Key, 0x15, 8); // odd
   addKey("DASH", Dash_Key, 0x15, 8);
   addKey("Menu", Menu_Key, 0x17, 8); // "setup"
   addKey("Mute", Mute_Key, 0x18, 8);
   addKey("Recall", PrevChannel_Key, 0x19, 8);
-  addKey("audio", Audio_Key, 0x1A, 8);
-  addKey("CC", Captions_Key, 0x1B, 8); // ?
-  addKey("reset", Reset_Key, 0x1C, 8);
+  addKey("audio", Audio_Key, 0x1A, 8); // My Sanyo has this mapping
+//  addKey("audio", SoundMode_Key, 0x1A, 8); // Other Sanyos have this one?
+//  addKey("CC", Captions_Key, 0x1B, 8); // ?
+  addKey("reset", Reset_Key, 0x1C, 8); // picture adjustment
+  addKey("select", Select_Key, 0x1D, 8);
   addKey("right arrow", Right_Key, 0x1E, 8);
   addKey("left arrow", Left_Key, 0x1F, 8);
-  addKey("V-guide menu", Unmapped_Key, 0x4C, 8);
+  addKey("V-guide menu", Guide_Key, 0x4C, 8);
   addKey("up arrow", Up_Key, 0x4E, 8);
   addKey("down arrow", Down_Key, 0x4F, 8);
   addKey("exit", Exit_Key, 0x53, 8);
-  addKey("enter", Select_Key, 0x54, 8);
+//  addKey("enter", Select_Key, 0x54, 8);
   addKey("tuner", ADTunerSwap_Key, 0x55, 8); // "Tuner Toggle (analog-digital)"
+//  addKey("+100", PlusOneHundred_Key, 0x55, 8);
   addKey("pix shape", AspectRatio_Key, 0x57, 8);
   addKey("pip up", Unmapped_Key, 0x59, 8);
   addKey("pip down", Unmapped_Key, 0x5A, 8);
   addKey("PIP", PIP_Key, 0x5B, 8);
   addKey("Swap", PIPSwap_Key, 0x5D, 8);
   addKey("freeze", PIPPause_Key, 0x5E, 8);
+  addKey("DISCRETE OFF", PowerOff_Key, 0x76, 8);
   addKey("Volume Cycle (Max/Min/Normal)", Unmapped_Key, 0x80, 8);
   addKey("puts 'A' on the screen", Unmapped_Key, 0x81, 8);
   addKey("puts 'P' on the screen", Unmapped_Key, 0x82, 8);
@@ -248,15 +251,18 @@ void SanyoTV1::populateProtocol(
   addKey("Sharpness Cycle", Unmapped_Key, 0x8C, 8);
   addKey("bass", BassUp_Key, 0x8E, 8);
   addKey("Treble", TrebleUp_Key, 0x8F, 8);
-  addKey("Service Menu", Unmapped_Key, 0x91, 8);
+  addKey("Service Menu", ServiceMenu_Key, 0x91, 8);
   addKey("Crude Info", Unmapped_Key, 0x96, 8);
-  addKey("refresh?", Unmapped_Key, 0x97, 8);
+  addKey("Video 1", ComponentInput_Key, 0x97, 8);
   addKey("Color Enhancer Cycle (Normal/Warm/Cool)", Unmapped_Key, 0x98, 8);
-  addKey("Component2 Input", Unmapped_Key, 0x9C, 8);
-  addKey("Speaker Toggle", Unmapped_Key, 0x9D, 8);
+  addKey("Video 3", MDInput_Key, 0x99, 8); // hack
+  addKey("Video 2", Component2Input_Key, 0x9C, 8);
+  addKey("HDMI 1", HDMIInput_Key, 0x9D, 8); // "Speaker Toggle"
+  addKey("HDMI 2", HDMI2Input_Key, 0x9E, 8);
   addKey("puts 'R32 B26' on the screen.  MENU cancels.", Unmapped_Key, 0x9F, 8);
-  addKey("Reset?", Unmapped_Key, 0xC0, 8);
-  addKey("Clear?", Unmapped_Key, 0xC1, 8);
+  addKey("Reset?", FactoryReset_Key, 0xC0, 8);
+  addKey("Clear?", Unmapped_Key, 0xC1, 8); // System Info
+  addKey("DISPLAY PARAMETERS", Unmapped_Key, 0xC2, 8);
   addKey("Self Test", Unmapped_Key, 0xC3, 8);
 
 //  addKey("Black screen (recoverable with 0x9F then MENU)", Unmapped_Key, 0x9E, 8);
@@ -268,66 +274,13 @@ void SanyoTV1::populateInputList(
 {
   cb->clear();
 
+  cb->addItem("Input Toggle", QVariant(Input_Key));
   cb->addItem("A/D Tuner Toggle", QVariant(ADTunerSwap_Key));
-}
-
-
-SanyoTV1a::SanyoTV1a(
-  unsigned int index)
-  : SanyoTV1(index)
-{
-  setKeysetName("TV Keyset 1a");
-
-  addControlledDevice(Sanyo_Make, "28LN4-C", TV_Device);
-  addControlledDevice(Sanyo_Make, "28CN7F", TV_Device);
-  addControlledDevice(Sanyo_Make, "C21EF44", TV_Device);
-  addControlledDevice(Sanyo_Make, "C25EG64", TV_Device);
-  addControlledDevice(Sanyo_Make, "C28EH64", TV_Device);
-//  addControlledDevice(Sanyo_Make, "CED3011PV", TV_Device);
-//  addControlledDevice(Sanyo_Make, "CEM6011PV", TV_Device);
-//  addControlledDevice(Sanyo_Make, "DP32746", TV_Device);
-}
-
-
-void SanyoTV1a::populateProtocol(
-  QObject *guiObject)
-{
-  if (threadableProtocol)
-  {
-    // If the pointer is not null, the keyset must already be populated.
-    return;
-  }
-
-  SanyoTV1::populateProtocol(guiObject);
-
-  addKey("-/--", DoubleDigit_Key, 0x0A, 8);
-  addKey("CS", Unmapped_Key, 0x0B, 8); // 2-
-  addKey("P+", ChannelUp_Key, 0x0C, 8);
-  addKey("UP", Up_Key, 0x0C, 8);
-  addKey("P-", ChannelDown_Key, 0x0D, 8);
-  addKey("DOWN", Down_Key, 0x0D, 8);
-  addKey("NORMAL", Unmapped_Key, 0x11, 8); // "SYMBOL_2"
-  addKey("MUTE", Mute_Key, 0x15, 8);
-  addKey("VOL+", VolumeUp_Key, 0x16, 8);
-  addKey("RIGHT", Right_Key, 0x16, 8);
-  addKey("VOL-", VolumeDown_Key, 0x17, 8);
-  addKey("LEFT", Left_Key, 0x17, 8);
-  addKey("OSD", Info_Key, 0x18, 8); // "SYMBOL_1
-  addKey("RECALL/TEXT_REVEAL", TeletextReveal_Key, 0x18, 8);
-  addKey("CLOCK", Sleep_Key, 0x19, 8); // "SLEEP/ON-TIMER/TEXT_CANCEL"
-  addKey("POWER", Power_Key, 0x1C, 8);
-  addKey("P--P", PrevChannel_Key, 0x1D, 8); // "ALTERNATE"
-  addKey("A-B", Unmapped_Key, 0x40, 8); //?
-  addKey("WIDE", Unmapped_Key, 0x43, 8);
-  addKey("TXT/TV", Teletext_Key, 0x46, 8); // teletext
-  addKey("Red", Red_Key, 0x49, 8);
-  addKey("Green", Green_Key, 0x4A, 8);
-  addKey("Yellow", Yellow_Key, 0x4B, 8);
-  addKey("Blue", Blue_Key, 0x4C, 8);
-  addKey("TEXT_HOLD", TeletextHold_Key, 0x4E, 8); // "SHRINK"
-  addKey("TEXT_INDEX-PAGE", TeletextIndex_Key, 0x51, 8);
-  addKey("TEXT_SIZE", TeletextSize_Key, 0x56, 8); // "EXPAND"
-  addKey("MENU", Menu_Key, 0x51, 8);
+  cb->addItem("Video 1", QVariant(ComponentInput_Key));
+  cb->addItem("Video 2", QVariant(Component2Input_Key));
+  cb->addItem("Video 3", QVariant(MDInput_Key));
+  cb->addItem("HDMI 1", QVariant(HDMIInput_Key));
+  cb->addItem("HDMI 2", QVariant(HDMI2Input_Key));
 }
 
 
@@ -356,38 +309,6 @@ void SanyoTV1b::populateProtocol(
 }
 
 
-SanyoTV1c::SanyoTV1c(
-  unsigned int index)
-  : SanyoTV1a(index)
-{
-  setKeysetName("TV Keyset 1c");
-}
-
-
-void SanyoTV1c::populateProtocol(
-  QObject *guiObject)
-{
-  if (threadableProtocol)
-  {
-    // If the pointer is not null, the keyset must already be populated.
-    return;
-  }
-
-  SanyoTV1a::populateProtocol(guiObject);
-
-  addKey("contrast_>", ContrastUp_Key, 0x0E, 8);
-  addKey("contrast_<", ContrastDown_Key, 0x0F, 8);
-  addKey("prg_scan", Scan_Key, 0x10, 8);
-  addKey("tuning_>", ChannelUp_Key, 0x12, 8);
-  addKey("tuning_<", ChannelDown_Key, 0x13, 8);
-  addKey("clear_screen", Unmapped_Key, 0x18, 8);
-  addKey("colour_>", ColorUp_Key, 0x1A, 8);
-  addKey("colour_<", ColorDown_Key, 0x1B, 8);
-  addKey("bright_>", BrightnessUp_Key, 0x1E, 8);
-  addKey("bright_<", BrightnessDown_Key, 0x1F, 8);
-}
-
-
 SanyoTV1d::SanyoTV1d(
   unsigned int index)
   : SanyoTV1(index)
@@ -413,6 +334,102 @@ void SanyoTV1d::populateProtocol(
   addKey("Digicon", PictureMode_Key, 0x1D, 8);
   addKey("Menu +", Right_Key, 0x1E, 8);
   addKey("Menu -", Left_Key, 0x1F, 8);
+}
+
+
+SanyoTV2::SanyoTV2(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "TV Keyset 2",
+      Sanyo_Make,
+      index)
+{
+  addControlledDevice(Sanyo_Make, "28LN4-C", TV_Device);
+  addControlledDevice(Sanyo_Make, "28CN7F", TV_Device);
+  addControlledDevice(Sanyo_Make, "C21EF44", TV_Device);
+  addControlledDevice(Sanyo_Make, "C25EG64", TV_Device);
+  addControlledDevice(Sanyo_Make, "C28EH64", TV_Device);
+//  addControlledDevice(Sanyo_Make, "CED3011PV", TV_Device);
+//  addControlledDevice(Sanyo_Make, "CEM6011PV", TV_Device);
+//  addControlledDevice(Sanyo_Make, "DP32746", TV_Device);
+}
+
+
+// Note: Same device ID as keyset 1, but very different commands!!!
+void SanyoTV2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // If the pointer is not null, the keyset must already be populated.
+    return;
+  }
+
+  threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  setPreData(0x38, 8);
+
+  addKey("0", Zero_Key, 0x00, 8);
+  addKey("1", One_Key, 0x01, 8);
+  addKey("2", Two_Key, 0x02, 8);
+  addKey("3", Three_Key, 0x03, 8);
+  addKey("4", Four_Key, 0x04, 8);
+  addKey("5", Five_Key, 0x05, 8);
+  addKey("6", Six_Key, 0x06, 8);
+  addKey("7", Seven_Key, 0x07, 8);
+  addKey("8", Eight_Key, 0x08, 8);
+  addKey("9", Nine_Key, 0x09, 8);
+  addKey("-/--", DoubleDigit_Key, 0x0A, 8);
+  addKey("CS", Unmapped_Key, 0x0B, 8); // 2-
+  addKey("P+", ChannelUp_Key, 0x0C, 8);
+  addKey("UP", Up_Key, 0x0C, 8);
+  addKey("P-", ChannelDown_Key, 0x0D, 8);
+  addKey("DOWN", Down_Key, 0x0D, 8);
+  addKey("contrast_>", ContrastUp_Key, 0x0E, 8);
+  addKey("contrast_<", ContrastDown_Key, 0x0F, 8);
+  addKey("prg_scan", Scan_Key, 0x10, 8);
+  addKey("NORMAL", Unmapped_Key, 0x11, 8); // "SYMBOL_2"
+  addKey("tuning_>", ChannelUp_Key, 0x12, 8);
+  addKey("tuning_<", ChannelDown_Key, 0x13, 8);
+  addKey("tv/av", Input_Key, 0x14, 8);
+  addKey("MUTE", Mute_Key, 0x15, 8);
+  addKey("VOL+", VolumeUp_Key, 0x16, 8);
+  addKey("RIGHT", Right_Key, 0x16, 8);
+  addKey("VOL-", VolumeDown_Key, 0x17, 8);
+  addKey("LEFT", Left_Key, 0x17, 8);
+  addKey("OSD", Info_Key, 0x18, 8); // "SYMBOL_1", "status"
+  addKey("RECALL/TEXT_REVEAL", TeletextReveal_Key, 0x18, 8);
+  addKey("clear_screen", Unmapped_Key, 0x18, 8);
+  addKey("CLOCK", Sleep_Key, 0x19, 8); // "SLEEP/ON-TIMER/TEXT_CANCEL"
+//  addKey("ok", Select_Key, 0x1A, 8);
+  addKey("colour_>", ColorUp_Key, 0x1A, 8);
+  addKey("colour_<", ColorDown_Key, 0x1B, 8);
+  addKey("POWER", Power_Key, 0x1C, 8);
+  addKey("P--P", PrevChannel_Key, 0x1D, 8); // "ALTERNATE"
+  addKey("bright_>", BrightnessUp_Key, 0x1E, 8);
+  addKey("bright_<", BrightnessDown_Key, 0x1F, 8);
+  addKey("A-B", Unmapped_Key, 0x40, 8); //?
+  addKey("WIDE", Unmapped_Key, 0x43, 8);
+  addKey("TXT/TV", Teletext_Key, 0x46, 8); // teletext
+  addKey("Red", Red_Key, 0x49, 8); // surround
+  addKey("Green", Green_Key, 0x4A, 8);
+  addKey("Yellow", Yellow_Key, 0x4B, 8); // bass
+  addKey("Blue", Blue_Key, 0x4C, 8); // time
+  addKey("TEXT_HOLD", TeletextHold_Key, 0x4E, 8); // "SHRINK"
+  addKey("TEXT_INDEX-PAGE", TeletextIndex_Key, 0x51, 8);
+  addKey("MENU", Menu_Key, 0x51, 8);
+  addKey("TEXT_SIZE", TeletextSize_Key, 0x56, 8); // "EXPAND"
+  addKey("AV1", CompositeInput_Key, 0xD8, 8);
+}
+
+
+void SanyoTV2::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Input Toggle", QVariant(Input_Key));
+  cb->addItem("AV 1", QVariant(CompositeInput_Key));
 }
 
 

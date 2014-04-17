@@ -49,7 +49,7 @@ class PIRPlaystationForm;
 class PIRUserForm;
 
 // These need to go elsewhere:
-class PIRMacroForm;
+//class PIRMacroForm;
 //class PIRPowerSearchForm;
 //class PIRAdvancedForm;
 
@@ -104,7 +104,7 @@ public:
   void setupRecordTabs();
 */
 
-  QComboBox *getKeysetComboBox();
+//  QComboBox *getKeysetComboBox();
 
 //  void gotoPreviousTabs();
 //  void gotoNextTabs();
@@ -136,7 +136,7 @@ private:
   PIRRoombaForm *roombaForm;
   PIRPlaystationForm *playstationForm;
   PIRUserForm *userForm;
-  PIRMacroForm *macroForm;
+//  PIRMacroForm *macroForm;
 //  PIRPowerSearchForm *powerSearchForm;
 //  PIRAdvancedForm *advancedForm;
 

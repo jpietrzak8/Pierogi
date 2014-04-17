@@ -23,32 +23,37 @@
 #include "pirmacromanager.h"
 
 #include "pirmacropack.h"
-#include "pirreversemultitap.h"
+//#include "pirreversemultitap.h"
 #include "pirmacro.h"
 #include "pirmacrocommanditem.h"
 #include "mainwindow.h"
+#include "dialogs/pirrunmacrodialog.h"
 
-#include <QSettings>
+//#include <QSettings>
+#include <QXmlStreamReader>
+#include <QFile>
+#include <QMaemo5InformationBox>
+
 #include <iostream>
 
 PIRMacroManager::PIRMacroManager(
   MainWindow *mw)
-  : userPack(0),
-    multitapPack(0),
-    keyboardController(0),
-    buttonsController(0),
+  : macroPack(0),
+    macroDialog(0),
     mainWindow(mw)
 {
-  userPack = new PIRMacroPack("User Defined Macros");
-  multitapPack = new PIRReverseMultitap(mw);
+//  userPack = new PIRMacroPack("User Defined Macros");
+//  multitapPack = new PIRReverseMultitap(mw);
 
-  retrieveSettings();
+//  retrieveSettings();
 
   // For testing, set the multitap pack as the keyboard controller:
 //  keyboardController = multitapPack;
 
   // And more testing, userpack as button controller:
 //  buttonsController = userPack;
+
+  macroDialog = new PIRRunMacroDialog(mainWindow);
 }
 
 
@@ -57,9 +62,12 @@ PIRMacroManager::~PIRMacroManager()
 // The UI currently owns the macro packs...
 //  delete userPack;
 //  delete multitapPack;
+
+  if (macroDialog) delete macroDialog;
 }
 
 
+/*
 PIRMacroPack *PIRMacroManager::getUserPack()
 {
   return userPack;
@@ -70,28 +78,50 @@ PIRMacroPack *PIRMacroManager::getMultitapPack()
 {
   return multitapPack;
 }
+*/
 
 
-void PIRMacroManager::setKeyboardController(
+/*
+void PIRMacroManager::setKeyboardMacros(
   PIRMacroPack *pack)
 {
-  keyboardController = pack;
+  keyboardMacros = pack;
 }
 
 
-void PIRMacroManager::setButtonsController(
+void PIRMacroManager::setButtonMacros(
   PIRMacroPack *pack)
 {
-  buttonsController = pack;
+  buttonMacros = pack;
+}
+*/
+
+
+void PIRMacroManager::runMacro(
+  QString macroName)
+{
+  if (macroPack)
+  {
+    macroPack->runMacro(macroDialog, macroName);
+  }
+}
+
+
+void PIRMacroManager::abortMacro()
+{
+  if (macroPack)
+  {
+    macroPack->abortMacro();
+  }
 }
 
 
 void PIRMacroManager::handleKeypress(
   char key)
 {
-  if (keyboardController)
+  if (macroPack)
   {
-    keyboardController->executeKey(key);
+    macroPack->executeKey(macroDialog, key);
   }
   else
   {
@@ -103,8 +133,8 @@ void PIRMacroManager::handleKeypress(
 bool PIRMacroManager::hasMacroButton(
   unsigned int buttonID)
 {
-  if (buttonsController)
-    return buttonsController->hasButton(buttonID);
+  if (macroPack)
+    return macroPack->hasButton(buttonID);
 
   return false;
 }
@@ -113,8 +143,8 @@ bool PIRMacroManager::hasMacroButton(
 QString PIRMacroManager::getMacroButtonText(
   unsigned int buttonID)
 {
-  if (buttonsController)
-    return buttonsController->buttonText(buttonID);
+  if (macroPack)
+    return macroPack->buttonText(buttonID);
 
   return "No Macro Found";
 }
@@ -123,11 +153,11 @@ QString PIRMacroManager::getMacroButtonText(
 void PIRMacroManager::executeMacroButton(
   unsigned int buttonID)
 {
-  if (buttonsController)
-    buttonsController->executeButton(buttonID);
+  if (macroPack) macroPack->executeButton(macroDialog, buttonID);
 }
 
 
+/*
 void PIRMacroManager::storeSettings()
 {
   if (userPack) userPack->storeSettings();
@@ -237,9 +267,11 @@ void PIRMacroManager::retrieveSettings()
 
   settings.endArray();
 }
+*/
 
 
 // This needs to be done differently!!!
+/*
 void PIRMacroManager::setKbdFocus(
   int index)
 {
@@ -266,6 +298,7 @@ void PIRMacroManager::setBtnFocus(
     buttonsController = multitapPack;
   }
 }
+*/
 
 
 void PIRMacroManager::executeStandardKey(
@@ -314,5 +347,92 @@ void PIRMacroManager::executeStandardKey(
 
   default:
     break;
+  }
+}
+
+
+bool PIRMacroManager::parseMacroFile(
+  QString filename)
+{
+  QFile f(filename);
+
+  if (!f.exists())
+  {
+    QString errStr = "File ";
+    errStr += filename;
+    errStr += " does not exist.";
+    QMaemo5InformationBox::information(0, errStr, 0);
+    return false;
+  }
+
+  if (!f.open(QIODevice::ReadOnly | QIODevice::Text))
+  {
+    QString errStr = "File ";
+    errStr += filename;
+    errStr += " could not be opened.";
+    QMaemo5InformationBox::information(0, errStr, 0);
+    return false;
+  }
+
+  QXmlStreamReader sr(&f);
+  PIRMacroPack *pack = 0;
+
+  while (!sr.atEnd())
+  {
+    sr.readNext();
+
+    if (sr.isStartElement())
+    {
+      if (sr.name() == "macropack")
+      {
+        QString name = "unnamed";
+
+        if (sr.attributes().hasAttribute("name"))
+        {
+          name = sr.attributes().value("name").toString();
+        }
+
+        pack = new PIRMacroPack(name, mainWindow);
+
+        if (!pack->parseMacroPack(sr))
+        {
+          // parsing failed.
+          QString errStr = "Failed to parse ";
+          errStr += name;
+          errStr += " macro pack.";
+          QMaemo5InformationBox::information(0, errStr, 0);
+          return false;
+        }
+      }
+    }
+  }
+
+  if (sr.hasError())
+  {
+    QString errStr = "QXmlStreamReader returned error: ";
+    errStr += sr.errorString();
+    QMaemo5InformationBox::information(0, errStr, 0);
+    return false;
+  }
+
+  // If we reach this point, we should have a valid pack:
+  if (macroPack)
+  {
+    // Remove the existing macro pack:
+    delete macroPack;
+  }
+
+  macroPack = pack;
+
+  return true;
+}
+
+
+void PIRMacroManager::populateMacroComboBox(
+  QComboBox *cb)
+{
+  if (macroPack)
+  {
+    macroPack->populateMacroComboBox(cb);
   }
 }

@@ -105,7 +105,7 @@ MainWindow::MainWindow(QWidget *parent)
   selectKeysetForm = new PIRSelectKeysetForm(this);
   favoritesDialog = new PIRFavoritesDialog(this);
   myKeysets->populateListWidgets(selectKeysetForm, favoritesDialog);
-  selectKeysetForm->populateKeysetComboBox(myPanels->getKeysetComboBox());
+//  selectKeysetForm->populateKeysetComboBox(myPanels->getKeysetComboBox());
 
   tabsChoiceDialog = new PIRTabsChoiceDialog(this);
 
@@ -951,6 +951,7 @@ void MainWindow::updateFavoriteKeysetSelection(
 }
 
 
+/*
 PIRMacroPack *MainWindow::getUserPack()
 {
   return myMacros->getUserPack();
@@ -961,6 +962,7 @@ PIRMacroPack *MainWindow::getMultitapPack()
 {
   return myMacros->getMultitapPack();
 }
+*/
 
 
 void MainWindow::handleKeypress(
@@ -1148,9 +1150,52 @@ void MainWindow::keyReleaseEvent(
 */
 
 
+bool MainWindow::loadNewMacros(
+  QString filename)
+{
+  if (!myMacros)
+  {
+    myMacros = new PIRMacroManager(this);
+  }
+
+  return myMacros->parseMacroFile(filename);
+}
+
+
+void MainWindow::populateMacroComboBox(
+  QComboBox *cb)
+{
+  if (myMacros)
+  {
+    myMacros->populateMacroComboBox(cb);
+  }
+}
+
+
+void MainWindow::runMacro(
+  QString macroName)
+{
+  if (myMacros)
+  {
+    myMacros->runMacro(macroName);
+  }
+}
+
+
+void MainWindow::abortMacro()
+{
+  if (myMacros)
+  {
+    myMacros->abortMacro();
+  }
+}
+
+
 bool MainWindow::hasMacroButton(
   unsigned int buttonID)
 {
+  if (!myMacros) return false;
+
   return myMacros->hasMacroButton(buttonID);
 }
 
@@ -1158,6 +1203,8 @@ bool MainWindow::hasMacroButton(
 QString MainWindow::getMacroButtonText(
   unsigned int buttonID)
 {
+  if (!myMacros) return QString();
+
   return myMacros->getMacroButtonText(buttonID);
 }
 
@@ -1165,7 +1212,10 @@ QString MainWindow::getMacroButtonText(
 void MainWindow::executeMacroButton(
   unsigned int buttonID)
 {
-  myMacros->executeMacroButton(buttonID);
+  if (myMacros)
+  {
+    myMacros->executeMacroButton(buttonID);
+  }
 }
 
 
@@ -1175,12 +1225,15 @@ void MainWindow::updateUserButtons()
 }
 
 
+/*
 void MainWindow::storeMacros()
 {
   myMacros->storeSettings();
 }
+*/
 
 
+/*
 void MainWindow::setMacroKbdFocus(
   int index)
 {
@@ -1193,6 +1246,7 @@ void MainWindow::setMacroBtnFocus(
 {
   myMacros->setBtnFocus(index);
 }
+*/
 
 
 void MainWindow::switchToTab(

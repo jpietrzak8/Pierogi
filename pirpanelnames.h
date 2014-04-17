@@ -47,7 +47,7 @@ enum PIRPanelName
   Roomba_Panel,
   Playstation_Panel,
   User_Panel,
-  Macro_Panel,
+//  Macro_Panel,
 //  PowerSearch_Panel,
 //  Advanced_Panel,
   Last_Panel_Marker // Used when traversing this enumeration.
@@ -68,7 +68,7 @@ enum PIRTabBarName
   Camera_Tabs,
   Roomba_Tabs,
   Console_Tabs,
-  Macro_Tabs,
+//  Macro_Tabs,
 //  PowerSearch_Tabs,
 //  Advanced_Tabs,
   Last_Tabs_Marker

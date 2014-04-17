@@ -186,7 +186,6 @@ enum PIRKeyName
   Keystone_Key,
   PictureMute_Key,
   Focus_Key,
-  SpeakerSwitch_Key,
 
   // Input Controls:
   Input_Key,
@@ -221,6 +220,9 @@ enum PIRKeyName
   DigitalCoaxInput_Key,
   USBInput_Key,
   ADTunerSwap_Key,
+
+  // Output Controls:
+  SpeakerSwitch_Key,
 
   // "Program" Controls:
   Program_Key,
@@ -282,6 +284,10 @@ enum PIRKeyName
   OpenShutter_Key,
   DelayedOpenShutter_Key,
 
+  // "Factory" TV controls:
+  ServiceMenu_Key,
+  FactoryReset_Key,
+
   // Other keys:
   Captions_Key,
   Info_Key,
@@ -315,6 +321,9 @@ public:
 
   PIRKeyName getKeynameID(
     QString keynameString);
+
+  PIRKeyName getKeynameID(
+    QStringRef keynameString);
 
   void populateComboBox(
     QComboBox *cb);

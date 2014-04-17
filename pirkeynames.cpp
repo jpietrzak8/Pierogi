@@ -27,6 +27,19 @@
 
 PIRKeynameMgr::PIRKeynameMgr()
 {
+  keynameStrings[Power_Key] = "Power";
+  keynameStrings[PowerOn_Key] = "Power On";
+  keynameStrings[PowerOff_Key] = "Power Off";
+  keynameStrings[Menu_Key] = "Menu";
+  keynameStrings[Up_Key] = "Up";
+  keynameStrings[Down_Key] = "Down";
+  keynameStrings[Left_Key] = "Left";
+  keynameStrings[Right_Key] = "Right";
+  keynameStrings[Select_Key] = "Select";
+  keynameStrings[Exit_Key] = "Exit";
+  keynameStrings[PageUp_Key] = "Page Up";
+  keynameStrings[PageDown_Key] = "Page Down";
+  keynameStrings[Guide_Key] = "Guide";
   keynameStrings[Zero_Key] = "0";
   keynameStrings[One_Key] = "1";
   keynameStrings[Two_Key] = "2";
@@ -40,11 +53,8 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[Enter_Key] = "Enter";
   keynameStrings[Clear_Key] = "Clear";
   keynameStrings[PlusOneHundred_Key] = "+100";
-  keynameStrings[Dash_Key] = "- (Dash)";
-  keynameStrings[DoubleDigit_Key] = "-/-- (Double Digit)";
-  keynameStrings[Power_Key] = "Power";
-  keynameStrings[PowerOn_Key] = "Power On";
-  keynameStrings[PowerOff_Key] = "Power Off";
+  keynameStrings[Dash_Key] = "-";
+  keynameStrings[DoubleDigit_Key] = "-/--";
   keynameStrings[VolumeUp_Key] = "Volume Up";
   keynameStrings[VolumeDown_Key] = "Volume Down";
   keynameStrings[Mute_Key] = "Mute";
@@ -61,9 +71,9 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[Play_Key] = "Play";
   keynameStrings[Pause_Key] = "Pause";
   keynameStrings[Stop_Key] = "Stop";
-  keynameStrings[FastForward_Key] = "FastForward";
+  keynameStrings[FastForward_Key] = "Fast Forward";
   keynameStrings[Rewind_Key] = "Rewind";
-  keynameStrings[PlayX2_Key] = "PlayX2";
+  keynameStrings[PlayX2_Key] = "Play X2";
   keynameStrings[Next_Key] = "Next";
   keynameStrings[Previous_Key] = "Previous";
   keynameStrings[StepForward_Key] = "Step Forward";
@@ -84,17 +94,7 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[RecordStop_Key] = "Record Stop";
   keynameStrings[RecordMute_Key] = "Record Mute";
   keynameStrings[RecordTimed_Key] = "Record Timed";
-  keynameStrings[RecordPDC_Key] = "Record PDC (via Teletext)";
-  keynameStrings[Menu_Key] = "Menu";
-  keynameStrings[Up_Key] = "Up";
-  keynameStrings[Down_Key] = "Down";
-  keynameStrings[Left_Key] = "Left";
-  keynameStrings[Right_Key] = "Right";
-  keynameStrings[Select_Key] = "Select";
-  keynameStrings[Exit_Key] = "Exit";
-  keynameStrings[PageUp_Key] = "Page Up";
-  keynameStrings[PageDown_Key] = "Page Down";
-  keynameStrings[Guide_Key] = "Guide";
+  keynameStrings[RecordPDC_Key] = "Record PDC";
   keynameStrings[Red_Key] = "Red";
   keynameStrings[Green_Key] = "Green";
   keynameStrings[Yellow_Key] = "Yellow";
@@ -113,7 +113,7 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[TeletextStore_Key] = "Teletext Store";
   keynameStrings[TeletextIndex_Key] = "Teletext Index";
   keynameStrings[TeletextOff_Key] = "Teletext Off";
-  keynameStrings[PIP_Key] = "Picture in Picture";
+  keynameStrings[PIP_Key] = "PIP";
   keynameStrings[PIPSwap_Key] = "PIP Swap";
   keynameStrings[PIPMove_Key] = "PIP Move";
   keynameStrings[PIPSource_Key] = "PIP Source";
@@ -124,17 +124,17 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[PIPScan_Key] = "PIP Scan";
   keynameStrings[NextDisc_Key] = "Next Disc";
   keynameStrings[PrevDisc_Key] = "Previous Disc";
-  keynameStrings[DiscTitle_Key] = "DiscTitle";
-  keynameStrings[DiscMenu_Key] = "DiscMenu";
+  keynameStrings[DiscTitle_Key] = "Disc Title";
+  keynameStrings[DiscMenu_Key] = "Disc Menu";
   keynameStrings[DiscOne_Key] = "Disc One";
   keynameStrings[DiscTwo_Key] = "Disc Two";
   keynameStrings[DiscThree_Key] = "Disc Three";
   keynameStrings[Angle_Key] = "Angle";
-  keynameStrings[VHSSpeed_Key] = "SP/LP/SLP";
+  keynameStrings[VHSSpeed_Key] = "VHS Speed";
   keynameStrings[TrackingPlus_Key] = "Tracking +";
   keynameStrings[TrackingMinus_Key] = "Tracking -";
   keynameStrings[AutoTracking_Key] = "Auto Tracking";
-  keynameStrings[IndexSearch_Key] = "Index Search (VISS)";
+  keynameStrings[IndexSearch_Key] = "Index Search";
   keynameStrings[IndexMark_Key] = "Index Mark";
   keynameStrings[IndexErase_Key] = "Index Erase";
   keynameStrings[OneTouchPlayBack_Key] = "One Touch Playback";
@@ -143,7 +143,7 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[NoiseReduction_Key] = "Noise Reduction";
   keynameStrings[EnhancedBass_Key] = "Enhanced Bass";
   keynameStrings[BassUp_Key] = "Bass Up";
-  keynameStrings[BassDown_Key] = "BassDown";
+  keynameStrings[BassDown_Key] = "Bass Down";
   keynameStrings[TrebleUp_Key] = "Treble Up";
   keynameStrings[TrebleDown_Key] = "Treble Down";
   keynameStrings[BrightnessUp_Key] = "Brightness Up";
@@ -157,7 +157,6 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[Keystone_Key] = "Keystone";
   keynameStrings[PictureMute_Key] = "Picture Mute";
   keynameStrings[Focus_Key] = "Focus";
-  keynameStrings[SpeakerSwitch_Key] = "Switch Speaker Set";
   keynameStrings[Input_Key] = "Input";
   keynameStrings[CDInput_Key] = "CD Input";
   keynameStrings[PhonoInput_Key] = "Phono Input";
@@ -190,16 +189,18 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[DigitalCoaxInput_Key] = "Digital Coax Input";
   keynameStrings[USBInput_Key] = "USB Input";
   keynameStrings[ADTunerSwap_Key] = "A/D Tuner Swap"; 
+  keynameStrings[SpeakerSwitch_Key] = "Switch Speaker Set";
   keynameStrings[Program_Key] = "Program";
   keynameStrings[Memory_Key] = "Memory";
   keynameStrings[Call_Key] = "Call";
   keynameStrings[NextPreset_Key] = "Next Preset";
   keynameStrings[PrevPreset_Key] = "Previous Preset";
-  keynameStrings[ToggleBand_Key] = "Toggle Radio Band";
+  keynameStrings[ToggleBand_Key] = "Toggle Band";
   keynameStrings[FM_Key] = "FM";
-  keynameStrings[AM_Key] = "AM (MW)";
+  keynameStrings[AM_Key] = "AM";
   keynameStrings[LW_Key] = "LW";
   keynameStrings[FMMode_Key] = "FM Mode";
+  keynameStrings[RDS_Key] = "RDS Mode";
   keynameStrings[TempUp_Key] = "Temperature Up";
   keynameStrings[TempDown_Key] = "Temperature Down";
   keynameStrings[Fan_Key] = "Fan";
@@ -217,30 +218,32 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[RobotSpot_Key] = "Robot Spot";
   keynameStrings[RobotMax_Key] = "Robot Max";
   keynameStrings[RobotClean_Key] = "Robot Clean";
-  keynameStrings[PSSelect_Key] = "Select";
-  keynameStrings[PSStart_Key] = "Start";
-  keynameStrings[PSL1_Key] = "Left 1";
-  keynameStrings[PSL2_Key] = "Left 2";
-  keynameStrings[PSL3_Key] = "Left 3";
-  keynameStrings[PSR1_Key] = "Right 1";
-  keynameStrings[PSR2_Key] = "Right 2";
-  keynameStrings[PSR3_Key] = "Right 3";
-  keynameStrings[PSUp_Key] = "Up";
-  keynameStrings[PSDown_Key] = "Down";
-  keynameStrings[PSLeft_Key] = "Left";
-  keynameStrings[PSRight_Key] = "Right";
-  keynameStrings[PSTriangle_Key] = "Triangle";
-  keynameStrings[PSCircle_Key] = "Circle";
-  keynameStrings[PSCross_Key] = "Cross";
-  keynameStrings[PSSquare_Key] = "Square";
+  keynameStrings[PSSelect_Key] = "PS Select";
+  keynameStrings[PSStart_Key] = "PS Start";
+  keynameStrings[PSL1_Key] = "PS Left 1";
+  keynameStrings[PSL2_Key] = "PS Left 2";
+  keynameStrings[PSL3_Key] = "PS Left 3";
+  keynameStrings[PSR1_Key] = "PS Right 1";
+  keynameStrings[PSR2_Key] = "PS Right 2";
+  keynameStrings[PSR3_Key] = "PS Right 3";
+  keynameStrings[PSUp_Key] = "PS Up";
+  keynameStrings[PSDown_Key] = "PS Down";
+  keynameStrings[PSLeft_Key] = "PS Left";
+  keynameStrings[PSRight_Key] = "PS Right";
+  keynameStrings[PSTriangle_Key] = "PS Triangle";
+  keynameStrings[PSCircle_Key] = "PS Circle";
+  keynameStrings[PSCross_Key] = "PS Cross";
+  keynameStrings[PSSquare_Key] = "PS Square";
   keynameStrings[OpenShutter_Key] = "Open Shutter";
   keynameStrings[DelayedOpenShutter_Key] = "Open Shutter After Delay";
-  keynameStrings[Captions_Key] = "Captions / Subtitles";
+  keynameStrings[ServiceMenu_Key] = "Service Menu";
+  keynameStrings[FactoryReset_Key] = "Factory Reset";
+  keynameStrings[Captions_Key] = "Captions";
   keynameStrings[Info_Key] = "Info";
   keynameStrings[Sleep_Key] = "Sleep";
   keynameStrings[Reset_Key] = "Reset";
   keynameStrings[AspectRatio_Key] = "Aspect Ratio";
-  keynameStrings[Audio_Key] = "I / II (Audio)";
+  keynameStrings[Audio_Key] = "I/II";
   keynameStrings[Favorites_Key] = "Favorites";
   keynameStrings[Scan_Key] = "Scan";
   keynameStrings[Zoom_Key] = "Zoom";
@@ -266,7 +269,25 @@ QString PIRKeynameMgr::getKeynameString(
 PIRKeyName PIRKeynameMgr::getKeynameID(
   QString keynameString)
 {
-  return keynameIDs[keynameString];
+  ReverseKeynameCollection::const_iterator i = keynameIDs.find(keynameString);
+
+  if (i != keynameIDs.end())
+  {
+    return i->second;
+  }
+  else
+  {
+    return Unmapped_Key;
+  }
+}
+
+
+PIRKeyName PIRKeynameMgr::getKeynameID(
+  QStringRef keynameString)
+{
+  QString tempString = keynameString.toString();
+
+  return getKeynameID(tempString);
 }
 
 

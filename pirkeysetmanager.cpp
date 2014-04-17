@@ -811,10 +811,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SanyoVCR1(++counter));
   setupKeyset(new SanyoDVD1(++counter));
   setupKeyset(new SanyoTV1(++counter));
-  setupKeyset(new SanyoTV1a(++counter));
   setupKeyset(new SanyoTV1b(++counter));
-  setupKeyset(new SanyoTV1c(++counter));
   setupKeyset(new SanyoTV1d(++counter));
+  setupKeyset(new SanyoTV2(++counter));
   setupKeyset(new SanyoProjector1(++counter));
   setupKeyset(new SanyoProjector1a(++counter));
   setupKeyset(new SanyoProjector1b(++counter));

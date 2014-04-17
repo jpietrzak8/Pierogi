@@ -134,6 +134,8 @@ QString PIRKeyCommandItem::getTypeString() const
 }
 
 
+////////////////////////////
+
 PIRKeysetCommandItem::PIRKeysetCommandItem(
   QString displayName,
   unsigned int keysetToChoose,

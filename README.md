@@ -17,5 +17,5 @@ devices.
  * The ability to remember your favorite devices.
 
 For more information, visit the Pierogi website:
-
-http://pierogi.garage.maemo.org
+ 
+http://pietrzak.github.io/pierogi
