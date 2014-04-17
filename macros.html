@@ -73,6 +73,44 @@ Currently, values from A-Z are supported.  Pressing the macro's associated
 key will execute the macro.
 </p>
 
+<h3>Send</h3>
+
+<p>
+The "send" element mimics the task of pressing a button.  It has one
+(required) attribute, "key", which contains a string identifying a
+Pierogi key.  The available key names are listed below under "Available
+Keys".
+</p>
+
+<h3>Keyset</h3>
+
+<p>
+The "keyset" element allows you to specify a particular Pierogi keyset;
+all commands sequentially following that element will be chosen from that
+keyset (until another "keyset" element is defined or the end of the 
+list of commands is reached).  When the macro completes, Pierogi will be
+reset back to the keyset used before the macro was executed.
+</p>
+
+<p>
+There are two attributes to this element, "make" and "name", both
+required.  This is because Pierogi internally indexes keysets by make
+and name; it would be complicated to try and pick the two identifiers
+out of a single keyset name string.  The list of available keysets,
+broken into their make and name portions, can be found below under
+"Available Keysets".
+</p>
+
+<h3>Pause</h3>
+
+<p>
+The "pause" element allows you to tell the macro to stop executing for
+a period of time; this can be useful, for example, to allow a TV to
+boot up before sending it further commands.  It takes one attribute,
+"seconds", which is an integer value denoting how many seconds to wait
+before continuing.
+</p>
+
 <h3>Examples</h3>
 
 <p>
