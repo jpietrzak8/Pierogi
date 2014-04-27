@@ -1,7 +1,7 @@
 //
-// necxprotocol.h
+// piflicabletabbar.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 by John Pietrzak  (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -20,43 +20,25 @@
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 
-#ifndef NECXPROTOCOL_H
-#define NECXPROTOCOL_H
+#ifndef PIRFLICKABLETABBAR_H
+#define PIRFLICKABLETABBAR_H
 
-#include "spaceprotocol.h"
+#include <QListWidget>
+#include <QSize>
 
-class PIRInfraredLED;
+// In order to get a usable horizontal list widget, you have to subclass
+// QListWidget and override the size hint.
+// Or not!  It looks like I was wrong...
 
-//
-// The "NECX" protocol is a slight variation on the popular NEC protocol.
-// It includes the "short repeat" feature of NEC, but implements it in a
-// slightly different way.
-//
-
-class NECXProtocol: public SpaceProtocol
+class PIRFlickableTabBar: public QListWidget
 {
   Q_OBJECT
 
 public:
-  NECXProtocol(
-    QObject *guiObject,
-    unsigned int index,
-    bool srtRep);
+  PIRFlickableTabBar(
+    QWidget *parent);
 
-public slots:
-  void startSendingCommand(
-    unsigned int threadableID,
-    PIRKeyName command);
-
-private:
-  bool isShortRepeat;
-
-  int generateStandardCommand(
-    const PIRKeyBits &bits,
-    PIRInfraredLED &led);
-
-  int generateRepeatCommand(
-    PIRInfraredLED &led);
+protected:
 };
 
-#endif // NECXPROTOCOL_H
+#endif // PIRFLICKABLETABBAR_H

@@ -38,6 +38,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Apple_Make] = "Apple";
   makes[Arcam_Make] = "Arcam";
   makes[Astro_Make] = "Astro";
+  makes[BangAndOlufsen_Make] = "Bang & Olufsen";
   makes[Beko_Make] = "Beko";
   makes[BenQ_Make] = "BenQ";
   makes[Blaupunkt_Make] = "Blaupunkt";

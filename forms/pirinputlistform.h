@@ -46,9 +46,33 @@ public:
     unsigned int id);
 
 signals:
+  void pcEnabled(bool);
+  void antennaEnabled(bool);
+  void cableEnabled(bool);
+  void satelliteEnabled(bool);
+  void compositeEnabled(bool);
+  void svideoEnabled(bool);
+  void componentEnabled(bool);
+  void hdmiEnabled(bool);
   void selectInputEnabled(bool);
   
 private slots:
+  void on_pcInputButton_pressed();
+  void on_pcInputButton_released();
+  void on_antennaInputButton_pressed();
+  void on_antennaInputButton_released();
+  void on_cableInputButton_pressed();
+  void on_cableInputButton_released();
+  void on_satelliteInputButton_pressed();
+  void on_satelliteInputButton_released();
+  void on_compositeInputButton_pressed();
+  void on_compositeInputButton_released();
+  void on_svideoButton_pressed();
+  void on_svideoButton_released();
+  void on_componentInputButton_pressed();
+  void on_componentInputButton_released();
+  void on_hdmiInputButton_pressed();
+  void on_hdmiInputButton_released();
   void on_selectInputPushButton_pressed();
   void on_selectInputPushButton_released();
 

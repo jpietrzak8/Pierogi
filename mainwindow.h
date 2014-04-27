@@ -36,6 +36,8 @@ class QListWidgetItem;
 class QDialog;
 class QKeyEvent;
 class QComboBox;
+class QPushButton;
+class QStackedWidget;
 
 //class PIRTabWidget;
 
@@ -49,6 +51,7 @@ class PIRFavoritesDialog;
 class PIRTabsChoiceDialog;
 class PIRKeysetWidgetItem;
 class PIRMacroPack;
+class PIRFlickableTabBar;
 
 class PIRKeysetManager;
 class PIRPanelManager;
@@ -126,14 +129,17 @@ public:
     QString name,
     unsigned int &id);
 
-  void insertCornerButtons();
-//  void disableUpdates();
-//  void enableUpdates();
-//  void clearTabs();
+//  void insertCornerButtons();
+  void disableUpdates();
+  void enableUpdates();
+  void clearTabs();
 
   void addTab(
     QWidget *page,
     QString label);
+
+  void setTabsIndex(
+    int tabsIndex);
 
   void setupTabs(PIRTabBarName name);
 
@@ -252,6 +258,9 @@ private slots:
   void on_actionDocumentation_triggered();
 
   // Internal actions:
+  void switchToPanel(
+    QListWidgetItem *tabItem);
+
   void finalCleanup();
 
 private:
@@ -263,9 +272,15 @@ private:
 
   void populateFavorites();
 
+  void setupCustomTabWidget();
+
   Ui::MainWindow *ui;
 
 //  PIRTabWidget *myTabWidget;
+  PIRFlickableTabBar *flickableTabs;
+  QPushButton *favoritesButton;
+  QPushButton *tabsChoiceButton;
+  QStackedWidget *panelStackWidget;
 
   PIRSelectKeysetForm *selectKeysetForm;
   PIRPowerSearchForm *powerSearchForm;

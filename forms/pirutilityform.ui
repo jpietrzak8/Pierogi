@@ -210,46 +210,6 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="4">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="inputSelectorLabel">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Select Input: </string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="inputSelectorComboBox">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="selectInputPushButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Switch to Selected Input</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
   </layout>
  </widget>
  <resources>
@@ -445,38 +405,6 @@
     <hint type="destinationlabel">
      <x>697</x>
      <y>399</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>PIRUtilityForm</sender>
-   <signal>selectInputListEnabled(bool)</signal>
-   <receiver>inputSelectorComboBox</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>349</x>
-     <y>450</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>PIRUtilityForm</sender>
-   <signal>selectInputListEnabled(bool)</signal>
-   <receiver>selectInputPushButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>399</x>
-     <y>239</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>696</x>
-     <y>451</y>
     </hint>
    </hints>
   </connection>

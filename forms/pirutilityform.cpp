@@ -57,10 +57,6 @@ void PIRUtilityForm::enableButtons(
   emit captionsEnabled(keyset->hasKey(id, Captions_Key));
   emit sleepEnabled(keyset->hasKey(id, Sleep_Key));
   emit inputEnabled(keyset->hasKey(id, Input_Key));
-
-  keyset->populateInputList(ui->inputSelectorComboBox, id);
-
-  emit selectInputListEnabled(ui->inputSelectorComboBox->count() > 0);
 }
 
 
@@ -192,20 +188,6 @@ void PIRUtilityForm::on_sleepButton_pressed()
 }
 
 void PIRUtilityForm::on_sleepButton_released()
-{
-  mainWindow->stopRepeating();
-}
-
-void PIRUtilityForm::on_selectInputPushButton_pressed()
-{
-  int i = ui->inputSelectorComboBox->currentIndex();
-
-  mainWindow->startRepeating(
-    PIRKeyName(
-      ui->inputSelectorComboBox->itemData(i).toInt()));
-}
-
-void PIRUtilityForm::on_selectInputPushButton_released()
 {
   mainWindow->stopRepeating();
 }

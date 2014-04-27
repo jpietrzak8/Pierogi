@@ -26,14 +26,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <property name="margin">
-     <number>8</number>
-    </property>
-    <item row="0" column="0">
-     <widget class="QTabWidget" name="mainTabWidget"/>
-    </item>
-   </layout>
+   <layout class="QVBoxLayout" name="centralVerticalLayout"/>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

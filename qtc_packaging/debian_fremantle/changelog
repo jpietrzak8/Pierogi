@@ -1,3 +1,9 @@
+pierogi (1.1.33) unstable; urgency=low
+  * Something I've wanted since the very beginning of Pierogi -- a scrollable tab bar!  And not just that, but a FINGER FLICKABLE TAB BAR! :)  Much easier to have lots of panels up at once now.
+  * Input panel has been improved, with more buttons.  And, now that the input panel is available in the "Universal" set, the Utility panel is back to its good old 3-row self.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 27 Apr 2014 00:29:37 -0400
+
 pierogi (1.1.32) unstable; urgency=low
   * Macros have returned, in an entirely new form.  They are now defined in an XML file, and loaded on demand by the user.
 

@@ -40,6 +40,7 @@
 #include "keysets/apple.h"
 #include "keysets/arcam.h"
 #include "keysets/astro.h"
+#include "keysets/bangandolufsen.h"
 #include "keysets/beko.h"
 #include "keysets/benq.h"
 #include "keysets/blaupunkt.h"
@@ -247,6 +248,8 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new AstroSTB1(++counter));
   setupKeyset(new AstroSTB2(++counter));
+
+//  setupKeyset(new BangAndOlufsenTV1(++counter));
 
   setupKeyset(new BekoTV1(++counter));
 

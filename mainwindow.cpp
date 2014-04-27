@@ -33,11 +33,12 @@
 #include <QScrollArea>
 #include <QSettings>
 #include <QKeyEvent>
+#include <QPushButton>
+#include <QStackedWidget>
 
 //#include "pirtabwidget.h"
 
 #include "pirkeysetmetadata.h"
-
 #include "pirkeysetwidgetitem.h"
 #include "pirselectkeysetform.h"
 #include "forms/pirpowersearchform.h"
@@ -47,13 +48,14 @@
 #include "piraboutform.h"
 #include "dialogs/pirtabschoicedialog.h"
 #include "dialogs/pirfavoritesdialog.h"
-
 #include "pirkeysetmanager.h"
 #include "pirpanelmanager.h"
 #include "macros/pirmacromanager.h"
+#include "controls/pirflickabletabbar.h"
 
 //#define DEBUGGING
 #include <iostream>
+#include <QDebug>
 
 // Some ugly globals used for thread communications:
 
@@ -88,10 +90,11 @@ MainWindow::MainWindow(QWidget *parent)
     currentFavorite(-1),
     currentKeyset(1) // Zero is not a valid keyset any more
 {
+  ui->setupUi(this);
+
   // Create the tab widget:
 //  myTabWidget = new PIRTabWidget(ui->centralWidget, this);
-
-  ui->setupUi(this);
+  setupCustomTabWidget();
 
   // Make this a Maemo 5 stacked widget:
   setAttribute(Qt::WA_Maemo5StackedWindow);
@@ -103,11 +106,26 @@ MainWindow::MainWindow(QWidget *parent)
 
   // Construct the forms:
   selectKeysetForm = new PIRSelectKeysetForm(this);
+
   favoritesDialog = new PIRFavoritesDialog(this);
   myKeysets->populateListWidgets(selectKeysetForm, favoritesDialog);
 //  selectKeysetForm->populateKeysetComboBox(myPanels->getKeysetComboBox());
 
+  connect(
+    favoritesButton,
+    SIGNAL(clicked()),
+    favoritesDialog,
+    SLOT(exec()),
+    Qt::QueuedConnection);
+
   tabsChoiceDialog = new PIRTabsChoiceDialog(this);
+
+  connect(
+    tabsChoiceButton,
+    SIGNAL(clicked()),
+    tabsChoiceDialog,
+    SLOT(exec()),
+    Qt::QueuedConnection);
 
   powerSearchForm = new PIRPowerSearchForm(this);
 
@@ -150,19 +168,20 @@ MainWindow::MainWindow(QWidget *parent)
   tabsChoiceDialog->switchToTabBar(currentTabsName);
 
   // Display the panels:
-  ui->mainTabWidget->setUpdatesEnabled(false);
+//  ui->mainTabWidget->setUpdatesEnabled(false);
   myPanels->setupTabs(currentTabsName);
-  if ((userPanelIndex >= 0) && (userPanelIndex < ui->mainTabWidget->count()))
+  if ((userPanelIndex >= 0) && (userPanelIndex < flickableTabs->count()))
   {
-    ui->mainTabWidget->setCurrentIndex(userPanelIndex);
+    setTabsIndex(userPanelIndex);
+ //   ui->mainTabWidget->setCurrentIndex(userPanelIndex);
   }
-  ui->mainTabWidget->setUpdatesEnabled(true);
+//  ui->mainTabWidget->setUpdatesEnabled(true);
 
   // Set up the select keyset form:
   selectKeysetForm->selectKeyset(currentKeyset);
 
   // Add the corner buttons:
-  insertCornerButtons();
+//  insertCornerButtons();
 
   // Set up all the buttons:
   enableButtons();
@@ -191,7 +210,8 @@ MainWindow::MainWindow(QWidget *parent)
   // For panels performing tricky operations, need to know when the context
   // changes:
   connect(
-    ui->mainTabWidget,
+//    ui->mainTabWidget,
+    panelStackWidget,
     SIGNAL(currentChanged(int)),
     this,
     SLOT(reportContextChange(int)),
@@ -224,7 +244,8 @@ MainWindow::~MainWindow()
     "currentKeysetName",
     myKeysets->getDisplayName(currentKeyset));
   settings.setValue("currentTabsName", currentTabsName);
-  settings.setValue("currentPanelIndex", ui->mainTabWidget->currentIndex());
+//  settings.setValue("currentPanelIndex", ui->mainTabWidget->currentIndex());
+  settings.setValue("currentPanelIndex", panelStackWidget->currentIndex());
 
   if (aboutForm) delete aboutForm;
   if (documentationForm) delete documentationForm;
@@ -330,12 +351,14 @@ void MainWindow::useMainPanel()
   myPanels->useMainPanel();
 
   // Reset the panels:
-  ui->mainTabWidget->setUpdatesEnabled(false);
-  int panelIndex = ui->mainTabWidget->currentIndex();
-  ui->mainTabWidget->clear();
+//  ui->mainTabWidget->setUpdatesEnabled(false);
+//  int panelIndex = ui->mainTabWidget->currentIndex();
+  int panelIndex = panelStackWidget->currentIndex();
+//  ui->mainTabWidget->clear();
   myPanels->setupTabs(currentTabsName);
-  ui->mainTabWidget->setCurrentIndex(panelIndex);
-  ui->mainTabWidget->setUpdatesEnabled(true);
+//  ui->mainTabWidget->setCurrentIndex(panelIndex);
+//  ui->mainTabWidget->setUpdatesEnabled(true);
+  setTabsIndex(panelIndex);
 }
 
 
@@ -344,12 +367,14 @@ void MainWindow::useAltMainPanel()
   myPanels->useAltMainPanel();
 
   // Reset the panels:
-  ui->mainTabWidget->setUpdatesEnabled(false);
-  int panelIndex = ui->mainTabWidget->currentIndex();
-  ui->mainTabWidget->clear();
+//  ui->mainTabWidget->setUpdatesEnabled(false);
+//  int panelIndex = ui->mainTabWidget->currentIndex();
+  int panelIndex = panelStackWidget->currentIndex();
+//  ui->mainTabWidget->clear();
   myPanels->setupTabs(currentTabsName);
-  ui->mainTabWidget->setCurrentIndex(panelIndex);
-  ui->mainTabWidget->setUpdatesEnabled(true);
+//  ui->mainTabWidget->setCurrentIndex(panelIndex);
+//  ui->mainTabWidget->setUpdatesEnabled(true);
+  setTabsIndex(panelIndex);
 }
 
 
@@ -477,7 +502,8 @@ void MainWindow::keysetSelectionChanged(
   {
     favoritesDialog->updatePanelIndex(
       currentFavorite,
-      ui->mainTabWidget->currentIndex());
+//      ui->mainTabWidget->currentIndex());
+      panelStackWidget->currentIndex());
   }
 
   // Clean up and remove the current keyset:
@@ -715,6 +741,7 @@ void MainWindow::selectNextFavKeyset()
 }
 
 
+/*
 void MainWindow::insertCornerButtons()
 {
   // Set up the dialog boxes:
@@ -752,37 +779,106 @@ void MainWindow::insertCornerButtons()
   ui->mainTabWidget->setCornerWidget(button, Qt::TopLeftCorner);
 //  myTabWidget->setCornerWidget(button, Qt::TopLeftCorner);
 }
+*/
 
 
-/*
+void MainWindow::setupCustomTabWidget()
+{
+  // The custom tab bar consists of two iconic buttons with a horizontal list
+  // widget squeezed inbetween them:
+  favoritesButton = new QPushButton(
+    QIcon(":/icons/align_just_icon&32.png"),
+    "");
+
+  flickableTabs = new PIRFlickableTabBar(this);
+
+  tabsChoiceButton = new QPushButton(
+    QIcon(":/icons/folder_plus_icon&32.png"),
+    "");
+
+  QHBoxLayout *hlayout = new QHBoxLayout;
+  hlayout->addWidget(favoritesButton);
+  hlayout->addWidget(flickableTabs);
+  hlayout->addWidget(tabsChoiceButton);
+
+  // We place this tab bar on top of a QStackedWidget:
+  panelStackWidget = new QStackedWidget;
+
+  // Now, add these to the main window:
+  ui->centralVerticalLayout->addLayout(hlayout);
+  ui->centralVerticalLayout->addWidget(panelStackWidget);
+
+  // Make the buttons fade into the backround:
+  favoritesButton->setFlat(true);
+  tabsChoiceButton->setFlat(true);
+
+  // Finally, connect the tab bar to the stacked widgets:
+  connect(
+    flickableTabs,
+    SIGNAL(itemActivated(QListWidgetItem *)),
+    this,
+    SLOT(switchToPanel(QListWidgetItem *)),
+    Qt::QueuedConnection);
+}
+
 void MainWindow::disableUpdates()
 {
-  ui->mainTabWidget->setUpdatesEnabled(false);
+  flickableTabs->setUpdatesEnabled(false);
+  panelStackWidget->setUpdatesEnabled(false);
 //  myTabWidget->setUpdatesEnabled(false);
 }
 
 
 void MainWindow::enableUpdates()
 {
-  ui->mainTabWidget->setUpdatesEnabled(true);
+//  flickableTabs->updateGeometries();
+  flickableTabs->setUpdatesEnabled(true);
+  panelStackWidget->setUpdatesEnabled(true);
 //  myTabWidget->setUpdatesEnabled(true);
 }
 
 
 void MainWindow::clearTabs()
 {
-  ui->mainTabWidget->clear();
+  flickableTabs->clear();
+
+  int i = panelStackWidget->count();
+
+  while (i > 0)
+  {
+    --i;
+
+    panelStackWidget->removeWidget(
+      panelStackWidget->widget(i));
+  }
+
 //  myTabWidget->clear();
 }
-*/
 
 
 void MainWindow::addTab(
   QWidget *page,
   QString label)
 {
-  ui->mainTabWidget->addTab(page, label);
+  panelStackWidget->addWidget(page);
+  flickableTabs->addItem(label);
 //  myTabWidget->addTab(page, label);
+}
+
+
+void MainWindow::setTabsIndex(
+  int tabsIndex)
+{
+  panelStackWidget->setCurrentIndex(tabsIndex);
+  flickableTabs->setCurrentRow(tabsIndex);
+}
+
+
+void MainWindow::switchToPanel(
+  QListWidgetItem *tabItem)
+{
+  panelStackWidget->setCurrentIndex(
+    flickableTabs->row(tabItem));
 }
 
 
@@ -793,14 +889,16 @@ void MainWindow::setupTabs(
   if (name == currentTabsName) return;
 
   // Stop updating the widget:
-  ui->mainTabWidget->setUpdatesEnabled(false);
+//  ui->mainTabWidget->setUpdatesEnabled(false);
+
+  // Remove the existing panels:
+//  ui->mainTabWidget->clear();
 
   // Change the tabs:
-  ui->mainTabWidget->clear();
   myPanels->setupTabs(name);
 
   // Start updating the widget again:
-  ui->mainTabWidget->setUpdatesEnabled(true);
+//  ui->mainTabWidget->setUpdatesEnabled(true);
 
   // Update the favorites with this info:
   if (currentFavorite != -1)
@@ -825,25 +923,27 @@ void MainWindow::setupFavoriteTabs(
   PIRTabBarName name,
   int panelIndex)
 {
-  int currentPanelIndex = ui->mainTabWidget->currentIndex();
+//  int currentPanelIndex = ui->mainTabWidget->currentIndex();
+  int currentPanelIndex = panelStackWidget->currentIndex();
 
   // Just return immediately if we have nothing to do here.
   if ((name == currentTabsName) && (panelIndex == currentPanelIndex))
     return;
 
   // Stop updating the widget:
-  ui->mainTabWidget->setUpdatesEnabled(false);
+//  ui->mainTabWidget->setUpdatesEnabled(false);
 
   if (name != currentTabsName)
   {
     // Change the tabs:
-    ui->mainTabWidget->clear();
+//    ui->mainTabWidget->clear();
     myPanels->setupTabs(name);
   }
 
-  ui->mainTabWidget->setCurrentIndex(panelIndex);
+//  ui->mainTabWidget->setCurrentIndex(panelIndex);
+  setTabsIndex(panelIndex);
 
-  ui->mainTabWidget->setUpdatesEnabled(true);
+//  ui->mainTabWidget->setUpdatesEnabled(true);
 
   // Store the new info into the "current" settings:
   currentTabsName = name;
@@ -905,7 +1005,8 @@ void MainWindow::updateFavoriteKeysetSelection(
   {
     favoritesDialog->updatePanelIndex(
       currentFavorite,
-      ui->mainTabWidget->currentIndex());
+//      ui->mainTabWidget->currentIndex());
+      panelStackWidget->currentIndex());
   }
 
   // Set up the new keyset:
@@ -918,13 +1019,14 @@ void MainWindow::updateFavoriteKeysetSelection(
   if (currentTabsName != tabBarName)
   {
     // Set up the chosen tab bar for this favorite:
-    ui->mainTabWidget->setUpdatesEnabled(false);
-    ui->mainTabWidget->clear();
+//    ui->mainTabWidget->setUpdatesEnabled(false);
+//    ui->mainTabWidget->clear();
     myPanels->setupTabs(tabBarName);
     enableButtons();
-    ui->mainTabWidget->setUpdatesEnabled(true);
+//    ui->mainTabWidget->setUpdatesEnabled(true);
     currentTabsName = tabBarName;
-    ui->mainTabWidget->setCurrentIndex(panelIndex);
+//    ui->mainTabWidget->setCurrentIndex(panelIndex);
+    setTabsIndex(panelIndex);
 //    settings.setValue("currentTabsName", tabBarName);
 //    settings.setValue("currentPanelIndex", panelIndex);
 
@@ -934,7 +1036,8 @@ void MainWindow::updateFavoriteKeysetSelection(
   else
   {
     enableButtons();
-    ui->mainTabWidget->setCurrentIndex(panelIndex);
+//    ui->mainTabWidget->setCurrentIndex(panelIndex);
+    setTabsIndex(panelIndex);
   }
 
   // Store this info persistently:
@@ -1258,41 +1361,50 @@ void MainWindow::setMacroBtnFocus(
 void MainWindow::switchToTab(
   int tabNumber)
 {
-  int count = ui->mainTabWidget->count();
+//  int count = ui->mainTabWidget->count();
+  int count = panelStackWidget->count();
 
   if (tabNumber < 0)
   {
-    ui->mainTabWidget->setCurrentIndex(0);
+    setTabsIndex(0);
+//    ui->mainTabWidget->setCurrentIndex(0);
   }
   else if (tabNumber >= count)
   {
-    ui->mainTabWidget->setCurrentIndex(count-1);
+    setTabsIndex(count-1);
+//    ui->mainTabWidget->setCurrentIndex(count-1);
   }
   else
   {
-    ui->mainTabWidget->setCurrentIndex(tabNumber);
+    setTabsIndex(tabNumber);
+//    ui->mainTabWidget->setCurrentIndex(tabNumber);
   }
 }
 
 
 void MainWindow::switchToNextTab()
 {
-  int i = ui->mainTabWidget->currentIndex();
-  int count = ui->mainTabWidget->count();
+//  int i = ui->mainTabWidget->currentIndex();
+//  int count = ui->mainTabWidget->count();
+  int i = panelStackWidget->currentIndex();
+  int count = panelStackWidget->count();
 
   ++i;
 
   if (i == count) return;  // already at end of tabs
 
-  ui->mainTabWidget->setCurrentIndex(i);
+  setTabsIndex(i);
+//  ui->mainTabWidget->setCurrentIndex(i);
 }
 
 
 void MainWindow::switchToPrevTab()
 {
-  int i = ui->mainTabWidget->currentIndex();
+//  int i = ui->mainTabWidget->currentIndex();
+  int i = panelStackWidget->currentIndex();
 
   if (i <= 0) return;  // already at start of tabs
 
-  ui->mainTabWidget->setCurrentIndex(--i);
+  setTabsIndex(--i);
+//  ui->mainTabWidget->setCurrentIndex(--i);
 }

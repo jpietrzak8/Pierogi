@@ -266,7 +266,10 @@ SOURCES += main.cpp mainwindow.cpp \
     forms/pirreceiverform.cpp \
     protocols/denonprotocol.cpp \
     forms/pirinputlistform.cpp \
-    dialogs/pirrunmacrodialog.cpp
+    dialogs/pirrunmacrodialog.cpp \
+    controls/pirflickabletabbar.cpp \
+    protocols/bangandolufsenprotocol.cpp \
+    keysets/bangandolufsen.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -508,7 +511,10 @@ HEADERS += mainwindow.h \
     forms/pirreceiverform.h \
     protocols/denonprotocol.h \
     forms/pirinputlistform.h \
-    dialogs/pirrunmacrodialog.h
+    dialogs/pirrunmacrodialog.h \
+    controls/pirflickabletabbar.h \
+    protocols/bangandolufsenprotocol.h \
+    keysets/bangandolufsen.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

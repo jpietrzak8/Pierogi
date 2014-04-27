@@ -44,9 +44,98 @@ void PIRInputListForm::enableButtons(
   const PIRKeysetManager *keyset,
   unsigned int id)
 {
+  emit pcEnabled(keyset->hasKey(id, PCInput_Key));
+  emit antennaEnabled(keyset->hasKey(id, AntennaInput_Key));
+  emit cableEnabled(keyset->hasKey(id, CableInput_Key));
+  emit satelliteEnabled(keyset->hasKey(id, SatInput_Key));
+  emit compositeEnabled(keyset->hasKey(id, CompositeInput_Key));
+  emit svideoEnabled(keyset->hasKey(id, SVideoInput_Key));
+  emit componentEnabled(keyset->hasKey(id, ComponentInput_Key));
+  emit hdmiEnabled(keyset->hasKey(id, HDMIInput_Key));
+
   keyset->populateInputList(ui->inputSelectorComboBox, id);
 
   emit selectInputEnabled(ui->inputSelectorComboBox->count() > 0);
+}
+
+void PIRInputListForm::on_pcInputButton_pressed()
+{
+  mainWindow->startRepeating(PCInput_Key);
+}
+
+void PIRInputListForm::on_pcInputButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRInputListForm::on_antennaInputButton_pressed()
+{
+  mainWindow->startRepeating(AntennaInput_Key);
+}
+
+void PIRInputListForm::on_antennaInputButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRInputListForm::on_cableInputButton_pressed()
+{
+  mainWindow->startRepeating(CableInput_Key);
+}
+
+void PIRInputListForm::on_cableInputButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRInputListForm::on_satelliteInputButton_pressed()
+{
+  mainWindow->startRepeating(SatInput_Key);
+}
+
+void PIRInputListForm::on_satelliteInputButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRInputListForm::on_compositeInputButton_pressed()
+{
+  mainWindow->startRepeating(CompositeInput_Key);
+}
+
+void PIRInputListForm::on_compositeInputButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRInputListForm::on_svideoButton_pressed()
+{
+  mainWindow->startRepeating(SVideoInput_Key);
+}
+
+void PIRInputListForm::on_svideoButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRInputListForm::on_componentInputButton_pressed()
+{
+  mainWindow->startRepeating(ComponentInput_Key);
+}
+
+void PIRInputListForm::on_componentInputButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRInputListForm::on_hdmiInputButton_pressed()
+{
+  mainWindow->startRepeating(HDMIInput_Key);
+}
+
+void PIRInputListForm::on_hdmiInputButton_released()
+{
+  mainWindow->stopRepeating();
 }
 
 void PIRInputListForm::on_selectInputPushButton_pressed()

@@ -1,7 +1,7 @@
 //
-// necxprotocol.h
+// bangandolufsenprotocol.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -20,28 +20,34 @@
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 
-#ifndef NECXPROTOCOL_H
-#define NECXPROTOCOL_H
+#ifndef BANGANDOLUFSENPROTOCOL_H
+#define BANGANDOLUFSENPROTOCOL_H
 
 #include "spaceprotocol.h"
 
 class PIRInfraredLED;
 
 //
-// The "NECX" protocol is a slight variation on the popular NEC protocol.
-// It includes the "short repeat" feature of NEC, but implements it in a
-// slightly different way.
+// The Bang & Olufsen protocol is a unique protocol dreamed up by the
+// B&O folks themselves.  It has a number of intriguing features, as well
+// as a number of annoying ones...
 //
 
-class NECXProtocol: public SpaceProtocol
+enum BandOBit
+{
+  BandONo_Bit,
+  BandOZero_Bit,
+  BandOOne_Bit
+};
+
+class BangAndOlufsenProtocol: public SpaceProtocol
 {
   Q_OBJECT
 
 public:
-  NECXProtocol(
+  BangAndOlufsenProtocol(
     QObject *guiObject,
-    unsigned int index,
-    bool srtRep);
+    unsigned int index);
 
 public slots:
   void startSendingCommand(
@@ -49,14 +55,18 @@ public slots:
     PIRKeyName command);
 
 private:
-  bool isShortRepeat;
-
-  int generateStandardCommand(
-    const PIRKeyBits &bits,
+  int generateCommand(
+    const PIRKeyBits &pkb,
     PIRInfraredLED &led);
 
-  int generateRepeatCommand(
+  int pushBandOBits(
+    const CommandSequence &bits,
     PIRInfraredLED &led);
+
+  unsigned int sameAsPreviousPulse;
+  unsigned int sameAsPreviousSpace;
+
+  BandOBit previousBit;
 };
 
-#endif // NECXPROTOCOL_H
+#endif // BANGANDOLUFSENPROTOCOL_H

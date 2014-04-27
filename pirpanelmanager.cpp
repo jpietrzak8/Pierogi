@@ -246,8 +246,10 @@ PIRPanelManager::PIRPanelManager(
   pset.push_back(Keypad_Panel);
   pset.push_back(Menu_Panel);
   pset.push_back(Media_Panel);
-  pset.push_back(User_Panel);
 //  pset.push_back(Input_Panel);
+  pset.push_back(InputList_Panel);
+  pset.push_back(Adjust_Panel);
+  pset.push_back(User_Panel);
   tabLists[Universal_Tabs] = pset;
 
   // The TV collection:
@@ -345,8 +347,8 @@ PIRPanelManager::~PIRPanelManager()
 void PIRPanelManager::setupTabs(
   PIRTabBarName tabsName)
 {
-//  mainWindow->disableUpdates();
-//  mainWindow->clearTabs();
+  mainWindow->disableUpdates();
+  mainWindow->clearTabs();
 
   PIRPanelNameList::const_iterator i = tabLists[tabsName].begin();
 
@@ -364,7 +366,7 @@ void PIRPanelManager::setupTabs(
     ++i;
   }
 
-//  mainWindow->enableUpdates();
+  mainWindow->enableUpdates();
 }
 
 

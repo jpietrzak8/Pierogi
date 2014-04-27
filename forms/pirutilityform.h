@@ -58,7 +58,6 @@ signals:
   void captionsEnabled(bool);
   void inputEnabled(bool);
   void sleepEnabled(bool);
-  void selectInputListEnabled(bool);
 
 private slots:
   void on_redButton_pressed();
@@ -85,8 +84,6 @@ private slots:
   void on_inputButton_released();
   void on_sleepButton_pressed();
   void on_sleepButton_released();
-  void on_selectInputPushButton_pressed();
-  void on_selectInputPushButton_released();
 
 private:
   Ui::PIRUtilityForm *ui;

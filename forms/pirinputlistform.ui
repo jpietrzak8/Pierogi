@@ -13,30 +13,12 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="inputSelectorLabel">
-       <property name="text">
-        <string>Select Input: </string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="inputSelectorComboBox">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QPushButton" name="selectInputPushButton">
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>8</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QPushButton" name="pcInputButton">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
@@ -44,8 +26,131 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>Switch to Selected Input</string>
+      <string>PC</string>
      </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="antennaInputButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Antenna</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="cableInputButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Cable</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QPushButton" name="satelliteInputButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Satellite</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="compositeInputButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Composite</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="svideoButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>S-Video</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="componentInputButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Component</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QPushButton" name="hdmiInputButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>HDMI</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="4">
+    <widget class="QFrame" name="InputListFrame">
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="selectInputPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Change Input To:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="inputSelectorComboBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
@@ -54,8 +159,8 @@
  <connections>
   <connection>
    <sender>PIRInputListForm</sender>
-   <signal>selectInputEnabled(bool)</signal>
-   <receiver>inputSelectorComboBox</receiver>
+   <signal>pcEnabled(bool)</signal>
+   <receiver>pcInputButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -63,15 +168,15 @@
      <y>239</y>
     </hint>
     <hint type="destinationlabel">
-     <x>440</x>
-     <y>24</y>
+     <x>101</x>
+     <y>82</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>PIRInputListForm</sender>
-   <signal>selectInputEnabled(bool)</signal>
-   <receiver>selectInputPushButton</receiver>
+   <signal>antennaEnabled(bool)</signal>
+   <receiver>antennaInputButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -79,13 +184,117 @@
      <y>239</y>
     </hint>
     <hint type="destinationlabel">
+     <x>301</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRInputListForm</sender>
+   <signal>cableEnabled(bool)</signal>
+   <receiver>cableInputButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
      <x>399</x>
-     <y>261</y>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>502</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRInputListForm</sender>
+   <signal>satelliteEnabled(bool)</signal>
+   <receiver>satelliteInputButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>698</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRInputListForm</sender>
+   <signal>compositeEnabled(bool)</signal>
+   <receiver>compositeInputButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>101</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRInputListForm</sender>
+   <signal>svideoEnabled(bool)</signal>
+   <receiver>svideoButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>301</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRInputListForm</sender>
+   <signal>componentEnabled(bool)</signal>
+   <receiver>componentInputButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>502</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PIRInputListForm</sender>
+   <signal>hdmiEnabled(bool)</signal>
+   <receiver>hdmiInputButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>698</x>
+     <y>241</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
   <signal>selectInputEnabled(bool)</signal>
+  <signal>pcEnabled(bool)</signal>
+  <signal>antennaEnabled(bool)</signal>
+  <signal>cableEnabled(bool)</signal>
+  <signal>satelliteEnabled(bool)</signal>
+  <signal>compositeEnabled(bool)</signal>
+  <signal>svideoEnabled(bool)</signal>
+  <signal>componentEnabled(bool)</signal>
+  <signal>hdmiEnabled(bool)</signal>
  </slots>
 </ui>

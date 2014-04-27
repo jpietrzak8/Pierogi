@@ -1117,3 +1117,39 @@ void PanasonicAC1::populateProtocol(
   addKey("Mode", Mode_Key, 0x9B, 8);
   addKey("Timer", Timer_Key, 0x9F, 8);
 }
+
+// A stateful Panasonic A/C!
+
+/*
+PanasonicAC2::PanasonicAC2(
+  unsigned int index)
+  : PIRACKeyset(
+      "Air Conditioner 2",
+      Panasonic_Make,
+      index)
+{
+}
+
+
+void PanasonicAC2::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new SamsungACProtocol(guiObject, index); // fix
+}
+
+
+void PanasonicAC2::getTurboModePairs(
+  PIRStatePairs &turboModePairs) const
+{
+  resetPairs(turboModePairs);
+
+  PIRStatePair *normalPair = new PIRStatePair(
+    "Power", 0x
+}
+*/
