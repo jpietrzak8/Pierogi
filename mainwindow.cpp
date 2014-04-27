@@ -35,6 +35,7 @@
 #include <QKeyEvent>
 #include <QPushButton>
 #include <QStackedWidget>
+#include <QAbstractKineticScroller>
 
 //#include "pirtabwidget.h"
 
@@ -819,6 +820,13 @@ void MainWindow::setupCustomTabWidget()
     this,
     SLOT(switchToPanel(QListWidgetItem *)),
     Qt::QueuedConnection);
+
+  connect(
+    flickableTabs,
+    SIGNAL(itemSelectionChanged()),
+    this,
+    SLOT(updatePanelIndex()),
+    Qt::QueuedConnection);
 }
 
 void MainWindow::disableUpdates()
@@ -879,6 +887,20 @@ void MainWindow::switchToPanel(
 {
   panelStackWidget->setCurrentIndex(
     flickableTabs->row(tabItem));
+}
+
+
+void MainWindow::updatePanelIndex()
+{
+  QAbstractKineticScroller *scroller =
+    flickableTabs->property("kineticScroller")
+      .value<QAbstractKineticScroller *>();
+
+  if (!scroller->state())
+  {
+    panelStackWidget->setCurrentIndex(
+      flickableTabs->currentRow());
+  }
 }
 
 

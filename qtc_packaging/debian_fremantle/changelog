@@ -1,3 +1,8 @@
+pierogi (1.1.34) unstable; urgency=low
+  * A quick fix for new tab bar when the bar is too short to scroll.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 27 Apr 2014 08:14:50 -0400
+
 pierogi (1.1.33) unstable; urgency=low
   * Something I've wanted since the very beginning of Pierogi -- a scrollable tab bar!  And not just that, but a FINGER FLICKABLE TAB BAR! :)  Much easier to have lots of panels up at once now.
   * Input panel has been improved, with more buttons.  And, now that the input panel is available in the "Universal" set, the Utility panel is back to its good old 3-row self.

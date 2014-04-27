@@ -261,6 +261,8 @@ private slots:
   void switchToPanel(
     QListWidgetItem *tabItem);
 
+  void updatePanelIndex();
+
   void finalCleanup();
 
 private:
