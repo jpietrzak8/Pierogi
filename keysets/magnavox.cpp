@@ -30,6 +30,7 @@ MagnavoxDVD1::MagnavoxDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Magnavox_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Magnavox_Make, "MDV450", DVD_Device);
@@ -88,6 +89,7 @@ MagnavoxVCR1::MagnavoxVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Magnavox_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -168,6 +170,7 @@ MagnavoxConverterBox1::MagnavoxConverterBox1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Magnavox_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Magnavox_Make, "TB100MG9", Other_Device);
@@ -229,6 +232,7 @@ MagnavoxTV1::MagnavoxTV1(
   : PIRKeysetMetaData(
       "TV(?) Keyset 1",
       Magnavox_Make,
+      TV_Panels,
       index)
 {
 }

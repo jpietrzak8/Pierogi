@@ -29,6 +29,7 @@ DigitalStreamReceiver::DigitalStreamReceiver(
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
       DigitalStream_Make,
+      Receiver_Panels,
       index)
 {
   addControlledDevice(DigitalStream_Make, "DTX9900", Other_Device);

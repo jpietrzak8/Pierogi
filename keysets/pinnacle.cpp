@@ -28,6 +28,7 @@ PinnaclePCTV1::PinnaclePCTV1(
   : PIRKeysetMetaData(
       "PCTV Keyset 1",
       Pinnacle_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Pinnacle_Make, "800i", Computer_Device);
@@ -79,6 +80,7 @@ PinnaclePCTV2::PinnaclePCTV2(
   : PIRKeysetMetaData(
       "PCTV Keyset 2",
       Pinnacle_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Pinnacle_Make, "USB Stick", Computer_Device);
@@ -129,6 +131,7 @@ PinnaclePCTV3::PinnaclePCTV3(
   : PIRKeysetMetaData(
       "PCTV Keyset 3",
       Pinnacle_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Pinnacle_Make, "110i", Computer_Device);

@@ -31,6 +31,7 @@ MitsubishiTV1::MitsubishiTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Mitsubishi_Make,
+      TV_Panels,
       index)
 {
 }
@@ -147,6 +148,7 @@ MitsubishiVCR1::MitsubishiVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Mitsubishi_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -254,6 +256,7 @@ MitsubishiProjector1::MitsubishiProjector1(
   : PIRKeysetMetaData(
       "Projector Keyset 1",
       Mitsubishi_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -336,6 +339,7 @@ MitsubishiProjector2::MitsubishiProjector2(
   : PIRKeysetMetaData(
       "Projector Keyset 2",
       Mitsubishi_Make,
+      MediaControl_Panels,
       index)
 {
 }

@@ -30,6 +30,7 @@ ChanghongTV1::ChanghongTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Changhong_Make,
+      TV_Panels,
       index)
 {
 }
@@ -169,6 +170,7 @@ ChanghongTV2::ChanghongTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Changhong_Make,
+      TV_Panels,
       index)
 {
 }
@@ -240,6 +242,7 @@ ChanghongTV3::ChanghongTV3(
   : PIRKeysetMetaData(
       "TV Keyset 3",
       Changhong_Make,
+      TV_Panels,
       index)
 {
 }

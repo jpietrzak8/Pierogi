@@ -29,6 +29,7 @@ UnitedDVD1::UnitedDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       United_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -106,6 +107,7 @@ UnitedDVBT1::UnitedDVBT1(
   : PIRKeysetMetaData(
       "DVBT Keyset 1",
       United_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

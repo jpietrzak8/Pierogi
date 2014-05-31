@@ -29,6 +29,7 @@ HPRemote1::HPRemote1(
   : PIRKeysetMetaData(
       "Remote Keyset 1",
       HP_Make,
+      MediaControl_Panels,
       index)
 {
 }

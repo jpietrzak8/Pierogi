@@ -30,6 +30,7 @@ VestelTV1::VestelTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Vestel_Make,
+      TV_Panels,
       index)
 {
 }
@@ -96,6 +97,7 @@ VestelTV2::VestelTV2(
   : PIRKeysetMetaData(
       "TV/DVD Keyset 2",
       Vestel_Make,
+      TV_Panels | MediaControl_Panels,
       index)
 {
 }

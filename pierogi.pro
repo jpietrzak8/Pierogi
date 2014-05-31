@@ -182,8 +182,6 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/loewe.cpp \
     keysets/telefunken.cpp \
     protocols/paceprotocol.cpp \
-    dialogs/pirtabschoicedialog.cpp \
-    dialogs/pirtabswidgetitem.cpp \
     keysets/technisat.cpp \
     keysets/strong.cpp \
     keysets/proview.cpp \
@@ -269,7 +267,11 @@ SOURCES += main.cpp mainwindow.cpp \
     dialogs/pirrunmacrodialog.cpp \
     controls/pirflickabletabbar.cpp \
     protocols/bangandolufsenprotocol.cpp \
-    keysets/bangandolufsen.cpp
+    keysets/bangandolufsen.cpp \
+    protocols/airtechprotocol.cpp \
+    keysets/airtech.cpp \
+    keysets/lasko.cpp \
+    keysets/russellhobbs.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -427,8 +429,6 @@ HEADERS += mainwindow.h \
     keysets/loewe.h \
     keysets/telefunken.h \
     protocols/paceprotocol.h \
-    dialogs/pirtabschoicedialog.h \
-    dialogs/pirtabswidgetitem.h \
     keysets/technisat.h \
     keysets/strong.h \
     keysets/proview.h \
@@ -514,7 +514,11 @@ HEADERS += mainwindow.h \
     dialogs/pirrunmacrodialog.h \
     controls/pirflickabletabbar.h \
     protocols/bangandolufsenprotocol.h \
-    keysets/bangandolufsen.h
+    keysets/bangandolufsen.h \
+    protocols/airtechprotocol.h \
+    keysets/airtech.h \
+    keysets/lasko.h \
+    keysets/russellhobbs.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -535,7 +539,6 @@ FORMS += mainwindow.ui \
     forms/piraltmainform.ui \
     pirpreferencesform.ui \
     dialogs/pirtextentrydialog.ui \
-    dialogs/pirtabschoicedialog.ui \
     dialogs/pireditkeysetdialog.ui \
     forms/pirvcrform.ui \
     forms/pirvideodiscform.ui \

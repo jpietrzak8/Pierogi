@@ -28,6 +28,7 @@ EmtecSTB1::EmtecSTB1(
   : PIRKeysetMetaData(
       "Movie Cube Keyset 1",
       Emtec_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Emtec_Make, "Movie Cube N200", Other_Device);
@@ -75,6 +76,7 @@ EmtecSTB2::EmtecSTB2(
   : PIRKeysetMetaData(
       "Movie Cube Keyset 2",
       Emtec_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Emtec_Make, "MovieCube R700", Other_Device);

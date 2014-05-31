@@ -31,6 +31,7 @@ TechnisatSTB1::TechnisatSTB1(
   : PIRKeysetMetaData(
       "Satellite Receiver 1",
       Technisat_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Technisat_Make, "ST 3004 S", Other_Device);
@@ -133,6 +134,7 @@ TechnisatSTB2::TechnisatSTB2(
   : PIRKeysetMetaData(
       "Satellite Receiver 2",
       Technisat_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Technisat_Make, "TechniBox CAM1", Other_Device);
@@ -233,6 +235,7 @@ TechnisatSTB3::TechnisatSTB3(
   : PIRKeysetMetaData(
       "Satellite Receiver (and PCTV) 3",
       Technisat_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Technisat_Make, "SkyStar 2 TV", Other_Device);

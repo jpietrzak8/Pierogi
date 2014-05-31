@@ -33,6 +33,7 @@ ThomsonConverter1::ThomsonConverter1(
   : PIRKeysetMetaData(
       "Converter Keyset 1",
       Thomson_Make,
+      TV_Panels,
       index)
 {
 }
@@ -77,6 +78,7 @@ ThomsonTV1::ThomsonTV1(
   : PIRKeysetMetaData(
       "TV/DVR Keyset 1",
       Thomson_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -154,6 +156,7 @@ ThomsonVCR1::ThomsonVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Thomson_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -247,6 +250,7 @@ ThomsonDVD1::ThomsonDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Thomson_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -323,6 +327,7 @@ ThomsonSat1::ThomsonSat1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Thomson_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -402,6 +407,7 @@ ThomsonAudio1::ThomsonAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Thomson_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -443,6 +449,7 @@ ThomsonAudio2::ThomsonAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Thomson_Make,
+      Receiver_Panels,
       index)
 {
 }

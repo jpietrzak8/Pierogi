@@ -31,6 +31,7 @@ TechnicsAudio1::TechnicsAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Technics_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -136,6 +137,7 @@ TechnicsAudio2::TechnicsAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Technics_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -214,6 +216,7 @@ TechnicsAudio3::TechnicsAudio3(
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Technics_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -358,6 +361,7 @@ TechnicsReceiver1::TechnicsReceiver1(
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
       Technics_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -467,6 +471,7 @@ TechnicsCD1::TechnicsCD1(
   : PIRKeysetMetaData(
       "CD Keyset 1",
       Technics_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -526,6 +531,7 @@ TechnicsDVD1::TechnicsDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Technics_Make,
+      MediaControl_Panels,
       index)
 {
 }

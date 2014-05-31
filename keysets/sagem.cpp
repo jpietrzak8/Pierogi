@@ -28,6 +28,7 @@ SagemTVBox1::SagemTVBox1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Sagem_Make,
+      TV_Panels,
       index)
 {
 }

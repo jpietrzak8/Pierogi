@@ -31,6 +31,7 @@ SagemcomSTB1::SagemcomSTB1(
   : PIRKeysetMetaData(
       "Digital Receiver Keyset 1",
       Sagemcom_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Sagemcom_Make, "DSTIH78", Other_Device);
@@ -94,6 +95,7 @@ SagemcomSTB2::SagemcomSTB2(
   : PIRKeysetMetaData(
       "Digital Receiver Keyset 2",
       Sagemcom_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

@@ -31,6 +31,7 @@ SonyTV1::SonyTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Sony_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Sony_Make, "KV-M1420D", TV_Device);
@@ -276,6 +277,7 @@ SonyTV2::SonyTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Sony_Make,
+      TV_Panels,
       index)
 {
 }
@@ -336,6 +338,7 @@ SonyAmp1::SonyAmp1(
   : PIRKeysetMetaData(
       "Amp Keyset 1",
       Sony_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -415,6 +418,7 @@ SonyAmp2::SonyAmp2(
   : PIRKeysetMetaData(
       "Amp Keyset 2",
       Sony_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -495,6 +499,7 @@ SonyAudio1::SonyAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Sony_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -636,6 +641,7 @@ SonyDAT1::SonyDAT1(
   : PIRKeysetMetaData(
       "DAT Keyset 1",
       Sony_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -690,6 +696,7 @@ SonyDVD1::SonyDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Sony_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Sony_Make, "DVP-CX985V", DVD_Device);
@@ -888,6 +895,7 @@ SonyDVD2::SonyDVD2(
   : PIRKeysetMetaData(
       "DVD Keyset 2",
       Sony_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Sony_Make, "RDR-GX360", DVD_Device);
@@ -1006,6 +1014,7 @@ SonyVCR1::SonyVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Sony_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -1152,6 +1161,7 @@ SonyReceiver1::SonyReceiver1(
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
       Sony_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -1228,6 +1238,7 @@ SonyCD1::SonyCD1(
   : PIRKeysetMetaData(
       "CD Keyset 1",
       Sony_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -1358,6 +1369,7 @@ SonyProjector1::SonyProjector1(
   : PIRKeysetMetaData(
       "Projector Keyset 1",
       Sony_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Sony_Make, "RM-1271", Other_Device);

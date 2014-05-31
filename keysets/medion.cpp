@@ -29,6 +29,7 @@ MedionSTB1::MedionSTB1(
   : PIRKeysetMetaData(
       "TV DVR Keyset 1",
       Medion_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Medion_Make, "HDD-DVR 0905", Other_Device);
@@ -99,6 +100,7 @@ MedionDVD1::MedionDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Medion_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -152,6 +154,7 @@ MedionDVD2::MedionDVD2(
   : PIRKeysetMetaData(
       "DVD Keyset 2",
       Medion_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -213,6 +216,7 @@ MedionVCR1::MedionVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Medion_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

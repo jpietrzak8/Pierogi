@@ -31,6 +31,7 @@ LGTV1::LGTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       LG_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(LG_Make, "32LC56", TV_Device);
@@ -288,6 +289,7 @@ LGTV2::LGTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       LG_Make,
+      TV_Panels,
       index)
 {
 }
@@ -408,6 +410,7 @@ LGHT1::LGHT1(
   : PIRKeysetMetaData(
       "Home Theater Keyset 1",
       LG_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -480,6 +483,7 @@ LGHT2::LGHT2(
   : PIRKeysetMetaData(
       "Home Theater / BD Keyset 2",
       LG_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -620,6 +624,7 @@ LGDisc1::LGDisc1(
   : PIRKeysetMetaData(
       "DVD/BD Keyset 1",
       LG_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -717,6 +722,7 @@ LGDisc2::LGDisc2(
   : PIRKeysetMetaData(
       "DVD/BD Keyset 2",
       LG_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(LG_Make, "DV552", DVD_Device);
@@ -818,6 +824,7 @@ LGVCR1::LGVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       LG_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -944,6 +951,7 @@ LGAC1::LGAC1(
   : PIRKeysetMetaData(
       "Air Conditioner 1",
       LG_Make,
+      ACFan_Panels,
       index)
 {
 }

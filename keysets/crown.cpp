@@ -30,6 +30,7 @@ CrownTV1::CrownTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Crown_Make,
+      TV_Panels,
       index)
 {
 }
@@ -105,6 +106,7 @@ CrownAudio1::CrownAudio1(
   : PIRKeysetMetaData(
       "CD Keyset 1",
       Crown_Make,
+      MediaControl_Panels,
       index)
 {
 }

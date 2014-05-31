@@ -29,6 +29,7 @@ DirectvReceiver1::DirectvReceiver1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Directv_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

@@ -29,6 +29,7 @@ NikonDSLR1::NikonDSLR1(
   : PIRKeysetMetaData(
       "ML-L3 Remote Keyset",
       Nikon_Make,
+      Camera_Panels,
       index)
 {
   addControlledDevice(Nikon_Make, "D70s DSLR Camera", Other_Device);

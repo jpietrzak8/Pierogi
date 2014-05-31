@@ -31,6 +31,7 @@ NECTV1::NECTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       NEC_Make,
+      TV_Panels,
       index)
 {
 }
@@ -107,6 +108,7 @@ NECVCR1::NECVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       NEC_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -173,6 +175,7 @@ NECVCR2::NECVCR2(
   : PIRKeysetMetaData(
       "VCR Keyset 2",
       NEC_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -237,6 +240,7 @@ NECVCR3::NECVCR3(
   : PIRKeysetMetaData(
       "VCR Keyset 3",
       NEC_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -305,6 +309,7 @@ NECDVD1::NECDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       NEC_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -371,6 +376,7 @@ NECProjector1::NECProjector1(
   : PIRKeysetMetaData(
       "Projector Keyset 1",
       NEC_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -448,6 +454,7 @@ NECProjector2::NECProjector2(
   : PIRKeysetMetaData(
       "Projector Keyset 2",
       NEC_Make,
+      MediaControl_Panels,
       index)
 {
 }

@@ -29,6 +29,7 @@ SinotecTV1::SinotecTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Sinotec_Make,
+      TV_Panels,
       index)
 {
 }
@@ -84,6 +85,7 @@ SinotecTV2::SinotecTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Sinotec_Make,
+      TV_Panels,
       index)
 {
 }

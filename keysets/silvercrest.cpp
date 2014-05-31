@@ -28,6 +28,7 @@ SilverCrestDVD1::SilverCrestDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       SilverCrest_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -93,6 +94,7 @@ SilverCrestDVD2::SilverCrestDVD2(
   : PIRKeysetMetaData(
       "DVD Keyset 2",
       SilverCrest_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -170,6 +172,7 @@ SilverCrestDVD3::SilverCrestDVD3(
   : PIRKeysetMetaData(
       "DVD Keyset 3",
       SilverCrest_Make,
+      MediaControl_Panels,
       index)
 {
 }

@@ -29,6 +29,7 @@ FrontechTV1::FrontechTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Frontech_Make,
+      TV_Panels,
       index)
 {
 }
@@ -84,6 +85,7 @@ FrontechTV2::FrontechTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Frontech_Make,
+      TV_Panels,
       index)
 {
 }

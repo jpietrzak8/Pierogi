@@ -29,6 +29,7 @@ EiTV1::EiTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Ei_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Ei_Make, "COLOR 51100", TV_Device);

@@ -30,6 +30,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Acer_Make] = "Acer";
   makes[ADB_Make] = "ADB";
   makes[Admiral_Make] = "Admiral";
+  makes[Airtech_Make] = "Airtech";
   makes[Aiwa_Make] = "Aiwa";
   makes[Alpine_Make] = "Alpine";
   makes[Anitech_Make] = "Anitech";
@@ -97,6 +98,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Kenwood_Make] = "Kenwood";
   makes[Keymat_Make] = "Keymat";
   makes[Konka_Make] = "Konka";
+  makes[Lasko_Make] = "Lasko";
   makes[Lexuz_Make] = "Lexuz";
   makes[LG_Make] = "LG";
   makes[Lifetec_Make] = "Lifetec";
@@ -134,6 +136,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Raite_Make] = "Raite";
   makes[RCA_Make] = "RCA";
   makes[Roku_Make] = "Roku";
+  makes[RussellHobbs_Make] = "Russell Hobbs";
   makes[Saba_Make] = "Saba";
   makes[Sagem_Make] = "Sagem";
   makes[Sagemcom_Make] = "Sagemcom";

@@ -28,6 +28,7 @@ ProviewDVD1::ProviewDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Proview_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Proview_Make, "DVP816", DVD_Device);

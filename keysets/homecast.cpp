@@ -30,6 +30,7 @@ HomecastReceiver1::HomecastReceiver1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Homecast_Make,
+      TV_Panels,
       index)
 {
 }
@@ -100,6 +101,7 @@ HomecastReceiver2::HomecastReceiver2(
   : PIRKeysetMetaData(
       "DVB-T Keyset 1",
       Homecast_Make,
+      TV_Panels,
       index)
 {
 }

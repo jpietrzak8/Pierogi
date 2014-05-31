@@ -29,6 +29,7 @@ GeniusSpeakers1::GeniusSpeakers1(
   : PIRKeysetMetaData(
       "Speaker Keyset 1",
       Genius_Make,
+      MediaControl_Panels,
       index)
 {
 }

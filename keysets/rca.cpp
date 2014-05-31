@@ -29,6 +29,7 @@ RCATV1::RCATV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       RCA_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -335,6 +336,7 @@ RCAVCR1::RCAVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       RCA_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -423,6 +425,7 @@ RCADVD1::RCADVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       RCA_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -513,6 +516,7 @@ RCASat1::RCASat1(
   : PIRKeysetMetaData(
       "Satellite(DirecTV) Keyset 1",
       RCA_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -579,6 +583,7 @@ RCASat2::RCASat2(
   : PIRKeysetMetaData(
       "Satellite (Dish Network) Keyset 2",
       RCA_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

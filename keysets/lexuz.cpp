@@ -30,6 +30,7 @@ LexuzDVB1::LexuzDVB1(
   : PIRKeysetMetaData(
       "DVB Keyset 1",
       Lexuz_Make,
+      TV_Panels,
       index)
 {
 }

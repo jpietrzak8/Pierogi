@@ -30,6 +30,7 @@ SanyoVCR1::SanyoVCR1(
   : PIRKeysetMetaData(
       "DVD/VCR Keyset 1",
       Sanyo_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Sanyo_Make, "DVW-5000", VCR_Device);
@@ -104,6 +105,7 @@ SanyoDVD1::SanyoDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Sanyo_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Sanyo_Make, "DVD-SL25", DVD_Device);
@@ -176,6 +178,7 @@ SanyoTV1::SanyoTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Sanyo_Make,
+      TV_Panels,
       index)
 {
 }
@@ -342,6 +345,7 @@ SanyoTV2::SanyoTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Sanyo_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Sanyo_Make, "28LN4-C", TV_Device);
@@ -438,6 +442,7 @@ SanyoProjector1::SanyoProjector1(
   : PIRKeysetMetaData(
       "Projector Keyset 1",
       Sanyo_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Sanyo_Make, "PLV-70", Other_Device);

@@ -28,6 +28,7 @@ SkyReceiver1::SkyReceiver1(
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
       Sky_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

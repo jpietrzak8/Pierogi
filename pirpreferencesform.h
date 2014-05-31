@@ -1,7 +1,7 @@
 //
 // pirpreferencesform.h
 //
-// Copyright 2012, 2013 by John Pietrzak  (jpietrzak8@gmail.com)
+// Copyright 2012 - 2014 by John Pietrzak  (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -54,12 +54,16 @@ public:
   {
     return useDefaultForVolume;
   }
-  
+
+signals:
+  void useDefaultEnabled(bool);
+
 private slots:
   void on_setDefaultButton_clicked();
   void on_clearDefaultButton_clicked();
   void on_useDefaultCheckBox_stateChanged(int arg1);
   void on_altMainCheckBox_stateChanged(int arg1);
+  void on_tabsOnBottomCheckBox_stateChanged(int arg1);
   void on_carrierFrequencySpinBox_valueChanged(int arg1);
   void on_dutyCycleSpinBox_valueChanged(int arg1);
   void on_macroFilenameButton_clicked();

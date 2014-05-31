@@ -29,6 +29,7 @@ DSEDVD1::DSEDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       DSE_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -105,6 +106,7 @@ DSESat1::DSESat1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       DSE_Make,
+      TV_Panels,
       index)
 {
 }

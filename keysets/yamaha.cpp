@@ -30,6 +30,7 @@ YamahaDVD1::YamahaDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Yamaha_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -122,6 +123,7 @@ YamahaAudio1::YamahaAudio1(
   : PIRKeysetMetaData(
       "Audio Device Keyset 1",
       Yamaha_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -226,6 +228,7 @@ YamahaAudio2::YamahaAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Yamaha_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Yamaha_Make, "RX-395-RDS", Audio_Device);
@@ -468,6 +471,7 @@ YamahaAudio3::YamahaAudio3(
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Yamaha_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -527,6 +531,7 @@ YamahaAudio4::YamahaAudio4(
   : PIRKeysetMetaData(
       "Audio Keyset 4",
       Yamaha_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Yamaha_Make, "GX-50", Audio_Device);
@@ -611,6 +616,7 @@ YamahaTV1::YamahaTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Yamaha_Make,
+      TV_Panels,
       index)
 {
 }
@@ -654,6 +660,7 @@ YamahaKaraoke1::YamahaKaraoke1(
   : PIRKeysetMetaData(
       "Karaoke Keyset 1",
       Yamaha_Make,
+      MediaControl_Panels,
       index)
 {
 }

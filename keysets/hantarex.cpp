@@ -28,6 +28,7 @@ HantarexTV1::HantarexTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Hantarex_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -89,6 +90,7 @@ HantarexTV2::HantarexTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Hantarex_Make,
+      TV_Panels,
       index)
 {
 }

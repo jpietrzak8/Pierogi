@@ -22,12 +22,14 @@
 
 #include "sylvania.h"
 #include "protocols/necprotocol.h"
+#include "protocols/airtechprotocol.h"
 
 SylvaniaTV1::SylvaniaTV1(
   unsigned int index)
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Sylvania_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Sylvania_Make, "6513DD", TV_Device);
@@ -96,4 +98,36 @@ void SylvaniaTV1::populateProtocol(
   addKey("mute", Mute_Key, 0xF3, 8);
   addKey("up arrow", Up_Key, 0xF6, 8);
   addKey("down arrow", Down_Key, 0xF7, 8);
+}
+
+
+SylvaniaFan1::SylvaniaFan1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Fan Keyset 1",
+      Sylvania_Make,
+      ACFan_Panels,
+      index)
+{
+}
+
+
+void SylvaniaFan1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new AirtechProtocol(guiObject, index);
+
+  setPreData(0x6C, 7);
+
+  addKey("On/Off", Power_Key, 0x01, 5);
+  addKey("Speed Adjust", Fan_Key, 0x02, 5);
+  addKey("Mode", Mode_Key, 0x04, 5);
+  addKey("Timer", Timer_Key, 0x08, 5);
+  addKey("Swing", Oscillate_Key, 0x10, 5);
 }

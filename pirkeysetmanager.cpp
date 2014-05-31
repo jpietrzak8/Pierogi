@@ -32,6 +32,7 @@
 #include "keysets/acer.h"
 #include "keysets/adb.h"
 #include "keysets/admiral.h"
+#include "keysets/airtech.h"
 #include "keysets/aiwa.h"
 #include "keysets/alpine.h"
 #include "keysets/anitech.h"
@@ -99,6 +100,7 @@
 #include "keysets/kenwood.h"
 #include "keysets/keymat.h"
 #include "keysets/konka.h"
+#include "keysets/lasko.h"
 #include "keysets/lexuz.h"
 #include "keysets/lg.h"
 #include "keysets/lifetec.h"
@@ -136,6 +138,7 @@
 #include "keysets/raite.h"
 #include "keysets/rca.h"
 #include "keysets/roku.h"
+#include "keysets/russellhobbs.h"
 #include "keysets/saba.h"
 #include "keysets/sagem.h"
 #include "keysets/sagemcom.h"
@@ -210,6 +213,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new AdmiralTV1(++counter));
   setupKeyset(new AdmiralTV2(++counter));
   setupKeyset(new AdmiralVCR1(++counter));
+
+  setupKeyset(new AirtechFan1(++counter));
 
   setupKeyset(new AiwaVCR1(++counter));
   setupKeyset(new AiwaVCR2(++counter));
@@ -555,6 +560,9 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new KonkaTV1(++counter));
   setupKeyset(new KonkaTV2(++counter));
 
+  setupKeyset(new LaskoFan1(++counter));
+  setupKeyset(new LaskoFan2(++counter));
+
   setupKeyset(new LexuzDVB1(++counter));
 
   setupKeyset(new LGTV1(++counter));
@@ -777,6 +785,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new RokuBox1(++counter));
   setupKeyset(new RokuBox2(++counter));
 
+  setupKeyset(new RussellHobbsFan1(++counter));
+
   setupKeyset(new SabaTV1(++counter));
   setupKeyset(new SabaTV2(++counter));
 
@@ -888,6 +898,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new StrongSTB5(++counter));
 
   setupKeyset(new SylvaniaTV1(++counter));
+  setupKeyset(new SylvaniaFan1(++counter));
 
   setupKeyset(new TechnicsAudio1(++counter));
   setupKeyset(new TechnicsAudio1a(++counter));
@@ -1135,6 +1146,17 @@ QString PIRKeysetManager::getDisplayName(
 }
 
 
+PIRPanelTypes PIRKeysetManager::getPanelTypes(
+  unsigned int keysetID) const
+{
+  PIRKeysetCollection::const_iterator i = keysetsInfo.find(keysetID);
+
+  if ((i == keysetsInfo.end()) || !i->second) return TV_Panels;
+
+  return i->second->getPanelTypes();
+}
+
+
 void PIRKeysetManager::populateKeyset(
   QObject *guiObject,
   unsigned int keysetID)
@@ -1153,9 +1175,9 @@ void PIRKeysetManager::populateKeyset(
 
 
 unsigned int PIRKeysetManager::getCarrierFrequency(
-  unsigned int keysetID)
+  unsigned int keysetID) const
 {
-  PIRKeysetCollection::iterator i = keysetsInfo.find(keysetID);
+  PIRKeysetCollection::const_iterator i = keysetsInfo.find(keysetID);
 
   if (i == keysetsInfo.end())
   {
@@ -1182,9 +1204,9 @@ void PIRKeysetManager::setCarrierFrequency(
 
 
 unsigned int PIRKeysetManager::getDutyCycle(
-  unsigned int keysetID)
+  unsigned int keysetID) const
 {
-  PIRKeysetCollection::iterator i = keysetsInfo.find(keysetID);
+  PIRKeysetCollection::const_iterator i = keysetsInfo.find(keysetID);
 
   if (i == keysetsInfo.end())
   {
@@ -1263,7 +1285,7 @@ struct PIRUserData
 {
   bool favorite;
   QString nickname;
-  PIRTabBarName tabBarName;
+//  PIRPanelTypes panelTypes;
   int panelIndex;
 };
 typedef std::map<QString, PIRUserData> PIRUDInnerMap;
@@ -1297,7 +1319,7 @@ void PIRKeysetManager::populateListWidgets(
     // false here, it'll be changed to true below if needed:
     userData[makeID][name].nickname = userName;
     userData[makeID][name].favorite = false;
-    userData[makeID][name].tabBarName = Universal_Tabs;
+//    userData[makeID][name].panelTypes = TV_Panels;
     userData[makeID][name].panelIndex = 0;
     ++index;
   }
@@ -1317,17 +1339,19 @@ void PIRKeysetManager::populateListWidgets(
     // Insert an entry into the map:
     userData[makeID][name].favorite = true;
 
+/*
     // Initialize the tab bar name:
-    userData[makeID][name].tabBarName = Universal_Tabs;
+    userData[makeID][name].panelTypes = TV_Panels;
     // Add the favorite tab bar name:
-    if (settings.contains("tabBarName"))
+    if (settings.contains("panelTypes"))
     {
-      int tbname = settings.value("tabBarName").toInt();
-      if ((tbname >= 0) && (tbname < Last_Tabs_Marker))
+      int pt = settings.value("panelTypes").toInt();
+      if ((pt > 0) && (pt < Last_Panels_Marker))
       {
-        userData[makeID][name].tabBarName = PIRTabBarName(tbname);
+        userData[makeID][name].panelTypes = PIRPanelTypes(pt);
       }
     }
+*/
 
     // Intialize the panel index:
     userData[makeID][name].panelIndex = 0;
@@ -1390,7 +1414,7 @@ void PIRKeysetManager::populateListWidgets(
         if (innerIter->second.favorite)
         {
           kwi->setFavorite(true);
-          kwi->setTabBarName(innerIter->second.tabBarName);
+//          kwi->setPanelTypes(innerIter->second.panelTypes);
           kwi->setPanelIndex(innerIter->second.panelIndex);
           fd->addItem(kwi);
         }

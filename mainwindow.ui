@@ -41,9 +41,9 @@
     <property name="title">
      <string>Pierogi</string>
     </property>
-    <addaction name="actionSelectKeyset"/>
+    <addaction name="actionSelect_Keyset_From_Favorites"/>
     <addaction name="actionAutomatic_Keyset_Search"/>
-    <addaction name="actionBrowse_Device_List"/>
+    <addaction name="actionSelectKeyset"/>
     <addaction name="actionPreferences"/>
     <addaction name="actionDocumentation"/>
     <addaction name="actionAbout"/>
@@ -52,7 +52,7 @@
   </widget>
   <action name="actionSelectKeyset">
    <property name="text">
-    <string>Select Keyset</string>
+    <string>Select Keyset From List</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -78,6 +78,11 @@
   <action name="actionAutomatic_Keyset_Search">
    <property name="text">
     <string>Automated Keyset Search</string>
+   </property>
+  </action>
+  <action name="actionSelect_Keyset_From_Favorites">
+   <property name="text">
+    <string>Favorite Keysets</string>
    </property>
   </action>
  </widget>

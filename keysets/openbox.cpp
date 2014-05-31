@@ -30,6 +30,7 @@ OpenBoxSTB1::OpenBoxSTB1(
   : PIRKeysetMetaData(
       "Satellite Receiver 1",
       OpenBox_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -121,6 +122,7 @@ OpenBoxSTB2::OpenBoxSTB2(
   : PIRKeysetMetaData(
       "Satellite Receiver 2",
       OpenBox_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

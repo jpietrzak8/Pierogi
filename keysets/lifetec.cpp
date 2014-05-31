@@ -32,6 +32,7 @@ LifetecTV1::LifetecTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Lifetec_Make,
+      TV_Panels | MediaControl_Panels,
       index)
 {
 }
@@ -90,6 +91,7 @@ LifetecTV2::LifetecTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Lifetec_Make,
+      TV_Panels | MediaControl_Panels,
       index)
 {
 }
@@ -145,6 +147,7 @@ LifetecVCR1::LifetecVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Lifetec_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -205,6 +208,7 @@ LifetecAudio1::LifetecAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Lifetec_Make,
+      MediaControl_Panels,
       index)
 {
 }

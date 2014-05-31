@@ -1,7 +1,7 @@
 //
-// pirtabswidgetitem.cpp
+// russellhobbs.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -16,22 +16,25 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software Foundation,
+// along with Pierogi; if not, write to the Free Software Foundation,
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 
-#include "pirtabswidgetitem.h"
+#ifndef RUSSELLHOBBS_H
+#define RUSSELLHOBBS_H
 
-PIRTabsWidgetItem::PIRTabsWidgetItem(
-  QString displayName,
-  PIRTabBarName internalName)
-  : QListWidgetItem(displayName),
-    tabBarName(internalName)
+#include "pirkeysetmetadata.h"
+
+class QObject;
+
+class RussellHobbsFan1: public PIRKeysetMetaData
 {
-}
+public:
+  RussellHobbsFan1(
+    unsigned int index);
 
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
 
-PIRTabBarName PIRTabsWidgetItem::getTabBarName()
-{
-  return tabBarName;
-}
+#endif // RUSSELLHOBBS_H

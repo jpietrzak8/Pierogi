@@ -31,6 +31,7 @@ LoeweTV1::LoeweTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Loewe_Make,
+      TV_Panels,
       index)
 {
 }
@@ -87,6 +88,7 @@ LoeweVCR1::LoeweVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Loewe_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Loewe_Make, "ViewVision 3600H", VCR_Device);
@@ -160,6 +162,7 @@ LoeweDVD1::LoeweDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Loewe_Make,
+      MediaControl_Panels,
       index)
 {
 }

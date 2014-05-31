@@ -29,6 +29,7 @@ ILOTV1::ILOTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       ILO_Make,
+      TV_Panels,
       index)
 {
 }
@@ -119,6 +120,7 @@ ILOTV2::ILOTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       ILO_Make,
+      TV_Panels,
       index)
 {
 }
@@ -196,6 +198,7 @@ ILOTV3::ILOTV3(
   : PIRKeysetMetaData(
       "TV Keyset 3",
       ILO_Make,
+      TV_Panels,
       index)
 {
 }

@@ -1,7 +1,7 @@
 //
 // pirpreferencesform.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2014 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -85,6 +85,15 @@ PIRPreferencesForm::PIRPreferencesForm(
     }
   }
 
+  if (settings.contains("tabsOnTop"))
+  {
+    if (!settings.value("tabsOnTop").toBool())
+    {
+      ui->tabsOnBottomCheckBox->setChecked(true);
+      mainWindow->placeTabsOnTop(false);
+    }
+  }
+
   if (settings.contains("macroFileName"))
   {
     QString filename = settings.value("macroFileName").toString();
@@ -124,6 +133,8 @@ void PIRPreferencesForm::on_setDefaultButton_clicked()
   settings.endGroup();
 
   mainWindow->enableButtons();
+
+  emit useDefaultEnabled(true);
 }
 
 void PIRPreferencesForm::on_clearDefaultButton_clicked()
@@ -139,6 +150,8 @@ void PIRPreferencesForm::on_clearDefaultButton_clicked()
   settings.endGroup();
 
   mainWindow->enableButtons();
+
+  emit useDefaultEnabled(false);
 }
 
 
@@ -182,6 +195,29 @@ void PIRPreferencesForm::on_altMainCheckBox_stateChanged(
     settings.setValue("useAltMain", false);
 
     mainWindow->useMainPanel();
+  }
+
+  settings.endGroup();
+}
+
+void PIRPreferencesForm::on_tabsOnBottomCheckBox_stateChanged(
+  int arg1)
+{
+  QSettings settings("pietrzak.org", "Pierogi");
+
+  settings.beginGroup("Preferences");
+
+  if (arg1 == Qt::Checked)
+  {
+    settings.setValue("tabsOnTop", false);
+
+    mainWindow->placeTabsOnTop(false);
+  }
+  else
+  {
+    settings.setValue("tabsOnTop", true);
+
+    mainWindow->placeTabsOnTop(true);
   }
 
   settings.endGroup();

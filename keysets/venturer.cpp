@@ -28,6 +28,7 @@ VenturerTV1::VenturerTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Venturer_Make,
+      TV_Panels,
       index)
 {
 }
@@ -88,6 +89,7 @@ VenturerDVD1::VenturerDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Venturer_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -168,6 +170,7 @@ VenturerSTB1::VenturerSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Venturer_Make,
+      TV_Panels,
       index)
 {
 }

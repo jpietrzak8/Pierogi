@@ -28,6 +28,7 @@ WDMediaPlayer1::WDMediaPlayer1(
   : PIRKeysetMetaData(
       "Media Player Keyset 1",
       WD_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(WD_Make, "WDTV", Other_Device);

@@ -28,6 +28,7 @@ BlaupunktVCR1::BlaupunktVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Blaupunkt_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

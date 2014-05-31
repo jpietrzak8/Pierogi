@@ -30,6 +30,7 @@ CanonDSLR1::CanonDSLR1(
   : PIRKeysetMetaData(
       "RC 1/5/6 Keyset",
       Canon_Make,
+      Camera_Panels,
       index)
 {
 }
@@ -64,6 +65,7 @@ CanonCamcorder1::CanonCamcorder1(
   : PIRKeysetMetaData(
       "Camcorder Keyset 1",
       Canon_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -132,6 +134,7 @@ CanonPowershot1::CanonPowershot1(
   : PIRKeysetMetaData(
       "Powershot Keyset 1",
       Canon_Make,
+      MediaControl_Panels, // fix!
       index)
 {
 }

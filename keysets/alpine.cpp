@@ -28,6 +28,7 @@ AlpineAudio1::AlpineAudio1(
   : PIRKeysetMetaData(
       "Car Stereo Keyset 1",
       Alpine_Make,
+      Receiver_Panels,
       index)
 {
 }

@@ -30,6 +30,7 @@ OnidaTV1::OnidaTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Onida_Make,
+      TV_Panels,
       index)
 {
 }
@@ -87,6 +88,7 @@ OnidaDVD1::OnidaDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Onida_Make,
+      MediaControl_Panels,
       index)
 {
 }

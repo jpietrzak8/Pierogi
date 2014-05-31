@@ -23,6 +23,8 @@
 #ifndef PIRPANELNAMES_H
 #define PIRPANELNAMES_H
 
+#include <QFlags>
+
 enum PIRPanelName
 {
   Main_Panel,
@@ -54,6 +56,26 @@ enum PIRPanelName
 };
 
 
+enum PIRPanelType
+{
+  TV_Panels = 0x1,
+  MediaControl_Panels = 0x2,
+  MediaRecord_Panels = 0x4,
+  Receiver_Panels = 0x8,
+  ACFan_Panels = 0x10,
+  StatefulAC_Panels = 0x20,
+  Camera_Panels = 0x40,
+  Roomba_Panels = 0x80,
+  Playstation_Panels = 0x100
+//  Last_Panels_Marker = 0x200
+};
+
+Q_DECLARE_FLAGS(PIRPanelTypes, PIRPanelType);
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(PIRPanelTypes);
+
+
+/*
 enum PIRTabBarName
 {
   Universal_Tabs,
@@ -73,5 +95,6 @@ enum PIRTabBarName
 //  Advanced_Tabs,
   Last_Tabs_Marker
 };
+*/
 
 #endif // PIRPANELNAMES_H

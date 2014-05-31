@@ -30,6 +30,7 @@ HumaxReceiver1::HumaxReceiver1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Humax_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -111,6 +112,7 @@ HumaxReceiver2::HumaxReceiver2(
   : PIRKeysetMetaData(
       "STB Keyset 2",
       Humax_Make,
+      TV_Panels,
       index)
 {
 }
@@ -182,6 +184,7 @@ HumaxReceiver3::HumaxReceiver3(
   : PIRKeysetMetaData(
       "STB Keyset 3",
       Humax_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

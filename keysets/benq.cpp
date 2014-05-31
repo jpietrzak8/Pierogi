@@ -30,6 +30,7 @@ BenQTV1::BenQTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       BenQ_Make,
+      TV_Panels,
       index)
 {
 }
@@ -95,6 +96,7 @@ BenQProjector1::BenQProjector1(
   : PIRKeysetMetaData(
       "Projector Keyset 1",
       BenQ_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -197,6 +199,7 @@ BenQProjector2::BenQProjector2(
   : PIRKeysetMetaData(
       "Projector Keyset 2",
       BenQ_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -255,6 +258,7 @@ BenQProjector3::BenQProjector3(
   : PIRKeysetMetaData(
       "Projector Keyset 3",
       BenQ_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -299,6 +303,7 @@ BenQProjector4::BenQProjector4(
   : PIRKeysetMetaData(
       "Projector Keyset 4",
       BenQ_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -354,6 +359,7 @@ BenQProjector5::BenQProjector5(
   : PIRKeysetMetaData(
       "Projector Keyset 5",
       BenQ_Make,
+      MediaControl_Panels,
       index)
 {
 }

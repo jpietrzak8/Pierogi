@@ -28,6 +28,7 @@ OlympusCamera1::OlympusCamera1(
   : PIRKeysetMetaData(
       "RM-2 Remote Keyset",
       Olympus_Make,
+      Camera_Panels,
       index)
 {
   addControlledDevice(Olympus_Make, "410 Digital", Other_Device);

@@ -34,6 +34,7 @@ GrundigSat1::GrundigSat1(
   : PIRKeysetMetaData(
       "Satellite Keyset 1",
       Grundig_Make,
+      TV_Panels,
       index)
 {
 }
@@ -89,6 +90,7 @@ GrundigSat2::GrundigSat2(
   : PIRKeysetMetaData(
       "Satellite Keyset 2",
       Grundig_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Grundig_Make, "STR 7100", Sat_Device);
@@ -146,6 +148,7 @@ GrundigSat3::GrundigSat3(
   : PIRKeysetMetaData(
       "Satellite Keyset 3",
       Grundig_Make,
+      TV_Panels,
       index)
 {
 }
@@ -209,6 +212,7 @@ GrundigAmp1::GrundigAmp1(
   : PIRKeysetMetaData(
       "Amp Keyset 1",
       Grundig_Make,
+      Receiver_Panels,
       index)
 {
   addControlledDevice(Grundig_Make, "FineArts Amplifier V1", Audio_Device);
@@ -297,6 +301,7 @@ GrundigAudio1::GrundigAudio1(
   : PIRKeysetMetaData(
       "Audio(CD) Keyset 1",
       Grundig_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Grundig_Make, "CD 8400", Audio_Device);
@@ -349,6 +354,7 @@ GrundigAudio2::GrundigAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Grundig_Make,
+      Receiver_Panels,
       index)
 {
   addControlledDevice(Grundig_Make, "CDM 700", Audio_Device);
@@ -423,6 +429,7 @@ GrundigVCR1::GrundigVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Grundig_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Grundig_Make, "GV 437", VCR_Device);
@@ -508,6 +515,7 @@ GrundigTV1::GrundigTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Grundig_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Grundig_Make, "ST 55-908", TV_Device);
@@ -567,6 +575,7 @@ GrundigTV2::GrundigTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Grundig_Make,
+      TV_Panels,
       index)
 {
 }
@@ -632,6 +641,7 @@ GrundigTV3::GrundigTV3(
   : PIRKeysetMetaData(
       "TV/VDR Keyset 3",
       Grundig_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -700,6 +710,7 @@ GrundigTV4::GrundigTV4(
   : PIRKeysetMetaData(
       "TV Keyset 4",
       Grundig_Make,
+      TV_Panels,
       index)
 {
 }
@@ -750,6 +761,7 @@ GrundigDVD1::GrundigDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Grundig_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Grundig_Make, "GDV 130", DVD_Device);

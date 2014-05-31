@@ -30,6 +30,7 @@ ArcamReceiver1::ArcamReceiver1(
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
       Arcam_Make,
+      Receiver_Panels,
       index)
 {
 }

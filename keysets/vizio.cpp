@@ -30,6 +30,7 @@ VizioTV1::VizioTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Vizio_Make,
+      TV_Panels,
       index)
 {
 }

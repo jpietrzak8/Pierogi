@@ -30,6 +30,7 @@ HitachiTV1::HitachiTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Hitachi_Make,
+      TV_Panels,
       index)
 {
 }
@@ -160,6 +161,7 @@ HitachiTV2::HitachiTV2(
   : PIRKeysetMetaData(
       "TV (monitor) Keyset 2",
       Hitachi_Make,
+      TV_Panels,
       index)
 {
 }
@@ -212,6 +214,7 @@ HitachiTV3::HitachiTV3(
   : PIRKeysetMetaData(
       "TV Keyset 3",
       Hitachi_Make,
+      TV_Panels | MediaControl_Panels,
       index)
 {
   addControlledDevice(Hitachi_Make, "57F510", TV_Device);
@@ -344,6 +347,7 @@ HitachiProjector::HitachiProjector(
   : PIRKeysetMetaData(
       "Projector Keyset",
       Hitachi_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -397,6 +401,7 @@ HitachiDVD1::HitachiDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Hitachi_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -465,6 +470,7 @@ HitachiAudio1::HitachiAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Hitachi_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Hitachi_Make, "FX-7", Audio_Device);
@@ -523,6 +529,7 @@ HitachiVCR1::HitachiVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Hitachi_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

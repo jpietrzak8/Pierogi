@@ -33,6 +33,7 @@ CiscoSTB1::CiscoSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Cisco_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Cisco_Make, "8485DVB", Other_Device);
@@ -115,6 +116,7 @@ CiscoSTB2::CiscoSTB2(
   : PIRKeysetMetaData(
       "STB Keyset 2",
       Cisco_Make,
+      TV_Panels,
       index)
 {
 }
@@ -214,6 +216,7 @@ CiscoSTB3::CiscoSTB3(
   : PIRKeysetMetaData(
       "STB Keyset 3",
       Cisco_Make,
+      TV_Panels,
       index)
 {
 }
@@ -286,6 +289,7 @@ CiscoSTB4::CiscoSTB4(
   : PIRKeysetMetaData(
       "STB Keyset 4",
       Cisco_Make,
+      TV_Panels,
       index)
 {
 }

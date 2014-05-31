@@ -29,6 +29,7 @@ QNAPPlayer1::QNAPPlayer1(
   : PIRKeysetMetaData(
       "Media Player Keyset 1",
       QNAP_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(QNAP_Make, "NMP-1000", Other_Device);

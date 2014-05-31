@@ -26,6 +26,7 @@
 #include "pirkeynames.h"
 #include "pirmakenames.h"
 //#include "pirdevicetypenames.h"
+#include "pirpanelnames.h"
 
 #include "pirdeviceinfo.h"
 
@@ -48,6 +49,7 @@ public:
   PIRKeysetMetaData(
     const char *keysetName,
     PIRMakeName make,
+    PIRPanelTypes panelTypes,
     unsigned int index);
 
   virtual ~PIRKeysetMetaData();
@@ -60,6 +62,8 @@ public:
   PIRMakeName getMake() const;
 
   const char *getKeysetName() const;
+
+  PIRPanelTypes getPanelTypes() const;
 
   unsigned int getCarrierFrequency() const;
 
@@ -192,6 +196,7 @@ protected:
 private:
   const char *keysetName;
   PIRMakeName make;
+  PIRPanelTypes panelTypes;
   static PIRDeviceCollection controlledDevices;
 //  PIRDeviceTypeCollection deviceTypes;
 };

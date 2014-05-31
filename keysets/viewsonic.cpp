@@ -30,6 +30,7 @@ ViewsonicProjector1::ViewsonicProjector1(
   : PIRKeysetMetaData(
       "Projector Keyset 1",
       Viewsonic_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Viewsonic_Make, "PJ750", Other_Device);
@@ -88,6 +89,7 @@ ViewsonicProjector2::ViewsonicProjector2(
   : PIRKeysetMetaData(
       "Projector Keyset 2",
       Viewsonic_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Viewsonic_Make, "PJ250", Other_Device);

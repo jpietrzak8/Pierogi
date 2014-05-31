@@ -29,6 +29,7 @@ HyundaiDVD1::HyundaiDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Hyundai_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -105,6 +106,7 @@ HyundaiAudio1::HyundaiAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Hyundai_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -176,6 +178,7 @@ HyundaiTV1::HyundaiTV1(
   : PIRKeysetMetaData(
       "TV/Monitor Keyset 1",
       Hyundai_Make,
+      TV_Panels,
       index)
 {
 }

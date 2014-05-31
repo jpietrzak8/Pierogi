@@ -115,6 +115,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="tabsOnBottomCheckBox">
+         <property name="text">
+          <string>Place Tab Bar below Button Panels</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QLabel" name="macroFileLabel">

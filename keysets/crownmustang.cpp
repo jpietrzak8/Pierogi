@@ -28,6 +28,7 @@ CrownMustangTV1::CrownMustangTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       CrownMustang_Make,
+      TV_Panels,
       index)
 {
 }

@@ -1,7 +1,7 @@
 //
 // pirfavoritesdialog.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2014 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -67,9 +67,17 @@ public:
   int selectFavorite(
     PIRKeysetWidgetItem *targetItem);
 
+/*
   void updateTabBarName(
     int favoritesIndex,
     PIRTabBarName name);
+*/
+
+/*
+  void updatePanelTypes(
+    int favoritesIndex,
+    PIRPanelTypes panelTypes);
+*/
 
   void updatePanelIndex(
     int favoritesIndex,

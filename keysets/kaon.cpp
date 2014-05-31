@@ -30,6 +30,7 @@ KaonSat1::KaonSat1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Kaon_Make,
+      TV_Panels,
       index)
 {
 }

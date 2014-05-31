@@ -28,6 +28,7 @@ AnitechTV1::AnitechTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Anitech_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Anitech_Make, "M 3740", TV_Device);
@@ -61,6 +62,7 @@ AnitechVCR1::AnitechVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Anitech_Make,
+      MediaControl_Panels,
       index)
 {
 }

@@ -28,6 +28,7 @@ HauppaugePCTV1::HauppaugePCTV1(
   : PIRKeysetMetaData(
       "PCTV Keyset 1",
       Hauppauge_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Hauppauge_Make, "PVR 350", Computer_Device);
@@ -182,6 +183,7 @@ HauppaugePCTV2::HauppaugePCTV2(
   : PIRKeysetMetaData(
       "PCTV Keyset 2",
       Hauppauge_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Hauppauge_Make, "PVR-250", Computer_Device);

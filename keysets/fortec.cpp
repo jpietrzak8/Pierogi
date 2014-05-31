@@ -30,6 +30,7 @@ FortecReceiver1::FortecReceiver1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Fortec_Make,
+      TV_Panels,
       index)
 {
 }
@@ -99,6 +100,7 @@ FortecReceiver2::FortecReceiver2(
   : PIRKeysetMetaData(
       "Sat Keyset 2",
       Fortec_Make,
+      TV_Panels,
       index)
 {
 }

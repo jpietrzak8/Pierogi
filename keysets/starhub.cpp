@@ -28,6 +28,7 @@ StarhubSTB1::StarhubSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Starhub_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

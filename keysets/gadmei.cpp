@@ -30,6 +30,7 @@ GadmeiTuner1::GadmeiTuner1(
   : PIRKeysetMetaData(
       "TV Tuner Keyset 1",
       Gadmei_Make,
+      TV_Panels,
       index)
 {
 }

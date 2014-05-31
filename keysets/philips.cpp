@@ -32,6 +32,7 @@ PhilipsTV1::PhilipsTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Philips_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Philips_Make, "HV92", TV_Device);
@@ -346,6 +347,7 @@ PhilipsTV2::PhilipsTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Philips_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Philips_Make, "28PW8506/12R", TV_Device);
@@ -490,6 +492,7 @@ PhilipsTV3::PhilipsTV3(
   : PIRKeysetMetaData(
       "TV (settop-box) keyset 3",
       Philips_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Philips_Make, "DTX6372", TV_Device);
@@ -555,6 +558,7 @@ PhilipsDVD1::PhilipsDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Philips_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Philips_Make, "DVD712", DVD_Device);
@@ -747,6 +751,7 @@ PhilipsDVD2::PhilipsDVD2(
   : PIRKeysetMetaData(
       "DVD/BD Keyset 2",
       Philips_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -816,6 +821,7 @@ PhilipsDVD3::PhilipsDVD3(
   : PIRKeysetMetaData(
       "DVD Keyset 3",
       Philips_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Philips_Make, "DVDR3570H", DVD_Device);
@@ -950,6 +956,7 @@ PhilipsDVD4::PhilipsDVD4(
   : PIRKeysetMetaData(
       "DVD Keyset 4",
       Philips_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Philips_Make, "DVDR 1000", DVD_Device);
@@ -1037,6 +1044,7 @@ PhilipsVCR1::PhilipsVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Philips_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -1220,6 +1228,7 @@ PhilipsSat1::PhilipsSat1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Philips_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -1287,6 +1296,7 @@ PhilipsSat2::PhilipsSat2(
   : PIRKeysetMetaData(
       "Sat Keyset 2",
       Philips_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Philips_Make, "DSX-5500", Sat_Device);
@@ -1379,6 +1389,7 @@ PhilipsSat3::PhilipsSat3(
   : PIRKeysetMetaData(
       "Sat Keyset 3",
       Philips_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Philips_Make, "DST5816/33", Sat_Device);
@@ -1435,6 +1446,7 @@ PhilipsAudio1::PhilipsAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Philips_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Philips_Make, "FW 530C", Audio_Device);
@@ -1628,6 +1640,7 @@ PhilipsAudio2::PhilipsAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Philips_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Philips_Make, "FW2104", Audio_Device);
@@ -1719,6 +1732,7 @@ PhilipsAudio3::PhilipsAudio3(
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Philips_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Philips_Make, "CD723", Audio_Device);
@@ -1772,6 +1786,7 @@ PhilipsAudio4::PhilipsAudio4(
   : PIRKeysetMetaData(
       "Audio Keyset 4",
       Philips_Make,
+      MediaControl_Panels,
       index)
 {
 }

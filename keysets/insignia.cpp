@@ -35,6 +35,7 @@ InsigniaTV1::InsigniaTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Insignia_Make,
+      TV_Panels,
       index)
 {
 }
@@ -171,6 +172,7 @@ InsigniaTV2::InsigniaTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Insignia_Make,
+      TV_Panels,
       index)
 {
 }
@@ -233,6 +235,7 @@ InsigniaTV3::InsigniaTV3(
   : PIRKeysetMetaData(
       "TV Keyset 3",
       Insignia_Make,
+      TV_Panels,
       index)
 {
 }
@@ -285,6 +288,7 @@ InsigniaTV4::InsigniaTV4(
   : PIRKeysetMetaData(
       "TV Keyset 4",
       Insignia_Make,
+      TV_Panels,
       index)
 {
 }
@@ -333,6 +337,7 @@ InsigniaTV5::InsigniaTV5(
   : PIRKeysetMetaData(
       "TV Keyset 5",
       Insignia_Make,
+      TV_Panels,
       index)
 {
 }
@@ -392,6 +397,7 @@ InsigniaTV6::InsigniaTV6(
   : PIRKeysetMetaData(
       "TV Keyset 6",
       Insignia_Make,
+      TV_Panels,
       index)
 {
 }
@@ -454,6 +460,7 @@ InsigniaDVD1::InsigniaDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Insignia_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -527,6 +534,7 @@ InsigniaDVD2::InsigniaDVD2(
   : PIRKeysetMetaData(
       "DVD Keyset 2",
       Insignia_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -599,6 +607,7 @@ InsigniaDVD3::InsigniaDVD3(
   : PIRKeysetMetaData(
       "DVD Keyset 3",
       Insignia_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -677,6 +686,7 @@ InsigniaDVD4::InsigniaDVD4(
   : PIRKeysetMetaData(
       "DVD Keyset 4",
       Insignia_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -750,6 +760,7 @@ InsigniaDVD5::InsigniaDVD5(
   : PIRKeysetMetaData(
       "DVD (BD) Keyset 5",
       Insignia_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -821,6 +832,7 @@ InsigniaDVD6::InsigniaDVD6(
   : PIRKeysetMetaData(
       "DVD Keyset 6",
       Insignia_Make,
+      MediaControl_Panels,
       index)
 {
 }

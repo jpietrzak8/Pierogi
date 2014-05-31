@@ -28,6 +28,7 @@ SabaTV1::SabaTV1(
   : PIRKeysetMetaData(
       "TV/VCR Keyset 1",
       Saba_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -91,6 +92,7 @@ SabaTV2::SabaTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Saba_Make,
+      TV_Panels,
       index)
 {
 }

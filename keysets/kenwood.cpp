@@ -30,6 +30,7 @@ KenwoodAudio1::KenwoodAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Kenwood_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -162,6 +163,7 @@ KenwoodComponent1::KenwoodComponent1(
   : PIRKeysetMetaData(
       "Component Keyset 1",
       Kenwood_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -274,6 +276,7 @@ KenwoodComponent2::KenwoodComponent2(
   : PIRKeysetMetaData(
       "Component Keyset 2",
       Kenwood_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -344,6 +347,7 @@ KenwoodComponent3::KenwoodComponent3(
   : PIRKeysetMetaData(
       "Component Keyset 3",
       Kenwood_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -443,6 +447,7 @@ KenwoodCD1::KenwoodCD1(
   : PIRKeysetMetaData(
       "CD Keyset 1",
       Kenwood_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -537,6 +542,7 @@ KenwoodDVD1::KenwoodDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Kenwood_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Kenwood_Make, "DVF-9010", Audio_Device);
@@ -614,6 +620,7 @@ KenwoodTV1::KenwoodTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Kenwood_Make,
+      TV_Panels,
       index)
 {
 }

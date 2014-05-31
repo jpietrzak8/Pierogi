@@ -31,6 +31,7 @@ PioneerTV1::PioneerTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Pioneer_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -126,6 +127,7 @@ PioneerTV2::PioneerTV2(
   : PIRKeysetMetaData(
       "TV (STB) Keyset 2",
       Pioneer_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -197,6 +199,7 @@ PioneerTV3::PioneerTV3(
   : PIRKeysetMetaData(
       "TV (STB) Keyset 3",
       Pioneer_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -268,6 +271,7 @@ PioneerAudio1::PioneerAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Pioneer_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Pioneer_Make, "XC-L11 (Radio/CD)", Audio_Device);
@@ -410,6 +414,7 @@ PioneerAudio2::PioneerAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Pioneer_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -489,6 +494,7 @@ PioneerAudio3::PioneerAudio3(
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Pioneer_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Pioneer_Make, "A-207R", Audio_Device);
@@ -676,6 +682,7 @@ PioneerAudio4::PioneerAudio4(
   : PIRKeysetMetaData(
       "Audio Keyset 4",
       Pioneer_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -723,6 +730,7 @@ PioneerAudio5::PioneerAudio5(
   : PIRKeysetMetaData(
       "Audio Keyset 5",
       Pioneer_Make,
+      Receiver_Panels,
       index)
 {
   addControlledDevice(Pioneer_Make, "XR-P240C", Audio_Device);
@@ -805,6 +813,7 @@ PioneerAudio6::PioneerAudio6(
   : PIRKeysetMetaData(
       "Audio Keyset 6",
       Pioneer_Make,
+      Receiver_Panels,
       index)
 {
   addControlledDevice(Pioneer_Make, "VSX-D901S", Audio_Device);
@@ -1016,6 +1025,7 @@ PioneerCD1::PioneerCD1(
   : PIRKeysetMetaData(
       "CD Keyset 1",
       Pioneer_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Pioneer_Make, "PD-106", Audio_Device);
@@ -1119,6 +1129,7 @@ PioneerLaserDisc1::PioneerLaserDisc1(
   : PIRKeysetMetaData(
       "LD Keyset 1",
       Pioneer_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Pioneer_Make, "CLD-D925", Other_Device);
@@ -1189,6 +1200,7 @@ PioneerDVD1::PioneerDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Pioneer_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Pioneer_Make, "VXX2702", DVD_Device);
@@ -1253,6 +1265,7 @@ PioneerCarStereo1::PioneerCarStereo1(
   : PIRKeysetMetaData(
       "Car Stereo Keyset 1",
       Pioneer_Make,
+      MediaControl_Panels,
       index)
 {
 }

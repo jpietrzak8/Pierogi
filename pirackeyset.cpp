@@ -8,7 +8,7 @@ PIRACKeyset::PIRACKeyset(
   const char *keysetName,
   PIRMakeName make,
   unsigned int index)
-  : PIRKeysetMetaData(keysetName, make, index)
+  : PIRKeysetMetaData(keysetName, make, StatefulAC_Panels, index)
 {
 }
 

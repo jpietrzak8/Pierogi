@@ -34,6 +34,7 @@ DenonDVD1::DenonDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Denon_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Denon_Make, "DVD-1930", DVD_Device);
@@ -106,6 +107,7 @@ DenonDVD2::DenonDVD2(
   : PIRKeysetMetaData(
       "DVD Keyset 2",
       Denon_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Denon_Make, "DVD-2500", DVD_Device);
@@ -188,6 +190,7 @@ DenonDVD3::DenonDVD3(
   : PIRKeysetMetaData(
       "DVD Keyset 3",
       Denon_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Denon_Make, "DVD-1000", DVD_Device);
@@ -253,6 +256,7 @@ DenonReceiver1::DenonReceiver1(
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
       Denon_Make,
+      Receiver_Panels,
       index)
 {
   addControlledDevice(Denon_Make, "AVR-1708", Audio_Device);
@@ -546,6 +550,7 @@ DenonReceiver2::DenonReceiver2(
   : PIRKeysetMetaData(
       "Receiver Keyset 2",
       Denon_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -656,6 +661,7 @@ DenonReceiver3::DenonReceiver3(
   : PIRKeysetMetaData(
       "Receiver Keyset 3",
       Denon_Make,
+      Receiver_Panels,
       index)
 {
   addControlledDevice(Denon_Make, "AVR-600 RD", Audio_Device);
@@ -725,6 +731,7 @@ DenonReceiver4::DenonReceiver4(
   : PIRKeysetMetaData(
       "Receiver Keyset 4",
       Denon_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Denon_Make, "DRA-385RD", Audio_Device);
@@ -805,6 +812,7 @@ DenonAudio1::DenonAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Denon_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Denon_Make, "HiFi 110", Audio_Device);
@@ -1045,6 +1053,7 @@ DenonAudio2::DenonAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Denon_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Denon_Make, "D-C30", Audio_Device);
@@ -1109,6 +1118,7 @@ DenonAudio3::DenonAudio3(
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Denon_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Denon_Make, "DMD-800", Audio_Device);
@@ -1165,6 +1175,7 @@ DenonAudio4::DenonAudio4(
   : PIRKeysetMetaData(
       "Audio Keyset 4",
       Denon_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Denon_Make, "D-G1MD", Audio_Device);

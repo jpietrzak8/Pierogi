@@ -30,6 +30,7 @@ MagnumTV1::MagnumTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Magnum_Make,
+      TV_Panels,
       index)
 {
 }

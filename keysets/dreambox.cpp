@@ -31,6 +31,7 @@ DreamboxSat1::DreamboxSat1(
   : PIRKeysetMetaData(
       "Dreambox Keyset 1",
       Dreambox_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -203,6 +204,7 @@ DreamboxSat2::DreamboxSat2(
   : PIRKeysetMetaData(
       "Dreambox Keyset 2",
       Dreambox_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -282,6 +284,7 @@ DreamboxSat3::DreamboxSat3(
   : PIRKeysetMetaData(
       "Dreambox Keyset 3",
       Dreambox_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -360,6 +363,7 @@ DreamboxSat4::DreamboxSat4(
   : PIRKeysetMetaData(
       "Dreambox Keyset 4",
       Dreambox_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -409,6 +413,7 @@ DreamboxSat5::DreamboxSat5(
   : PIRKeysetMetaData(
       "Dreambox Keyset 5",
       Dreambox_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

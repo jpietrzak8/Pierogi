@@ -29,6 +29,7 @@ AOCTV1::AOCTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       AOC_Make,
+      TV_Panels,
       index)
 {
 }

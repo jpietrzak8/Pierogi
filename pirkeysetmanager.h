@@ -25,6 +25,7 @@
 
 #include "pirkeynames.h"
 #include "pirmakenames.h"
+#include "pirpanelnames.h"
 
 #include <QString>
 #include <QThread>
@@ -83,6 +84,9 @@ public:
   QString getDisplayName(
     unsigned int keysetID) const;
 
+  PIRPanelTypes getPanelTypes(
+    unsigned int keysetID) const;
+
 /*
   void populateDeviceTypes(
     PIRKeysetWidgetItem *kwi,
@@ -101,14 +105,14 @@ public:
     PIRSelectKeysetForm *keysetForm);
 
   unsigned int getCarrierFrequency(
-    unsigned int keysetID);
+    unsigned int keysetID) const;
 
   void setCarrierFrequency(
     unsigned int carrierFrequency,
     unsigned int keysetID);
 
   unsigned int getDutyCycle(
-    unsigned int keysetID);
+    unsigned int keysetID) const;
 
   void setDutyCycle(
     unsigned int dutyCycle,

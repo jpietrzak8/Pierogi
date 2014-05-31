@@ -32,6 +32,7 @@ NADAudio1::NADAudio1(
   : PIRKeysetMetaData(
       "Receiver Component 1",
       NAD_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -147,6 +148,7 @@ NADTuner1::NADTuner1(
   : PIRKeysetMetaData(
       "Tuner Component 1",
       NAD_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -206,6 +208,7 @@ NADDVD1::NADDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       NAD_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -270,6 +273,7 @@ NADCD1::NADCD1(
   : PIRKeysetMetaData(
       "CD Component 1",
       NAD_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -301,6 +305,7 @@ NADCD2::NADCD2(
   : PIRKeysetMetaData(
       "CD Component 2",
       NAD_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -359,6 +364,7 @@ NADTape1::NADTape1(
   : PIRKeysetMetaData(
       "Tape Component 1",
       NAD_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

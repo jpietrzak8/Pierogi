@@ -32,6 +32,7 @@ PanasonicCarAudio::PanasonicCarAudio(
   : PIRKeysetMetaData(
       "Car Audio Keyset",
       Panasonic_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -67,6 +68,7 @@ PanasonicSat1::PanasonicSat1(
   : PIRKeysetMetaData(
       "Satellite Keyset 1",
       Panasonic_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -156,6 +158,7 @@ PanasonicTV1::PanasonicTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Panasonic_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Panasonic_Make, "TX-32PD50", TV_Device);
@@ -346,6 +349,7 @@ PanasonicTV2::PanasonicTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Panasonic_Make,
+      TV_Panels,
       index)
 {
 }
@@ -427,6 +431,7 @@ PanasonicVCR1::PanasonicVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Panasonic_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -618,6 +623,7 @@ PanasonicVCR2::PanasonicVCR2(
   : PIRKeysetMetaData(
       "VCR Keyset 2",
       Panasonic_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -685,6 +691,7 @@ PanasonicDVD1::PanasonicDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Panasonic_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -810,6 +817,7 @@ PanasonicAudio1::PanasonicAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Panasonic_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Panasonic_Make, "RX-DS25", Audio_Device);
@@ -912,6 +920,7 @@ PanasonicAudio2::PanasonicAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Panasonic_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -1025,6 +1034,7 @@ PanasonicAudio3::PanasonicAudio3(
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Panasonic_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -1090,6 +1100,7 @@ PanasonicAC1::PanasonicAC1(
   : PIRKeysetMetaData(
       "Air Conditioner 1",
       Panasonic_Make,
+      ACFan_Panels,
       index)
 {
 }

@@ -30,6 +30,7 @@ XoroSTB1::XoroSTB1(
   : PIRKeysetMetaData(
       "DVB-T Keyset 1",
       Xoro_Make,
+      TV_Panels,
       index)
 {
 }

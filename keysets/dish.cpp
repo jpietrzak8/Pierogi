@@ -30,6 +30,7 @@ DishReceiver1::DishReceiver1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Dish_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

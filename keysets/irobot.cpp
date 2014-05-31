@@ -29,6 +29,7 @@ IRobotRoomba1::IRobotRoomba1(
   : PIRKeysetMetaData(
       "Roomba Keyset 1",
       IRobot_Make,
+      Roomba_Panels,
       index)
 {
 }

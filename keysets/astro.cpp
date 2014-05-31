@@ -31,6 +31,7 @@ AstroSTB1::AstroSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Astro_Make,
+      TV_Panels,
       index)
 {
 }
@@ -106,6 +107,7 @@ AstroSTB2::AstroSTB2(
   : PIRKeysetMetaData(
       "STB Keyset 2",
       Astro_Make,
+      TV_Panels,
       index)
 {
 }

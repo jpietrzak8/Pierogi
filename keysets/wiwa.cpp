@@ -28,6 +28,7 @@ WiwaSTB1::WiwaSTB1(
   : PIRKeysetMetaData(
       "TV Receiver Keyset 1",
       Wiwa_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

@@ -32,6 +32,7 @@ ADBSTB1::ADBSTB1(
   : PIRKeysetMetaData(
       "TV Receiver Keyset 1",
       ADB_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(ADB_Make, "I-CAN 2840C", Other_Device);
@@ -83,6 +84,7 @@ ADBSTB2::ADBSTB2(
   : PIRKeysetMetaData(
       "TV Receiver Keyset 2",
       ADB_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(ADB_Make, "5720 CDX", Other_Device);
@@ -150,6 +152,7 @@ ADBSTB3::ADBSTB3(
   : PIRKeysetMetaData(
       "TV Receiver Keyset 3",
       ADB_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(ADB_Make, "7820sx", Other_Device);
@@ -210,6 +213,7 @@ ADBSTB4::ADBSTB4(
   : PIRKeysetMetaData(
       "TV Receiver Keyset 4",
       ADB_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(ADB_Make, "I-CAN 3000", Other_Device);
@@ -264,6 +268,7 @@ ADBSTB5::ADBSTB5(
   : PIRKeysetMetaData(
       "TV Receiver Keyset 5",
       ADB_Make,
+      TV_Panels,
       index)
 {
 }
@@ -339,6 +344,7 @@ ADBSTB6::ADBSTB6(
   : PIRKeysetMetaData(
       "TV Receiver Keyset 6",
       ADB_Make,
+      TV_Panels,
       index)
 {
 }

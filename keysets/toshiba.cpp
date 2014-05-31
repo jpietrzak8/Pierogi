@@ -30,6 +30,7 @@ ToshibaTV1::ToshibaTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Toshiba_Make,
+      TV_Panels | MediaControl_Panels,
       index)
 {
   addControlledDevice(Toshiba_Make, "21S03D", TV_Device);
@@ -369,6 +370,7 @@ ToshibaVCR1::ToshibaVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Toshiba_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -510,6 +512,7 @@ ToshibaDisc1::ToshibaDisc1(
   : PIRKeysetMetaData(
       "Disc Keyset 1",
       Toshiba_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -693,6 +696,7 @@ ToshibaDisc2::ToshibaDisc2(
   : PIRKeysetMetaData(
       "DVD Keyset 2",
       Toshiba_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -808,6 +812,7 @@ ToshibaProjector1::ToshibaProjector1(
   : PIRKeysetMetaData(
       "Projector Keyset 1",
       Toshiba_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -856,6 +861,7 @@ ToshibaSTB1::ToshibaSTB1(
   : PIRKeysetMetaData(
       "Satellite Receiver 1",
       Toshiba_Make,
+      TV_Panels,
       index)
 {
 }

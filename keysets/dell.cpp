@@ -29,6 +29,7 @@ DellRemote1::DellRemote1(
   : PIRKeysetMetaData(
       "Remote Keyset 1",
       Dell_Make,
+      MediaControl_Panels,
       index)
 {
 }

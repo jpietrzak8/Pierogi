@@ -30,6 +30,7 @@ BangAndOlufsenTV1::BangAndOlufsenTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       BangAndOlufsen_Make,
+      TV_Panels,
       index)
 {
 }

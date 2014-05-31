@@ -28,6 +28,7 @@ MajesticDVD1::MajesticDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Majestic_Make,
+      MediaControl_Panels,
       index)
 {
 }

@@ -28,6 +28,7 @@ DeutscheTelekomSTB1::DeutscheTelekomSTB1(
   : PIRKeysetMetaData(
       "TV Receiver Keyset 1",
       DeutscheTelekom_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(DeutscheTelekom_Make, "MR100", Other_Device);

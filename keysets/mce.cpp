@@ -30,6 +30,7 @@ MCERemote1::MCERemote1(
   : PIRKeysetMetaData(
       "Windows MCE Remote 1",
       Microsoft_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Microsoft_Make, "Windows PC ASRock HT330", Computer_Device);

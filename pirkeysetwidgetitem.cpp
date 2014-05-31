@@ -33,7 +33,7 @@ PIRKeysetWidgetItem::PIRKeysetWidgetItem(
     favorite(false),
     nicknameNotEmpty(false),
     internalName(in),
-    tabBarName(Universal_Tabs),
+    panelTypes(TV_Panels),
     panelIndex(0)
 {
 }
@@ -52,7 +52,7 @@ PIRKeysetWidgetItem::PIRKeysetWidgetItem(
     favorite(false),
     nicknameNotEmpty(false),
     internalName(in),
-    tabBarName(Universal_Tabs),
+    panelTypes(TV_Panels),
     panelIndex(0)
 {
 }
@@ -67,7 +67,7 @@ PIRKeysetWidgetItem::PIRKeysetWidgetItem(
     favorite(original->isFavorite()),
     nicknameNotEmpty(original->hasNickname()),
     internalName(original->getInternalName()),
-    tabBarName(original->getTabBarName()),
+    panelTypes(original->getPanelTypes()),
     panelIndex(original->getPanelIndex())
 {
   if (nicknameNotEmpty)

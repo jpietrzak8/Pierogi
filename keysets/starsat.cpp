@@ -29,6 +29,7 @@ StarsatSat1::StarsatSat1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Starsat_Make,
+      TV_Panels,
       index)
 {
 }

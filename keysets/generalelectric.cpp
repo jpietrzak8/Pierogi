@@ -31,6 +31,7 @@ GeneralElectricAC1::GeneralElectricAC1(
   : PIRKeysetMetaData(
       "AC Keyset 1",
       GeneralElectric_Make,
+      ACFan_Panels,
       index)
 {
 }
@@ -65,6 +66,7 @@ GeneralElectricAC2::GeneralElectricAC2(
   : PIRKeysetMetaData(
       "AC Keyset 2",
       GeneralElectric_Make,
+      ACFan_Panels,
       index)
 {
 }

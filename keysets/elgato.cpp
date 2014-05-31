@@ -28,6 +28,7 @@ ElgatoEyeTV1::ElgatoEyeTV1(
   : PIRKeysetMetaData(
       "EyeTV Keyset 1",
       Elgato_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

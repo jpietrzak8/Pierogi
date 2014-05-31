@@ -31,6 +31,7 @@ ZenithTV1::ZenithTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Zenith_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Zenith_Make, "C32V37", TV_Device);
@@ -110,6 +111,7 @@ ZenithConverterBox1::ZenithConverterBox1(
   : PIRKeysetMetaData(
       "Digital Converter Box 1",
       Zenith_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Zenith_Make, "AKB36157102", Other_Device);

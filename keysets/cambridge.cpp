@@ -32,6 +32,7 @@ CambridgeCD1::CambridgeCD1(
   : PIRKeysetMetaData(
       "CD Keyset 1",
       Cambridge_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -85,6 +86,7 @@ CambridgeAudio1::CambridgeAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Cambridge_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -140,6 +142,7 @@ CambridgeAudio2::CambridgeAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Cambridge_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -221,6 +224,7 @@ CambridgeAudio3::CambridgeAudio3(
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Cambridge_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -278,6 +282,7 @@ CambridgeDVD1::CambridgeDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Cambridge_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Cambridge_Make, "DVD53", DVD_Device);

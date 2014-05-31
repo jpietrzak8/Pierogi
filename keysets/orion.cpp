@@ -30,6 +30,7 @@ OrionTV1::OrionTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Orion_Make,
+      TV_Panels,
       index)
 {
 }
@@ -105,6 +106,7 @@ OrionTV2::OrionTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Orion_Make,
+      TV_Panels,
       index)
 {
 }
@@ -159,6 +161,7 @@ OrionTV3::OrionTV3(
   : PIRKeysetMetaData(
       "TV Keyset 3",
       Orion_Make,
+      TV_Panels,
       index)
 {
 }
@@ -240,6 +243,7 @@ OrionVCR1::OrionVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Orion_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -313,6 +317,7 @@ OrionVCR2::OrionVCR2(
   : PIRKeysetMetaData(
       "VCR Keyset 2",
       Orion_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -346,6 +351,7 @@ OrionDVD1::OrionDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Orion_Make,
+      MediaControl_Panels,
       index)
 {
 }

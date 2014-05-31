@@ -34,6 +34,7 @@ SamsungTV1::SamsungTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Samsung_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Samsung_Make, "SyncMaster 192MP", TV_Device);
@@ -242,6 +243,7 @@ SamsungTV2::SamsungTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Samsung_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -353,6 +355,7 @@ SamsungTV3::SamsungTV3(
   : PIRKeysetMetaData(
       "TV Keyset 3",
       Samsung_Make,
+      TV_Panels,
       index)
 {
 }
@@ -439,6 +442,7 @@ SamsungVCR1::SamsungVCR1(
   : PIRKeysetMetaData(
       "VCR(DVD) Keyset 1",
       Samsung_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -707,6 +711,7 @@ SamsungDVD1::SamsungDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Samsung_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -846,6 +851,7 @@ SamsungDVD2::SamsungDVD2(
   : PIRKeysetMetaData(
       "DVD Keyset 2",
       Samsung_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Samsung_Make, "HT-P1200", DVD_Device);
@@ -939,6 +945,7 @@ SamsungAC1::SamsungAC1(
   : PIRKeysetMetaData(
       "Air Conditioner 1",
       Samsung_Make,
+      ACFan_Panels,
       index)
 {
 }
@@ -1213,6 +1220,7 @@ SamsungSTB1::SamsungSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Samsung_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Samsung_Make, "SMT-1000T", TV_Device);
@@ -1290,6 +1298,7 @@ SamsungSTB2::SamsungSTB2(
   : PIRKeysetMetaData(
       "STB Keyset 2",
       Samsung_Make,
+      TV_Panels,
       index)
 {
 }
@@ -1342,6 +1351,7 @@ SamsungSTB3::SamsungSTB3(
   : PIRKeysetMetaData(
       "STB Keyset 3",
       Samsung_Make,
+      TV_Panels,
       index)
 {
 }
@@ -1406,6 +1416,7 @@ SamsungSTB4::SamsungSTB4(
   : PIRKeysetMetaData(
       "STB Keyset 4",
       Samsung_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -1471,6 +1482,7 @@ SamsungSTB5::SamsungSTB5(
   : PIRKeysetMetaData(
       "STB Keyset 5",
       Samsung_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -1553,6 +1565,7 @@ SamsungSTB6::SamsungSTB6(
   : PIRKeysetMetaData(
       "STB Keyset 6",
       Samsung_Make,
+      TV_Panels,
       index)
 {
 }

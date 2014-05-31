@@ -28,6 +28,7 @@ PentaxCamera1::PentaxCamera1(
   : PIRKeysetMetaData(
       "RC-F Remote Keyset",
       Pentax_Make,
+      Camera_Panels,
       index)
 {
 }

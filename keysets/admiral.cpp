@@ -29,6 +29,7 @@ AdmiralTV1::AdmiralTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Admiral_Make,
+      TV_Panels,
       index)
 {
 }
@@ -75,6 +76,7 @@ AdmiralTV2::AdmiralTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Admiral_Make,
+      TV_Panels,
       index)
 {
 }
@@ -146,6 +148,7 @@ AdmiralVCR1::AdmiralVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Admiral_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

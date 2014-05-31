@@ -29,6 +29,7 @@ ApexTV1::ApexTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Apex_Make,
+      TV_Panels,
       index)
 {
 }
@@ -90,6 +91,7 @@ ApexSTB1::ApexSTB1(
   : PIRKeysetMetaData(
       "HDTV Converter Keyset 1",
       Apex_Make,
+      TV_Panels,
       index)
 {
 }
@@ -143,6 +145,7 @@ ApexDVD1::ApexDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Apex_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -248,6 +251,7 @@ ApexDVD2::ApexDVD2(
   : PIRKeysetMetaData(
       "DVD Keyset 2",
       Apex_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -364,6 +368,7 @@ ApexDVD3::ApexDVD3(
   : PIRKeysetMetaData(
       "DVD Keyset 3",
       Apex_Make,
+      MediaControl_Panels,
       index)
 {
 }

@@ -30,6 +30,7 @@ MedialinkSTB1::MedialinkSTB1(
   : PIRKeysetMetaData(
       "HD Receiver Keyset 1",
       Medialink_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

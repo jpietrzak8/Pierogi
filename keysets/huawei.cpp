@@ -30,6 +30,7 @@ HuaweiSTB1::HuaweiSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Huawei_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Huawei_Make, "EX2108", Other_Device);
@@ -92,6 +93,7 @@ HuaweiSTB2::HuaweiSTB2(
   : PIRKeysetMetaData(
       "STB Keyset 2",
       Huawei_Make,
+      TV_Panels | MediaControl_Panels,
       index)
 {
   addControlledDevice(Huawei_Make, "EC2108", Other_Device);

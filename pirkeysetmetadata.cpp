@@ -40,11 +40,13 @@ extern bool commandInFlight;
 PIRKeysetMetaData::PIRKeysetMetaData(
   const char *r,
   PIRMakeName m,
+  PIRPanelTypes p,
   unsigned int i)
   : threadableProtocol(NULL),
     index(i),
     keysetName(r),
-    make(m)
+    make(m),
+    panelTypes(p)
 {
 }
 
@@ -111,6 +113,12 @@ PIRMakeName PIRKeysetMetaData::getMake() const
 const char *PIRKeysetMetaData::getKeysetName() const
 {
   return keysetName;
+}
+
+
+PIRPanelTypes PIRKeysetMetaData::getPanelTypes() const
+{
+  return panelTypes;
 }
 
 

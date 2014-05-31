@@ -31,6 +31,7 @@ AiwaVCR1::AiwaVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Aiwa_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Aiwa_Make, "HV-CX100KER", VCR_Device);
@@ -133,6 +134,7 @@ AiwaVCR2::AiwaVCR2(
   : PIRKeysetMetaData(
       "VCR Keyset 2",
       Aiwa_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -199,6 +201,7 @@ AiwaVCR3::AiwaVCR3(
   : PIRKeysetMetaData(
       "VCR Keyset 3",
       Aiwa_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -267,6 +270,7 @@ AiwaAudio1::AiwaAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Aiwa_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Aiwa_Make, "LCX-100", Audio_Device);
@@ -397,6 +401,7 @@ AiwaAudio2::AiwaAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Aiwa_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Aiwa_Make, "NSX-S22", Audio_Device);
@@ -591,6 +596,7 @@ AiwaAudio3::AiwaAudio3(
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Aiwa_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -645,6 +651,7 @@ AiwaAudio4::AiwaAudio4(
   : PIRKeysetMetaData(
       "Audio Keyset 4",
       Aiwa_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -714,6 +721,7 @@ AiwaAudio5::AiwaAudio5(
   : PIRKeysetMetaData(
       "Audio Keyset 5",
       Aiwa_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -761,6 +769,7 @@ AiwaAudio6::AiwaAudio6(
   : PIRKeysetMetaData(
       "Audio Keyset 6",
       Aiwa_Make,
+      Receiver_Panels,
       index)
 {
   addControlledDevice(Aiwa_Make, "CX-770", Audio_Device);
@@ -818,6 +827,7 @@ AiwaCarStereo1::AiwaCarStereo1(
   : PIRKeysetMetaData(
       "Car Stereo Keyset 1",
       Aiwa_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -867,6 +877,7 @@ AiwaDVD1::AiwaDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Aiwa_Make,
+      MediaControl_Panels,
       index)
 {
 }

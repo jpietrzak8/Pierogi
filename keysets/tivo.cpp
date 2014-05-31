@@ -28,6 +28,7 @@ Tivo1::Tivo1(
   : PIRKeysetMetaData(
       "Tivo Keyset 1",
       Tivo_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

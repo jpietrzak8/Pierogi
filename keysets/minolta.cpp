@@ -30,6 +30,7 @@ MinoltaCamera1::MinoltaCamera1(
   : PIRKeysetMetaData(
       "RC-3 Keyset",
       Minolta_Make,
+      Camera_Panels,
       index)
 {
 }

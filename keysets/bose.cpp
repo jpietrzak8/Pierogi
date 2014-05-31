@@ -31,6 +31,7 @@ BoseRadio1::BoseRadio1(
   : PIRKeysetMetaData(
       "Wave Radio Keyset 1",
       Bose_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -98,6 +99,7 @@ BoseRadio2::BoseRadio2(
   : PIRKeysetMetaData(
       "Wave Radio Keyset 2",
       Bose_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -155,6 +157,7 @@ BoseRadio3::BoseRadio3(
   : PIRKeysetMetaData(
       "Wave Radio Keyset 3",
       Bose_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -213,6 +216,7 @@ BoseHomeTheater1::BoseHomeTheater1(
   : PIRKeysetMetaData(
       "Home Theater 1",
       Bose_Make,
+      Receiver_Panels,
       index)
 {
 }

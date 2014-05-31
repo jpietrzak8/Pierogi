@@ -30,6 +30,7 @@ BushTV1::BushTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Bush_Make,
+      TV_Panels,
       index)
 {
 }
@@ -96,6 +97,7 @@ BushTV2::BushTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Bush_Make,
+      TV_Panels,
       index)
 {
 }
@@ -165,6 +167,7 @@ BushSTB1::BushSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Bush_Make,
+      TV_Panels,
       index)
 {
 }

@@ -31,6 +31,7 @@ OnkyoAudio1::OnkyoAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Onkyo_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -81,6 +82,7 @@ OnkyoAudio2::OnkyoAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Onkyo_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -169,6 +171,7 @@ OnkyoAudio3::OnkyoAudio3(
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Onkyo_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -278,6 +281,7 @@ OnkyoAudio4::OnkyoAudio4(
   : PIRKeysetMetaData(
       "Audio Keyset 4",
       Onkyo_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -342,6 +346,7 @@ OnkyoAudio5::OnkyoAudio5(
   : PIRKeysetMetaData(
       "Audio Keyset 5",
       Onkyo_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -397,6 +402,7 @@ OnkyoDVD1::OnkyoDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Onkyo_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -477,6 +483,7 @@ OnkyoDVD2::OnkyoDVD2(
   : PIRKeysetMetaData(
       "DVD Keyset 2",
       Onkyo_Make,
+      MediaControl_Panels,
       index)
 {
 }

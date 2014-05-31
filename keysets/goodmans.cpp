@@ -31,6 +31,7 @@ GoodmansSTB1::GoodmansSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Goodmans_Make,
+      TV_Panels,
       index)
 {
 }
@@ -88,6 +89,7 @@ GoodmansVCR1::GoodmansVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Goodmans_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -154,6 +156,7 @@ GoodmansDVD1::GoodmansDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Goodmans_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -223,6 +226,7 @@ GoodmansAudio1::GoodmansAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Goodmans_Make,
+      Receiver_Panels,
       index)
 {
   addControlledDevice(Goodmans_Make, "MD-305", Audio_Device);

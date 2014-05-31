@@ -31,6 +31,7 @@ SharpTV1::SharpTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Sharp_Make,
+      TV_Panels,
       index)
 {
 }
@@ -305,6 +306,7 @@ SharpVCR1::SharpVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Sharp_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -396,6 +398,7 @@ SharpReceiver1::SharpReceiver1(
   : PIRKeysetMetaData(
       "Receiver Keyset 1",
       Sharp_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -471,6 +474,7 @@ SharpAC1::SharpAC1(
   : PIRKeysetMetaData(
       "Air Conditioner 1",
       Sharp_Make,
+      ACFan_Panels,
       index)
 {
 }

@@ -30,6 +30,7 @@ LogitechSpeakers::LogitechSpeakers(
   : PIRKeysetMetaData(
       "Digital Speakers Keyset",
       Logitech_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -86,6 +87,7 @@ LogitechSqueezebox::LogitechSqueezebox(
   : PIRKeysetMetaData(
       "Squeezebox Keyset",
       Logitech_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Logitech_Make, "Squeezebox 2", Audio_Device);

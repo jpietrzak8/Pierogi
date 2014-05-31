@@ -1,3 +1,13 @@
+pierogi (1.1.35) unstable; urgency=low
+  * Each keyset now knows which panels are associated with it, and those panels are chosen automatically.
+  * Given the above, the manual panel group selector has been removed.
+  * The favorites dialog button has been removed from the main screen, and a link to it has been added to the menu.  To make room, the device browser has been removed (for now).  (This is a temporary measure; a new keyset admin panel is in the works, which should simplify things.)
+  * The flickable tab bar can now be displayed at the top or bottom of the screen (controllable from the preferences panel).
+  * The new (scaleable-friendly) Pierogi icon is now being used.
+  * New fan keysets have been added: a first pass has been made for Airtech, Lasko, and Russell Hobbs keysets, and a new keyset added to Sylvania.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sat, 31 May 2014 12:43:13 -0400
+
 pierogi (1.1.34) unstable; urgency=low
   * A quick fix for new tab bar when the bar is too short to scroll.
 

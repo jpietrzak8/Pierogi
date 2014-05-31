@@ -30,6 +30,7 @@ TopfieldPVR1::TopfieldPVR1(
   : PIRKeysetMetaData(
       "PVR Keyset 1",
       Topfield_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Topfield_Make, "PVR 4000", Other_Device);
@@ -122,6 +123,7 @@ TopfieldSat1::TopfieldSat1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Topfield_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Topfield_Make, "TF4000Fi", Sat_Device);

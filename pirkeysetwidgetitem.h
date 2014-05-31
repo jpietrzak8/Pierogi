@@ -68,11 +68,15 @@ public:
 
   QString getInternalName();
 
-  PIRTabBarName getTabBarName();
+//  PIRTabBarName getTabBarName();
+  PIRPanelTypes getPanelTypes();
   int getPanelIndex();
 
-  void setTabBarName(
-    PIRTabBarName name);
+//  void setTabBarName(
+//    PIRTabBarName name);
+
+  void setPanelTypes(
+    PIRPanelTypes panelTypes);
 
   void setPanelIndex(
     int index);
@@ -85,7 +89,7 @@ private:
   bool nicknameNotEmpty;
   QString internalName;
   QString nickname;
-  PIRTabBarName tabBarName;
+  PIRPanelTypes panelTypes;
   int panelIndex;
 };
 
@@ -139,9 +143,9 @@ inline QString PIRKeysetWidgetItem::getInternalName()
 }
 
 
-inline PIRTabBarName PIRKeysetWidgetItem::getTabBarName()
+inline PIRPanelTypes PIRKeysetWidgetItem::getPanelTypes()
 {
-  return tabBarName;
+  return panelTypes;
 }
 
 
@@ -151,10 +155,10 @@ inline int PIRKeysetWidgetItem::getPanelIndex()
 }
 
 
-inline void PIRKeysetWidgetItem::setTabBarName(
-  PIRTabBarName name)
+inline void PIRKeysetWidgetItem::setPanelTypes(
+  PIRPanelTypes pt)
 {
-  tabBarName = name;
+  panelTypes = pt;
 }
 
 

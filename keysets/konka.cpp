@@ -28,6 +28,7 @@ KonkaTV1::KonkaTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Konka_Make,
+      TV_Panels,
       index)
 {
 }
@@ -84,6 +85,7 @@ KonkaTV2::KonkaTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Konka_Make,
+      TV_Panels,
       index)
 {
 }

@@ -30,6 +30,7 @@ HarmanKardonAmp1::HarmanKardonAmp1(
   : PIRKeysetMetaData(
       "Amp/Receiver Component 1",
       HarmanKardon_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -133,6 +134,7 @@ HarmanKardonAmp2::HarmanKardonAmp2(
   : PIRKeysetMetaData(
       "Amp Component 2",
       HarmanKardon_Make,
+      Receiver_Panels,
       index)
 {
 }
@@ -189,6 +191,7 @@ HarmanKardonReceiver2::HarmanKardonReceiver2(
   : PIRKeysetMetaData(
       "Receiver Component 2",
       HarmanKardon_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -246,6 +249,7 @@ HarmanKardonTape1::HarmanKardonTape1(
   : PIRKeysetMetaData(
       "Tape Component 1",
       HarmanKardon_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -315,6 +319,7 @@ HarmanKardonDVD1::HarmanKardonDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       HarmanKardon_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -419,6 +424,7 @@ HarmanKardonCD1::HarmanKardonCD1(
   : PIRKeysetMetaData(
       "CD Keyset 1",
       HarmanKardon_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -472,6 +478,7 @@ HarmanKardonCD2::HarmanKardonCD2(
   : PIRKeysetMetaData(
       "CD Keyset 2",
       HarmanKardon_Make,
+      MediaControl_Panels,
       index)
 {
 }

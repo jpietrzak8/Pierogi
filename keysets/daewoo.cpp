@@ -33,6 +33,7 @@ DaewooTV1::DaewooTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Daewoo_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Daewoo_Make, "21T5T", TV_Device);
@@ -110,6 +111,7 @@ DaewooTV2::DaewooTV2(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Daewoo_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Daewoo_Make, "DMQ-2141", TV_Device);
@@ -176,6 +178,7 @@ DaewooTV3::DaewooTV3(
   : PIRKeysetMetaData(
       "TV Keyset 3",
       Daewoo_Make,
+      TV_Panels,
       index)
 {
 }
@@ -274,6 +277,7 @@ DaewooTV4::DaewooTV4(
   : PIRKeysetMetaData(
       "TV Keyset 4",
       Daewoo_Make,
+      TV_Panels,
       index)
 {
 }
@@ -347,6 +351,7 @@ DaewooTV5::DaewooTV5(
   : PIRKeysetMetaData(
       "TV Keyset 5",
       Daewoo_Make,
+      TV_Panels,
       index)
 {
 }
@@ -400,6 +405,7 @@ DaewooDVD1::DaewooDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Daewoo_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -471,6 +477,7 @@ DaewooVCR1::DaewooVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Daewoo_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Daewoo_Make, "PV-200", VCR_Device);
@@ -534,6 +541,7 @@ DaewooVCR2::DaewooVCR2(
   : PIRKeysetMetaData(
       "VCR Keyset 2",
       Daewoo_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Daewoo_Make, "VQ857S", VCR_Device);

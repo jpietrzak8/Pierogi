@@ -29,6 +29,7 @@ BekoTV1::BekoTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Beko_Make,
+      TV_Panels,
       index)
 {
 }

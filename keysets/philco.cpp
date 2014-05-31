@@ -28,6 +28,7 @@ PhilcoTV::PhilcoTV(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Philco_Make,
+      TV_Panels,
       index)
 {
 }

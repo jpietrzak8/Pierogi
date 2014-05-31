@@ -28,6 +28,7 @@ KeymatTV1::KeymatTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Keymat_Make,
+      TV_Panels,
       index)
 {
 }
@@ -86,6 +87,7 @@ KeymatTV2::KeymatTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Keymat_Make,
+      TV_Panels,
       index)
 {
 }

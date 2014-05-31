@@ -29,6 +29,7 @@ TelenetSTB1::TelenetSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Telenet_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

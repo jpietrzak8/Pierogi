@@ -35,7 +35,7 @@ class PIRMedia2Form;
 class PIRRecordForm;
 class PIRTVForm;
 class PIRReceiverForm;
-class PIRInputForm;
+//class PIRInputForm;
 class PIRInputListForm;
 class PIRAdjustForm;
 class PIRAirConditionerForm;
@@ -64,8 +64,8 @@ class MainWindow;
 #include <QString>
 #include <QWidget>
 
-typedef std::list<PIRPanelName> PIRPanelNameList;
-typedef std::map<PIRTabBarName, PIRPanelNameList> PIRTabsCollection;
+//typedef std::list<PIRPanelName> PIRPanelNameList;
+//typedef std::map<PIRTabBarName, PIRPanelNameList> PIRTabsCollection;
 
 typedef std::map<PIRPanelName, QWidget *> PIRPanelCollection;
 typedef std::map<PIRPanelName, QString> PIRPanelDisplayNameCollection;
@@ -80,7 +80,9 @@ public:
   ~PIRPanelManager();
 
 //  void updateTabSet();
-  void setupTabs(PIRTabBarName name);
+//  void setupTabs(PIRTabBarName name);
+  void setupTabs(
+    PIRPanelTypes panelTypes);
 
   void enableButtons(
     PIRKeysetManager *keyset,
@@ -126,7 +128,7 @@ private:
   PIRRecordForm *recordForm;
   PIRTVForm *tvForm;
   PIRReceiverForm *receiverForm;
-  PIRInputForm *inputForm;
+//  PIRInputForm *inputForm;
   PIRInputListForm *inputListForm;
   PIRAdjustForm *adjustForm;
   PIRAirConditionerForm *acForm;
@@ -145,7 +147,7 @@ private:
   PIRPanelDisplayNameCollection shortPanelNames;
   PIRPanelDisplayNameCollection longPanelNames;
 //  PIRReversePanelIndex reverseIndex;
-  PIRTabsCollection tabLists;
+//  PIRTabsCollection tabLists;
   PIRPanelCollection panels;
 
   bool altMainPanelFlag;

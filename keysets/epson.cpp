@@ -29,6 +29,7 @@ EpsonProjector1::EpsonProjector1(
   : PIRKeysetMetaData(
       "Projector Keyset 1",
       Epson_Make,
+      MediaControl_Panels,
       index)
 {
 }

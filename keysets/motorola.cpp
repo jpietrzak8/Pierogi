@@ -33,6 +33,7 @@ Motorola4DTV::Motorola4DTV(
   : PIRKeysetMetaData(
       "4DTV/StarChoice Keyset",
       Motorola_Make,
+      TV_Panels,
       index)
 {
 }
@@ -106,6 +107,7 @@ MotorolaSTB1::MotorolaSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Motorola_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -273,6 +275,7 @@ MotorolaSTB2::MotorolaSTB2(
   : PIRKeysetMetaData(
       "STB Keyset 2",
       Motorola_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -363,6 +366,7 @@ MotorolaSkyDigital::MotorolaSkyDigital(
   : PIRKeysetMetaData(
       "Sky Digital Keyset",
       Motorola_Make,
+      TV_Panels,
       index)
 {
 }

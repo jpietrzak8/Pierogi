@@ -31,6 +31,7 @@ TriaxSTB1::TriaxSTB1(
   : PIRKeysetMetaData(
       "Satellite Receiver 1",
       Triax_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Triax_Make, "DVB 40S", Other_Device);
@@ -77,6 +78,7 @@ TriaxSTB2::TriaxSTB2(
   : PIRKeysetMetaData(
       "Satellite Receiver 2",
       Triax_Make,
+      TV_Panels,
       index)
 {
 }
@@ -179,6 +181,7 @@ TriaxSTB3::TriaxSTB3(
   : PIRKeysetMetaData(
       "Satellite Receiver 3",
       Triax_Make,
+      TV_Panels,
       index)
 {
 }
@@ -272,6 +275,7 @@ TriaxSTB4::TriaxSTB4(
   : PIRKeysetMetaData(
       "Satellite Receiver 4",
       Triax_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

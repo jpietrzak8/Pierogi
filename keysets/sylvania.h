@@ -16,7 +16,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software Foundation,
+// along with Pierogi; if not, write to the Free Software Foundation,
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 
@@ -31,6 +31,17 @@ class SylvaniaTV1: public PIRKeysetMetaData
 {
 public:
   SylvaniaTV1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+
+class SylvaniaFan1: public PIRKeysetMetaData
+{
+public:
+  SylvaniaFan1(
     unsigned int index);
 
   virtual void populateProtocol(

@@ -28,6 +28,7 @@ DuneSTB1::DuneSTB1(
   : PIRKeysetMetaData(
       "Media Player Keyset 1",
       Dune_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

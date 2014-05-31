@@ -29,6 +29,7 @@ WharfedaleTV1::WharfedaleTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Wharfedale_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -103,6 +104,7 @@ WharfedaleTV2::WharfedaleTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Wharfedale_Make,
+      TV_Panels,
       index)
 {
 }

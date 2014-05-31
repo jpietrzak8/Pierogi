@@ -30,6 +30,7 @@ ViewsatSat1::ViewsatSat1(
   : PIRKeysetMetaData(
       "Satellite Keyset 1",
       Viewsat_Make,
+      TV_Panels,
       index)
 {
 }

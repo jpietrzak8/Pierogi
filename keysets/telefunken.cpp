@@ -29,6 +29,7 @@ TelefunkenTV1::TelefunkenTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Telefunken_Make,
+      TV_Panels,
       index)
 {
 }

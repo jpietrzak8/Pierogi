@@ -1,7 +1,7 @@
 //
 // Mainwindow.h
 //
-// Copyright 2012, 2013 by John Pietrzak
+// Copyright 2012 - 2014 by John Pietrzak
 //
 // This file contains the main window declaration for Pierogi.
 //
@@ -48,7 +48,7 @@ class PIRPreferencesForm;
 class PIRDocumentationForm;
 class PIRAboutForm;
 class PIRFavoritesDialog;
-class PIRTabsChoiceDialog;
+//class PIRTabsChoiceDialog;
 class PIRKeysetWidgetItem;
 class PIRMacroPack;
 class PIRFlickableTabBar;
@@ -105,6 +105,8 @@ public:
   // Preferences actions:
   void useMainPanel();
   void useAltMainPanel();
+  void placeTabsOnTop(
+    bool tot);
 
   QString getCurrentMake();
   QString getCurrentName();
@@ -134,17 +136,17 @@ public:
   void enableUpdates();
   void clearTabs();
 
+  void setTabsIndex(
+    int tabsIndex);
+
   void addTab(
     QWidget *page,
     QString label);
 
-  void setTabsIndex(
-    int tabsIndex);
-
-  void setupTabs(PIRTabBarName name);
+  void setupTabs(
+    PIRPanelTypes panelTypes);
 
   void setupFavoriteTabs(
-    PIRTabBarName name,
     int panelIndex);
 
   bool selectNextKeyset();
@@ -159,7 +161,7 @@ public:
     unsigned int targetID,
     int favoritesIndex,
 //    PIRMakeName makeName,
-    PIRTabBarName tabBarName,
+//    PIRPanelTypes panelTypes,
     int panelIndex);
 
 /*
@@ -251,6 +253,7 @@ public slots:
 
 private slots:
   void on_actionSelectKeyset_triggered();
+  void on_actionSelect_Keyset_From_Favorites_triggered();
   void on_actionAutomatic_Keyset_Search_triggered();
   void on_actionBrowse_Device_List_triggered();
   void on_actionPreferences_triggered();
@@ -280,8 +283,8 @@ private:
 
 //  PIRTabWidget *myTabWidget;
   PIRFlickableTabBar *flickableTabs;
-  QPushButton *favoritesButton;
-  QPushButton *tabsChoiceButton;
+//  QPushButton *favoritesButton;
+//  QPushButton *tabsChoiceButton;
   QStackedWidget *panelStackWidget;
 
   PIRSelectKeysetForm *selectKeysetForm;
@@ -291,15 +294,16 @@ private:
   PIRDocumentationForm *documentationForm;
   PIRAboutForm *aboutForm;
   PIRFavoritesDialog *favoritesDialog;
-  PIRTabsChoiceDialog *tabsChoiceDialog;
+//  PIRTabsChoiceDialog *tabsChoiceDialog;
 
   PIRKeysetManager *myKeysets;
   PIRPanelManager *myPanels;
   PIRMacroManager *myMacros;
 
-  PIRTabBarName currentTabsName;
+  PIRPanelTypes currentPanelTypes;
   int currentPanelIndex;
   int currentFavorite;
+  bool tabsOnTop;
 
   unsigned int currentKeyset;
 

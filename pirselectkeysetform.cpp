@@ -32,14 +32,11 @@
 #include "pirkeysetwidgetitem.h"
 #include "dialogs/pireditkeysetdialog.h"
 
-// Debugging include:
-//#include <iostream>
-
 extern PIRMakeMgr makeManager;
 
 PIRSelectKeysetForm::PIRSelectKeysetForm(
   MainWindow *mw)
-  : QWidget(mw), // is this right?
+  : QWidget(mw),
     ui(new Ui::PIRSelectKeysetForm),
     mainWindow(mw),
     editDialog(0),

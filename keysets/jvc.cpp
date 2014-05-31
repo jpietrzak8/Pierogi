@@ -30,6 +30,7 @@ JVCSat1::JVCSat1(
   : PIRKeysetMetaData(
       "Sat (Dish) Keyset 1",
       JVC_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -108,6 +109,7 @@ JVCSat2::JVCSat2(
   : PIRKeysetMetaData(
       "Sat (Dish) Keyset 2",
       JVC_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -185,6 +187,7 @@ JVCVCR1::JVCVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       JVC_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -364,6 +367,7 @@ JVCTV1::JVCTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       JVC_Make,
+      TV_Panels,
       index)
 {
 }
@@ -563,6 +567,7 @@ JVCDAT1::JVCDAT1(
   : PIRKeysetMetaData(
       "DAT Keyset 1",
       JVC_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -621,6 +626,7 @@ JVCCarDeck1::JVCCarDeck1(
   : PIRKeysetMetaData(
       "Car Deck Keyset 1",
       JVC_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -665,6 +671,7 @@ JVCAudio1::JVCAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       JVC_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(JVC_Make, "RX-5062", Audio_Device);
@@ -858,6 +865,7 @@ JVCAudio2::JVCAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       JVC_Make,
+      Receiver_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -970,6 +978,7 @@ JVCDVD1::JVCDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       JVC_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(JVC_Make, "JVC XV-N5SL", DVD_Device);

@@ -29,6 +29,7 @@ MTLogicTV1::MTLogicTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       MTLogic_Make,
+      TV_Panels | MediaControl_Panels,
       index)
 {
 }

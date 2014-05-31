@@ -29,6 +29,7 @@ CreativeAudio1::CreativeAudio1(
   : PIRKeysetMetaData(
       "Speakers Keyset 1",
       Creative_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Creative_Make, "Inspire 5700", Other_Device);
@@ -77,6 +78,7 @@ CreativeAudio2::CreativeAudio2(
   : PIRKeysetMetaData(
       "MP3 Player Keyset 1",
       Creative_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -112,6 +114,7 @@ CreativeAudio3::CreativeAudio3(
   : PIRKeysetMetaData(
       "Sound Card Keyset 1",
       Creative_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -183,6 +186,7 @@ CreativeAudio4::CreativeAudio4(
   : PIRKeysetMetaData(
       "Infra Keyset",
       Creative_Make,
+      MediaControl_Panels,
       index)
 {
 }

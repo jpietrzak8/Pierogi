@@ -30,6 +30,7 @@ AcerTV1::AcerTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Acer_Make,
+      TV_Panels,
       index)
 {
 }
@@ -122,6 +123,7 @@ AcerPC1::AcerPC1(
   : PIRKeysetMetaData(
       "PC Keyset 1",
       Acer_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Acer_Make, "Aspire 9500", Computer_Device);

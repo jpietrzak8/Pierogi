@@ -32,6 +32,7 @@ UniversumVCR1::UniversumVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       Universum_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -105,6 +106,7 @@ UniversumVCR2::UniversumVCR2(
   : PIRKeysetMetaData(
       "VCR Keyset 2",
       Universum_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -159,6 +161,7 @@ UniversumVCR3::UniversumVCR3(
   : PIRKeysetMetaData(
       "VCR Keyset 3",
       Universum_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -229,6 +232,7 @@ UniversumTV1::UniversumTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Universum_Make,
+      TV_Panels,
       index)
 {
 }
@@ -346,6 +350,7 @@ UniversumSat1::UniversumSat1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Universum_Make,
+      TV_Panels,
       index)
 {
 }
@@ -414,6 +419,7 @@ UniversumAudio1::UniversumAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Universum_Make,
+      Receiver_Panels,
       index)
 {
 }

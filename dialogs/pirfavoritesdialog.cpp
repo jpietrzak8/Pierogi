@@ -1,7 +1,7 @@
 //
 // pirfavoritesdialog.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2014 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,7 +47,7 @@ PIRFavoritesDialog::PIRFavoritesDialog(QWidget *parent) :
 
 PIRFavoritesDialog::PIRFavoritesDialog(
   MainWindow *mw)
-  : QDialog(0),
+  : QDialog(mw),
     ui(new Ui::PIRFavoritesDialog),
     mainWindow(mw)
 {
@@ -85,7 +85,7 @@ PIRFavoritesDialog::~PIRFavoritesDialog()
     settings.setValue("keysetMake", 
       makeManager.getMakeString(kwi->getMake()));
     settings.setValue("keysetName", kwi->getInternalName());
-    settings.setValue("tabBarName", kwi->getTabBarName());
+//    settings.setValue("panelTypes", int(kwi->getPanelTypes()));
     settings.setValue("panelIndex", kwi->getPanelIndex());
 
     ++index;
@@ -124,8 +124,6 @@ void PIRFavoritesDialog::selectPrevFavKeyset()
   mainWindow->updateFavoriteKeysetSelection(
     kwi->getID(),
     position,
-//    kwi->getMake(),
-    kwi->getTabBarName(),
     kwi->getPanelIndex());
 
   // Tell the user about the change:
@@ -161,8 +159,6 @@ void PIRFavoritesDialog::selectNextFavKeyset()
   mainWindow->updateFavoriteKeysetSelection(
     kwi->getID(),
     position,
-//    kwi->getMake(),
-    kwi->getTabBarName(),
     kwi->getPanelIndex());
 
   // Tell the user about the change:
@@ -238,8 +234,6 @@ void PIRFavoritesDialog::on_favoritesListWidget_itemClicked(
     mainWindow->updateFavoriteKeysetSelection(
       kwi->getID(),
       ui->favoritesListWidget->currentRow(),
-//      kwi->getMake(),
-      kwi->getTabBarName(),
       kwi->getPanelIndex());
   }
 
@@ -264,8 +258,7 @@ int PIRFavoritesDialog::selectFavorite(
     if (kwi->getID() == targetID)
     {
       ui->favoritesListWidget->setCurrentItem(kwi);
-      mainWindow->setupFavoriteTabs(
-        kwi->getTabBarName(), kwi->getPanelIndex());
+      mainWindow->setupFavoriteTabs(kwi->getPanelIndex());
       // Return this index:
       return index;
     }
@@ -278,9 +271,10 @@ int PIRFavoritesDialog::selectFavorite(
 }
 
 
-void PIRFavoritesDialog::updateTabBarName(
+/*
+void PIRFavoritesDialog::updatePanelTypes(
   int favoritesIndex,
-  PIRTabBarName name)
+  PIRPanelTypes panelTypes)
 {
   // Sanity check first:
   if ( (favoritesIndex < 0)
@@ -293,8 +287,9 @@ void PIRFavoritesDialog::updateTabBarName(
   PIRKeysetWidgetItem *kwi = dynamic_cast<PIRKeysetWidgetItem *> (
     ui->favoritesListWidget->item(favoritesIndex));
 
-  kwi->setTabBarName(name);
+  kwi->setPanelTypes(panelTypes);
 }
+*/
 
 
 void PIRFavoritesDialog::updatePanelIndex(

@@ -32,6 +32,7 @@ EmersonTV1::EmersonTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Emerson_Make,
+      TV_Panels,
       index)
 {
 }
@@ -84,6 +85,7 @@ EmersonTV2::EmersonTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Emerson_Make,
+      TV_Panels,
       index)
 {
 }
@@ -139,6 +141,7 @@ EmersonTV3::EmersonTV3(
   : PIRKeysetMetaData(
       "TV/VCR Keyset 3",
       Emerson_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -208,6 +211,7 @@ EmersonTV4::EmersonTV4(
   : PIRKeysetMetaData(
       "TV/VCR Keyset 4",
       Emerson_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -269,6 +273,7 @@ EmersonTV5::EmersonTV5(
   : PIRKeysetMetaData(
       "TV Keyset 5",
       Emerson_Make,
+      TV_Panels,
       index)
 {
 }
@@ -326,6 +331,7 @@ EmersonSTB1::EmersonSTB1(
   : PIRKeysetMetaData(
       "Cable Box Keyset 1",
       Emerson_Make,
+      TV_Panels,
       index)
 {
 }
@@ -378,6 +384,7 @@ EmersonDVD1::EmersonDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Emerson_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -454,6 +461,7 @@ EmersonAudio1::EmersonAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       Emerson_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -487,6 +495,7 @@ EmersonAudio2::EmersonAudio2(
   : PIRKeysetMetaData(
       "Audio Keyset 2",
       Emerson_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -521,6 +530,7 @@ EmersonAudio3::EmersonAudio3(
   : PIRKeysetMetaData(
       "Audio Keyset 3",
       Emerson_Make,
+      MediaControl_Panels,
       index)
 {
 }

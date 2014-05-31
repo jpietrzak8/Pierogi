@@ -30,6 +30,7 @@ ComproTVCard1::ComproTVCard1(
   : PIRKeysetMetaData(
       "PC TV Tuner Card 1",
       Compro_Make,
+      TV_Panels,
       index)
 {
 }

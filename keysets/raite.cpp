@@ -28,6 +28,7 @@ RaiteDVD1::RaiteDVD1(
   : PIRKeysetMetaData(
       "DVD Keyset 1",
       Raite_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Raite_Make, "DVD-703", DVD_Device);

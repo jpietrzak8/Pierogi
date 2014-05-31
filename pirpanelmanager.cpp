@@ -32,7 +32,7 @@
 #include "forms/pirrecordform.h"
 #include "forms/pirtvform.h"
 #include "forms/pirreceiverform.h"
-#include "forms/pirinputform.h"
+//#include "forms/pirinputform.h"
 #include "forms/pirinputlistform.h"
 #include "forms/piradjustform.h"
 #include "forms/pirairconditionerform.h"
@@ -56,7 +56,7 @@
 
 // Debugging:
 //#include <QMaemo5InformationBox>
-#include <iostream>
+#include <QDebug>
 
 PIRPanelManager::PIRPanelManager(
   MainWindow *mw):
@@ -70,7 +70,7 @@ PIRPanelManager::PIRPanelManager(
     recordForm(0),
     tvForm(0),
     receiverForm(0),
-    inputForm(0),
+//    inputForm(0),
     inputListForm(0),
     adjustForm(0),
     acForm(0),
@@ -116,22 +116,22 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[Receiver_Panel] = MainWindow::tr("Receiver");
   longPanelNames[Receiver_Panel] =
     MainWindow::tr("Receiver Panel - main controls for receivers");
-  shortPanelNames[Input_Panel] = MainWindow::tr("Input");
-  longPanelNames[Input_Panel] =
-    MainWindow::tr("Input Panel - manage data sources");
+//  shortPanelNames[Input_Panel] = MainWindow::tr("Input");
+//  longPanelNames[Input_Panel] =
+//    MainWindow::tr("Input Panel - manage data sources");
   shortPanelNames[InputList_Panel] = MainWindow::tr("Input");
   longPanelNames[InputList_Panel] =
     MainWindow::tr("Input Panel - manage data sources");
   shortPanelNames[Adjust_Panel] = MainWindow::tr("Adjust");
   longPanelNames[Adjust_Panel] =
     MainWindow::tr("Adjust Panel - modify audio and video");
-  shortPanelNames[AC_Panel] = MainWindow::tr("A/C General");
+  shortPanelNames[AC_Panel] = MainWindow::tr("AC and Fan");
   longPanelNames[AC_Panel] =
-    MainWindow::tr("A/C Panel - air conditioner controls");
-  shortPanelNames[StatefulAC_Panel] = MainWindow::tr("A/C General");
+    MainWindow::tr("A/C and Fan Panel - air conditioner & fan controls");
+  shortPanelNames[StatefulAC_Panel] = MainWindow::tr("Stateful AC");
   longPanelNames[StatefulAC_Panel] =
     MainWindow::tr("Stateful A/C Panel - for A/C remotes with LCD screens");
-  shortPanelNames[ACTimer_Panel] = MainWindow::tr("A/C Timer");
+  shortPanelNames[ACTimer_Panel] = MainWindow::tr("AC Timer");
   longPanelNames[ACTimer_Panel] =
     MainWindow::tr("A/C Timer Panel - set (or cancel) the on/off timer");
   shortPanelNames[Audio_Panel] = MainWindow::tr("Audio");
@@ -192,8 +192,8 @@ PIRPanelManager::PIRPanelManager(
   receiverForm = new PIRReceiverForm(mainWindow);
   panels[Receiver_Panel] = receiverForm;
 
-  inputForm = new PIRInputForm(mainWindow);
-  panels[Input_Panel] = inputForm;
+//  inputForm = new PIRInputForm(mainWindow);
+//  panels[Input_Panel] = inputForm;
 
   inputListForm = new PIRInputListForm(mainWindow);
   panels[InputList_Panel] = inputListForm;
@@ -237,6 +237,7 @@ PIRPanelManager::PIRPanelManager(
 //  advancedForm = new PIRAdvancedForm();
 //  panels[Advanced_Panel] = advancedForm;
 
+/*
   // Set up the panel collections:
   PIRPanelNameList pset;
 
@@ -331,6 +332,7 @@ PIRPanelManager::PIRPanelManager(
 //  pset.clear();
 //  pset.push_back(Advanced_Panel);
 //  tabLists[Advanced_Tabs] = pset;
+*/
 }
 
 
@@ -345,26 +347,91 @@ PIRPanelManager::~PIRPanelManager()
 
 
 void PIRPanelManager::setupTabs(
-  PIRTabBarName tabsName)
+  PIRPanelTypes panelTypes)
 {
   mainWindow->disableUpdates();
   mainWindow->clearTabs();
 
-  PIRPanelNameList::const_iterator i = tabLists[tabsName].begin();
+//qDebug() << "Panel Types: " << int(panelTypes);
 
-  while (i != tabLists[tabsName].end())
+  // First, some panels are common to multiple types:
+  if ( (panelTypes & TV_Panels)
+    || (panelTypes & MediaControl_Panels))
   {
-    if ((*i == Main_Panel) && altMainPanelFlag)
+    // Add in all the generic panels:
+    if (altMainPanelFlag)
     {
       mainWindow->addTab(altMainForm, shortPanelNames[Main_Panel]);
     }
     else
     {
-      mainWindow->addTab(panels[*i], shortPanelNames[*i]);
+      mainWindow->addTab(mainForm, shortPanelNames[Main_Panel]);
     }
 
-    ++i;
+    mainWindow->addTab(utilityForm, shortPanelNames[Utility_Panel]);
+    mainWindow->addTab(keypadForm, shortPanelNames[Keypad_Panel]);
+    mainWindow->addTab(menuForm, shortPanelNames[Menu_Panel]);
+    mainWindow->addTab(inputListForm, shortPanelNames[InputList_Panel]);
+    mainWindow->addTab(adjustForm, shortPanelNames[Adjust_Panel]);
   }
+
+  // Panels just for TVs:
+  if (panelTypes & TV_Panels)
+  {
+    mainWindow->addTab(tvForm, shortPanelNames[TV_Panel]);
+  }
+
+  // Panels just for control of media:
+  if (panelTypes & MediaControl_Panels)
+  {
+    mainWindow->addTab(mediaForm, shortPanelNames[Media_Panel]);
+  }
+
+  // Receiver panels:
+  if (panelTypes & Receiver_Panels)
+  {
+    mainWindow->addTab(receiverForm, shortPanelNames[Receiver_Panel]);
+    mainWindow->addTab(audioDeviceForm, shortPanelNames[Audio_Panel]);
+    mainWindow->addTab(keypadForm, shortPanelNames[Keypad_Panel]);
+    mainWindow->addTab(mediaForm, shortPanelNames[Media_Panel]);
+    mainWindow->addTab(inputListForm, shortPanelNames[InputList_Panel]);
+  }
+
+  // Panels for recording media:
+  if (panelTypes & MediaRecord_Panels)
+  {
+    mainWindow->addTab(recordForm, shortPanelNames[Record_Panel]);
+  }
+
+  if (panelTypes & ACFan_Panels)
+  {
+    mainWindow->addTab(acForm, shortPanelNames[AC_Panel]);
+  }
+
+  if (panelTypes & StatefulAC_Panels)
+  {
+    mainWindow->addTab(statefulACForm, shortPanelNames[StatefulAC_Panel]);
+    mainWindow->addTab(acTimerForm, shortPanelNames[ACTimer_Panel]);
+  }
+
+  if (panelTypes & Camera_Panels)
+  {
+    mainWindow->addTab(cameraForm, shortPanelNames[Camera_Panel]);
+    mainWindow->addTab(intervalometerForm, shortPanelNames[Intervalometer_Panel]);
+  }
+
+  if (panelTypes & Roomba_Panels)
+  {
+    mainWindow->addTab(roombaForm, shortPanelNames[Roomba_Panel]);
+  }
+
+  if (panelTypes & Playstation_Panels)
+  {
+    mainWindow->addTab(playstationForm, shortPanelNames[Playstation_Panel]);
+  }
+
+  // For now, we'll tack the macros panel on the end of every set of tabs:
+  mainWindow->addTab(userForm, shortPanelNames[User_Panel]);
 
   mainWindow->enableUpdates();
 }
@@ -403,7 +470,7 @@ void PIRPanelManager::commonEnableButtons(
   recordForm->enableButtons(keyset, id);
   tvForm->enableButtons(keyset, id);
   receiverForm->enableButtons(keyset, id);
-  inputForm->enableButtons(keyset, id);
+//  inputForm->enableButtons(keyset, id);
   inputListForm->enableButtons(keyset, id);
   adjustForm->enableButtons(keyset, id);
   acForm->enableButtons(keyset, id);

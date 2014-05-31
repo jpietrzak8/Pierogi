@@ -32,6 +32,7 @@ GoldStarTV1::GoldStarTV1(
   : PIRKeysetMetaData(
       "105-210A TV",
       GoldStar_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(GoldStar_Make, "105-210A", TV_Device);
@@ -88,6 +89,7 @@ GoldStarTV2::GoldStarTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       GoldStar_Make,
+      TV_Panels,
       index)
 {
 }
@@ -149,6 +151,7 @@ GoldStarVCR1::GoldStarVCR1(
   : PIRKeysetMetaData(
       "VCR Keyset 1",
       GoldStar_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(GoldStar_Make, "GSE-Q204P", VCR_Device);
@@ -296,6 +299,7 @@ GoldStarAudio1::GoldStarAudio1(
   : PIRKeysetMetaData(
       "Audio Keyset 1",
       GoldStar_Make,
+      Receiver_Panels,
       index)
 {
   addControlledDevice(GoldStar_Make, "FFH-272A/L", Audio_Device);

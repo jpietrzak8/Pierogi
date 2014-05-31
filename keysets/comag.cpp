@@ -28,6 +28,7 @@ ComagSTB1::ComagSTB1(
   : PIRKeysetMetaData(
       "TV Receiver Keyset 1",
       Comag_Make,
+      TV_Panels,
       index)
 {
 }
@@ -104,6 +105,7 @@ ComagSTB2::ComagSTB2(
   : PIRKeysetMetaData(
       "TV Receiver Keyset 2",
       Comag_Make,
+      TV_Panels,
       index)
 {
 }

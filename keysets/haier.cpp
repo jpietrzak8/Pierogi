@@ -28,6 +28,7 @@ HaierTV1::HaierTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Haier_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Haier_Make, "TN201AUV", TV_Device);

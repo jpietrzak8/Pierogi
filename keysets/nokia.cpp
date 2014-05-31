@@ -28,6 +28,7 @@ NokiaGenericVCR::NokiaGenericVCR(
   : PIRKeysetMetaData(
       "Generic VCR",
       Nokia_Make,
+      MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

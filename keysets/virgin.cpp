@@ -29,6 +29,7 @@ VirginSTB1::VirginSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Virgin_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Virgin_Make, "V BoxHD (Cisco 4585)", Sat_Device);

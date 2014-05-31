@@ -29,6 +29,7 @@ AppleWhiteRemote::AppleWhiteRemote(
   : PIRKeysetMetaData(
       "White Remote",
       Apple_Make,
+      MediaControl_Panels,
       index)
 {
   addControlledDevice(Apple_Make, "Mac Mini", Computer_Device);

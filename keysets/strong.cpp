@@ -31,6 +31,7 @@ StrongSat1::StrongSat1(
   : PIRKeysetMetaData(
       "Sat Receiver Keyset 1",
       Strong_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Strong_Make, "ZapBox", Sat_Device);
@@ -102,6 +103,7 @@ StrongSat2::StrongSat2(
   : PIRKeysetMetaData(
       "Sat Receiver Keyset 2",
       Strong_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Strong_Make, "SRT-4620", Sat_Device);
@@ -208,6 +210,7 @@ StrongSat3::StrongSat3(
   : PIRKeysetMetaData(
       "Sat Receiver Keyset 3",
       Strong_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Strong_Make, "SRT-6410", Sat_Device);
@@ -325,6 +328,7 @@ StrongSat4::StrongSat4(
   : PIRKeysetMetaData(
       "Sat Receiver Keyset 4",
       Strong_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(Strong_Make, "SRT-5430", Sat_Device);
@@ -405,6 +409,7 @@ StrongSat5::StrongSat5(
   : PIRKeysetMetaData(
       "Sat Receiver Keyset 5",
       Strong_Make,
+      TV_Panels,
       index)
 {
 }
@@ -517,6 +522,7 @@ StrongSTB1::StrongSTB1(
   : PIRKeysetMetaData(
       "DVB-T Receiver Keyset 1",
       Strong_Make,
+      TV_Panels,
       index)
 {
 }
@@ -576,6 +582,7 @@ StrongSTB2::StrongSTB2(
   : PIRKeysetMetaData(
       "DVB-T Receiver Keyset 2",
       Strong_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -660,6 +667,7 @@ StrongSTB3::StrongSTB3(
   : PIRKeysetMetaData(
       "DVB-T Receiver Keyset 3",
       Strong_Make,
+      TV_Panels,
       index)
 {
 }
@@ -719,6 +727,7 @@ StrongSTB4::StrongSTB4(
   : PIRKeysetMetaData(
       "DVB-T Receiver Keyset 4",
       Strong_Make,
+      TV_Panels,
       index)
 {
 }
@@ -789,6 +798,7 @@ StrongSTB5::StrongSTB5(
   : PIRKeysetMetaData(
       "DVB-T Receiver Keyset 5",
       Strong_Make,
+      TV_Panels,
       index)
 {
 }

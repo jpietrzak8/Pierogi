@@ -31,6 +31,7 @@ MultichoiceSTB1::MultichoiceSTB1(
   : PIRKeysetMetaData(
       "TV Decoder Keyset 1",
       Multichoice_Make,
+      TV_Panels,
       index)
 {
 }
@@ -109,6 +110,7 @@ MultichoiceSTB2::MultichoiceSTB2(
   : PIRKeysetMetaData(
       "TV Decoder Keyset 2",
       Multichoice_Make,
+      TV_Panels,
       index)
 {
 }

@@ -31,6 +31,7 @@ KathreinSat1::KathreinSat1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Kathrein_Make,
+      TV_Panels,
       index)
 {
 }
@@ -83,6 +84,7 @@ KathreinSat2::KathreinSat2(
   : PIRKeysetMetaData(
       "Sat Keyset 2",
       Kathrein_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -152,6 +154,7 @@ KathreinSat3::KathreinSat3(
   : PIRKeysetMetaData(
       "Sat Keyset 3",
       Kathrein_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

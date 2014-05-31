@@ -30,6 +30,7 @@ DynexTV1::DynexTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Dynex_Make,
+      TV_Panels,
       index)
 {
 }

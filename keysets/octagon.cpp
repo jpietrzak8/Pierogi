@@ -29,6 +29,7 @@ OctagonSat1::OctagonSat1(
   : PIRKeysetMetaData(
       "Sat Keyset 1",
       Octagon_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
@@ -130,6 +131,7 @@ OctagonSat2::OctagonSat2(
   : PIRKeysetMetaData(
       "Sat Keyset 2",
       Octagon_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }

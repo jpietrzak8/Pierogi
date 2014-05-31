@@ -31,6 +31,7 @@ WestinghouseTV1::WestinghouseTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       Westinghouse_Make,
+      TV_Panels,
       index)
 {
 }
@@ -102,6 +103,7 @@ WestinghouseTV2::WestinghouseTV2(
   : PIRKeysetMetaData(
       "TV Keyset 2",
       Westinghouse_Make,
+      TV_Panels,
       index)
 {
   addControlledDevice(Westinghouse_Make, "LVM-42W2", TV_Device);

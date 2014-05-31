@@ -28,6 +28,7 @@ RokuBox1::RokuBox1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Roku_Make,
+      MediaControl_Panels,
       index)
 {
 }
@@ -64,6 +65,7 @@ RokuBox2::RokuBox2(
   : PIRKeysetMetaData(
       "Soundbridge Keyset 1",
       Roku_Make,
+      MediaControl_Panels,
       index)
 {
 }

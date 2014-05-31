@@ -30,6 +30,7 @@ FoxtelSTB1::FoxtelSTB1(
   : PIRKeysetMetaData(
       "STB Keyset 1",
       Foxtel_Make,
+      TV_Panels,
       index)
 {
 }
@@ -89,6 +90,7 @@ FoxtelSTB2::FoxtelSTB2(
   : PIRKeysetMetaData(
       "STB Keyset 2",
       Foxtel_Make,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
 }
