@@ -271,7 +271,8 @@ SOURCES += main.cpp mainwindow.cpp \
     protocols/airtechprotocol.cpp \
     keysets/airtech.cpp \
     keysets/lasko.cpp \
-    keysets/russellhobbs.cpp
+    keysets/russellhobbs.cpp \
+    keysets/manta.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -518,7 +519,8 @@ HEADERS += mainwindow.h \
     protocols/airtechprotocol.h \
     keysets/airtech.h \
     keysets/lasko.h \
-    keysets/russellhobbs.h
+    keysets/russellhobbs.h \
+    keysets/manta.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

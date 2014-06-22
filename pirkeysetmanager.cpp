@@ -108,8 +108,9 @@
 #include "keysets/logitech.h"
 #include "keysets/magnavox.h"
 #include "keysets/magnum.h"
-#include "keysets/mce.h"
 #include "keysets/majestic.h"
+#include "keysets/manta.h"
+#include "keysets/mce.h"
 #include "keysets/medialink.h"
 #include "keysets/medion.h"
 #include "keysets/minolta.h"
@@ -612,6 +613,11 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new MCERemote1g(++counter));
 
   setupKeyset(new MajesticDVD1(++counter));
+
+  setupKeyset(new MantaDVB1(++counter));
+  setupKeyset(new MantaDVB2(++counter));
+  setupKeyset(new MantaDVD1(++counter));
+  setupKeyset(new MantaDVD2(++counter));
 
   setupKeyset(new MedialinkSTB1(++counter));
 

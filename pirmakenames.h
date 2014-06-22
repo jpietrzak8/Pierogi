@@ -1,7 +1,7 @@
 //
 // pirmakenames.h
 //
-// Copyright 2012, 2013 by John Pietrzak  (jpietrzak8@gmail.com)
+// Copyright 2012 - 2014 by John Pietrzak  (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -108,6 +108,7 @@ enum PIRMakeName{
   Magnavox_Make,
   Magnum_Make,
   Majestic_Make,
+  Manta_Make,
   Medialink_Make,
   Medion_Make,
   Microsoft_Make,

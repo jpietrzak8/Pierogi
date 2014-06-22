@@ -1,7 +1,7 @@
 //
 // pirmakenames.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2014 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -107,6 +107,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Magnavox_Make] = "Magnavox";
   makes[Magnum_Make] = "Magnum";
   makes[Majestic_Make] = "Majestic";
+  makes[Manta_Make] = "Manta";
   makes[Medialink_Make] = "Medi@link";
   makes[Medion_Make] = "Medion";
   makes[Microsoft_Make] = "Microsoft";

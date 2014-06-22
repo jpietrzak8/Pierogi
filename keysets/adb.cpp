@@ -1,7 +1,7 @@
 //
 // adb.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2014 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -16,7 +16,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software Foundation,
+// along with Pierogi; if not, write to the Free Software Foundation,
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 

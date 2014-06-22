@@ -1,7 +1,7 @@
 //
-// acer.h
+// manta.h
 //
-// Copyright 2012 - 2014 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -20,35 +20,54 @@
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 
-#ifndef ACER_H
-#define ACER_H
+#ifndef MANTA_H
+#define MANTA_H
 
 #include "pirkeysetmetadata.h"
 
 class QObject;
-class QComboBox;
 
-class AcerTV1: public PIRKeysetMetaData
+class MantaDVB1: public PIRKeysetMetaData
 {
 public:
-  AcerTV1(
-    unsigned int index);
-
-  virtual void populateProtocol(
-    QObject *guiObject);
-
-  virtual void populateInputList(
-    QComboBox *cb);
-};
-
-class AcerPC1: public PIRKeysetMetaData
-{
-public:
-  AcerPC1(
+  MantaDVB1(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
 };
 
-#endif // ACER_H
+
+class MantaDVB2: public PIRKeysetMetaData
+{
+public:
+  MantaDVB2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+
+class MantaDVD1: public PIRKeysetMetaData
+{
+public:
+  MantaDVD1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+
+class MantaDVD2: public PIRKeysetMetaData
+{ 
+public:
+  MantaDVD2(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+#endif // MANTA_H
