@@ -52,6 +52,7 @@ ProtonProtocol::ProtonProtocol(
       500,
       63000, true)
 {
+  setDutyCycle(50);
 }
 
 

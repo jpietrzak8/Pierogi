@@ -151,6 +151,9 @@ MainWindow::MainWindow(QWidget *parent)
   // Set up the select keyset form:
   selectKeysetForm->selectKeyset(currentKeyset);
 
+  // Inform the favorites dialog of this keyset:
+  favoritesDialog->initialKeyset(currentKeyset);
+
   // Select the panel types:
   currentPanelTypes = myKeysets->getPanelTypes(currentKeyset);
 

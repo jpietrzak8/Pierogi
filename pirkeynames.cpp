@@ -188,6 +188,7 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[OpticalInput_Key] = "Optical Input";
   keynameStrings[DigitalCoaxInput_Key] = "Digital Coax Input";
   keynameStrings[USBInput_Key] = "USB Input";
+  keynameStrings[SDCardInput_Key] = "SD Card Input";
   keynameStrings[ADTunerSwap_Key] = "A/D Tuner Swap"; 
   keynameStrings[SpeakerSwitch_Key] = "Switch Speaker Set";
   keynameStrings[Program_Key] = "Program";

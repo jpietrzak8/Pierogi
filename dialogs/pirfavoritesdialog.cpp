@@ -271,6 +271,28 @@ int PIRFavoritesDialog::selectFavorite(
 }
 
 
+void PIRFavoritesDialog::initialKeyset(
+  unsigned int keysetID)
+{
+  PIRKeysetWidgetItem *kwi;
+  int index = 0;
+  int count = ui->favoritesListWidget->count();
+  while (index < count)
+  {
+    kwi = dynamic_cast<PIRKeysetWidgetItem *> (
+      ui->favoritesListWidget->item(index));
+
+    if (kwi->getID() == keysetID)
+    {
+      ui->favoritesListWidget->setCurrentItem(kwi);
+      return;
+    }
+
+    ++index;
+  }
+}
+
+
 /*
 void PIRFavoritesDialog::updatePanelTypes(
   int favoritesIndex,

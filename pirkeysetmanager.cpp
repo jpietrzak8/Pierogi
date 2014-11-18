@@ -749,6 +749,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new PhilipsAudio2(++counter));
   setupKeyset(new PhilipsAudio3(++counter));
   setupKeyset(new PhilipsAudio4(++counter));
+//  setupKeyset(new PhilipsAudio5(++counter));
 
   setupKeyset(new PinnaclePCTV1(++counter));
   setupKeyset(new PinnaclePCTV2(++counter));
@@ -883,6 +884,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SonyProjector1(++counter));
   setupKeyset(new SonyProjector1a(++counter));
   setupKeyset(new SonyPlaystation1(++counter));
+  setupKeyset(new SonyHT1(++counter));
 
   setupKeyset(new StarhubSTB1(++counter));
   setupKeyset(new StarhubSTB1a(++counter));

@@ -386,4 +386,19 @@ public:
 //    QComboBox *cb);
 };
 
+/*
+class PhilipsAudio5: public PIRKeysetMetaData
+{
+public:
+  PhilipsAudio5(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
+};
+*/
+
 #endif // PHILIPS_H

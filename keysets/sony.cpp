@@ -1568,3 +1568,120 @@ void SonyPlaystation1::populateProtocol(
   addSIRC20Key("Cross", PSCross_Key, 0xDA, 0x1A, 0x5E);
   addSIRC20Key("Square", PSSquare_Key, 0xDA, 0x1A, 0x5F);
 }
+
+
+SonyHT1::SonyHT1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Home Theater Keyset 1",
+      Sony_Make,
+      Receiver_Panels,
+      index)
+{
+}
+
+
+void SonyHT1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated:
+    return;
+  }
+
+  threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  addSIRC15Key("Memory", Memory_Key, 0x50, 0x0E);
+  addSIRC15Key("Band", ToggleBand_Key, 0x50, 0x0F);
+  addSIRC15Key("Volume Up", VolumeUp_Key, 0x50, 0x12);
+  addSIRC15Key("Volume Down", VolumeDown_Key, 0x50, 0x13);
+  addSIRC15Key("Mute", Mute_Key, 0x50, 0x14);
+  addSIRC15Key("Power", Power_Key, 0x50, 0x15);
+  addSIRC15Key("Video 2", SatInput_Key, 0x50, 0x1E); // Sat key
+  addSIRC15Key("Auto Format Direct", Unmapped_Key, 0x50, 0x1F);
+  addSIRC15Key("Tuner", TunerInput_Key, 0x50, 0x21);
+  addSIRC15Key("Video 1", CableInput_Key, 0x50, 0x22);
+  addSIRC15Key("Power On", PowerOn_Key, 0x50, 0x2E);
+  addSIRC15Key("Power Off", PowerOff_Key, 0x50, 0x2F);
+  addSIRC15Key("Time", Unmapped_Key, 0x50, 0x4B);
+  addSIRC15Key("Dimmer", Unmapped_Key, 0x50, 0x4D);
+  addSIRC15Key("Sleep", Sleep_Key, 0x50, 0x60);
+  addSIRC15Key("Amp Menu", Unmapped_Key, 0x50, 0x70); // is this right?
+  addSIRC15Key("Display", Info_Key, 0x50, 0x74);
+  addSIRC15Key("DVD", DVDInput_Key, 0x50, 0x7D);
+
+  addSIRC15Key("Stop", Stop_Key, 0xD0, 0x00);
+  addSIRC15Key("Pause", Pause_Key, 0xD0, 0x01);
+  addSIRC15Key("Play", Play_Key, 0xD0, 0x02);
+  addSIRC15Key("DVD Setup", Unmapped_Key, 0xD0, 0x07);
+  addSIRC15Key("Night Mode", Unmapped_Key, 0xD0, 0x20);
+  addSIRC15Key("Tune +", ChannelUp_Key, 0xD0, 0x2B);
+  addSIRC15Key("Tune -", ChannelDown_Key, 0xD0, 0x2C);
+  addSIRC15Key("Stereo/Mono, FM Mode", FMMode_Key, 0xD0, 0x2D);
+  addSIRC15Key("Tuner Menu", Menu_Key, 0xD0, 0x2E);
+  addSIRC15Key("Input Select", Input_Key, 0xD0, 0x30);
+  addSIRC15Key("Bass Boost", EnhancedBass_Key, 0xD0, 0x4D);
+  addSIRC15Key("Function", Unmapped_Key, 0xD0, 0x69);
+  addSIRC15Key("Sound Field +", Unmapped_Key, 0xD0, 0x6E);
+  addSIRC15Key("Sound Field -", Unmapped_Key, 0xD0, 0x6F);
+  addSIRC15Key("Amp Menu", Unmapped_Key, 0xD0, 0x77);
+
+  addSIRC20Key("1", One_Key, 0x10, 0x10, 0x00);
+  addSIRC20Key("2", Two_Key, 0x10, 0x10, 0x01);
+  addSIRC20Key("3", Three_Key, 0x10, 0x10, 0x02);
+  addSIRC20Key("4", Four_Key, 0x10, 0x10, 0x03);
+  addSIRC20Key("5", Five_Key, 0x10, 0x10, 0x04);
+  addSIRC20Key("6", Six_Key, 0x10, 0x10, 0x05);
+  addSIRC20Key("7", Seven_Key, 0x10, 0x10, 0x06);
+  addSIRC20Key("8", Eight_Key, 0x10, 0x10, 0x07);
+  addSIRC20Key("9", Nine_Key, 0x10, 0x10, 0x08);
+  addSIRC20Key("0", Zero_Key, 0x10, 0x10, 0x09);
+  addSIRC20Key("Enter", Enter_Key, 0x10, 0x10, 0x0C);
+  addSIRC20Key(">10", DoubleDigit_Key, 0x10, 0x10, 0x0D);
+  addSIRC20Key("Clear", Clear_Key, 0x10, 0x10, 0x0F);
+  addSIRC20Key("Subtitle", Captions_Key, 0x10, 0x10, 0x11);
+  addSIRC20Key("Audio", Audio_Key, 0x10, 0x10, 0x12);
+  addSIRC20Key("Angle", Angle_Key, 0x10, 0x10, 0x13);
+  addSIRC20Key("DVD Display", Unmapped_Key, 0x10, 0x10, 0x18);
+  addSIRC20Key("DVD Top Menu", DiscMenu_Key, 0x10, 0x10, 0x19);
+  addSIRC20Key("DVD Menu", Unmapped_Key, 0x10, 0x10, 0x1A);
+  addSIRC20Key("Search Reverse", Unmapped_Key, 0x10, 0x10, 0x22);
+  addSIRC20Key("Search Forward", Unmapped_Key, 0x10, 0x10, 0x23);
+  addSIRC20Key("Play Mode", Unmapped_Key, 0x10, 0x10, 0x26);
+  addSIRC20Key("Shuffle", Random_Key, 0x10, 0x10, 0x2A);
+  addSIRC20Key("Program", Program_Key, 0x10, 0x10, 0x2B);
+  addSIRC20Key("Repeat", Repeat_Key, 0x10, 0x10, 0x2C);
+  addSIRC20Key("Repeat", Unmapped_Key, 0x10, 0x10, 0x2D); //??
+  addSIRC20Key("Previous/Preset Down", Previous_Key, 0x10, 0x10, 0x30);
+  addSIRC20Key("Previous/Preset Down", PrevPreset_Key, 0x10, 0x10, 0x30);
+  addSIRC20Key("Next/Preset Up", Next_Key, 0x10, 0x10, 0x31);
+  addSIRC20Key("Next/Preset Up", NextPreset_Key, 0x10, 0x10, 0x31);
+  addSIRC20Key("Play", Play_Key, 0x10, 0x10, 0x32);
+  addSIRC20Key("Rewind/Tuning Down", Rewind_Key, 0x10, 0x10, 0x33);
+  addSIRC20Key("Fast Forward/Tuning Up", FastForward_Key, 0x10, 0x10, 0x34);
+  addSIRC20Key("Stop", Stop_Key, 0x10, 0x10, 0x38);
+  addSIRC20Key("Pause", Pause_Key, 0x10, 0x10, 0x39);
+  addSIRC20Key("Repeat A-B", RepeatAB_Key, 0x10, 0x10, 0x3B);
+  addSIRC20Key("Open/Close", Eject_Key, 0x10, 0x10, 0x3C);
+  addSIRC20Key("Disc Skip", NextDisc_Key, 0x10, 0x10, 0x3E);
+  addSIRC20Key("Name", Unmapped_Key, 0x10, 0x10, 0x5B);
+  addSIRC20Key("Up", Up_Key, 0x10, 0x10, 0x78);
+  addSIRC20Key("Down", Down_Key, 0x10, 0x10, 0x79);
+  addSIRC20Key("Left", Left_Key, 0x10, 0x10, 0x7A);
+  addSIRC20Key("Right", Right_Key, 0x10, 0x10, 0x7B);
+  addSIRC20Key("Select", Select_Key, 0x10, 0x10, 0x7C);
+  addSIRC20Key("Return", Exit_Key, 0x10, 0x10, 0x7D);
+}
+
+
+void SonyHT1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Tuner", QVariant(TunerInput_Key));
+  cb->addItem("DVD", QVariant(DVDInput_Key));
+  cb->addItem("Video 1", QVariant(CableInput_Key));
+  cb->addItem("Video 2", QVariant(CableInput_Key));
+}

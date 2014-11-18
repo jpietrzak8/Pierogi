@@ -67,6 +67,9 @@ public:
   int selectFavorite(
     PIRKeysetWidgetItem *targetItem);
 
+  void initialKeyset(
+    unsigned int keysetID);
+
 /*
   void updateTabBarName(
     int favoritesIndex,

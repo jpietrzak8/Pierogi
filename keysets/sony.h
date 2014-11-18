@@ -321,4 +321,18 @@ public:
     QObject *guiObject);
 };
 
+
+class SonyHT1: public PIRKeysetMetaData
+{
+public:
+  SonyHT1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
+};
+
 #endif // SONY_H

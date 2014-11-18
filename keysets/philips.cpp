@@ -1831,3 +1831,88 @@ void PhilipsAudio4::populateProtocol(
   addKey("CD_SYNC", Unmapped_Key, 0x16A8, 13);
   addKey("REC", Record_Key, 0x16B7, 13);
 }
+
+
+/*
+PhilipsAudio5::PhilipsAudio5(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Audio Keyset 5",
+      Philips_Make,
+      MediaControl_Panels,
+      index)
+{
+}
+
+
+void PhilipsAudio5::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new RC6Protocol(guiObject, index);
+
+  addKey("tv", AntennaInput_Key, 0x003F, 16);
+
+  addKey("0", Zero_Key, 0x0400, 16);
+  addKey("1", One_Key, 0x0401, 16);
+  addKey("2", Two_Key, 0x0402, 16);
+  addKey("3", Three_Key, 0x0403, 16);
+  addKey("4", Four_Key, 0x0404, 16);
+  addKey("5", Five_Key, 0x0405, 16);
+  addKey("6", Six_Key, 0x0406, 16);
+  addKey("7", Seven_Key, 0x0407, 16);
+  addKey("8", Eight_Key, 0x0408, 16);
+  addKey("9", Nine_Key, 0x0409, 16);
+  addKey("display", Info_Key, 0x040F, 16);
+  addKey("repeat", Repeat_Key, 0x041D, 16);
+  addKey("next", Next_Key, 0x0420, 16);
+  addKey("prev", Previous_Key, 0x0421, 16);
+  addKey("play-pause", Play_Key, 0x042C, 16);
+  addKey("play-pause", Pause_Key, 0x042C, 16);
+  addKey("stop", Stop_Key, 0x0431, 16);
+  addKey("disc-usb", CDInput_Key, 0x043F, 16);
+  addKey("open-close", Eject_Key, 0x0442, 16);
+  addKey("subtitle", Captions_Key, 0x044B, 16);
+  addKey("audio", Audio_Key, 0x044E, 16);
+  addKey("up", Up_Key, 0x0458, 16);
+  addKey("down", Down_Key, 0x0459, 16);
+  addKey("left", Left_Key, 0x045A, 16);
+  addKey("right", Right_Key, 0x045B, 16);
+  addKey("ok", Select_Key, 0x045C, 16);
+  addKey("setup", Menu_Key, 0x0482, 16);
+  addKey("title", DiscTitle_Key, 0x0483, 16);
+  addKey("power", Power_Key, 0x04C7, 16);
+  addKey("menu", DiscMenu_Key, 0x04D1, 16);
+  addKey("zoom", Zoom_Key, 0x04F7, 16);
+  addKey("program", Program_Key, 0x04FB, 16);
+
+  addKey("mute", Mute_Key, 0x100D, 16);
+  addKey("vol+", VolumeUp_Key, 0x1010, 16);
+  addKey("vol-", VolumeDown_Key, 0x1011, 16);
+  addKey("sound", Unmapped_Key, 0x1051, 16);
+  addKey("surround", Surround_Key, 0x1052, 16);
+  addKey("audiosync", Unmapped_Key, 0x10B9, 16);
+
+  addKey("radio", TunerInput_Key, 0x113F, 16);
+  addKey("mp3-linein", LineInput_Key, 0x1538, 16);
+  addKey("aux-di", AuxInput_Key, 0x153F, 16);
+}
+
+
+void PhilipsAudio5::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("Disc / USB", QVariant(CDInput_Key));
+  cb->addItem("Radio", QVariant(TunerInput_Key));
+  cb->addItem("MP3 / Line In", QVariant(LineInput_Key));
+  cb->addItem("Aux / DI", QVariant(AuxInput_Key));
+}
+*/

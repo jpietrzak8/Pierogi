@@ -66,6 +66,9 @@ public:
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
 };
 
 class PanasonicTV1a: public PanasonicTV1
@@ -87,6 +90,7 @@ public:
   virtual void populateProtocol(
     QObject *guiObject);
 };
+
 
 class PanasonicTV2: public PIRKeysetMetaData
 {

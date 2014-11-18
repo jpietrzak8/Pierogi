@@ -219,6 +219,7 @@ enum PIRKeyName
   OpticalInput_Key,
   DigitalCoaxInput_Key,
   USBInput_Key,
+  SDCardInput_Key,
   ADTunerSwap_Key,
 
   // Output Controls:
