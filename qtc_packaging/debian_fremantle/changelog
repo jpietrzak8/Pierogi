@@ -1,3 +1,8 @@
+pierogi (1.1.38) unstable; urgency=low
+  * Made a quick fix to the Panasonic TV1 keyset.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 21 Nov 2014 11:40:23 -0500
+
 pierogi (1.1.37) unstable; urgency=low
   * Complete overhaul of the Panasonic TV1 keyset; fixed some bugs, added many new keys. The TV1a keyset supports a fairly rare variant, and TV1b supports some older Panasonic tvs.  (The TV2 keysets are for very old Panasonic tvs.)
   * Added a Sony home theater keyset.

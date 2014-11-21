@@ -178,10 +178,10 @@ void PanasonicTV1::populateProtocol(
 
   setPreData(0x2002, 16);
 
-  addKaseikyoKey("Video 1", CompositeInput_Key, 0x008, 0x01);
-  addKaseikyoKey("Video 2", Composite2Input_Key, 0x008, 0x02);
-  addKaseikyoKey("Video 3", SVideoInput_Key, 0x008, 0x03); // hack
-  addKaseikyoKey("Video 4", SVideo2Input_Key, 0x008, 0x04); // hack
+  addKaseikyoKey("Video 1", VideoInput_Key, 0x008, 0x01);
+  addKaseikyoKey("Video 2", Video2Input_Key, 0x008, 0x02);
+  addKaseikyoKey("Video 3", Video3Input_Key, 0x008, 0x03); // hack
+  addKaseikyoKey("Video 4", Video4Input_Key, 0x008, 0x04); // hack
   addKaseikyoKey("TV/AV", Input_Key, 0x008, 0x05);
   addKaseikyoKey("N", Unmapped_Key, 0x008, 0x0C); // "normal"
   addKaseikyoKey("S", Unmapped_Key, 0x008, 0x0E);
@@ -254,15 +254,15 @@ void PanasonicTV1::populateProtocol(
   addKaseikyoKey("Viera Tools", ServiceMenu_Key, 0x008, 0xEF);
   addKaseikyoKey("System reset", FactoryReset_Key, 0x008, 0xFF);
 
-  addKaseikyoKey("Component 1", ComponentInput_Key, 0x208, 0x7C);
-  addKaseikyoKey("Component 2", Component2Input_Key, 0x208, 0x7D);
-  addKaseikyoKey("HDMI 1", HDMIInput_Key, 0x208, 0xB0);
-  addKaseikyoKey("HDMI 2", HDMI2Input_Key, 0x208, 0xB1);
-  addKaseikyoKey("HDMI 3", HDMI3Input_Key, 0x208, 0xB2);
-//  addKaseikyoKey("HDMI 4", HDMI4Input_Key, 0x208, 0xB3);
-  addKaseikyoKey("aspect - zoom", Unmapped_Key, 0x208, 0xDC);
-  addKaseikyoKey("aspect - full", Unmapped_Key, 0x208, 0xDD);
-  addKaseikyoKey("ASPECT", AspectRatio_Key, 0x208, 0xDE);
+  addKaseikyoKey("Component 1", ComponentInput_Key, 0x028, 0x7C);
+  addKaseikyoKey("Component 2", Component2Input_Key, 0x028, 0x7D);
+  addKaseikyoKey("HDMI 1", HDMIInput_Key, 0x028, 0xB0);
+  addKaseikyoKey("HDMI 2", HDMI2Input_Key, 0x028, 0xB1);
+  addKaseikyoKey("HDMI 3", HDMI3Input_Key, 0x028, 0xB2);
+  addKaseikyoKey("HDMI 4", HDMI4Input_Key, 0x028, 0xB3);
+  addKaseikyoKey("aspect - zoom", Unmapped_Key, 0x028, 0xDC);
+  addKaseikyoKey("aspect - full", Unmapped_Key, 0x028, 0xDD);
+  addKaseikyoKey("ASPECT", AspectRatio_Key, 0x028, 0xDE);
 }
 
 
@@ -271,10 +271,10 @@ void PanasonicTV1::populateInputList(
 {
   cb->clear();
 
-  cb->addItem("Video 1", QVariant(CompositeInput_Key));
-  cb->addItem("Video 2", QVariant(Composite2Input_Key));
-  cb->addItem("Video 3", QVariant(AntennaInput_Key));
-  cb->addItem("Video 4", QVariant(Antenna2Input_Key));
+  cb->addItem("Video 1", QVariant(VideoInput_Key));
+  cb->addItem("Video 2", QVariant(Video2Input_Key));
+  cb->addItem("Video 3", QVariant(Video3Input_Key));
+  cb->addItem("Video 4", QVariant(Video4Input_Key));
   cb->addItem("PC / VGA", QVariant(PCInput_Key));
   cb->addItem("SD Card", QVariant(SDCardInput_Key));
   cb->addItem("Component 1", QVariant(ComponentInput_Key));
@@ -282,7 +282,7 @@ void PanasonicTV1::populateInputList(
   cb->addItem("HDMI 1", QVariant(HDMIInput_Key));
   cb->addItem("HDMI 2", QVariant(HDMI2Input_Key));
   cb->addItem("HDMI 3", QVariant(HDMI3Input_Key));
-//  cb->addItem("HDMI 4", QVariant(HDMI4Input_Key));
+  cb->addItem("HDMI 4", QVariant(HDMI4Input_Key));
 }
 
 
@@ -306,21 +306,21 @@ void PanasonicTV1a::populateProtocol(
   PanasonicTV1::populateProtocol(guiObject);
 
   // Overwrite some of the keys:
-  addKaseikyoKey("Guide", Unmapped_Key, 0x908, 0x87);
-  addKaseikyoKey("DIRECTREC", Unmapped_Key, 0x908, 0x89);
-  addKaseikyoKey("Apps", Unmapped_Key, 0x908, 0x8F);
-  addKaseikyoKey("Viera Cast", Unmapped_Key, 0x908, 0x93);
-  addKaseikyoKey("Home", Unmapped_Key, 0x908, 0x95);
-  addKaseikyoKey("Exit", Exit_Key, 0x908, 0x9A);
-  addKaseikyoKey("Option", Unmapped_Key, 0x908, 0xA7); // "Sub Menu"
-  addKaseikyoKey("Pip max", Unmapped_Key, 0x908, 0xA9);
-  addKaseikyoKey("Pip min", Unmapped_Key, 0x908, 0xAA);
-  addKaseikyoKey("SDCard", SDCardInput_Key, 0x908, 0xAB);
-  addKaseikyoKey("Favorite", Favorites_Key, 0x908, 0xAE);
-  addKaseikyoKey("Link", Unmapped_Key, 0x908, 0xB1); // "EZSync"
-  addKaseikyoKey("3d", Unmapped_Key, 0x908, 0xB7);
-  addKaseikyoKey("prog-", Dash_Key, 0x908, 0xD0); // "Dash-(#)"
-  addKaseikyoKey("Netflix", Unmapped_Key, 0x908, 0xF2);
+  addKaseikyoKey("Guide", Unmapped_Key, 0x098, 0x87);
+  addKaseikyoKey("DIRECTREC", Unmapped_Key, 0x098, 0x89);
+  addKaseikyoKey("Apps", Unmapped_Key, 0x098, 0x8F);
+  addKaseikyoKey("Viera Cast", Unmapped_Key, 0x098, 0x93);
+  addKaseikyoKey("Home", Unmapped_Key, 0x098, 0x95);
+  addKaseikyoKey("Exit", Exit_Key, 0x098, 0x9A);
+  addKaseikyoKey("Option", Unmapped_Key, 0x098, 0xA7); // "Sub Menu"
+  addKaseikyoKey("Pip max", Unmapped_Key, 0x098, 0xA9);
+  addKaseikyoKey("Pip min", Unmapped_Key, 0x098, 0xAA);
+  addKaseikyoKey("SDCard", SDCardInput_Key, 0x098, 0xAB);
+  addKaseikyoKey("Favorite", Favorites_Key, 0x098, 0xAE);
+  addKaseikyoKey("Link", Unmapped_Key, 0x098, 0xB1); // "EZSync"
+  addKaseikyoKey("3d", Unmapped_Key, 0x098, 0xB7);
+  addKaseikyoKey("prog-", Dash_Key, 0x098, 0xD0); // "Dash-(#)"
+  addKaseikyoKey("Netflix", Unmapped_Key, 0x098, 0xF2);
 }
 
 
@@ -361,18 +361,18 @@ void PanasonicTV1b::populateProtocol(
   addKaseikyoKey("Brightness Up", BrightnessUp_Key, 0x008, 0x44);
   addKaseikyoKey("Brightness Down", BrightnessDown_Key, 0x008, 0x45);
 
-  addKaseikyoKey("Mix", TeletextAndTV_Key, 0x808, 0x01);
-  addKaseikyoKey("TV/TEXT", Teletext_Key, 0x808, 0x03);
-  addKaseikyoKey("Display_Cancel", Unmapped_Key, 0x808, 0x04);
-  addKaseikyoKey("FP (Favorite Page)", Unmapped_Key, 0x808, 0x05);
-  addKaseikyoKey("INDEX", TeletextIndex_Key, 0x808, 0x08);
-  addKaseikyoKey("HOLD", TeletextHold_Key, 0x808, 0x09);
-  addKaseikyoKey("List Store", TeletextStore_Key, 0x808, 0x0A);
-  addKaseikyoKey("TIMETEXT", TeletextTime_Key, 0x808, 0x0B);
+  addKaseikyoKey("Mix", TeletextAndTV_Key, 0x088, 0x01);
+  addKaseikyoKey("TV/TEXT", Teletext_Key, 0x088, 0x03);
+  addKaseikyoKey("Display_Cancel", Unmapped_Key, 0x088, 0x04);
+  addKaseikyoKey("FP (Favorite Page)", Unmapped_Key, 0x088, 0x05);
+  addKaseikyoKey("INDEX", TeletextIndex_Key, 0x088, 0x08);
+  addKaseikyoKey("HOLD", TeletextHold_Key, 0x088, 0x09);
+  addKaseikyoKey("List Store", TeletextStore_Key, 0x088, 0x0A);
+  addKaseikyoKey("TIMETEXT", TeletextTime_Key, 0x088, 0x0B);
   addKaseikyoKey("FTB (Full/Top/Bottom)", TeletextSize_Key, 0x808, 0x0C);
-  addKaseikyoKey("REVEAL", TeletextReveal_Key, 0x808, 0x1C);
-  addKaseikyoKey("List/F.Text", Unmapped_Key, 0x808, 0x1D);
-  addKaseikyoKey("Text Reset", Unmapped_Key, 0x808, 0x1E);
+  addKaseikyoKey("REVEAL", TeletextReveal_Key, 0x088, 0x1C);
+  addKaseikyoKey("List/F.Text", Unmapped_Key, 0x088, 0x1D);
+  addKaseikyoKey("Text Reset", Unmapped_Key, 0x088, 0x1E);
 }
 
 

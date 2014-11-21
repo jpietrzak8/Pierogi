@@ -170,11 +170,16 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[Composite2Input_Key] = "Composite Input 2";
   keynameStrings[SVideoInput_Key] = "S-Video Input";
   keynameStrings[SVideo2Input_Key] = "S-Video Input 2";
+  keynameStrings[VideoInput_Key] = "Video Input";
+  keynameStrings[Video2Input_Key] = "Video2 Input";
+  keynameStrings[Video3Input_Key] = "Video3 Input";
+  keynameStrings[Video4Input_Key] = "Video4 Input";
   keynameStrings[ComponentInput_Key] = "Component Input";
   keynameStrings[Component2Input_Key] = "Component Input 2";
   keynameStrings[HDMIInput_Key] = "HDMI Input";
   keynameStrings[HDMI2Input_Key] = "HDMI Input 2";
   keynameStrings[HDMI3Input_Key] = "HDMI Input 3";
+  keynameStrings[HDMI4Input_Key] = "HDMI Input 4";
   keynameStrings[ScartInput_Key] = "SCART Input";
   keynameStrings[AuxInput_Key] = "Aux Input";
   keynameStrings[MDInput_Key] = "MD Input";
