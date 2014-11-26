@@ -44,7 +44,7 @@ void PIRInputListForm::enableButtons(
   const PIRKeysetManager *keyset,
   unsigned int id)
 {
-  emit pcEnabled(keyset->hasKey(id, PCInput_Key));
+  emit inputListEnabled(keyset->hasKey(id, Input_Key));
   emit antennaEnabled(keyset->hasKey(id, AntennaInput_Key));
   emit cableEnabled(keyset->hasKey(id, CableInput_Key));
   emit satelliteEnabled(keyset->hasKey(id, SatInput_Key));
@@ -58,12 +58,12 @@ void PIRInputListForm::enableButtons(
   emit selectInputEnabled(ui->inputSelectorComboBox->count() > 0);
 }
 
-void PIRInputListForm::on_pcInputButton_pressed()
+void PIRInputListForm::on_inputListButton_pressed()
 {
-  mainWindow->startRepeating(PCInput_Key);
+  mainWindow->startRepeating(Input_Key);
 }
 
-void PIRInputListForm::on_pcInputButton_released()
+void PIRInputListForm::on_inputListButton_released()
 {
   mainWindow->stopRepeating();
 }

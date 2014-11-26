@@ -134,6 +134,12 @@ public:
     unsigned int addressData,
     unsigned int commandData);
 
+  void addPanasonicKey(
+    PIRKeyName key,
+    unsigned int deviceData,
+    unsigned int subdeviceData,
+    unsigned int commandData);
+
   void addDishKey(
     PIRKeyName key,
     unsigned int firstCommand,

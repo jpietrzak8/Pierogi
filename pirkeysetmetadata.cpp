@@ -330,6 +330,22 @@ void PIRKeysetMetaData::addKaseikyoKey(
 }
 
 
+void PIRKeysetMetaData::addPanasonicKey(
+  const char *name,
+  PIRKeyName key,
+  unsigned int deviceData,
+  unsigned int subdeviceData,
+  unsigned int commandData)
+{
+  if (key != Unmapped_Key)
+  {
+    keys[key] = name;
+    threadableProtocol->addPanasonicKey(
+      key, deviceData, subdeviceData, commandData);
+  }
+}
+
+
 void PIRKeysetMetaData::addDishKey(
   const char *name,
   PIRKeyName key,

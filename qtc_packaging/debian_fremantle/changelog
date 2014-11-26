@@ -1,3 +1,13 @@
+pierogi (1.1.40) unstable; urgency=low
+  * Another Panasonic TV keyset update, this time with an Antenna input.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Tue, 25 Nov 2014 21:19:38 -0500
+
+pierogi (1.1.39) unstable; urgency=low
+  * Yet another attempt to get Panasonic right, this time with a complete rewrite of the protocol.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sat, 22 Nov 2014 17:40:06 -0500
+
 pierogi (1.1.38) unstable; urgency=low
   * Made a quick fix to the Panasonic TV1 keyset.
 

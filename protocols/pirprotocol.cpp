@@ -348,6 +348,32 @@ void PIRProtocol::addKaseikyoKey(
 }
 
 
+void PIRProtocol::addPanasonicKey(
+  PIRKeyName key,
+  unsigned int deviceData,
+  unsigned int subdeviceData,
+  unsigned int commandData)
+{
+  PIRKeyBits *pkb = 0;
+  KeycodeCollection::iterator i = keycodes.find(key);
+  if (i != keycodes.end())
+  {
+    pkb = &(i->second);
+    pkb->firstCode.clear();
+    pkb->secondCode.clear();
+    pkb->thirdCode.clear();
+  }
+  else
+  {
+    pkb = &(keycodes[key]);
+  }
+
+  appendToBitSeq(pkb->firstCode, deviceData, 8);
+  appendToBitSeq(pkb->secondCode, subdeviceData, 8);
+  appendToBitSeq(pkb->thirdCode, commandData, 8);
+}
+
+
 void PIRProtocol::addDishKey(
   PIRKeyName key,
   unsigned int firstCommand,

@@ -18,7 +18,7 @@
     <number>8</number>
    </property>
    <item row="0" column="0">
-    <widget class="QPushButton" name="pcInputButton">
+    <widget class="QPushButton" name="inputListButton">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
@@ -26,7 +26,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>PC</string>
+      <string>Input</string>
      </property>
     </widget>
    </item>
@@ -127,6 +127,9 @@
       <enum>QFrame::Box</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="margin">
+       <number>0</number>
+      </property>
       <item>
        <widget class="QPushButton" name="selectInputPushButton">
         <property name="sizePolicy">
@@ -159,8 +162,8 @@
  <connections>
   <connection>
    <sender>PIRInputListForm</sender>
-   <signal>pcEnabled(bool)</signal>
-   <receiver>pcInputButton</receiver>
+   <signal>inputListEnabled(bool)</signal>
+   <receiver>inputListButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -288,7 +291,7 @@
  </connections>
  <slots>
   <signal>selectInputEnabled(bool)</signal>
-  <signal>pcEnabled(bool)</signal>
+  <signal>inputListEnabled(bool)</signal>
   <signal>antennaEnabled(bool)</signal>
   <signal>cableEnabled(bool)</signal>
   <signal>satelliteEnabled(bool)</signal>

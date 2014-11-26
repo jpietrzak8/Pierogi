@@ -46,7 +46,7 @@ public:
     unsigned int id);
 
 signals:
-  void pcEnabled(bool);
+  void inputListEnabled(bool);
   void antennaEnabled(bool);
   void cableEnabled(bool);
   void satelliteEnabled(bool);
@@ -57,8 +57,8 @@ signals:
   void selectInputEnabled(bool);
   
 private slots:
-  void on_pcInputButton_pressed();
-  void on_pcInputButton_released();
+  void on_inputListButton_pressed();
+  void on_inputListButton_released();
   void on_antennaInputButton_pressed();
   void on_antennaInputButton_released();
   void on_cableInputButton_pressed();

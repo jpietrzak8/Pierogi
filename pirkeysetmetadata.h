@@ -165,6 +165,13 @@ protected:
     unsigned int addressData,
     unsigned int commandData);
 
+  void addPanasonicKey(
+    const char *name,
+    PIRKeyName key,
+    unsigned int deviceData,
+    unsigned int subdeviceData,
+    unsigned int commandData);
+
   void addDishKey(
     const char *name,
     PIRKeyName key,

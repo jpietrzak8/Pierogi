@@ -24,6 +24,7 @@
 #include "protocols/necprotocol.h"
 #include "protocols/kaseikyoprotocol.h"
 #include "protocols/panasonicoldprotocol.h"
+#include "protocols/panasonicprotocol.h"
 #include <QComboBox>
 
 
@@ -174,95 +175,106 @@ void PanasonicTV1::populateProtocol(
     return;
   }
 
-  threadableProtocol = new KaseikyoProtocol(guiObject, index);
+  threadableProtocol = new PanasonicProtocol(guiObject, index);
 
   setPreData(0x2002, 16);
 
-  addKaseikyoKey("Video 1", VideoInput_Key, 0x008, 0x01);
-  addKaseikyoKey("Video 2", Video2Input_Key, 0x008, 0x02);
-  addKaseikyoKey("Video 3", Video3Input_Key, 0x008, 0x03); // hack
-  addKaseikyoKey("Video 4", Video4Input_Key, 0x008, 0x04); // hack
-  addKaseikyoKey("TV/AV", Input_Key, 0x008, 0x05);
-  addKaseikyoKey("N", Unmapped_Key, 0x008, 0x0C); // "normal"
-  addKaseikyoKey("S", Unmapped_Key, 0x008, 0x0E);
-  addKaseikyoKey("TIMER", Sleep_Key, 0x008, 0x0F); // "Sleep"
-  addKaseikyoKey("1", One_Key, 0x008, 0x10);
-  addKaseikyoKey("2", Two_Key, 0x008, 0x11);
-  addKaseikyoKey("3", Three_Key, 0x008, 0x12);
-  addKaseikyoKey("4", Four_Key, 0x008, 0x13);
-  addKaseikyoKey("5", Five_Key, 0x008, 0x14);
-  addKaseikyoKey("6", Six_Key, 0x008, 0x15);
-  addKaseikyoKey("7", Seven_Key, 0x008, 0x16);
-  addKaseikyoKey("8", Eight_Key, 0x008, 0x17);
-  addKaseikyoKey("9", Nine_Key, 0x008, 0x18);
-  addKaseikyoKey("0", Zero_Key, 0x008, 0x19);
-  addKaseikyoKey("enter", Enter_Key, 0x008, 0x1B);
-  addKaseikyoKey("VOLUME_UP", VolumeUp_Key, 0x008, 0x20);
-  addKaseikyoKey("VOLUME_DOWN", VolumeDown_Key, 0x008, 0x21);
-  addKaseikyoKey("SURROUND", Surround_Key, 0x008, 0x31);
-  addKaseikyoKey("MUTE", Mute_Key, 0x008, 0x32);
-  addKaseikyoKey("SAP", Audio_Key, 0x008, 0x33); // "Stereo/Mono/Bilingual"
-  addKaseikyoKey("PROG_UP", ChannelUp_Key, 0x008, 0x34);
-  addKaseikyoKey("PROG_DOWN", ChannelDown_Key, 0x008, 0x35);
-  addKaseikyoKey("Last", PrevChannel_Key, 0x008, 0x37); // r-tune
-  addKaseikyoKey("PIP SCAN", PIPScan_Key, 0x008, 0x38); // "pip search"
-  addKaseikyoKey("Info", Info_Key, 0x008, 0x39); // "OSD", "recall"
-  addKaseikyoKey("C", Clear_Key, 0x008, 0x3A);
-  addKaseikyoKey("-/--", DoubleDigit_Key, 0x008, 0x3B);
-  addKaseikyoKey("POWER", Power_Key, 0x008, 0x3D);
-  addKaseikyoKey("On", PowerOn_Key, 0x008, 0x3E);
-  addKaseikyoKey("Off", PowerOff_Key, 0x008, 0x3F);
-  addKaseikyoKey("select", Select_Key, 0x008, 0x49); // "OK"
-  addKaseikyoKey("UP", Up_Key, 0x008, 0x4A);
-  addKaseikyoKey("DOWN", Down_Key, 0x008, 0x4B);
-  addKaseikyoKey("LEFT", Left_Key, 0x008, 0x4E);
-  addKaseikyoKey("RIGHT", Right_Key, 0x008, 0x4F);
-  addKaseikyoKey("P_MENU", PictureMode_Key, 0x008, 0x50);
-  addKaseikyoKey("S_MENU", SoundMode_Key, 0x008, 0x51);
-  addKaseikyoKey("setup", Menu_Key, 0x008, 0x52); // "ACTION", "Menu"
-//  addKaseikyoKey("pip", PIP_Key, 0x008, 0x56); // This seems bad
-  addKaseikyoKey("pip size", PIPSize_Key, 0x008, 0x5B); // "split/size pip"
-  addKaseikyoKey("PIP FREEZE", PIPPause_Key, 0x008, 0x5C);
-  addKaseikyoKey("pip", PIP_Key, 0x008, 0x5D);
-  addKaseikyoKey("pip swap", PIPSwap_Key, 0x008, 0x5E);
-//  addKaseikyoKey("freeze", PIPPause_Key, 0x008, 0x63); //??
-  addKaseikyoKey("PIP +", PIPChannelUp_Key, 0x008, 0x65);
-  addKaseikyoKey("PIP -", PIPChannelDown_Key, 0x008, 0x66);
-  addKaseikyoKey("pip move", PIPMove_Key, 0x008, 0x67);
-  addKaseikyoKey("Tuning", Unmapped_Key, 0x008, 0x6C);
-  addKaseikyoKey("RED", Red_Key, 0x008, 0x70);
-  addKaseikyoKey("GREEN", Green_Key, 0x008, 0x71);
-  addKaseikyoKey("YELLOW", Yellow_Key, 0x008, 0x72);
-  addKaseikyoKey("BLUE", Blue_Key, 0x008, 0x73);
-  addKaseikyoKey("PC/VGA", PCInput_Key, 0x008, 0x7A);
-  addKaseikyoKey("guide", Guide_Key, 0x008, 0x87);
-  addKaseikyoKey("CC", Captions_Key, 0x008, 0x9D);
-  addKaseikyoKey("MOOD_LIGHT", Unmapped_Key, 0x008, 0xA1);
-  addKaseikyoKey("Sub Menu", Unmapped_Key, 0x008, 0xA7);
-  addKaseikyoKey("SD Card", SDCardInput_Key, 0x008, 0xAB);
-  addKaseikyoKey("HELP", Unmapped_Key, 0x008, 0xAC);
-  addKaseikyoKey("Favorite", Favorites_Key, 0x008, 0xAE);
-  addKaseikyoKey("Viera Link", Unmapped_Key, 0x008, 0xB1);
-  addKaseikyoKey("GAME", Unmapped_Key, 0x008, 0xBB); // "rh split"
-  addKaseikyoKey("-", Dash_Key, 0x008, 0xD0);
-  addKaseikyoKey("Exit", Exit_Key, 0x008, 0xD3);
-  addKaseikyoKey("Return", Unmapped_Key, 0x008, 0xD4); // "R"
-  addKaseikyoKey("STR", Unmapped_Key, 0x008, 0xD5);
-  addKaseikyoKey("Format", Unmapped_Key, 0x008, 0xDE); // "aspect ratio"
-  addKaseikyoKey("MULTIWINDOW", Unmapped_Key, 0x008, 0xE6); // "multi pip"
-  addKaseikyoKey("FM/TV", Unmapped_Key, 0x008, 0xEE);
-  addKaseikyoKey("Viera Tools", ServiceMenu_Key, 0x008, 0xEF);
-  addKaseikyoKey("System reset", FactoryReset_Key, 0x008, 0xFF);
+  addPanasonicKey("Video 1", VideoInput_Key, 0x80, 0x00, 0x01);
+  addPanasonicKey("Video 2", Video2Input_Key, 0x80, 0x00, 0x02);
+  addPanasonicKey("Video 3", Video3Input_Key, 0x80, 0x00, 0x03); // hack
+  addPanasonicKey("Video 4", Video4Input_Key, 0x80, 0x00, 0x04); // hack
+  addPanasonicKey("TV/AV", Input_Key, 0x80, 0x00, 0x05);
+  addPanasonicKey("N", Unmapped_Key, 0x80, 0x00, 0x0C); // "normal"
+  addPanasonicKey("S", Unmapped_Key, 0x80, 0x00, 0x0E);
+  addPanasonicKey("TIMER", Sleep_Key, 0x80, 0x00, 0x0F); // "Sleep"
+  addPanasonicKey("1", One_Key, 0x80, 0x00, 0x10);
+  addPanasonicKey("2", Two_Key, 0x80, 0x00, 0x11);
+  addPanasonicKey("3", Three_Key, 0x80, 0x00, 0x12);
+  addPanasonicKey("4", Four_Key, 0x80, 0x00, 0x13);
+  addPanasonicKey("5", Five_Key, 0x80, 0x00, 0x14);
+  addPanasonicKey("6", Six_Key, 0x80, 0x00, 0x15);
+  addPanasonicKey("7", Seven_Key, 0x80, 0x00, 0x16);
+  addPanasonicKey("8", Eight_Key, 0x80, 0x00, 0x17);
+  addPanasonicKey("9", Nine_Key, 0x80, 0x00, 0x18);
+  addPanasonicKey("0", Zero_Key, 0x80, 0x00, 0x19);
+  addPanasonicKey("enter", Enter_Key, 0x80, 0x00, 0x1B);
+  addPanasonicKey("VOLUME_UP", VolumeUp_Key, 0x80, 0x00, 0x20);
+  addPanasonicKey("VOLUME_DOWN", VolumeDown_Key, 0x80, 0x00, 0x21);
+  addPanasonicKey("SURROUND", Surround_Key, 0x80, 0x00, 0x31);
+  addPanasonicKey("MUTE", Mute_Key, 0x80, 0x00, 0x32);
+  addPanasonicKey("SAP", Audio_Key, 0x80, 0x00, 0x33); // "Stereo/Mono/Bilingual"
+  addPanasonicKey("PROG_UP", ChannelUp_Key, 0x80, 0x00, 0x34);
+  addPanasonicKey("PROG_DOWN", ChannelDown_Key, 0x80, 0x00, 0x35);
+  addPanasonicKey("Last", PrevChannel_Key, 0x80, 0x00, 0x37); // r-tune
+  addPanasonicKey("PIP SCAN", PIPScan_Key, 0x80, 0x00, 0x38); // "pip search"
+  addPanasonicKey("Info", Info_Key, 0x80, 0x00, 0x39); // "OSD", "recall"
+  addPanasonicKey("C", Clear_Key, 0x80, 0x00, 0x3A);
+  addPanasonicKey("-/--", DoubleDigit_Key, 0x80, 0x00, 0x3B);
+  addPanasonicKey("POWER", Power_Key, 0x80, 0x00, 0x3D);
+  addPanasonicKey("On", PowerOn_Key, 0x80, 0x00, 0x3E);
+  addPanasonicKey("Off", PowerOff_Key, 0x80, 0x00, 0x3F);
+  addPanasonicKey("select", Select_Key, 0x80, 0x00, 0x49); // "OK"
+  addPanasonicKey("UP", Up_Key, 0x80, 0x00, 0x4A);
+  addPanasonicKey("DOWN", Down_Key, 0x80, 0x00, 0x4B);
+  addPanasonicKey("LEFT", Left_Key, 0x80, 0x00, 0x4E);
+  addPanasonicKey("RIGHT", Right_Key, 0x80, 0x00, 0x4F);
+  addPanasonicKey("P_MENU", PictureMode_Key, 0x80, 0x00, 0x50);
+  addPanasonicKey("S_MENU", SoundMode_Key, 0x80, 0x00, 0x51);
+  addPanasonicKey("setup", Menu_Key, 0x80, 0x00, 0x52); // "ACTION", "Menu"
+//  addPanasonicKey("pip", PIP_Key, 0x80, 0x00, 0x56); // This seems bad
+  addPanasonicKey("pip size", PIPSize_Key, 0x80, 0x00, 0x5B); // "split/size pip"
+  addPanasonicKey("PIP FREEZE", PIPPause_Key, 0x80, 0x00, 0x5C);
+  addPanasonicKey("pip", PIP_Key, 0x80, 0x00, 0x5D);
+  addPanasonicKey("pip swap", PIPSwap_Key, 0x80, 0x00, 0x5E);
+//  addPanasonicKey("freeze", PIPPause_Key, 0x80, 0x00, 0x63); //??
+  addPanasonicKey("PIP +", PIPChannelUp_Key, 0x80, 0x00, 0x65);
+  addPanasonicKey("PIP -", PIPChannelDown_Key, 0x80, 0x00, 0x66);
+  addPanasonicKey("pip move", PIPMove_Key, 0x80, 0x00, 0x67);
+  addPanasonicKey("Tuning", Unmapped_Key, 0x80, 0x00, 0x6C);
+  addPanasonicKey("RED", Red_Key, 0x80, 0x00, 0x70);
+  addPanasonicKey("GREEN", Green_Key, 0x80, 0x00, 0x71);
+  addPanasonicKey("YELLOW", Yellow_Key, 0x80, 0x00, 0x72);
+  addPanasonicKey("BLUE", Blue_Key, 0x80, 0x00, 0x73);
+  addPanasonicKey("PC/VGA", PCInput_Key, 0x80, 0x00, 0x7A);
+  addPanasonicKey("guide", Guide_Key, 0x80, 0x00, 0x87);
+  addPanasonicKey("CC", Captions_Key, 0x80, 0x00, 0x9D);
+  addPanasonicKey("MOOD_LIGHT", Unmapped_Key, 0x80, 0x00, 0xA1);
+  addPanasonicKey("Sub Menu", Unmapped_Key, 0x80, 0x00, 0xA7);
+  addPanasonicKey("SD Card", SDCardInput_Key, 0x80, 0x00, 0xAB);
+  addPanasonicKey("HELP", Unmapped_Key, 0x80, 0x00, 0xAC);
+  addPanasonicKey("Favorite", Favorites_Key, 0x80, 0x00, 0xAE);
+  addPanasonicKey("Viera Link", Unmapped_Key, 0x80, 0x00, 0xB1);
+  addPanasonicKey("GAME", Unmapped_Key, 0x80, 0x00, 0xBB); // "rh split"
+  addPanasonicKey("-", Dash_Key, 0x80, 0x00, 0xD0);
+  addPanasonicKey("Exit", Exit_Key, 0x80, 0x00, 0xD3);
+  addPanasonicKey("Return", Unmapped_Key, 0x80, 0x00, 0xD4); // "R"
+  addPanasonicKey("STR", Unmapped_Key, 0x80, 0x00, 0xD5);
+  addPanasonicKey("Format", Unmapped_Key, 0x80, 0x00, 0xDE); // "aspect ratio"
+  addPanasonicKey("MULTIWINDOW", Unmapped_Key, 0x80, 0x00, 0xE6); // "multi pip"
+  addPanasonicKey("FM/TV", Unmapped_Key, 0x80, 0x00, 0xEE);
+  addPanasonicKey("Viera Tools", ServiceMenu_Key, 0x80, 0x00, 0xEF);
+  addPanasonicKey("Enable remote", Unmapped_Key, 0x80, 0x00, 0xFB);
+  addPanasonicKey("Disable remote", Unmapped_Key, 0x80, 0x00, 0xFC);
+  addPanasonicKey("System reset", FactoryReset_Key, 0x80, 0x00, 0xFF);
 
-  addKaseikyoKey("Component 1", ComponentInput_Key, 0x028, 0x7C);
-  addKaseikyoKey("Component 2", Component2Input_Key, 0x028, 0x7D);
-  addKaseikyoKey("HDMI 1", HDMIInput_Key, 0x028, 0xB0);
-  addKaseikyoKey("HDMI 2", HDMI2Input_Key, 0x028, 0xB1);
-  addKaseikyoKey("HDMI 3", HDMI3Input_Key, 0x028, 0xB2);
-  addKaseikyoKey("HDMI 4", HDMI4Input_Key, 0x028, 0xB3);
-  addKaseikyoKey("aspect - zoom", Unmapped_Key, 0x028, 0xDC);
-  addKaseikyoKey("aspect - full", Unmapped_Key, 0x028, 0xDD);
-  addKaseikyoKey("ASPECT", AspectRatio_Key, 0x028, 0xDE);
+  addPanasonicKey("InputTv", AntennaInput_Key, 0x80, 0x02, 0x30);
+
+  addPanasonicKey("Component 1", ComponentInput_Key, 0x80, 0x04, 0x7C);
+  addPanasonicKey("Component 2", Component2Input_Key, 0x80, 0x04, 0x7D);
+  addPanasonicKey("HDMI 1", HDMIInput_Key, 0x80, 0x04, 0xB0);
+  addPanasonicKey("HDMI 2", HDMI2Input_Key, 0x80, 0x04, 0xB1);
+  addPanasonicKey("HDMI 3", HDMI3Input_Key, 0x80, 0x04, 0xB2);
+  addPanasonicKey("HDMI 4", HDMI4Input_Key, 0x80, 0x04, 0xB3);
+/* The discrete aspect commands are confusing:
+  addPanasonicKey("aspect - normal", Unmapped_Key, 0x80, 0x04, 0xC7);
+  addPanasonicKey("aspect - zoom", Unmapped_Key, 0x80, 0x04, 0xC9);
+  addPanasonicKey("aspect - just", Unmapped_Key, 0x80, 0x04, 0xCB);
+  addPanasonicKey("aspect - auto", Unmapped_Key, 0x80, 0x04, 0xCC);
+  addPanasonicKey("aspect - full", Unmapped_Key, 0x80, 0x04, 0xD1);
+  addPanasonicKey("aspect - zoom", Unmapped_Key, 0x80, 0x04, 0xDC);
+  addPanasonicKey("aspect - full", Unmapped_Key, 0x80, 0x04, 0xDD);
+*/
+  addPanasonicKey("ASPECT", AspectRatio_Key, 0x80, 0x04, 0xDE);
 }
 
 
@@ -271,18 +283,19 @@ void PanasonicTV1::populateInputList(
 {
   cb->clear();
 
+  cb->addItem("Antenna", QVariant(AntennaInput_Key));
   cb->addItem("Video 1", QVariant(VideoInput_Key));
   cb->addItem("Video 2", QVariant(Video2Input_Key));
   cb->addItem("Video 3", QVariant(Video3Input_Key));
   cb->addItem("Video 4", QVariant(Video4Input_Key));
-  cb->addItem("PC / VGA", QVariant(PCInput_Key));
-  cb->addItem("SD Card", QVariant(SDCardInput_Key));
   cb->addItem("Component 1", QVariant(ComponentInput_Key));
   cb->addItem("Component 2", QVariant(Component2Input_Key));
   cb->addItem("HDMI 1", QVariant(HDMIInput_Key));
   cb->addItem("HDMI 2", QVariant(HDMI2Input_Key));
   cb->addItem("HDMI 3", QVariant(HDMI3Input_Key));
   cb->addItem("HDMI 4", QVariant(HDMI4Input_Key));
+  cb->addItem("PC / VGA", QVariant(PCInput_Key));
+  cb->addItem("SD Card", QVariant(SDCardInput_Key));
 }
 
 
@@ -306,21 +319,21 @@ void PanasonicTV1a::populateProtocol(
   PanasonicTV1::populateProtocol(guiObject);
 
   // Overwrite some of the keys:
-  addKaseikyoKey("Guide", Unmapped_Key, 0x098, 0x87);
-  addKaseikyoKey("DIRECTREC", Unmapped_Key, 0x098, 0x89);
-  addKaseikyoKey("Apps", Unmapped_Key, 0x098, 0x8F);
-  addKaseikyoKey("Viera Cast", Unmapped_Key, 0x098, 0x93);
-  addKaseikyoKey("Home", Unmapped_Key, 0x098, 0x95);
-  addKaseikyoKey("Exit", Exit_Key, 0x098, 0x9A);
-  addKaseikyoKey("Option", Unmapped_Key, 0x098, 0xA7); // "Sub Menu"
-  addKaseikyoKey("Pip max", Unmapped_Key, 0x098, 0xA9);
-  addKaseikyoKey("Pip min", Unmapped_Key, 0x098, 0xAA);
-  addKaseikyoKey("SDCard", SDCardInput_Key, 0x098, 0xAB);
-  addKaseikyoKey("Favorite", Favorites_Key, 0x098, 0xAE);
-  addKaseikyoKey("Link", Unmapped_Key, 0x098, 0xB1); // "EZSync"
-  addKaseikyoKey("3d", Unmapped_Key, 0x098, 0xB7);
-  addKaseikyoKey("prog-", Dash_Key, 0x098, 0xD0); // "Dash-(#)"
-  addKaseikyoKey("Netflix", Unmapped_Key, 0x098, 0xF2);
+  addPanasonicKey("Guide", Unmapped_Key, 0x80, 0x09, 0x87);
+  addPanasonicKey("DIRECTREC", Unmapped_Key, 0x80, 0x09, 0x89);
+  addPanasonicKey("Apps", Unmapped_Key, 0x80, 0x09, 0x8F);
+  addPanasonicKey("Viera Cast", Unmapped_Key, 0x80, 0x09, 0x93);
+  addPanasonicKey("Home", Unmapped_Key, 0x80, 0x09, 0x95);
+  addPanasonicKey("Exit", Exit_Key, 0x80, 0x09, 0x9A);
+  addPanasonicKey("Option", Unmapped_Key, 0x80, 0x09, 0xA7); // "Sub Menu"
+  addPanasonicKey("Pip max", Unmapped_Key, 0x80, 0x09, 0xA9);
+  addPanasonicKey("Pip min", Unmapped_Key, 0x80, 0x09, 0xAA);
+  addPanasonicKey("SDCard", SDCardInput_Key, 0x80, 0x09, 0xAB);
+  addPanasonicKey("Favorite", Favorites_Key, 0x80, 0x09, 0xAE);
+  addPanasonicKey("Link", Unmapped_Key, 0x80, 0x09, 0xB1); // "EZSync"
+  addPanasonicKey("3d", Unmapped_Key, 0x80, 0x09, 0xB7);
+  addPanasonicKey("prog-", Dash_Key, 0x80, 0x09, 0xD0); // "Dash-(#)"
+  addPanasonicKey("Netflix", Unmapped_Key, 0x80, 0x09, 0xF2);
 }
 
 
@@ -343,36 +356,36 @@ void PanasonicTV1b::populateProtocol(
 
   PanasonicTV1::populateProtocol(guiObject);
 
-  addKaseikyoKey("PICTURE", PictureMode_Key, 0x008, 0x06);
-  addKaseikyoKey("SOUND", SoundMode_Key, 0x008, 0x07);
-//  addKaseikyoKey("Right arrow", Right_Key, 0x008, 0x08); //??
-//  addKaseikyoKey("Left arrow", Right_Key, 0x008, 0x09); //??
-  addKaseikyoKey("Picture Noise Reduction", Unmapped_Key, 0x008, 0x0A);
-  addKaseikyoKey("Bass Up", BassUp_Key, 0x008, 0x22);
-  addKaseikyoKey("Bass Down", BassDown_Key, 0x008, 0x23);
-  addKaseikyoKey("Treble Up", TrebleUp_Key, 0x008, 0x24);
-  addKaseikyoKey("Treble Down", TrebleDown_Key, 0x008, 0x25);
-  addKaseikyoKey("Balance Left", BalanceLeft_Key, 0x008, 0x26);
-  addKaseikyoKey("Balance Right", BalanceRight_Key, 0x008, 0x27);
-  addKaseikyoKey("Color Up", ColorUp_Key, 0x008, 0x40);
-  addKaseikyoKey("Color Down", ColorDown_Key, 0x008, 0x41);
-  addKaseikyoKey("Contrast Up", ContrastUp_Key, 0x008, 0x42);
-  addKaseikyoKey("Contrast Down", ContrastDown_Key, 0x008, 0x43);
-  addKaseikyoKey("Brightness Up", BrightnessUp_Key, 0x008, 0x44);
-  addKaseikyoKey("Brightness Down", BrightnessDown_Key, 0x008, 0x45);
+  addPanasonicKey("PICTURE", PictureMode_Key, 0x80, 0x00, 0x06);
+  addPanasonicKey("SOUND", SoundMode_Key, 0x80, 0x00, 0x07);
+//  addPanasonicKey("Right arrow", Right_Key, 0x80, 0x00, 0x08); //??
+//  addPanasonicKey("Left arrow", Right_Key, 0x80, 0x00, 0x09); //??
+  addPanasonicKey("Picture Noise Reduction", Unmapped_Key, 0x80, 0x00, 0x0A);
+  addPanasonicKey("Bass Up", BassUp_Key, 0x80, 0x00, 0x22);
+  addPanasonicKey("Bass Down", BassDown_Key, 0x80, 0x00, 0x23);
+  addPanasonicKey("Treble Up", TrebleUp_Key, 0x80, 0x00, 0x24);
+  addPanasonicKey("Treble Down", TrebleDown_Key, 0x80, 0x00, 0x25);
+  addPanasonicKey("Balance Left", BalanceLeft_Key, 0x80, 0x00, 0x26);
+  addPanasonicKey("Balance Right", BalanceRight_Key, 0x80, 0x00, 0x27);
+  addPanasonicKey("Color Up", ColorUp_Key, 0x80, 0x00, 0x40);
+  addPanasonicKey("Color Down", ColorDown_Key, 0x80, 0x00, 0x41);
+  addPanasonicKey("Contrast Up", ContrastUp_Key, 0x80, 0x00, 0x42);
+  addPanasonicKey("Contrast Down", ContrastDown_Key, 0x80, 0x00, 0x43);
+  addPanasonicKey("Brightness Up", BrightnessUp_Key, 0x80, 0x00, 0x44);
+  addPanasonicKey("Brightness Down", BrightnessDown_Key, 0x80, 0x00, 0x45);
 
-  addKaseikyoKey("Mix", TeletextAndTV_Key, 0x088, 0x01);
-  addKaseikyoKey("TV/TEXT", Teletext_Key, 0x088, 0x03);
-  addKaseikyoKey("Display_Cancel", Unmapped_Key, 0x088, 0x04);
-  addKaseikyoKey("FP (Favorite Page)", Unmapped_Key, 0x088, 0x05);
-  addKaseikyoKey("INDEX", TeletextIndex_Key, 0x088, 0x08);
-  addKaseikyoKey("HOLD", TeletextHold_Key, 0x088, 0x09);
-  addKaseikyoKey("List Store", TeletextStore_Key, 0x088, 0x0A);
-  addKaseikyoKey("TIMETEXT", TeletextTime_Key, 0x088, 0x0B);
-  addKaseikyoKey("FTB (Full/Top/Bottom)", TeletextSize_Key, 0x808, 0x0C);
-  addKaseikyoKey("REVEAL", TeletextReveal_Key, 0x088, 0x1C);
-  addKaseikyoKey("List/F.Text", Unmapped_Key, 0x088, 0x1D);
-  addKaseikyoKey("Text Reset", Unmapped_Key, 0x088, 0x1E);
+  addPanasonicKey("Mix", TeletextAndTV_Key, 0x80, 0x01, 0x01);
+  addPanasonicKey("TV/TEXT", Teletext_Key, 0x80, 0x01, 0x03);
+  addPanasonicKey("Display_Cancel", Unmapped_Key, 0x80, 0x01, 0x04);
+  addPanasonicKey("FP (Favorite Page)", Unmapped_Key, 0x80, 0x01, 0x05);
+  addPanasonicKey("INDEX", TeletextIndex_Key, 0x80, 0x01, 0x08);
+  addPanasonicKey("HOLD", TeletextHold_Key, 0x80, 0x01, 0x09);
+  addPanasonicKey("List Store", TeletextStore_Key, 0x80, 0x01, 0x0A);
+  addPanasonicKey("TIMETEXT", TeletextTime_Key, 0x80, 0x01, 0x0B);
+  addPanasonicKey("FTB (Full/Top/Bottom)", TeletextSize_Key, 0x80, 0x01, 0x0C);
+  addPanasonicKey("REVEAL", TeletextReveal_Key, 0x80, 0x01, 0x1C);
+  addPanasonicKey("List/F.Text", Unmapped_Key, 0x80, 0x01, 0x1D);
+  addPanasonicKey("Text Reset", Unmapped_Key, 0x80, 0x01, 0x1E);
 }
 
 
