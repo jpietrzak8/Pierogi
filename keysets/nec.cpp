@@ -473,11 +473,12 @@ void NECProjector2::populateProtocol(
 
   setPreData(0xE918, 16);
 
-  addKey("VIDEO", CompositeInput_Key, 0x03, 8);
+  addKey("VIDEO", VideoInput_Key, 0x03, 8);
   addKey("RGB", ComponentInput_Key, 0x04, 8); // "computer_1"
   addKey("RGB_2", Component2Input_Key, 0x05, 8); // "computer_2"
   addKey("auto_adj", Unmapped_Key, 0x06, 8);
   addKey("SELECT_PICTURE", Unmapped_Key, 0x07, 8);
+  addKey("POWER_ON", Power_Key, 0x08, 8);
   addKey("POWER_ON", PowerOn_Key, 0x08, 8);
   addKey("ZOOM+", Unmapped_Key, 0x09, 8);
   addKey("ZOOM-", Unmapped_Key, 0x0A, 8);
@@ -526,8 +527,88 @@ void NECProjector2::populateInputList(
 {
   cb->clear();
 
-  cb->addItem("Video", QVariant(CompositeInput_Key));
+  cb->addItem("Video", QVariant(VideoInput_Key));
   cb->addItem("RGB", QVariant(ComponentInput_Key));
   cb->addItem("RGB 2", QVariant(Component2Input_Key));
   cb->addItem("S-Video", QVariant(SVideoInput_Key));
+}
+
+
+NECProjector3::NECProjector3(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Projector Keyset 3",
+      NEC_Make,
+      MediaControl_Panels,
+      index)
+{
+}
+
+
+void NECProjector3::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already published.
+    return;
+  }
+
+  threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  setPreData(0xF718, 16);
+
+  // These commands are almost the same as keyset 2, but have a few
+  // differences:
+  addKey("R", Unmapped_Key, 0x00, 8);
+  addKey("G", Unmapped_Key, 0x01, 8);
+  addKey("B", Unmapped_Key, 0x02, 8);
+  addKey("OPERATE", Menu_Key, 0x06, 8);
+  addKey("DISPLAY", Unmapped_Key, 0x07, 8);
+  addKey("POWER_ON", Power_Key, 0x08, 8);
+  addKey("POWER_ON", PowerOn_Key, 0x08, 8);
+  addKey("END", Unmapped_Key, 0x09, 8);
+  addKey("POINT", Unmapped_Key, 0x0A, 8);
+  addKey("TEST", Unmapped_Key, 0x0B, 8);
+  addKey("KELVIN", Unmapped_Key, 0x0D, 8);
+
+  addKey("STORE", Unmapped_Key, 0x12, 8);
+  addKey("HELP", Unmapped_Key, 0x13, 8);
+  addKey("POWER_OFF", PowerOff_Key, 0x14, 8);
+  addKey("STATIC", Unmapped_Key, 0x15, 8);
+  addKey("ENTER", Select_Key, 0x17, 8);
+  addKey("1", One_Key, 0x18, 8);
+  addKey("2", Two_Key, 0x19, 8);
+  addKey("3", Three_Key, 0x1A, 8);
+  addKey("4", Four_Key, 0x1B, 8);
+  addKey("5", Five_Key, 0x1C, 8);
+  addKey("6", Six_Key, 0x1D, 8);
+  addKey("7", Seven_Key, 0x1E, 8);
+  addKey("8", Eight_Key, 0x1F, 8);
+
+  addKey("9", Nine_Key, 0x40, 8);
+  addKey("10", DoubleDigit_Key, 0x41, 8);
+  addKey("ADJUST", Unmapped_Key, 0x42, 8);
+  addKey("NORMAL", Unmapped_Key, 0x43, 8);
+  addKey("SOUND_FUNC", SoundMode_Key, 0x44, 8);
+  addKey("SOUND_MUTE", Mute_Key, 0x45, 8);
+  addKey("PIC_FUNC", PictureMode_Key, 0x46, 8);
+  addKey("PIC_MUTE", PictureMute_Key, 0x47, 8);
+  addKey("POSITION", Unmapped_Key, 0x4B, 8);
+  addKey("INPUT_LIST", Unmapped_Key, 0x4D, 8);
+  addKey("FOCUS", Unmapped_Key, 0x4E, 8);
+  addKey("INFO", Info_Key, 0x4F, 8);
+
+  addKey("TILT", Unmapped_Key, 0x50, 8);
+  addKey("PHASE", Unmapped_Key, 0x51, 8);
+  addKey("BOW", Unmapped_Key, 0x52, 8);
+  addKey("AMPLIT", Unmapped_Key, 0x54, 8);
+  addKey("LINEAR", Unmapped_Key, 0x56, 8);
+  addKey("KEYSTN", Unmapped_Key, 0x58, 8);
+  addKey("PINCUS", Unmapped_Key, 0x5A, 8);
+  addKey("NORMAL", Unmapped_Key, 0x5B, 8);
+  addKey("UP", Up_Key, 0x5C, 8);
+  addKey("DOWN", Down_Key, 0x5D, 8);
+  addKey("RIGHT", Right_Key, 0x5E, 8);
+  addKey("LEFT", Left_Key, 0x5F, 8);
 }

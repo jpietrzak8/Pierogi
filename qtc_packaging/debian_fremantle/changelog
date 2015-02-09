@@ -1,3 +1,9 @@
+pierogi (1.1.41) unstable; urgency=low
+  * Cleaned up the documentation; it now covers most of the functionality of Pierogi (other than the macros).  This is in preparation for pushing the current version into Testing, and then to Extras.
+  * Added a new Grundig TV keyset (which is, in fact, identical to Philips TV Keyset 1).
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Mon, 09 Feb 2015 15:04:41 -0500
+
 pierogi (1.1.40) unstable; urgency=low
   * Another Panasonic TV keyset update, this time with an Antenna input.
 

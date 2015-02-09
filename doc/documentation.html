@@ -12,8 +12,6 @@ Pierogi UIRC
 <p>
 The Pierogi universal infrared remote controller is a single self-contained
 app capable of sending IR commands to a wide variety of devices.
-At the moment, it is oriented towards television, VCR, DVD, and Blu-ray
-devices, but a few other types of device have had their command sets entered.
 </p>
 
 <p>
@@ -26,13 +24,12 @@ devices can share the same keyset.
 <p>
 Pierogi also follows the classic concept of a universal remote, by having
 a common set of buttons that are reused for each device.  So, for example,
-the "power" button has the same name and is located in the same position,
-no matter what keyset is currently in use -- even if that keyset has a
+the "power" button has the same name and is located in the same position on the screen, no matter what keyset is currently in use -- even if that keyset has a
 different name for "power", or has no "power" command at all.
 </p>
 
 <p>
-So in short, to use Pierogi, you first select an appropriate keyset, then
+So in short, to use Pierogi you first select an appropriate keyset, then
 press the appropriate buttons to control the target device.  More detail on
 the features of Pierogi is provided below.
 </p>
@@ -40,157 +37,234 @@ the features of Pierogi is provided below.
 <h2>Using Pierogi</h2>
 
 <p>
-The current Pierogi design is built around a series of control panels, with
+The main Pierogi interface displays a collection of control panels, with
 each panel containing a group of related buttons.  Depending on the keyset
-chosen, some of these buttons will be active, others inactive.  Pressing an
-active button will begin repeating the associated command; letting up on the
-button will stop the command.
+chosen, the selection of control panels will vary, and some buttons will not
+be active.  This is by design; the panels are shared between keysets, and
+not every button will be used by each keyset.
 </p>
 
 <p>
-Keysets can be chosen using either the "Select Keyset by Name" or "Select
-Keyset by Device" options in the drop-down menu.  If you have a particular
-keyset you use often, it can be stored in the "favorites" panel for quick
-access.
+Pressing an active button will transmit the associated command, and in most
+cases will continue to repeat that command for as long as that button is
+pressed.  (This is useful, for example, in modifying the volume on a TV set.)
+</p>
+
+<h3>Selecting a Keyset</h3>
+
+<p>
+To choose a keyset, go to the drop-down menu and choose "Select Keyset from
+List".  A (large) list will be presented; these are the names of all the
+keysets available in Pierogi.  A given keyset can often be used with multiple
+models of device, so keysets are arranged by the make (or brand) and type
+of device they control.
+</p>
+
+<p>
+If you know the make of your device, you can select it from the "Filter by
+Make" control at the top of the screen, to simplify the list.
+Alternatively, you can type a search string in on the keyboard to find a
+particular keyset.
+</p>
+
+<p>
+Once you find a keyset you're interested in, select it to bring up it's
+"Keyset Settings" panel.  From there, you can choose to make it a "favorite"
+keyset, and give it a nickname (such as "Living Room TV" or "John's Mac
+Mini").  When finished with the settings, click "done", and Pierogi will
+immediately start using this keyset.  You can then close this screen.
+</p>
+
+<h3>An Alternative Way to Select a Keyset</h3>
+
+<p>
+If you are unsure what keyset to choose for your device, you can let Pierogi
+run through its entire database of keysets to try to find a match.  To do
+this, select "Automated Keyset Search" from the drop-down menu.  This will
+bring up a window with a wide array of controls; however, the most important
+controls are the two at the bottom, "Start Automatic Search" and "Pause /
+Continue Search".
+</p>
+
+<p>
+The automatic search mechanism will send the "Power On/Off" command for each
+available keyset.  So, to use this, you should point your N900 at the target
+device, press "Start Automatic Search", and wait to see if the device powers
+on (or off, if it is already on).  This may take some time, as Pierogi has
+a large database of keysets.
+</p>
+
+<p>
+If the device does switch on or off, you can then hit the "Pause / Continue"
+button to stop Pierogi.  The name of the keyset at the top of the screen
+may be one that works with your device; however, if Pierogi had already gone
+on to another keyset by the time "Pause" was pressed, you can use the "Prev
+Set" button to go back to the previous keyset and see if it is compatible.
+(The "Prev Set" and "Next Set" buttons allow you check keysets one by one,
+and the "Reverse" and "Fast Forward" keys let you move through the database
+more quickly.)
+</p>
+
+<p>
+When you have found a keyset you are interested in, you can press the "Edit
+Keyset" button to make it a favorite, or give it a nickname.
+</p>
+
+<p>
+When you exit this screen, the most recent keyset in the search becomes
+Pierogi's active keyset.
+</p>
+
+<h3>Favorite Keysets</h3>
+
+<p>
+If you have a keyset that you would like to use regularly,
+you can make it a favorite by checking a box in the keyset's settings.
+Pierogi will collect all the favorite keysets into a list, which you can
+access from the drop-down menu by selecting "Favorite Keysets".
+</p>
+
+<p>
+You can also quickly navigate through the list of favorites by using the
+volume-rocker keys on the top of the N900.  Pressing the left rocker key
+will move backwards through the list, and the right key will move forwards.
 </p>
 
 <h3>Main Window</h3>
+
+<p>
+Pierogi does not attempt to place all the remote control buttons on the
+screen at one time; instead, a collection of "control panels" are displayed
+one at a time, each containing a few related controls.  The collection of
+panels will change based upon the keyset selected; some keysets will only
+need one or two panels to represent all of their controls, while others may
+require as many as seven or eight.
+</p>
+
+<p>
+The main window shows the currently selected panel, as well as a "tab bar"
+above that panel.  Pressing one of the labels on the tab bar will select
+the control panel associated with that label.  When there are many tabs,
+the tab bar will not be able to display all their labels at once; when this
+happens, you can "drag" the tab bar left or right to reach tabs that are off
+the screen.
+</p>
+
+<p>
+Some of the most common panels are described below:
+</p>
 
 <h4>Main Panel</h4>
 
 <p>The Main panel contains just the power, volume, mute, and channel buttons.
 It is intended to be a quick way to get to the most important, commonly used
-controls.  The name of the current keyset is also provided in this panel.</p>
+controls for a video or audio device.  The name of the current keyset is also
+provided in this panel.</p>
 
 <h4>Utility Panel</h4>
 
-<p>The Utility panel contains a selection of commonly useful controls, such as
+<p>
+The Utility panel contains a selection of useful controls, such as
 "Sleep", "Input", "Closed Captions / Subtitles", and the color buttons.
-This panel is intended to be a quick way to reach the most frequently used
+This panel is intended to be a quick way to reach frequently used
 buttons; as such, the selection may be updated in future versions of Pierogi.
 </p>
 
 <h4>Keypad Panel</h4>
 
-<p>This panel provides a numeric keypad and a handful of associated commands,
-intended mainly for use with televisions.  The "Prev Channel" button should
+<p>
+This panel provides a numeric keypad and a handful of associated commands.
+The "Prev Channel" button should
 take you to the previously selected channel, if any.  The "Dash" button
 should allow you to specify a digital subchannel, as in "16-4".  The "+100"
 button is used for television sets which normally expect only two digits
 per channel; using this button allows you to enter a third digit.  The "-/--
 Double Digit" button is used on very old televisions that normally expect
 channels to be represented by just a single digit; pressing this should
-allow you to enter a second digit.</p>
+allow you to enter a second digit.
+</p>
 
 <h4>Menu Panel</h4>
 
-<p>This panel contains buttons used to enter and exit a menu, navigate within
+<p>
+This panel contains buttons used to enter and exit a menu, navigate within
 a menu, and select menu entries.  The "Menu" button is meant to enter the
 main system menu of a given device; "Guide" is a content-related menu available
 on many modern devices; and "Disc Menu" is used to access the menu interface
-provided with DVD and Blu-Ray media.</p>
+provided with DVD and Blu-Ray media.
+</p>
 
 <h4>Media Panel</h4>
 
-<p>Many of the most important playback commands are represented on this panel.
+<p>
+Many of the most important playback commands are represented on this panel.
 "Play", "Pause", and "Stop" are the most common ones, along with "Reverse"
-(often called rewind) and "Fast Forward".  A variety of other less common
-navigation controls are included, along with the "Eject" command.</p>
-
-<h4>Media2 Panel</h4>
-
-<p>This is another panel of media buttons, containing a mix of commands useful
-for DVD players, VCRs, audio devices, and possibly other devices.  The content
-of this page may change in the future.</p>
-
-<h4>TV Panel</h4>
-
-<p>This panel contains several more TV-oriented buttons, including controls for
-picture-in-picture, teletext, and some graphics and audio controls.  The
-content of this page is subject to change.</p>
+(also called Rewind) and "Fast Forward".  A variety of other less common
+navigation controls are included, along with the "Eject" command.
+</p>
 
 <h4>Input Panel</h4>
 
 <p>
-Many devices have multiple sources for their data, whether it be television
-signals piped in over the air or through a cable, or audio from a variety of
-stereo components.  It is unlikely that Pierogi will ever be able to list all
-of the various possible input buttons, but this panel contains a few of them.
-</p>
-
-<h4>Adjust Panel</h4>
-
-<p>
-A handful of the various audio and video adjustment buttons are placed in
-this panel.
-</p>
-
-<h4>Air Conditioner Panel</h4>
-
-<p>
-This panel includes several controls commonly found on remotes used for
-air conditioners.
-</p>
-
-<h4>Favorites Panel</h4>
-
-<p>
-As there are numerous keysets available in Pierogi, a "Favorites" panel has
-been implemented.  To add a favorite keyset to the panel, first select that
-keyset from either the "Select Keyset by Name" or "Select Keyset by Device"
-windows.  Then, navigate to the Favorites panel and press "Add Current Keyset".
+The Input panel has an unusual pair of controls at the bottom, to allow
+selecting a specific input from a potentially large list.  To use these
+controls, first select the input you are interested in from the bottom
+right control, then press the "Change Input To:" button to actually change
+the input.
 </p>
 
 <p>
-Once you have added some keysets to the favorites list, you can tell
-Pierogi to use one by simply selecting that keyset from the list.  You can
-also switch between keysets on the favorites list by pressing either of the
-volume control keys on the top left side of the N900; this allows you to
-change the keyset regardless of which panel is currently visible.
+Above these two controls are buttons for a handful of commonly used
+inputs.  These are intended as a simpler way to change the input than
+the two-step process at the bottom.
+</p>
+
+<h2>Pierogi Settings</h2>
+
+<p>
+From the drop-down menu, the option "Preferences" will take you to a screen
+where a variety of aspects of Pierogi can be modified.  You may need to
+scroll this screen up or down to reach all the settings.  The options are
+described in more detail below:
+</p>
+
+<h3>Volume Punch Through</h3>
+
+<p>
+At the top of the screen, you can choose a default keyset.  You can use this
+keyset to override certain controls in the currently active keyset.  For now,
+the only way that the default keyset is being used is for a concept known
+as "Volume Punch Through".  When you choose a default keyset, and then select
+the "Always use default keyset for volume controls", Pierogi will do just
+that: no matter what keyset you select, the default keyset will be used when
+you press the volume up, volume down, or mute buttons.
 </p>
 
 <p>
-A keyset can be removed from the list by selecting it and pressing
-"Remove Selected Keyset".
+This is mainly of use when controlling devices connected to a television
+set; for example, you could be using Pierogi to control a blu-ray player,
+yet still control the TV's volume using the TV's keyset.
 </p>
 
-
-<h3>Select Keyset by Name Window</h3>
+<h3>Reverse orientation of volume and channel controls</h3>
 
 <p>
-The Select Keyset by Name window presents a list of all the keysets currently
-available in Pierogi.  As this list is fairly long, a button has been added
-at the top of the window that allows you to filter the list by the make of the
-device you are trying to control; all keysets not associated with the chosen
-make will be hidden.  To use a keyset, simply select it from the list,
-and then close the window (by pressing the return arrow at the top right of
-the screen).
+Pierogi's Main Panel is set up in a manner that mimics a section of many
+TV remote controls, with a pair of volume controls arranged vertically on
+one side and a pair of channel controls on the other.  However, some
+remotes have the volume controls on the left and the channel controls on the
+right, and others are the opposite.  If you are more comfortable with having
+the volume on the left, this switch will do that for you.
 </p>
 
-
-<h3>Select Keyset by Device Window</h3>
+<h3>Place Tab Bar below Button Panels</h3>
 
 <p>
-Similar to the Select by Name window, this window provides a list of the
-devices known to work with Pierogi.  This list can be filtered either by
-the make or the type of device.  Choosing an entry from this list will
-activate the keyset associated with the chosen device.
+Selecting this switch will place the scrollable tab bar beneath the control
+panels.  This can be of use, for example, to avoid selecting the menu bar
+by mistake when pressing tabs.  It can also make it easier to control the
+tab bar with your thumbs.
 </p>
-
-<p>
-Please note that this is nowhere near an exhaustive list of the devices
-Pierogi can control!
-</p>
-
-
-<h3>Manage Panels Window</h3>
-
-<p>
-Each of the panels available in Pierogi can be switched on or off using this
-window.  Simply set a check in the panel's checkbox to make it available in
-the main window, and un-check it to make the panel go away.
-</p>
-
 
 <h2>Design Rationale</h2>
 

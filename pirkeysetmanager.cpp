@@ -187,6 +187,7 @@
 
 // Debugging includes:
 #include <iostream>
+#include <QDebug>
 
 // Global communications mechanism:
 extern bool stopRepeatingFlag;
@@ -661,6 +662,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new NECDVD1(++counter));
   setupKeyset(new NECProjector1(++counter));
   setupKeyset(new NECProjector2(++counter));
+  setupKeyset(new NECProjector3(++counter));
 
   setupKeyset(new NikonDSLR1(++counter));
 

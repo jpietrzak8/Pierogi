@@ -101,4 +101,14 @@ public:
     QComboBox *cb);
 };
 
+class NECProjector3: public PIRKeysetMetaData
+{
+public:
+  NECProjector3(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // NEC_H

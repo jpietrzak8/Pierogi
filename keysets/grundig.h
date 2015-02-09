@@ -25,6 +25,8 @@
 
 #include "pirkeysetmetadata.h"
 
+#include "philips.h" // for generic RC5 keyset
+
 class QObject;
 class QComboBox;
 
@@ -153,6 +155,18 @@ public:
   virtual void populateProtocol(
     QObject *guiObject);
 };
+
+
+class GrundigTV5: public PhilipsTV1
+{
+public:
+  GrundigTV5(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 
 class GrundigDVD1: public PIRKeysetMetaData
 {

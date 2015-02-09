@@ -195,6 +195,9 @@ protected:
   void setKeysetName(
     const char *name);
 
+  void setMake(
+    PIRMakeName make);
+
   KeyCollection keys;
 
   PIRProtocol *threadableProtocol;

@@ -397,6 +397,13 @@ void PIRKeysetMetaData::setKeysetName(
 }
 
 
+void PIRKeysetMetaData::setMake(
+  PIRMakeName m)
+{
+  make = m;
+}
+
+
 bool PIRKeysetMetaData::clearProtocol()
 {
   if (!threadableProtocol)

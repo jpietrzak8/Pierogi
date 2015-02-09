@@ -756,6 +756,28 @@ void GrundigTV4::populateProtocol(
 }
 
 
+GrundigTV5::GrundigTV5(
+  unsigned int index)
+  : PhilipsTV1(index)
+{
+  setMake(Grundig_Make);
+  setKeysetName("TV Keyset 5");
+}
+
+
+void GrundigTV5::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  PhilipsTV1::populateProtocol(guiObject);
+}
+
+
 GrundigDVD1::GrundigDVD1(
   unsigned int index)
   : PIRKeysetMetaData(
