@@ -31,7 +31,7 @@ LGTV1::LGTV1(
   : PIRKeysetMetaData(
       "TV Keyset 1",
       LG_Make,
-      TV_Panels,
+      TV_Panels | MediaControl_Panels | MediaRecord_Panels,
       index)
 {
   addControlledDevice(LG_Make, "32LC56", TV_Device);

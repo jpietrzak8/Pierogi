@@ -1,3 +1,8 @@
+pierogi (1.1.42) unstable; urgency=low
+  * Fixed an embarrasing bug where the LG TV Media controls were missing.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Fri, 24 Apr 2015 19:36:57 -0400
+
 pierogi (1.1.41) unstable; urgency=low
   * Cleaned up the documentation; it now covers most of the functionality of Pierogi (other than the macros).  This is in preparation for pushing the current version into Testing, and then to Extras.
   * Added a new Grundig TV keyset (which is, in fact, identical to Philips TV Keyset 1).
