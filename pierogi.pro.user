@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2015-04-24T19:40:02. -->
+<!-- Written by Qt Creator 2.4.1, 2015-05-07T20:55:27. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -79,7 +79,7 @@
       <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">dpkg-buildpackage -sa -S -uc -us</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.Command">/Users/john/QtSDK/Maemo/4.6.2/bin/mad</value>
       <value type="bool" key="ProjectExplorer.ProcessStep.Enabled">false</value>
-      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">/Users/john/Develop/n900/pierogi-1.1.42</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">/Users/john/Develop/n900/pierogi-1.1.44</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Custom Process Step</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.ProcessStep</value>
@@ -194,6 +194,7 @@
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_1_1_35_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_6_2_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_1_1_12_armel.deb</value>
+       <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_1_1_44_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_1_7_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_0_1_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_1_1_27_armel.deb</value>
@@ -240,6 +241,7 @@
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_6_7_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_1_1_13_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_1_1_5_armel.deb</value>
+       <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_1_1_43_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_0_0_1_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_1_1_37_armel.deb</value>
        <value type="QString">/Users/john/Develop/n900/pierogi-build-maemo-Qt_for_Fremantle_PR1_3_Devices__Qt_SDK__Release/pierogi_1_1_26_armel.deb</value>
@@ -267,26 +269,22 @@
        <value type="QString">192.168.0.9</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
-       <value type="QString">192.168.0.15</value>
-       <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.9</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.9</value>
-       <value type="QString">192.168.0.9</value>
+       <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.9</value>
        <value type="QString">192.168.0.9</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.9</value>
        <value type="QString">192.168.0.9</value>
-       <value type="QString">192.168.0.9</value>
-       <value type="QString">192.168.0.15</value>
-       <value type="QString">192.168.0.15</value>
-       <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.9</value>
        <value type="QString">192.168.0.9</value>
+       <value type="QString">192.168.0.9</value>
+       <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
@@ -294,6 +292,11 @@
        <value type="QString">192.168.0.9</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
+       <value type="QString">192.168.0.15</value>
+       <value type="QString">192.168.0.9</value>
+       <value type="QString">192.168.0.9</value>
+       <value type="QString">192.168.0.15</value>
+       <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.9</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.9</value>
@@ -313,6 +316,7 @@
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
        <value type="QString">192.168.0.15</value>
+       <value type="QString">192.168.0.9</value>
        <value type="QString">localhost</value>
        <value type="QString">192.168.0.9</value>
        <value type="QString">192.168.0.9</value>
@@ -399,6 +403,8 @@
        <value type="QString"></value>
        <value type="QString"></value>
        <value type="QString"></value>
+       <value type="QString"></value>
+       <value type="QString"></value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
        <value type="QDateTime">2012-09-07T18:35:41</value>
@@ -413,6 +419,7 @@
        <value type="QDateTime">2014-05-31T12:59:25</value>
        <value type="QDateTime">2012-02-13T22:02:56</value>
        <value type="QDateTime">2012-09-16T17:12:09</value>
+       <value type="QDateTime">2015-05-07T20:49:19</value>
        <value type="QDateTime">2012-01-30T20:23:06</value>
        <value type="QDateTime">2012-01-14T13:11:32</value>
        <value type="QDateTime">2014-03-28T05:22:55</value>
@@ -431,7 +438,7 @@
        <value type="QDateTime">2012-02-09T18:12:21</value>
        <value type="QDateTime">2012-01-19T22:18:07</value>
        <value type="QDateTime">2012-03-04T19:56:48</value>
-       <value type="QDateTime">2015-04-24T19:39:14</value>
+       <value type="QDateTime">2015-04-26T07:58:32</value>
        <value type="QDateTime">2014-11-18T16:23:53</value>
        <value type="QDateTime">2012-02-16T21:50:07</value>
        <value type="QDateTime">2012-02-03T10:04:34</value>
@@ -459,6 +466,7 @@
        <value type="QDateTime">2012-02-19T10:29:22</value>
        <value type="QDateTime">2012-09-19T13:24:39</value>
        <value type="QDateTime">2012-09-02T20:43:12</value>
+       <value type="QDateTime">2015-05-07T20:15:38</value>
        <value type="QDateTime">2012-01-01T15:35:35</value>
        <value type="QDateTime">2014-11-21T11:38:32</value>
        <value type="QDateTime">2014-03-26T15:55:20</value>

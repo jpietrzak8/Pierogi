@@ -1,3 +1,17 @@
+pierogi (1.1.44) unstable; urgency=low
+  * Added support for the HDMI "Consumer Electronics Control" (or "CEC") function; this goes under various names for different brands, such as SimpLink (LG), Anynet+ (Samsung), Bravia Link (Sony), etc.
+  * Added support for the "Energy Saving" control for a few TV models.
+  * Reworked the TV Menu panel a bit; the CEC command has been added, and the guide removed.  Some buttons moved around a bit.  This may need further work.
+  * Added yet more buttons to the Utility panel: Guide, Energy, Zoom, and Favorite.
+  * Made a first pass at keysets for some Sony car stereos, and a Dell projector.  Also updated some Sony, Samsung, LG, and Panasonic keysets to support the new controls mentioned above.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Thu, 07 May 2015 20:18:45 -0400
+
+pierogi (1.1.43) unstable; urgency=low
+  * Added a new menu panel customized for Televisions, supporting a few new menu types such as the "Quick Menu" and the "Tools Menu".  Also has a new back button.  Non-TV devices should continue to use the previous menu panel.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 26 Apr 2015 08:02:17 -0400
+
 pierogi (1.1.42) unstable; urgency=low
   * Fixed an embarrasing bug where the LG TV Media controls were missing.
 

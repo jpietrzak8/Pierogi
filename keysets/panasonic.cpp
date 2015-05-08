@@ -242,11 +242,11 @@ void PanasonicTV1::populateProtocol(
   addPanasonicKey("SD Card", SDCardInput_Key, 0x80, 0x00, 0xAB);
   addPanasonicKey("HELP", Unmapped_Key, 0x80, 0x00, 0xAC);
   addPanasonicKey("Favorite", Favorites_Key, 0x80, 0x00, 0xAE);
-  addPanasonicKey("Viera Link", Unmapped_Key, 0x80, 0x00, 0xB1);
+  addPanasonicKey("Viera Link", CECMenu_Key, 0x80, 0x00, 0xB1);
   addPanasonicKey("GAME", Unmapped_Key, 0x80, 0x00, 0xBB); // "rh split"
   addPanasonicKey("-", Dash_Key, 0x80, 0x00, 0xD0);
   addPanasonicKey("Exit", Exit_Key, 0x80, 0x00, 0xD3);
-  addPanasonicKey("Return", Unmapped_Key, 0x80, 0x00, 0xD4); // "R"
+  addPanasonicKey("Return", Back_Key, 0x80, 0x00, 0xD4); // "R"
   addPanasonicKey("STR", Unmapped_Key, 0x80, 0x00, 0xD5);
   addPanasonicKey("Format", Unmapped_Key, 0x80, 0x00, 0xDE); // "aspect ratio"
   addPanasonicKey("MULTIWINDOW", Unmapped_Key, 0x80, 0x00, 0xE6); // "multi pip"
@@ -329,7 +329,7 @@ void PanasonicTV1a::populateProtocol(
   addPanasonicKey("Pip min", Unmapped_Key, 0x80, 0x09, 0xAA);
   addPanasonicKey("SDCard", SDCardInput_Key, 0x80, 0x09, 0xAB);
   addPanasonicKey("Favorite", Favorites_Key, 0x80, 0x09, 0xAE);
-  addPanasonicKey("Link", Unmapped_Key, 0x80, 0x09, 0xB1); // "EZSync"
+  addPanasonicKey("Link", CECMenu_Key, 0x80, 0x09, 0xB1); // "EZSync"
   addPanasonicKey("3d", Unmapped_Key, 0x80, 0x09, 0xB7);
   addPanasonicKey("prog-", Dash_Key, 0x80, 0x09, 0xD0); // "Dash-(#)"
   addPanasonicKey("Netflix", Unmapped_Key, 0x80, 0x09, 0xF2);

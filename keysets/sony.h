@@ -335,4 +335,29 @@ public:
     QComboBox *cb);
 };
 
+
+class SonyCarStereo1: public PIRKeysetMetaData
+{
+public:
+  SonyCarStereo1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+
+  virtual void populateInputList(
+    QComboBox *cb);
+};
+
+
+class SonyCarStereo1a: public SonyCarStereo1
+{
+public:
+  SonyCarStereo1a(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
 #endif // SONY_H

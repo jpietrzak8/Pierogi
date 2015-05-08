@@ -446,6 +446,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>PIRReceiverForm</sender>
+   <signal>prevPresetEnabled(bool)</signal>
+   <receiver>prevPresetButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>103</x>
+     <y>171</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <signal>powerEnabled(bool)</signal>

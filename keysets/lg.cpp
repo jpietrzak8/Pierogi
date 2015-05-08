@@ -93,9 +93,10 @@ void LGTV1::populateProtocol(
   addKey("subtitle", Captions_Key, 0x39, 8); // "cc", "subtitle/ffw"
   addKey("up", Up_Key, 0x40, 8);
   addKey("down", Down_Key, 0x41, 8);
+  addKey("my apps", AppsMenu_Key, 0x42, 8);
   addKey("menu", Menu_Key, 0x43, 8); // "setup menu", "Home"
   addKey("ok", Select_Key, 0x44, 8);
-  addKey("qmenu", Unmapped_Key, 0x45, 8);
+  addKey("qmenu", QuickMenu_Key, 0x45, 8);
   addKey("-", Dash_Key, 0x4C, 8);
   addKey("video", PictureMode_Key, 0x4D, 8); // "apc", "PSM", "picture mode"
   addKey("TV/PC", LDInput_Key, 0x50, 8); // This is a hack
@@ -116,12 +117,12 @@ void LGTV1::populateProtocol(
   addKey("red", Red_Key, 0x72, 8);
   addKey("ratio", AspectRatio_Key, 0x79, 8);
   addKey("xstudio", Unmapped_Key, 0x7C, 8);
-  addKey("simplink", Unmapped_Key, 0x7E, 8);
+  addKey("simplink", CECMenu_Key, 0x7E, 8);
   addKey("Ratio16:9", Unmapped_Key, 0x88, 8);
   addKey("Ratio4:3", Unmapped_Key, 0x89, 8);
   addKey("app/x", Unmapped_Key, 0x90, 8);
   addKey("ad", Unmapped_Key, 0x91, 8);
-  addKey("energy", Unmapped_Key, 0x95, 8); // "EYEASTERISK"
+  addKey("energy", EnergySave_Key, 0x95, 8); // "EYEASTERISK"
   addKey("comp-rgb-dvi", TapeInput_Key, 0x98, 8);  // Hack
   addKey("InputAv1", SVideoInput_Key, 0xA5, 8);
   addKey("info", Info_Key, 0xAA, 8);
@@ -199,6 +200,7 @@ void LGTV1a::populateProtocol(
 
   LGTV1::populateProtocol(guiObject);
 
+  addKey("Back", Back_Key, 0x28, 8);
   addKey("*", Unmapped_Key, 0x39, 8);
   addKey("exit", Exit_Key, 0x5B, 8);
 //  addKey("pop", Unmapped_Key, 0x61, 8);
@@ -269,6 +271,7 @@ void LGTV1c::populateProtocol(
 //  addKey("Mark", Unmapped_Key, 0x1E, 8); // This is probably an error
 //  addKey("3DOption", Unmapped_Key, 0x45, 8); // also probably error
 //  addKey("List", Unmapped_Key, 0x4C, 8); // also odd
+  addKey("Back", Back_Key, 0x28, 8);
   addKey("info", Info_Key, 0x55, 8);
   addKey("Premium", Unmapped_Key, 0x56, 8);
   addKey("WIDGETS", Unmapped_Key, 0x58, 8);
@@ -322,7 +325,7 @@ void LGTV2::populateProtocol(
   addKey("LIST", Unmapped_Key, 0x0F, 6);
   addKey("VOLUP", VolumeUp_Key, 0x10, 6);
   addKey("VOLDOWN", VolumeDown_Key, 0x11, 6);
-  addKey("EYE", Unmapped_Key, 0x12, 6);
+  addKey("EYE", EnergySave_Key, 0x12, 6);
   addKey("TURBOPICTURE", Unmapped_Key, 0x13, 6);
   addKey("DRP", Unmapped_Key, 0x14, 6);
   addKey("KEY_MEDIA", Unmapped_Key, 0x15, 6);
@@ -401,7 +404,7 @@ void LGTV2b::populateProtocol(
   addKey("Q.VIEW", Unmapped_Key, 0x32, 6);
   addKey("LIST", Unmapped_Key, 0x34, 6);
   addKey("I/II/*", Audio_Key, 0x36, 6);
-  addKey("EYE/*", Unmapped_Key, 0x37, 6);
+  addKey("EYE/*", EnergySave_Key, 0x37, 6);
 }
 
 

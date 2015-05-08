@@ -103,7 +103,7 @@ void MitsubishiTV1::populateProtocol(
   addKey("EXCHANGE", PIPSwap_Key, 0xFE, 8);
   addKey("STILL", PIPPause_Key, 0xE6, 8);
   addKey("PREVMENU", Exit_Key, 0xD2, 8);
-  addKey("ENTER", Select_Key, 0xDE, 8);
+//  addKey("ENTER", Select_Key, 0xDE, 8);  // Which Enter is right?
   addKey("VIDEO", PictureMode_Key, 0xCC, 8);
   addKey("AUDIO", SoundMode_Key, 0xDC, 8);
   addKey("ST/MONO", Unmapped_Key, 0xC0, 8);

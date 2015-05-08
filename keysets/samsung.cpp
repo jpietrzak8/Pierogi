@@ -113,9 +113,9 @@ void SamsungTV1::populateProtocol(
   addKey("Play/Pause", Pause_Key, 0x47, 8);
   addKey("Fast Forward", FastForward_Key, 0x48, 8);
   addKey("Record", Record_Key, 0x49, 8);
-  addKey("Tools", Unmapped_Key, 0x4B, 8);
+  addKey("Tools", ToolsMenu_Key, 0x4B, 8);
   addKey("Guide", Guide_Key, 0x4F, 8);
-  addKey("RETURN", Unmapped_Key, 0x58, 8);
+  addKey("RETURN", Back_Key, 0x58, 8);
   addKey("Up", Up_Key, 0x60, 8);
   addKey("Down", Down_Key, 0x61, 8);
   addKey("Right", Right_Key, 0x62, 8);
@@ -125,7 +125,7 @@ void SamsungTV1::populateProtocol(
   addKey("ch-mgr", Unmapped_Key, 0x6B, 8); // "CH_LIST"
   addKey("Red", Red_Key, 0x6C, 8);  // "red/turbo"
   addKey("srs", Surround_Key, 0x6E, 8);
-  addKey("E.SAVING", Unmapped_Key, 0x77, 8);
+  addKey("E.SAVING", EnergySave_Key, 0x77, 8);
   addKey("Content", Unmapped_Key, 0x79, 8);
   addKey("Display VCR on TV", VCRInput_Key, 0x7A, 8);
   addKey("Display Cable on TV", CableInput_Key, 0x7B, 8);
@@ -137,10 +137,10 @@ void SamsungTV1::populateProtocol(
   addKey("Component 2", Component2Input_Key, 0x88, 8);
   addKey("HDMI", HDMIInput_Key, 0x8B, 8);
   addKey("WISELINK", Unmapped_Key, 0x8C, 8); // "W.Link", "Media.P"
-  addKey("D.MENU", DiscMenu_Key, 0x8E, 8); // "D-Net Menu"
+  addKey("D.MENU", Unmapped_Key, 0x8E, 8); // "D-Net Menu"
   addKey("Internet", Unmapped_Key, 0x93, 8);
   addKey("E.Mode", Unmapped_Key, 0x94, 8);
-  addKey("ANYNET", Unmapped_Key, 0x97, 8);
+  addKey("ANYNET", CECMenu_Key, 0x97, 8);
   addKey("DiscreteOff", PowerOff_Key, 0x98, 8);
   addKey("DiscreteOn", PowerOn_Key, 0x99, 8);
   addKey("Dynamic Picture Mode", Unmapped_Key, 0xBD, 8);
@@ -150,10 +150,10 @@ void SamsungTV1::populateProtocol(
   addKey("Auto Format", Unmapped_Key, 0xE5, 8);
   addKey("HDMI 2", HDMI2Input_Key, 0xE9, 8);
   addKey("AV2", Composite2Input_Key, 0xEB, 8);
-  addKey("AV3", Unmapped_Key, 0xEC, 8);
+  addKey("AV3", VideoInput_Key, 0xEC, 8); // hack
   addKey("S-Video 2", SVideo2Input_Key, 0xED, 8);
-  addKey("S-Video 3", Unmapped_Key, 0xFB, 8);
-  addKey("Component 3", Unmapped_Key, 0xFD, 8);
+  addKey("S-Video 3", Video2Input_Key, 0xFB, 8); // hack
+  addKey("Component 3", Video3Input_Key, 0xFD, 8); // hack
 }
 
 
@@ -170,10 +170,13 @@ void SamsungTV1::populateInputList(
   cb->addItem("DVD", QVariant(DVDInput_Key));
   cb->addItem("AV 1", QVariant(CompositeInput_Key));
   cb->addItem("AV 2", QVariant(Composite2Input_Key));
+  cb->addItem("AV 3", QVariant(VideoInput_Key));
   cb->addItem("S-Video 1", QVariant(SVideoInput_Key));
   cb->addItem("S-Video 2", QVariant(SVideo2Input_Key));
+  cb->addItem("S-Video 3", QVariant(Video2Input_Key));
   cb->addItem("Component", QVariant(ComponentInput_Key));
   cb->addItem("Component 2", QVariant(Component2Input_Key));
+  cb->addItem("Component 3", QVariant(Video3Input_Key));
   cb->addItem("HDMI", QVariant(HDMIInput_Key));
   cb->addItem("HDMI 2", QVariant(HDMI2Input_Key));
 }
@@ -329,7 +332,7 @@ void SamsungTV2::populateProtocol(
   addKey("pc", PCInput_Key, 0x69, 8);
   addKey("ch-mgr", Unmapped_Key, 0x6B, 8); // "CH_LIST"
   addKey("srs", Surround_Key, 0x6E, 8);
-  addKey("E.SAVING", Unmapped_Key, 0x77, 8);
+  addKey("E.SAVING", EnergySave_Key, 0x77, 8);
   addKey("Content", Unmapped_Key, 0x79, 8);
 
 //  addKey("enter", Enter_Key, 0x16, 8);

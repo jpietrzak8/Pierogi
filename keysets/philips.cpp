@@ -1,7 +1,7 @@
 //
 // philips.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -396,8 +396,8 @@ void PhilipsTV2::populateProtocol(
   addKey("SOURCE", Input_Key, 0x38, 8); // "inputselect", "external"
   addKey("TELETEXT", Teletext_Key, 0x3C, 8);
 
-  addKey("OPTIONS", Unmapped_Key, 0x40, 8);
-  addKey("InstallMenu", Unmapped_Key, 0x45, 8);
+  addKey("OPTIONS", AppsMenu_Key, 0x40, 8); // Probably wrong here!
+  addKey("InstallMenu", ToolsMenu_Key, 0x45, 8);
   addKey("SUBTITLE", Captions_Key, 0x4B, 8);
   addKey("1st/2nd_language", Audio_Key, 0x4E, 8); // "monostereo"
 

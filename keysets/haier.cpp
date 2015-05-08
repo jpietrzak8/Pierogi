@@ -80,6 +80,6 @@ void HaierTV1::populateProtocol(
   addKey("rating", Unmapped_Key, 0x1B, 8); // "v-chip"
   addKey("rgb control", Unmapped_Key, 0x1C, 8);
   addKey("picture control", Unmapped_Key, 0x1D, 8);
-  addKey("factory reset", Unmapped_Key, 0x1E, 8);
+  addKey("factory reset", FactoryReset_Key, 0x1E, 8);
   addKey("test pattern", Unmapped_Key, 0x1F, 8);
 }

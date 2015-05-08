@@ -273,7 +273,8 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/lasko.cpp \
     keysets/russellhobbs.cpp \
     keysets/manta.cpp \
-    protocols/panasonicprotocol.cpp
+    protocols/panasonicprotocol.cpp \
+    forms/pirtvmenuform.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -522,7 +523,8 @@ HEADERS += mainwindow.h \
     keysets/lasko.h \
     keysets/russellhobbs.h \
     keysets/manta.h \
-    protocols/panasonicprotocol.h
+    protocols/panasonicprotocol.h \
+    forms/pirtvmenuform.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -558,7 +560,8 @@ FORMS += mainwindow.ui \
     forms/pirintervalometerform.ui \
     forms/pirreceiverform.ui \
     forms/pirinputlistform.ui \
-    dialogs/pirrunmacrodialog.ui
+    dialogs/pirrunmacrodialog.ui \
+    forms/pirtvmenuform.ui
 
 TRANSLATIONS += \
     translations/pierogi_nl.ts

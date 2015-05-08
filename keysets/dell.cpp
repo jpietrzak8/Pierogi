@@ -1,7 +1,7 @@
 //
 // dell.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012-2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -22,6 +22,7 @@
 
 #include "dell.h"
 #include "protocols/mceprotocol.h"
+#include "protocols/necprotocol.h"
 
 
 DellRemote1::DellRemote1(
@@ -71,4 +72,49 @@ void DellRemote1::populateProtocol(
   addKey("down", PageDown_Key, 0xCF, 8);
 
   addKey("back", Exit_Key, 0xA4, 8);
+}
+
+
+DellProjector1::DellProjector1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Projector Keyset 1",
+      Dell_Make,
+      MediaControl_Panels,
+      index)
+{
+}
+
+
+void DellProjector1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new NECProtocol(guiObject, index, false, false);
+
+  setPreData(0x504F, 16);
+
+  addKey("power", Power_Key, 0x02, 8);
+  addKey("videomode", PictureMode_Key, 0x03, 8);
+  addKey("source", Input_Key, 0x04, 8);
+  addKey("pageup", PageUp_Key, 0x05, 8);
+  addKey("pagedown", PageDown_Key, 0x06, 8);
+  addKey("vol+", VolumeUp_Key, 0x08, 8);
+  addKey("bigtop", Unmapped_Key, 0x09, 8);
+  addKey("vol-", VolumeDown_Key, 0x0B, 8);
+  addKey("blank screen", Unmapped_Key, 0x0C, 8);
+  addKey("bigbottom", Unmapped_Key, 0x0D, 8);
+  addKey("mute", Mute_Key, 0x0F, 8);
+  addKey("menu", Menu_Key, 0x11, 8);
+  addKey("up", Up_Key, 0x13, 8);
+  addKey("down", Down_Key, 0x14, 8);
+  addKey("plus", Right_Key, 0x15, 8); // hack
+  addKey("minus", Left_Key, 0x16, 8); // also hack
+  addKey("enter", Select_Key, 0x17, 8);
+  addKey("auto adjust", Unmapped_Key, 0x18, 8);
 }

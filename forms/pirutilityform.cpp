@@ -1,7 +1,7 @@
 //
 // pirutilityform.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -57,6 +57,10 @@ void PIRUtilityForm::enableButtons(
   emit captionsEnabled(keyset->hasKey(id, Captions_Key));
   emit sleepEnabled(keyset->hasKey(id, Sleep_Key));
   emit inputEnabled(keyset->hasKey(id, Input_Key));
+  emit guideEnabled(keyset->hasKey(id, Guide_Key));
+  emit energySaveEnabled(keyset->hasKey(id, EnergySave_Key));
+  emit zoomEnabled(keyset->hasKey(id, Zoom_Key));
+  emit favoriteEnabled(keyset->hasKey(id, Favorites_Key));
 }
 
 
@@ -130,18 +134,6 @@ void PIRUtilityForm::on_aspectRatioButton_released()
   mainWindow->stopRepeating();
 }
 
-/*
-void PIRUtilityForm::on_surroundButton_pressed()
-{
-  mainWindow->startRepeating(Surround_Key);
-}
-
-void PIRUtilityForm::on_surroundButton_released()
-{
-  mainWindow->stopRepeating();
-}
-*/
-
 void PIRUtilityForm::on_audioButton_pressed()
 {
   mainWindow->startRepeating(Audio_Key);
@@ -188,6 +180,46 @@ void PIRUtilityForm::on_sleepButton_pressed()
 }
 
 void PIRUtilityForm::on_sleepButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRUtilityForm::on_guideButton_pressed()
+{
+  mainWindow->startRepeating(Guide_Key);
+}
+
+void PIRUtilityForm::on_guideButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRUtilityForm::on_energySaveButton_pressed()
+{
+  mainWindow->startRepeating(EnergySave_Key);
+}
+
+void PIRUtilityForm::on_energySaveButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRUtilityForm::on_zoomButton_pressed()
+{
+  mainWindow->startRepeating(Zoom_Key);
+}
+
+void PIRUtilityForm::on_zoomButton_released()
+{
+  mainWindow->stopRepeating();
+}
+
+void PIRUtilityForm::on_favoriteButton_pressed()
+{
+  mainWindow->startRepeating(Favorites_Key);
+}
+
+void PIRUtilityForm::on_favoriteButton_released()
 {
   mainWindow->stopRepeating();
 }

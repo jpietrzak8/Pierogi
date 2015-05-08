@@ -72,11 +72,11 @@ void OnidaTV1::populateProtocol(
   addKey("9", Nine_Key, 0x29, 8);
 
   addKey("surround", Surround_Key, 0x42, 8);
-  addKey("picsnd-up", Unmapped_Key, 0x5A, 8);
-  addKey("picsnd-dn", Unmapped_Key, 0x5B, 8);
+  addKey("picsnd-up", Up_Key, 0x5A, 8);
+  addKey("picsnd-dn", Down_Key, 0x5B, 8);
   addKey("vsm", Unmapped_Key, 0x79, 8);
   addKey("menu", Menu_Key, 0x7A, 8);
-  addKey("picture-sound", Unmapped_Key, 0x7B, 8);
+  addKey("picture-sound", ToolsMenu_Key, 0x7B, 8);
   addKey("ssm", Unmapped_Key, 0x90, 8);
   addKey("color-system", Unmapped_Key, 0x92, 8);
   addKey("digits", DoubleDigit_Key, 0x9D, 8);

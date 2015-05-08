@@ -44,9 +44,14 @@ enum PIRKeyName
   Right_Key,
   Select_Key,
   Exit_Key,
+  Back_Key,
   PageUp_Key,
   PageDown_Key,
   Guide_Key,
+  QuickMenu_Key,
+  AppsMenu_Key,
+  ToolsMenu_Key,
+  CECMenu_Key,
 
   // Number keys:
   Zero_Key,
@@ -254,7 +259,7 @@ enum PIRKeyName
   Oscillate_Key,
   FanFaster_Key,
   FanSlower_Key,
-  EnergySave_Key,
+  EnergySave_Key, // Also used for TVs with E-save mode!
 
   // Stateful A/C controls:
   ACSendCommand_Key,

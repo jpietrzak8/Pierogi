@@ -37,9 +37,14 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[Right_Key] = "Right";
   keynameStrings[Select_Key] = "Select";
   keynameStrings[Exit_Key] = "Exit";
+  keynameStrings[Back_Key] = "Back";
   keynameStrings[PageUp_Key] = "Page Up";
   keynameStrings[PageDown_Key] = "Page Down";
   keynameStrings[Guide_Key] = "Guide";
+  keynameStrings[QuickMenu_Key] = "Quick Menu";
+  keynameStrings[AppsMenu_Key] = "Apps Menu";
+  keynameStrings[ToolsMenu_Key] = "Tools Menu";
+  keynameStrings[CECMenu_Key] = "CEC Menu";
   keynameStrings[Zero_Key] = "0";
   keynameStrings[One_Key] = "1";
   keynameStrings[Two_Key] = "2";

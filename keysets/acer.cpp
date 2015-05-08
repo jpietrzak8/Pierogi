@@ -58,7 +58,7 @@ void AcerTV1::populateProtocol(
   addKey("wide", AspectRatio_Key, 0x07, 8);
   addKey("active", PIPPause_Key, 0x09, 8);
   addKey("size", TeletextSize_Key, 0x0B, 8);
-  addKey("tv", Unmapped_Key, 0x0C, 8);
+  addKey("tv", AntennaInput_Key, 0x0C, 8);
   addKey("position", PIPMove_Key, 0x0D, 8);
   addKey("swap", PIPSwap_Key, 0x0E, 8);
   addKey("index", Unmapped_Key, 0x0F, 8);
@@ -80,7 +80,7 @@ void AcerTV1::populateProtocol(
 
   addKey("sleep", Sleep_Key, 0x20, 8);
   addKey("srs", Surround_Key, 0x21, 8);
-  addKey("av", Unmapped_Key, 0x22, 8);
+  addKey("av", CompositeInput_Key, 0x22, 8);
   addKey("scart", ScartInput_Key, 0x23, 8);
   addKey("pc", PCInput_Key, 0x24, 8);
   addKey("enter", Enter_Key, 0x25, 8);
@@ -113,6 +113,8 @@ void AcerTV1::populateInputList(
 {
   cb->clear();
 
+  cb->addItem("TV", QVariant(AntennaInput_Key));
+  cb->addItem("AV", QVariant(CompositeInput_Key));
   cb->addItem("SCART", QVariant(ScartInput_Key));
   cb->addItem("PC", QVariant(PCInput_Key));
 }

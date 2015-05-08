@@ -1,7 +1,7 @@
 //
 // pirpanelmanager.h
 //
-// Copyright 2012, 2013 by John Pietrzak  (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak  (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -34,6 +34,7 @@ class PIRMediaForm;
 class PIRMedia2Form;
 class PIRRecordForm;
 class PIRTVForm;
+class PIRTVMenuForm;
 class PIRReceiverForm;
 //class PIRInputForm;
 class PIRInputListForm;
@@ -127,6 +128,7 @@ private:
   PIRMedia2Form *media2Form;
   PIRRecordForm *recordForm;
   PIRTVForm *tvForm;
+  PIRTVMenuForm *tvMenuForm;
   PIRReceiverForm *receiverForm;
 //  PIRInputForm *inputForm;
   PIRInputListForm *inputListForm;

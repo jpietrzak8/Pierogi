@@ -182,7 +182,7 @@ void PioneerTV2::populateProtocol(
   addNECKey("okonomi", Unmapped_Key, 0xAC, 0x44);
   addNECKey("channel-hyouji", Unmapped_Key, 0xAC, 0x4A);
   addNECKey("channel-ichiran", Unmapped_Key, 0xAC, 0x5B);
-  addNECKey("channel-return", Unmapped_Key, 0xAC, 0x5C);
+  addNECKey("channel-return", PrevChannel_Key, 0xAC, 0x5C);
   addNECKey("onsei", Unmapped_Key, 0xAC, 0x1E);
 //  addNECKey(, Unmapped_Key, 0xAC, 0x33); //"catv", "data", "aoi", "akai", "midori", "kiiroi", "vod", "browser", "genre-kensaku", "gazou"
   addPioneerKey("chijo", Unmapped_Key, 0xAC, 0x33, 0xAF, 0x3B);

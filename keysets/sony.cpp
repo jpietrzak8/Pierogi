@@ -140,7 +140,7 @@ void SonyTV1::populateProtocol(
   addSIRC12Key("RIGHT/+/YELLOW", Yellow_Key, 0x03, 0x4E);
   addSIRC12Key("DOWN/BLUE", Blue_Key, 0x03, 0x4F);
 
-  addSIRC15Key("SYNC_MENU", Unmapped_Key, 0x1A, 0x58);
+  addSIRC15Key("SYNC_MENU", CECMenu_Key, 0x1A, 0x58);
   addSIRC15Key("SCENE", Unmapped_Key, 0x1A, 0x78);
   addSIRC15Key("INTERNET_VIDEO", Unmapped_Key, 0x1A, 0x79);
   addSIRC15Key("I-MANUAL", Unmapped_Key, 0x1A, 0x7B);
@@ -156,8 +156,8 @@ void SonyTV1::populateProtocol(
   addSIRC15Key("FBACKWARD", Rewind_Key, 0x97, 0x1B);
   addSIRC15Key("FFORWARD", FastForward_Key, 0x97, 0x1C);
   addSIRC15Key("DOT", Unmapped_Key, 0x97, 0x1D);
-  addSIRC15Key("RETURN", Unmapped_Key, 0x97, 0x23); // exit?
-  addSIRC15Key("TOOLS", Unmapped_Key, 0x97, 0x36); // "OPTIONS"
+  addSIRC15Key("RETURN", Back_Key, 0x97, 0x23);
+  addSIRC15Key("TOOLS", ToolsMenu_Key, 0x97, 0x36); // "OPTIONS"
   addSIRC15Key("PREVIOUS", Previous_Key, 0x97, 0x3C);
   addSIRC15Key("NEXT", Next_Key, 0x97, 0x3D);
   addSIRC15Key("REPLAY", Replay_Key, 0x97, 0x79);
@@ -918,7 +918,7 @@ void SonyDVD2::populateProtocol(
   addSIRC20Key("Thumbnail", Unmapped_Key, 0x0B, 0x1A, 0x12);
   addSIRC20Key("Chapter Mark", Unmapped_Key, 0x0B, 0x1A, 0x13);
   addSIRC20Key("Instant Advance", Advance_Key, 0x0B, 0x1A, 0x14);
-  addSIRC20Key("Tools", Unmapped_Key, 0x0B, 0x1A, 0x17);
+  addSIRC20Key("Tools", ToolsMenu_Key, 0x0B, 0x1A, 0x17);
   addSIRC20Key("Cursor Mode", Unmapped_Key, 0x0B, 0x1A, 0x18);
   addSIRC20Key("Zoom -", Unmapped_Key, 0x0B, 0x1A, 0x19);
   addSIRC20Key("Mark Erase", Unmapped_Key, 0x0B, 0x1A, 0x1A);
@@ -1684,4 +1684,122 @@ void SonyHT1::populateInputList(
   cb->addItem("DVD", QVariant(DVDInput_Key));
   cb->addItem("Video 1", QVariant(CableInput_Key));
   cb->addItem("Video 2", QVariant(CableInput_Key));
+}
+
+
+SonyCarStereo1::SonyCarStereo1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Car Stereo 1",
+      Sony_Make,
+      Receiver_Panels,
+      index)
+{
+}
+
+
+void SonyCarStereo1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  addSIRC15Key("1", One_Key, 0x84, 0x00);
+  addSIRC15Key("2", Two_Key, 0x84, 0x01);
+  addSIRC15Key("3", Three_Key, 0x84, 0x02);
+  addSIRC15Key("4", Four_Key, 0x84, 0x03);
+  addSIRC15Key("5", Five_Key, 0x84, 0x04);
+  addSIRC15Key("6", Six_Key, 0x84, 0x05);
+  addSIRC15Key("7", Seven_Key, 0x84, 0x06);
+  addSIRC15Key("8", Eight_Key, 0x84, 0x07);
+  addSIRC15Key("9", Nine_Key, 0x84, 0x08);
+  addSIRC15Key("10", DoubleDigit_Key, 0x84, 0x09);
+  addSIRC15Key("Menu", Menu_Key, 0x84, 0x0A);
+  addSIRC15Key("Off", Power_Key, 0x84, 0x0D);
+  addSIRC15Key("FM/AM", ToggleBand_Key, 0x84, 0x0F);
+  addSIRC15Key("FM/AM", TunerInput_Key, 0x84, 0x0F);
+  addSIRC15Key("Sel", Select_Key, 0x84, 0x11);
+  addSIRC15Key("Volume +", VolumeUp_Key, 0x84, 0x12);
+  addSIRC15Key("Volume +", Up_Key, 0x84, 0x12);
+  addSIRC15Key("Volume -", VolumeDown_Key, 0x84, 0x13);
+  addSIRC15Key("Volume -", Down_Key, 0x84, 0x13);
+  addSIRC15Key("Att (Mute)", Mute_Key, 0x84, 0x14);
+  addSIRC15Key("Seek -, Previous", Previous_Key, 0x84, 0x1B);
+  addSIRC15Key("Seek -, Previous", Left_Key, 0x84, 0x1B);
+  addSIRC15Key("Seek +, Next", Next_Key, 0x84, 0x1C);
+  addSIRC15Key("Seek +, Next", Right_Key, 0x84, 0x1C);
+  addSIRC15Key("Preset - long", Unmapped_Key, 0x84, 0x1D);
+  addSIRC15Key("Preset + long", Unmapped_Key, 0x84, 0x1E);
+  addSIRC15Key("Sound", Unmapped_Key, 0x84, 0x20);
+  addSIRC15Key("Local/Mono", Unmapped_Key, 0x84, 0x21);
+  addSIRC15Key("TA On/Off", Unmapped_Key, 0x84, 0x22);
+  addSIRC15Key("Scroll", Unmapped_Key, 0x84, 0x23);
+  addSIRC15Key("List, PTY", Unmapped_Key, 0x84, 0x27);
+  addSIRC15Key("Display", Info_Key, 0x84, 0x28);
+  addSIRC15Key("OPEN-CLOSE", Eject_Key, 0x84, 0x2B);
+  addSIRC15Key("MBP", Unmapped_Key, 0x84, 0x2C);
+//  addSIRC15Key("Preset - short", Unmapped_Key, 0x84, 0x30);
+  addSIRC15Key("FF", FastForward_Key, 0x84, 0x30);
+//  addSIRC15Key("Preset + short", Unmapped_Key, 0x84, 0x31);
+  addSIRC15Key("REW", Rewind_Key, 0x84, 0x31);
+  addSIRC15Key("Disc -", PrevDisc_Key, 0x84, 0x32);
+  addSIRC15Key("Disc +", NextDisc_Key, 0x84, 0x33);
+  addSIRC15Key("Seek +", Unmapped_Key, 0x84, 0x34);
+  addSIRC15Key("Seek -", Unmapped_Key, 0x84, 0x35);
+  addSIRC15Key("Tape, Reverse", TapeInput_Key, 0x84, 0x37);
+  addSIRC15Key("more than 3 sec hold flag", Unmapped_Key, 0x84, 0x44); // Tape
+  addSIRC15Key("less than 3 sec hold flag", Unmapped_Key, 0x84, 0x45);
+  addSIRC15Key("Source, Tuner-CD-Tape", Input_Key, 0x84, 0x46);
+  addSIRC15Key("CD", CDInput_Key, 0x84, 0x48);
+  addSIRC15Key("AF/TA", RDS_Key, 0x84, 0x4A);
+  addSIRC15Key("FM1/FM2", Unmapped_Key, 0x84, 0x4B);
+  addSIRC15Key("AM MW/SW", Unmapped_Key, 0x84, 0x4C);
+  addSIRC15Key("Illumination Color", Unmapped_Key, 0x84, 0x70);
+  addSIRC15Key("Loudness", Unmapped_Key, 0x84, 0x71);
+  addSIRC15Key("TA-vol", Unmapped_Key, 0x84, 0x72);
+  addSIRC15Key("D. Bass", EnhancedBass_Key, 0x84, 0x73); // "DSO"
+  addSIRC15Key("Beep", Unmapped_Key, 0x84, 0x75);
+  addSIRC15Key("CT on/off", Unmapped_Key, 0x84, 0x76);
+}
+
+
+void SonyCarStereo1::populateInputList(
+  QComboBox *cb)
+{
+  cb->clear();
+
+  cb->addItem("Source", QVariant(Input_Key));
+  cb->addItem("Radio Tuner Toggle", QVariant(TunerInput_Key));
+  cb->addItem("CD", QVariant(CDInput_Key));
+  cb->addItem("Tape", QVariant(TapeInput_Key));
+}
+
+
+SonyCarStereo1a::SonyCarStereo1a(
+  unsigned int index)
+  : SonyCarStereo1(index)
+{
+  setKeysetName("Car Stereo 1a");
+}
+
+
+void SonyCarStereo1a::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  SonyCarStereo1::populateProtocol(guiObject);
+
+  addSIRC15Key("Mode, FM1-FM2-LW-MW-SW", ToggleBand_Key, 0x84, 0x47);
+  addSIRC15Key("Mode, FM1-FM2-LW-MW-SW", TunerInput_Key, 0x84, 0x47);
+  addSIRC15Key("Enter", Select_Key, 0x84, 0x5C);
 }

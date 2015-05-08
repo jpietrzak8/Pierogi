@@ -1,7 +1,7 @@
 //
 // pirutilityform.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -58,6 +58,10 @@ signals:
   void captionsEnabled(bool);
   void inputEnabled(bool);
   void sleepEnabled(bool);
+  void guideEnabled(bool);
+  void energySaveEnabled(bool);
+  void zoomEnabled(bool);
+  void favoriteEnabled(bool);
 
 private slots:
   void on_redButton_pressed();
@@ -84,6 +88,14 @@ private slots:
   void on_inputButton_released();
   void on_sleepButton_pressed();
   void on_sleepButton_released();
+  void on_guideButton_pressed();
+  void on_guideButton_released();
+  void on_energySaveButton_pressed();
+  void on_energySaveButton_released();
+  void on_zoomButton_pressed();
+  void on_zoomButton_released();
+  void on_favoriteButton_pressed();
+  void on_favoriteButton_released();
 
 private:
   Ui::PIRUtilityForm *ui;

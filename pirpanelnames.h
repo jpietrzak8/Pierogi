@@ -36,6 +36,7 @@ enum PIRPanelName
   Media2_Panel,
   Record_Panel,
   TV_Panel,
+  TVMenu_Panel,
   Receiver_Panel,
   Input_Panel,
   InputList_Panel,

@@ -1,7 +1,7 @@
 //
 // pirkeysetmanager.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -348,6 +348,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new DenonAudio4(++counter));
 
   setupKeyset(new DellRemote1(++counter));
+  setupKeyset(new DellProjector1(++counter));
 
 //  setupKeyset(new DeutscheTelekomSTB1(++counter));
 
@@ -887,6 +888,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SonyProjector1a(++counter));
   setupKeyset(new SonyPlaystation1(++counter));
   setupKeyset(new SonyHT1(++counter));
+  setupKeyset(new SonyCarStereo1(++counter));
+  setupKeyset(new SonyCarStereo1a(++counter));
 
   setupKeyset(new StarhubSTB1(++counter));
   setupKeyset(new StarhubSTB1a(++counter));

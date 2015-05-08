@@ -1,7 +1,7 @@
 //
 // pirpanelmanager.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -31,6 +31,7 @@
 #include "forms/pirmedia2form.h"
 #include "forms/pirrecordform.h"
 #include "forms/pirtvform.h"
+#include "forms/pirtvmenuform.h"
 #include "forms/pirreceiverform.h"
 //#include "forms/pirinputform.h"
 #include "forms/pirinputlistform.h"
@@ -69,6 +70,7 @@ PIRPanelManager::PIRPanelManager(
     media2Form(0),
     recordForm(0),
     tvForm(0),
+    tvMenuForm(0),
     receiverForm(0),
 //    inputForm(0),
     inputListForm(0),
@@ -113,6 +115,9 @@ PIRPanelManager::PIRPanelManager(
   shortPanelNames[TV_Panel] = MainWindow::tr("TV");
   longPanelNames[TV_Panel] =
     MainWindow::tr("TV Panel - teletext and picture-in-picture");
+  shortPanelNames[TVMenu_Panel] = MainWindow::tr("Menu");
+  longPanelNames[TVMenu_Panel] =
+    MainWindow::tr("Menu panel for TVs");
   shortPanelNames[Receiver_Panel] = MainWindow::tr("Receiver");
   longPanelNames[Receiver_Panel] =
     MainWindow::tr("Receiver Panel - main controls for receivers");
@@ -188,6 +193,9 @@ PIRPanelManager::PIRPanelManager(
 
   tvForm = new PIRTVForm(mainWindow);
   panels[TV_Panel] = tvForm;
+
+  tvMenuForm = new PIRTVMenuForm(mainWindow);
+  panels[TVMenu_Panel] = tvMenuForm;
 
   receiverForm = new PIRReceiverForm(mainWindow);
   panels[Receiver_Panel] = receiverForm;
@@ -354,11 +362,35 @@ void PIRPanelManager::setupTabs(
 
 //qDebug() << "Panel Types: " << int(panelTypes);
 
-  // First, some panels are common to multiple types:
-  if ( (panelTypes & TV_Panels)
-    || (panelTypes & MediaControl_Panels))
+  // TV Panels:
+  if (panelTypes & TV_Panels)
   {
-    // Add in all the generic panels:
+    if (altMainPanelFlag)
+    {
+      mainWindow->addTab(altMainForm, shortPanelNames[Main_Panel]);
+    }
+    else
+    {
+      mainWindow->addTab(mainForm, shortPanelNames[Main_Panel]);
+    }
+
+    mainWindow->addTab(utilityForm, shortPanelNames[Utility_Panel]);
+    mainWindow->addTab(keypadForm, shortPanelNames[Keypad_Panel]);
+    mainWindow->addTab(tvMenuForm, shortPanelNames[TVMenu_Panel]);
+    // If this TV also has media controls, add them here:
+    if (panelTypes & MediaControl_Panels)
+    {
+      mainWindow->addTab(mediaForm, shortPanelNames[Media_Panel]);
+    }
+    mainWindow->addTab(inputListForm, shortPanelNames[InputList_Panel]);
+    mainWindow->addTab(tvForm, shortPanelNames[TV_Panel]);
+    mainWindow->addTab(adjustForm, shortPanelNames[Adjust_Panel]);
+  }
+
+  // Panels for control of media by non-TV devices:
+  if ((panelTypes & MediaControl_Panels)
+    && !(panelTypes & TV_Panels))
+  {
     if (altMainPanelFlag)
     {
       mainWindow->addTab(altMainForm, shortPanelNames[Main_Panel]);
@@ -371,20 +403,8 @@ void PIRPanelManager::setupTabs(
     mainWindow->addTab(utilityForm, shortPanelNames[Utility_Panel]);
     mainWindow->addTab(keypadForm, shortPanelNames[Keypad_Panel]);
     mainWindow->addTab(menuForm, shortPanelNames[Menu_Panel]);
-    mainWindow->addTab(inputListForm, shortPanelNames[InputList_Panel]);
-    mainWindow->addTab(adjustForm, shortPanelNames[Adjust_Panel]);
-  }
-
-  // Panels just for TVs:
-  if (panelTypes & TV_Panels)
-  {
-    mainWindow->addTab(tvForm, shortPanelNames[TV_Panel]);
-  }
-
-  // Panels just for control of media:
-  if (panelTypes & MediaControl_Panels)
-  {
     mainWindow->addTab(mediaForm, shortPanelNames[Media_Panel]);
+    mainWindow->addTab(inputListForm, shortPanelNames[InputList_Panel]);
   }
 
   // Receiver panels:
@@ -393,6 +413,7 @@ void PIRPanelManager::setupTabs(
     mainWindow->addTab(receiverForm, shortPanelNames[Receiver_Panel]);
     mainWindow->addTab(audioDeviceForm, shortPanelNames[Audio_Panel]);
     mainWindow->addTab(keypadForm, shortPanelNames[Keypad_Panel]);
+    mainWindow->addTab(menuForm, shortPanelNames[Menu_Panel]);
     mainWindow->addTab(mediaForm, shortPanelNames[Media_Panel]);
     mainWindow->addTab(inputListForm, shortPanelNames[InputList_Panel]);
   }
@@ -469,6 +490,7 @@ void PIRPanelManager::commonEnableButtons(
   media2Form->enableButtons(keyset, id);
   recordForm->enableButtons(keyset, id);
   tvForm->enableButtons(keyset, id);
+  tvMenuForm->enableButtons(keyset, id);
   receiverForm->enableButtons(keyset, id);
 //  inputForm->enableButtons(keyset, id);
   inputListForm->enableButtons(keyset, id);

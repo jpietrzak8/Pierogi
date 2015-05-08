@@ -308,11 +308,11 @@ void HitachiTV3::populateProtocol(
   addKey("TV", AntennaInput_Key, 0x76, 8); // "AntennaA"
   addKey("AntennaB", Antenna2Input_Key, 0x77, 8);
   addKey("C.C./SUBTITLE", Captions_Key, 0x78, 8);
-  addKey("RETURN", Unmapped_Key, 0xE0, 8);
+  addKey("RETURN", Repeat_Key, 0xE0, 8);
   addKey("REPEAT A-B", RepeatAB_Key, 0xE1, 8);
   addKey("ANGLE", Angle_Key, 0xE2, 8);
   addKey("MARKER", Unmapped_Key, 0xE3, 8);
-  addKey("JUMP", Unmapped_Key, 0xE4, 8);
+  addKey("JUMP", Advance_Key, 0xE4, 8);
   addKey("DVD MENU", DiscMenu_Key, 0xE6, 8);
   addKey("TOP MENU", DiscTitle_Key, 0xE7, 8);
   addKey("EJECT", Eject_Key, 0xE8, 8);
