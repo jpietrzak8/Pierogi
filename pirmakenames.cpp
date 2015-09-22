@@ -66,6 +66,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Dune_Make] = "Dune";
   makes[Dynex_Make] = "Dynex";
   makes[Ei_Make] = "Ei";
+  makes[Elenberg_Make] = "Elenberg";
   makes[Elgato_Make] = "Elgato";
   makes[Emerson_Make] = "Emerson";
   makes[Emtec_Make] = "Emtec";
