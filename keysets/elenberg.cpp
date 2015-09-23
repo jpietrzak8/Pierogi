@@ -68,7 +68,7 @@ void Elenberg::populateProtocol(
   addKey("CH-", Down_Key, 0x3F7BD, 18);
   addKey("Volume +", Right_Key, 0x3F7B1, 18);
   addKey("Volume -", Left_Key, 0x3F7B5, 18);
-  addKey("Picture", PictureMode_Key, 0x3F7CD, 8);
+  addKey("Picture", PictureMode_Key, 0x3F7CD, 18);
   addKey("Info", Info_Key, 0x3F789, 18);
   addKey("Swap", Captions_Key, 0x3F7A1, 18);
   addKey("Select", Select_Key, 0x3F7A9, 18);
@@ -78,7 +78,7 @@ void Elenberg::populateProtocol(
   
   addKey("Ptimer", Red_Key, 0x3F785, 18);
   addKey("tv", Green_Key, 0x3F791, 18);
-  addKey("qviev", Yellow_Key, 0x3F7C5, 8);
+  addKey("qviev", Yellow_Key, 0x3F7C5, 18);
   
   addKey("1", One_Key, 0x3F7F9, 18);
   addKey("2", Two_Key, 0x3F7F5, 18);
