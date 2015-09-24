@@ -68,6 +68,7 @@
 #include "keysets/dune.h"
 #include "keysets/dynex.h"
 #include "keysets/ei.h"
+#include "keysets/elenberg.h"
 #include "keysets/elgato.h"
 #include "keysets/emerson.h"
 #include "keysets/emtec.h"
@@ -395,6 +396,8 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new DynexTV1(++counter));
 
   setupKeyset(new EiTV1(++counter));
+  
+  setupKeyset(new Elenberg(++counter));
 
   setupKeyset(new ElgatoEyeTV1(++counter));
 
