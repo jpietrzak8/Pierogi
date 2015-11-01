@@ -1,7 +1,7 @@
 //
 // beko.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -45,6 +45,12 @@ void BekoTV1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("MIX", TeletextAndTV_Key, 0x1004, 13);
   addKey("DOUBLE", TeletextSize_Key, 0x1007, 13);

@@ -1,7 +1,7 @@
 //
 // wd.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class WDMediaPlayer1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   WDMediaPlayer1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class WDMediaPlayer1a: public WDMediaPlayer1
 {
+  Q_OBJECT
+
 public:
   WDMediaPlayer1a(
     unsigned int index);
@@ -49,6 +52,8 @@ public:
 
 class WDMediaPlayer1b: public WDMediaPlayer1a
 {
+  Q_OBJECT
+
 public:
   WDMediaPlayer1b(
     unsigned int index);

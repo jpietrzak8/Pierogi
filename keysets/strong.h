@@ -1,7 +1,7 @@
 //
 // strong.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class StrongSat1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   StrongSat1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class StrongSat2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   StrongSat2(
     unsigned int index);
@@ -56,6 +59,8 @@ public:
 
 class StrongSat2a: public StrongSat2
 {
+  Q_OBJECT
+
 public:
   StrongSat2a(
     unsigned int index);
@@ -66,6 +71,8 @@ public:
 
 class StrongSat3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   StrongSat3(
     unsigned int index);
@@ -79,6 +86,8 @@ public:
 
 class StrongSat3a: public StrongSat3
 {
+  Q_OBJECT
+
 public:
   StrongSat3a(
     unsigned int index);
@@ -89,6 +98,8 @@ public:
 
 class StrongSat4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   StrongSat4(
     unsigned int index);
@@ -99,6 +110,8 @@ public:
 
 class StrongSat5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   StrongSat5(
     unsigned int index);
@@ -112,6 +125,8 @@ public:
 
 class StrongSat5a: public StrongSat5
 {
+  Q_OBJECT
+
 public:
   StrongSat5a(
     unsigned int index);
@@ -122,6 +137,8 @@ public:
 
 class StrongSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   StrongSTB1(
     unsigned int index);
@@ -132,6 +149,8 @@ public:
 
 class StrongSTB2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   StrongSTB2(
     unsigned int index);
@@ -145,6 +164,8 @@ public:
 
 class StrongSTB3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   StrongSTB3(
     unsigned int index);
@@ -155,6 +176,8 @@ public:
 
 class StrongSTB4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   StrongSTB4(
     unsigned int index);
@@ -168,6 +191,8 @@ public:
 
 class StrongSTB5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   StrongSTB5(
     unsigned int index);

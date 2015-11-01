@@ -1,7 +1,7 @@
 //
 // humax.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void HumaxReceiver1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x1000, 16);
 
@@ -129,6 +135,12 @@ void HumaxReceiver2::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x1000, 16);
 
   addKey("power", Power_Key, 0x00, 8);
@@ -200,6 +212,12 @@ void HumaxReceiver3::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x1702, 16);
 

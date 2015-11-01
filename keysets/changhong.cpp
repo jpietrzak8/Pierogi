@@ -1,7 +1,7 @@
 //
 // changhong.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void ChanghongTV1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x40, 8);
 
@@ -187,6 +193,12 @@ void ChanghongTV2::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x40, 8);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -258,6 +270,12 @@ void ChanghongTV3::populateProtocol(
   }
 
   threadableProtocol = new ProtonProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x04, 8);
 

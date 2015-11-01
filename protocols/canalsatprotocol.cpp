@@ -1,7 +1,7 @@
 //
 // canalsatprotocol.cpp
 //
-// Copyright 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2013 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -24,7 +24,7 @@
 
 #include "pirinfraredled.h"
 
-#include "pirexception.h"
+#include <QString>
 
 #include <QMutex>
 extern bool commandInFlight;
@@ -55,70 +55,68 @@ void CanalSatProtocol::startSendingCommand(
   unsigned int threadableID,
   PIRKeyName command)
 {
-  try
+  if (threadableID != id) return;
+
+  clearRepeatFlag();
+
+  KeycodeCollection::const_iterator i = keycodes.find(command);
+
+  // Sanity check, make sure command exists first:
+  if (i == keycodes.end())
   {
-    if (threadableID != id) return;
-
-    clearRepeatFlag();
-
-    KeycodeCollection::const_iterator i = keycodes.find(command);
-
-    // Sanity check, make sure command exists first:
-    if (i == keycodes.end())
-    {
-      QMutexLocker cifLocker(&commandIFMutex);
-      commandInFlight = false;
-      return;  // should send an error message here!!!
-    }
-
-    // Create object to communicate with device driver:
-    PIRInfraredLED led(carrierFrequency, dutyCycle);
-
-    int repeatCount = 0;
-    int commandDuration = 0;
-    while (repeatCount < MAX_REPEAT_COUNT)
-    {
-      // Construct the CanalSat command string.
-
-      commandDuration += pushBits((*i).second, repeatCount, led);
-
-      // Clear out the buffer, if necessary:
-      if (buffer)
-      {
-        led.addSingle(buffer);
-        commandDuration += buffer;
-
-        buffer = 0;
-        bufferContainsSpace = false;
-        bufferContainsPulse = false;
-      }
-
-      // Send the command:
-      led.sendCommandToDevice();
-
-      // Sleep for the prescribed amount of time:
-      sleepUntilRepeat(commandDuration);
-
-      // Have we been told to stop?
-      if (checkRepeatFlag())
-      {
-        break;
-      }
-
-      ++repeatCount;
-    }
-
     QMutexLocker cifLocker(&commandIFMutex);
     commandInFlight = false;
+    return;  // should send an error message here!!!
   }
-  catch (PIRException e)
+
+  // Create object to communicate with device driver:
+  PIRInfraredLED led(carrierFrequency, dutyCycle);
+
+  connect(
+    &led,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
+  int repeatCount = 0;
+  int commandDuration = 0;
+  while (repeatCount < MAX_REPEAT_COUNT)
   {
-    emit commandFailed(e.getError().c_str());
+    // Construct the CanalSat command string.
+
+    commandDuration += pushBits((*i).second, repeatCount, led);
+
+    // Clear out the buffer, if necessary:
+    if (buffer)
+    {
+      led.addSingle(buffer);
+      commandDuration += buffer;
+
+      buffer = 0;
+      bufferContainsSpace = false;
+      bufferContainsPulse = false;
+    }
+
+      // Send the command:
+    if (!led.sendCommandToDevice())
+    {
+      break;
+    }
+
+    // Sleep for the prescribed amount of time:
+    sleepUntilRepeat(commandDuration);
+
+    // Have we been told to stop?
+    if (checkRepeatFlag())
+    {
+      break;
+    }
+
+    ++repeatCount;
   }
-  catch (...)
-  {
-    emit commandFailed("Generic Error Message");
-  }
+
+  QMutexLocker cifLocker(&commandIFMutex);
+  commandInFlight = false;
 }
 
 

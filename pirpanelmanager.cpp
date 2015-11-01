@@ -416,6 +416,7 @@ void PIRPanelManager::setupTabs(
     mainWindow->addTab(menuForm, shortPanelNames[Menu_Panel]);
     mainWindow->addTab(mediaForm, shortPanelNames[Media_Panel]);
     mainWindow->addTab(inputListForm, shortPanelNames[InputList_Panel]);
+    mainWindow->addTab(adjustForm, shortPanelNames[Adjust_Panel]);
   }
 
   // Panels for recording media:

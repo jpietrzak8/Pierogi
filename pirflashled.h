@@ -1,7 +1,7 @@
 //
 // pirflashled.h
 //
-// Copyright 2012, 2013 by John Pietrzak  (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak  (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -23,14 +23,20 @@
 #ifndef PIRFLASHLED_H
 #define PIRFLASHLED_H
 
+#include <QObject>
+
+class QString;
+
 //
 // Support for engaging the N900's camera flash LEDs; this is used in
 // conjunction with the IR camera shutter controls, to allow the N900 to
 // be used as a "remote flash".
 //
 
-class PIRFlashLED
+class PIRFlashLED: public QObject
 {
+  Q_OBJECT
+
 public:
   PIRFlashLED();
 
@@ -38,8 +44,12 @@ public:
 
   void strobe();
 
+signals:
+  void errorMessage(
+    QString errStr);
+
 private:
-  void openFlashDevice();
+  bool openFlashDevice();
 
   int fileDescriptor;
 

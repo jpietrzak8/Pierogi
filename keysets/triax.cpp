@@ -1,7 +1,7 @@
 //
 // triax.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -49,6 +49,12 @@ void TriaxSTB1::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("Power", Power_Key, 0x128C, 13);
   addKey("1", One_Key, 0x1281, 13);
   addKey("2", Two_Key, 0x1282, 13);
@@ -94,6 +100,12 @@ void TriaxSTB2::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xDF00, 16);
 
@@ -198,6 +210,12 @@ void TriaxSTB3::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x7F00, 16);
 
   addKey("Power", Power_Key, 0x00, 8);
@@ -291,6 +309,12 @@ void TriaxSTB4::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x7F00, 16);
 

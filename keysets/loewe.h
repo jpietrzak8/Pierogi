@@ -1,7 +1,7 @@
 //
 // loewe.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class LoeweTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LoeweTV1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class LoeweVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LoeweVCR1(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class LoeweDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LoeweDVD1(
     unsigned int index);

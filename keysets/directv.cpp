@@ -1,7 +1,7 @@
 //
 // directv.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -56,6 +56,12 @@ void DirectvReceiver1::dtvPopulateProtocol(
   DirectvProtocol *dp = new DirectvProtocol(guiObject, index);
 
   threadableProtocol = dp;
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   dp->setProtocolParms(gap, freq);
 

@@ -1,7 +1,7 @@
 //
 // viewsat.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class ViewsatSat1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ViewsatSat1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class ViewsatSat1a: public ViewsatSat1
 {
+  Q_OBJECT
+
 public:
   ViewsatSat1a(
     unsigned int index);

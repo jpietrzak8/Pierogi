@@ -1,7 +1,7 @@
 //
 // cambridge.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -48,6 +48,12 @@ void CambridgeCD1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x4D84, 16);
 
@@ -102,6 +108,12 @@ void CambridgeAudio1::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xA0A0, 16);
 
@@ -158,6 +170,12 @@ void CambridgeAudio2::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xC0C0, 16);
 
@@ -241,6 +259,12 @@ void CambridgeAudio3::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("Tape_Mon", TapeInput_Key, 0x1400, 13);
   addKey("DVD", DVDInput_Key, 0x1401, 13);
   addKey("AV_MD", MDInput_Key, 0x1402, 13);
@@ -302,6 +326,12 @@ void CambridgeDVD1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x07, 8);
 

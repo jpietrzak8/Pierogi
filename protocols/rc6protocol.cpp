@@ -1,7 +1,7 @@
 //
 // rc6protocol.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -24,7 +24,7 @@
 
 #include "pirinfraredled.h"
 
-#include "pirexception.h"
+#include <QString>
 
 #include <QMutex>
 extern bool commandInFlight;
@@ -56,132 +56,126 @@ void RC6Protocol::startSendingCommand(
   unsigned int threadableID,
   PIRKeyName command)
 {
-  try
+  // Is this command meant for us?
+  if (threadableID != id) return;
+
+  clearRepeatFlag();
+
+  KeycodeCollection::const_iterator i = keycodes.find(command);
+
+  // Sanity check:
+  if (i == keycodes.end())
   {
-    // Is this command meant for us?
-    if (threadableID != id) return;
-
-    clearRepeatFlag();
-
-    KeycodeCollection::const_iterator i = keycodes.find(command);
-
-    // Sanity check:
-    if (i == keycodes.end())
-    {
-      QMutexLocker cifLocker(&commandIFMutex);
-      commandInFlight = false;
-      return;
-//      std::string s = "Tried to send a non-existent command.\n";
-//      throw PIRException(s);
-    }
-
-    PIRInfraredLED led(carrierFrequency, dutyCycle);
-
-    int repeatCount = 0;
-    int duration = 0;
-    while (repeatCount < MAX_REPEAT_COUNT)
-    {
-      // First, construct the "Header" segment of the pulse train.  For now,
-      // I'm only supporting the "consumer electronics mode" of RC6; this code
-      // must be changed if we want to support more than that!
-      //
-      // The header involves:
-      // a) a "lead" of 2666 us pulse, 889 us space;
-      // b) a "start bit", value 1 (so 444 us pulse, 444 us space)
-      // c) three control bits, always set to 0 (so 444 us space,
-      //    444 us pulse each)
-      // d) the double-sized "trailer" bit, toggled on each keypress (so
-      //    either 889 pulse 889 space, or 889 space 889 pulse)
-
-      led.addSingle(HEADER_PULSE); // lead pulse
-      duration += HEADER_PULSE;
-      led.addSingle(HEADER_SPACE); // lead space
-      duration += HEADER_SPACE;
-      led.addSingle(biphaseUnit); // start bit pulse
-      duration += biphaseUnit;
-
-      // start bit space + control bit 1 space:
-      led.addSingle(2 * biphaseUnit);
-      duration += 2 * biphaseUnit;
-      led.addSingle(biphaseUnit); // bit 1 pulse;
-      duration += biphaseUnit;
-      led.addSingle(biphaseUnit); // bit 2 space;
-      duration += biphaseUnit;
-      led.addSingle(biphaseUnit); // bit 2 pulse;
-      duration += biphaseUnit;
-      led.addSingle(biphaseUnit); // bit 3 space;
-      duration += biphaseUnit;
-
-      // Next, need to check whether we should toggle or not:
-      if (keypressCount % 2)
-      {
-        // bit 3 pulse plus long trailer bit pulse:
-        led.addSingle(3 * biphaseUnit);
-        duration += 3 * biphaseUnit;
-
-        // load the trailer bit space onto the buffer:
-        buffer = 2 * biphaseUnit;
-        bufferContainsSpace = true;
-        bufferContainsPulse = false;
-      }
-      else
-      {
-        led.addSingle(biphaseUnit); // bit three pulse
-        duration += biphaseUnit;
-        led.addSingle(2 * biphaseUnit); // trailer bit space
-        duration += 2 * biphaseUnit;
-
-        // load the trailer bit pulse onto the buffer:
-        buffer = 2 * biphaseUnit;
-        bufferContainsPulse = true;
-        bufferContainsSpace = false;
-      }
-
-      // Now, we can start the normal buffering process:
-
-      // push any pre-data onto the device:
-      duration += pushBits(preData, led);
-
-      // push the actual command:
-      duration += pushBits((*i).second.firstCode, led);
-
-      // Flush out the buffer, if necessary:
-      if (buffer)
-      {
-        led.addSingle(buffer);
-        duration += buffer;
-        buffer = 0;
-      }
-
-      // Actually send out the command:
-      led.sendCommandToDevice();
-
-      // Sleep for an amount of time.  (RC6 demands an addtional 6 unit space
-      // at the end of any command...)
-      sleepUntilRepeat(duration + 6 * biphaseUnit);
-
-      // Have we been told to stop yet?
-      if (checkRepeatFlag())
-      {
-        break;
-/*
-        // Yes, we can now quit repeating:
-        ++keypressCount;
-        QMutexLocker ciflocker(&commandIFMutex);
-        commandInFlight = false;
-        return;
-*/
-      }
-    }
-
-    ++keypressCount;
     QMutexLocker cifLocker(&commandIFMutex);
     commandInFlight = false;
+    emit errorMessage("Key not defined in this keyset.");
+    return;
   }
-  catch (PIRException e)
+
+  PIRInfraredLED led(carrierFrequency, dutyCycle);
+
+  connect(
+    &led,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
+  int repeatCount = 0;
+  int duration = 0;
+  while (repeatCount < MAX_REPEAT_COUNT)
   {
-    emit commandFailed(e.getError().c_str());
+    // First, construct the "Header" segment of the pulse train.  For now,
+    // I'm only supporting the "consumer electronics mode" of RC6; this code
+    // must be changed if we want to support more than that!
+    //
+    // The header involves:
+    // a) a "lead" of 2666 us pulse, 889 us space;
+    // b) a "start bit", value 1 (so 444 us pulse, 444 us space)
+    // c) three control bits, always set to 0 (so 444 us space,
+    //    444 us pulse each)
+    // d) the double-sized "trailer" bit, toggled on each keypress (so
+    //    either 889 pulse 889 space, or 889 space 889 pulse)
+
+    led.addSingle(HEADER_PULSE); // lead pulse
+    duration += HEADER_PULSE;
+    led.addSingle(HEADER_SPACE); // lead space
+    duration += HEADER_SPACE;
+    led.addSingle(biphaseUnit); // start bit pulse
+    duration += biphaseUnit;
+
+    // start bit space + control bit 1 space:
+    led.addSingle(2 * biphaseUnit);
+    duration += 2 * biphaseUnit;
+    led.addSingle(biphaseUnit); // bit 1 pulse;
+    duration += biphaseUnit;
+    led.addSingle(biphaseUnit); // bit 2 space;
+    duration += biphaseUnit;
+    led.addSingle(biphaseUnit); // bit 2 pulse;
+    duration += biphaseUnit;
+    led.addSingle(biphaseUnit); // bit 3 space;
+    duration += biphaseUnit;
+
+    // Next, need to check whether we should toggle or not:
+    if (keypressCount % 2)
+    {
+      // bit 3 pulse plus long trailer bit pulse:
+      led.addSingle(3 * biphaseUnit);
+      duration += 3 * biphaseUnit;
+
+      // load the trailer bit space onto the buffer:
+      buffer = 2 * biphaseUnit;
+      bufferContainsSpace = true;
+      bufferContainsPulse = false;
+    }
+    else
+    {
+      led.addSingle(biphaseUnit); // bit three pulse
+      duration += biphaseUnit;
+      led.addSingle(2 * biphaseUnit); // trailer bit space
+      duration += 2 * biphaseUnit;
+
+      // load the trailer bit pulse onto the buffer:
+      buffer = 2 * biphaseUnit;
+      bufferContainsPulse = true;
+      bufferContainsSpace = false;
+    }
+
+    // Now, we can start the normal buffering process:
+
+    // push any pre-data onto the device:
+    duration += pushBits(preData, led);
+
+    // push the actual command:
+    duration += pushBits((*i).second.firstCode, led);
+
+    // Flush out the buffer, if necessary:
+    if (buffer)
+    {
+      led.addSingle(buffer);
+      duration += buffer;
+      buffer = 0;
+    }
+
+    // Actually send out the command:
+    if (!led.sendCommandToDevice())
+    {
+      break;
+    }
+
+    // Sleep for an amount of time.  (RC6 demands an addtional 6 unit space
+    // at the end of any command...)
+    sleepUntilRepeat(duration + 6 * biphaseUnit);
+
+    // Have we been told to stop yet?
+    if (checkRepeatFlag())
+    {
+      break;
+    }
   }
+
+  ++keypressCount;
+  QMutexLocker cifLocker(&commandIFMutex);
+  commandInFlight = false;
 }
 
 

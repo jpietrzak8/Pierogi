@@ -1,7 +1,7 @@
 //
 // lg.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class LGTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LGTV1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class LGTV1a: public LGTV1
 {
+  Q_OBJECT
+
 public:
   LGTV1a(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class LGTV1b: public LGTV1
 {
+  Q_OBJECT
+
 public:
   LGTV1b(
     unsigned int index);
@@ -63,6 +68,8 @@ public:
 
 class LGTV1c: public LGTV1
 {
+  Q_OBJECT
+
 public:
   LGTV1c(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class LGTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LGTV2(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class LGTV2a: public LGTV2
 {
+  Q_OBJECT
+
 public:
   LGTV2a(
     unsigned int index);
@@ -93,6 +104,8 @@ public:
 
 class LGTV2b: public LGTV2
 {
+  Q_OBJECT
+
 public:
   LGTV2b(
     unsigned int index);
@@ -103,6 +116,8 @@ public:
 
 class LGHT1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LGHT1(
     unsigned int index);
@@ -116,6 +131,8 @@ public:
 
 class LGHT2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LGHT2(
     unsigned int index);
@@ -129,6 +146,8 @@ public:
 
 class LGHT2a: public LGHT2
 {
+  Q_OBJECT
+
 public:
   LGHT2a(
     unsigned int index);
@@ -139,6 +158,8 @@ public:
 
 class LGDisc1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LGDisc1(
     unsigned int index);
@@ -152,6 +173,8 @@ public:
 
 class LGDisc2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LGDisc2(
     unsigned int index);
@@ -162,6 +185,8 @@ public:
 
 class LGDisc2a: public LGDisc2
 {
+  Q_OBJECT
+
 public:
   LGDisc2a(
     unsigned int index);
@@ -172,6 +197,8 @@ public:
 
 class LGVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LGVCR1(
     unsigned int index);
@@ -182,6 +209,8 @@ public:
 
 class LGVCR1a: public LGVCR1
 {
+  Q_OBJECT
+
 public:
   LGVCR1a(
     unsigned int index);
@@ -192,6 +221,8 @@ public:
 
 class LGVCR1b: public LGVCR1
 {
+  Q_OBJECT
+
 public:
   LGVCR1b(
     unsigned int index);
@@ -202,6 +233,8 @@ public:
 
 class LGAC1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LGAC1(
     unsigned int index);

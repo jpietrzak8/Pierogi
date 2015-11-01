@@ -1,7 +1,7 @@
 //
 // pirkeynames.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -249,6 +249,7 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[DelayedOpenShutter_Key] = "Open Shutter After Delay";
   keynameStrings[ServiceMenu_Key] = "Service Menu";
   keynameStrings[FactoryReset_Key] = "Factory Reset";
+  keynameStrings[HotelMenu_Key] = "Hotel Menu";
   keynameStrings[Captions_Key] = "Captions";
   keynameStrings[Info_Key] = "Info";
   keynameStrings[Sleep_Key] = "Sleep";

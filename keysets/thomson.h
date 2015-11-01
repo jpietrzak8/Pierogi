@@ -1,7 +1,7 @@
 //
 // thomson.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class ThomsonConverter1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ThomsonConverter1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class ThomsonTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ThomsonTV1(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class ThomsonVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ThomsonVCR1(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class ThomsonVCR1a: public ThomsonVCR1
 {
+  Q_OBJECT
+
 public:
   ThomsonVCR1a(
     unsigned int index);
@@ -70,6 +77,8 @@ public:
 
 class ThomsonDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ThomsonDVD1(
     unsigned int index);
@@ -80,6 +89,8 @@ public:
 
 class ThomsonSat1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ThomsonSat1(
     unsigned int index);
@@ -93,6 +104,8 @@ public:
 
 class ThomsonAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ThomsonAudio1(
     unsigned int index);
@@ -103,6 +116,8 @@ public:
 
 class ThomsonAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ThomsonAudio2(
     unsigned int index);

@@ -1,7 +1,7 @@
 //
 // samsung.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -55,6 +55,12 @@ void SamsungTV1::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0707, 16);
 
@@ -158,7 +164,7 @@ void SamsungTV1::populateProtocol(
 
 
 void SamsungTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -263,6 +269,12 @@ void SamsungTV2::populateProtocol(
 
   threadableProtocol = new NECXProtocol(guiObject, index, false);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x0707, 16);
 
   addKey("mts", Audio_Key, 0x00, 8); // "dual"
@@ -341,7 +353,7 @@ void SamsungTV2::populateProtocol(
 
 
 void SamsungTV2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -374,6 +386,12 @@ void SamsungTV3::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("1", One_Key, 0x1001, 13);
   addKey("2", Two_Key, 0x1002, 13);
@@ -461,6 +479,12 @@ void SamsungVCR1::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0505, 16);
 
@@ -738,6 +762,12 @@ void SamsungDVD1::populateProtocol(
 
   threadableProtocol = lp;
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   lp->setHeaderPair(9000, 4500);
   lp->setTrailerPulse(600);
   lp->setRepeatPair(9000, 4500);
@@ -872,6 +902,12 @@ void SamsungDVD2::populateProtocol(
 
   threadableProtocol= new NECXProtocol(guiObject, index, false);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x5343, 16);
 
   addKey("remain", Unmapped_Key, 0x00, 8);
@@ -932,7 +968,7 @@ void SamsungDVD2::populateProtocol(
 
 
 void SamsungDVD2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -971,6 +1007,12 @@ void SamsungAC1::populateProtocol(
     60000, true);
 
   threadableProtocol = lp;
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   lp->setHeaderPair(4500, 4500);
   lp->setTrailerPulse(600);
@@ -1015,11 +1057,31 @@ void SamsungAC2::populateProtocol(
 
   threadableProtocol = new SamsungACProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x201, 12);
 
   // Bit of a hack:
   addKey("Send Command", ACSendCommand_Key, 0x0, 0);
   addKey("Set Timer", ACSetTimer_Key, 0x0, 0);
+}
+
+
+void SamsungAC2::populateSettingsList(
+  PIRACSettings &acSettings) const
+{
+  resetSettings(acSettings);
+
+  acSettings.push_back(OperatingMode_AC);
+  acSettings.push_back(Temperature_AC);
+  acSettings.push_back(FanSpeed_AC);
+  acSettings.push_back(Turbo_AC);
+  acSettings.push_back(Swing_AC);
+  acSettings.push_back(AirClean_AC);
 }
 
 
@@ -1146,7 +1208,7 @@ void SamsungAC2::getFanPairs(
 }
 
 
-void SamsungAC2::getModePairs(
+void SamsungAC2::getOperatingModePairs(
   PIRStatePairs &modePairs) const
 {
   resetPairs(modePairs);
@@ -1184,6 +1246,7 @@ void SamsungAC2::getAirCleanPairs(
 }
 
 
+/*
 void SamsungAC2::getPowerPairs(
   PIRStatePairs &powerPairs) const
 {
@@ -1197,6 +1260,7 @@ void SamsungAC2::getPowerPairs(
     "On", 0xF);
   powerPairs.push_back(onPair);
 }
+*/
 
 
 void SamsungAC2::getTimerOptionPairs(
@@ -1241,6 +1305,12 @@ void SamsungSTB1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x4040, 16);
 
@@ -1287,7 +1357,7 @@ void SamsungSTB1::populateProtocol(
 
 
 void SamsungSTB1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1317,6 +1387,12 @@ void SamsungSTB2::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xF58A, 16);
 
@@ -1370,6 +1446,12 @@ void SamsungSTB3::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x1AF2, 16);
 
@@ -1435,6 +1517,12 @@ void SamsungSTB4::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("num_0", Zero_Key, 0x1280, 13);
   addKey("num_1", One_Key, 0x1281, 13);
@@ -1502,6 +1590,12 @@ void SamsungSTB5::populateProtocol(
 
   threadableProtocol = new Nokia32Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x2670, 16);
   setPostData(0x26, 7);
 
@@ -1553,7 +1647,7 @@ void SamsungSTB5::populateProtocol(
 
 
 void SamsungSTB5::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1584,6 +1678,12 @@ void SamsungSTB6::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xA8AD, 16);
 

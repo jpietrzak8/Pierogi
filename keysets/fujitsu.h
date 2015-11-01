@@ -1,7 +1,7 @@
 //
-// sagem.h
+// fujitsu.h
 //
-// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -16,38 +16,44 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software Foundation,
+// along with Pierogi; if not, write to the Free Software Foundation,
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //
 
-#ifndef SAGEM_H
-#define SAGEM_H
+#ifndef FUJITSU_H
+#define FUJITSU_H
 
-#include "pirkeysetmetadata.h"
+/*
+ * Putting off fujitsu AC for now:
+ *
+//#include "pirkeysetmetadata.h"
+#include "pirackeyset.h"
+#include "piracstateinfo.h"
 
-
-class SagemTVBox1: public PIRKeysetMetaData
+class FujitsuAC1: public PIRACKeyset
 {
-  Q_OBJECT
-
 public:
-  SagemTVBox1(
+  FujitsuAC1(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
+
+  virtual void populateSettingsList(
+    PIRACSettings &acSettings) const;
+
+  virtual void getOperationModeList(
+    PIRStatePairs &modePairs) const;
+
+  virtual void getSwingPairs(
+    PIRStatePairs &swingPairs) const;
+
+  virtual void getTemperaturePairs(
+    PIRStatePairs &temperaturePairs) const;
+
+  virtual void getFanPairs(
+    PIRStatePairs &fanPairs) const;
 };
+*/
 
-class SagemTVBox1a: public SagemTVBox1
-{
-  Q_OBJECT
-
-public:
-  SagemTVBox1a(
-    unsigned int index);
-
-  virtual void populateProtocol(
-    QObject *guiObject);
-};
-
-#endif // SAGEM_H
+#endif // FUJITSU_H

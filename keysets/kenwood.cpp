@@ -1,7 +1,7 @@
 //
 // kenwood.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void KenwoodAudio1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xB8, 8);
 
@@ -180,6 +186,12 @@ void KenwoodComponent1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x00B8, 16);
 
   addKey("discskip", NextDisc_Key, 0x08, 8);
@@ -293,6 +305,12 @@ void KenwoodComponent2::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x01B8, 16);
 
   addKey("DOLBY_SURROUND", Surround_Key, 0x00, 8);
@@ -363,6 +381,12 @@ void KenwoodComponent3::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x02B8, 16);
 
@@ -464,6 +488,12 @@ void KenwoodCD1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0xB6, 8);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -560,6 +590,12 @@ void KenwoodDVD1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x0CB6, 16);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -636,6 +672,12 @@ void KenwoodTV1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x04, 8);
 

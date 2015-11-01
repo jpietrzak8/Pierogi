@@ -1,7 +1,7 @@
 //
 // bangandolufsen.cpp
 //
-// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 -2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void BangAndOlufsenTV1::populateProtocol(
   }
 
   threadableProtocol = new BangAndOlufsenProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x00, 8); // TVs are device "00"
 

@@ -75,6 +75,7 @@
 #include "keysets/fortec.h"
 #include "keysets/foxtel.h"
 #include "keysets/frontech.h"
+#include "keysets/fujitsu.h"
 #include "keysets/gadmei.h"
 #include "keysets/generalelectric.h"
 #include "keysets/genius.h"
@@ -179,8 +180,6 @@
 #include "keysets/xoro.h"
 #include "keysets/yamaha.h"
 #include "keysets/zenith.h"
-
-#include "pirexception.h"
 
 // Need mutex for thread support:
 #include <QMutex>
@@ -423,6 +422,8 @@ PIRKeysetManager::PIRKeysetManager()
 
   setupKeyset(new FrontechTV1(++counter));
   setupKeyset(new FrontechTV2(++counter));
+
+//  setupKeyset(new FujitsuAC1(++counter));
 
   setupKeyset(new GadmeiTuner1(++counter));
 
@@ -752,7 +753,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new PhilipsAudio2(++counter));
   setupKeyset(new PhilipsAudio3(++counter));
   setupKeyset(new PhilipsAudio4(++counter));
-//  setupKeyset(new PhilipsAudio5(++counter));
+  setupKeyset(new PhilipsAudio5(++counter));
 
   setupKeyset(new PinnaclePCTV1(++counter));
   setupKeyset(new PinnaclePCTV2(++counter));
@@ -851,6 +852,7 @@ PIRKeysetManager::PIRKeysetManager()
   setupKeyset(new SharpVCR1(++counter));
   setupKeyset(new SharpReceiver1(++counter));
   setupKeyset(new SharpAC1(++counter));
+  setupKeyset(new SharpCamcorder1(++counter));
 
   setupKeyset(new SilverCrestDVD1(++counter));
   setupKeyset(new SilverCrestDVD2(++counter));
@@ -1183,6 +1185,14 @@ void PIRKeysetManager::populateKeyset(
   }
 
   i->second->populateProtocol(guiObject);
+
+  // Set up error handling:
+  connect(
+    i->second,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   i->second->moveToThread(&commandThread);
 }
 

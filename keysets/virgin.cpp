@@ -1,7 +1,7 @@
 //
 // virgin.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void VirginSTB1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("menu", Menu_Key, 0x028F, 13);
   addKey("up arrow", Up_Key, 0x0290, 13);

@@ -1,7 +1,7 @@
 //
 // arcam.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void ArcamReceiver1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("right", Right_Key, 0x0410, 13);
   addKey("left", Left_Key, 0x0411, 13);

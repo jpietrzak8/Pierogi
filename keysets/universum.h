@@ -1,7 +1,7 @@
 //
 // universum.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class UniversumVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   UniversumVCR1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class UniversumVCR2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   UniversumVCR2(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class UniversumVCR3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   UniversumVCR3(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class UniversumTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   UniversumTV1(
     unsigned int index);
@@ -70,6 +77,8 @@ public:
 
 class UniversumTV1a: public UniversumTV1
 {
+  Q_OBJECT
+
 public:
   UniversumTV1a(
     unsigned int index);
@@ -80,6 +89,8 @@ public:
 
 class UniversumSat1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   UniversumSat1(
     unsigned int index);
@@ -93,6 +104,8 @@ public:
 
 class UniversumAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   UniversumAudio1(
     unsigned int index);

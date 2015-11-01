@@ -1,7 +1,7 @@
 //
 // boseprotocol.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -24,7 +24,7 @@
 
 #include "pirinfraredled.h"
 
-#include "pirexception.h"
+#include <QString>
 
 // Some global communications stuff:
 #include <QMutex>
@@ -57,68 +57,61 @@ void BoseProtocol::startSendingCommand(
   unsigned int threadableID,
   PIRKeyName command)
 {
-  // Exceptions here are problematic; I'll try to weed them out by putting the
-  // whole thing in a try/catch block:
-  try
+  // First, check if we are meant to be the recipient of this command:
+  if (threadableID != id) return;
+
+  clearRepeatFlag();
+
+  KeycodeCollection::const_iterator i = keycodes.find(command);
+
+  // Do we even have this key defined?
+  if (i == keycodes.end())
   {
-    // First, check if we are meant to be the recipient of this command:
-    if (threadableID != id) return;
-
-    clearRepeatFlag();
-
-    KeycodeCollection::const_iterator i = keycodes.find(command);
-
-    // Do we even have this key defined?
-    if (i == keycodes.end())
-    {
-      QMutexLocker cifLocker(&commandIFMutex);
-      commandInFlight = false;
-      return;
-//      std::string s = "Tried to send a non-existent command.\n";
-//      throw PIRException(s);
-    }
-
-    // construct the device:
-    PIRInfraredLED led(carrierFrequency, dutyCycle);
-
-    int repeatCount = 0;
-    int commandDuration = 0;
-    while (repeatCount < MAX_REPEAT_COUNT)
-    {
-      commandDuration = generateStandardCommand((*i).second, led);
-
-      // Now, tell the device to send the whole command:
-      led.sendCommandToDevice();
-
-      // sleep until the next repetition of command:
-      sleepUntilRepeat(commandDuration);
-
-      // Check whether we've reached the minimum required number of repetitons:
-      if (repeatCount >= minimumRepetitions)
-      {
-        // Check whether we've been asked to stop:
-        if (checkRepeatFlag())
-        {
-          break;
-/*
-          QMutexLocker cifLocker(&commandIFMutex);
-          commandInFlight = false;
-          return;
-*/
-        }
-      }
-
-      ++repeatCount;
-    }
-
     QMutexLocker cifLocker(&commandIFMutex);
     commandInFlight = false;
+    emit errorMessage("Key not defined in this keyset.");
+    return;
   }
-  catch (PIRException e)
+
+  // construct the device:
+  PIRInfraredLED led(carrierFrequency, dutyCycle);
+
+  connect(
+    &led,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
+  int repeatCount = 0;
+  int commandDuration = 0;
+  while (repeatCount < MAX_REPEAT_COUNT)
   {
-    // inform the gui:
-    emit commandFailed(e.getError().c_str());
+    commandDuration = generateStandardCommand((*i).second, led);
+
+    // Now, tell the device to send the whole command:
+    if (!led.sendCommandToDevice())
+    {
+      break;
+    }
+
+    // sleep until the next repetition of command:
+    sleepUntilRepeat(commandDuration);
+
+    // Check whether we've reached the minimum required number of repetitons:
+    if (repeatCount >= minimumRepetitions)
+    {
+      // Check whether we've been asked to stop:
+      if (checkRepeatFlag())
+      {
+        break;
+      }
+    }
+
+    ++repeatCount;
   }
+
+  QMutexLocker cifLocker(&commandIFMutex);
+  commandInFlight = false;
 }
 
 

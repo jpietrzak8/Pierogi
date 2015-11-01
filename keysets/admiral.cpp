@@ -1,7 +1,7 @@
 //
 // admiral.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -45,6 +45,12 @@ void AdmiralTV1::populateProtocol(
   }
 
   threadableProtocol = new SharpProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSharpKey("tv-1", One_Key, 0x01, 0x01);
   addSharpKey("tv-2", Two_Key, 0x01, 0x02);
@@ -94,6 +100,12 @@ void AdmiralTV2::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x1000, 13);
   addKey("1", One_Key, 0x1001, 13);
@@ -164,6 +176,12 @@ void AdmiralVCR1::populateProtocol(
   }
 
   threadableProtocol = new SharpProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSharpKey("vcr-1", One_Key, 0x03, 0x01);
   addSharpKey("vcr-2", Two_Key, 0x03, 0x02);

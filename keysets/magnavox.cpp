@@ -1,7 +1,7 @@
 //
 // magnavox.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void MagnavoxDVD1::populateProtocol(
   }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x04);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x00, 8);
   addKey("1", One_Key, 0x01, 8);
@@ -105,6 +111,12 @@ void MagnavoxVCR1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("Power", Power_Key, 0x114C, 13);
   addKey("0", Zero_Key, 0x1140, 13);
@@ -195,6 +207,12 @@ void MagnavoxConverterBox1::populateProtocol(
 
   threadableProtocol = lp;
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   lp->setHeaderPair(3514, 3396);
   lp->setTrailerPulse(894);
 
@@ -248,6 +266,12 @@ void MagnavoxTV1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x40);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("Zero", Zero_Key, 0x00, 6);
   addKey("One", One_Key, 0x01, 6);

@@ -1,7 +1,7 @@
 //
 // ei.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -50,6 +50,12 @@ void EiTV1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x40);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x00, 6);
   addKey("1", One_Key, 0x01, 6);

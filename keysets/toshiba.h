@@ -1,7 +1,7 @@
 //
 // toshiba.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class ToshibaTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ToshibaTV1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class ToshibaTV1a: public ToshibaTV1
 {
+  Q_OBJECT
+
 public:
   ToshibaTV1a(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class ToshibaTV1b: public ToshibaTV1
 {
+  Q_OBJECT
+
 public:
   ToshibaTV1b(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class ToshibaTV1f: public ToshibaTV1
 {
+  Q_OBJECT
+
 public:
   ToshibaTV1f(
     unsigned int index);
@@ -70,6 +77,8 @@ public:
 
 class ToshibaTV1c: public ToshibaTV1f
 {
+  Q_OBJECT
+
 public:
   ToshibaTV1c(
     unsigned int index);
@@ -80,6 +89,8 @@ public:
 
 class ToshibaTV1d: public ToshibaTV1f
 {
+  Q_OBJECT
+
 public:
   ToshibaTV1d(
     unsigned int index);
@@ -90,6 +101,8 @@ public:
 
 class ToshibaTV1e: public ToshibaTV1
 {
+  Q_OBJECT
+
 public:
   ToshibaTV1e(
     unsigned int index);
@@ -100,6 +113,8 @@ public:
 
 class ToshibaTV1g: public ToshibaTV1
 {
+  Q_OBJECT
+
 public:
   ToshibaTV1g(
     unsigned int index);
@@ -110,6 +125,8 @@ public:
 
 class ToshibaTV1h: public ToshibaTV1b
 {
+  Q_OBJECT
+
 public:
   ToshibaTV1h(
     unsigned int index);
@@ -120,6 +137,8 @@ public:
 
 class ToshibaTV1i: public ToshibaTV1h
 {
+  Q_OBJECT
+
 public:
   ToshibaTV1i(
     unsigned int index);
@@ -130,6 +149,8 @@ public:
 
 class ToshibaVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ToshibaVCR1(
     unsigned int index);
@@ -143,6 +164,8 @@ public:
 
 class ToshibaVCR1a: public ToshibaVCR1
 {
+  Q_OBJECT
+
 public:
   ToshibaVCR1a(
     unsigned int index);
@@ -153,6 +176,8 @@ public:
 
 class ToshibaVCR1b: public ToshibaVCR1
 {
+  Q_OBJECT
+
 public:
   ToshibaVCR1b(
     unsigned int index);
@@ -163,6 +188,8 @@ public:
 
 class ToshibaDisc1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ToshibaDisc1(
     unsigned int index);
@@ -176,6 +203,8 @@ public:
 
 class ToshibaDisc1a: public ToshibaDisc1
 {
+  Q_OBJECT
+
 public:
   ToshibaDisc1a(
     unsigned int index);
@@ -186,6 +215,8 @@ public:
 
 class ToshibaDisc1b: public ToshibaDisc1
 {
+  Q_OBJECT
+
 public:
   ToshibaDisc1b(
     unsigned int index);
@@ -196,6 +227,8 @@ public:
 
 class ToshibaDisc1c: public ToshibaDisc1a
 {
+  Q_OBJECT
+
 public:
   ToshibaDisc1c(
     unsigned int index);
@@ -218,6 +251,8 @@ public:
 
 class ToshibaDisc2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ToshibaDisc2(
     unsigned int index);
@@ -231,6 +266,8 @@ public:
 
 class ToshibaProjector1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ToshibaProjector1(
     unsigned int index);
@@ -244,6 +281,8 @@ public:
 
 class ToshibaSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ToshibaSTB1(
     unsigned int index);

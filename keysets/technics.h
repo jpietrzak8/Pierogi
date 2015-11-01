@@ -1,7 +1,7 @@
 //
 // technics.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class TechnicsAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TechnicsAudio1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class TechnicsAudio1a: public TechnicsAudio1
 {
+  Q_OBJECT
+
 public:
   TechnicsAudio1a(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class TechnicsAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TechnicsAudio2(
     unsigned int index);
@@ -63,6 +68,8 @@ public:
 
 class TechnicsAudio3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TechnicsAudio3(
     unsigned int index);
@@ -76,6 +83,8 @@ public:
 
 class TechnicsAudio3a: public TechnicsAudio3
 {
+  Q_OBJECT
+
 public:
   TechnicsAudio3a(
     unsigned int index);
@@ -86,6 +95,8 @@ public:
 
 class TechnicsReceiver1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TechnicsReceiver1(
     unsigned int index);
@@ -99,6 +110,8 @@ public:
 
 class TechnicsReceiver1a: public TechnicsReceiver1
 {
+  Q_OBJECT
+
 public:
   TechnicsReceiver1a(
     unsigned int index);
@@ -109,6 +122,8 @@ public:
 
 class TechnicsCD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TechnicsCD1(
     unsigned int index);
@@ -119,6 +134,8 @@ public:
 
 class TechnicsDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TechnicsDVD1(
     unsigned int index);

@@ -1,7 +1,7 @@
 //
 // airtech.cpp
 //
-// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -44,6 +44,12 @@ void AirtechFan1::populateProtocol(
   }
 
   threadableProtocol = new AirtechProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x6C, 7);
 

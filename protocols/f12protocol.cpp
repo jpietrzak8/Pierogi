@@ -1,7 +1,7 @@
 //
 // f12protocol.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,9 +25,7 @@
 #include "pirinfraredled.h"
 
 #include <time.h>
-#include <sstream>
 #include <errno.h>
-#include "pirexception.h"
 
 // Some global communications stuff:
 #include <QMutex>
@@ -66,80 +64,80 @@ void F12Protocol::startSendingCommand(
   unsigned int threadableID,
   PIRKeyName command)
 {
-  // Exceptions here are problematic; I'll try to weed them out by putting the
-  // whole thing in a try/catch block:
-  try
+  // First, check if we are meant to be the recipient of this command:
+  if (threadableID != id) return;
+
+  clearRepeatFlag();
+
+  KeycodeCollection::const_iterator i = keycodes.find(command);
+
+  // Do we even have this key defined?
+  if (i == keycodes.end())
   {
-    // First, check if we are meant to be the recipient of this command:
-    if (threadableID != id) return;
+    QMutexLocker cifLocker(&commandIFMutex);
+    commandInFlight = false;
+    emit errorMessage("Key not defined in this keyset.");
+    return;
+  }
 
-    clearRepeatFlag();
+  // construct the device:
+  PIRInfraredLED led(carrierFrequency, dutyCycle);
 
-    KeycodeCollection::const_iterator i = keycodes.find(command);
+  connect(
+    &led,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
-    // Do we even have this key defined?
-    if (i == keycodes.end())
+  int commandDuration = 0;
+
+  if (isSingleShot((*i).second.firstCode))
+  {
+    commandDuration = generateSingleShotCommand((*i).second, led);
+    if (led.sendCommandToDevice())
     {
-      QMutexLocker cifLocker(&commandIFMutex);
-      commandInFlight = false;
-      return;
-//      std::string s = "Tried to send a non-existent command.\n";
-//      throw PIRException(s);
-    }
-
-    // construct the device:
-    PIRInfraredLED led(carrierFrequency, dutyCycle);
-
-    int commandDuration = 0;
-
-    if (isSingleShot((*i).second.firstCode))
-    {
-      commandDuration = generateSingleShotCommand((*i).second, led);
-      led.sendCommandToDevice();
       f12SleepUntilRepeat(33760);
       led.sendCommandToDevice();
     }
-    else
-    {
-      int repeatCount = 0;
-
-      commandDuration = generateRepeatableCommand((*i).second, led);
-
-      while (repeatCount < MAX_REPEAT_COUNT)
-      {
-        led.sendCommandToDevice();
-
-        if (repeatCount % 2)
-        {
-          f12SleepUntilRepeat(33760);
-        }
-        else
-        {
-          f12SleepUntilRepeat(87776);
-        }
-
-        // Check whether we've reached the minimum number of repetitons:
-        if (repeatCount >= minimumRepetitions)
-        {
-          // Check whether we've been asked to stop:
-          if (checkRepeatFlag())
-          {
-            break;
-          }
-        }
-
-        ++repeatCount;
-      }
-    }
-
-    QMutexLocker cifLocker(&commandIFMutex);
-    commandInFlight = false;
   }
-  catch (PIRException e)
+  else
   {
-    // inform the gui:
-    emit commandFailed(e.getError().c_str());
+    int repeatCount = 0;
+
+    commandDuration = generateRepeatableCommand((*i).second, led);
+
+    while (repeatCount < MAX_REPEAT_COUNT)
+    {
+      if (!led.sendCommandToDevice())
+      {
+        break;
+      }
+
+      if (repeatCount % 2)
+      {
+        f12SleepUntilRepeat(33760);
+      }
+      else
+      {
+        f12SleepUntilRepeat(87776);
+      }
+
+      // Check whether we've reached the minimum number of repetitons:
+      if (repeatCount >= minimumRepetitions)
+      {
+        // Check whether we've been asked to stop:
+        if (checkRepeatFlag())
+        {
+          break;
+        }
+     }
+
+      ++repeatCount;
+    }
   }
+
+  QMutexLocker cifLocker(&commandIFMutex);
+  commandInFlight = false;
 }
 
 
@@ -194,8 +192,6 @@ int F12Protocol::generateRepeatableCommand(
 bool F12Protocol::isSingleShot(
   const CommandSequence &bits)
 {
-  // We're expecting "firstcode" to contain exactly 8 bits here.  Probably
-  // should throw an exception if not!
   CommandSequence::const_reverse_iterator i = bits.rbegin();
   if (i == bits.rend())
   {
@@ -240,7 +236,7 @@ bool F12Protocol::isSingleShot(
 // overhead is delaying the command...
 #define PIEROGI_OVERHEAD_HACK 13260
 
-void F12Protocol::f12SleepUntilRepeat(
+bool F12Protocol::f12SleepUntilRepeat(
   int gap)
 {
   int microseconds = gap - PIEROGI_OVERHEAD_HACK;
@@ -267,10 +263,14 @@ void F12Protocol::f12SleepUntilRepeat(
 
   if (nanosleep(&sleeptime, &remainingtime) == -1)
   {
-    std::stringstream ss;
-    ss << "Problem while sleeping.\n";
-    ss << "Trying to sleep for: " << microseconds << "\n";
-    ss << "Nanosleep returned error: " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "Problem while sleeping.\n";
+    errStr += "Trying to sleep for: ";
+    errStr += QString::number(microseconds);
+    errStr += "\n Nanosleep returned error: ";
+    errStr += strerror(errno);
+    emit errorMessage(errStr);
+    return false;
   }
+
+  return true;
 }

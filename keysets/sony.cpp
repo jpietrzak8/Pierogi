@@ -1,7 +1,7 @@
 //
 // sony.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -62,6 +62,12 @@ void SonyTV1::populateProtocol(
   }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSIRC12Key("1", One_Key, 0x01, 0x00);
   addSIRC12Key("2", Two_Key, 0x01, 0x01);
@@ -294,6 +300,12 @@ void SonyTV2::populateProtocol(
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x0119, 13);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -354,6 +366,12 @@ void SonyAmp1::populateProtocol(
   }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSIRC12Key("1", One_Key, 0x0C, 0x00);
   addSIRC12Key("2", Two_Key, 0x0C, 0x01);
@@ -435,6 +453,12 @@ void SonyAmp2::populateProtocol(
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addSIRC12Key("up", Up_Key, 0x0C, 0x78);
   addSIRC12Key("down", Down_Key, 0x0C, 0x79);
   addSIRC12Key("left", Left_Key, 0x0C, 0x7A);
@@ -515,6 +539,12 @@ void SonyAudio1::populateProtocol(
   }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSIRC12Key("tv_video", Input_Key, 0x01, 0x25);
 
@@ -658,6 +688,12 @@ void SonyDAT1::populateProtocol(
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPostData(0x07, 5);
 
   addSIRC12Key("1", One_Key, 0x1C, 0x00);
@@ -714,6 +750,12 @@ void SonyDVD1::populateProtocol(
   }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSIRC20Key("1", One_Key, 0x49, 0x1A, 0x00);
   addSIRC20Key("2", Two_Key, 0x49, 0x1A, 0x01);
@@ -913,6 +955,12 @@ void SonyDVD2::populateProtocol(
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addSIRC20Key("Title List", Unmapped_Key, 0x0B, 0x1A, 0x10);
   addSIRC20Key("Original playlist", Unmapped_Key, 0x0B, 0x1A, 0x11);
   addSIRC20Key("Thumbnail", Unmapped_Key, 0x0B, 0x1A, 0x12);
@@ -1030,6 +1078,12 @@ void SonyVCR1::populateProtocol(
   }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSIRC12Key("VOL_UP", VolumeUp_Key, 0x01, 0x12);
   addSIRC12Key("VOL_DOWN", VolumeDown_Key, 0x01, 0x13);
@@ -1178,6 +1232,12 @@ void SonyReceiver1::populateProtocol(
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addSIRC15Key("1", One_Key, 0x30, 0x00);
   addSIRC15Key("2", Two_Key, 0x30, 0x01);
   addSIRC15Key("3", Three_Key, 0x30, 0x02);
@@ -1254,6 +1314,12 @@ void SonyCD1::populateProtocol(
   }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSIRC12Key("1", One_Key, 0x11, 0x00);
   addSIRC12Key("2", Two_Key, 0x11, 0x01);
@@ -1390,6 +1456,12 @@ void SonyProjector1::populateProtocol(
   }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSIRC15Key("Switcher 1", Unmapped_Key, 0x54, 0x0A);
   addSIRC15Key("Switcher 2", Unmapped_Key, 0x54, 0x0B);
@@ -1592,6 +1664,12 @@ void SonyHT1::populateProtocol(
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addSIRC15Key("Memory", Memory_Key, 0x50, 0x0E);
   addSIRC15Key("Band", ToggleBand_Key, 0x50, 0x0F);
   addSIRC15Key("Volume Up", VolumeUp_Key, 0x50, 0x12);
@@ -1708,6 +1786,12 @@ void SonyCarStereo1::populateProtocol(
   }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSIRC15Key("1", One_Key, 0x84, 0x00);
   addSIRC15Key("2", Two_Key, 0x84, 0x01);

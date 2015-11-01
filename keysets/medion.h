@@ -1,7 +1,7 @@
 //
 // medion.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class MedionSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MedionSTB1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class MedionDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MedionDVD1(
     unsigned int index);
@@ -51,6 +54,8 @@ public:
 
 class MedionDVD2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MedionDVD2(
     unsigned int index);
@@ -62,6 +67,8 @@ public:
 
 class MedionVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MedionVCR1(
     unsigned int index);

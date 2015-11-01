@@ -1,7 +1,7 @@
 //
 // sky.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class SkyReceiver1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SkyReceiver1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class SkyReceiver1a: public SkyReceiver1
 {
+  Q_OBJECT
+
 public:
   SkyReceiver1a(
     unsigned int index);

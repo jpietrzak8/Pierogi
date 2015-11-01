@@ -1,7 +1,7 @@
 //
 // samsung.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,12 +25,14 @@
 
 #include "pirkeysetmetadata.h"
 #include "pirackeyset.h"
+#include "piracstateinfo.h"
 
-class QObject;
 class QComboBox;
 
 class SamsungTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SamsungTV1(
     unsigned int index);
@@ -39,12 +41,14 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 
 class SamsungTV1a: public SamsungTV1
 {
+  Q_OBJECT
+
 public:
   SamsungTV1a(
     unsigned int index);
@@ -56,6 +60,8 @@ public:
 
 class SamsungTV1b: public SamsungTV1
 {
+  Q_OBJECT
+
 public:
   SamsungTV1b(
     unsigned int index);
@@ -75,7 +81,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 
@@ -202,7 +208,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class SamsungAC1: public PIRKeysetMetaData
@@ -224,6 +230,9 @@ public:
   virtual void populateProtocol(
     QObject *guiObject);
 
+  virtual void populateSettingsList(
+    PIRACSettings &acSettings) const;
+
   virtual void getTurboModePairs(
     PIRStatePairs &turboModePairs) const;
 
@@ -236,14 +245,16 @@ public:
   virtual void getFanPairs(
     PIRStatePairs &fanPairs) const;
 
-  virtual void getModePairs(
+  virtual void getOperatingModePairs(
     PIRStatePairs &modePairs) const;
 
   virtual void getAirCleanPairs(
     PIRStatePairs &aircleanPairs) const;
 
+/*
   virtual void getPowerPairs(
     PIRStatePairs &powerPairs) const;
+*/
 
   virtual void getTimerOptionPairs(
     PIRStatePairs &timerOptionPairs) const;
@@ -259,7 +270,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class SamsungSTB2: public PIRKeysetMetaData
@@ -302,7 +313,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class SamsungSTB6: public PIRKeysetMetaData

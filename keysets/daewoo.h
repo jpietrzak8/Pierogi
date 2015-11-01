@@ -1,7 +1,7 @@
 //
 // daewoo.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class DaewooTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DaewooTV1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class DaewooTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DaewooTV2(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class DaewooTV3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DaewooTV3(
     unsigned int index);
@@ -66,6 +71,8 @@ public:
 
 class DaewooTV4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DaewooTV4(
     unsigned int index);
@@ -79,6 +86,8 @@ public:
 
 class DaewooTV5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DaewooTV5(
     unsigned int index);
@@ -89,6 +98,8 @@ public:
 
 class DaewooDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DaewooDVD1(
     unsigned int index);
@@ -99,6 +110,8 @@ public:
 
 class DaewooVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DaewooVCR1(
     unsigned int index);
@@ -109,6 +122,8 @@ public:
 
 class DaewooVCR2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DaewooVCR2(
     unsigned int index);

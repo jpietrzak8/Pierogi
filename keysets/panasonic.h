@@ -1,7 +1,7 @@
 //
 // panasonic.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class PanasonicCarAudio: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PanasonicCarAudio(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class PanasonicSat1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PanasonicSat1(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class PanasonicSat1a: public PanasonicSat1
 {
+  Q_OBJECT
+
 public:
   PanasonicSat1a(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class PanasonicTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PanasonicTV1(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class PanasonicTV1a: public PanasonicTV1
 {
+  Q_OBJECT
+
 public:
   PanasonicTV1a(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class PanasonicTV1b: public PanasonicTV1
 {
+  Q_OBJECT
+
 public:
   PanasonicTV1b(
     unsigned int index);
@@ -94,6 +105,8 @@ public:
 
 class PanasonicTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PanasonicTV2(
     unsigned int index);
@@ -104,6 +117,8 @@ public:
 
 class PanasonicTV2a: public PanasonicTV2
 {
+  Q_OBJECT
+
 public:
   PanasonicTV2a(
     unsigned int index);
@@ -114,6 +129,8 @@ public:
 
 class PanasonicVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PanasonicVCR1(
     unsigned int index);
@@ -124,6 +141,8 @@ public:
 
 class PanasonicVCR1a: public PanasonicVCR1
 {
+  Q_OBJECT
+
 public:
   PanasonicVCR1a(
     unsigned int index);
@@ -134,6 +153,8 @@ public:
 
 class PanasonicVCR1b: public PanasonicVCR1
 {
+  Q_OBJECT
+
 public:
   PanasonicVCR1b(
     unsigned int index);
@@ -144,6 +165,8 @@ public:
 
 class PanasonicVCR1c: public PanasonicVCR1
 {
+  Q_OBJECT
+
 public:
   PanasonicVCR1c(
     unsigned int index);
@@ -154,6 +177,8 @@ public:
 
 class PanasonicVCR2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PanasonicVCR2(
     unsigned int index);
@@ -164,6 +189,8 @@ public:
 
 class PanasonicDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PanasonicDVD1(
     unsigned int index);
@@ -174,6 +201,8 @@ public:
 
 class PanasonicDVD1a: public PanasonicDVD1
 {
+  Q_OBJECT
+
 public:
   PanasonicDVD1a(
     unsigned int index);
@@ -184,6 +213,8 @@ public:
 
 class PanasonicAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PanasonicAudio1(
     unsigned int index);
@@ -197,6 +228,8 @@ public:
 
 class PanasonicAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PanasonicAudio2(
     unsigned int index);
@@ -210,6 +243,8 @@ public:
 
 class PanasonicAudio2a: public PanasonicAudio2
 {
+  Q_OBJECT
+
 public:
   PanasonicAudio2a(
     unsigned int index);
@@ -220,6 +255,8 @@ public:
 
 class PanasonicAudio3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PanasonicAudio3(
     unsigned int index);
@@ -233,6 +270,8 @@ public:
 
 class PanasonicAC1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PanasonicAC1(
     unsigned int index);

@@ -1,7 +1,7 @@
 //
 // technisat.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -48,6 +48,12 @@ void TechnisatSTB1::populateProtocol(
   }
 
   threadableProtocol = new PaceProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x4, 3);
 
@@ -152,6 +158,12 @@ void TechnisatSTB2::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("TV/SAT", SatInput_Key, 0x0200, 13);
   addKey("INFO", Info_Key, 0x020F, 13);
   addKey("MENU", Menu_Key, 0x0212, 13);
@@ -253,6 +265,12 @@ void TechnisatSTB3::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("INFO", Info_Key, 0x028F, 13);
   addKey("MENU", Menu_Key, 0x0292, 13);

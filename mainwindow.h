@@ -1,7 +1,7 @@
 //
 // Mainwindow.h
 //
-// Copyright 2012 - 2014 by John Pietrzak
+// Copyright 2012 - 2015 by John Pietrzak
 //
 // This file contains the main window declaration for Pierogi.
 //
@@ -267,6 +267,9 @@ private slots:
   void updatePanelIndex();
 
   void finalCleanup();
+
+  void displayMessage(
+    QString message);
 
 private:
 //  void keyPressEvent(

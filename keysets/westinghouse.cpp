@@ -1,7 +1,7 @@
 //
 // westinghouse.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void WestinghouseTV1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x807F, 16);
   setPreData(0x01, 8);
@@ -120,6 +126,12 @@ void WestinghouseTV2::populateProtocol(
   }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSIRC12Key("1", One_Key, 0x01, 0x00);
   addSIRC12Key("2", Two_Key, 0x01, 0x01);

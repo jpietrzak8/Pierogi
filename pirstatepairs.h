@@ -31,7 +31,7 @@
 // protocol object will retrieve the chosen code values to construct the
 // full IR command.
 
-#include <list>
+#include <QList>
 #include <QString>
 
 class PIRStatePair
@@ -50,7 +50,7 @@ private:
   unsigned int code;
 };
 
-typedef std::list<PIRStatePair *> PIRStatePairs;
+typedef QList<PIRStatePair *> PIRStatePairs;
 
 // -------- inline method definitions:
 

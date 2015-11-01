@@ -1,7 +1,7 @@
 //
 // emerson.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -48,6 +48,12 @@ void EmersonTV1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0586, 16);
 
@@ -101,6 +107,12 @@ void EmersonTV2::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x1616, 16);
 
@@ -157,6 +169,12 @@ void EmersonTV3::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x6880, 16);
 
@@ -228,6 +246,12 @@ void EmersonTV4::populateProtocol(
 
   threadableProtocol = new EmersonProtocol(guiObject, index, false);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x28, 6);
 
   addKey("right arrow", Right_Key, 0x04, 6);
@@ -290,6 +314,12 @@ void EmersonTV5::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0xE084, 16);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -348,6 +378,12 @@ void EmersonSTB1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x00, 8);
 
   addKey("fc scan", Unmapped_Key, 0x00, 8);
@@ -400,6 +436,12 @@ void EmersonDVD1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2287, 16);
 
@@ -478,6 +520,12 @@ void EmersonAudio1::populateProtocol(
 
   threadableProtocol = new F12Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x5, 3);
 
   addKey("Volume Up", VolumeUp_Key, 0x04, 8);
@@ -511,6 +559,12 @@ void EmersonAudio2::populateProtocol(
   }
 
   threadableProtocol = new F12Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x3, 3);
 
@@ -546,6 +600,12 @@ void EmersonAudio3::populateProtocol(
   }
 
   threadableProtocol = new F12Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x3, 3);
 

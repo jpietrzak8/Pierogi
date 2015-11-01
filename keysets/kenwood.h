@@ -1,7 +1,7 @@
 //
 // kenwood.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class KenwoodAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   KenwoodAudio1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class KenwoodComponent1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   KenwoodComponent1(
     unsigned int index);
@@ -56,6 +59,8 @@ public:
 
 class KenwoodComponent2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   KenwoodComponent2(
     unsigned int index);
@@ -69,6 +74,8 @@ public:
 
 class KenwoodComponent3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   KenwoodComponent3(
     unsigned int index);
@@ -82,6 +89,8 @@ public:
 
 class KenwoodCD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   KenwoodCD1(
     unsigned int index);
@@ -92,6 +101,8 @@ public:
 
 class KenwoodDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   KenwoodDVD1(
     unsigned int index);
@@ -102,6 +113,8 @@ public:
 
 class KenwoodTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   KenwoodTV1(
     unsigned int index);

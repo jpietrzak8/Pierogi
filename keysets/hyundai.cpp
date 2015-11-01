@@ -1,7 +1,7 @@
 //
 // hyundai.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -45,6 +45,12 @@ void HyundaiDVD1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xFB00, 16);
 
@@ -123,6 +129,12 @@ void HyundaiAudio1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0xFF00, 16);
 
   addKey("1", One_Key, 0x00, 8);
@@ -194,6 +206,12 @@ void HyundaiTV1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x03AA, 16);
 

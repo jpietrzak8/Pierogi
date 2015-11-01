@@ -1,7 +1,7 @@
 //
 // astro.cpp
 //
-// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void AstroSTB1::populateProtocol(
   }
 
   threadableProtocol = new Nokia32Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2250, 16);
   setPostData(0x27, 7);
@@ -123,6 +129,12 @@ void AstroSTB2::populateProtocol(
   }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0xA7);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("Mute", Mute_Key, 0x0D, 8);
   addKey("Byond", Unmapped_Key, 0x83, 8);

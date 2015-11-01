@@ -1,7 +1,7 @@
 //
 // humax.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class HumaxReceiver1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HumaxReceiver1(
     unsigned int index);
@@ -44,6 +45,8 @@ public:
 
 class HumaxReceiver2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HumaxReceiver2(
     unsigned int index);
@@ -58,6 +61,8 @@ public:
 
 class HumaxReceiver3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HumaxReceiver3(
     unsigned int index);

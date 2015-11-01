@@ -1,7 +1,7 @@
 //
 // loewe.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void LoeweTV1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x40);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("Up", Up_Key, 0x20, 6);
   addKey("Up", ChannelUp_Key, 0x20, 6);
@@ -106,6 +112,12 @@ void LoeweVCR1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x6E, 8);
 
@@ -178,6 +190,12 @@ void LoeweDVD1::populateProtocol(
   }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x04);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("Up", Up_Key, 0x58, 8);
   addKey("Down", Down_Key, 0x59, 8);

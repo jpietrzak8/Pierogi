@@ -1,7 +1,7 @@
 //
 // hp.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -45,6 +45,12 @@ void HPRemote1::populateProtocol(
   }
 
   threadableProtocol = new MCEProtocol(guiObject, index, 0x8011);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x04, 7);
 

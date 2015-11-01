@@ -1,7 +1,7 @@
 //
 // jvc.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -53,6 +53,12 @@ void JVCSat1::populateProtocol(
    6000, false);
 
   threadableProtocol = lp;
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   lp->setHeaderPair(750, 6000);
   lp->setTrailerPulse(624);
@@ -133,6 +139,12 @@ void JVCSat2::populateProtocol(
 
   threadableProtocol = lp;
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   lp->setHeaderPair(525, 6045);
   lp->setTrailerPulse(450);
 
@@ -203,6 +215,12 @@ void JVCVCR1::populateProtocol(
   }
 
   threadableProtocol = new JVCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0xC2, 8);
   setPreData(0x43, 8);
@@ -383,6 +401,12 @@ void JVCTV1::populateProtocol(
   }
 
   threadableProtocol = new JVCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x03, 8);
 
@@ -584,6 +608,12 @@ void JVCDAT1::populateProtocol(
 
   threadableProtocol = new JVCProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
 //  setPreData(0xC9, 8);
   setPreData(0x93, 8);
 
@@ -643,6 +673,12 @@ void JVCCarDeck1::populateProtocol(
 
   threadableProtocol = new JVCProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
 //  setPreData(0xF1, 8);
   setPreData(0x8F, 8);
 
@@ -688,6 +724,12 @@ void JVCAudio1::populateProtocol(
   }
 
   threadableProtocol = new JVCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("SLEEP", Sleep_Key, 0x03A3, 16);
   addKey("POWER", Power_Key, 0x17A3, 16);
@@ -882,6 +924,12 @@ void JVCAudio2::populateProtocol(
 
   threadableProtocol = new JVCProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
 //  setPreData(0xF9, 8);
   setPreData(0x9F, 8);
 
@@ -995,6 +1043,12 @@ void JVCDVD1::populateProtocol(
   }
 
   threadableProtocol = new JVCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0xF7, 8);
   setPreData(0xEF, 8);

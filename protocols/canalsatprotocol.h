@@ -1,7 +1,7 @@
 //
 // canalsatprotocol.h
 //
-// Copyright 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2013 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -35,6 +35,8 @@ class PIRInfraredLED;
 
 class CanalSatProtocol: public PIRProtocol
 {
+  Q_OBJECT
+
 public:
   CanalSatProtocol(
     QObject *guiObject,

@@ -73,6 +73,7 @@ PIRMakeMgr::PIRMakeMgr()
   makes[Fortec_Make] = "Fortec Star";
   makes[Foxtel_Make] = "Foxtel";
   makes[Frontech_Make] = "Frontech";
+  makes[Fujitsu_Make] = "Fujitsu";
   makes[Gadmei_Make] = "Gadmei";
   makes[GeneralElectric_Make] = "General Electric";
   makes[Genius_Make] = "Genius";

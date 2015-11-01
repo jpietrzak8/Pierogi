@@ -1,7 +1,7 @@
 //
 // samsungacprotocol.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -24,7 +24,7 @@
 
 #include "pirinfraredled.h"
 
-#include "pirexception.h"
+#include <QString>
 
 // Some global communications stuff:
 #include <QMutex>
@@ -124,7 +124,8 @@ void SamsungACProtocol::startSendingStateInfo(
 
     // 4 bits of power:
     power.clear();
-    appendToBitSeq(power, state.power, 4);
+//    appendToBitSeq(power, state.power, 4);
+    appendToBitSeq(power, 0xF, 4); // Need to deal with on/off properly!
   }
 
   startSendingCommand(threadableID, command);
@@ -137,48 +138,43 @@ void SamsungACProtocol::startSendingCommand(
   unsigned int threadableID,
   PIRKeyName command)
 {
-  // Exceptions here are problematic; I'll try to weed them out by putting the
-  // whole thing in a try/catch block:
-  try
+  // First, check if we are meant to be the recipient of this command:
+  if (threadableID != id) return;
+
+  KeycodeCollection::const_iterator i = keycodes.find(command);
+
+  // Do we even have this key defined?
+  if (i == keycodes.end())
   {
-    // First, check if we are meant to be the recipient of this command:
-    if (threadableID != id) return;
-
-    KeycodeCollection::const_iterator i = keycodes.find(command);
-
-    // Do we even have this key defined?
-    if (i == keycodes.end())
-    {
-      QMutexLocker cifLocker(&commandIFMutex);
-      commandInFlight = false;
-      return;
-//      std::string s = "Tried to send a non-existent command.\n";
-//      throw PIRException(s);
-    }
-
-    // construct the device:
-    PIRInfraredLED led(carrierFrequency, dutyCycle);
-
-    if (command == ACSetTimer_Key)
-    {
-      generateTimerCommand(led);
-    }
-    else
-    {
-      generateCommand(led);
-    }
-
-    // Now, tell the device to send the whole command:
-    led.sendCommandToDevice();
-
     QMutexLocker cifLocker(&commandIFMutex);
     commandInFlight = false;
+    emit errorMessage("Key not defined in this keyset.");
+    return;
   }
-  catch (PIRException e)
+
+  // construct the device:
+  PIRInfraredLED led(carrierFrequency, dutyCycle);
+
+  connect(
+    &led,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
+  if (command == ACSetTimer_Key)
   {
-    // inform the gui:
-    emit commandFailed(e.getError().c_str());
+    generateTimerCommand(led);
   }
+  else
+  {
+    generateCommand(led);
+  }
+
+  // Now, tell the device to send the whole command:
+  led.sendCommandToDevice();
+
+  QMutexLocker cifLocker(&commandIFMutex);
+  commandInFlight = false;
 }
 
 

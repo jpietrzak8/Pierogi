@@ -1,7 +1,7 @@
 //
 // sharp.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class SharpTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SharpTV1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class SharpTV1a: public SharpTV1
 {
+  Q_OBJECT
+
 public:
   SharpTV1a(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class SharpTV1b: public SharpTV1
 {
+  Q_OBJECT
+
 public:
   SharpTV1b(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class SharpTV1c: public SharpTV1
 {
+  Q_OBJECT
+
 public:
   SharpTV1c(
     unsigned int index);
@@ -70,6 +77,8 @@ public:
 
 class SharpTV1d: public SharpTV1
 {
+  Q_OBJECT
+
 public:
   SharpTV1d(
     unsigned int index);
@@ -80,6 +89,8 @@ public:
 
 class SharpTV1e: public SharpTV1
 {
+  Q_OBJECT
+
 public:
   SharpTV1e(
     unsigned int index);
@@ -90,6 +101,8 @@ public:
 
 class SharpVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SharpVCR1(
     unsigned int index);
@@ -101,6 +114,8 @@ public:
 
 class SharpReceiver1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SharpReceiver1(
     unsigned int index);
@@ -114,8 +129,22 @@ public:
 
 class SharpAC1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SharpAC1(
+    unsigned int index);
+
+  virtual void populateProtocol(
+    QObject *guiObject);
+};
+
+class SharpCamcorder1: public PIRKeysetMetaData
+{
+  Q_OBJECT
+
+public:
+  SharpCamcorder1(
     unsigned int index);
 
   virtual void populateProtocol(

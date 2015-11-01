@@ -1,7 +1,7 @@
 //
 // lasko.cpp
 //
-// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void LaskoFan1::populateProtocol(
 
   threadableProtocol = new AirtechProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x6C, 7);
 
   addKey("power", Power_Key, 0x01, 5);
@@ -76,6 +82,12 @@ void LaskoFan2::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x01, 8);
 

@@ -1,7 +1,7 @@
 //
 // technisat.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class TechnisatSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TechnisatSTB1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class TechnisatSTB1a: public TechnisatSTB1
 {
+  Q_OBJECT
+
 public:
   TechnisatSTB1a(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class TechnisatSTB2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TechnisatSTB2(
     unsigned int index);
@@ -66,6 +71,8 @@ public:
 
 class TechnisatSTB2a: public TechnisatSTB2
 {
+  Q_OBJECT
+
 public:
   TechnisatSTB2a(
     unsigned int index);
@@ -76,6 +83,8 @@ public:
 
 class TechnisatSTB3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TechnisatSTB3(
     unsigned int index);
@@ -86,6 +95,8 @@ public:
 
 class TechnisatSTB3a: public TechnisatSTB3
 {
+  Q_OBJECT
+
 public:
   TechnisatSTB3a(
     unsigned int index);

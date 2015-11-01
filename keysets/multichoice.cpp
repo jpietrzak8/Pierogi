@@ -1,7 +1,7 @@
 //
 // multichoice.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void MultichoiceSTB1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x1600, 13);
   addKey("1", One_Key, 0x1601, 13);
@@ -127,6 +133,12 @@ void MultichoiceSTB2::populateProtocol(
 
   threadableProtocol = new XMPProtocol(
     guiObject, index, 0x1, 0x1, 0x44, 0x47, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addXMPKey("0", Zero_Key, 0x00, 0x00);
   addXMPKey("1", One_Key, 0x01, 0x00);

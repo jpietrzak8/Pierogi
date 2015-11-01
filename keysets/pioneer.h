@@ -1,7 +1,7 @@
 //
 // pioneer.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class PioneerTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerTV1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class PioneerTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerTV2(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class PioneerTV3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerTV3(
     unsigned int index);
@@ -63,6 +68,8 @@ public:
 
 class PioneerAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerAudio1(
     unsigned int index);
@@ -76,6 +83,8 @@ public:
 
 class PioneerAudio1a: public PioneerAudio1
 {
+  Q_OBJECT
+
 public:
   PioneerAudio1a(
     unsigned int index);
@@ -86,6 +95,8 @@ public:
 
 class PioneerAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerAudio2(
     unsigned int index);
@@ -99,6 +110,8 @@ public:
 
 class PioneerAudio3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerAudio3(
     unsigned int index);
@@ -112,6 +125,8 @@ public:
 
 class PioneerAudio4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerAudio4(
     unsigned int index);
@@ -122,6 +137,8 @@ public:
 
 class PioneerAudio5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerAudio5(
     unsigned int index);
@@ -135,6 +152,8 @@ public:
 
 class PioneerAudio6: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerAudio6(
     unsigned int index);
@@ -148,6 +167,8 @@ public:
 
 class PioneerCD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerCD1(
     unsigned int index);
@@ -158,6 +179,8 @@ public:
 
 class PioneerLaserDisc1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerLaserDisc1(
     unsigned int index);
@@ -168,6 +191,8 @@ public:
 
 class PioneerDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerDVD1(
     unsigned int index);
@@ -178,6 +203,8 @@ public:
 
 class PioneerCarStereo1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PioneerCarStereo1(
     unsigned int index);

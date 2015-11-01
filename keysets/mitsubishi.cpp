@@ -1,7 +1,7 @@
 //
 // mitsubishi.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void MitsubishiTV1::populateProtocol(
   }
 
   threadableProtocol = new MitsubishiProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xE2, 8);
 
@@ -166,6 +172,12 @@ void MitsubishiVCR1::populateProtocol(
 
   threadableProtocol = new MitsubishiProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0xEA, 8);
 
   addKey("POWER", Power_Key, 0x40, 8);
@@ -273,6 +285,12 @@ void MitsubishiProjector1::populateProtocol(
 
   threadableProtocol = new ProtonProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0xF0, 8);
 
   addKey("Power", Power_Key, 0x40, 8);
@@ -355,6 +373,12 @@ void MitsubishiProjector2::populateProtocol(
   }
 
   threadableProtocol = new MitsubishiProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x47, 8);
 

@@ -1,7 +1,7 @@
 //
 // pirinfraredled.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -27,7 +27,7 @@
 // Needed system includes:
 #include <sys/ioctl.h>
 #ifdef DEBUGGING
-#include <iostream>
+#include <QDebug>
 #include <sys/time.h>
 timeval previousTime;
 #endif // DEBUGGING
@@ -36,9 +36,9 @@ timeval previousTime;
 #include <fcntl.h>
 
 // Includes I'm using for error handling stuff:
-#include "pirexception.h"
+//#include "pirexception.h"
 #include <errno.h>
-#include <sstream>
+#include <QString>
 
 // The N900's IR transmitter is controlled by a device driver created
 // specifically for the LIRC daemon:
@@ -79,7 +79,7 @@ PIRInfraredLED::~PIRInfraredLED()
 }
 
 
-void PIRInfraredLED::openLircDevice()
+bool PIRInfraredLED::openLircDevice()
 {
 #ifdef DEBUGGING
   // check the current time:
@@ -89,52 +89,61 @@ void PIRInfraredLED::openLircDevice()
 
   if (fileDescriptor == -1)
   {
-    std::stringstream ss;
-    ss << "Failed to connect to " << PATH_TO_LIRC_DEVICE << "\n";
-    ss << "Error is " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "Failed to connect to ";
+    errStr += PATH_TO_LIRC_DEVICE;
+    errStr += "\nError is ";
+    errStr +=  strerror(errno);
+    emit errorMessage(errStr);
+    return false;
   }
+
+  return true;
 }
 
 
-void PIRInfraredLED::addPair(
+bool PIRInfraredLED::addPair(
   int pulse,
   int space)
 {
   if (index >= (BUFFER_SIZE - 1))
   {
     // Needed room for 2 ints, didn't have it.
-    throw PIRException("Buffer overflow in PIRCommandBuffer object.\n");
+    emit errorMessage("Buffer overflow in PIRCommandBuffer object.");
+    return false;
   }
 
   buffer[index] = pulse;
   ++index;
   buffer[index] = space;
   ++index;
+
+  return true;
 }
 
 
-void PIRInfraredLED::addSingle(
+bool PIRInfraredLED::addSingle(
   int single)
 {
   if (index >= BUFFER_SIZE)
   {
-    throw PIRException("Buffer overflow in PIRCommandBuffer object.\n");
+    emit errorMessage("Buffer overflow in PIRCommandBuffer object.");
+    return false;
   }
 
   buffer[index] = single;
   ++index;
+
+  return true;
 }
 
 
-void PIRInfraredLED::sendCommandToDevice()
+bool PIRInfraredLED::sendCommandToDevice()
 {
   // Sanity check first:
   if (!index)
   {
-    // We have no data!
-    // We should probably complain here, but for now, just return.
-    return;
+    emit errorMessage("Empty command string.");
+    return true; // Not exactly an error...
   }
 
   // Note: if the generated command string ends on a "space", we'll just
@@ -151,62 +160,67 @@ void PIRInfraredLED::sendCommandToDevice()
   gettimeofday(&newTime, NULL);
   long microseconds = newTime.tv_usec - previousTime.tv_usec;
   microseconds += (newTime.tv_sec - previousTime.tv_sec) * 1000000;
-  std::cout << "Time since last call to device: " << microseconds << std::endl;
+  qDebug() << "Time since last call to device: " << microseconds;
   previousTime = newTime;
 //#ifdef DEBUGGING
-  std::cout << "Sending array of ints to device:\n";
+  qDebug() << "Sending array of ints to device:";
   int blah = 0;
   while (blah < index)
   {
-    std::cout << "buffer[" << blah << "]: " << buffer[blah] << "\n";
+    qDebug() << "buffer[" << blah << "]: " << buffer[blah];
     ++blah;
   }
-  std::cout << std::endl;
 #endif // DEBUGGING
   if (write(fileDescriptor, buffer, index * sizeof(int)) == -1)
   {
-    std::stringstream ss;
-    ss << "Failed to send command.\n";
-    ss << "IR device returned error: " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "IR device returned error: ";
+    errStr += strerror(errno);
+    emit errorMessage(errStr);
+    return false;
   }
 
   // Reset the index:
   index = 0;
+
+  return true;
 }
 
 
-void PIRInfraredLED::setCarrierFrequency(
+bool PIRInfraredLED::setCarrierFrequency(
   unsigned int frequency)
 {
 //  if (!frequency) frequency = DEFAULT_FREQUENCY;
 
 #ifdef DEBUGGING
-  std::cout << "Setting frequency to " << frequency << std::endl;
+  qDebug() << "Setting frequency to " << frequency;
 #endif // DEBUGGING
   if (ioctl(fileDescriptor, _IOW('i', 0x13, __u32), &frequency) == -1)
   {
-    std::stringstream ss;
-    ss << "Failed to set carrier frequency.\n";
-    ss << "IR device returned error: " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "IR device returned error: ";
+    errStr += strerror(errno);
+    emit errorMessage(errStr);
+    return false;
   }
+
+  return true;
 }
 
 
-void PIRInfraredLED::setDutyCycle(
+bool PIRInfraredLED::setDutyCycle(
   unsigned int dutyCycle)
 {
 //  if (dutyCycle > 100) dutyCycle = DEFAULT_DUTY_CYCLE;
 
 #ifdef DEBUGGING
-  std::cout << "Setting duty cycle to " << dutyCycle << std::endl;
+  qDebug() << "Setting duty cycle to " << dutyCycle;
 #endif // DEBUGGING
   if (ioctl(fileDescriptor, _IOW('i', 0x15, __u32), &dutyCycle) == -1)
   {
-    std::stringstream ss;
-    ss << "Failed to set duty cycle percentage.\n";
-    ss << "IR device returned error: " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "IR device returned error: ";
+    errStr += strerror(errno);
+    emit errorMessage(errStr);
+    return false;
   }
+
+  return true;
 }

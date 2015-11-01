@@ -74,6 +74,7 @@ enum PIRMakeName{
   Fortec_Make,
   Foxtel_Make,
   Frontech_Make,
+  Fujitsu_Make,
   Gadmei_Make,
   GeneralElectric_Make,
   Genius_Make,

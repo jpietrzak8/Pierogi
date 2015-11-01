@@ -1,7 +1,7 @@
 //
 // genius.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -51,6 +51,12 @@ void GeniusSpeakers1::populateProtocol(
     53977, true);
 
   threadableProtocol = lp;
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   lp->setTrailerPulse(359);
 

@@ -1,7 +1,7 @@
 //
 // technics.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void TechnicsAudio1::populateProtocol(
   }
 
   threadableProtocol = new KaseikyoProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2002, 16);
 
@@ -154,6 +160,12 @@ void TechnicsAudio2::populateProtocol(
 
   threadableProtocol = new KaseikyoProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x1001, 16);
 
   addKaseikyoKey("VOL-UP", VolumeUp_Key, 0x005, 0x20);
@@ -232,6 +244,12 @@ void TechnicsAudio3::populateProtocol(
   }
 
   threadableProtocol = new KaseikyoProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2002, 16);
 
@@ -378,6 +396,12 @@ void TechnicsReceiver1::populateProtocol(
 
   threadableProtocol = new KaseikyoProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x2002, 16);
 
   addKaseikyoKey("Vol up", VolumeUp_Key, 0x000, 0x20);
@@ -488,6 +512,12 @@ void TechnicsCD1::populateProtocol(
 
   threadableProtocol = new PanasonicOldProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addPanOldKey("stop", Stop_Key, 0x0C, 0x00);
   addPanOldKey("SKIP-", Previous_Key, 0x0C, 0x02);
   addPanOldKey("SKIP+", Next_Key, 0x0C, 0x03);
@@ -547,6 +577,12 @@ void TechnicsDVD1::populateProtocol(
   }
 
   threadableProtocol = new KaseikyoProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2002, 16);
 

@@ -1,7 +1,7 @@
 //
 // wharfedale.cpp
 //
-// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -45,6 +45,12 @@ void WharfedaleTV1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x1400, 13);
   addKey("1", One_Key, 0x1401, 13);
@@ -120,6 +126,12 @@ void WharfedaleTV2::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("power", Power_Key, 0x100C, 13);
   addKey("mute", Mute_Key, 0x100D, 13);

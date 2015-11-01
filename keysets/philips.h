@@ -1,7 +1,7 @@
 //
 // philips.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class PhilipsTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsTV1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class PhilipsTV1a: public PhilipsTV1
 {
+  Q_OBJECT
+
 public:
   PhilipsTV1a(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class PhilipsTV1b: public PhilipsTV1
 {
+  Q_OBJECT
+
 public:
   PhilipsTV1b(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class PhilipsTV1c: public PhilipsTV1
 {
+  Q_OBJECT
+
 public:
   PhilipsTV1c(
     unsigned int index);
@@ -70,6 +77,8 @@ public:
 
 class PhilipsTV1d: public PhilipsTV1
 {
+  Q_OBJECT
+
 public:
   PhilipsTV1d(
     unsigned int index);
@@ -80,6 +89,8 @@ public:
 
 class PhilipsTV1e: public PhilipsTV1
 {
+  Q_OBJECT
+
 public:
   PhilipsTV1e(
     unsigned int index);
@@ -90,6 +101,8 @@ public:
 
 class PhilipsTV1f: public PhilipsTV1
 {
+  Q_OBJECT
+
 public:
   PhilipsTV1f(
     unsigned int index);
@@ -100,6 +113,8 @@ public:
 
 class PhilipsTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsTV2(
     unsigned int index);
@@ -110,6 +125,8 @@ public:
 
 class PhilipsTV2a: public PhilipsTV2
 {
+  Q_OBJECT
+
 public:
   PhilipsTV2a(
     unsigned int index);
@@ -120,6 +137,8 @@ public:
 
 class PhilipsTV2b: public PhilipsTV2
 {
+  Q_OBJECT
+
 public:
   PhilipsTV2b(
     unsigned int index);
@@ -130,6 +149,8 @@ public:
 
 class PhilipsTV3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsTV3(
     unsigned int index);
@@ -140,6 +161,8 @@ public:
 
 class PhilipsDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsDVD1(
     unsigned int index);
@@ -150,6 +173,8 @@ public:
 
 class PhilipsDVD1a: public PhilipsDVD1
 {
+  Q_OBJECT
+
 public:
   PhilipsDVD1a(
     unsigned int index);
@@ -160,6 +185,8 @@ public:
 
 class PhilipsDVD1b: public PhilipsDVD1
 {
+  Q_OBJECT
+
 public:
   PhilipsDVD1b(
     unsigned int index);
@@ -170,6 +197,8 @@ public:
 
 class PhilipsDVD1c: public PhilipsDVD1
 {
+  Q_OBJECT
+
 public:
   PhilipsDVD1c(
     unsigned int index);
@@ -180,6 +209,8 @@ public:
 
 class PhilipsDVD1d: public PhilipsDVD1
 {
+  Q_OBJECT
+
 public:
   PhilipsDVD1d(
     unsigned int index);
@@ -190,6 +221,8 @@ public:
 
 class PhilipsDVD2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsDVD2(
     unsigned int index);
@@ -200,6 +233,8 @@ public:
 
 class PhilipsDVD3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsDVD3(
     unsigned int index);
@@ -213,6 +248,8 @@ public:
 
 class PhilipsDVD3a: public PhilipsDVD3
 {
+  Q_OBJECT
+
 public:
   PhilipsDVD3a(
     unsigned int index);
@@ -223,6 +260,8 @@ public:
 
 class PhilipsDVD4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsDVD4(
     unsigned int index);
@@ -236,6 +275,8 @@ public:
 
 class PhilipsVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsVCR1(
     unsigned int index);
@@ -246,6 +287,8 @@ public:
 
 class PhilipsVCR1a: public PhilipsVCR1
 {
+  Q_OBJECT
+
 public:
   PhilipsVCR1a(
     unsigned int index);
@@ -256,6 +299,8 @@ public:
 
 class PhilipsVCR1b: public PhilipsVCR1
 {
+  Q_OBJECT
+
 public:
   PhilipsVCR1b(
     unsigned int index);
@@ -266,6 +311,8 @@ public:
 
 class PhilipsVCR1c: public PhilipsVCR1
 {
+  Q_OBJECT
+
 public:
   PhilipsVCR1c(
     unsigned int index);
@@ -276,6 +323,8 @@ public:
 
 class PhilipsSat1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsSat1(
     unsigned int index);
@@ -286,6 +335,8 @@ public:
 
 class PhilipsSat2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsSat2(
     unsigned int index);
@@ -296,6 +347,8 @@ public:
 
 class PhilipsSat2a: public PhilipsSat2
 {
+  Q_OBJECT
+
 public:
   PhilipsSat2a(
     unsigned int index);
@@ -306,6 +359,8 @@ public:
 
 class PhilipsSat3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsSat3(
     unsigned int index);
@@ -316,6 +371,8 @@ public:
 
 class PhilipsAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsAudio1(
     unsigned int index);
@@ -329,6 +386,8 @@ public:
 
 class PhilipsAudio1a: public PhilipsAudio1
 {
+  Q_OBJECT
+
 public:
   PhilipsAudio1a(
     unsigned int index);
@@ -339,6 +398,8 @@ public:
 
 class PhilipsAudio1b: public PhilipsAudio1
 {
+  Q_OBJECT
+
 public:
   PhilipsAudio1b(
     unsigned int index);
@@ -352,6 +413,8 @@ public:
 
 class PhilipsAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsAudio2(
     unsigned int index);
@@ -365,6 +428,8 @@ public:
 
 class PhilipsAudio3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsAudio3(
     unsigned int index);
@@ -375,6 +440,8 @@ public:
 
 class PhilipsAudio4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsAudio4(
     unsigned int index);
@@ -386,19 +453,17 @@ public:
 //    QComboBox *cb);
 };
 
-/*
+
 class PhilipsAudio5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   PhilipsAudio5(
     unsigned int index);
 
   virtual void populateProtocol(
     QObject *guiObject);
-
-  virtual void populateInputList(
-    QComboBox *cb);
 };
-*/
 
 #endif // PHILIPS_H

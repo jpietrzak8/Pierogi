@@ -47,6 +47,12 @@ void DellRemote1::populateProtocol(
 
   threadableProtocol = new MCEProtocol(guiObject, index, 0x801C);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x2B, 7);
 
   addKey("vol_off", Mute_Key, 0x0D, 8);
@@ -96,6 +102,12 @@ void DellProjector1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x504F, 16);
 

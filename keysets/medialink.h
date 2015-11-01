@@ -1,7 +1,7 @@
 //
 // medialink.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class MedialinkSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MedialinkSTB1(
     unsigned int index);

@@ -1,7 +1,7 @@
 //
 // hyundai.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class HyundaiDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HyundaiDVD1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class HyundaiAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HyundaiAudio1(
     unsigned int index);
@@ -49,6 +52,8 @@ public:
 
 class HyundaiTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HyundaiTV1(
     unsigned int index);

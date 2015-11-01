@@ -1,7 +1,7 @@
 //
 // nad.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -48,6 +48,12 @@ void NADAudio1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x7C87, 16);
 
@@ -165,6 +171,12 @@ void NADTuner1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x7C87, 16);
 
   addKey("Tuner-Bank", Unmapped_Key, 0x24, 8);
@@ -223,6 +235,12 @@ void NADDVD1::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2D2D, 16);
 
@@ -290,6 +308,12 @@ void NADCD1::populateProtocol(
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addSIRC12Key("PLAY", Play_Key, 0x11, 0x32);
   addSIRC12Key("STOP", Stop_Key, 0x11, 0x38);
   addSIRC12Key("PAUSE", Pause_Key, 0x11, 0x39);
@@ -321,6 +345,12 @@ void NADCD2::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x7C87, 16);
 
@@ -380,6 +410,12 @@ void NADTape1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x7C87, 16);
 

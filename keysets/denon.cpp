@@ -1,7 +1,7 @@
 //
 // denon.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -51,6 +51,12 @@ void DenonDVD1::populateProtocol(
   }
 
   threadableProtocol = new DenonProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSharpKey("SEARCH_MODE", Unmapped_Key, 0x04, 0x9E);
   addSharpKey("ZOOM", Zoom_Key, 0x04, 0x9F);
@@ -138,6 +144,12 @@ void DenonDVD2::populateProtocol(
 
   threadableProtocol = lp;
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   lp->setHeaderPair(3500, 1800);
   lp->setTrailerPulse(400);
 
@@ -208,6 +220,12 @@ void DenonDVD3::populateProtocol(
 
   threadableProtocol = new DenonProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addSharpKey("0", Zero_Key, 0x01, 0x81);
   addSharpKey("1", One_Key, 0x01, 0x82);
   addSharpKey("2", Two_Key, 0x01, 0x83);
@@ -273,6 +291,12 @@ void DenonReceiver1::populateProtocol(
   }
 
   threadableProtocol = new DenonProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSharpKey("Phono", PhonoInput_Key, 0x02, 0xC3);
   addSharpKey("CD", CDInput_Key, 0x02, 0xC4);
@@ -567,6 +591,12 @@ void DenonReceiver2::populateProtocol(
 
   threadableProtocol = new DenonProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addSharpKey("tun_1", One_Key, 0x13, 0x42);
   addSharpKey("tun_2", Two_Key, 0x13, 0x43);
   addSharpKey("tun_3", Three_Key, 0x13, 0x44);
@@ -686,6 +716,12 @@ void DenonReceiver3::populateProtocol(
 
   threadableProtocol = lp;
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   lp->setTrailerPulse(561);
 
   addKey("POWER", Power_Key, 0xA20C, 16);
@@ -750,6 +786,12 @@ void DenonReceiver4::populateProtocol(
   }
 
   threadableProtocol = new DenonProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSharpKey("a/b", SpeakerSwitch_Key, 0x04, 0x43);
   addSharpKey("play<", Unmapped_Key, 0x04, 0x57); // Tape play reverse
@@ -833,6 +875,12 @@ void DenonAudio1::populateProtocol(
   }
 
   threadableProtocol = new DenonProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSharpKey("reset", Reset_Key, 0x04, 0x54);
   addSharpKey("TAPE REW", Unmapped_Key, 0x04, 0x57); // "TAPE_PLAY_REV"
@@ -1071,6 +1119,12 @@ void DenonAudio2::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
 //  setPreData(0xDA25, 16);
   setPreData(0x5B, 8);
 
@@ -1136,6 +1190,12 @@ void DenonAudio3::populateProtocol(
 
   threadableProtocol = new DenonProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("1", One_Key, 0x06, 0xC1);
   addKey("2", Two_Key, 0x06, 0xC2);
   addKey("3", Three_Key, 0x06, 0xC3);
@@ -1192,6 +1252,12 @@ void DenonAudio4::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x4040, 16);
   setPreData(0x0202, 16);

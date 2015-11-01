@@ -1,7 +1,7 @@
 //
 // mce.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class MCERemote1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MCERemote1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class MCERemote1a: public MCERemote1
 {
+  Q_OBJECT
+
 public:
   MCERemote1a(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class MCERemote1b: public MCERemote1
 {
+  Q_OBJECT
+
 public:
   MCERemote1b(
     unsigned int index);
@@ -63,6 +68,8 @@ public:
 
 class MCERemote1c: public MCERemote1
 {
+  Q_OBJECT
+
 public:
   MCERemote1c(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class MCERemote1d: public MCERemote1
 {
+  Q_OBJECT
+
 public:
   MCERemote1d(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class MCERemote1e: public MCERemote1
 {
+  Q_OBJECT
+
 public:
   MCERemote1e(
     unsigned int index);
@@ -93,6 +104,8 @@ public:
 
 class MCERemote1f: public MCERemote1
 {
+  Q_OBJECT
+
 public:
   MCERemote1f(
     unsigned int index);
@@ -103,6 +116,8 @@ public:
 
 class MCERemote1g: public MCERemote1
 {
+  Q_OBJECT
+
 public:
   MCERemote1g(
     unsigned int index);
@@ -113,6 +128,8 @@ public:
 
 class MCEXboxRemote1: public MCERemote1g
 {
+  Q_OBJECT
+
 public:
   MCEXboxRemote1(
     unsigned int index);

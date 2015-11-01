@@ -1,7 +1,7 @@
 //
 // pirmodprobe.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 #include <unistd.h> // for fork()
 #include <sys/types.h> // for pid_t
 #include <sys/wait.h> // for waitpid()
-#include "pirexception.h"
-#include <sstream>
 #include <errno.h>
 #include <sys/stat.h>
+#include <QString>
+#include <QMaemo5InformationBox>
+#include <QDebug>
 
 PIRModprobe::PIRModprobe()
   : successfullyLoadedModule(false)
@@ -63,11 +64,10 @@ int PIRModprobe::loadRX51Module()
   if (pid == -1)
   {
     // The fork failed!  Tell our user about the error:
-    std::stringstream ss;
-    ss << "Failed to fork a child process.\n";
-    ss << "Error returned was: " << strerror(errno) << "\n";
-    PIRException e(ss.str());
-    e.display();
+    QString errStr = "Failed to fork a child process.\nError returned was: ";
+    errStr += strerror(errno);
+    QMaemo5InformationBox::information(0, errStr);
+    qWarning() << errStr;
     return -1;
   }
   else if (pid == 0)
@@ -81,11 +81,10 @@ int PIRModprobe::loadRX51Module()
 
     // The execl call should overwrite the child process.  So, if we still
     // exist at this point, an error has occurred:
-    std::stringstream ss;
-    ss << "Failed to successfully call execl().\n";
-    ss << "Error returned was: " << strerror(errno) << "\n";
-    PIRException e(ss.str());
-    e.display();
+    QString errStr = "Failed to successfully call execl().\nError returned was: ";
+    errStr += strerror(errno);
+    QMaemo5InformationBox::information(0, errStr);
+    qWarning() << errStr;
     return -1;
   }
 
@@ -95,11 +94,10 @@ int PIRModprobe::loadRX51Module()
   if (waitpid(pid, stat_loc, 0) == -1)
   {
     // The call to modprobe failed.
-    std::stringstream ss;
-    ss << "Call to modprobe failed.\n";
-    ss << "Error returned was: " << strerror(errno) << "\n";
-    PIRException e(ss.str());
-    e.display();
+    QString errStr = "Call to modprobe failed.\nError returned was: ";
+    errStr += strerror(errno);
+    QMaemo5InformationBox::information(0, errStr);
+    qWarning() << errStr;
     return -1;
   }
 
@@ -108,11 +106,10 @@ int PIRModprobe::loadRX51Module()
     if (WIFEXITED(*stat_loc) == 0)
     {
       // modprobe encountered an error of some sort.
-      std::stringstream ss;
-      ss << "Unable to load the lirc_rx51 module.\n";
+      QString errStr = "Unable to load the lirc_rx51 module.";
       // Need better details about the error here!
-      PIRException e(ss.str());
-      e.display();
+      QMaemo5InformationBox::information(0, errStr);
+      qWarning() << errStr;
       return -1;
     }
   }
@@ -132,11 +129,10 @@ int PIRModprobe::unloadRX51Module()
   if (pid == -1)
   {
     // The fork failed!  Tell our user about the error:
-    std::stringstream ss;
-    ss << "Failed to fork a child process.\n";
-    ss << "Error returned was: " << strerror(errno) << "\n";
-    PIRException e(ss.str());
-    e.display();
+    QString errStr = "Failed to fork a child process.\nError returned was: ";
+    errStr += strerror(errno);
+    QMaemo5InformationBox::information(0, errStr);
+    qWarning() << errStr;
     return -1;
   }
   else if (pid == 0)
@@ -150,11 +146,10 @@ int PIRModprobe::unloadRX51Module()
 
     // The execl call should overwrite the child process.  So, if we still
     // exist at this point, an error has occurred:
-    std::stringstream ss;
-    ss << "Failed to successfully call execl().\n";
-    ss << "Error returned was: " << strerror(errno) << "\n";
-    PIRException e(ss.str());
-    e.display();
+    QString errStr = "Failed to successfully call execl().\nError returned was: ";
+    errStr += strerror(errno);
+    QMaemo5InformationBox::information(0, errStr);
+    qWarning() << errStr;
     return -1;
   }
 
@@ -164,11 +159,10 @@ int PIRModprobe::unloadRX51Module()
   if (waitpid(pid, stat_loc, 0) == -1)
   {
     // The call to modprobe failed.
-    std::stringstream ss;
-    ss << "Call to modprobe failed.\n";
-    ss << "Error returned was: " << strerror(errno) << "\n";
-    PIRException e(ss.str());
-    e.display();
+    QString errStr = "Call to modprobe failed.\nError returned was: ";
+    errStr += strerror(errno);
+    QMaemo5InformationBox::information(0, errStr);
+    qWarning() << errStr;
     return -1;
   }
 
@@ -177,11 +171,10 @@ int PIRModprobe::unloadRX51Module()
     if (WIFEXITED(*stat_loc) == 0)
     {
       // modprobe encountered an error of some sort.
-      std::stringstream ss;
-      ss << "Unable to unload the lirc_rx51 module.\n";
+      QString errStr = "Unable to unload the lirc_rx51 module.";
       // Need better details about the error here!
-      PIRException e(ss.str());
-      e.display();
+      QMaemo5InformationBox::information(0, errStr);
+      qWarning() << errStr;
       return -1;
     }
   }

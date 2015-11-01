@@ -1,7 +1,7 @@
 //
 // astro.h
 //
-// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class AstroSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AstroSTB1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class AstroSTB2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AstroSTB2(
     unsigned int index);

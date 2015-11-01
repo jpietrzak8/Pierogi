@@ -1,7 +1,7 @@
 //
 // lifetec.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -48,6 +48,12 @@ void LifetecTV1::populateProtocol(
   }
 
   threadableProtocol = new SIRCProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSIRC12Key("1", One_Key, 0x01, 0x00);
   addSIRC12Key("2", Two_Key, 0x01, 0x01);
@@ -108,6 +114,12 @@ void LifetecTV2::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("POWER", Power_Key, 0x100C, 13);
   addKey("1", One_Key, 0x1001, 13);
   addKey("2", Two_Key, 0x1002, 13);
@@ -163,6 +175,12 @@ void LifetecVCR1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x7B80, 16);
 
@@ -224,6 +242,12 @@ void LifetecAudio1::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xA4A4, 16);
 

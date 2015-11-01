@@ -1,7 +1,7 @@
 //
 // mitsubishi.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class MitsubishiTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MitsubishiTV1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class MitsubishiTV1a: public MitsubishiTV1
 {
+  Q_OBJECT
+
 public:
   MitsubishiTV1a(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class MitsubishiVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MitsubishiVCR1(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class MitsubishiVCR1a: public MitsubishiVCR1
 {
+  Q_OBJECT
+
 public:
   MitsubishiVCR1a(
     unsigned int index);
@@ -70,6 +77,8 @@ public:
 
 class MitsubishiProjector1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MitsubishiProjector1(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class MitsubishiProjector2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MitsubishiProjector2(
     unsigned int index);

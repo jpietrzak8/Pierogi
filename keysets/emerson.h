@@ -1,7 +1,7 @@
 //
 // emerson.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class EmersonTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   EmersonTV1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class EmersonTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   EmersonTV2(
     unsigned int index);
@@ -49,6 +52,8 @@ public:
 
 class EmersonTV3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   EmersonTV3(
     unsigned int index);
@@ -59,6 +64,8 @@ public:
 
 class EmersonTV4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   EmersonTV4(
     unsigned int index);
@@ -69,6 +76,8 @@ public:
 
 class EmersonTV5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   EmersonTV5(
     unsigned int index);
@@ -79,6 +88,8 @@ public:
 
 class EmersonSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   EmersonSTB1(
     unsigned int index);
@@ -89,6 +100,8 @@ public:
 
 class EmersonDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   EmersonDVD1(
     unsigned int index);
@@ -99,6 +112,8 @@ public:
 
 class EmersonAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   EmersonAudio1(
     unsigned int index);
@@ -109,6 +124,8 @@ public:
 
 class EmersonAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   EmersonAudio2(
     unsigned int index);
@@ -119,6 +136,8 @@ public:
 
 class EmersonAudio3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   EmersonAudio3(
     unsigned int index);

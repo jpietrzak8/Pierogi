@@ -1,7 +1,7 @@
 //
 // magnavox.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class MagnavoxDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MagnavoxDVD1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class MagnavoxVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MagnavoxVCR1(
     unsigned int index);
@@ -49,6 +52,8 @@ public:
 
 class MagnavoxConverterBox1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MagnavoxConverterBox1(
     unsigned int index);
@@ -59,6 +64,8 @@ public:
 
 class MagnavoxTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MagnavoxTV1(
     unsigned int index);

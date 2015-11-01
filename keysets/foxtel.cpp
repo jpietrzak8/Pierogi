@@ -1,7 +1,7 @@
 //
 // foxtel.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void FoxtelSTB1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x3C84, 16);
 
@@ -106,6 +112,12 @@ void FoxtelSTB2::populateProtocol(
   }
 
   threadableProtocol = new Nokia32Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x21A0, 16);
   setPostData(0x26, 7);

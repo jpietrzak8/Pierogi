@@ -1,7 +1,7 @@
 //
 // pinnacle.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -45,6 +45,12 @@ void PinnaclePCTV1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x47);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("key_mute", Mute_Key, 0x00, 6);
   addKey("key_menu", Menu_Key, 0x01, 6);
@@ -98,6 +104,12 @@ void PinnaclePCTV2::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x47);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("play-pause", Play_Key, 0x06, 6);
   addKey("play-pause", Pause_Key, 0x06, 6);
   addKey("stop", Stop_Key, 0x05, 6);
@@ -148,6 +160,12 @@ void PinnaclePCTV3::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x47);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("MUTE", Mute_Key, 0x01, 6);
   addKey("POWER", Power_Key, 0x39, 6);

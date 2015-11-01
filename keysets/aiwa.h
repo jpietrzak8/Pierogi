@@ -1,7 +1,7 @@
 //
 // aiwa.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class AiwaVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AiwaVCR1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class AiwaVCR2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AiwaVCR2(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class AiwaVCR3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AiwaVCR3(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class AiwaAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AiwaAudio1(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class AiwaAudio1a: public AiwaAudio1
 {
+  Q_OBJECT
+
 public:
   AiwaAudio1a(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class AiwaAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AiwaAudio2(
     unsigned int index);
@@ -96,6 +107,8 @@ public:
 
 class AiwaAudio2a: public AiwaAudio2
 {
+  Q_OBJECT
+
 public:
   AiwaAudio2a(
     unsigned int index);
@@ -106,6 +119,8 @@ public:
 
 class AiwaAudio2b: public AiwaAudio2
 {
+  Q_OBJECT
+
 public:
   AiwaAudio2b(
     unsigned int index);
@@ -116,6 +131,8 @@ public:
 
 class AiwaAudio2c: public AiwaAudio2
 {
+  Q_OBJECT
+
 public:
   AiwaAudio2c(
     unsigned int index);
@@ -126,6 +143,8 @@ public:
 
 class AiwaAudio3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AiwaAudio3(
     unsigned int index);
@@ -136,6 +155,8 @@ public:
 
 class AiwaAudio4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AiwaAudio4(
     unsigned int index);
@@ -146,6 +167,8 @@ public:
 
 class AiwaAudio5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AiwaAudio5(
     unsigned int index);
@@ -156,6 +179,8 @@ public:
 
 class AiwaAudio6: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AiwaAudio6(
     unsigned int index);
@@ -169,6 +194,8 @@ public:
 
 class AiwaCarStereo1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AiwaCarStereo1(
     unsigned int index);
@@ -182,6 +209,8 @@ public:
 
 class AiwaDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   AiwaDVD1(
     unsigned int index);

@@ -1,7 +1,7 @@
 //
 // panasonic.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -49,6 +49,12 @@ void PanasonicCarAudio::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
 //  setPreData(0x8156, 16);
   setPreData(0x6A81, 16);
 
@@ -84,6 +90,12 @@ void PanasonicSat1::populateProtocol(
   }
 
   threadableProtocol = new PanasonicProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x40040140, 32);
   setPreData(0x2002, 16);
@@ -175,6 +187,12 @@ void PanasonicTV1::populateProtocol(
   }
 
   threadableProtocol = new PanasonicProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2002, 16);
 
@@ -410,6 +428,12 @@ void PanasonicTV2::populateProtocol(
 
   threadableProtocol = new PanasonicOldProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addPanOldKey("Mute", Mute_Key, 0x00, 0x00);
   addPanOldKey("R-Tune", Unmapped_Key, 0x00, 0x0A);
   addPanOldKey("Sleep", Sleep_Key, 0x00, 0x0B);
@@ -498,6 +522,12 @@ void PanasonicVCR1::populateProtocol(
   }
 
   threadableProtocol = new PanasonicProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x400409, 24);
   setPreData(0x2002, 16);
@@ -691,6 +721,12 @@ void PanasonicVCR2::populateProtocol(
 
   threadableProtocol = new PanasonicOldProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addPanOldKey("STOP", Stop_Key, 0x02, 0x00);
   addPanOldKey("REW", Rewind_Key, 0x02, 0x02);
   addPanOldKey("FF", FastForward_Key, 0x02, 0x03);
@@ -758,6 +794,12 @@ void PanasonicDVD1::populateProtocol(
   }
 
   threadableProtocol = new PanasonicProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x40040D00, 32);
   setPreData(0x2002, 16);
@@ -887,6 +929,12 @@ void PanasonicAudio1::populateProtocol(
 
   threadableProtocol = new PanasonicProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
 //  setPreData(0x40040543, 32);
   setPreData(0x2002, 16);
 
@@ -987,6 +1035,12 @@ void PanasonicAudio2::populateProtocol(
   }
 
   threadableProtocol = new PanasonicProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2002, 16);
 
@@ -1102,6 +1156,12 @@ void PanasonicAudio3::populateProtocol(
 
   threadableProtocol = new PanasonicOldProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addPanOldKey("audio_power", Power_Key, 0x09, 0x20);
   addPanOldKey("audio_phono", PhonoInput_Key, 0x09, 0x0C);
   addPanOldKey("vol-", VolumeDown_Key, 0x09, 0x25);
@@ -1167,6 +1227,12 @@ void PanasonicAC1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x6681, 16);
 

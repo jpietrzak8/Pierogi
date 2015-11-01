@@ -1,7 +1,7 @@
 //
 // denon.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class DenonDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DenonDVD1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class DenonDVD2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DenonDVD2(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class DenonDVD3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DenonDVD3(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class DenonReceiver1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DenonReceiver1(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class DenonReceiver1a: public DenonReceiver1
 {
+  Q_OBJECT
+
 public:
   DenonReceiver1a(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class DenonReceiver1b: public DenonReceiver1
 {
+  Q_OBJECT
+
 public:
   DenonReceiver1b(
     unsigned int index);
@@ -93,6 +104,8 @@ public:
 
 class DenonReceiver1c: public DenonReceiver1
 {
+  Q_OBJECT
+
 public:
   DenonReceiver1c(
     unsigned int index);
@@ -103,6 +116,8 @@ public:
 
 class DenonReceiver1d: public DenonReceiver1c
 {
+  Q_OBJECT
+
 public:
   DenonReceiver1d(
     unsigned int index);
@@ -113,6 +128,8 @@ public:
 
 class DenonReceiver1f: public DenonReceiver1c
 {
+  Q_OBJECT
+
 public:
   DenonReceiver1f(
     unsigned int index);
@@ -123,6 +140,8 @@ public:
 
 class DenonReceiver2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DenonReceiver2(
     unsigned int index);
@@ -136,6 +155,8 @@ public:
 
 class DenonReceiver2a: public DenonReceiver2
 {
+  Q_OBJECT
+
 public:
   DenonReceiver2a(
     unsigned int index);
@@ -146,6 +167,8 @@ public:
 
 class DenonReceiver3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DenonReceiver3(
     unsigned int index);
@@ -159,6 +182,8 @@ public:
 
 class DenonReceiver4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DenonReceiver4(
     unsigned int index);
@@ -172,6 +197,8 @@ public:
 
 class DenonAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DenonAudio1(
     unsigned int index);
@@ -185,6 +212,8 @@ public:
 
 class DenonAudio1a: public DenonAudio1
 {
+  Q_OBJECT
+
 public:
   DenonAudio1a(
     unsigned int index);
@@ -195,6 +224,8 @@ public:
 
 class DenonAudio1b: public DenonAudio1
 {
+  Q_OBJECT
+
 public:
   DenonAudio1b(
     unsigned int index);
@@ -205,6 +236,8 @@ public:
 
 class DenonAudio1c: public DenonAudio1b
 {
+  Q_OBJECT
+
 public:
   DenonAudio1c(
     unsigned int index);
@@ -215,6 +248,8 @@ public:
 
 class DenonAudio1d: public DenonAudio1
 {
+  Q_OBJECT
+
 public:
   DenonAudio1d(
     unsigned int index);
@@ -225,6 +260,8 @@ public:
 
 class DenonAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DenonAudio2(
     unsigned int index);
@@ -238,6 +275,8 @@ public:
 
 class DenonAudio3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DenonAudio3(
     unsigned int index);
@@ -248,6 +287,8 @@ public:
 
 class DenonAudio4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DenonAudio4(
     unsigned int index);

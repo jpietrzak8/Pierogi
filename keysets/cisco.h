@@ -1,7 +1,7 @@
 //
 // cisco.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class CiscoSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   CiscoSTB1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class CiscoSTB2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   CiscoSTB2(
     unsigned int index);
@@ -56,6 +59,8 @@ public:
 
 class CiscoSTB3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   CiscoSTB3(
     unsigned int index);
@@ -66,6 +71,8 @@ public:
 
 class CiscoSTB4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   CiscoSTB4(
     unsigned int index);

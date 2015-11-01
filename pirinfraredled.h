@@ -1,7 +1,7 @@
 //
 // pirinfraredled.h
 //
-// Copyright 2012, 2013 by John Pietrzak  (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak  (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -23,6 +23,8 @@
 #ifndef PIRINFRAREDLED_H
 #define PIRINFRAREDLED_H
 
+#include <QObject>
+
 //
 // Encapsulates communication with the N900's IR hardware, using the LIRC
 // device that (hopefully) exists on all N900s.
@@ -32,8 +34,10 @@
 // N900's IR device driver, so that's probably a good limit to set:
 #define BUFFER_SIZE 256
 
-class PIRInfraredLED
+class PIRInfraredLED: public QObject
 {
+  Q_OBJECT
+
 public:
   PIRInfraredLED();
 
@@ -44,25 +48,29 @@ public:
   ~PIRInfraredLED();
 
   // Most remotes will just want to append pairs of on/off times:
-  void addPair(
+  bool addPair(
     int pulse,
     int space);
 
   // Some remotes need to specify the switching values individually:
-  void addSingle(
+  bool addSingle(
     int single);
 
   // Send the buffered pulses to the IR device:
-  void sendCommandToDevice();
+  bool sendCommandToDevice();
 
-  void setCarrierFrequency(
+  bool setCarrierFrequency(
     unsigned int frequency);
 
-  void setDutyCycle(
+  bool setDutyCycle(
     unsigned int dutyCycle);
 
+signals:
+  void errorMessage(
+    QString errStr);
+
 private:
-  void openLircDevice();
+  bool openLircDevice();
 
   int fileDescriptor;
 

@@ -1,7 +1,7 @@
 //
 // adb.cpp
 //
-// Copyright 2012 - 2014 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -49,6 +49,12 @@ void ADBSTB1::populateProtocol(
   }
 
   threadableProtocol = new MCEProtocol(guiObject, index, 0x8059);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x24, 7);
 
@@ -101,6 +107,12 @@ void ADBSTB2::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0E86, 16);
 
@@ -170,6 +182,12 @@ void ADBSTB3::populateProtocol(
 
   threadableProtocol = new MCEProtocol(guiObject, index, 0x8051);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x11, 7);
 
   addKey("vod", Unmapped_Key, 0x01, 8);
@@ -231,6 +249,12 @@ void ADBSTB4::populateProtocol(
 
   threadableProtocol = new Nokia32Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x2190, 16);
   setPostData(0x26, 7);
 
@@ -284,6 +308,12 @@ void ADBSTB5::populateProtocol(
   }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0008, 13);
 
@@ -360,6 +390,12 @@ void ADBSTB6::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x3C84, 16);
 

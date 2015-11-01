@@ -31,7 +31,6 @@ SOURCES += main.cpp mainwindow.cpp \
     pirmakenames.cpp \
     pirdocumentationform.cpp \
     piraboutform.cpp \
-    pirexception.cpp \
     pirkeysetwidgetitem.cpp \
     keysets/apple.cpp \
     keysets/ei.cpp \
@@ -274,13 +273,13 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/russellhobbs.cpp \
     keysets/manta.cpp \
     protocols/panasonicprotocol.cpp \
-    forms/pirtvmenuform.cpp
+    forms/pirtvmenuform.cpp \
+    keysets/fujitsu.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
     pirdocumentationform.h \
     piraboutform.h \
-    pirexception.h \
     pirkeysetwidgetitem.h \
     keysets/apple.h \
     keysets/ei.h \
@@ -524,7 +523,8 @@ HEADERS += mainwindow.h \
     keysets/russellhobbs.h \
     keysets/manta.h \
     protocols/panasonicprotocol.h \
-    forms/pirtvmenuform.h
+    forms/pirtvmenuform.h \
+    keysets/fujitsu.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \
@@ -648,40 +648,3 @@ OTHER_FILES += \
 
 RESOURCES += \
     PierogiResources.qrc
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 //
 // dreambox.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -48,6 +48,12 @@ void DreamboxSat1::populateProtocol(
 
   threadableProtocol = new XMPProtocol(
     guiObject, index, 0x0, 0x0, 0x44, 0x1A, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addXMPKey("0", Zero_Key, 0x00, 0x00);
   addXMPKey("1", One_Key, 0x01, 0x00);
@@ -222,6 +228,12 @@ void DreamboxSat2::populateProtocol(
   threadableProtocol = new XMPProtocol(
     guiObject, index, 0x3, 0x1, 0x44, 0x1A, false);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addXMPKey("0", Zero_Key, 0x00, 0x00);
   addXMPKey("1", One_Key, 0x01, 0x00);
   addXMPKey("2", Two_Key, 0x02, 0x00);
@@ -300,6 +312,12 @@ void DreamboxSat3::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x32, 8);
 
@@ -380,6 +398,12 @@ void DreamboxSat4::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x0000, 16);
 
   addKey("channel up", ChannelUp_Key, 0x00, 8);
@@ -429,6 +453,12 @@ void DreamboxSat5::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x10, 8);
 

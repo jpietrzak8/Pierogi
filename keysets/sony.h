@@ -1,7 +1,7 @@
 //
 // sony.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class SonyTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyTV1(
     unsigned int index);
@@ -44,6 +45,8 @@ public:
 
 class SonyTV1a: public SonyTV1
 {
+  Q_OBJECT
+
 public:
   SonyTV1a(
     unsigned int index);
@@ -55,6 +58,8 @@ public:
 
 class SonyTV1b: public SonyTV1a
 {
+  Q_OBJECT
+
 public:
   SonyTV1b(
     unsigned int index);
@@ -66,6 +71,8 @@ public:
 
 class SonyTV1c: public SonyTV1
 {
+  Q_OBJECT
+
 public:
   SonyTV1c(
     unsigned int index);
@@ -77,6 +84,8 @@ public:
 
 class SonyTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyTV2(
     unsigned int index);
@@ -91,6 +100,8 @@ public:
 
 class SonyAmp1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyAmp1(
     unsigned int index);
@@ -105,6 +116,8 @@ public:
 
 class SonyAmp2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyAmp2(
     unsigned int index);
@@ -119,6 +132,8 @@ public:
 
 class SonyAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyAudio1(
     unsigned int index);
@@ -133,6 +148,8 @@ public:
 
 class SonyAudio1a: public SonyAudio1
 {
+  Q_OBJECT
+
 public:
   SonyAudio1a(
     unsigned int index);
@@ -144,6 +161,8 @@ public:
 
 class SonyDAT1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyDAT1(
     unsigned int index);
@@ -155,6 +174,8 @@ public:
 
 class SonyDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyDVD1(
     unsigned int index);
@@ -166,6 +187,8 @@ public:
 
 class SonyDVD1a: public SonyDVD1
 {
+  Q_OBJECT
+
 public:
   SonyDVD1a(
     unsigned int index);
@@ -177,6 +200,8 @@ public:
 
 class SonyDVD1b: public SonyDVD1
 {
+  Q_OBJECT
+
 public:
   SonyDVD1b(
     unsigned int index);
@@ -188,6 +213,8 @@ public:
 
 class SonyDVD2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyDVD2(
     unsigned int index);
@@ -199,6 +226,8 @@ public:
 
 class SonyDVD2a: public SonyDVD2
 {
+  Q_OBJECT
+
 public:
   SonyDVD2a(
     unsigned int index);
@@ -210,6 +239,8 @@ public:
 
 class SonyVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyVCR1(
     unsigned int index);
@@ -224,6 +255,8 @@ public:
 
 class SonyVCR1a: public SonyVCR1
 {
+  Q_OBJECT
+
 public:
   SonyVCR1a(
     unsigned int index);
@@ -235,6 +268,8 @@ public:
 
 class SonyVCR1b: public SonyVCR1a
 {
+  Q_OBJECT
+
 public:
   SonyVCR1b(
     unsigned int index);
@@ -246,6 +281,8 @@ public:
 
 class SonyReceiver1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyReceiver1(
     unsigned int index);
@@ -260,6 +297,8 @@ public:
 
 class SonyCD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyCD1(
     unsigned int index);
@@ -270,6 +309,8 @@ public:
 
 class SonyCD1a: public SonyCD1
 {
+  Q_OBJECT
+
 public:
   SonyCD1a(
     unsigned int index);
@@ -280,6 +321,8 @@ public:
 
 class SonyCD1b: public SonyCD1
 {
+  Q_OBJECT
+
 public:
   SonyCD1b(
     unsigned int index);
@@ -290,6 +333,8 @@ public:
 
 class SonyProjector1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyProjector1(
     unsigned int index);
@@ -303,6 +348,8 @@ public:
 
 class SonyProjector1a: public SonyProjector1
 {
+  Q_OBJECT
+
 public:
   SonyProjector1a(
     unsigned int index);
@@ -313,6 +360,8 @@ public:
 
 class SonyPlaystation1: public SonyDVD1
 {
+  Q_OBJECT
+
 public:
   SonyPlaystation1(
     unsigned int index);
@@ -324,6 +373,8 @@ public:
 
 class SonyHT1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyHT1(
     unsigned int index);
@@ -338,6 +389,8 @@ public:
 
 class SonyCarStereo1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SonyCarStereo1(
     unsigned int index);
@@ -352,6 +405,8 @@ public:
 
 class SonyCarStereo1a: public SonyCarStereo1
 {
+  Q_OBJECT
+
 public:
   SonyCarStereo1a(
     unsigned int index);

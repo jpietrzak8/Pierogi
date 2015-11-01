@@ -1,7 +1,7 @@
 //
 // bush.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void BushTV1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("menu-off", Exit_Key, 0x0013, 13);
   addKey("zoom", Zoom_Key, 0x003E, 13);
@@ -113,6 +119,12 @@ void BushTV2::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("SMART_CONTROL_PICTURE", PictureMode_Key, 0x1002, 13);
   addKey("MIX", TeletextAndTV_Key, 0x1004, 13);
@@ -183,6 +195,12 @@ void BushSTB1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("power", Power_Key, 0x120C, 13);
   addKey("mute", Mute_Key, 0x120D, 13);

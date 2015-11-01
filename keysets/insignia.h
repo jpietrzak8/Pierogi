@@ -1,7 +1,7 @@
 //
 // insignia.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class InsigniaTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaTV1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class InsigniaTV1a: public InsigniaTV1
 {
+  Q_OBJECT
+
 public:
   InsigniaTV1a(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class InsigniaTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaTV2(
     unsigned int index);
@@ -66,6 +71,8 @@ public:
 
 class InsigniaTV3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaTV3(
     unsigned int index);
@@ -76,6 +83,8 @@ public:
 
 class InsigniaTV4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaTV4(
     unsigned int index);
@@ -86,6 +95,8 @@ public:
 
 class InsigniaTV5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaTV5(
     unsigned int index);
@@ -96,6 +107,8 @@ public:
 
 class InsigniaTV6: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaTV6(
     unsigned int index);
@@ -106,6 +119,8 @@ public:
 
 class InsigniaDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaDVD1(
     unsigned int index);
@@ -116,6 +131,8 @@ public:
 
 class InsigniaDVD2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaDVD2(
     unsigned int index);
@@ -126,6 +143,8 @@ public:
 
 class InsigniaDVD3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaDVD3(
     unsigned int index);
@@ -139,6 +158,8 @@ public:
 
 class InsigniaDVD4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaDVD4(
     unsigned int index);
@@ -152,6 +173,8 @@ public:
 
 class InsigniaDVD5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaDVD5(
     unsigned int index);
@@ -162,6 +185,8 @@ public:
 
 class InsigniaDVD6: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   InsigniaDVD6(
     unsigned int index);

@@ -1,7 +1,7 @@
 //
 // orion.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void OrionTV1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x00, 8);
 
@@ -123,6 +129,12 @@ void OrionTV2::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x0586, 16);
 
   addKey("1", One_Key, 0x00, 8);
@@ -177,6 +189,12 @@ void OrionTV3::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0571, 16);
 
@@ -260,6 +278,12 @@ void OrionVCR1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x7B80, 16);
 
   addKey("CH0", Zero_Key, 0x00, 8);
@@ -334,6 +358,12 @@ void OrionVCR2::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x7E80, 16);
 
   addKey("repeat", Repeat_Key, 0x0A, 8);
@@ -367,6 +397,12 @@ void OrionDVD1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0571, 16);
 

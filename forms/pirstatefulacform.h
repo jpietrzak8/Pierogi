@@ -25,6 +25,8 @@
 
 #include <QWidget>
 
+#include "piracstateinfo.h"
+
 class MainWindow;
 class PIRKeysetManager;
 
@@ -63,6 +65,8 @@ private slots:
 
 private:
   Ui::PIRStatefulACForm *ui;
+
+  PIRACSettings settings;
 
   MainWindow *mainWindow;
 };

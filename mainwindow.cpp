@@ -2,7 +2,7 @@
 //
 // This is the main window code for the Pierogi Universal IR App.
 //
-// Copyright 2012 - 2014 by John Pietrzak  (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak  (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -55,7 +55,8 @@
 #include "controls/pirflickabletabbar.h"
 
 //#define DEBUGGING
-#include <iostream>
+//#include <iostream>
+#include <QMaemo5InformationBox>
 #include <QDebug>
 
 // Some ugly globals used for thread communications:
@@ -105,6 +106,13 @@ MainWindow::MainWindow(QWidget *parent)
   myKeysets = new PIRKeysetManager();
   myMacros = new PIRMacroManager(this);
   myPanels = new PIRPanelManager(this);
+
+  // Error handling connection:
+  connect(
+    myKeysets,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SLOT(displayMessage(QString)));
 
   // Construct the forms:
   selectKeysetForm = new PIRSelectKeysetForm(this);
@@ -1407,4 +1415,12 @@ void MainWindow::switchToPrevTab()
 
   setTabsIndex(--i);
 //  ui->mainTabWidget->setCurrentIndex(--i);
+}
+
+
+void MainWindow::displayMessage(
+  QString message)
+{
+  QMaemo5InformationBox::information(0, message);
+  qWarning() << message;
 }

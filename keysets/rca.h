@@ -1,7 +1,7 @@
 //
 // rca.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class RCATV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   RCATV1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class RCATV1a: public RCATV1
 {
+  Q_OBJECT
+
 public:
   RCATV1a(
     unsigned int index);
@@ -49,6 +52,8 @@ public:
 
 class RCATV1b: public RCATV1
 {
+  Q_OBJECT
+
 public:
   RCATV1b(
     unsigned int index);
@@ -85,6 +90,8 @@ public:
 
 class RCAVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   RCAVCR1(
     unsigned int index);
@@ -95,6 +102,8 @@ public:
 
 class RCAVCR1a: public RCAVCR1
 {
+  Q_OBJECT
+
 public:
   RCAVCR1a(
     unsigned int index);
@@ -105,6 +114,8 @@ public:
 
 class RCADVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   RCADVD1(
     unsigned int index);
@@ -115,6 +126,8 @@ public:
 
 class RCADVD1a: public RCADVD1
 {
+  Q_OBJECT
+
 public:
   RCADVD1a(
     unsigned int index);
@@ -125,6 +138,8 @@ public:
 
 class RCASat1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   RCASat1(
     unsigned int index);
@@ -135,6 +150,8 @@ public:
 
 class RCASat2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   RCASat2(
     unsigned int index);

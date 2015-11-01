@@ -1,7 +1,7 @@
 //
 // onkyo.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class OnkyoAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OnkyoAudio1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class OnkyoAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OnkyoAudio2(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class OnkyoAudio2a: public OnkyoAudio2
 {
+  Q_OBJECT
+
 public:
   OnkyoAudio2a(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class OnkyoAudio3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OnkyoAudio3(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class OnkyoAudio4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OnkyoAudio4(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class OnkyoAudio5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OnkyoAudio5(
     unsigned int index);
@@ -93,6 +104,8 @@ public:
 
 class OnkyoDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OnkyoDVD1(
     unsigned int index);
@@ -106,6 +119,8 @@ public:
 
 class OnkyoDVD2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OnkyoDVD2(
     unsigned int index);

@@ -1,7 +1,7 @@
 //
 // lasko.h
 //
-// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class LaskoFan1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LaskoFan1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class LaskoFan2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LaskoFan2(
     unsigned int index);

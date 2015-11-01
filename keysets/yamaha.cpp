@@ -1,7 +1,7 @@
 //
 // yamaha.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void YamahaDVD1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x3EC1, 16);
   setPreData(0x7C, 8);
@@ -139,6 +145,12 @@ void YamahaAudio1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x9E61, 16);
   setPreData(0x79, 8);
@@ -247,6 +259,12 @@ void YamahaAudio2::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x5EA1, 16);
   setPreData(0x7A, 8);
@@ -488,6 +506,12 @@ void YamahaAudio3::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
 //  setPreData(0xFE01, 16);
   setPreData(0x7F, 8);
 
@@ -548,6 +572,12 @@ void YamahaAudio4::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x1EE1, 16);
   setPreData(0x78, 8);
@@ -633,6 +663,12 @@ void YamahaTV1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
 //  setPreData(0x20DF, 16);
   setPreData(0x04, 8);
 
@@ -676,6 +712,12 @@ void YamahaKaraoke1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0xDE21, 16);
   setPreData(0x7B, 8);

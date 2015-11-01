@@ -1,7 +1,7 @@
 //
 // harmankardon.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class HarmanKardonAmp1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HarmanKardonAmp1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class HarmanKardonAmp2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HarmanKardonAmp2(
     unsigned int index);
@@ -56,6 +59,8 @@ public:
 
 class HarmanKardonReceiver2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HarmanKardonReceiver2(
     unsigned int index);
@@ -66,6 +71,8 @@ public:
 
 class HarmanKardonTape1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HarmanKardonTape1(
     unsigned int index);
@@ -76,6 +83,8 @@ public:
 
 class HarmanKardonDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HarmanKardonDVD1(
     unsigned int index);
@@ -86,6 +95,8 @@ public:
 
 class HarmanKardonDVD1a: public HarmanKardonDVD1
 {
+  Q_OBJECT
+
 public:
   HarmanKardonDVD1a(
     unsigned int index);
@@ -96,6 +107,8 @@ public:
 
 class HarmanKardonCD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HarmanKardonCD1(
     unsigned int index);
@@ -106,6 +119,8 @@ public:
 
 class HarmanKardonCD2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HarmanKardonCD2(
     unsigned int index);

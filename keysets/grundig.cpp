@@ -1,7 +1,7 @@
 //
 // grundig.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -50,6 +50,12 @@ void GrundigSat1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("Mute", Mute_Key, 0x0286, 13);
   addKey("Guide", Guide_Key, 0x028F, 13);
@@ -108,6 +114,12 @@ void GrundigSat2::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("POWER", Power_Key, 0x017B, 13);
   addKey("Audio", Audio_Key, 0x00D3, 13);
   addKey(">|", StepForward_Key, 0x008B, 13);
@@ -164,6 +176,12 @@ void GrundigSat3::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x80, 8);
 
@@ -229,6 +247,12 @@ void GrundigAmp1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("number_10", Zero_Key, 0x1C00, 13);
   addKey("number_1", One_Key, 0x1C01, 13);
@@ -319,6 +343,12 @@ void GrundigAudio1::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("0", Zero_Key, 0x1D00, 13);
   addKey("1", One_Key, 0x1D01, 13);
   addKey("2", Two_Key, 0x1D02, 13);
@@ -372,6 +402,12 @@ void GrundigAudio2::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xA2A2, 16);
 
@@ -446,6 +482,12 @@ void GrundigVCR1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("SYSTEM", Menu_Key, 0x014A, 13);
   addKey("OK", Select_Key, 0x0157, 13);
@@ -533,6 +575,12 @@ void GrundigTV1::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("leer", Unmapped_Key, 0x0000, 13);
   addKey("POWER", Power_Key, 0x017F, 13);
   addKey("1", One_Key, 0x00EF, 13);
@@ -591,6 +639,12 @@ void GrundigTV2::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("P+", ChannelUp_Key, 0x0010, 13);
   addKey("P+", Up_Key, 0x0010, 13);
@@ -657,6 +711,12 @@ void GrundigTV3::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("USR4", Unmapped_Key, 0x0205, 13);
   addKey("INFO", Info_Key, 0x0206, 13);
@@ -726,6 +786,12 @@ void GrundigTV4::populateProtocol(
   }
 
   threadableProtocol = new ProtonProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x1B, 8);
 
@@ -800,6 +866,12 @@ void GrundigDVD1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x10, 8);
 

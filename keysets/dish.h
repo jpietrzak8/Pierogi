@@ -1,7 +1,7 @@
 //
 // dish.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class DishReceiver1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DishReceiver1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class DishReceiver1a: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1a(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class DishReceiver1b: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1b(
     unsigned int index);
@@ -63,6 +68,8 @@ public:
 
 class DishReceiver1c: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1c(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class DishReceiver1d: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1d(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class DishReceiver1e: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1e(
     unsigned int index);
@@ -93,6 +104,8 @@ public:
 
 class DishReceiver1f: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1f(
     unsigned int index);
@@ -103,6 +116,8 @@ public:
 
 class DishReceiver1g: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1g(
     unsigned int index);
@@ -113,6 +128,8 @@ public:
 
 class DishReceiver1h: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1h(
     unsigned int index);
@@ -123,6 +140,8 @@ public:
 
 class DishReceiver1i: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1i(
     unsigned int index);
@@ -133,6 +152,8 @@ public:
 
 class DishReceiver1j: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1j(
     unsigned int index);
@@ -143,6 +164,8 @@ public:
 
 class DishReceiver1k: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1k(
     unsigned int index);
@@ -153,6 +176,8 @@ public:
 
 class DishReceiver1l: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1l(
     unsigned int index);
@@ -163,6 +188,8 @@ public:
 
 class DishReceiver1m: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1m(
     unsigned int index);
@@ -173,6 +200,8 @@ public:
 
 class DishReceiver1n: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1n(
     unsigned int index);
@@ -183,6 +212,8 @@ public:
 
 class DishReceiver1o: public DishReceiver1
 {
+  Q_OBJECT
+
 public:
   DishReceiver1o(
     unsigned int index);

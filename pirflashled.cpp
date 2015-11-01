@@ -1,7 +1,7 @@
 //
 // pirflashled.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -27,9 +27,8 @@
 #include <fcntl.h>
 
 // Error handling stuff:
-#include "pirexception.h"
 #include <errno.h>
-#include <sstream>
+#include <QString>
 
 // The Flash LEDs are tied into video device 0, along with the camera itself:
 #define PATH_TO_FLASH_DEVICE "/dev/video0"
@@ -51,26 +50,27 @@ PIRFlashLED::~PIRFlashLED()
     if (close(fileDescriptor) == -1)
     {
       // Failed to close the Flash LED:
-      std::stringstream ss;
-      ss << "Failed to close flash LED device.\n";
-      ss << "Error is " << strerror(errno) << "\n";
-      throw PIRException(ss.str());
+      QString errStr = "Flash LED error: ";
+      errStr += strerror(errno);
+      emit errorMessage(errStr);
     }
   }
 }
 
 
-void PIRFlashLED::openFlashDevice()
+bool PIRFlashLED::openFlashDevice()
 {
   // Not sure why "O_RDWR", but it seems to be necessary:
   fileDescriptor = open(PATH_TO_FLASH_DEVICE, O_RDWR | O_NONBLOCK, 0);
 
   if (fileDescriptor == -1)
   {
-    std::stringstream ss;
-    ss << "Failed to connect to " << PATH_TO_FLASH_DEVICE << "\n";
-    ss << "Error is " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "Failed to connect to ";
+    errStr += PATH_TO_FLASH_DEVICE;
+    errStr += "\nError is: ";
+    errStr += strerror(errno);
+    emit errorMessage(errStr);
+    return false;
   }
 
   // Find out the intensity values for the LED:
@@ -82,10 +82,10 @@ void PIRFlashLED::openFlashDevice()
 
   if (ioctl(fileDescriptor, VIDIOC_QUERYCTRL, &qctrl) == -1)
   {
-    std::stringstream ss;
-    ss << "Failed to retrieve flash LED intensity values.\n";
-    ss << "Error is " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "Failed to retrieve flash LED intensity values.\nError is: ";
+    errStr += strerror(errno);
+    emit errorMessage(errStr);
+    return false;
   }
 
   minFlash = qctrl.minimum;
@@ -96,10 +96,10 @@ void PIRFlashLED::openFlashDevice()
 
   if (ioctl(fileDescriptor, VIDIOC_QUERYCTRL, &qctrl) == -1)
   {
-    std::stringstream ss;
-    ss << "Failed to retrieve flash timeout values.\n";
-    ss << "Error is " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "Failed to retrieve flash timeout values.\nError is: ";
+    errStr += strerror(errno);
+    emit errorMessage(errStr);
+    return false;
   }
 
   maxTime = qctrl.maximum;
@@ -119,6 +119,8 @@ void PIRFlashLED::openFlashDevice()
   minTorch = qctrl.minimum;
   maxTorch = qctrl.maximum;
 */
+
+  return true;
 }
 
 
@@ -138,10 +140,12 @@ void PIRFlashLED::strobe()
 
   if (ioctl(fileDescriptor, VIDIOC_S_CTRL, &ctrl) == -1)
   {
-    std::stringstream ss;
-    ss << "Failed to set flash intensity to " << maxFlash << "\n";
-    ss << "Error is " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "Failed to set flash intensity to ";
+    errStr += QString::number(maxFlash);
+    errStr += "\nError is: ";
+    errStr += strerror(errno);
+    emit errorMessage(errStr);
+    return;
   }
 
   ctrl.id = V4L2_CID_FLASH_TIMEOUT;
@@ -150,19 +154,21 @@ void PIRFlashLED::strobe()
 
   if (ioctl(fileDescriptor, VIDIOC_S_CTRL, &ctrl) == -1)
   {
-    std::stringstream ss;
-    ss << "Failed to set flash timeout to " << maxTime << "\n";
-    ss << "Error is " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "Failed to set flash timeout to ";
+    errStr += QString::number(maxTime);
+    errStr += "\nError is: ";
+    errStr += strerror(errno);
+    emit errorMessage(errStr);
+    return;
   }
 
   ctrl.id = V4L2_CID_FLASH_STROBE;
 
   if (ioctl(fileDescriptor, VIDIOC_S_CTRL, &ctrl) == -1)
   {
-    std::stringstream ss;
-    ss << "Failed to strobe flash.\n";
-    ss << "Error is " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "Failed to strobe flash.\nError is: ";
+    errStr += strerror(errno);
+    emit errorMessage(errStr);
+    return;
   }
 }

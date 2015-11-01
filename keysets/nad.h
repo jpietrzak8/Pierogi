@@ -1,7 +1,7 @@
 //
 // nad.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class NADAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NADAudio1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class NADTuner1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NADTuner1(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class NADDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NADDVD1(
     unsigned int index);
@@ -63,6 +68,8 @@ public:
 
 class NADCD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NADCD1(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class NADCD2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NADCD2(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class NADTape1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NADTape1(
     unsigned int index);

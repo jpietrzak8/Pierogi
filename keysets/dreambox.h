@@ -1,7 +1,7 @@
 //
 // dreambox.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class DreamboxSat1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DreamboxSat1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class DreamboxSat1a: public DreamboxSat1
 {
+  Q_OBJECT
+
 public:
   DreamboxSat1a(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class DreamboxSat1b: public DreamboxSat1
 {
+  Q_OBJECT
+
 public:
   DreamboxSat1b(
     unsigned int index);
@@ -63,6 +68,8 @@ public:
 
 class DreamboxSat1c: public DreamboxSat1
 {
+  Q_OBJECT
+
 public:
   DreamboxSat1c(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class DreamboxSat2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DreamboxSat2(
     unsigned int index);
@@ -86,6 +95,8 @@ public:
 
 class DreamboxSat3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DreamboxSat3(
     unsigned int index);
@@ -99,6 +110,8 @@ public:
 
 class DreamboxSat4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DreamboxSat4(
     unsigned int index);
@@ -112,6 +125,8 @@ public:
 
 class DreamboxSat5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DreamboxSat5(
     unsigned int index);

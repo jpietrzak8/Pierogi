@@ -1,7 +1,7 @@
 //
 // hauppauge.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void HauppaugePCTV1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x5E);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x00, 6);
   addKey("1", One_Key, 0x01, 6);
@@ -201,6 +207,12 @@ void HauppaugePCTV2::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("POWER", Power_Key, 0x150C, 13);
   addKey("1", One_Key, 0x1525, 13);

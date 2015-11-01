@@ -1,7 +1,7 @@
 //
 // jvc.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class JVCSat1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   JVCSat1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class JVCSat2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   JVCSat2(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class JVCVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   JVCVCR1(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class JVCVCR1a: public JVCVCR1
 {
+  Q_OBJECT
+
 public:
   JVCVCR1a(
     unsigned int index);
@@ -70,6 +77,8 @@ public:
 
 class JVCVCRBmode1: public JVCVCR1
 {
+  Q_OBJECT
+
 public:
   JVCVCRBmode1(
     unsigned int index);
@@ -80,6 +89,8 @@ public:
 
 class JVCVCRBmode1a: public JVCVCR1a
 {
+  Q_OBJECT
+
 public:
   JVCVCRBmode1a(
     unsigned int index);
@@ -90,6 +101,8 @@ public:
 
 class JVCTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   JVCTV1(
     unsigned int index);
@@ -103,6 +116,8 @@ public:
 
 class JVCTV1a: public JVCTV1
 {
+  Q_OBJECT
+
 public:
   JVCTV1a(
     unsigned int index);
@@ -113,6 +128,8 @@ public:
 
 class JVCTV1b: public JVCTV1
 {
+  Q_OBJECT
+
 public:
   JVCTV1b(
     unsigned int index);
@@ -123,6 +140,8 @@ public:
 
 class JVCTV1c: public JVCTV1
 {
+  Q_OBJECT
+
 public:
   JVCTV1c(
     unsigned int index);
@@ -133,6 +152,8 @@ public:
 
 class JVCTV1d: public JVCTV1
 {
+  Q_OBJECT
+
 public:
   JVCTV1d(
     unsigned int index);
@@ -143,6 +164,8 @@ public:
 
 class JVCDAT1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   JVCDAT1(
     unsigned int index);
@@ -153,6 +176,8 @@ public:
 
 class JVCCarDeck1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   JVCCarDeck1(
     unsigned int index);
@@ -163,6 +188,8 @@ public:
 
 class JVCAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   JVCAudio1(
     unsigned int index);
@@ -176,6 +203,8 @@ public:
 
 class JVCAudio1a: public JVCAudio1
 {
+  Q_OBJECT
+
 public:
   JVCAudio1a(
     unsigned int index);
@@ -186,6 +215,8 @@ public:
 
 class JVCAudio1b: public JVCAudio1
 {
+  Q_OBJECT
+
 public:
   JVCAudio1b(
     unsigned int index);
@@ -199,6 +230,8 @@ public:
 
 class JVCAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   JVCAudio2(
     unsigned int index);
@@ -212,6 +245,8 @@ public:
 
 class JVCDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   JVCDVD1(
     unsigned int index);

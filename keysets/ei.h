@@ -1,7 +1,7 @@
 //
 // ei.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class EiTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   EiTV1(
     unsigned int index);

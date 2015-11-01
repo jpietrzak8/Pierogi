@@ -1,7 +1,7 @@
 //
 // hitachi.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class HitachiTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HitachiTV1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class HitachiTV1a: public HitachiTV1
 {
+  Q_OBJECT
+
 public:
   HitachiTV1a(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class HitachiTV1b: public HitachiTV1a
 {
+  Q_OBJECT
+
 public:
   HitachiTV1b(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class HitachiTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HitachiTV2(
     unsigned int index);
@@ -70,6 +77,8 @@ public:
 
 class HitachiTV3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HitachiTV3(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class HitachiProjector: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HitachiProjector(
     unsigned int index);
@@ -93,6 +104,8 @@ public:
 
 class HitachiDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HitachiDVD1(
     unsigned int index);
@@ -103,6 +116,8 @@ public:
 
 class HitachiAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HitachiAudio1(
     unsigned int index);
@@ -113,6 +128,8 @@ public:
 
 class HitachiVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HitachiVCR1(
     unsigned int index);

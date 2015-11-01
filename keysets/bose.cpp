@@ -1,7 +1,7 @@
 //
 // bose.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void BoseRadio1::populateProtocol(
   }
 
   threadableProtocol = new BoseProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("Mute", Mute_Key, 0x01, 8);
   addKey("Volume_Down", VolumeDown_Key, 0x02, 8);
@@ -116,6 +122,12 @@ void BoseRadio2::populateProtocol(
 
   threadableProtocol = new BoseProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("on/off", Power_Key, 0x00, 8);
   addKey("4", Four_Key, 0x08, 8);
   addKey("am", AM_Key, 0x10, 8);
@@ -173,6 +185,12 @@ void BoseRadio3::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xBA, 8);
 
@@ -232,6 +250,12 @@ void BoseHomeTheater1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x4BBA, 16);
 

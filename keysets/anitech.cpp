@@ -1,7 +1,7 @@
 //
 // anitech.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void AnitechTV1::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("SLEEP", Sleep_Key, 0x1026, 13);
   addKey("POWER", Power_Key, 0x100C, 13);
   addKey("MUTE", Mute_Key, 0x100D, 13);
@@ -78,6 +84,12 @@ void AnitechVCR1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("POWER", Power_Key, 0x114C, 13);
   addKey("M", Unmapped_Key, 0x117B, 13);

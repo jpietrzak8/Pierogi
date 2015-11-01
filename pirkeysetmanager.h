@@ -29,8 +29,8 @@
 
 #include <QString>
 #include <QThread>
+#include <QObject>
 
-class QObject;
 class QComboBox;
 class PIRSelectKeysetForm;
 class PIRSelectDeviceForm;
@@ -47,8 +47,10 @@ typedef std::map<unsigned int, PIRKeysetMetaData *> PIRKeysetCollection;
 typedef std::map<QString, unsigned int> PIRKeysetNameIndex;
 typedef std::map<QString, PIRKeysetNameIndex> PIRKeysetMakeIndex;
 
-class PIRKeysetManager
+class PIRKeysetManager: public QObject
 {
+  Q_OBJECT
+
 public:
   PIRKeysetManager();
 
@@ -120,6 +122,10 @@ public:
 
   const PIRACKeyset * getACKeyset(
     unsigned int keysetID) const;
+
+signals:
+  void errorMessage(
+    QString errStr);
 
 private:
   void setupKeyset(

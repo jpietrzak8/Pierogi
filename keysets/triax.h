@@ -1,7 +1,7 @@
 //
 // triax.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class TriaxSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TriaxSTB1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class TriaxSTB2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TriaxSTB2(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class TriaxSTB2a: public TriaxSTB2
 {
+  Q_OBJECT
+
 public:
   TriaxSTB2a(
     unsigned int index);
@@ -63,6 +68,8 @@ public:
 
 class TriaxSTB3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TriaxSTB3(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class TriaxSTB3a: public TriaxSTB3
 {
+  Q_OBJECT
+
 public:
   TriaxSTB3a(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class TriaxSTB4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   TriaxSTB4(
     unsigned int index);

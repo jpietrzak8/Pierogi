@@ -1,7 +1,7 @@
 //
 // insignia.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -51,6 +51,12 @@ void InsigniaTV1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0586, 16);
 
@@ -189,6 +195,12 @@ void InsigniaTV2::populateProtocol(
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x011A, 13);
 
   addKey("PICTURE ADJUST MENU", PictureMode_Key, 0x01, 8);
@@ -252,6 +264,12 @@ void InsigniaTV3::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0xD900, 16);
 
   addKey("mute", Mute_Key, 0x06, 8);
@@ -305,6 +323,12 @@ void InsigniaTV4::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x08, 8);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -353,6 +377,12 @@ void InsigniaTV5::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xF7, 8);
 
@@ -413,6 +443,12 @@ void InsigniaTV6::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x0000, 13);
   addKey("1", One_Key, 0x0001, 13);
@@ -476,6 +512,12 @@ void InsigniaDVD1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x4743, 16);
 
@@ -551,6 +593,12 @@ void InsigniaDVD2::populateProtocol(
 
   threadableProtocol = new RECS80Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x5, 3);
 
   addKey("Tuner", TunerInput_Key, 0x0C, 6);
@@ -623,6 +671,12 @@ void InsigniaDVD3::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2D2D, 16);
 
@@ -703,6 +757,12 @@ void InsigniaDVD4::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x00, 8);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -777,6 +837,12 @@ void InsigniaDVD5::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x20, 8);
 
   addKey("open/close", Eject_Key, 0x00, 8);
@@ -848,6 +914,12 @@ void InsigniaDVD6::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xED85, 16);
 

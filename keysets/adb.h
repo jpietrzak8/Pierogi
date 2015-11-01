@@ -1,7 +1,7 @@
 //
 // adb.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class ADBSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ADBSTB1(
     unsigned int index);
@@ -41,6 +42,8 @@ public:
 
 class ADBSTB2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ADBSTB2(
     unsigned int index);
@@ -52,6 +55,8 @@ public:
 
 class ADBSTB3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ADBSTB3(
     unsigned int index);
@@ -63,6 +68,8 @@ public:
 
 class ADBSTB4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ADBSTB4(
     unsigned int index);
@@ -74,6 +81,8 @@ public:
 
 class ADBSTB5: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ADBSTB5(
     unsigned int index);
@@ -88,6 +97,8 @@ public:
 
 class ADBSTB6: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ADBSTB6(
     unsigned int index);

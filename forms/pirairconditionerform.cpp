@@ -26,6 +26,8 @@
 #include "mainwindow.h"
 #include "pirkeysetmanager.h"
 
+#include <QDebug>
+
 PIRAirConditionerForm::PIRAirConditionerForm(MainWindow *mw) :
   QWidget(0),
   ui(new Ui::PIRAirConditionerForm),

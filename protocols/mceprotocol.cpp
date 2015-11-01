@@ -1,7 +1,7 @@
 //
 // mceprotocol.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -24,7 +24,7 @@
 
 #include "pirinfraredled.h"
 
-#include "pirexception.h"
+#include <QString>
 
 #include <QMutex>
 extern bool commandInFlight;
@@ -68,122 +68,117 @@ void MCEProtocol::startSendingCommand(
   unsigned int threadableID,
   PIRKeyName command)
 {
-  try
+  // Is this command meant for us?
+  if (threadableID != id) return;
+
+  clearRepeatFlag();
+
+  KeycodeCollection::const_iterator i = keycodes.find(command);
+
+  // Sanity check:
+  if (i == keycodes.end())
   {
-    // Is this command meant for us?
-    if (threadableID != id) return;
-
-    clearRepeatFlag();
-
-    KeycodeCollection::const_iterator i = keycodes.find(command);
-
-    // Sanity check:
-    if (i == keycodes.end())
-    {
-      QMutexLocker cifLocker(&commandIFMutex);
-      commandInFlight = false;
-      return;
-//      std::string s = "Tried to send a non-existent command.\n";
-//      throw PIRException(s);
-    }
-
-    PIRInfraredLED led(carrierFrequency, dutyCycle);
-
-    int repeatCount = 0;
-    int duration = 0;
-    while (repeatCount < MAX_REPEAT_COUNT)
-    {
-      bufferContainsSpace = false;
-      bufferContainsPulse = false;
-      // First, construct the "Header" segment of the pulse train.
-      //
-      // The header involves:
-      // a) a "lead" of 2666 us pulse, 888 us space;
-      // b) a "start bit", value 1 (so 444 us pulse, 444 us space)
-      // c) three control bits, set to "110" (i.e., mode "6")
-      // d) the double-sized "trailer" bit, set to 0.
-
-      led.addSingle(HEADER_PULSE); // lead pulse
-      duration += HEADER_PULSE;
-      led.addSingle(HEADER_SPACE); // lead space
-      duration += HEADER_SPACE;
-      led.addSingle(biphaseUnit); // start bit pulse
-      duration += biphaseUnit;
-      led.addSingle(biphaseUnit); // start bit space
-      duration += biphaseUnit;
-      led.addSingle(biphaseUnit); // bit 1 pulse;
-      duration += biphaseUnit;
-      led.addSingle(biphaseUnit); // bit 1 space;
-      duration += biphaseUnit;
-      led.addSingle(biphaseUnit); // bit 2 pulse;
-      duration += biphaseUnit;
-      led.addSingle(2 * biphaseUnit); // bit 2 space + bit 3 space;
-      duration += 2 * biphaseUnit;
-      led.addSingle(biphaseUnit); // bit 3 pulse;
-      duration += biphaseUnit;
-      led.addSingle(2 * biphaseUnit); // trailer space
-      duration += 2 * biphaseUnit;
-      buffer = 2 * biphaseUnit; // trailer pulse goes into the buffer
-      bufferContainsPulse = true;
-
-      // Now, we can start the normal buffering process:
-
-      // push the "OEM" data:
-      duration += pushBits(oemBits, led);
-
-      // The next bit is the MCE toggle bit:
-      if (keypressCount % 2)
-      {
-        pushOne(led);
-      }
-      else
-      {
-        pushZero(led);
-      }
-
-      // push the device address data:
-      duration += pushBits(preData, led);
-
-      // push the command data:
-      duration += pushBits((*i).second.firstCode, led);
-
-      // Flush out the buffer, if necessary:
-      if (buffer)
-      {
-        led.addSingle(buffer);
-        duration += buffer;
-        buffer = 0;
-      }
-
-      // Actually send out the command:
-      led.sendCommandToDevice();
-
-      // Sleep for an amount of time.  (RC6 demands an addtional 6 unit space
-      // at the end of any command...)
-      sleepUntilRepeat(duration + 6 * biphaseUnit);
-
-      // Have we been told to stop yet?
-      if (checkRepeatFlag())
-      {
-        // Yes, we can now quit repeating:
-        break;
-/*
-        ++keypressCount;
-        QMutexLocker ciflocker(&commandIFMutex);
-        commandInFlight = false;
-        return;
-*/
-      }
-    }
-
-    ++keypressCount;
     QMutexLocker cifLocker(&commandIFMutex);
     commandInFlight = false;
+    emit errorMessage("Key not defined in this keyset.");
+    return;
   }
-  catch (PIRException e)
+
+  PIRInfraredLED led(carrierFrequency, dutyCycle);
+
+  connect(
+    &led,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
+  int repeatCount = 0;
+  int duration = 0;
+  while (repeatCount < MAX_REPEAT_COUNT)
   {
-    emit commandFailed(e.getError().c_str());
+    bufferContainsSpace = false;
+    bufferContainsPulse = false;
+    // First, construct the "Header" segment of the pulse train.
+    //
+    // The header involves:
+    // a) a "lead" of 2666 us pulse, 888 us space;
+    // b) a "start bit", value 1 (so 444 us pulse, 444 us space)
+    // c) three control bits, set to "110" (i.e., mode "6")
+    // d) the double-sized "trailer" bit, set to 0.
+
+    led.addSingle(HEADER_PULSE); // lead pulse
+    duration += HEADER_PULSE;
+    led.addSingle(HEADER_SPACE); // lead space
+    duration += HEADER_SPACE;
+    led.addSingle(biphaseUnit); // start bit pulse
+    duration += biphaseUnit;
+    led.addSingle(biphaseUnit); // start bit space
+    duration += biphaseUnit;
+    led.addSingle(biphaseUnit); // bit 1 pulse;
+    duration += biphaseUnit;
+    led.addSingle(biphaseUnit); // bit 1 space;
+    duration += biphaseUnit;
+    led.addSingle(biphaseUnit); // bit 2 pulse;
+    duration += biphaseUnit;
+    led.addSingle(2 * biphaseUnit); // bit 2 space + bit 3 space;
+    duration += 2 * biphaseUnit;
+    led.addSingle(biphaseUnit); // bit 3 pulse;
+    duration += biphaseUnit;
+    led.addSingle(2 * biphaseUnit); // trailer space
+    duration += 2 * biphaseUnit;
+    buffer = 2 * biphaseUnit; // trailer pulse goes into the buffer
+    bufferContainsPulse = true;
+
+    // Now, we can start the normal buffering process:
+
+    // push the "OEM" data:
+    duration += pushBits(oemBits, led);
+
+    // The next bit is the MCE toggle bit:
+    if (keypressCount % 2)
+    {
+      pushOne(led);
+    }
+    else
+    {
+      pushZero(led);
+    }
+
+    // push the device address data:
+    duration += pushBits(preData, led);
+
+    // push the command data:
+    duration += pushBits((*i).second.firstCode, led);
+
+    // Flush out the buffer, if necessary:
+    if (buffer)
+    {
+      led.addSingle(buffer);
+      duration += buffer;
+      buffer = 0;
+    }
+
+    // Actually send out the command:
+    if (!led.sendCommandToDevice())
+    {
+      break;
+    }
+
+    // Sleep for an amount of time.  (RC6 demands an addtional 6 unit space
+    // at the end of any command...)
+    sleepUntilRepeat(duration + 6 * biphaseUnit);
+
+    // Have we been told to stop yet?
+    if (checkRepeatFlag())
+    {
+      // Yes, we can now quit repeating:
+      break;
+    }
   }
+
+  ++keypressCount;
+  QMutexLocker cifLocker(&commandIFMutex);
+  commandInFlight = false;
 }
 
 

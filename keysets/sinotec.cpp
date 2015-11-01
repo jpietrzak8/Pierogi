@@ -1,7 +1,7 @@
 //
 // sinotec.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -45,6 +45,12 @@ void SinotecTV1::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0E0E, 16);
 
@@ -101,6 +107,12 @@ void SinotecTV2::populateProtocol(
   }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x011A, 13);
 

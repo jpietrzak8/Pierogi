@@ -1,7 +1,7 @@
 //
 // aiwa.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -48,6 +48,12 @@ void AiwaVCR1::populateProtocol(
   }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x007F, 13);
 
@@ -151,6 +157,12 @@ void AiwaVCR2::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x6E, 8);
 
   addKey("eject", Eject_Key, 0x00, 8);
@@ -217,6 +229,12 @@ void AiwaVCR3::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x7B80, 16);
 
@@ -288,6 +306,12 @@ void AiwaAudio1::populateProtocol(
   }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0070, 13);
 
@@ -430,6 +454,12 @@ void AiwaAudio2::populateProtocol(
   }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x006E, 13);
 
@@ -613,6 +643,12 @@ void AiwaAudio3::populateProtocol(
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x007B, 13);
 
   addKey("Power", Power_Key, 0x00, 8);
@@ -667,6 +703,12 @@ void AiwaAudio4::populateProtocol(
   }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x00F6, 13);
 
@@ -738,6 +780,12 @@ void AiwaAudio5::populateProtocol(
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x0076, 13);
 
   addKey("1", One_Key, 0x01, 8);
@@ -787,6 +835,12 @@ void AiwaAudio6::populateProtocol(
   }
 
   threadableProtocol = new AiwaProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0048, 13);
 
@@ -844,6 +898,12 @@ void AiwaCarStereo1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x1386, 16);
 
   addKey("off", Power_Key, 0x00, 8);
@@ -900,6 +960,12 @@ void AiwaDVD1::populateProtocol(
     99349, false);
 
   threadableProtocol = lp;
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   lp->setHeaderPair(1623, 615);
   lp->setRepeatPair(8967, 4467);

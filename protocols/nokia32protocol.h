@@ -1,7 +1,7 @@
 //
 // nokia32protocol.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -34,6 +34,8 @@ class PIRInfraredLED;
 
 class Nokia32Protocol: public PIRProtocol
 {
+  Q_OBJECT
+
 public:
   Nokia32Protocol(
     QObject *guiObject,

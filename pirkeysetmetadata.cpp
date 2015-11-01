@@ -422,7 +422,7 @@ bool PIRKeysetMetaData::clearProtocol()
 
 
 void PIRKeysetMetaData::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   // By default, just empty the combo box:
   cb->clear();

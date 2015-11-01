@@ -1,7 +1,7 @@
 //
 // pirprotocol.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -36,6 +36,8 @@
 // user presses the button.  (This is just in case we miss the point at which
 // he stops pressing it...)  500 should be plenty.
 #define MAX_REPEAT_COUNT 500
+
+class QString;
 
 typedef std::deque<bool> CommandSequence;
 
@@ -173,8 +175,8 @@ public slots:
     PIRKeyName command);
 
 signals:
-  void commandFailed(
-    const char *errString);
+  void errorMessage(
+    QString errStr);
 
 protected:
   bool isCommandSupported(

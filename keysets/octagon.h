@@ -1,7 +1,7 @@
 //
 // octagon.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class OctagonSat1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OctagonSat1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class OctagonSat1a: public OctagonSat1
 {
+  Q_OBJECT
+
 public:
   OctagonSat1a(
     unsigned int index);
@@ -49,6 +52,8 @@ public:
 
 class OctagonSat2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OctagonSat2(
     unsigned int index);

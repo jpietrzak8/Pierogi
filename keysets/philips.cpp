@@ -51,6 +51,12 @@ void PhilipsTV1::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("UP", Up_Key, 0x0010, 13);
   addKey("DOWN", Down_Key, 0x0011, 13);
   addKey("MENU", Menu_Key, 0x0012, 13);
@@ -367,6 +373,12 @@ void PhilipsTV2::populateProtocol(
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x00);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("0", Zero_Key, 0x00, 8);
   addKey("1", One_Key, 0x01, 8);
   addKey("2", Two_Key, 0x02, 8);
@@ -510,6 +522,12 @@ void PhilipsTV3::populateProtocol(
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x28);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("0", Zero_Key, 0x00, 8);
   addKey("1", One_Key, 0x01, 8);
   addKey("2", Two_Key, 0x02, 8);
@@ -578,6 +596,12 @@ void PhilipsDVD1::populateProtocol(
   }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x04);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x00, 8);
   addKey("1", One_Key, 0x01, 8);
@@ -768,6 +792,12 @@ void PhilipsDVD2::populateProtocol(
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x46);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("0", Zero_Key, 0x00, 8);
   addKey("1", One_Key, 0x01, 8);
   addKey("2", Two_Key, 0x02, 8);
@@ -838,6 +868,12 @@ void PhilipsDVD3::populateProtocol(
   }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x32);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x00, 8);
   addKey("1", One_Key, 0x01, 8);
@@ -974,6 +1010,12 @@ void PhilipsDVD4::populateProtocol(
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x30);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("0", Zero_Key, 0x00, 8);
   addKey("1", One_Key, 0x01, 8);
   addKey("2", Two_Key, 0x02, 8);
@@ -1060,6 +1102,12 @@ void PhilipsVCR1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("Standby", Power_Key, 0x114C, 13);
   addKey("External", Input_Key, 0x1178, 13);
@@ -1245,6 +1293,12 @@ void PhilipsSat1::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("Standby", Power_Key, 0x120C, 13);
   addKey("External", Unmapped_Key, 0x1238, 13);
   addKey("Menu", Menu_Key, 0x0212, 13); // "blue_on"
@@ -1313,6 +1367,12 @@ void PhilipsSat2::populateProtocol(
   }
 
   threadableProtocol = new RC6Protocol(guiObject, index, 0x27);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x00, 8);
   addKey("1", One_Key, 0x01, 8);
@@ -1407,6 +1467,12 @@ void PhilipsSat3::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("SOUNDOFF", Mute_Key, 0x0286, 13); // "mute"
   addKey("EPG", Guide_Key, 0x028F, 13); // "prog"
   addKey("UP", Up_Key, 0x0290, 13);
@@ -1471,33 +1537,70 @@ void PhilipsAudio1::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
+  addKey("incredible_surround", Surround_Key, 0x0400, 13); // "inc_s"
+  addKey("Rear+", RearVolumeUp_Key, 0x0401, 13);
+  addKey("Rear-", RearVolumeDown_Key, 0x0402, 13);
   addKey("Dynamic Bass Boost", EnhancedBass_Key, 0x0406, 13); // "dbb"
   addKey("Digital Sound Control", Unmapped_Key, 0x040F, 13); // "dsc"
+
+  addKey("TestTone", Unmapped_Key, 0x0418, 13);
+  addKey("Center+", CenterVolumeUp_Key, 0x0426, 13);
+  addKey("Center-", CenterVolumeDown_Key, 0x0427, 13);
+  addKey("vec", Unmapped_Key, 0x042B, 13);
+  addKey("osm", Unmapped_Key, 0x042C, 13);
+
+  addKey("tuner_program", Program_Key, 0x047A, 13); // Create Preset
+
   addKey("mute", Mute_Key, 0x140D, 13);
   addKey("Vol+", VolumeUp_Key, 0x1410, 13);
   addKey("Vol-", VolumeDown_Key, 0x1411, 13);
+  addKey("BASS_UP", BassUp_Key, 0x1416, 13);
+  addKey("BASS_DOWN", BassDown_Key, 0x1417, 13);
+  addKey("TREBLE_UP", TrebleUp_Key, 0x1418, 13);
+  addKey("TREBLE_DOWN", TrebleDown_Key, 0x1419, 13);
+  addKey("BALANCE_RIGHT", BalanceRight_Key, 0x141A, 13); // "BalR"
+  addKey("BALANCE_LEFT", BalanceLeft_Key, 0x141B, 13); // "BalL"
+  addKey("DPL", Unmapped_Key, 0x1425, 13);
+  addKey("SleepTimer", Sleep_Key, 0x1426, 13);
+  addKey("TIMER", Timer_Key, 0x142A, 13);
+  addKey("FLAT", Unmapped_Key, 0x1434, 13);
+  addKey("LOUDNESS", Unmapped_Key, 0x1432, 13);
+
   addKey("tuner_power", Power_Key, 0x144C, 13);
+  addKey("tuner_power", ToggleBand_Key, 0x144C, 13);
+  addKey("TUNER_DISPLAY", Info_Key, 0x144F, 13);
   addKey("tuner_ff", ChannelUp_Key, 0x145E, 13); // "tuningR"
   addKey("tuner_rew", ChannelDown_Key, 0x145F, 13); // "tuningL"
   addKey("tuner_next", Next_Key, 0x1460, 13); // "presetUp"
   addKey("tuner_previous", Previous_Key, 0x1461, 13); // "presetDown"
-  addKey("tuner_program", Program_Key, 0x047A, 13); // Create Preset
   addKey("tuner", TunerInput_Key, 0x147F, 13);
+
   addKey("tape_power", Unmapped_Key, 0x148C, 13);
   addKey("tape_next", Unmapped_Key, 0x14A0, 13);
   addKey("tape_previous", Unmapped_Key, 0x14A1, 13);
+  addKey("Side", Unmapped_Key, 0x14AF, 13);  // "TAPE_SIDE"
   addKey("tape_pause", Unmapped_Key, 0x14B0, 13);
   addKey("tape_rew", Unmapped_Key, 0x14B2, 13);
   addKey("tape_ff", Unmapped_Key, 0x14B3, 13);
   addKey("tape_play", Unmapped_Key, 0x14B5, 13);
   addKey("tape_stop", Unmapped_Key, 0x14B6, 13);
   addKey("tape", TapeInput_Key, 0x14BF, 13); // "tape1-2"
+
+  addKey("TIME", Unmapped_Key, 0x150B, 13); // "CD_DISPLAY"
   addKey("cd_power", Unmapped_Key, 0x150C, 13);
   addKey("cd_shuffle", Random_Key, 0x151C, 13);
   addKey("cd_repeat", Repeat_Key, 0x151D, 13);
   addKey("cd_next", Unmapped_Key, 0x1520, 13);
   addKey("cd_previous", Unmapped_Key, 0x1521, 13);
   addKey("cd_program", Unmapped_Key, 0x1524, 13);
+  addKey("SCAN", Scan_Key, 0x152B, 13);
+  addKey("OPEN/CLOSE", Eject_Key, 0x152D, 13);
   addKey("cd_pause", Pause_Key, 0x1530, 13);
   addKey("cd_rew", Rewind_Key, 0x1532, 13);
   addKey("cd_ff", FastForward_Key, 0x1534, 13);
@@ -1507,32 +1610,10 @@ void PhilipsAudio1::populateProtocol(
   addKey("cd_2", Two_Key, 0x1538, 13);
   addKey("cd_3", Three_Key, 0x1539, 13);
   addKey("cd", CDInput_Key, 0x153F, 13);
+
   addKey("aux_power", Unmapped_Key, 0x154C, 13); // "power", "standby"
   addKey("aux", AuxInput_Key, 0x157F, 13);
-  addKey("DPL", Unmapped_Key, 0x1425, 13);
-  addKey("SleepTimer", Sleep_Key, 0x1426, 13);
-  addKey("Rear+", RearVolumeUp_Key, 0x0401, 13);
-  addKey("Rear-", RearVolumeDown_Key, 0x0402, 13);
-  addKey("TestTone", Unmapped_Key, 0x0418, 13);
-  addKey("Center+", CenterVolumeUp_Key, 0x0426, 13);
-  addKey("Center-", CenterVolumeDown_Key, 0x0427, 13);
-  addKey("incredible_surround", Surround_Key, 0x0400, 13); // "inc_s"
-  addKey("osm", Unmapped_Key, 0x042C, 13);
-  addKey("vec", Unmapped_Key, 0x042B, 13);
-  addKey("TIME", Info_Key, 0x150B, 13); // "CD_DISPLAY"
-  addKey("SCAN", Scan_Key, 0x152B, 13);
-  addKey("OPEN/CLOSE", Eject_Key, 0x152D, 13);
-  addKey("Side", Unmapped_Key, 0x14AF, 13);  // "TAPE_SIDE"
-  addKey("TIMER", Timer_Key, 0x142A, 13);
-  addKey("FLAT", Unmapped_Key, 0x1434, 13);
-  addKey("LOUDNESS", Unmapped_Key, 0x1432, 13);
-  addKey("BASS_UP", BassUp_Key, 0x1416, 13);
-  addKey("BASS_DOWN", BassDown_Key, 0x1417, 13);
-  addKey("TREBLE_UP", TrebleUp_Key, 0x1418, 13);
-  addKey("TREBLE_DOWN", TrebleDown_Key, 0x1419, 13);
-  addKey("BALANCE_RIGHT", BalanceRight_Key, 0x141A, 13); // "BalR"
-  addKey("BALANCE_LEFT", BalanceLeft_Key, 0x141B, 13); // "BalL"
-  addKey("TUNER_DISPLAY", Unmapped_Key, 0x144F, 13);
+
   addKey("CDR", MDInput_Key, 0x16BF, 13); // hack
   addKey("CDR_POWER", Unmapped_Key, 0x100C, 13);
   addKey("CDR_REPEAT", Unmapped_Key, 0x169D, 13);
@@ -1658,6 +1739,12 @@ void PhilipsAudio2::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
 //  setPreData(0x61CA, 16);
   setPreData(0x5386, 16);
 
@@ -1750,6 +1837,12 @@ void PhilipsAudio3::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("fade", Unmapped_Key, 0x0538, 13);
   addKey("0", Zero_Key, 0x1500, 13);
   addKey("1", One_Key, 0x1501, 13);
@@ -1803,6 +1896,12 @@ void PhilipsAudio4::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("EJECT", Eject_Key, 0x16AD, 13);
   addKey("INPUT", Input_Key, 0x16B8, 13);
   addKey("DISPLAY", Info_Key, 0x168B, 13);
@@ -1833,7 +1932,6 @@ void PhilipsAudio4::populateProtocol(
 }
 
 
-/*
 PhilipsAudio5::PhilipsAudio5(
   unsigned int index)
   : PIRKeysetMetaData(
@@ -1854,65 +1952,30 @@ void PhilipsAudio5::populateProtocol(
     return;
   }
 
-  threadableProtocol = new RC6Protocol(guiObject, index);
+  threadableProtocol = new RC5Protocol(guiObject, index);
 
-  addKey("tv", AntennaInput_Key, 0x003F, 16);
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
-  addKey("0", Zero_Key, 0x0400, 16);
-  addKey("1", One_Key, 0x0401, 16);
-  addKey("2", Two_Key, 0x0402, 16);
-  addKey("3", Three_Key, 0x0403, 16);
-  addKey("4", Four_Key, 0x0404, 16);
-  addKey("5", Five_Key, 0x0405, 16);
-  addKey("6", Six_Key, 0x0406, 16);
-  addKey("7", Seven_Key, 0x0407, 16);
-  addKey("8", Eight_Key, 0x0408, 16);
-  addKey("9", Nine_Key, 0x0409, 16);
-  addKey("display", Info_Key, 0x040F, 16);
-  addKey("repeat", Repeat_Key, 0x041D, 16);
-  addKey("next", Next_Key, 0x0420, 16);
-  addKey("prev", Previous_Key, 0x0421, 16);
-  addKey("play-pause", Play_Key, 0x042C, 16);
-  addKey("play-pause", Pause_Key, 0x042C, 16);
-  addKey("stop", Stop_Key, 0x0431, 16);
-  addKey("disc-usb", CDInput_Key, 0x043F, 16);
-  addKey("open-close", Eject_Key, 0x0442, 16);
-  addKey("subtitle", Captions_Key, 0x044B, 16);
-  addKey("audio", Audio_Key, 0x044E, 16);
-  addKey("up", Up_Key, 0x0458, 16);
-  addKey("down", Down_Key, 0x0459, 16);
-  addKey("left", Left_Key, 0x045A, 16);
-  addKey("right", Right_Key, 0x045B, 16);
-  addKey("ok", Select_Key, 0x045C, 16);
-  addKey("setup", Menu_Key, 0x0482, 16);
-  addKey("title", DiscTitle_Key, 0x0483, 16);
-  addKey("power", Power_Key, 0x04C7, 16);
-  addKey("menu", DiscMenu_Key, 0x04D1, 16);
-  addKey("zoom", Zoom_Key, 0x04F7, 16);
-  addKey("program", Program_Key, 0x04FB, 16);
+  addKey("surround", Surround_Key, 0x0000, 13); // Dubious
+  addKey("mute", Mute_Key, 0x000D, 13);
+  addKey("vol up", VolumeUp_Key, 0x0010, 13);
+  addKey("vol down", VolumeDown_Key, 0x0011, 13);
+  addKey("select", Select_Key, 0x0017, 13);
+  addKey("sleep", Sleep_Key, 0x0026, 13);
 
-  addKey("mute", Mute_Key, 0x100D, 16);
-  addKey("vol+", VolumeUp_Key, 0x1010, 16);
-  addKey("vol-", VolumeDown_Key, 0x1011, 16);
-  addKey("sound", Unmapped_Key, 0x1051, 16);
-  addKey("surround", Surround_Key, 0x1052, 16);
-  addKey("audiosync", Unmapped_Key, 0x10B9, 16);
-
-  addKey("radio", TunerInput_Key, 0x113F, 16);
-  addKey("mp3-linein", LineInput_Key, 0x1538, 16);
-  addKey("aux-di", AuxInput_Key, 0x153F, 16);
+  addKey("power", Power_Key, 0x044C, 13);
+  addKey("display", Info_Key, 0x044F, 13);
+  addKey("up arrow", Up_Key, 0x045E, 13);
+  addKey("fast fwd", FastForward_Key, 0x045E, 13);
+  addKey("down arrow", Down_Key, 0x045F, 13);
+  addKey("rewind", Rewind_Key, 0x045F, 13);
+  addKey("channel up", ChannelUp_Key, 0x0460, 13);
+  addKey("left arrow", Left_Key, 0x0460, 13);
+  addKey("channel down", ChannelDown_Key, 0x0461, 13);
+  addKey("right arrow", Right_Key, 0x0461, 13);
+  addKey("menu", Menu_Key, 0x0469, 13);
 }
-
-
-void PhilipsAudio5::populateInputList(
-  QComboBox *cb)
-{
-  cb->clear();
-
-  cb->addItem("TV", QVariant(AntennaInput_Key));
-  cb->addItem("Disc / USB", QVariant(CDInput_Key));
-  cb->addItem("Radio", QVariant(TunerInput_Key));
-  cb->addItem("MP3 / Line In", QVariant(LineInput_Key));
-  cb->addItem("Aux / DI", QVariant(AuxInput_Key));
-}
-*/

@@ -1,7 +1,7 @@
 //
 // cisco.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -49,6 +49,12 @@ void CiscoSTB1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xFD01, 16);
 
@@ -132,6 +138,12 @@ void CiscoSTB2::populateProtocol(
   }
 
   threadableProtocol = new PanasonicOldProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addPanOldKey("DirectionUp", Up_Key, 0x1B, 0x02);
   addPanOldKey("DirectionLeft", Left_Key, 0x1B, 0x03);
@@ -233,6 +245,12 @@ void CiscoSTB3::populateProtocol(
 
   threadableProtocol = new Nokia32Protocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x2480, 16);
   setPostData(0x26, 7);
 
@@ -305,6 +323,12 @@ void CiscoSTB4::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x0280, 13);
   addKey("1", One_Key, 0x0281, 13);

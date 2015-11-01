@@ -1,7 +1,7 @@
 //
 // apex.h
 //
-// Copyright 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2013 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,10 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
-
 class ApexTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ApexTV1(
     unsigned int index);
@@ -39,6 +39,8 @@ public:
 
 class ApexSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ApexSTB1(
     unsigned int index);
@@ -49,6 +51,8 @@ public:
 
 class ApexDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ApexDVD1(
     unsigned int index);
@@ -59,6 +63,8 @@ public:
 
 class ApexDVD1a: public ApexDVD1
 {
+  Q_OBJECT
+
 public:
   ApexDVD1a(
     unsigned int index);
@@ -69,6 +75,8 @@ public:
 
 class ApexDVD2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ApexDVD2(
     unsigned int index);
@@ -79,6 +87,8 @@ public:
 
 class ApexDVD2a: public ApexDVD2
 {
+  Q_OBJECT
+
 public:
   ApexDVD2a(
     unsigned int index);
@@ -89,6 +99,8 @@ public:
 
 class ApexDVD3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ApexDVD3(
     unsigned int index);

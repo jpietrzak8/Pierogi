@@ -1,7 +1,7 @@
 //
 // kathrein.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void KathreinSat1::populateProtocol(
   }
 
   threadableProtocol = new KathreinProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0, 4);
 
@@ -100,6 +106,12 @@ void KathreinSat2::populateProtocol(
   }
 
   threadableProtocol = new Nokia32Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2290, 16);
   setPostData(0x00, 7);
@@ -170,6 +182,12 @@ void KathreinSat3::populateProtocol(
   }
 
   threadableProtocol = new MCEProtocol(guiObject, index, 0x8046);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x00, 7);
 

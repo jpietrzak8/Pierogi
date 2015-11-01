@@ -1,7 +1,7 @@
 //
 // daewoo.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -50,6 +50,12 @@ void DaewooTV1::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("MENU", Menu_Key, 0x0012, 13);
   addKey("OK", Select_Key, 0x0017, 13); // "enter"
@@ -129,6 +135,12 @@ void DaewooTV2::populateProtocol(
 
   threadableProtocol = new DaewooProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x14, 8);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -194,6 +206,12 @@ void DaewooTV3::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x14, 8);
 
@@ -294,6 +312,12 @@ void DaewooTV4::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x1004, 16);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -368,6 +392,12 @@ void DaewooTV5::populateProtocol(
 
   threadableProtocol = new ProtonProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x14, 8);
 
   addKey("0", Zero_Key, 0x00, 8);
@@ -421,6 +451,12 @@ void DaewooDVD1::populateProtocol(
   }
 
   threadableProtocol = new DaewooProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x15, 8);
 
@@ -495,6 +531,12 @@ void DaewooVCR1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x31, 8);
 
   addKey("+CH", ChannelUp_Key, 0x01, 8);
@@ -558,6 +600,12 @@ void DaewooVCR2::populateProtocol(
   }
 
   threadableProtocol = new DaewooProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x15, 8);
 

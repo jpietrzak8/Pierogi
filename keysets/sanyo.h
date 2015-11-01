@@ -1,7 +1,7 @@
 //
 // sanyo.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class SanyoVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SanyoVCR1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class SanyoDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SanyoDVD1(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class SanyoTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SanyoTV1(
     unsigned int index);
@@ -63,6 +68,8 @@ public:
 
 class SanyoTV1b: public SanyoTV1
 {
+  Q_OBJECT
+
 public:
   SanyoTV1b(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class SanyoTV1d: public SanyoTV1
 {
+  Q_OBJECT
+
 public:
   SanyoTV1d(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class SanyoTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SanyoTV2(
     unsigned int index);
@@ -96,6 +107,8 @@ public:
 
 class SanyoProjector1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SanyoProjector1(
     unsigned int index);
@@ -109,6 +122,8 @@ public:
 
 class SanyoProjector1a: public SanyoProjector1
 {
+  Q_OBJECT
+
 public:
   SanyoProjector1a(
     unsigned int index);
@@ -119,6 +134,8 @@ public:
 
 class SanyoProjector1b: public SanyoProjector1
 {
+  Q_OBJECT
+
 public:
   SanyoProjector1b(
     unsigned int index);
@@ -129,6 +146,8 @@ public:
 
 class SanyoProjector1c: public SanyoProjector1
 {
+  Q_OBJECT
+
 public:
   SanyoProjector1c(
     unsigned int index);

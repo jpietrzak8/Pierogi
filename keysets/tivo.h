@@ -1,7 +1,7 @@
 //
 // tivo.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class Tivo1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   Tivo1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class Tivo1a: public Tivo1
 {
+  Q_OBJECT
+
 public:
   Tivo1a(
     unsigned int index);
@@ -49,6 +52,8 @@ public:
 
 class Tivo1b: public Tivo1
 {
+  Q_OBJECT
+
 public:
   Tivo1b(
     unsigned int index);
@@ -59,6 +64,8 @@ public:
 
 class Tivo1c: public Tivo1
 {
+  Q_OBJECT
+
 public:
   Tivo1c(
     unsigned int index);
@@ -69,6 +76,8 @@ public:
 
 class Tivo1d: public Tivo1
 {
+  Q_OBJECT
+
 public:
   Tivo1d(
     unsigned int index);

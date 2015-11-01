@@ -1,7 +1,7 @@
 //
 // emersonprotocol.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -34,6 +34,8 @@ class PIRInfraredLED;
 
 class EmersonProtocol: public SpaceProtocol
 {
+  Q_OBJECT
+
 public:
   EmersonProtocol(
     QObject *guiObject,

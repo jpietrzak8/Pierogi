@@ -1,7 +1,7 @@
 //
 // telenet.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void TelenetSTB1::populateProtocol(
 
   threadableProtocol = new XMPProtocol(
     guiObject, index, 0x1, 0x1, 0x44, 0x2A, false);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addXMPKey("del", Unmapped_Key, 0x00, 0x00);
   addXMPKey("2", Two_Key, 0x01, 0x00);

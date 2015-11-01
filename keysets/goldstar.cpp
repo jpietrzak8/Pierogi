@@ -1,7 +1,7 @@
 //
 // goldstar.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -49,6 +49,12 @@ void GoldStarTV1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x04, 8);
 
@@ -105,6 +111,12 @@ void GoldStarTV2::populateProtocol(
   }
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x40);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x00, 6);
   addKey("1", One_Key, 0x01, 6);
@@ -169,6 +181,12 @@ void GoldStarVCR1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x7689, 16);
   setPreData(0x6E, 8);
@@ -318,6 +336,12 @@ void GoldStarAudio1::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x1010, 16);
 

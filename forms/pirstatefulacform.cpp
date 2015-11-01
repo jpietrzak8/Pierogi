@@ -27,6 +27,8 @@
 #include "pirkeysetmanager.h"
 #include "pirackeyset.h"
 
+#include <QDebug>
+
 /*
 PIRStatefulACForm::PIRStatefulACForm(QWidget *parent) :
   QWidget(parent),
@@ -51,83 +53,30 @@ PIRStatefulACForm::~PIRStatefulACForm()
   delete ui;
 }
 
+
 void PIRStatefulACForm::enableButtons(
   const PIRKeysetManager *keyset,
   unsigned int id)
 {
   const PIRACKeyset *ackeys = keyset->getACKeyset(id);
 
-  if (ackeys && keyset->hasKey(id, ACSendCommand_Key))
+  // Sanity check:
+  if (!ackeys) return;
+
+  ackeys->populateSettingsList(settings);
+
+  PIRStatePairs pairs;
+  PIRStatePairs::const_iterator i;
+
+  // Populate the available settings, disable the others.
+
+  // Operating Mode:
+  ui->modeComboBox->clear();  // remove the old contents.
+  if (settings.contains(OperatingMode_AC))
   {
-    emit sendCommandEnabled(true);
-
-    // Need to populate the combo boxes:
-    PIRStatePairs pairs;
-    PIRStatePairs::const_iterator i;
-
-    // Populate the power combo:
-    ackeys->getPowerPairs(pairs);
+    ackeys->getOperatingModePairs(pairs);
     i = pairs.begin();
-    if (i == pairs.end())
-    {
-      // No power controls
-      emit powerComboBoxEnabled(false);
-    }
-    else
-    {
-      while (i != pairs.end())
-      {
-        ui->powerComboBox->addItem((*i)->getName(), QVariant((*i)->getCode()));
-        ++i;
-      }
-
-      emit powerComboBoxEnabled(true);
-    }
-
-    // Populate the temperature combo:
-    ackeys->getTemperaturePairs(pairs);
-    i = pairs.begin();
-    if (i == pairs.end())
-    {
-      emit tempComboBoxEnabled(false);
-    }
-    else
-    {
-      while (i != pairs.end())
-      {
-        ui->tempComboBox->addItem((*i)->getName(), QVariant((*i)->getCode()));
-        ++i;
-      }
-
-      emit tempComboBoxEnabled(true);
-    }
-
-    // Populate the fan combo:
-    ackeys->getFanPairs(pairs);
-    i = pairs.begin();
-    if (i == pairs.end())
-    {
-      emit fanComboBoxEnabled(false);
-    }
-    else
-    {
-      while (i != pairs.end())
-      {
-        ui->fanComboBox->addItem((*i)->getName(), QVariant((*i)->getCode()));
-        ++i;
-      }
-
-      emit fanComboBoxEnabled(true);
-    }
-
-    // Populate the mode combo:
-    ackeys->getModePairs(pairs);
-    i = pairs.begin();
-    if (i == pairs.end())
-    {
-      emit modeComboBoxEnabled(false);
-    }
-    else
+    if (i != pairs.end())  // Sanity check
     {
       while (i != pairs.end())
       {
@@ -137,31 +86,71 @@ void PIRStatefulACForm::enableButtons(
 
       emit modeComboBoxEnabled(true);
     }
-
-    ackeys->getSwingPairs(pairs);
-    i = pairs.begin();
-    if (i == pairs.end())
-    {
-      emit swingComboBoxEnabled(false);
-    }
     else
+    {
+      emit modeComboBoxEnabled(false);
+    }
+  }
+  else
+  {
+    // Disable operating mode options:
+    emit modeComboBoxEnabled(false);
+  }
+
+  ui->tempComboBox->clear();
+  if (settings.contains(Temperature_AC))
+  {
+    ackeys->getTemperaturePairs(pairs);
+    i = pairs.begin();
+    if (i != pairs.end())
     {
       while (i != pairs.end())
       {
-        ui->swingComboBox->addItem((*i)->getName(), QVariant((*i)->getCode()));
+        ui->tempComboBox->addItem((*i)->getName(), QVariant((*i)->getCode()));
+        ++i;
+      }
+    }
+    else
+    {
+      emit tempComboBoxEnabled(false);
+    }
+  }
+  else
+  {
+    emit tempComboBoxEnabled(false);
+  }
+
+  ui->fanComboBox->clear();
+  if (settings.contains(FanSpeed_AC))
+  {
+    ackeys->getFanPairs(pairs);
+    i = pairs.begin();
+    if (i != pairs.end())
+    {
+      while (i != pairs.end())
+      {
+        ui->fanComboBox->addItem((*i)->getName(), QVariant((*i)->getCode()));
         ++i;
       }
 
-      emit swingComboBoxEnabled(true);
-    }
-
-    ackeys->getTurboModePairs(pairs);
-    i = pairs.begin();
-    if (i == pairs.end())
-    {
-      emit turboComboBoxEnabled(false);
+      emit fanComboBoxEnabled(true);
     }
     else
+    {
+      emit fanComboBoxEnabled(false);
+    }
+  }
+  else
+  {
+    emit fanComboBoxEnabled(false);
+  }
+
+  ui->turboComboBox->clear();
+  if (settings.contains(Turbo_AC))
+  {
+    ackeys->getTurboModePairs(pairs);
+    i = pairs.begin();
+    if (i != pairs.end())
     {
       while (i != pairs.end())
       {
@@ -171,14 +160,47 @@ void PIRStatefulACForm::enableButtons(
 
       emit turboComboBoxEnabled(true);
     }
-
-    ackeys->getAirCleanPairs(pairs);
-    i = pairs.begin();
-    if (i == pairs.end())
+    else
     {
-      emit airCleanComboBoxEnabled(false);
+      emit turboComboBoxEnabled(false);
+    }
+  }
+  else
+  {
+    emit turboComboBoxEnabled(false);
+  }
+
+  ui->swingComboBox->clear();
+  if (settings.contains(Swing_AC))
+  {
+    ackeys->getSwingPairs(pairs);
+    i = pairs.begin();
+    if (i != pairs.end())
+    {
+      while (i != pairs.end())
+      {
+        ui->swingComboBox->addItem((*i)->getName(), QVariant((*i)->getCode()));
+        ++i;
+      }
+
+      emit swingComboBoxEnabled(true);
     }
     else
+    {
+      emit swingComboBoxEnabled(false);
+    }
+  }
+  else
+  {
+    emit swingComboBoxEnabled(false);
+  }
+
+  ui->airCleanComboBox->clear();
+  if (settings.contains(AirClean_AC))
+  {
+    ackeys->getAirCleanPairs(pairs);
+    i = pairs.begin();
+    if (i != pairs.end())
     {
       while (i != pairs.end())
       {
@@ -189,16 +211,13 @@ void PIRStatefulACForm::enableButtons(
 
       emit airCleanComboBoxEnabled(true);
     }
+    else
+    {
+      emit airCleanComboBoxEnabled(false);
+    }
   }
   else
   {
-    emit sendCommandEnabled(false);
-    emit powerComboBoxEnabled(false);
-    emit tempComboBoxEnabled(false);
-    emit fanComboBoxEnabled(false);
-    emit modeComboBoxEnabled(false);
-    emit swingComboBoxEnabled(false);
-    emit turboComboBoxEnabled(false);
     emit airCleanComboBoxEnabled(false);
   }
 }
@@ -207,11 +226,13 @@ void PIRStatefulACForm::on_sendButton_pressed()
 {
   PIRACStateInfo state;
 
+/*
   if (ui->powerComboBox->isEnabled())
   {
     state.power = ui->powerComboBox->itemData(
       ui->powerComboBox->currentIndex()).toInt();
   }
+*/
 
   if (ui->tempComboBox->isEnabled())
   {

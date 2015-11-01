@@ -1,7 +1,7 @@
 //
 // pirprotocol.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -26,9 +26,8 @@
 #include <QMetaType>
 
 #include <time.h>
-#include <sstream>
 #include <errno.h>
-#include "pirexception.h"
+#include <QString>
 
 // A flag for communicating with the main thread:
 extern bool stopRepeatingFlag;
@@ -70,13 +69,6 @@ PIRProtocol::PIRProtocol(
     SIGNAL(buttonPressed(PIRACStateInfo, unsigned int, PIRKeyName)),
     this,
     SLOT(startSendingStateInfo(PIRACStateInfo, unsigned int, PIRKeyName)),
-    Qt::QueuedConnection);
-
-  QObject::connect(
-    this,
-    SIGNAL(commandFailed(const char *)),
-    guiObject,
-    SLOT(receivedExternalWarning(const char *)),
     Qt::QueuedConnection);
 }
 
@@ -566,11 +558,11 @@ void PIRProtocol::sleepUntilRepeat(
 
   if (nanosleep(&sleeptime, &remainingtime) == -1)
   {
-    std::stringstream ss;
-    ss << "Problem while sleeping.\n";
-    ss << "Trying to sleep for: " << microseconds << "\n";
-    ss << "Nanosleep returned error: " << strerror(errno) << "\n";
-    throw PIRException(ss.str());
+    QString errStr = "Problem while sleeping.\nTrying to sleep for: ";
+    errStr += QString::number(microseconds);
+    errStr += "\nNanosleep returned error: ";
+    errStr += strerror(errno);
+    emit errorMessage(errStr);
   }
 }
 

@@ -1,7 +1,7 @@
 //
 // deutschetelekom.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -45,6 +45,12 @@ void DeutscheTelekomSTB1::populateProtocol(
   }
 
   threadableProtocol = new TDCProtocol(guiObject, index, 0x06, 0x0A);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("1", One_Key, 0x02, 7);
   addKey("2", Two_Key, 0x05, 7);

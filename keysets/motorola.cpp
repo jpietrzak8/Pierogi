@@ -1,7 +1,7 @@
 //
 // motorola.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -55,6 +55,12 @@ void Motorola4DTV::populateProtocol(
     100000, true);
 
   threadableProtocol = lp;
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   lp->setHeaderPair(5000, 2000);
   lp->setTrailerPulse(1000);
@@ -123,6 +129,12 @@ void MotorolaSTB1::populateProtocol(
   }
 
   threadableProtocol = new GIProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("0", Zero_Key, 0x0000, 16);
   addKey("1", One_Key, 0xF001, 16);
@@ -292,6 +304,12 @@ void MotorolaSTB2::populateProtocol(
 
   threadableProtocol = new CanalSatProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x0940, 13);
 
   addKey("1", One_Key, 0x01, 6);
@@ -382,6 +400,12 @@ void MotorolaSkyDigital::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2F86, 16);
 

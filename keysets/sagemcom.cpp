@@ -1,7 +1,7 @@
 //
 // sagemcom.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -48,6 +48,12 @@ void SagemcomSTB1::populateProtocol(
   }
 
   threadableProtocol = new MCEProtocol(guiObject, index, 0x8070);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x26, 7);
 
@@ -111,6 +117,12 @@ void SagemcomSTB2::populateProtocol(
   }
 
   threadableProtocol = new Nokia32Protocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2670, 16);
   setPostData(0x26, 7);

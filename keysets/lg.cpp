@@ -1,7 +1,7 @@
 //
 // lg.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -53,6 +53,12 @@ void LGTV1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
   threadableProtocol->setMinimumRepetitions(1);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x04, 8);
 
@@ -148,7 +154,7 @@ void LGTV1::populateProtocol(
   // Factory controls:
   addKey("Picture Test Mode", Unmapped_Key, 0xF9, 8);
   addKey("InStop(FactoryReset)", FactoryReset_Key, 0xFA, 8);
-  addKey("InStart", Unmapped_Key, 0xFB, 8);
+  addKey("InStart", HotelMenu_Key, 0xFB, 8);
   addKey("Password Protected Function", Unmapped_Key, 0xFC, 8);
   addKey("PowerOnly", Unmapped_Key, 0xFE, 8);
   addKey("EZadjust", ServiceMenu_Key, 0xFF, 8);
@@ -309,6 +315,12 @@ void LGTV2::populateProtocol(
 
   threadableProtocol = new RC5Protocol(guiObject, index, 0x40);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addKey("0", Zero_Key, 0x00, 6);
   addKey("1", One_Key, 0x01, 6);
   addKey("2", Two_Key, 0x02, 6);
@@ -430,6 +442,12 @@ void LGHT1::populateProtocol(
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x2222, 16);
 
   addKey("play", Play_Key, 0x04, 8);
@@ -502,6 +520,12 @@ void LGHT2::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xC2C2, 16);
 
@@ -644,6 +668,12 @@ void LGDisc1::populateProtocol(
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x2C2C, 16);
 
   addKey("cd-dvd", CDInput_Key, 0x03, 8);
@@ -742,6 +772,12 @@ void LGDisc2::populateProtocol(
   }
 
   threadableProtocol = new NECXProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2D2D, 16);
 
@@ -844,6 +880,12 @@ void LGVCR1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
   threadableProtocol->setMinimumRepetitions(1);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x6E, 8);
 
@@ -971,6 +1013,12 @@ void LGAC1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
   threadableProtocol->setMinimumRepetitions(1);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x6681, 16);
 

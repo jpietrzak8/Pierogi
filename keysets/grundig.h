@@ -1,7 +1,7 @@
 //
 // grundig.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -27,11 +27,12 @@
 
 #include "philips.h" // for generic RC5 keyset
 
-class QObject;
 class QComboBox;
 
 class GrundigSat1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigSat1(
     unsigned int index);
@@ -42,6 +43,8 @@ public:
 
 class GrundigSat2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigSat2(
     unsigned int index);
@@ -52,6 +55,8 @@ public:
 
 class GrundigSat3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigSat3(
     unsigned int index);
@@ -62,6 +67,8 @@ public:
 
 class GrundigAmp1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigAmp1(
     unsigned int index);
@@ -75,6 +82,8 @@ public:
 
 class GrundigAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigAudio1(
     unsigned int index);
@@ -85,6 +94,8 @@ public:
 
 class GrundigAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigAudio2(
     unsigned int index);
@@ -98,6 +109,8 @@ public:
 
 class GrundigVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigVCR1(
     unsigned int index);
@@ -108,6 +121,8 @@ public:
 
 class GrundigVCR1a: public GrundigVCR1
 {
+  Q_OBJECT
+
 public:
   GrundigVCR1a(
     unsigned int index);
@@ -118,6 +133,8 @@ public:
 
 class GrundigTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigTV1(
     unsigned int index);
@@ -128,6 +145,8 @@ public:
 
 class GrundigTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigTV2(
     unsigned int index);
@@ -138,6 +157,8 @@ public:
 
 class GrundigTV3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigTV3(
     unsigned int index);
@@ -148,6 +169,8 @@ public:
 
 class GrundigTV4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigTV4(
     unsigned int index);
@@ -159,6 +182,8 @@ public:
 
 class GrundigTV5: public PhilipsTV1
 {
+  Q_OBJECT
+
 public:
   GrundigTV5(
     unsigned int index);
@@ -170,6 +195,8 @@ public:
 
 class GrundigDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GrundigDVD1(
     unsigned int index);

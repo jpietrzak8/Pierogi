@@ -1,7 +1,7 @@
 //
 // pirkeysetmetadata.h
 //
-// Copyright 2012, 2013 by John Pietrzak  (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak  (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -23,6 +23,8 @@
 #ifndef PIRKEYSETMETADATA_H
 #define PIRKEYSETMETADATA_H
 
+#include <QObject>
+
 #include "pirkeynames.h"
 #include "pirmakenames.h"
 //#include "pirdevicetypenames.h"
@@ -34,7 +36,6 @@
 //#include <list>
 
 class QThread;
-class QObject;
 class QComboBox;
 
 class PIRSelectDeviceForm;
@@ -43,8 +44,10 @@ class PIRProtocol;
 typedef std::map<PIRKeyName, const char *> KeyCollection;
 
 
-class PIRKeysetMetaData
+class PIRKeysetMetaData: public QObject
 {
+  Q_OBJECT
+
 public:
   PIRKeysetMetaData(
     const char *keysetName,
@@ -81,13 +84,17 @@ public:
   bool clearProtocol();
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 
   void moveToThread(
     QThread *thread);
 
   static void populateDevices(
     PIRSelectDeviceForm *sdf);
+
+signals:
+  void errorMessage(
+    QString errStr);
 
 protected:
   void addControlledDevice(

@@ -1,7 +1,7 @@
 //
 // changhong.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class ChanghongTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ChanghongTV1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class ChanghongTV1a: public ChanghongTV1
 {
+  Q_OBJECT
+
 public:
   ChanghongTV1a(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class ChanghongTV1b: public ChanghongTV1
 {
+  Q_OBJECT
+
 public:
   ChanghongTV1b(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class ChanghongTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ChanghongTV2(
     unsigned int index);
@@ -73,6 +80,8 @@ public:
 
 class ChanghongTV3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   ChanghongTV3(
     unsigned int index);

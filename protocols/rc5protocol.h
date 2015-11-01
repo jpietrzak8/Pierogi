@@ -1,7 +1,7 @@
 //
 // rc5protocol.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -34,6 +34,8 @@ class PIRInfraredLED;
 
 class RC5Protocol: public PIRProtocol
 {
+  Q_OBJECT
+
 public:
   // For standard RC5, the control portion will be passed in as
   // a seven-bit value:

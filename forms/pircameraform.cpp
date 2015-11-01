@@ -76,6 +76,10 @@ void PIRCameraForm::on_openShutterButton_pressed()
   {
     if (ui->remoteFlashCheckBox->isChecked())
     {
+      // Sanity check:
+      if (flash) delete flash;
+
+      // construct new flash object:
       flash = new PIRFlashLED();
       flash->strobe();
     }

@@ -1,7 +1,7 @@
 //
 // directv.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -26,10 +26,11 @@
 #include "pirkeysetmetadata.h"
 #include "protocols/directvprotocol.h"
 
-class QObject;
 
 class DirectvReceiver1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   DirectvReceiver1(
     unsigned int index);
@@ -46,6 +47,8 @@ protected:
 
 class DirectvReceiver1a: public DirectvReceiver1
 {
+  Q_OBJECT
+
 public:
   DirectvReceiver1a(
     unsigned int index);
@@ -56,6 +59,8 @@ public:
 
 class DirectvReceiver1b: public DirectvReceiver1
 {
+  Q_OBJECT
+
 public:
   DirectvReceiver1b(
     unsigned int index);
@@ -66,6 +71,8 @@ public:
 
 class DirectvReceiver1c: public DirectvReceiver1
 {
+  Q_OBJECT
+
 public:
   DirectvReceiver1c(
     unsigned int index);
@@ -76,6 +83,8 @@ public:
 
 class DirectvReceiver1d: public DirectvReceiver1
 {
+  Q_OBJECT
+
 public:
   DirectvReceiver1d(
     unsigned int index);
@@ -86,6 +95,8 @@ public:
 
 class DirectvReceiver1e: public DirectvReceiver1
 {
+  Q_OBJECT
+
 public:
   DirectvReceiver1e(
     unsigned int index);

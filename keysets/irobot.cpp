@@ -1,7 +1,7 @@
 //
 // irobot.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -45,6 +45,12 @@ void IRobotRoomba1::populateProtocol(
   }
 
   threadableProtocol = new IRobotProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addKey("CounterClockwise", RobotCCW_Key, 0x81, 8);
   addKey("Forward", RobotForward_Key, 0x82, 8);

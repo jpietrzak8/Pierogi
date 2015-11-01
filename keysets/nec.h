@@ -1,7 +1,7 @@
 //
 // nec.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class NECTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NECTV1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class NECVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NECVCR1(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class NECVCR2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NECVCR2(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class NECVCR3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NECVCR3(
     unsigned int index);
@@ -70,6 +77,8 @@ public:
 
 class NECDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NECDVD1(
     unsigned int index);
@@ -80,6 +89,8 @@ public:
 
 class NECProjector1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NECProjector1(
     unsigned int index);
@@ -90,6 +101,8 @@ public:
 
 class NECProjector2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NECProjector2(
     unsigned int index);
@@ -103,6 +116,8 @@ public:
 
 class NECProjector3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   NECProjector3(
     unsigned int index);

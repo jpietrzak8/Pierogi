@@ -1,7 +1,7 @@
 //
 // logitech.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class LogitechSpeakers: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LogitechSpeakers(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class LogitechSqueezebox: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   LogitechSqueezebox(
     unsigned int index);

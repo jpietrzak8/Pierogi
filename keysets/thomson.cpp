@@ -1,7 +1,7 @@
 //
 // thomson.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -51,6 +51,12 @@ void ThomsonConverter1::populateProtocol(
   threadableProtocol = new XMPProtocol(
     guiObject, index, 0x1, 0x0, 0x44, 0x3E, false);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addXMPKey("KEY_1", One_Key, 0x01, 0x00);
   addXMPKey("KEY_2", Two_Key, 0x02, 0x00);
   addXMPKey("KEY_3", Three_Key, 0x03, 0x00);
@@ -94,6 +100,12 @@ void ThomsonTV1::populateProtocol(
   }
 
   threadableProtocol = new ThomsonProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x3, 4);
 
@@ -172,6 +184,12 @@ void ThomsonVCR1::populateProtocol(
   }
 
   threadableProtocol = new ThomsonProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x0, 4);
 
@@ -267,6 +285,12 @@ void ThomsonDVD1::populateProtocol(
 
   threadableProtocol = new ThomsonProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x4, 4);
 
   addKey("1", One_Key, 0x00, 7);
@@ -343,6 +367,12 @@ void ThomsonSat1::populateProtocol(
   }
 
   threadableProtocol = new ThomsonProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xC, 4);
 
@@ -424,6 +454,12 @@ void ThomsonAudio1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, false);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0xFF80, 16);
 
   addKey("source", Input_Key, 0x80, 8);
@@ -465,6 +501,12 @@ void ThomsonAudio2::populateProtocol(
   }
 
   threadableProtocol = new RCAProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xC, 4);
 

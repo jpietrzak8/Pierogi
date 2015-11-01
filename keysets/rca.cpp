@@ -1,7 +1,7 @@
 //
 // rca.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -45,6 +45,12 @@ void RCATV1::populateProtocol(
   }
 
   threadableProtocol = new RCAProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0xF, 4);
 
@@ -353,6 +359,12 @@ void RCAVCR1::populateProtocol(
 
   threadableProtocol = new RCAProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0xE, 4);
 
   addKey("vcr1-antenna", AntennaInput_Key, 0x05, 8);
@@ -441,6 +453,12 @@ void RCADVD1::populateProtocol(
   }
 
   threadableProtocol = new RCAProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x5, 4);
 
@@ -533,6 +551,12 @@ void RCASat1::populateProtocol(
 
   threadableProtocol = new RCAProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x7, 4);
 
   addKey("antenna", AntennaInput_Key, 0x05, 8); // "TV/VCR"
@@ -606,6 +630,12 @@ void RCASat2::populateProtocol(
     6115, false);
 
   threadableProtocol = lp;
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   lp->setHeaderPair(525, 6045);
   lp->setTrailerPulse(450);

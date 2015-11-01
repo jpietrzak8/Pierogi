@@ -1,7 +1,7 @@
 //
 // tdcprotocol.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -24,7 +24,7 @@
 
 #include "pirinfraredled.h"
 
-#include "pirexception.h"
+#include <QString>
 
 #include <QMutex>
 extern bool commandInFlight;
@@ -60,85 +60,80 @@ void TDCProtocol::startSendingCommand(
   unsigned int threadableID,
   PIRKeyName command)
 {
-  // Catch any exceptions here before they go up any further:
-  try
+  // Check that this command is meant for us:
+  if (threadableID != id) return;
+
+  clearRepeatFlag();
+
+  KeycodeCollection::const_iterator i = keycodes.find(command);
+
+  // Sanity check:
+  if (i == keycodes.end())
   {
-    // Check that this command is meant for us:
-    if (threadableID != id) return;
-
-    clearRepeatFlag();
-
-    KeycodeCollection::const_iterator i = keycodes.find(command);
-
-    // Sanity check:
-    if (i == keycodes.end())
-    {
-      QMutexLocker cifLocker(&commandIFMutex);
-      commandInFlight = false;
-      return;
-//      std::string s = "Tried to send a non-existent command.\n";
-//      throw PIRException(s);
-    }
-
-    // Construct the object that communicates with the device driver:
-    PIRInfraredLED led(carrierFrequency, dutyCycle);
-
-    int repeatCount = 0;
-    int commandDuration = 0;
-    while (repeatCount < MAX_REPEAT_COUNT)
-    {
-      // Construct the actual command string.
-      // The string always starts with a constant "1" bit:
-      commandDuration += pushBit(true, led);
-
-      // Next, the device bits:
-      commandDuration += pushBits(preData, led);
-
-      // Then, the subdevice bits:
-      commandDuration += pushBits(postData, led);
-
-      // Finally, the command bits:
-      commandDuration += pushBits((*i).second.firstCode, led);
-
-      // Clear out the buffer, if needed:
-      if (buffer)
-      {
-        led.addSingle(buffer);
-        commandDuration += buffer;
-
-        buffer = 0;
-        bufferContainsSpace = false;
-        bufferContainsPulse = false;
-      }
-
-      // Send the command:
-      led.sendCommandToDevice();
-
-      // Sleep for the required amount of time.
-      sleepUntilRepeat(commandDuration);
-
-      // Check whether we've been told to stop:
-      if (checkRepeatFlag())
-      {
-        // We shall stop:
-        break;
-/*
-        QMutexLocker cifLocker(&commandIFMutex);
-        commandInFlight = false;
-        return;
-*/
-      }
-
-      ++repeatCount;
-    }
-
     QMutexLocker cifLocker(&commandIFMutex);
     commandInFlight = false;
+    emit errorMessage("Key not defined in this keyset.");
+    return;
   }
-  catch (PIRException e)
+
+  // Construct the object that communicates with the device driver:
+  PIRInfraredLED led(carrierFrequency, dutyCycle);
+
+  connect(
+    &led,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
+  int repeatCount = 0;
+  int commandDuration = 0;
+  while (repeatCount < MAX_REPEAT_COUNT)
   {
-    emit commandFailed(e.getError().c_str());
+    // Construct the actual command string.
+    // The string always starts with a constant "1" bit:
+    commandDuration += pushBit(true, led);
+
+    // Next, the device bits:
+    commandDuration += pushBits(preData, led);
+
+    // Then, the subdevice bits:
+    commandDuration += pushBits(postData, led);
+
+    // Finally, the command bits:
+    commandDuration += pushBits((*i).second.firstCode, led);
+
+    // Clear out the buffer, if needed:
+    if (buffer)
+    {
+      led.addSingle(buffer);
+      commandDuration += buffer;
+
+      buffer = 0;
+      bufferContainsSpace = false;
+      bufferContainsPulse = false;
+    }
+
+    // Send the command:
+    if (!led.sendCommandToDevice())
+    {
+      break;
+    }
+
+    // Sleep for the required amount of time.
+    sleepUntilRepeat(commandDuration);
+
+    // Check whether we've been told to stop:
+    if (checkRepeatFlag())
+    {
+      // We shall stop:
+      break;
+    }
+
+    ++repeatCount;
   }
+
+  QMutexLocker cifLocker(&commandIFMutex);
+  commandInFlight = false;
 }
 
 

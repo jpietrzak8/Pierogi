@@ -1,7 +1,7 @@
 //
 // goldstar.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class GoldStarTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GoldStarTV1(
     unsigned int index);
@@ -41,6 +42,8 @@ public:
 
 class GoldStarTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GoldStarTV2(
     unsigned int index);
@@ -52,6 +55,8 @@ public:
 
 class GoldStarVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GoldStarVCR1(
     unsigned int index);
@@ -63,6 +68,8 @@ public:
 
 class GoldStarVCR1a: public GoldStarVCR1
 {
+  Q_OBJECT
+
 public:
   GoldStarVCR1a(
     unsigned int index);
@@ -74,6 +81,8 @@ public:
 
 class GoldStarVCR1b: public GoldStarVCR1
 {
+  Q_OBJECT
+
 public:
   GoldStarVCR1b(
     unsigned int index);
@@ -85,6 +94,8 @@ public:
 
 class GoldStarVCR1c: public GoldStarVCR1
 {
+  Q_OBJECT
+
 public:
   GoldStarVCR1c(
     unsigned int index);
@@ -96,6 +107,8 @@ public:
 
 class GoldStarAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GoldStarAudio1(
     unsigned int index);

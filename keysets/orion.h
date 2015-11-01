@@ -1,7 +1,7 @@
 //
 // orion.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class OrionTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OrionTV1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class OrionTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OrionTV2(
     unsigned int index);
@@ -53,6 +56,8 @@ public:
 
 class OrionTV3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OrionTV3(
     unsigned int index);
@@ -66,6 +71,8 @@ public:
 
 class OrionVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OrionVCR1(
     unsigned int index);
@@ -76,6 +83,8 @@ public:
 
 class OrionVCR2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OrionVCR2(
     unsigned int index);
@@ -86,6 +95,8 @@ public:
 
 class OrionDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   OrionDVD1(
     unsigned int index);

@@ -1,7 +1,7 @@
 //
 // goodmans.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class GoodmansSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GoodmansSTB1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class GoodmansVCR1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GoodmansVCR1(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class GoodmansDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GoodmansDVD1(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class GoodmansAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   GoodmansAudio1(
     unsigned int index);

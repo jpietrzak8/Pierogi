@@ -1,7 +1,7 @@
 //
 // blaupunkt.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -44,6 +44,12 @@ void BlaupunktVCR1::populateProtocol(
   }
 
   threadableProtocol = new KaseikyoProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   setPreData(0x2002, 16);
 

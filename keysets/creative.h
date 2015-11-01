@@ -1,7 +1,7 @@
 //
 // creative.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class CreativeAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   CreativeAudio1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class CreativeAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   CreativeAudio2(
     unsigned int index);
@@ -49,6 +52,8 @@ public:
 
 class CreativeAudio3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   CreativeAudio3(
     unsigned int index);
@@ -59,6 +64,8 @@ public:
 
 class CreativeAudio4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   CreativeAudio4(
     unsigned int index);

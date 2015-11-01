@@ -1,7 +1,7 @@
 //
 // hauppauge.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class HauppaugePCTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HauppaugePCTV1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class HauppaugePCTV1a: public HauppaugePCTV1
 {
+  Q_OBJECT
+
 public:
   HauppaugePCTV1a(
     unsigned int index);
@@ -49,6 +52,8 @@ public:
 
 class HauppaugePCTV1b: public HauppaugePCTV1
 {
+  Q_OBJECT
+
 public:
   HauppaugePCTV1b(
     unsigned int index);
@@ -59,6 +64,8 @@ public:
 
 class HauppaugePCTV1c: public HauppaugePCTV1
 {
+  Q_OBJECT
+
 public:
   HauppaugePCTV1c(
     unsigned int index);
@@ -69,6 +76,8 @@ public:
 
 class HauppaugePCTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   HauppaugePCTV2(
     unsigned int index);

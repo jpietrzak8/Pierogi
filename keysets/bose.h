@@ -1,7 +1,7 @@
 //
 // bose.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class BoseRadio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   BoseRadio1(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class BoseRadio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   BoseRadio2(
     unsigned int index);
@@ -56,6 +59,8 @@ public:
 
 class BoseRadio3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   BoseRadio3(
     unsigned int index);
@@ -69,6 +74,8 @@ public:
 
 class BoseHomeTheater1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   BoseHomeTheater1(
     unsigned int index);

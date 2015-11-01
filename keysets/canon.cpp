@@ -1,7 +1,7 @@
 //
 // canon.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -52,6 +52,13 @@ void CanonDSLR1::populateProtocol(
     100000, true);
 
   threadableProtocol = lp;
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   lp->setTrailerPulse(550);
   lp->setCarrierFrequency(32000); // hope this is right
 

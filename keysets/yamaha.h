@@ -1,7 +1,7 @@
 //
 // yamaha.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class YamahaDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   YamahaDVD1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class YamahaDVD1a: public YamahaDVD1
 {
+  Q_OBJECT
+
 public:
   YamahaDVD1a(
     unsigned int index);
@@ -50,6 +53,8 @@ public:
 
 class YamahaAudio1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   YamahaAudio1(
     unsigned int index);
@@ -60,6 +65,8 @@ public:
 
 class YamahaAudio1a: public YamahaAudio1
 {
+  Q_OBJECT
+
 public:
   YamahaAudio1a(
     unsigned int index);
@@ -70,6 +77,8 @@ public:
 
 class YamahaAudio2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   YamahaAudio2(
     unsigned int index);
@@ -83,6 +92,8 @@ public:
 
 class YamahaAudio2a: public YamahaAudio2
 {
+  Q_OBJECT
+
 public:
   YamahaAudio2a(
     unsigned int index);
@@ -93,6 +104,8 @@ public:
 
 class YamahaAudio2b: public YamahaAudio2
 {
+  Q_OBJECT
+
 public:
   YamahaAudio2b(
     unsigned int index);
@@ -103,6 +116,8 @@ public:
 
 class YamahaAudio2c: public YamahaAudio2
 {
+  Q_OBJECT
+
 public:
   YamahaAudio2c(
     unsigned int index);
@@ -113,6 +128,8 @@ public:
 
 class YamahaAudio2d: public YamahaAudio2
 {
+  Q_OBJECT
+
 public:
   YamahaAudio2d(
     unsigned int index);
@@ -123,6 +140,8 @@ public:
 
 class YamahaAudio3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   YamahaAudio3(
     unsigned int index);
@@ -133,6 +152,8 @@ public:
 
 class YamahaAudio4: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   YamahaAudio4(
     unsigned int index);
@@ -146,6 +167,8 @@ public:
 
 class YamahaTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   YamahaTV1(
     unsigned int index);
@@ -156,6 +179,8 @@ public:
 
 class YamahaKaraoke1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   YamahaKaraoke1(
     unsigned int index);

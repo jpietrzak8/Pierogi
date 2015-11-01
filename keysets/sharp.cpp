@@ -1,7 +1,7 @@
 //
 // sharp.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void SharpTV1::populateProtocol(
   }
 
   threadableProtocol = new SharpProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addSharpKey("1", One_Key, 0x01, 0x01);
   addSharpKey("2", Two_Key, 0x01, 0x02);
@@ -323,6 +329,12 @@ void SharpVCR1::populateProtocol(
 
   threadableProtocol = new SharpProtocol(guiObject, index, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addSharpKey("1", One_Key, 0x03, 0x01);
   addSharpKey("2", Two_Key, 0x03, 0x02);
   addSharpKey("3", Three_Key, 0x03, 0x03);
@@ -415,6 +427,12 @@ void SharpReceiver1::populateProtocol(
 
   threadableProtocol = new SharpProtocol(guiObject, index, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addSharpKey("PRESET+", ChannelUp_Key, 0x12, 0x11);
   addSharpKey("PRESET-", ChannelDown_Key, 0x12, 0x12);
   addSharpKey("VOL+", VolumeUp_Key, 0x12, 0x14);
@@ -491,6 +509,12 @@ void SharpAC1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0xF508, 16);
 
   addKey("Fan Faster", FanFaster_Key, 0x01, 8);
@@ -503,4 +527,56 @@ void SharpAC1::populateProtocol(
   addKey("Temp/Timer+", TempUp_Key, 0x0E, 8);
   addKey("Auto/Cool", Mode_Key, 0x0F, 8);
   addKey("power", Power_Key, 0x11, 8);
+}
+
+
+SharpCamcorder1::SharpCamcorder1(
+  unsigned int index)
+  : PIRKeysetMetaData(
+      "Camcorder Keyset 1",
+      Sharp_Make,
+      MediaControl_Panels | MediaRecord_Panels,
+      index)
+{
+}
+
+
+void SharpCamcorder1::populateProtocol(
+  QObject *guiObject)
+{
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
+  threadableProtocol = new SharpProtocol(guiObject, index, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
+  addSharpKey("rec start/stop", Record_Key, 0x13, 0x10);
+  addSharpKey("ff", FastForward_Key, 0x13, 0x21);
+  addSharpKey("play", Play_Key, 0x13, 0x22);
+  addSharpKey("rew", Rewind_Key, 0x13, 0x23);
+  addSharpKey("f.adv", StepForward_Key, 0x13, 0x24);
+  addSharpKey("pause", Pause_Key, 0x13, 0x25);
+  addSharpKey("stop", Stop_Key, 0x13, 0x27);
+  addSharpKey("slow", Slow_Key, 0x13, 0x29);
+  addSharpKey("zoom t", Unmapped_Key, 0x13, 0x45);
+  addSharpKey("zoom w", Unmapped_Key, 0x13, 0x46);
+  addSharpKey("pic effect", Unmapped_Key, 0x13, 0x49);
+  addSharpKey("up", Up_Key, 0x13, 0x82);
+  addSharpKey("down", Down_Key, 0x13, 0x83);
+  addSharpKey("left", Left_Key, 0x13, 0x84);
+  addSharpKey("right", Right_Key, 0x13, 0x85);
+  addSharpKey("date", Unmapped_Key, 0x13, 0x95);
+  addSharpKey("display", Unmapped_Key, 0x13, 0x96);
+  addSharpKey("memory", Unmapped_Key, 0x13, 0x97);
+  addSharpKey("reset", Unmapped_Key, 0x13, 0x98);
+  addSharpKey("volup", VolumeUp_Key, 0x13, 0xA4);
+  addSharpKey("voldown", VolumeDown_Key, 0x13, 0xA5);
 }

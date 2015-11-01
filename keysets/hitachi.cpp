@@ -1,7 +1,7 @@
 //
 // hitachi.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -46,6 +46,12 @@ void HitachiTV1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x0AF5, 16);
   setPreData(0x50, 8);
@@ -178,6 +184,12 @@ void HitachiTV2::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   setPreData(0x50, 8); // This might be wrong...
 
   addKey("Power", Power_Key, 0x17, 8);
@@ -224,7 +236,19 @@ HitachiTV3::HitachiTV3(
 void HitachiTV3::populateProtocol(
   QObject *guiObject)
 {
+  if (threadableProtocol)
+  {
+    // Keyset already populated.
+    return;
+  }
+
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x0AF5, 16);
   setPreData(0x50, 8);
@@ -364,6 +388,12 @@ void HitachiProjector::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
 //  setPreData(0xE1A2, 16);
   setPreData(0x4587, 16);
 
@@ -417,6 +447,12 @@ void HitachiDVD1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, true, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x01C4, 16);
   setPreData(0x2380, 16);
@@ -489,6 +525,12 @@ void HitachiAudio1::populateProtocol(
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
 //  setPreData(0xDA25, 16);
   setPreData(0x5B, 8);
 
@@ -545,6 +587,12 @@ void HitachiVCR1::populateProtocol(
   }
 
   threadableProtocol = new NECProtocol(guiObject, index, false, true);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
 //  setPreData(0x06F9, 16);
   setPreData(0x60, 8);

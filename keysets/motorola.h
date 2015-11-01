@@ -1,7 +1,7 @@
 //
 // motorola.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,11 +25,12 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 class QComboBox;
 
 class Motorola4DTV: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   Motorola4DTV(
     unsigned int index);
@@ -43,6 +44,8 @@ public:
 
 class MotorolaSTB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MotorolaSTB1(
     unsigned int index);
@@ -56,6 +59,8 @@ public:
 
 class MotorolaSTB1a: public MotorolaSTB1
 {
+  Q_OBJECT
+
 public:
   MotorolaSTB1a(
     unsigned int index);
@@ -66,6 +71,8 @@ public:
 
 class MotorolaSTB1b: public MotorolaSTB1
 {
+  Q_OBJECT
+
 public:
   MotorolaSTB1b(
     unsigned int index);
@@ -76,6 +83,8 @@ public:
 
 class MotorolaSTB2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MotorolaSTB2(
     unsigned int index);
@@ -86,6 +95,8 @@ public:
 
 class MotorolaSkyDigital: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MotorolaSkyDigital(
     unsigned int index);

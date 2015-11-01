@@ -1,7 +1,7 @@
 //
 // manta.h
 //
-// Copyright 2014 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2014 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class MantaDVB1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MantaDVB1(
     unsigned int index);
@@ -40,6 +41,8 @@ public:
 
 class MantaDVB2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MantaDVB2(
     unsigned int index);
@@ -51,6 +54,8 @@ public:
 
 class MantaDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   MantaDVD1(
     unsigned int index);
@@ -62,6 +67,8 @@ public:
 
 class MantaDVD2: public PIRKeysetMetaData
 { 
+  Q_OBJECT
+
 public:
   MantaDVD2(
     unsigned int index);

@@ -1,7 +1,7 @@
 //
 // silvercrest.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class SilverCrestDVD1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SilverCrestDVD1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class SilverCrestDVD2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SilverCrestDVD2(
     unsigned int index);
@@ -49,6 +52,8 @@ public:
 
 class SilverCrestDVD3: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   SilverCrestDVD3(
     unsigned int index);

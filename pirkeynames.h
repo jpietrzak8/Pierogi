@@ -1,7 +1,7 @@
 //
 // pirkeynames.h
 //
-// Copyright 2012, 2013 by John Pietrzak  (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak  (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -298,6 +298,7 @@ enum PIRKeyName
   // "Factory" TV controls:
   ServiceMenu_Key,
   FactoryReset_Key,
+  HotelMenu_Key,
 
   // Other keys:
   Captions_Key,

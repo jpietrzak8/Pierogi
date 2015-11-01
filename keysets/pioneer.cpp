@@ -1,7 +1,7 @@
 //
 // pioneer.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -47,6 +47,12 @@ void PioneerTV1::populateProtocol(
   }
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addNECKey("0", Zero_Key, 0xAA, 0x00);
   addNECKey("1", One_Key, 0xAA, 0x01);
@@ -144,6 +150,12 @@ void PioneerTV2::populateProtocol(
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   // I'm not sure this keyset even needs the "0xAA" keys at all...
   addNECKey("tv-dengen", Unmapped_Key, 0xAA, 0x1C);
   addNECKey("tv-nyuuryoku-kirikae", Unmapped_Key, 0xAA, 0x13);
@@ -215,6 +227,12 @@ void PioneerTV3::populateProtocol(
   }
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addNECKey("KEY_VOLUMEUP", VolumeUp_Key, 0xAA, 0x0A);
   addNECKey("KEY_VOLUMEDOWN", VolumeDown_Key, 0xAA, 0x0B);
@@ -291,6 +309,12 @@ void PioneerAudio1::populateProtocol(
   }
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addNECKey("TAPE2_FWD", Unmapped_Key, 0xA1, 0x10);
   addNECKey("TAPE2_RWD", Unmapped_Key, 0xA1, 0x11);
@@ -432,6 +456,12 @@ void PioneerAudio2::populateProtocol(
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addNECKey("VOL+", VolumeUp_Key, 0xA5, 0x0A);
   addNECKey("VOL-", VolumeDown_Key, 0xA5, 0x0B);
   addNECKey("Mute", Mute_Key, 0xA5, 0x12);
@@ -513,6 +543,12 @@ void PioneerAudio3::populateProtocol(
   }
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addNECKey("tape_deck1", Unmapped_Key, 0xA1, 0x0C);
   addNECKey("tape_deck2", Unmapped_Key, 0xA1, 0x0D);
@@ -699,6 +735,12 @@ void PioneerAudio4::populateProtocol(
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addNECKey("tapesel", Unmapped_Key, 0xA1, 0x4C);
   addNECKey(">>", FastForward_Key, 0xA1, 0x56);
   addNECKey("<<", Rewind_Key, 0xA1, 0x57);
@@ -754,6 +796,12 @@ void PioneerAudio5::populateProtocol(
     110000, true);
 
   threadableProtocol = lp;
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   lp->setHeaderPair(9000, 4500);
   lp->setTrailerPulse(560);
@@ -830,6 +878,12 @@ void PioneerAudio6::populateProtocol(
   }
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addNECKey("Menu", Menu_Key, 0xA3, 0x99);
 
@@ -1049,6 +1103,12 @@ void PioneerCD1::populateProtocol(
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addNECKey("0", Zero_Key, 0xA2, 0x00);
   addNECKey("1", One_Key, 0xA2, 0x01);
   addNECKey("2", Two_Key, 0xA2, 0x02);
@@ -1147,6 +1207,12 @@ void PioneerLaserDisc1::populateProtocol(
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addNECKey("0", Zero_Key, 0xA8, 0x00);
   addNECKey("1", One_Key, 0xA8, 0x01);
   addNECKey("2", Two_Key, 0xA8, 0x02);
@@ -1219,6 +1285,12 @@ void PioneerDVD1::populateProtocol(
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
 
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
+
   addNECKey("STOP", Stop_Key, 0xA3, 0x98);
   addNECKey("NEXT", Next_Key, 0xA3, 0x9C);
   addNECKey("PREV", Previous_Key, 0xA3, 0x9D);
@@ -1281,6 +1353,12 @@ void PioneerCarStereo1::populateProtocol(
   }
 
   threadableProtocol = new PioneerProtocol(guiObject, index);
+
+  connect(
+    threadableProtocol,
+    SIGNAL(errorMessage(QString)),
+    this,
+    SIGNAL(errorMessage(QString)));
 
   addNECKey("VOL+", VolumeUp_Key, 0xAD, 0x0A);
   addNECKey("VOL-", VolumeDown_Key, 0xAD, 0x0B);

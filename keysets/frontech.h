@@ -1,7 +1,7 @@
 //
 // frontech.h
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2012 - 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -25,10 +25,11 @@
 
 #include "pirkeysetmetadata.h"
 
-class QObject;
 
 class FrontechTV1: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   FrontechTV1(
     unsigned int index);
@@ -39,6 +40,8 @@ public:
 
 class FrontechTV2: public PIRKeysetMetaData
 {
+  Q_OBJECT
+
 public:
   FrontechTV2(
     unsigned int index);
