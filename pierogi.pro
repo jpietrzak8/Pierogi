@@ -274,7 +274,7 @@ SOURCES += main.cpp mainwindow.cpp \
     keysets/manta.cpp \
     protocols/panasonicprotocol.cpp \
     forms/pirtvmenuform.cpp \
-    keysets/fujitsu.cpp
+    keysets/fujitsu.cpp \
     keysets/elenberg.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
@@ -525,7 +525,7 @@ HEADERS += mainwindow.h \
     keysets/manta.h \
     protocols/panasonicprotocol.h \
     forms/pirtvmenuform.h \
-    keysets/fujitsu.h
+    keysets/fujitsu.h \
     keysets/elenberg.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \

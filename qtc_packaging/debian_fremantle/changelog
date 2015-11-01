@@ -1,3 +1,10 @@
+pierogi (1.1.45) unstable; urgency=low
+  * Starting cleanup of the Pierogi codebase (with an emphasis on making error handling work better).
+  * Added new Elenberg tv keyset (thanks Lyapova!).
+  * Added new "Hotel Menu" key (for accessing Hotel Mode on some TV sets).
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 01 Nov 2015 16:19:27 -0500
+
 pierogi (1.1.44) unstable; urgency=low
   * Added support for the HDMI "Consumer Electronics Control" (or "CEC") function; this goes under various names for different brands, such as SimpLink (LG), Anynet+ (Samsung), Bravia Link (Sony), etc.
   * Added support for the "Energy Saving" control for a few TV models.

@@ -1,7 +1,7 @@
 //
 // elenberg.cpp
 //
-// Copyright 2012, 2013 by John Pietrzak (jpietrzak8@gmail.com)
+// Copyright 2015 by John Pietrzak (jpietrzak8@gmail.com)
 //
 // This file is part of Pierogi.
 //
@@ -27,7 +27,7 @@
 Elenberg::Elenberg(
   unsigned int index)
   : PIRKeysetMetaData(
-      "ELENBERG 35009168 (CAMERON RC-35/ AKIRA 1402)",
+      "TV Keyset 1",
       Elenberg_Make,
       MediaControl_Panels,
       index)
