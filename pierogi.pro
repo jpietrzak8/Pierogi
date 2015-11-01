@@ -275,6 +275,7 @@ SOURCES += main.cpp mainwindow.cpp \
     protocols/panasonicprotocol.cpp \
     forms/pirtvmenuform.cpp \
     keysets/fujitsu.cpp
+    keysets/elenberg.cpp
 HEADERS += mainwindow.h \
     pirkeynames.h \
     pirmakenames.h \
@@ -525,6 +526,7 @@ HEADERS += mainwindow.h \
     protocols/panasonicprotocol.h \
     forms/pirtvmenuform.h \
     keysets/fujitsu.h
+    keysets/elenberg.h
 FORMS += mainwindow.ui \
     pirdocumentationform.ui \
     piraboutform.ui \

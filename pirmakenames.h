@@ -67,6 +67,7 @@ enum PIRMakeName{
   Dune_Make,
   Dynex_Make,
   Ei_Make,
+  Elenberg_Make,
   Elgato_Make,
   Emerson_Make,
   Emtec_Make,
