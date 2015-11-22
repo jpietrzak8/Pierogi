@@ -261,6 +261,7 @@ PIRKeynameMgr::PIRKeynameMgr()
   keynameStrings[Zoom_Key] = "Zoom";
   keynameStrings[LiveTV_Key] = "Live TV";
   keynameStrings[Mode_Key] = "Mode";
+  keynameStrings[SmartHub_Key] = "Smart Hub";
 
   KeynameCollection::const_iterator i = keynameStrings.begin();
   while (i != keynameStrings.end())

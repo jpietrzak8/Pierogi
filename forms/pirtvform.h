@@ -46,11 +46,11 @@ public:
 
 signals:
   void teletextEnabled(bool);
-  void teletextSizeEnabled(bool);
+  void teletextHoldEnabled(bool);
   void favoritesEnabled(bool);
   void pageUpEnabled(bool);
-  void teletextHoldEnabled(bool);
-  void teletextRevealEnabled(bool);
+  void energySaverEnabled(bool);
+  void smartHubEnabled(bool);
   void liveTVEnabled(bool);
   void pageDownEnabled(bool);
   void pipEnabled(bool);
@@ -65,16 +65,16 @@ signals:
 private slots:
   void on_teletextButton_pressed();
   void on_teletextButton_released();
-  void on_teletextSizeButton_pressed();
-  void on_teletextSizeButton_released();
+  void on_teletextHoldButton_pressed();
+  void on_teletextHoldButton_released();
   void on_favoritesButton_pressed();
   void on_favoritesButton_released();
   void on_pageUpButton_pressed();
   void on_pageUpButton_released();
-  void on_teletextHoldButton_pressed();
-  void on_teletextHoldButton_released();
-  void on_teletextRevealButton_pressed();
-  void on_teletextRevealButton_released();
+  void on_energySaverButton_pressed();
+  void on_energySaverButton_released();
+  void on_smartHubButton_pressed();
+  void on_smartHubButton_released();
   void on_liveTVButton_pressed();
   void on_liveTVButton_released();
   void on_pageDownButton_pressed();

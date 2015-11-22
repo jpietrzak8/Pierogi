@@ -1,3 +1,8 @@
+pierogi (1.1.46) unstable; urgency=low
+  * Added "Energy Saver" and "Smart Hub" buttons to the "TV" panel, for a few TV brands that support those functions.
+
+ -- John Pietrzak <jpietrzak8@gmail.com>  Sun, 22 Nov 2015 12:08:32 -0500
+
 pierogi (1.1.45) unstable; urgency=low
   * Starting cleanup of the Pierogi codebase (with an emphasis on making error handling work better).
   * Added new Elenberg tv keyset (thanks Lyapova!).

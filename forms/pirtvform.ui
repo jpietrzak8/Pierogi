@@ -31,7 +31,7 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QPushButton" name="teletextSizeButton">
+    <widget class="QPushButton" name="energySaverButton">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
@@ -39,7 +39,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>Txt Size</string>
+      <string>Energy Saver</string>
      </property>
     </widget>
    </item>
@@ -93,7 +93,7 @@
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QPushButton" name="teletextRevealButton">
+    <widget class="QPushButton" name="smartHubButton">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
@@ -101,7 +101,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>Txt Reveal</string>
+      <string>Smart Hub</string>
      </property>
     </widget>
    </item>
@@ -289,8 +289,8 @@
   </connection>
   <connection>
    <sender>PIRTVForm</sender>
-   <signal>teletextSizeEnabled(bool)</signal>
-   <receiver>teletextSizeButton</receiver>
+   <signal>energySaverEnabled(bool)</signal>
+   <receiver>energySaverButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -353,8 +353,8 @@
   </connection>
   <connection>
    <sender>PIRTVForm</sender>
-   <signal>teletextRevealEnabled(bool)</signal>
-   <receiver>teletextRevealButton</receiver>
+   <signal>smartHubEnabled(bool)</signal>
+   <receiver>smartHubButton</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -530,11 +530,9 @@
  </connections>
  <slots>
   <signal>teletextEnabled(bool)</signal>
-  <signal>teletextSizeEnabled(bool)</signal>
+  <signal>teletextHoldEnabled(bool)</signal>
   <signal>favoritesEnabled(bool)</signal>
   <signal>pageUpEnabled(bool)</signal>
-  <signal>teletextHoldEnabled(bool)</signal>
-  <signal>teletextRevealEnabled(bool)</signal>
   <signal>liveTVEnabled(bool)</signal>
   <signal>pageDownEnabled(bool)</signal>
   <signal>pipEnabled(bool)</signal>
@@ -545,5 +543,7 @@
   <signal>pipSizeEnabled(bool)</signal>
   <signal>pipPauseEnabled(bool)</signal>
   <signal>pipChannelDownEnabled(bool)</signal>
+  <signal>energySaverEnabled(bool)</signal>
+  <signal>smartHubEnabled(bool)</signal>
  </slots>
 </ui>

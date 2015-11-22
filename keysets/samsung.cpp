@@ -132,7 +132,7 @@ void SamsungTV1::populateProtocol(
   addKey("Red", Red_Key, 0x6C, 8);  // "red/turbo"
   addKey("srs", Surround_Key, 0x6E, 8);
   addKey("E.SAVING", EnergySave_Key, 0x77, 8);
-  addKey("Content", Unmapped_Key, 0x79, 8);
+  addKey("Content", SmartHub_Key, 0x79, 8);
   addKey("Display VCR on TV", VCRInput_Key, 0x7A, 8);
   addKey("Display Cable on TV", CableInput_Key, 0x7B, 8);
   addKey("Display TV on TV", Unmapped_Key, 0x7D, 8);
@@ -345,7 +345,7 @@ void SamsungTV2::populateProtocol(
   addKey("ch-mgr", Unmapped_Key, 0x6B, 8); // "CH_LIST"
   addKey("srs", Surround_Key, 0x6E, 8);
   addKey("E.SAVING", EnergySave_Key, 0x77, 8);
-  addKey("Content", Unmapped_Key, 0x79, 8);
+  addKey("Content", SmartHub_Key, 0x79, 8);
 
 //  addKey("enter", Enter_Key, 0x16, 8);
 //  addKey("select", Select_Key, 0x27, 8);

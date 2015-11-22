@@ -172,8 +172,6 @@
   <signal>liveTVEnabled(bool)</signal>
   <signal>teletextEnabled(bool)</signal>
   <signal>teletextHoldEnabled(bool)</signal>
-  <signal>teletextRevealEnabled(bool)</signal>
-  <signal>teletextSizeEnabled(bool)</signal>
   <signal>pipChannelUpEnabled(bool)</signal>
   <signal>pipChannelDownEnabled(bool)</signal>
   <signal>pipPauseEnabled(bool)</signal>

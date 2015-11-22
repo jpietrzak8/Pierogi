@@ -45,11 +45,11 @@ void PIRTVForm::enableButtons(
   unsigned int id)
 {
   emit teletextEnabled(km->hasKey(id, Teletext_Key));
-  emit teletextSizeEnabled(km->hasKey(id, TeletextSize_Key));
+  emit teletextHoldEnabled(km->hasKey(id, TeletextHold_Key));
   emit favoritesEnabled(km->hasKey(id, Favorites_Key));
   emit pageUpEnabled(km->hasKey(id, PageUp_Key));
-  emit teletextHoldEnabled(km->hasKey(id, TeletextHold_Key));
-  emit teletextRevealEnabled(km->hasKey(id, TeletextReveal_Key));
+  emit energySaverEnabled(km->hasKey(id, EnergySave_Key));
+  emit smartHubEnabled(km->hasKey(id, SmartHub_Key));
   emit liveTVEnabled(km->hasKey(id, LiveTV_Key));
   emit pageDownEnabled(km->hasKey(id, PageDown_Key));
   emit pipEnabled(km->hasKey(id, PIP_Key));
@@ -73,12 +73,12 @@ void PIRTVForm::on_teletextButton_released()
   mainWindow->stopRepeating();
 }
 
-void PIRTVForm::on_teletextSizeButton_pressed()
+void PIRTVForm::on_teletextHoldButton_pressed()
 {
-  mainWindow->startRepeating(TeletextSize_Key);
+  mainWindow->startRepeating(TeletextHold_Key);
 }
 
-void PIRTVForm::on_teletextSizeButton_released()
+void PIRTVForm::on_teletextHoldButton_released()
 {
   mainWindow->stopRepeating();
 }
@@ -103,22 +103,22 @@ void PIRTVForm::on_pageUpButton_released()
   mainWindow->stopRepeating();
 }
 
-void PIRTVForm::on_teletextHoldButton_pressed()
+void PIRTVForm::on_energySaverButton_pressed()
 {
-  mainWindow->startRepeating(TeletextHold_Key);
+  mainWindow->startRepeating(EnergySave_Key);
 }
 
-void PIRTVForm::on_teletextHoldButton_released()
+void PIRTVForm::on_energySaverButton_released()
 {
   mainWindow->stopRepeating();
 }
 
-void PIRTVForm::on_teletextRevealButton_pressed()
+void PIRTVForm::on_smartHubButton_pressed()
 {
-  mainWindow->startRepeating(TeletextReveal_Key);
+  mainWindow->startRepeating(SmartHub_Key);
 }
 
-void PIRTVForm::on_teletextRevealButton_released()
+void PIRTVForm::on_smartHubButton_released()
 {
   mainWindow->stopRepeating();
 }

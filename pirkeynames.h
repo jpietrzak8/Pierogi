@@ -311,7 +311,8 @@ enum PIRKeyName
   Scan_Key,
   Zoom_Key,
   LiveTV_Key,
-  Mode_Key
+  Mode_Key,
+  SmartHub_Key
 };
 
 
