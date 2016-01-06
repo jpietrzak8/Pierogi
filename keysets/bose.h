@@ -39,7 +39,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class BoseRadio2: public PIRKeysetMetaData
@@ -54,7 +54,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class BoseRadio3: public PIRKeysetMetaData
@@ -69,7 +69,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class BoseHomeTheater1: public PIRKeysetMetaData
@@ -84,7 +84,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 #endif // BOSE_H

@@ -946,7 +946,7 @@ void PhilipsDVD3::populateProtocol(
 
 
 void PhilipsDVD3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1072,7 +1072,7 @@ void PhilipsDVD4::populateProtocol(
 
 
 void PhilipsDVD4::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1631,7 +1631,7 @@ void PhilipsAudio1::populateProtocol(
 
 
 void PhilipsAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1706,7 +1706,7 @@ void PhilipsAudio1b::populateProtocol(
 
 
 void PhilipsAudio1b::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   PhilipsAudio1::populateInputList(cb);
 
@@ -1801,7 +1801,7 @@ void PhilipsAudio2::populateProtocol(
 
 
 void PhilipsAudio2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

@@ -177,7 +177,7 @@ void AstroSTB2::populateProtocol(
 
 
 void AstroSTB2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

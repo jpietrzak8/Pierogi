@@ -99,7 +99,7 @@ void Motorola4DTV::populateProtocol(
 
 
 void Motorola4DTV::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -210,7 +210,7 @@ void MotorolaSTB1::populateProtocol(
 
 
 void MotorolaSTB1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

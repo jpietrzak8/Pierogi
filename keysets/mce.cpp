@@ -132,7 +132,7 @@ void MCERemote1::populateProtocol(
 
 
 void MCERemote1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

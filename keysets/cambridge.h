@@ -63,7 +63,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class CambridgeAudio3: public PIRKeysetMetaData
@@ -78,7 +78,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class CambridgeDVD1: public PIRKeysetMetaData

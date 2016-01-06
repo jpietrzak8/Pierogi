@@ -192,7 +192,7 @@ void BenQProjector1a::populateProtocol(
 
 
 void BenQProjector1a::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -259,7 +259,7 @@ void BenQProjector2::populateProtocol(
 
 
 void BenQProjector2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -372,7 +372,7 @@ void BenQProjector4::populateProtocol(
 
 
 void BenQProjector4::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -438,7 +438,7 @@ void BenQProjector5::populateProtocol(
 
 
 void BenQProjector5::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

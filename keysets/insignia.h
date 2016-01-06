@@ -51,7 +51,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class InsigniaTV2: public PIRKeysetMetaData
@@ -66,7 +66,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class InsigniaTV3: public PIRKeysetMetaData
@@ -153,7 +153,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class InsigniaDVD4: public PIRKeysetMetaData
@@ -168,7 +168,7 @@ public:
     QObject *guiObject);
 
 //  virtual void populateInputList(
-//    QComboBox *cb);
+//    QComboBox *cb) const;
 };
 
 class InsigniaDVD5: public PIRKeysetMetaData
@@ -195,7 +195,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 #endif // INSIGNIA_H

@@ -117,7 +117,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 #endif // GOLDSTAR_H

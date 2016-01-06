@@ -75,7 +75,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PanasonicTV1a: public PanasonicTV1
@@ -223,7 +223,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PanasonicAudio2: public PIRKeysetMetaData
@@ -238,7 +238,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PanasonicAudio2a: public PanasonicAudio2
@@ -265,7 +265,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PanasonicAC1: public PIRKeysetMetaData

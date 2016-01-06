@@ -243,7 +243,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PhilipsDVD3a: public PhilipsDVD3
@@ -270,7 +270,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PhilipsVCR1: public PIRKeysetMetaData
@@ -381,7 +381,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PhilipsAudio1a: public PhilipsAudio1
@@ -408,7 +408,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PhilipsAudio2: public PIRKeysetMetaData
@@ -423,7 +423,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PhilipsAudio3: public PIRKeysetMetaData
@@ -450,7 +450,7 @@ public:
     QObject *guiObject);
 
 //  virtual void populateInputList(
-//    QComboBox *cb);
+//    QComboBox *cb) const;
 };
 
 

@@ -130,7 +130,7 @@ void NADAudio1::populateProtocol(
 
 
 void NADAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

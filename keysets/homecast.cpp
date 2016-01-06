@@ -93,7 +93,7 @@ void HomecastReceiver1::populateProtocol(
 
 
 void HomecastReceiver1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

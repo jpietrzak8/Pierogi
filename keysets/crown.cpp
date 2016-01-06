@@ -98,7 +98,7 @@ void CrownTV1::populateProtocol(
 
 
 void CrownTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

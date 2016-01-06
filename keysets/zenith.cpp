@@ -102,7 +102,7 @@ void ZenithTV1::populateProtocol(
 
 
 void ZenithTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

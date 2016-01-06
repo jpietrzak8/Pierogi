@@ -99,7 +99,7 @@ void KaonSat1::populateProtocol(
 
 
 void KaonSat1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

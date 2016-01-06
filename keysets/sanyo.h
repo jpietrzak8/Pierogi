@@ -63,7 +63,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class SanyoTV1b: public SanyoTV1
@@ -102,7 +102,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class SanyoProjector1: public PIRKeysetMetaData
@@ -117,7 +117,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class SanyoProjector1a: public SanyoProjector1

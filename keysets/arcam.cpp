@@ -87,7 +87,7 @@ void ArcamReceiver1::populateProtocol(
 
 
 void ArcamReceiver1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

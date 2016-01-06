@@ -95,7 +95,7 @@ void StrongSat1::populateProtocol(
 
 
 void StrongSat1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -174,7 +174,7 @@ void StrongSat2::populateProtocol(
 
 
 void StrongSat2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -287,7 +287,7 @@ void StrongSat3::populateProtocol(
 
 
 void StrongSat3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -503,7 +503,7 @@ void StrongSat5::populateProtocol(
 
 
 void StrongSat5::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -695,7 +695,7 @@ void StrongSTB2::populateProtocol(
 
 
 void StrongSTB2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -838,7 +838,7 @@ void StrongSTB4::populateProtocol(
 
 
 void StrongSTB4::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

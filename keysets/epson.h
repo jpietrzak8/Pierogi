@@ -39,7 +39,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class EpsonProjector1a: public EpsonProjector1

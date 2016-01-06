@@ -783,7 +783,7 @@ void JVCAudio1::populateProtocol(
 
 
 void JVCAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -892,7 +892,7 @@ void JVCAudio1b::populateProtocol(
 
 
 void JVCAudio1b::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   JVCAudio1::populateInputList(cb);
 
@@ -1012,7 +1012,7 @@ void JVCAudio2::populateProtocol(
 
 
 void JVCAudio2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

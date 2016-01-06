@@ -279,7 +279,7 @@ void OnkyoAudio3::populateProtocol(
 
 
 void OnkyoAudio3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -505,7 +505,7 @@ void OnkyoDVD1::populateProtocol(
 
 
 void OnkyoDVD1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

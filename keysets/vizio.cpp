@@ -111,7 +111,7 @@ void VizioTV1::populateProtocol(
 
 
 void VizioTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

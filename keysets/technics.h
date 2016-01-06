@@ -63,7 +63,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class TechnicsAudio3: public PIRKeysetMetaData
@@ -78,7 +78,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class TechnicsAudio3a: public TechnicsAudio3
@@ -105,7 +105,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class TechnicsReceiver1a: public TechnicsReceiver1

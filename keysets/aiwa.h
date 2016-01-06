@@ -75,7 +75,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class AiwaAudio1a: public AiwaAudio1
@@ -102,7 +102,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class AiwaAudio2a: public AiwaAudio2
@@ -189,7 +189,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class AiwaCarStereo1: public PIRKeysetMetaData
@@ -204,7 +204,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class AiwaDVD1: public PIRKeysetMetaData

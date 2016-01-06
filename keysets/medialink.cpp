@@ -110,7 +110,7 @@ void MedialinkSTB1::populateProtocol(
 
 
 void MedialinkSTB1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

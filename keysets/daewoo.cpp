@@ -103,7 +103,7 @@ void DaewooTV1::populateProtocol(
 
 
 void DaewooTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -280,7 +280,7 @@ void DaewooTV3::populateProtocol(
 
 
 void DaewooTV3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -361,7 +361,7 @@ void DaewooTV4::populateProtocol(
 
 
 void DaewooTV4::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -653,7 +653,7 @@ void DaewooVCR2::populateProtocol(
 
 
 void DaewooVCR2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

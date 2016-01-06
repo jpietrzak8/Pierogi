@@ -124,7 +124,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class SharpAC1: public PIRKeysetMetaData

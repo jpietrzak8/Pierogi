@@ -109,7 +109,7 @@ void ILOTV1::populateProtocol(
 
 
 void ILOTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -273,7 +273,7 @@ void ILOTV3::populateProtocol(
 
 
 void ILOTV3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

@@ -565,7 +565,7 @@ void NECProjector2::populateProtocol(
 
 
 void NECProjector2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

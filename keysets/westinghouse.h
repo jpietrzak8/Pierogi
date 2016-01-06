@@ -39,7 +39,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class WestinghouseTV2: public PIRKeysetMetaData
@@ -54,7 +54,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 #endif // WESTINGHOUSE_H

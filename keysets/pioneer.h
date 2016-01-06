@@ -39,7 +39,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PioneerTV2: public PIRKeysetMetaData
@@ -78,7 +78,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PioneerAudio1a: public PioneerAudio1
@@ -105,7 +105,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PioneerAudio3: public PIRKeysetMetaData
@@ -120,7 +120,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PioneerAudio4: public PIRKeysetMetaData
@@ -147,7 +147,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PioneerAudio6: public PIRKeysetMetaData
@@ -162,7 +162,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class PioneerCD1: public PIRKeysetMetaData
@@ -213,7 +213,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 #endif // PIONEER_H

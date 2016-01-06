@@ -81,7 +81,7 @@ void ViewsonicProjector1::populateProtocol(
 
 
 void ViewsonicProjector1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -163,7 +163,7 @@ void ViewsonicProjector2::populateProtocol(
 
 
 void ViewsonicProjector2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

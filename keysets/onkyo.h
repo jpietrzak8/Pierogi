@@ -75,7 +75,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class OnkyoAudio4: public PIRKeysetMetaData
@@ -114,7 +114,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class OnkyoDVD2: public PIRKeysetMetaData

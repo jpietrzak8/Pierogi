@@ -240,7 +240,7 @@ void ChanghongTV2::populateProtocol(
 
 
 void ChanghongTV2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

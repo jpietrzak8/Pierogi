@@ -130,7 +130,7 @@ void KenwoodAudio1::populateProtocol(
 
 
 void KenwoodAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -271,7 +271,7 @@ void KenwoodComponent1::populateProtocol(
 
 
 void KenwoodComponent1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -351,7 +351,7 @@ void KenwoodComponent2::populateProtocol(
 
 
 void KenwoodComponent2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -425,7 +425,7 @@ void KenwoodComponent3::populateProtocol(
 
 
 void KenwoodComponent3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -707,7 +707,7 @@ void KenwoodTV1::populateProtocol(
 
 
 void KenwoodTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

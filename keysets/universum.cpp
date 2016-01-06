@@ -434,7 +434,7 @@ void UniversumSat1::populateProtocol(
 
 
 void UniversumSat1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -525,7 +525,7 @@ void UniversumAudio1::populateProtocol(
 
 
 void UniversumAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

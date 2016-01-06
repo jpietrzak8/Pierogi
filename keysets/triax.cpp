@@ -156,7 +156,7 @@ void TriaxSTB2::populateProtocol(
 
 
 void TriaxSTB2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

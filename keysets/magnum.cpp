@@ -95,7 +95,7 @@ void MagnumTV1::populateProtocol(
 
 
 void MagnumTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

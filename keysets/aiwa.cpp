@@ -370,7 +370,7 @@ void AiwaAudio1::populateProtocol(
 
 
 void AiwaAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -525,7 +525,7 @@ void AiwaAudio2::populateProtocol(
 
 
 void AiwaAudio2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -866,7 +866,7 @@ void AiwaAudio6::populateProtocol(
 
 
 void AiwaAudio6::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -923,7 +923,7 @@ void AiwaCarStereo1::populateProtocol(
 
 
 void AiwaCarStereo1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

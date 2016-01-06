@@ -127,7 +127,7 @@ void DishReceiver1::populateProtocol(
 
 
 void DishReceiver1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

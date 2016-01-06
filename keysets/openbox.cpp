@@ -114,7 +114,7 @@ void OpenBoxSTB1::populateProtocol(
 
 
 void OpenBoxSTB1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

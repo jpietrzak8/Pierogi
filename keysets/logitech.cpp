@@ -78,7 +78,7 @@ void LogitechSpeakers::populateProtocol(
 
 
 void LogitechSpeakers::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

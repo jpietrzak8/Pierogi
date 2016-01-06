@@ -175,7 +175,7 @@ void SagemcomSTB2::populateProtocol(
 
 
 void SagemcomSTB2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

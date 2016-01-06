@@ -112,7 +112,7 @@ void PioneerTV1::populateProtocol(
 
 
 void PioneerTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -397,7 +397,7 @@ void PioneerAudio1::populateProtocol(
 
 
 void PioneerAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -510,7 +510,7 @@ void PioneerAudio2::populateProtocol(
 
 
 void PioneerAudio2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -691,7 +691,7 @@ void PioneerAudio3::populateProtocol(
 
 
 void PioneerAudio3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -845,7 +845,7 @@ void PioneerAudio5::populateProtocol(
 
 
 void PioneerAudio5::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1039,7 +1039,7 @@ void PioneerAudio6::populateProtocol(
 
 
 void PioneerAudio6::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1397,7 +1397,7 @@ void PioneerCarStereo1::populateProtocol(
 
 
 void PioneerCarStereo1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

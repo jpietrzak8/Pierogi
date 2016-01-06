@@ -111,7 +111,7 @@ public:
     QObject *guiObject);
 
 //  virtual void populateInputList(
-//    QComboBox *cb);
+//    QComboBox *cb) const;
 };
 
 class JVCTV1a: public JVCTV1
@@ -198,7 +198,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class JVCAudio1a: public JVCAudio1
@@ -225,7 +225,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class JVCAudio2: public PIRKeysetMetaData
@@ -240,7 +240,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class JVCDVD1: public PIRKeysetMetaData

@@ -159,7 +159,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class ToshibaVCR1a: public ToshibaVCR1
@@ -198,7 +198,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class ToshibaDisc1a: public ToshibaDisc1
@@ -261,7 +261,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class ToshibaProjector1: public PIRKeysetMetaData
@@ -276,7 +276,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class ToshibaSTB1: public PIRKeysetMetaData
@@ -291,7 +291,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 #endif // TOSHIBA_H

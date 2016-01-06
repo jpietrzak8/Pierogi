@@ -39,7 +39,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *box);
+    QComboBox *box) const;
 };
 
 class HomecastReceiver2: public PIRKeysetMetaData

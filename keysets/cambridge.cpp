@@ -223,7 +223,7 @@ void CambridgeAudio2::populateProtocol(
 
 
 void CambridgeAudio2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -288,7 +288,7 @@ void CambridgeAudio3::populateProtocol(
 
 
 void CambridgeAudio3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

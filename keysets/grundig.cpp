@@ -307,7 +307,7 @@ void GrundigAmp1::populateProtocol(
 
 
 void GrundigAmp1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -450,7 +450,7 @@ void GrundigAudio2::populateProtocol(
 
 
 void GrundigAudio2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

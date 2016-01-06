@@ -360,7 +360,7 @@ void ADBSTB5::populateProtocol(
 
 
 void ADBSTB5::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

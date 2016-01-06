@@ -51,7 +51,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class TriaxSTB2a: public TriaxSTB2

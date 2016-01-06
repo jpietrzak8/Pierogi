@@ -75,7 +75,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class ChanghongTV3: public PIRKeysetMetaData

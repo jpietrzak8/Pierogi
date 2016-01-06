@@ -115,7 +115,7 @@ void AcerTV1::populateProtocol(
 
 
 void AcerTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

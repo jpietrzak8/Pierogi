@@ -174,7 +174,7 @@ void VestelTV2::populateProtocol(
 
 
 void VestelTV2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

@@ -338,7 +338,7 @@ void MitsubishiProjector1::populateProtocol(
 
 
 void MitsubishiProjector1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -422,7 +422,7 @@ void MitsubishiProjector2::populateProtocol(
 
 
 void MitsubishiProjector2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

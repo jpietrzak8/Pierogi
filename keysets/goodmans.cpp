@@ -309,7 +309,7 @@ void GoodmansAudio1::populateProtocol(
 
 
 void GoodmansAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

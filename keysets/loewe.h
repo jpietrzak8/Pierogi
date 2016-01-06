@@ -51,7 +51,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class LoeweDVD1: public PIRKeysetMetaData

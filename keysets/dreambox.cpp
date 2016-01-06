@@ -104,7 +104,7 @@ void DreamboxSat1::populateProtocol(
 
 
 void DreamboxSat1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -282,7 +282,7 @@ void DreamboxSat2::populateProtocol(
 
 
 void DreamboxSat2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -366,7 +366,7 @@ void DreamboxSat3::populateProtocol(
 
 
 void DreamboxSat3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

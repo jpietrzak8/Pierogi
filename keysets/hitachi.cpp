@@ -348,7 +348,7 @@ void HitachiTV3::populateProtocol(
 
 
 void HitachiTV3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

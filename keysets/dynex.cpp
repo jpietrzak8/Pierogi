@@ -103,7 +103,7 @@ void DynexTV1::populateProtocol(
 
 
 void DynexTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

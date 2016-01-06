@@ -359,7 +359,7 @@ void DenonReceiver1::populateProtocol(
 
 
 void DenonReceiver1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -640,7 +640,7 @@ void DenonReceiver2::populateProtocol(
 
 
 void DenonReceiver2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -749,7 +749,7 @@ void DenonReceiver3::populateProtocol(
 
 
 void DenonReceiver3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -835,7 +835,7 @@ void DenonReceiver4::populateProtocol(
 
 
 void DenonReceiver4::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -966,7 +966,7 @@ void DenonAudio1::populateProtocol(
 
 
 void DenonAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1321,7 +1321,7 @@ void DenonAudio4::populateProtocol(
 
 
 void DenonAudio4::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

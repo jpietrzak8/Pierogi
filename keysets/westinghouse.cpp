@@ -91,7 +91,7 @@ void WestinghouseTV1::populateProtocol(
 
 
 void WestinghouseTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -182,7 +182,7 @@ void WestinghouseTV2::populateProtocol(
 
 
 void WestinghouseTV2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

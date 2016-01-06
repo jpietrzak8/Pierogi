@@ -96,7 +96,7 @@ void ComproTVCard1::populateProtocol(
 }
 
 void ComproTVCard1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

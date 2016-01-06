@@ -117,7 +117,7 @@ void BangAndOlufsenTV1::populateProtocol(
 
 
 void BangAndOlufsenTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

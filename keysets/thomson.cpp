@@ -423,7 +423,7 @@ void ThomsonSat1::populateProtocol(
 
 
 void ThomsonSat1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

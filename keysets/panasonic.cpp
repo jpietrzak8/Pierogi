@@ -296,7 +296,7 @@ void PanasonicTV1::populateProtocol(
 
 
 void PanasonicTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1004,7 +1004,7 @@ void PanasonicAudio1::populateProtocol(
 
 
 void PanasonicAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1097,7 +1097,7 @@ void PanasonicAudio2::populateProtocol(
 
 
 void PanasonicAudio2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1193,7 +1193,7 @@ void PanasonicAudio3::populateProtocol(
 
 
 void PanasonicAudio3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

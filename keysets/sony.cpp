@@ -178,7 +178,7 @@ void SonyTV1::populateProtocol(
 
 
 void SonyTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -409,7 +409,7 @@ void SonyAmp1::populateProtocol(
 
 
 void SonyAmp1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -500,7 +500,7 @@ void SonyAmp2::populateProtocol(
 
 
 void SonyAmp2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -628,7 +628,7 @@ void SonyAudio1::populateProtocol(
 
 
 void SonyAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1133,7 +1133,7 @@ void SonyVCR1::populateProtocol(
 
 
 void SonyVCR1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1278,7 +1278,7 @@ void SonyReceiver1::populateProtocol(
 
 
 void SonyReceiver1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1564,7 +1564,7 @@ void SonyProjector1::populateProtocol(
 
 
 void SonyProjector1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1754,7 +1754,7 @@ void SonyHT1::populateProtocol(
 
 
 void SonyHT1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -1853,7 +1853,7 @@ void SonyCarStereo1::populateProtocol(
 
 
 void SonyCarStereo1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

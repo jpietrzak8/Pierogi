@@ -107,7 +107,7 @@ void CiscoSTB1::populateProtocol(
 
 
 void CiscoSTB1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -213,7 +213,7 @@ void CiscoSTB2::populateProtocol(
 
 
 void CiscoSTB2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

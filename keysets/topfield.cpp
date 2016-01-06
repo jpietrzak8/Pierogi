@@ -114,7 +114,7 @@ void TopfieldPVR1::populateProtocol(
 
 
 void TopfieldPVR1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -201,7 +201,7 @@ void TopfieldSat1::populateProtocol(
 
 
 void TopfieldSat1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

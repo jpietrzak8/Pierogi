@@ -476,7 +476,7 @@ void SharpReceiver1::populateProtocol(
 
 
 void SharpReceiver1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

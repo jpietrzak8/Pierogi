@@ -100,7 +100,7 @@ void ViewsatSat1::populateProtocol(
 
 
 void ViewsatSat1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

@@ -101,7 +101,7 @@ void TechnisatSTB1::populateProtocol(
 
 
 void TechnisatSTB1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -207,7 +207,7 @@ void TechnisatSTB2::populateProtocol(
 
 
 void TechnisatSTB2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

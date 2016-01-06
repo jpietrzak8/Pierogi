@@ -375,7 +375,7 @@ void GoldStarAudio1::populateProtocol(
 
 
 void GoldStarAudio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

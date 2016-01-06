@@ -162,7 +162,7 @@ void LGTV1::populateProtocol(
 
 
 void LGTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -597,7 +597,7 @@ void LGHT2::populateProtocol(
 
 
 void LGHT2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -740,7 +740,7 @@ void LGDisc1::populateProtocol(
 
 
 void LGDisc1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

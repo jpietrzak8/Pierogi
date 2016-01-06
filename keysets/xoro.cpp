@@ -90,7 +90,7 @@ void XoroSTB1::populateProtocol(
 
 
 void XoroSTB1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

@@ -447,7 +447,7 @@ void ToshibaVCR1::populateProtocol(
 
 
 void ToshibaVCR1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -614,7 +614,7 @@ void ToshibaDisc1::populateProtocol(
 
 
 void ToshibaDisc1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -821,7 +821,7 @@ void ToshibaDisc2::populateProtocol(
 
 
 void ToshibaDisc2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -877,7 +877,7 @@ void ToshibaProjector1::populateProtocol(
 
 
 void ToshibaProjector1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -960,7 +960,7 @@ void ToshibaSTB1::populateProtocol(
 
 
 void ToshibaSTB1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

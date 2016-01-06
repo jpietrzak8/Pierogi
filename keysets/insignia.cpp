@@ -160,7 +160,7 @@ void InsigniaTV1a::populateProtocol(
 
 
 void InsigniaTV1a::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -233,7 +233,7 @@ void InsigniaTV2::populateProtocol(
 
 
 void InsigniaTV2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -724,7 +724,7 @@ void InsigniaDVD3::populateProtocol(
 
 
 void InsigniaDVD3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -986,7 +986,7 @@ void InsigniaDVD6::populateProtocol(
 
 
 void InsigniaDVD6::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

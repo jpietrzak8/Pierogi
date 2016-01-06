@@ -94,7 +94,7 @@ void GadmeiTuner1::populateProtocol(
 
 
 void GadmeiTuner1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

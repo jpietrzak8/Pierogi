@@ -92,7 +92,7 @@ void FortecReceiver1::populateProtocol(
 
 
 void FortecReceiver1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -191,7 +191,7 @@ void FortecReceiver2::populateProtocol(
 }
 
 void FortecReceiver2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

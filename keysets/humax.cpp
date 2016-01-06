@@ -103,7 +103,7 @@ void HumaxReceiver1::populateProtocol(
 
 
 void HumaxReceiver1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -182,7 +182,7 @@ void HumaxReceiver2::populateProtocol(
 
 
 void HumaxReceiver2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -278,7 +278,7 @@ void HumaxReceiver3::populateProtocol(
 
 
 void HumaxReceiver3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

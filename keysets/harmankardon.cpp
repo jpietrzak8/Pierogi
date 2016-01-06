@@ -117,7 +117,7 @@ void HarmanKardonAmp1::populateProtocol(
 
 
 void HarmanKardonAmp1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -186,7 +186,7 @@ void HarmanKardonAmp2::populateProtocol(
 
 
 void HarmanKardonAmp2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

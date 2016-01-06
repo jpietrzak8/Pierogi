@@ -214,7 +214,7 @@ void TechnicsAudio2::populateProtocol(
 
 
 void TechnicsAudio2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -330,7 +330,7 @@ void TechnicsAudio3::populateProtocol(
 
 
 void TechnicsAudio3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -450,7 +450,7 @@ void TechnicsReceiver1::populateProtocol(
 
 
 void TechnicsReceiver1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

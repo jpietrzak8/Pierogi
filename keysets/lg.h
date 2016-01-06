@@ -39,7 +39,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class LGTV1a: public LGTV1
@@ -126,7 +126,7 @@ public:
     QObject *guiObject);
 
 //  virtual void populateInputList(
-//    QComboBox *cb);
+//    QComboBox *cb) const;
 };
 
 class LGHT2: public PIRKeysetMetaData
@@ -141,7 +141,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class LGHT2a: public LGHT2
@@ -168,7 +168,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class LGDisc2: public PIRKeysetMetaData

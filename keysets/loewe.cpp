@@ -160,7 +160,7 @@ void LoeweVCR1::populateProtocol(
 
 
 void LoeweVCR1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

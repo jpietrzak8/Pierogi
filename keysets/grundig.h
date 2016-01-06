@@ -77,7 +77,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class GrundigAudio1: public PIRKeysetMetaData
@@ -104,7 +104,7 @@ public:
     QObject *guiObject);
 
   virtual void populateInputList(
-    QComboBox *cb);
+    QComboBox *cb) const;
 };
 
 class GrundigVCR1: public PIRKeysetMetaData

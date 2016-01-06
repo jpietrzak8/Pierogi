@@ -351,7 +351,7 @@ void YamahaAudio2::populateProtocol(
 
 
 void YamahaAudio2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -631,7 +631,7 @@ void YamahaAudio4::populateProtocol(
 
 
 void YamahaAudio4::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -745,7 +745,7 @@ void YamahaKaraoke1::populateProtocol(
 
 
 void YamahaKaraoke1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

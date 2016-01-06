@@ -98,7 +98,7 @@ void OrionTV1::populateProtocol(
 
 
 void OrionTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -246,7 +246,7 @@ void OrionTV3::populateProtocol(
 
 
 void OrionTV3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

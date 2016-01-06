@@ -89,7 +89,7 @@ void BushTV1::populateProtocol(
 
 
 void BushTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

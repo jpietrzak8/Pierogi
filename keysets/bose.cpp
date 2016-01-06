@@ -90,7 +90,7 @@ void BoseRadio1::populateProtocol(
 
 
 void BoseRadio1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -153,7 +153,7 @@ void BoseRadio2::populateProtocol(
 
 
 void BoseRadio2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -220,7 +220,7 @@ void BoseRadio3::populateProtocol(
 
 
 void BoseRadio3::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -301,7 +301,7 @@ void BoseHomeTheater1::populateProtocol(
 
 
 void BoseHomeTheater1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

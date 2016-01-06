@@ -93,7 +93,7 @@ void LexuzDVB1::populateProtocol(
 
 
 void LexuzDVB1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

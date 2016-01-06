@@ -291,7 +291,7 @@ void SanyoTV1::populateProtocol(
 
 
 void SanyoTV1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -452,7 +452,7 @@ void SanyoTV2::populateProtocol(
 
 
 void SanyoTV2::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
@@ -544,7 +544,7 @@ void SanyoProjector1::populateProtocol(
 
 
 void SanyoProjector1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 

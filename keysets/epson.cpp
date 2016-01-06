@@ -140,7 +140,7 @@ void EpsonProjector1::populateProtocol(
 
 
 void EpsonProjector1::populateInputList(
-  QComboBox *cb)
+  QComboBox *cb) const
 {
   cb->clear();
 
